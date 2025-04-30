@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <AIBuildStateDefinition
+        id="SovietExtraBarracksBuildState_Balance">
+        <Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>BalanceBuildSpawn</IncludeThing>
+					<IncludeThing>AirPowerBuildSpawn</IncludeThing>
+					<IncludeThing>LandBuildSpawnSpawn</IncludeThing>
+					<IncludeThing>OnlyHighTechUnitBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+            <OpeningMoveHeuristic Complete="true"/>
+            <MoneyHeuristic Money="20000" Above="true" />
+            <IntervalHeuristic IntervalTime="150s" ActiveTime="20s" CountFrom="AI_START"/>
+			<PowerAdvantageHeuristic Value="6.0" Above="false" IncludeOwnDefenses="false" IncludeEnemyDefenses="true"/>
+			<IncomeAdvantageHeuristic Value="6.0" Above="false"/>
+			<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+        </Heuristic>
+        <BuildEntry Build="SovietBarracks" Heuristic="CONSTANT" Score="100"/>
+    </AIBuildStateDefinition>
+    <AIBuildStateDefinition
+        id="SovietExtraBarracksBuildState_Less">
+        <Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>MoreTankBuildSpawn</IncludeThing>
+					<IncludeThing>SoManyTanksBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+            <OpeningMoveHeuristic Complete="true"/>
+            <MoneyHeuristic Money="30000" Above="true" />
+            <IntervalHeuristic IntervalTime="180s" ActiveTime="20s" CountFrom="AI_START"/>
+			<PowerAdvantageHeuristic Value="3.0" Above="false" IncludeOwnDefenses="false" IncludeEnemyDefenses="true"/>
+			<IncomeAdvantageHeuristic Value="3.0" Above="false"/>
+			<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+        </Heuristic>
+        <BuildEntry Build="SovietBarracks" Heuristic="CONSTANT" Score="100"/>
+    </AIBuildStateDefinition>
+
+    <AIBuildStateDefinition
+        id="SovietExtraWarFactoryBuildState_Balance">
+        <Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>BalanceBuildSpawn</IncludeThing>
+					<IncludeThing>LandBuildSpawnSpawn</IncludeThing>
+					<IncludeThing>OnlyHighTechUnitBuildSpawn</IncludeThing>
+					<IncludeThing>MoreTankBuildSpawn</IncludeThing>
+					<IncludeThing>SoManyTanksBuildSpawn</IncludeThing>
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+            <OpeningMoveHeuristic Complete="true"/>
+            <MoneyHeuristic Money="20000" Above="true" />
+            <IntervalHeuristic IntervalTime="150s" ActiveTime="20s" CountFrom="AI_START"/>
+			<PowerAdvantageHeuristic Value="6.0" Above="false" IncludeOwnDefenses="false" IncludeEnemyDefenses="true"/>
+			<IncomeAdvantageHeuristic Value="6.0" Above="false"/>
+            <PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+        </Heuristic>
+		<BuildEntry Build="SovietWarFactory" Heuristic="CONSTANT" Score="100"/>
+    </AIBuildStateDefinition>
+    <AIBuildStateDefinition
+        id="SovietExtraWarFactoryBuildState_Less">
+        <Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>AirPowerBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+            <OpeningMoveHeuristic Complete="true"/>
+            <MoneyHeuristic Money="30000" Above="true" />
+            <IntervalHeuristic IntervalTime="180s" ActiveTime="20s" CountFrom="AI_START"/>
+			<PowerAdvantageHeuristic Value="3.0" Above="false" IncludeOwnDefenses="false" IncludeEnemyDefenses="true"/>
+			<IncomeAdvantageHeuristic Value="3.0" Above="false"/>
+            <PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+        </Heuristic>
+		<BuildEntry Build="SovietWarFactory" Heuristic="CONSTANT" Score="100"/>
+    </AIBuildStateDefinition>
+
+    <AIBuildStateDefinition
+        id="SovietExtraNavalYardBuildState_Balance">
+        <Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>BalanceBuildSpawn</IncludeThing>
+					<IncludeThing>OnlyHighTechUnitBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+            <OpeningMoveHeuristic Complete="true"/>
+            <MoneyHeuristic Money="20000" Above="true" />
+            <IntervalHeuristic IntervalTime="150s" ActiveTime="20s" CountFrom="AI_START"/>
+			<PowerAdvantageHeuristic Value="6.0" Above="false" IncludeOwnDefenses="false" IncludeEnemyDefenses="true"/>
+			<IncomeAdvantageHeuristic Value="6.0" Above="false"/>
+            <PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+        </Heuristic>
+        <BuildEntry Build="SovietNavalYard" Heuristic="CONSTANT" Score="100"/>
+    </AIBuildStateDefinition>
+    <AIBuildStateDefinition
+        id="SovietExtraNavalYardBuildState_Less">
+        <Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>LandBuildSpawnSpawn</IncludeThing>
+					<IncludeThing>MoreTankBuildSpawn</IncludeThing>
+					<IncludeThing>SoManyTanksBuildSpawn</IncludeThing>
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>AirPowerBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+            <OpeningMoveHeuristic Complete="true"/>
+            <MoneyHeuristic Money="30000" Above="true" />
+            <IntervalHeuristic IntervalTime="180s" ActiveTime="20s" CountFrom="AI_START"/>
+			<PowerAdvantageHeuristic Value="3.0" Above="false" IncludeOwnDefenses="false" IncludeEnemyDefenses="true"/>
+			<IncomeAdvantageHeuristic Value="3.0" Above="false"/>
+            <PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+        </Heuristic>
+        <BuildEntry Build="SovietNavalYard" Heuristic="CONSTANT" Score="100"/>
+    </AIBuildStateDefinition>
+
+    <AIBuildStateDefinition
+        id="SovietExtraAirfieldBuildState_Balance">
+        <Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>BalanceBuildSpawn</IncludeThing>
+					<IncludeThing>AirPowerBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>OnlyHighTechUnitBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+            <OpeningMoveHeuristic Complete="true"/>
+            <MoneyHeuristic Money="20000" Above="true" />
+            <IntervalHeuristic IntervalTime="150s" ActiveTime="20s" CountFrom="AI_START"/>
+			<PowerAdvantageHeuristic Value="6.0" Above="false" IncludeOwnDefenses="false" IncludeEnemyDefenses="true"/>
+			<IncomeAdvantageHeuristic Value="6.0" Above="false"/>
+        </Heuristic>
+        <BuildEntry Build="SovietAirfield" Heuristic="CONSTANT" Score="100"/>
+    </AIBuildStateDefinition>
+    <AIBuildStateDefinition
+        id="SovietExtraAirfieldBuildState_Less">
+        <Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>MoreTankBuildSpawn</IncludeThing>
+					<IncludeThing>SoManyTanksBuildSpawn</IncludeThing>
+					<IncludeThing>LandBuildSpawnSpawn</IncludeThing>
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+            <OpeningMoveHeuristic Complete="true"/>
+            <MoneyHeuristic Money="30000" Above="true" />
+            <IntervalHeuristic IntervalTime="180s" ActiveTime="20s" CountFrom="AI_START"/>
+			<PowerAdvantageHeuristic Value="3.0" Above="false" IncludeOwnDefenses="false" IncludeEnemyDefenses="true"/>
+			<IncomeAdvantageHeuristic Value="3.0" Above="false"/>
+        </Heuristic>
+        <BuildEntry Build="SovietAirfield" Heuristic="CONSTANT" Score="100"/>
+    </AIBuildStateDefinition>
+</AssetDeclaration>

@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_TRANS.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/AlliedCrane_SKN.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_SKL.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_SKN.RING1.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_SKN.RING2.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_SKN.RING3.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_SKN.RING4.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_RING_SKL.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_RING_1_SKN.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_RING_2_SKN.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_RING_3_SKN.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_RING_4_SKN.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_RING_IDL_1.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_RING_IDL_2.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_RING_IDL_3.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/BM_ALC_WT4_RING_IDL_4.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/AlliedCraneBLD.w3x" />
+		<Include type="all" source="ART:Structures/AlliedCrane/AlliedCraneBLD_SKN.w3x" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseStructure.xml" />
+	</Includes>
+	<GameObject
+		id="AlliedCrane"
+		inheritFrom="BaseStructure"
+		SelectPortrait="Portrait_AlliedCrane"
+		ButtonImage="Button_AlliedCrane"
+		Side="Allies"
+		EditorSorting="STRUCTURE"
+		TransportSlotCount="1"
+		BuildTime="15.0"
+		KindOf="+CONSTRUCTION_YARD +CRANE +FS_FACTORY"
+		CommandSet="AlliedCraneCommandSet"
+		RadarPriority="STRUCTURE"
+		PlacementViewAngle="45d"
+		ProductionQueueType="MAIN_STRUCTURE"
+		BuildPlacementTypeFlag="MAIN_STRUCTURE"
+		EditorName="AlliedCrane"
+		EnergyProduction="-50"
+		HealthBoxHeightOffset="30"
+		Description="Desc:AlliedCrane"
+		TypeDescription="Type:ConstructBuild">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedCrane</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1500"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseStructureArmor"
+			DamageFX="FactionStructureDamageFX" />
+    <SkirmishAIInformation
+			BaseBuildingLocation="NEAR_RESOURCE_NODE">
+      <ConstructionBaseSelectionCriteria
+        ExcludedBaseTypes="NO_BUILD_RADIUS CAPTURED"/>
+    </SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="AlliedCrane_SKN" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="AlliedCrane_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="ALLIEDCRANEBLD_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FROZEN STRUCTURE_UNPACKING">
+					<Model
+						Name="ALLIEDCRANEBLD_SKN" />
+					<ParticleSysBone
+						BoneName="RING_1"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="TURET"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="ALLIEDCRANEBLD_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AlliedCrane_SKN" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AlliedCrane_SKN" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="ALLIEDCRANEBLD"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="2s"/>
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Med"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Lights"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Flash"
+						FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Animation
+						AnimationName="ALLIEDCRANEBLD"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s" />
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_1"
+				NoRotate="true"
+				OkToChangeModelColor="true"
+				AttachToBoneInAnotherModule="RING_1">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="BM_ALC_WT4_RING_1_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="BM_ALC_WT4_RING_1_SKN" />
+					<Texture
+						Original="AUSupportAircraft"
+						New="AUSupportAircraft_D" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ACTIVELY_CONSTRUCTING">
+					<Animation
+						AnimationName="BM_ALC_WT4_RING_IDL_1"
+						AnimationMode="LOOP"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_2"
+				NoRotate="true"
+				OkToChangeModelColor="false">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="BM_ALC_WT4_RING_2_SKN" />
+					<ParticleSysBone
+						BoneName="BASE_RING"
+						FXParticleSystemTemplate="BM_FX_ALC_WT4_GLOV"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="BM_ALC_WT4_RING_2_SKN" />
+					<Texture
+						Original="AUSupportAircraft"
+						New="AUSupportAircraft_D" />
+					<ParticleSysBone
+						BoneName="BASE_RING"
+						FXParticleSystemTemplate="BM_FX_ALC_WT4_GLOV"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ACTIVELY_CONSTRUCTING">
+					<Animation
+						AnimationName="BM_ALC_WT4_RING_IDL_2"
+						AnimationMode="LOOP"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_3"
+				NoRotate="true"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="BM_ALC_WT4_RING_3_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="BM_ALC_WT4_RING_3_SKN" />
+					<Texture
+						Original="AUSupportAircraft"
+						New="AUSupportAircraft_D" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ACTIVELY_CONSTRUCTING">
+					<Animation
+						AnimationName="BM_ALC_WT4_RING_IDL_3"
+						AnimationMode="LOOP"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_4"
+				NoRotate="true"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="BM_ALC_WT4_RING_4_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="BM_ALC_WT4_RING_4_SKN" />
+					<Texture
+						Original="AUSupportAircraft"
+						New="AUSupportAircraft_D" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ACTIVELY_CONSTRUCTING">
+					<Animation
+						AnimationName="BM_ALC_WT4_RING_IDL_4"
+						AnimationMode="LOOP"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<SpecialPower
+				id="ModuleTag_ReplaceSelfEggPackSpecialPowerTrigger"
+				SpecialPowerTemplate="SpecialPower_PackReplaceSelfEgg"
+				UpdateModuleStartsAttack="true"/>
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelf"
+				SpecialPowerTemplate="SpecialPower_PackReplaceSelfEgg"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				NewObjectUnpackTime="2s"
+				ReplaceOptions="COPY_UPGRADES DISABLE_DURING_REPLACE DISABLE_NEW_OBJECT_DURING_UNPACK">
+				<ReplacementTemplate>AlliedCraneEgg</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+			<TunnelContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED"
+				ObjectStatusWhileContaining="CONTAINER_OCCUPIED"
+				ContainMax="99999"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				EnterSound="EU_WormHole_Enter"
+				ExitSound="EU_WormHole_Exit"
+				ShowPips="false"
+				KillPassengersOnDeath="true">
+				<PassengerFilter
+					Rule="ALL"
+					Relationship="ALLIES">
+				</PassengerFilter>
+				<DieMuxData
+					DeathTypes="ALL" />
+			</TunnelContain>
+			<SpecialPower
+				id="ModuleTag_GenericGroundEjectPassengers"
+				SpecialPowerTemplate="SpecialPower_GenericGroundEjectPassengers"
+				UpdateModuleStartsAttack="true" />
+			<EjectPassengersSpecialAbilityUpdate
+				id="ModuleTag_GenericGroundEjectPassengersUpdate"
+				SpecialPowerTemplate="SpecialPower_GenericGroundEjectPassengers"
+				Height="0.0"
+				TimePerPassenger="0.06s"
+				IgnoreTargetLocation="true"
+				Radius="50"
+				Options="RECONSTITUTE_STORED_COMMAND DO_NOT_DO_AI_SPECIAL_POWER"/>
+			<BuildingDestructionBehavior
+				id="ModuleTag_BuildingDestruction"
+				FillerMesh="NEWSKIN_FILL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6"/>
+				<Item
+					BonePrefix="BONE_CONTACT_POINT_"
+					FX="SovietRefineryHit"
+					CreationObject="AlliedBarracks_Debris"
+					FlingVelocity="100.0"/>
+			</BuildingDestructionBehavior>
+			<FXListBehavior
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_YU_Hotel02_Explode" />
+			</FXListBehavior>
+      <FXListBehavior xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_DieSound">
+        <DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6" />
+        <Event Index="onDeath" FX="FX_MediumBuildingDieExplosion" />
+      </FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AlliedCrane_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6"
+					ExemptStatus="OVER_WATER" />
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_Platform_CreateObjectDie"
+				CreationList="AlliedCrane_WaterDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6"
+					RequiredStatus="OVER_WATER" />
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED" />
+			</DestroyDie>
+
+			<ProductionUpdate
+				id="ModuleTag_ProductionUpdate"
+				Type="MAIN_STRUCTURE"
+				MaxQueueEntries="1">
+				<ProductionModifier
+					TimeMultiplier="0.8"
+					RequiredUpgrade="ObjectUpgradeUprising">
+					<ModifierFilter
+					Rule="ANY"
+					Include="FS_POWER"
+					Exclude="FS_TECHNOLOGY">
+					</ModifierFilter>
+				</ProductionModifier>
+			</ProductionUpdate>
+			<ProductionUpdateInfo
+				id="ModuleTag_ProductionUpdateInfo"/>
+			<QueueProductionExitUpdate
+				id="ModuleTag_QueueProduction"
+				ExitDelaySeconds="0.07s">
+				<UnitCreatePoint
+					x="-3.0"
+					y="0.0"
+					z="0.0" />
+				<NaturalRallyPoint
+					x="0.0"
+					y="0.0"
+					z="0.0" />
+			</QueueProductionExitUpdate>
+			<StructureUnpackUpdate
+				id="ModuleTag_UnpackUpdate" 
+				UnpackTime="2s" />
+			<CreateObjectDie
+		id="ModuleTag_CreateOccupiedDie"
+		CreationList="OCL_GenericAlliedBuildingDestruction" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6"/>
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+		id="ModuleTag_CreateOccupiedConfigDie"
+		CreationList="OCL_GenericAlliedBuildingConfigDestruction" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6"/>
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+	id="ModuleTag_CreateOccupiedSuicide"
+	CreationList="OCL_GenericAlliedBuildingSuicide" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+	id="ModuleTag_CreateOccupiedConfigSuicide"
+	CreationList="OCL_GenericAlliedBuildingConfigSuicide" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+			</CreateObjectDie>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="GenericConfigFunctions" />	
+			<!--RedAlert Active-->
+			<xi:include
+				href="DATA:Includes/RedAlertActiveModel.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:RedAlertActiveModel/child::*)" />
+			<xi:include
+				href="DATA:Includes/GenericBuildingRepair.xml" />
+			<xi:include
+				href="DATA:Includes/GenericEngineerContain.xml" />
+			<xi:include
+				href="DATA:Includes/InfiltratorContainKill.xml" />
+			<!--Command Upgrade-->
+			<CommandSetUpgrade
+				id="ModuleTag_CommandSetRedAlert"
+				CommandSet="AlliedCraneCommandSetRedAlert">
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+			</CommandSetUpgrade>
+		</Behaviors>
+				<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO" 
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+						<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="40">			
+		</CrusherInfo>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1500.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<PlacementShape
+				 Type= "BOX"
+				 MajorRadius = "30"
+				 MinorRadius = "30"
+				 Height = "5" >
+				<Offset
+					x = "0.0"
+					y = "0.0"
+					z = "0.0" />
+			</PlacementShape>
+			<Shape
+				Type="BOX"
+				MajorRadius="22.0"
+				MinorRadius="18.0"
+				Height="15.0"
+				ContactPointGeneration="STRUCTURE">
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="SOV_CrusherCrane_SelectMS" AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<ProjectedBuildabilityInfo
+			Radius="120"
+			BuildPlacementTypes="MAIN_STRUCTURE OTHER_STRUCTURE" />
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="=$SMALL_STRUCTURE_SHROUD_CLEAR" />
+	</GameObject>
+
+	<GameObject
+		id="AlliedCraneNano"
+		inheritFrom="AlliedCrane"
+		EditorName="AlliedCraneNano">
+		<EquivalentTo>AlliedCrane</EquivalentTo>
+		<Draws
+			xai:joinAction="Replace">
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="AlliedCrane_SKN" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="AlliedCrane_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="ALLIEDCRANEBLD_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FROZEN STRUCTURE_UNPACKING">
+					<Model
+						Name="" />
+					<ParticleSysBone
+						BoneName="RING_1"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="TURET"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AlliedCrane_SKN" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AlliedCrane_SKN" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Animation
+						AnimationName="ALLIEDCRANEBLD"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_1"
+				NoRotate="true"
+				OkToChangeModelColor="true"
+				AttachToBoneInAnotherModule="RING_1">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="BM_ALC_WT4_RING_1_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="BM_ALC_WT4_RING_1_SKN" />
+					<Texture
+						Original="AUSupportAircraft"
+						New="AUSupportAircraft_D" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ACTIVELY_CONSTRUCTING">
+					<Animation
+						AnimationName="BM_ALC_WT4_RING_IDL_1"
+						AnimationMode="LOOP"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_2"
+				NoRotate="true"
+				OkToChangeModelColor="false">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="BM_ALC_WT4_RING_2_SKN" />
+					<ParticleSysBone
+						BoneName="BASE_RING"
+						FXParticleSystemTemplate="BM_FX_ALC_WT4_GLOV"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="BM_ALC_WT4_RING_2_SKN" />
+					<Texture
+						Original="AUSupportAircraft"
+						New="AUSupportAircraft_D" />
+					<ParticleSysBone
+						BoneName="BASE_RING"
+						FXParticleSystemTemplate="BM_FX_ALC_WT4_GLOV"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ACTIVELY_CONSTRUCTING">
+					<Animation
+						AnimationName="BM_ALC_WT4_RING_IDL_2"
+						AnimationMode="LOOP"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_3"
+				NoRotate="true"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="BM_ALC_WT4_RING_3_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="BM_ALC_WT4_RING_3_SKN" />
+					<Texture
+						Original="AUSupportAircraft"
+						New="AUSupportAircraft_D" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ACTIVELY_CONSTRUCTING">
+					<Animation
+						AnimationName="BM_ALC_WT4_RING_IDL_3"
+						AnimationMode="LOOP"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_4"
+				NoRotate="true"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="BM_ALC_WT4_RING_4_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="BM_ALC_WT4_RING_4_SKN" />
+					<Texture
+						Original="AUSupportAircraft"
+						New="AUSupportAircraft_D" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ACTIVELY_CONSTRUCTING">
+					<Animation
+						AnimationName="BM_ALC_WT4_RING_IDL_4"
+						AnimationMode="LOOP"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_EggPack"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="AlliedCrane_SKN" />
+					<Material ShaderName="BasicW3DHolographic.fx" TechniqueName="Default">
+						<Constants>
+							<Float Name="ColorAmbient">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorDiffuse">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorSpecular">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="Shininess">
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorEmissive">
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+							</Float>
+							<Texture Name="Texture_0">
+								<Value>FXJapanBuildMask</Value>
+							</Texture>
+							<Bool Name="DepthWriteEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="AlphaTestEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="CullingEnable">
+								<Value>true</Value>
+							</Bool>
+							<Int Name="BlendMode">
+								<Value>1</Value>
+							</Int>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="AlliedCrane_BLDN2"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW BUILD UP -->
+			<ScriptedModelDraw
+				id="ModuleTag_DrawEggPack_Buildup"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="AlliedCrane_SKN" />
+					<Material ShaderName="BuildingsJapanBuildup.fx" TechniqueName="Default">
+						<Constants>
+							<Texture Name="DiffuseTexture">
+								<Value>AUSupportAircraft</Value>
+							</Texture>
+							<Texture Name="NormalMap">
+								<Value>AUSupportAircraft_NRM</Value>
+							</Texture>
+							<Texture Name="SpecMap">
+								<Value>AUSupportAircraft_SPM</Value>
+							</Texture>
+							<Float Name="EnvMult">
+								<Value>1.000000</Value>
+							</Float>
+							<Bool Name="AlphaTestEnable">
+								<Value>true</Value>
+							</Bool>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="AlliedCrane_BLDN"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<ScriptedModelDraw
+			id="ModuleTag_Draw_Egg"
+			OkToChangeModelColor="true"
+			StaticModelLODMode="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="JUEgg_Unpack" />
+					<Texture
+						Original="JUEgg"
+						New="AUEgg" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="EMOTION_DOOM STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="JUEGG_FLYUNPACK"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="EMOTION_PANIC STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="JUEgg_Unpack"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_StructureConstructionAudio">
+				<ModelConditionSound
+					Sound="JAP_Nanocore_DeployStructureLand"
+					RequiredFlags="STRUCTURE_UNPACKING"
+					ExcludedFlags="OVER_WATER"/>
+				<ModelConditionSound
+					Sound="JAP_Nanocore_DeployStructureWaterMS"
+					RequiredFlags="STRUCTURE_UNPACKING OVER_WATER"/>
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_Nanocore_DeployLoop" AudioType="soundUnderConstruction" />
+		</AudioArraySound>
+	</GameObject>
+</AssetDeclaration>

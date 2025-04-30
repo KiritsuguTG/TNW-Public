@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:xai="uri:ea.com:eala:asset:instance"  xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include type="all" source="ART:Units/StrategicArmyAntiVehicleVehicleTech1/SAUANTIVEHICLEVEHICLETECH1_SKN.w3x" />
+		<Include type="all" source="ART:Units/StrategicArmyAntiVehicleVehicleTech1/SAUAntiVehicleVehicleTech1_IDLA.w3x" />
+	</Includes>
+	<GameObject
+		id="StrategicArmyAntiVehicleVehicleTech1"
+		inheritFrom="BaseVehicle"
+		BuildTime="10"
+		CommandSet="StrategicArmyAntiVehicleVehicleTech1CommandSet"
+		Side="Soviet"
+		SubGroupPriority="355"
+		EditorSorting="UNIT"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT T2_UNIT"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		TypeDescription="Type:AntiArmor"
+		HealthBoxHeightOffset="25"
+		BountyValue="150"
+		UnitIntro="Soviet_HammerTank_UnitIntro"
+		SelectPortrait="PortraitStrategicArmyAntiVehicleVehicleTech1"
+		ButtonImage="ButtonStrategicArmyAntiVehicleVehicleTech1"
+		EditorName="StrategicArmyAntiVehicleVehicleTech1"
+		Description="Desc:StrategicArmyAntiVehicleVehicleTech1">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:StrategicArmyAntiVehicleVehicleTech1</DisplayName>
+		<GameDependency
+			ForbiddenModelConditions="OVER_WATER"/>
+		<ObjectResourceInfo>
+			<BuildCost Account="0" Amount="1000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseTankArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="ModuleTag_Locomotor_Normal"
+			Locomotor="SovietTankTech1Locomotor"
+			Condition="NORMAL"
+			Speed="60.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="2.0"
+			ConquerMetricsOverrideDamageType="CANNON"
+			ConquerMetricsOverrideAntiMask="ANTI_VEHICLE"/>
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				LeftFrontTireBone="BONE_TREADS_LEFT"
+				RightFrontTireBone="BONE_TREADS_RIGHT"
+				TireRotationMultiplier="0.0"
+				InitialRecoilSpeed="0.5"
+				MaxRecoilDistance="3"
+				RecoilDamping="4.0"
+				RecoilSettleSpeed="4.0"
+				ExtraPublicBone="B_TURRET FX_WEAPON_01 TURRET_PITCH BONE_TREADS_LEFT BONE_TREADS_RIGHT BONE_BARREL"
+				TrackMarks="EXTnkTrack"
+				TrackMarksLeftBone="BONE_TREADS_LEFT"
+				TrackMarksRightBone="BONE_TREADS_RIGHT">
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+				<TreadScrollingMap
+					LeftTrack="BONE_TREADS_LEFT"
+					RightTrack="BONE_TREADS_RIGHT"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%"/>
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="SAUAntiVehicleVehicleTech1_SKN" />
+					<!-- main cannon -->
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_01" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_BARREL" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_WEAPON_01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_WEAPON_01" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="BONE_BARREL" />
+					<Turret
+						TurretNameKey="B_TURRET"
+						TurretPitch="TURRET_PITCH"
+						TurretID="1" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="SAUAntiVehicleVehicleTech1_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SAUAntiVehicleVehicleTech1_SKN" />
+					<Texture
+					Original="SUAntiInfantryVehicle"
+					New="SUAntiInfantryVehicle_D" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="SAUAntiVehicleVehicleTech1_IDLA"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ACCELERATE"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="SAUAntiVehicleVehicleTech1_IDLA"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<ParticleSysBone
+						BoneName="FXEXHAUST01"
+						FXParticleSystemTemplate="Soviet_Tank_Exhaust"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXEXHAUST02"
+						FXParticleSystemTemplate="Soviet_Tank_Exhaust"
+						FollowBone="true" />
+				</AnimationState>
+			</TruckDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<!-- include Headlight draw module. -->
+			<ScriptedModelDraw
+					  id="ModuleTag_Draw_HeadLightL"
+					  AttachToBoneInAnotherModule="fxheadlight_L"
+					  OkToChangeModelColor="true">
+				<ModelConditionState
+				  ParseCondStateType="PARSE_DEFAULT">
+					<Model
+					  Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+				  ParseCondStateType="PARSE_NORMAL"
+				  ConditionsYes="NIGHT">
+					<Model
+					  Name="EX_Headlights" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+			  id="ModuleTag_Draw_HeadLightR"
+			  AttachToBoneInAnotherModule="fxheadlight_R"
+			  OkToChangeModelColor="true">
+				<ModelConditionState
+				  ParseCondStateType="PARSE_DEFAULT">
+					<Model
+					  Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+				  ParseCondStateType="PARSE_NORMAL"
+				  ConditionsYes="NIGHT">
+					<Model
+					  Name="EX_Headlights" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUAntiVehicleVehicleTech1_FX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SUAntiVehicleVehicleTech1_FX" />
+					<ParticleSysBone
+            			BoneName="FX_BONE01"
+            			FXParticleSystemTemplate="VehicleDamageSmoke"
+            			FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SUAntiVehicleVehicleTech1_FX" />
+					<ParticleSysBone
+           				BoneName="FX_BONE01"
+           				FXParticleSystemTemplate="VehicleDamageSmoke"
+           				FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<!-- main cannon -->
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyAntiVehicleVehicleTech1CannonWeapon"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="-30d"
+						AllowsPitch="true"
+						TurretPitchRate="180"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="4.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0"
+						ComeToHaltJiggle="3d">
+						<TurretAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<AttributeModifierUpgrade
+				id="ModuleTag_SovietUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>SovietUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="StrategicArmyAntiVehicleVehicleTech1_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_MediumVehicleDie" />
+			</FXListBehavior>
+			<SpecialPower
+				id="ModuleTag_ToggleLeechBeam"
+				SpecialPowerTemplate="SpecialPower_TankLongRocket"
+				UpdateModuleStartsAttack="true"/>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_ToggleLeechBeamSpecialAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_TankLongRocket"
+				WeaponSlotType="SECONDARY_WEAPON"
+				WeaponSlotID="1"
+				SpecialWeapon="StrategicArmyAntiVehicleVehicleTech1LongRocket"
+				Options="UPDATE_REQUIRES_LINE_OF_SIGHT FAIL_WITH_INVALID_APPROACH"
+				StartAbilityRange="350"
+				UnpackTime="1s"
+				PackTime="1s"
+				TriggerSound="ALL_JavelinSoldier_MissileFire"/>
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech1.xml"/>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="650" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="SAOV_Tank_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<AudioArrayVoice>
+			<AudioEntry Sound="SAOV_Tank_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SAOV_Tank_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="SAOV_Tank_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="SAOV_Tank_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="SAOV_Tank_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="SAOV_Tank_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="SAOV_Tank_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="SAOV_Tank_VoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="SOV_HammerTank_Land_MoveLoopMS"
+				AudioType="soundMoveLoop" />
+			<AudioEntry
+				Sound="SOV_HammerTank_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="SOV_HammerTank_IdleLoop"
+				AudioType="soundAmbient" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+		</AudioArraySound>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="20"
+				MinorRadius="14"
+				Height="15"
+				ContactPointGeneration="VEHICLE"/>
+		</Geometry>
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			CrusherLevel="20"
+			CrushableLevel="25"
+			CrushWeapon="SovietCrushWeapon"
+			CrushDecelerationPercent="80%" />
+	</GameObject>
+		  <GameObject
+		id="StrategicArmyAntiVehicleVehicleTech1_Crate"
+		inheritFrom="StrategicArmyAntiVehicleVehicleTech1"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="StrategicArmyAntiVehicleVehicleTech1_Crate">
+		<EquivalentTo>StrategicArmyAntiVehicleVehicleTech1</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

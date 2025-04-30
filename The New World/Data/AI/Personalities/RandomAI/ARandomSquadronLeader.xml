@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+
+	<Includes>
+		<Include type="instance" source="ARandomCoopBaseSkirmishPersonality.xml" />
+	</Includes>
+
+	<AIPersonalityDefinition
+		id="02AR"
+		PersonalityType="02AR"
+		inheritFrom="ARandomCoopBaseSkirmishPersonality"
+		SkirmishPersonality="true"
+		PersonalityUIName="Personality:Giles"
+		CommanderPortrait="Giles"
+		BaseCompactness="1.25">
+		<!-- Main Offensive States -->
+		<BuildState id="AlliedAntiAirOnlyBuildState_SquadronLeader" State="AlliedAntiAirOnlyBuildState_SquadronLeader" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedExtraAirBuildState_SquadronLeader" State="AlliedExtraAirBuildState_SquadronLeader" Difficulty="HARD BRUTAL"/>
+		<BuildState id="AlliedTechBuildState_SquadronLeader" State="AlliedTechBuildState_SquadronLeader" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedFavouriteLandUnitBuildState_SquadronLeader" State="AlliedFavouriteLandUnitBuildState_SquadronLeader" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedFavouriteWaterUnitBuildState_SquadronLeader" State="AlliedFavouriteWaterUnitBuildState_SquadronLeader" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedUpgradeTechBuildState_SquadronLeader" State="AlliedUpgradeTechBuildState_SquadronLeader" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedAntiAirOnlyBuildState_TNW" xai:joinAction="Remove" xmlns:xai="uri:ea.com:eala:asset:instance"/>
+		<SpecificUnitCap Unit="AlliedAirfield" Cap="3" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="AlliedAirfield" Cap="4" Difficulty="MEDIUM HARD"/>
+		<SpecificUnitCap Unit="AlliedAirfield" Cap="8" Difficulty="BRUTAL"/>
+		<!-- Main Offensive States -->
+		<BuildState id="EUExtraAirBuildState_SquadronLeader" State="EUExtraAirBuildState_SquadronLeader" Difficulty="HARD BRUTAL"/>
+		<BuildState id="EUTechBuildState_SquadronLeader" State="EUTechBuildState_SquadronLeader" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUFavouriteLandUnitBuildState_SquadronLeader" State="EUFavouriteLandUnitBuildState_SquadronLeader" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUFavouriteWaterUnitBuildState_SquadronLeader" State="EUFavouriteWaterUnitBuildState_SquadronLeader" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryBuildState" State="EUWarFactoryBuildState" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavalYardBuildState" State="EUNavalYardBuildState" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAirfield" Cap="3" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="EUAirfield" Cap="4" Difficulty="MEDIUM HARD"/>
+		<SpecificUnitCap Unit="EUAirfield" Cap="8" Difficulty="BRUTAL"/>
+		<!-- Player Tech -->
+		<!-- Tier 1 -->
+		<PowerChoice PlayerPower="PlayerTech_Allied_Paradrop" Weight="100%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_SatelliteSweep" Weight="100%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_TheWorld" Weight="20%"/>
+
+		<!-- Tier 2 -->
+		<PowerChoice PlayerPower="PlayerTech_Allied_PrecisionStrike" Weight="100%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_ChronoRift_Rank1" Weight="0%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_ChronoSwap" Weight="0%"/>
+
+		<!-- Tier 3 -->
+		<PowerChoice PlayerPower="PlayerTech_Allied_TimeBomb_Rank1" Weight="0%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_ChronoRift_Rank2" Weight="0%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_CryoSatellite_Rank1" Weight="33%"/>
+
+		<!-- Tier 4 -->
+		<PowerChoice PlayerPower="PlayerTech_Allied_TimeBomb_Rank2" Weight="0%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_ChronoRift_Rank3" Weight="0%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_CryoSatellite_Rank2" Weight="66%"/>
+
+		<!-- Tier 5 -->
+		<PowerChoice PlayerPower="PlayerTech_Allied_TimeBomb_Rank3" Weight="0%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_OutPutSP" Weight="20%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_CryoSatellite_Rank3" Weight="100%"/>
+
+		<!-- Caps for difficulty -->
+		<SpecificUnitCap Unit="AlliedAntiInfantryInfantry" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedAntiVehicleInfantry" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedAntiInfantryVehicle_Ground" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedAntiInfantryVehicle" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedAntiGroundAircraft" Cap="6" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedScoutInfantry" Cap="25" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedAntiInfantryInfantry" Cap="20" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedAntiVehicleInfantry" Cap="30" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedAntiAirVehicleTech1" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedAntiVehicleVehicleTech1" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedAntiVehicleVehicleTech3" Cap="15" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedAntiStructureVehicle" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedAntiNavalScout" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedAntiAirShip" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedFighterAircraft" Cap="8" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedSupportAircraft" Cap="10" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="AlliedSupportAircraft" Cap="20" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedBomberAircraft" Cap="4" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="AlliedBomberAircraft" Cap="6" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedAntiStructureShip" Cap="2" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="AlliedAntiStructureShip" Cap="5" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedWarFactory" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!--UnitModifier-->
+		<UnitModifier Unit="AlliedScoutInfantry" OffensiveModifier="1.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="AlliedAntiInfantryInfantry" OffensiveModifier="3.0" DefensiveModifier="3.0"/>
+		<UnitModifier Unit="AlliedAntiVehicleInfantry" OffensiveModifier="5" DefensiveModifier="5"/>
+		<UnitModifier Unit="AlliedLegionnaireInfantry" OffensiveModifier="3.0" DefensiveModifier="2.0"/>
+		<UnitModifier Unit="AlliedCommandoTech1" OffensiveModifier="50.0" DefensiveModifier="2.0"/>
+		<UnitModifier Unit="AlliedInfiltrationInfantry" OffensiveModifier="1.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="EUChronoVehicle" OffensiveModifier="0.5" DefensiveModifier="0.2"/>
+		<UnitModifier Unit="AlliedAntiInfantryVehicle_Ground" OffensiveModifier="1" DefensiveModifier="1"/>
+		<UnitModifier Unit="AlliedAntiInfantryVehicle" OffensiveModifier="0.5" DefensiveModifier="1"/>
+		<UnitModifier Unit="AlliedAntiAirVehicleTech1" OffensiveModifier="3.0" DefensiveModifier="3.0"/>
+		<UnitModifier Unit="AlliedAntiVehicleVehicleTech1" OffensiveModifier="1.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="AlliedAntiStructureVehicle" OffensiveModifier="5.0" DefensiveModifier="5"/>
+		<UnitModifier Unit="AlliedAntiVehicleVehicleTech3" OffensiveModifier="3.0" DefensiveModifier="3.0"/>
+		<UnitModifier Unit="AlliedAntiNavalScout" OffensiveModifier="5" DefensiveModifier="3"/>
+		<UnitModifier Unit="AlliedAntiAirShip" OffensiveModifier="3" DefensiveModifier="3"/>
+		<UnitModifier Unit="AlliedAntiNavyShipTech1" OffensiveModifier="0" DefensiveModifier="0"/>
+		<UnitModifier Unit="AlliedAntiStructureShip" OffensiveModifier="1" DefensiveModifier="1"/>
+		<UnitModifier Unit="AlliedAntiGroundAircraft" OffensiveModifier="2" DefensiveModifier="2"/>
+		<UnitModifier Unit="AlliedFighterAircraft" OffensiveModifier="5" DefensiveModifier="5"/>
+		<UnitModifier Unit="AlliedSupportAircraft" OffensiveModifier="5" DefensiveModifier="5"/>
+		<UnitModifier Unit="AlliedBomberAircraft" OffensiveModifier="6" DefensiveModifier="6"/>
+		<!--UnitModifier-->
+		<UnitModifier Unit="EUAntiInfantryInfantry" OffensiveModifier="3.0" DefensiveModifier="3.0"/>
+		<UnitModifier Unit="EUAntiVehicleInfantry" OffensiveModifier="5" DefensiveModifier="5"/>
+		<UnitModifier Unit="EUAntiVehicleInfantryTech2" OffensiveModifier="3.0" DefensiveModifier="2.0"/>
+		<UnitModifier Unit="EUScoutVehicle" OffensiveModifier="0.5" DefensiveModifier="1"/>
+		<UnitModifier Unit="EUAntiAirVehicleTech1" OffensiveModifier="0.5" DefensiveModifier="1"/>
+		<UnitModifier Unit="EUAntiVehicleVehicleTech1" OffensiveModifier="1.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="EUBeamVehicle" OffensiveModifier="5.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="EUAntiStructureVehicle" OffensiveModifier="5.0" DefensiveModifier="5"/>
+		<UnitModifier Unit="EUAntiVehicleVehicleTech3" OffensiveModifier="3.0" DefensiveModifier="3.0"/>
+		<UnitModifier Unit="EUAntiNavyShipTech2" OffensiveModifier="5" DefensiveModifier="5"/>
+		<UnitModifier Unit="EUAntiStructureShip" OffensiveModifier="1" DefensiveModifier="1"/>
+		<UnitModifier Unit="EUSupportAircraft" OffensiveModifier="1" DefensiveModifier="1"/>
+		<UnitModifier Unit="EUAntiAirAircraft" OffensiveModifier="7.0" DefensiveModifier="7.0"/>
+		<UnitModifier Unit="EUAntiGroundAircraft" OffensiveModifier="6" DefensiveModifier="6"/>
+		<UnitModifier Unit="EUBomberAircraft" OffensiveModifier="10" DefensiveModifier="10"/>
+		<!-- Caps for difficulty -->
+		<SpecificUnitCap Unit="EUAntiInfantryInfantry" Cap="20" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiVehicleInfantry" Cap="30" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUScoutAntiInfantryVehicle" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiVehicleInfantryTech2" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUScoutVehicle" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiAirVehicleTech1" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiVehicleVehicleTech1" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUBeamVehicle" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiStructureVehicle" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiVehicleVehicleTech3" Cap="3" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="EUAntiVehicleVehicleTech3" Cap="8" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiAirVehicleTech1" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiNavyShipTech2" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiStructureShip" Cap="2" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="EUAntiStructureShip" Cap="5" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUSupportAircraft" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiAirAircraft" Cap="10" Difficulty="EASY MEDIUM"/>
+		<SpecificUnitCap Unit="EUAntiAirAircraft" Cap="25" Difficulty="HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiGroundAircraft" Cap="4" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="EUAntiGroundAircraft" Cap="8" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUBomberAircraft" Cap="5" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="EUBomberAircraft" Cap="20" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiInfantryInfantry" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- Voice Responses -->
+		<FeedbackEntry FeedbackKey="PlanAttackBeaconPlaced" EvaEvent="AlliedCoopGilesPlanAttack" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="PlanAttackOrderComplete" EvaEvent="AlliedCoopGilesPlanAttackDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionBeaconPlaced" EvaEvent="AlliedCoopGilesTakePos" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionOrderComplete" EvaEvent="AlliedCoopGilesTakePosDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetBeaconPlaced" EvaEvent="AlliedCoopGilesStrikeThis" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetOrderComplete" EvaEvent="AlliedCoopGilesStrikeThisDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="OrderCanceled" EvaEvent="AlliedCoopGilesAutoPilot" FeedbackTo="ALLIES"/>
+
+		<!-- Skirmish feedback -->
+
+		<!-- Greet ally at beginning of game -->
+		<FeedbackEntry
+		FeedbackKey="StartGame"
+		Video="AGIGR1"
+		FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+		FeedbackKey="StartGame"
+		Video="AGIGR1"
+		FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+		FeedbackKey="StartGame"
+		Video="AGIGR1"
+		FeedbackTo="ALLIES"/>
+
+		<!-- Tell ally I'm in trouble -->
+		<!-- N.B.: If you wanted to add FeedbackTo="ENEMIES" or "NEUTRAL", you would also need to
+adjust the InTroubleSkirmishFeedbackControl block's OnlyIfLocalPlayerIs list -->
+		<FeedbackEntry
+		FeedbackKey="InTrouble"
+		Video="AGIND1"
+		FeedbackTo="ALLIES"
+		Timeout="600s"/>
+		<FeedbackEntry
+		FeedbackKey="InTrouble"
+		Video="AGIND1"
+		FeedbackTo="ALLIES"
+		Timeout="600s"/>
+		<FeedbackEntry
+		FeedbackKey="InTrouble"
+		Video="AGIND1"
+		FeedbackTo="ALLIES"
+		Timeout="600s"/>
+
+		<!-- Tell ally I'm dead -->
+		<FeedbackEntry
+		FeedbackKey="Lost"
+		Video="AGIDE1"
+		FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+		FeedbackKey="Lost"
+		Video="AGIDE2"
+		FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+		FeedbackKey="Lost"
+		Video="AGIDE3"
+		FeedbackTo="ALLIES"/>
+
+		<!-- Tell enemy I'm going to defeat them! (when I first meet them) -->
+		<FeedbackEntry
+		FeedbackKey="FirstSeen"
+		Video="AGITG1"
+		FeedbackTo="ENEMIES"
+		Timeout="9999999s"/>
+		<FeedbackEntry
+		FeedbackKey="FirstSeen"
+		Video="AGITG2"
+		FeedbackTo="ENEMIES"
+		Timeout="9999999s"/>
+		<FeedbackEntry
+		FeedbackKey="FirstSeen"
+		Video="AGITG3"
+		FeedbackTo="ENEMIES"
+		Timeout="9999999s"/>
+
+		<!-- Curse enemy who defeated me -->
+		<FeedbackEntry
+		FeedbackKey="DefeatedByLocalPlayer"
+		Video="AGITD1"
+		FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+		FeedbackKey="DefeatedByLocalPlayer"
+		Video="AGITD2"
+		FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+		FeedbackKey="DefeatedByLocalPlayer"
+		Video="AGITD3"
+		FeedbackTo="ENEMIES"/>
+
+		<!-- Laugh at enemy whom I defeated -->
+		<FeedbackEntry
+		FeedbackKey="DefeatedLocalPlayer"
+		Video="AGITV1"
+		FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+		FeedbackKey="DefeatedLocalPlayer"
+		Video="AGITV2"
+		FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+		FeedbackKey="DefeatedLocalPlayer"
+		Video="AGITV3"
+		FeedbackTo="ENEMIES"/>
+
+	</AIPersonalityDefinition>
+
+</AssetDeclaration>

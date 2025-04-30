@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<!-- aka Riptide ACV -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml"/> 
+
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseBoat.xml"/>
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseCollapsingObject.xml"/>
+	</Includes>
+	<!-- aka PT Boat -->
+	<GameObject
+		id="NY_Boat01"
+		inheritFrom="BaseAutoSpawn"
+		BuildTime="100.0"
+		EditorName="NY_Boat01">
+		<DisplayName>Name:BaseAutoSpawn</DisplayName>
+		<Behaviors>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="NY_Boat01Spawn_OCL">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<ObjectCreationList
+	id="NY_Boat01Spawn_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE"
+			Count="1"
+			DispositionAngle="-90d">
+			<CreateObject>NY_Boat01Spawn</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<GameObject
+		id="NY_Boat01Spawn"
+		inheritFrom="BaseBoat"
+		SubGroupPriority="710" 
+		VoicePriority="188"
+		EditorName="NY_Boat01Spawn">
+		<LocomotorSet
+			Locomotor="AlliedAntiInfantryWaterLocomotor"
+			Condition="NORMAL_UPGRADED"
+			Speed="100" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"/>
+		<Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw"
+				  ExtraPublicBone="BONE_D_01 BONE_D_02 BONE_D_03 BONE_D_04 BONE_D_05 BONE_D_06 BONE_D_07 BONE_D_08 BONE_D_09 BONE_D_10 BONE_D_11 BONE_D_12 BONE_D_13 BONE_D_14 BONE_D_15">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="NY_BOAT01N"/>
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="NY_BOAT01N"/>
+					<Material
+						ShaderName="FX_FormPreview.fx"
+						TechniqueName="Default">
+						<Constants>
+							<Texture Name="SpecMap">
+								<Value>FXGradient01</Value>
+							</Texture>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="NY_BOAT01N" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="NY_BOAT01N" />
+					<Texture
+						Original="NY_Boat01"
+						New="NY_Boat01_D" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/> 
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					StateName="STATE_OnWater">					
+					<ParticleSysBone
+						BoneName="FX_Wake"
+						FXParticleSystemTemplate="SVAntiAirShipWaterWake"
+						FollowBone="true"/>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes=" OVER_WATER"
+					StateName="STATE_OnWater">					
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="SmallShipWakeIdle"
+						FollowBone="true"/>
+				</AnimationState>
+      </ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<ContestableGarrisonContain
+				id="ModuleTag_Garrison"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED CAN_ATTACK"
+				ContainMax="6"
+				EnterSound="VehicleEnter"
+				ExitSound="VehicleExit"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="false"
+				AllowNeutralInside="true"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				KillPassengersOnDeath="true"
+				RequiredClearingObjectStatus="CAN_CONTEST_GARRISON"
+				IgnoreDisabledBitsForRiders="HELD UNDERPOWERED TEMPORARILY_BUSY INFILTRATED PARALYZED"
+				EjectSpeed="3">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY">
+					<ExcludeThing>AlliedScoutInfantry</ExcludeThing>
+					<ExcludeThing>SovietScoutInfantry</ExcludeThing>
+					<ExcludeThing>EUScoutVehicle</ExcludeThing>
+					<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+				</PassengerFilter>
+				<PassengerData
+					BonePrefix="BONE_D_01 BONE_D_02 BONE_D_03 BONE_D_04 BONE_D_05 BONE_D_06 BONE_D_07 BONE_D_08 BONE_D_09 BONE_D_10 BONE_D_11 BONE_D_12 BONE_D_13 BONE_D_14 BONE_D_15">
+					<Filter
+						Rule="ANY"
+						Include="INFANTRY"/>					
+				</PassengerData>
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ContestableGarrisonContain>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="NY_Boat01_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="250"
+				MaxHealthReallyDamagedPercentage="20">
+				</ActiveBody>
+		</Body>
+    <Geometry>
+<Shape 
+     Type= "BOX"
+     MinorRadius = "9.27009"
+     MajorRadius = "38.9719"
+     Height = "70.0"
+     ContactPointGeneration = "VEHICLE" >
+    <Offset
+        y = "-0.00196266"
+        x = "0.0"
+        z = "0.0" />
+</Shape>
+    </Geometry>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushEqualLevelProps="true"
+			CrusherLevel="1"
+			CrushableLevel="20"/>
+	</GameObject>
+	<GameObject
+		id="NY_Boat01_Collapse"
+		inheritFrom="BaseCollapsingObject"
+		EditorName="NY_Boat01_Collapse">
+		
+		<Draws>
+			<DynamicsDraw
+				id="ModuleTag_Draw"
+				Collision="NONINTERCOLLIDING"
+				Explodiness="4"
+				FlingPerturbation="15">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NY_BOAT01N" />
+					<Texture
+						Original="NY_Boat01"
+						New="NY_Boat01_D" />
+				</ModelConditionState>
+				<BoneVolumes>
+<BoneVolume BoneName="Bone_D_01" Mass="1246" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="5.093" HalfSizeY="6.226" HalfSizeZ="1.965" >
+		<Translation x="-1.557" y="-10.881" z="4.001" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_02" Mass="11011" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="2.304" HalfSizeY="10.636" HalfSizeZ="22.468" >
+		<Translation x="-1.431" y="-3.301" z="38.494" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_03" Mass="897" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="2.748" HalfSizeY="8.397" HalfSizeZ="1.944" >
+		<Translation x="-2.107" y="4.135" z="16.143" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_04" Mass="1356" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="5.102" HalfSizeY="6.417" HalfSizeZ="2.072" >
+		<Translation x="1.544" y="7.626" z="4.001" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_05" Mass="1392" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="4.011" HalfSizeY="6.202" HalfSizeZ="2.799" >
+		<Translation x="-1.101" y="25.523" z="4.21" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_06" Mass="120" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="2.07" HalfSizeY="1.412" HalfSizeZ="2.053" >
+		<Translation x="0.246" y="36.729" z="3.119" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_07" Mass="509" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="1.666" HalfSizeY="6.202" HalfSizeZ="2.467" >
+		<Translation x="4.808" y="25.523" z="4.698" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_08" Mass="858" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="2.356" HalfSizeY="10.971" HalfSizeZ="1.66" >
+		<Translation x="0.064" y="1.234" z="7.483" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_09" Mass="1547" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="4.101" HalfSizeY="6.408" HalfSizeZ="2.945" >
+		<Translation x="-0.013" y="-29.381" z="8.499" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_10" Mass="149" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="1.062" HalfSizeY="6.202" HalfSizeZ="1.135" >
+		<Translation x="6.026" y="-10.917" z="5.596" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_11" Mass="22" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="0.595" HalfSizeY="1.406" HalfSizeZ="1.365" >
+		<Translation x="8.173" y="-3.793" z="5.9" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_12" Mass="22" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="0.595" HalfSizeY="1.406" HalfSizeZ="1.365" >
+		<Translation x="-8.173" y="14.994" z="5.9" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_13" Mass="139" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="1.004" HalfSizeY="6.353" HalfSizeZ="1.097" >
+		<Translation x="-6.138" y="7.532" z="5.167" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_14" Mass="170" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="3.443" HalfSizeY="6.351" HalfSizeZ="0.389" >
+		<Translation x="-0.013" y="7.535" z="4.125" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_15" Mass="514" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="3.208" HalfSizeY="5.212" HalfSizeZ="1.538" >
+		<Translation x="-0.013" y="-27.703" z="2.356" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+
+				</BoneVolumes>
+				<Lifetime
+					Delay="10s"
+					FadeTime="10s" />
+			</DynamicsDraw>
+		</Draws>
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="15s"
+			MaxLifetime="15s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1"
+			DestructionDelay="20s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+	</GameObject>
+	<ObjectCreationList
+		id="NY_Boat01_Die_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="LIKE_EXISTING INHERIT_VELOCITY"
+			Count="1"
+			VelocityScale="20.0"
+			MinForceMagnitude="1.0"
+			MaxForceMagnitude="2.0"
+			MinForcePitch="90d"
+			MaxForcePitch="75d">
+			<CreateObject>NY_Boat01_Collapse</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>	
+</AssetDeclaration>

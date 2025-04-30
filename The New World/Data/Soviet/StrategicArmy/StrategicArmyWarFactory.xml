@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:Soviet/Structures/SovietWarFactory.xml" />
+	</Includes>
+	<GameObject
+		id="StrategicArmyWarFactory"
+		inheritFrom="SovietWarFactory"
+		CommandSet="StrategicArmyWarFactoryCommandSet"
+		EditorName="StrategicArmyWarFactory"
+		Description="Desc:StrategicArmyWarFactory">
+		<EquivalentTo>SovietWarFactory</EquivalentTo>
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:StrategicArmyWarFactory</DisplayName>
+		<Behaviors>
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelf"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_PackReplaceSelfEgg"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				NewObjectUnpackTime="2s"
+				ReplaceOptions="COPY_UPGRADES DISABLE_DURING_REPLACE DISABLE_NEW_OBJECT_DURING_UNPACK">
+				<ReplacementTemplate>StrategicArmyWarFactoryEgg</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+			<CreateObjectDie
+				id="ModuleTag_CreateOccupiedDie"
+				xai:joinAction="Replace"
+				CreationList="OCL_GenericStrategicArmyBuildingDestruction">
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6" />
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateOccupiedConfigDie"
+				xai:joinAction="Replace"
+				CreationList="OCL_GenericStrategicArmyBuildingConfigDestruction">
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6" />
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateOccupiedSuicide"
+				xai:joinAction="Replace"
+				CreationList="OCL_GenericStrategicArmyBuildingSuicide">
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateOccupiedConfigSuicide"
+				xai:joinAction="Replace"
+				CreationList="OCL_GenericStrategicArmyBuildingConfigSuicide">
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+			</CreateObjectDie>
+			<!--Command Upgrade-->
+			<CommandSetUpgrade
+				id="ModuleTag_CommandSetRedAlert"
+				xai:joinAction="Replace"
+				CommandSet="StrategicArmyWarFactoryCommandSetRedAlert">
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+			</CommandSetUpgrade>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="StrategicArmyWarFactoryNano"
+		inheritFrom="StrategicArmyWarFactory"
+		EditorName="StrategicArmyWarFactoryNano">
+		<EquivalentTo>SovietWarFactory</EquivalentTo>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				xai:joinAction="Replace"
+				OkToChangeModelColor="true"
+				StaticModelLODMode="true"
+				ExtraPublicBone="BONE_CONTACT_POINT_01 BONE_CONTACT_POINT_02 BONE_CONTACT_POINT_03 BONE_CONTACT_POINT_04 BONE_CONTACT_POINT_05 BONE_CONTACT_POINT_06 BONE_CONTACT_POINT_07 BONE_CONTACT_POINT_08">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SBWarFactory_SKN" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="SBWarFactory_SKN" />
+					<Texture
+						Original="SBBuilding_Holes"
+						New="SBBuilding_FP" />
+					<Texture
+						Original="SBBuilding_Filler"
+						New="SBBuilding_FP" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="SBWarFactory_IDLA"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW PLATFORM Grond-->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_GrondPlatform"
+				xai:joinAction="Replace"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SBWarFactory_Platform_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="SBWarFactory_Platform_IDLA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="0" />
+					<Script>
+						CurDrawableShowSubObjectPermanently("Bib")
+						CurDrawableShowSubObjectPermanently("Bib_01")
+						CurDrawableHideSubObjectPermanently("Platform")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Script>
+						CurDrawableShowSubObjectPermanently("Platform")
+						CurDrawableHideSubObjectPermanently("Bib")
+						CurDrawableHideSubObjectPermanently("Bib_01")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW GAG -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Gag"
+				xai:joinAction="Replace"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SBWarFactory_GAG_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<!-- DRAW DOOR01 -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Door"
+				xai:joinAction="Replace"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SBWarFactory_DOOR_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="START_FRAME_FIRST">
+					<Animation
+						AnimationName="SBWarFactory_DOOR_OPEN"
+						AnimationMode="ONCE_BACKWARDS" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DOOR_1_WAITING_OPEN"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="SBWarFactory_DOOR_OPEN"
+						AnimationMode="MANUAL" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DOOR_1_OPENING"
+					StateName="STATE_Open">
+					<Animation
+						AnimationName="SBWarFactory_DOOR_OPEN"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DOOR_1_CLOSING"
+					StateName="STATE_Closed"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="SBWarFactory_DOOR_OPEN"
+						AnimationMode="ONCE_BACKWARDS" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW SCAFFOLD -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Scaff"
+				xai:joinAction="Remove" />
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_EggPack"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="SBWARFACTORYEGG_SKN" />
+					<Material ShaderName="BasicW3DHolographic.fx" TechniqueName="Default">
+						<Constants>
+							<Float Name="ColorAmbient">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorDiffuse">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorSpecular">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="Shininess">
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorEmissive">
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+							</Float>
+							<Texture Name="Texture_0">
+								<Value>FXJapanBuildMask</Value>
+							</Texture>
+							<Bool Name="DepthWriteEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="AlphaTestEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="CullingEnable">
+								<Value>true</Value>
+							</Bool>
+							<Int Name="BlendMode">
+								<Value>1</Value>
+							</Int>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="SBWARFACTORYEGG_SKN" />
+					<Material ShaderName="BasicW3DHolographic.fx" TechniqueName="Default">
+						<Constants>
+							<Float Name="ColorAmbient">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorDiffuse">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorSpecular">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="Shininess">
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorEmissive">
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+							</Float>
+							<Texture Name="Texture_0">
+								<Value>FXJapanBuildMask</Value>
+							</Texture>
+							<Bool Name="DepthWriteEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="AlphaTestEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="CullingEnable">
+								<Value>true</Value>
+							</Bool>
+							<Int Name="BlendMode">
+								<Value>1</Value>
+							</Int>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="BUILDEGG_SKD2"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="BUILDEGG_SKD2"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW BUILD UP -->
+			<ScriptedModelDraw
+				id="ModuleTag_DrawEggPack_Buildup"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="SBWARFACTORYEGG_SKN" />
+					<Material ShaderName="BuildingsJapanBuildup.fx" TechniqueName="Default">
+						<Constants>
+							<Texture Name="DiffuseTexture">
+								<Value>SBWarFactory</Value>
+							</Texture>
+							<Texture Name="NormalMap">
+								<Value>SBWarFactory_NRM</Value>
+							</Texture>
+							<Texture Name="SpecMap">
+								<Value>SBWarFactory_SPM</Value>
+							</Texture>
+							<Float Name="EnvMult">
+								<Value>1.000000</Value>
+							</Float>
+							<Bool Name="AlphaTestEnable">
+								<Value>true</Value>
+							</Bool>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="SBWARFACTORYEGG_SKN" />
+					<Material ShaderName="BuildingsJapanBuildup.fx" TechniqueName="Default">
+						<Constants>
+							<Texture Name="DiffuseTexture">
+								<Value>SBWarFactory</Value>
+							</Texture>
+							<Texture Name="NormalMap">
+								<Value>SBWarFactory_NRM</Value>
+							</Texture>
+							<Texture Name="SpecMap">
+								<Value>SBWarFactory_SPM</Value>
+							</Texture>
+							<Float Name="EnvMult">
+								<Value>1.000000</Value>
+							</Float>
+							<Bool Name="AlphaTestEnable">
+								<Value>true</Value>
+							</Bool>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="BUILDEGG_SKD"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="BUILDEGG_SKD"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Egg"
+				OkToChangeModelColor="true"
+				StaticModelLODMode="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="JUEgg_Unpack" />
+					<Texture
+						Original="JUEgg"
+						New="SUEgg" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="EMOTION_DOOM STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="JUEGG_FLYUNPACK"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="2s" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="EMOTION_PANIC STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="JUEgg_Unpack"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="2s" />
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior xai:joinAction="Replace"
+				xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_StructureConstructionAudio">
+				<ModelConditionSound
+					Sound="JAP_Nanocore_DeployStructureLand"
+					RequiredFlags="STRUCTURE_UNPACKING"
+					ExcludedFlags="OVER_WATER" />
+				<ModelConditionSound
+					Sound="JAP_Nanocore_DeployStructureWaterMS"
+					RequiredFlags="STRUCTURE_UNPACKING OVER_WATER" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_Nanocore_DeployLoop" AudioType="soundUnderConstruction" />
+		</AudioArraySound>
+	</GameObject>
+	<GameObject
+		id="StrategicArmyWarFactoryAI"
+		inheritFrom="StrategicArmyWarFactory"
+		KindOf="-CAN_BUILD_ON_WATER -CAN_BUILD_ON_DEEP_WATER"
+		EditorName="StrategicArmyWarFactoryAI">
+		<EquivalentTo>StrategicArmyWarFactory</EquivalentTo>
+	</GameObject>
+	<GameObject
+		id="StrategicArmyWarFactorySandbox"
+		inheritFrom="StrategicArmyWarFactory"
+		EditorName="StrategicArmyWarFactorySandbox">
+		<EquivalentTo>StrategicArmyWarFactory</EquivalentTo>
+		<Behaviors>
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				xai:joinAction="Replace"
+				UnpackTime="2s" />
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

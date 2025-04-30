@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="ART:SUKirovBomb.w3x" />
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseProjectile.xml"/>
+	</Includes>
+	<GameObject
+		id="SovietBomberAircraft_TwoBossWeaponBombProjectile"
+		inheritFrom="BaseProjectile" 
+		Side="Soviet"
+		EditorSorting="SYSTEM"		
+		EditorName="SovietBomberAircraft_TwoBossWeaponBombProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SBSuperweaponAdvanced_Missle_SKN" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_VacuumBomb">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<ProjectileUpdate
+				id="ModuleTag_BombUpdate"
+				StateMachine="BombProjectile"
+				MinDetonationHeight="10"
+				MinTargetDistance="5">
+				<Movement>
+					<MoveToGround
+						Acceleration="1.0"
+						TerminalVelocity="10.0"
+						RotationSpeedPerSecond="30d"/>
+				</Movement>
+			</ProjectileUpdate>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

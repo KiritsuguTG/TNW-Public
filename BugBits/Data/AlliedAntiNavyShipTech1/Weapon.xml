@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="AlliedAntiNavyShipTech1Cannon"
+		AttackRange="150.0"
+		WeaponSpeed="1000"
+		MinWeaponSpeed="5000"
+		MaxWeaponSpeed="5000"
+		AcceptableAimDelta="20d"
+		ClipSize="1"
+		WeaponRecoil="1d"
+		AutoReloadsClip="AUTO"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER ANTI_SUBMERGED"
+		ForbiddenAntiMask="ANTI_STRUCTURE"
+		FireSound="ALL_AssaultDestroyer_WeaponFire"
+		FireFX="FX_AlliedTankGun"
+		FireVeteranFX="FX_AlliedTankGun_Vet">
+		<PreAttackDelay
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<ClipReloadTime
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<Nuggets>
+			<ProjectileNugget
+					WarheadTemplate="AlliedAntiNavyShipTech1CannonWarhead"
+					ProjectileTemplate="AlliedAntiNavyShipTech1CannonProjectile">
+				<VeterancyProjectiles
+				  VeterancyLevel="HEROIC"
+				  ProjectileTemplate="AlliedAntiNavyShipTech1CannonProjectile"/>
+			</ProjectileNugget>
+			<InformTargetNugget />
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlliedAntiNavyShipTech1CannonWarhead"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER ANTI_SUBMERGED"
+		ForbiddenAntiMask="ANTI_STRUCTURE">
+		<Nuggets>
+			<DamageNugget
+				Radius="20.0"
+				Damage="50.0"
+				DamageType="CANNON"
+				DamageFXType="ALLIED_CANNON"
+				DeathType="EXPLODED">
+				<DamageScalarDetails Scalar= "200%">
+					<Filter
+						Rule="NONE">
+						<IncludeThing>AlliedAntiNavyShipTech1</IncludeThing>
+						<IncludeThing>AlliedAntiNavyShipTech1AI</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+	</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

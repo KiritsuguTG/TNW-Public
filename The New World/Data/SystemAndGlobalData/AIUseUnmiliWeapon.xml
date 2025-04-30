@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 		
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+		id="AIUseUnmiliWeapon"
+		inheritFrom="BaseObject"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		KindOf="NOT_AUTOACQUIRABLE AUTO_ACQUIRABLE_BY_AI IGNORE_FOR_VICTORY NO_COLLIDE RESIST_EMP IGNORE_IN_AI_HUNT_TACTIC UNATTACKABLE SKIRMISH_AI_DONT_CONSIDER_THREAT IMMOBILE STRUCTURE"
+		EditorName="AIUseUnmiliWeapon"
+		Description="Desc:AIUseUnmiliWeapon"
+		TypeDescription="Type:AIUseUnmiliWeapon"
+		MaxSimultaneousOfType="1">
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="JapanAdvancedSuperWeaponArmor"
+			DamageFX="FactionStructureDamageFX"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+						</ModelConditionState>
+			</ScriptedModelDraw>	
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+		</Behaviors>
+						<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">			
+		</CrusherInfo>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="0" />	
+	</GameObject>
+</AssetDeclaration>

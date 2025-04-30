@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Tags></Tags>
+  <Includes>
+	  <Include
+			type="instance"
+			source="DATA:BaseObjects/BaseObject.xml" />
+  </Includes>
+	<GameObject
+		id="JapanNanoFlySeedSpawner"
+		EditorName="JapanNanoFlySeedSpawner"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE INERT INERT_SHROUD_REVEALER">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="0.2s"
+			  MaxLifetime="0.2s" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_Japan_NanoFlySeed">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>JapanSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_Japan_NanoFlySeedUpgrade">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>JapanSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+	</GameObject>
+  <GameObject
+		id="JapanNanoFlySeed"
+		inheritFrom="BaseObject" 
+		KindOf="IMMOBILE NO_COLLIDE NOT_AUTOACQUIRABLE IGNORE_FOR_VICTORY CANNOT_BE_DETECTED"
+		EditorName="JapanNanoFlySeed">
+    <SkirmishAIInformation
+      DodgeSafetyDistance="250.0">
+      <DodgeWithUnits Rule="ANY"
+      	Include="INFANTRY"
+        StatusBitFlagsExclude="AIRBORNE_TARGET">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+    <DisplayName>JapanNanoFlySeed</DisplayName>
+    <ArmorSet
+			Armor="BaseUnAttackVehicleArmor" />
+	  <!-- NOTE: this locomotor is used to validate this special power across various terrain.  
+				 It is not meant to have a speed.  Please do not remove. -->
+	  <LocomotorSet
+			Locomotor="SpecialPowerAllTerrainValidLocomotor"
+			Condition="NORMAL"
+			Speed="0.0" />
+    <Draws> 
+    	<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+		<Physics
+			id="ModuleTag_Physics" />
+       <LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="4.0s"
+				MaxLifetime="4.0s"/>
+      <FXListBehavior id="ModuleTag_FXList">
+        <DieMuxData
+					DeathTypes="ALL" />        
+        <Event Index="onCreate" FX="FX_JapanNanoFly" />
+      </FXListBehavior>
+      <DestroyDie
+				id="ModuleTag_DestroyDie">
+        <DieMuxData
+					DeathTypes="ALL" />
+      </DestroyDie>
+      <CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_Japan_JapanNanoFly">
+        <DieMuxData
+					DeathTypes="ALL" />
+      </CreateObjectDie>
+    </Behaviors>
+	<AI>
+	  <AIUpdate
+		  id="ModuleTag_AI"
+		  AutoAcquireEnemiesWhenIdle="NO"/>
+	</AI>
+	<Body>
+	  <PropBody
+				id="ModuleTag_PropBody" />
+	</Body>
+    <Geometry
+			IsSmall="true">
+      <Shape
+				Type="CYLINDER"
+				MajorRadius="1.0"
+				Height="1.0">
+				</Shape>
+    </Geometry>
+  </GameObject>
+	</AssetDeclaration>
+  

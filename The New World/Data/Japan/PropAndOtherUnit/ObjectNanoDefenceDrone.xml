@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+<GameObject
+	id="ObjectNanoDefenceDrone"
+	Side="Japan"
+		ShockwaveResistance="1000"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+	EditorName="ObjectNanoDefenceDrone"
+	KindOf="CAN_CAST_REFLECTIONS INERT_SHROUD_REVEALER NO_COLLIDE UNATTACKABLE">
+	<ArmorSet
+		Armor="JapanPointDefenseDroneArmor" />
+	<LocomotorSet
+		Locomotor="JapanPointDefenseDroneLocomotor"
+		Condition="NORMAL"
+		Speed="200.0" />
+	<Draws>
+		<ScriptedModelDraw
+			id="ModuleTag_Draw"
+			ExtraPublicBone="FX_Bone_01 FX_Bone_02 FX_Bone_03"
+			NoRotate="true">
+			<ModelConditionState
+				ParseCondStateType="PARSE_DEFAULT">
+				<ParticleSysBone
+					BoneName="FX_Weapon_01"
+					FXParticleSystemTemplate="FXJapanNanoShieldIdle"
+					FollowBone="true"/>
+				<ParticleSysBone
+					BoneName="FX_Weapon_01"
+					FXParticleSystemTemplate="JapanSuperWeaponIdleLight"
+					FollowBone="true"/>
+			</ModelConditionState>
+		</ScriptedModelDraw>
+	</Draws>
+	<Behaviors>
+		<AttachUpdate
+			id="ModuleTag_Attach"
+			Flags="STICK_TO_PARENT ONE_ATTACH_PER_PARENT TELEPORT INSTANT_TELEPORT_ON_PARENT_TELEPORT DIE_WHEN_DETACH_ALWAYS DEFECT_WHEN_PARENT_DEFECTS"
+			CloseEnoughRange="1.0">
+		</AttachUpdate>
+		<AttributeModifierAuraUpdate
+			id="ModuleTag_AttributeModifierAuraUpdate"
+			InitiallyActive="true"
+			RefreshDelay="0.2s"
+			AffectAttacheeOnly="true"
+			AttributeModifierName="AttributeObjectNanoDefenceDrone"/>
+		<PassiveAreaEffectBehavior
+			id="ModuleTag_PassiveAreaEffect"
+			EffectRadius="0"
+			HealingPointsPerSecond="50"
+			AffectAttached="true"
+			AffectUnderAttack="true"
+			NonStackable="false"
+			HealFX="FX_Repair" >
+		</PassiveAreaEffectBehavior>
+		<SlowDeath
+			id="ModuleTag_TeslaDeath"
+			DeathFlags="DEATH_1"
+			SinkDelay="2s"
+			SinkRate="2.4"
+			DestructionDelay="2s">
+			<DieMuxData
+				DeathTypes="ALL"/>
+		</SlowDeath>
+		<LifetimeUpdate
+			id="ModuleTag_LifetimeUpdate"
+			MinLifetime="15.0s"
+			MaxLifetime="15.0s"/>
+		<AttributeModifierPoolUpdate
+			id="DefaultAttributeModifierPoolUpdate"/>
+		<Physics
+			id="ModuleTag_Physics" />
+	</Behaviors>
+	<AI>
+		<AIUpdate
+			id="ModuleTag_AIUpdate"
+			StateMachine="UnitAIStateMachine" />
+	</AI>
+	<Body>
+		<ActiveBody
+			id="ModuleTag_Body"
+			MaxHealth="2040" />
+	</Body>
+	<Geometry
+		IsSmall="true">
+		<Shape
+			Type="SPHERE"
+			MajorRadius="10.0"
+			Height="10.0">
+		</Shape>
+	</Geometry>
+	<AudioArraySound>
+		<AudioEntry Sound="JAP_PointDefenseDronesMS" AudioType="soundAmbient"/>
+	</AudioArraySound>
+	<ShadowInfo
+		Type="NONE" />
+	<VisionInfo
+		VisionRange="10"
+		ShroudClearingRange="10" />
+	<CrusherInfo
+		id="id_CrusherInfo"
+		CrushableLevel="0" />
+</GameObject>
+</AssetDeclaration>

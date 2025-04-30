@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Includes>
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseProjectile.xml"/>
+	</Includes>
+	<GameObject
+		id="SovietArmorAntiVehicleVehicleTech1TankProjectile"
+		inheritFrom="BaseProjectile" 
+		Side="Soviet"
+		EditorName="SovietArmorAntiVehicleVehicleTech1TankProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUAntiAirVehicleTech1_Rocket" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="TankShellTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL FIRE_STRAIGHT_THEN_CURVE ADJUST_STRAIGHT_ONLY"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				CurveFlattenMinDist="600"
+				FlightPathAdjustDistPerSecond="100"
+                Acceleration="0" />
+		</Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"/>
+		</Geometry>
+	</GameObject>
+	<GameObject
+		id="SovietArmorAntiVehicleVehicleTech1ApocProjectile"
+		inheritFrom="BaseProjectile" 
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		EditorName="SovietArmorAntiVehicleVehicleTech1ApocProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUAntiAirVehicleTech1_Rocket" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="TankShellTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_TankImpactMed" />
+			</FXListBehavior>
+
+<!-- 			<ProjectileUpdate
+				id="ModuleTag_ProjectileUpdate"
+				StateMachine="StraightLineProjectile"
+				MinTargetDistance="5">
+				<Movement>
+					<MoveInStraightLine
+						MuzzleVelocity="100" />
+				</Movement>
+			</ProjectileUpdate> -->
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL FIRE_STRAIGHT_THEN_CURVE ADJUST_STRAIGHT_ONLY"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				CurveFlattenMinDist="600"
+				FlightPathAdjustDistPerSecond="100"
+                Acceleration="0" />
+		</Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"/>
+		</Geometry>
+	</GameObject>
+	
+	<GameObject
+		id="SovietAntiAirShipArmorAAChaingunProjectile"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE HIDE_IF_FOGGED NO_COLLIDE"
+		Scale="0.4"
+		EditorName="SovietArmorAntiAirShipAAChaingunProjectile">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FX_RPG" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="5"
+				SecondPercentIndent="5"
+				FlightPathAdjustDistPerSecond="600.0"/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	<GameObject
+		id="AlliedTankChainGunProjectile"
+		inheritFrom="BaseProjectile" 
+		Side="Soviet" 
+		Scale="2"
+		EditorName="AlliedTankChainGunProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="SmallGun_Trail"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				CurveFlattenMinDist="300"
+				FlightPathAdjustDistPerSecond="300"
+				MaxDistanceReachedFX=""/>
+		</Behaviors>
+		<Body>
+			<PropBody
+				xai:joinAction="Remove" xmlns:xai="uri:ea.com:eala:asset:instance"
+				id="ModuleTag_Body" />
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"/>
+		</Geometry>
+	</GameObject>
+
+	<GameObject
+		id="AlliedTankChainGunProjectile_Veteran"
+		inheritFrom="BaseProjectile" 
+		Side="Soviet" 
+		Scale="2"
+		EditorName="AlliedTankChainGunProjectile_Veteran">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="SmallGun_Trail_Vet"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				CurveFlattenMinDist="300"
+				FlightPathAdjustDistPerSecond="300"
+				MaxDistanceReachedFX=""/>
+		</Behaviors>
+		<Body>
+			<PropBody
+				xai:joinAction="Remove" xmlns:xai="uri:ea.com:eala:asset:instance"
+				id="ModuleTag_Body" />
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"/>
+		</Geometry>
+	</GameObject>
+
+	<GameObject
+		id="BaseNationalismEffect"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE INERT INERT_SHROUD_REVEALER"
+		EditorName="NationalismEffect">
+		<DisplayName>NationalismEffect</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Behaviors>
+			<AttachUpdate
+				id="ModuleTag_Attach"
+				Flags="TELEPORT STICK_TO_PARENT DIE_WHEN_DETACH_ALWAYS"
+				CloseEnoughRange="1.0" />
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="20.0s"
+				MaxLifetime="20.0s" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.0"
+				Height="5.0"/>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="0" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+
+	<!-- vehicle FX -->
+	<GameObject
+		id="NationalismEffect_Medium"
+		Scale="2"
+		EditorName="NationalismEffect_Medium"
+		inheritFrom="BaseNationalismEffect">
+		<Draws>
+ 			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXEmperorsRageLarge" />
+					<Texture
+						Original="FXEmperorsRage"
+						New="FX_Nationalism" />	
+				</ModelConditionState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="FXEmperorsRageLarge"
+						AnimationMode="ONCE"
+						AnimationBlendTime="0" />
+				</AnimationState>
+			</ScriptedModelDraw> 
+		</Draws>
+		<Behaviors>
+
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AttributeModifier_Nationalism59"
+				InitiallyActive="true"
+				AllowSelf="True" 
+				Range="5"
+				RefreshDelay="1s"
+				AttributeModifierName="AttributeModifier_Nationalism59">
+				<ObjectFilter
+					Rule="NONE"
+					Relationship="ALLIES">
+					<IncludeThing>SovietAntiVehicleVehicleTech1Armor</IncludeThing>
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+
+		</Behaviors>
+		<ShadowInfo
+			Type="ADDITIVE_DECAL_DYNAMIC"
+			Texture="FX_Nationalism"
+			SizeX="130.0"
+			SizeY="130.0"
+			OpacityStart="0"
+			OpacityFadeInTime="2s"
+			OpacityPeak="1"
+			OpacityFadeOutTime="0.5s"
+			OpacityEnd="0"
+			OverrideLODVisibility="true"/>
+	</GameObject>
+
+	<AttributeModifier
+		id="AttributeModifier_Nationalism59"
+		Category="BUFF"
+		Duration="1.1s">
+		<Modifier Type="SPEED" Value="120%" />
+	</AttributeModifier>
+
+   	<GameObject  
+		id="FlameThrowerProjectile"  
+		Side="SOVIET"  
+		EditorSorting="SYSTEM"  
+		KindOf="PROJECTILE SMALL_MISSILE DEFLECT_BY_SPECIAL_POWER NO_COLLIDE HIDE_IF_FOGGED">  
+		<ArmorSet  
+			Armor="NoArmor" />  
+		<Draws>  
+			<ScriptedModelDraw  
+				id="ModuleTag_ScriptedModelDraw">  
+				<ModelConditionState  
+					ParseCondStateType="PARSE_DEFAULT">  
+					<Model
+							Name="" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FlameThrowerFire"/>
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FlameThrowerFireDistortion"/>
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FlameThrowerFireGlow"/>
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FlameThrowerSmoke"/>
+				</ModelConditionState>  
+			</ScriptedModelDraw>  
+		</Draws>  
+		<Behaviors>
+		    	<DestroyDie  
+				id="ModuleTag_Die">  
+				<DieMuxData  
+					DeathTypes="ALL" />  
+			</DestroyDie>  
+			<BezierProjectile  
+				id="ModuleTag_BezierProjectileBehavior"  
+				Flags="FIRE_STRAIGHT_THEN_CURVE DETONATE_CALLS_KILL ORIENT_TO_FLIGHT_PATH"  
+				FirstHeightMin="0"  
+				FirstHeightMax="0"  
+				SecondHeightMin="1"  
+				SecondHeightMax="1"  
+				FirstPercentIndent="33"  
+				SecondPercentIndent="67"  
+				CurveFlattenMinDist="200"
+				GroundHitFX=""  
+				FlightPathAdjustDistPerSecond="60.0"  />  
+		</Behaviors>  
+		<Body>  
+			<ActiveBody  
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">  
+			<Shape
+				Type="SPHERE"  
+				MajorRadius="0.8">
+			</Shape>  
+		</Geometry>
+        <VisionInfo  
+			VisionRange="0" />  
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+    <!-- FX Includes -->
+	  <Include type="all" source="ART:JUEmperor_D.xml" />	
+		<Include type="all" source="ART:CUMale_RUNA.w3x" />
+		<Include type="all" source="ART:CUMale_RUNC.w3x" />
+		<Include type="all" source="ART:CUMale_BIFA.w3x" />
+		<Include type="all" source="ART:CUMale_BIFB.w3x" />
+		<Include type="all" source="ART:CUMale_BIFC.w3x" />
+		<Include type="all" source="ART:CUMale_BIFD.w3x" />
+		<Include type="all" source="ART:CUMale_DIEA.w3x" />
+		<Include type="all" source="ART:CUMale_DIEB.w3x" />
+		<Include type="all" source="ART:CUMale_DIED.w3x" />
+		<Include type="all" source="ART:CUMale_DIEE.w3x" />
+		<Include type="all" source="ART:CUMale_RUNA.w3x" />
+		<Include type="all" source="ART:CUMale_RUNC.w3x" />
+		<Include type="all" source="ART:CUMale_WLKA.w3x" />
+		<Include type="all" source="ART:CUMale_WLKB.w3x" />
+		<Include type="all" source="ART:CUMale_WLKC.w3x" />
+		<Include type="all" source="ART:Units/JapanEmperorYoshiro/JUEMPERORPACK_SKN.w3x"/>
+		<Include type="all" source="ART:Units/JapanEmperorYoshiro/CUMALE_SKL.w3x"/>
+		<Include type="all" source="ART:Units/JapanEmperorYoshiro/JUEMPEROR_SKN.EMPOROR01.w3x"/>
+		<Include type="all" source="ART:Units/JapanEmperorYoshiro/JUEMPEROR_SKN.w3x"/>
+		<Include type="all" source="ART:Units/JapanEmperorYoshiro/JUEMPEROR_SKN.OBBOX.w3x"/>
+		<Include type="all" source="ART:Units/JapanEmperorYoshiro/JUEMPEROR_HITA.w3x"/>
+		<Include type="all" source="ART:Units/JapanEmperorYoshiro/JUEMPEROR_HITWLK.w3x"/>
+    <!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseInfantry.xml" />
+	</Includes>
+	<GameObject
+		id="JapanEmperorYoshiro"
+		inheritFrom="BaseInfantry"
+		SelectPortrait="Portrait_JapanEmperorYoshiro"
+		ButtonImage="Button_JapanEmperorYoshiro"
+		Side="Japan"
+		SubGroupPriority="350"
+		EditorSorting="UNIT"
+		BuildTime="10"
+		HealthBoxHeightOffset="30"
+		CommandSet="JapanEmperorYoshiroCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS INFANTRY CANNOT_HIJACK NO_GARRISON RESIST_EMP PRELOAD T1_UNIT PATH_THROUGH_INFANTRY"
+		ThreatLevel="10"
+		WeaponCategory="LIGHTNING"
+		VoicePriority="104"
+		BountyValue="50"
+		EditorName="JapanEmperorYoshiro"
+		Description="Desc:JapanEmperorYoshiro"
+		TypeDescription="Type:SupportUnit">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SpecialPowerKingUnit</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseScoutVehicleArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="HumanLocomotor"
+			Locomotor="TestReactiveLocomotorHUMAN"
+			Condition="NORMAL"
+			Speed="40"/>
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			ConquerMetricsOverrideDefendingAntiMask="ANTI_INFANTRY"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUEmperor_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="" />
+				</ModelConditionState>	
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="JUEmperor_SKN" />
+					<ParticleSysBone
+						BoneName="FXTracksB"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUEmperor_SKN" />
+					<Texture
+						Original="JUEmperor"
+						New="JUEmperor_D" />
+					<ParticleSysBone
+						BoneName="FXTracksR"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXTracksB"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXTracksB"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="CUMale_BIFA"
+						AnimationMode="ONCE"
+						AnimationPriority="1" />
+					<Animation
+						AnimationName="CUMale_BIFB"
+						AnimationMode="ONCE"
+						AnimationPriority="1" />
+					<Animation
+						AnimationName="CUMale_BIFC"
+						AnimationMode="ONCE"
+						AnimationPriority="1" />
+					<Animation
+						AnimationName="CUMale_BIFD"
+						AnimationMode="ONCE"
+						AnimationPriority="1" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimationName="CUMale_DIEA"
+						AnimationMode="ONCE"
+						AnimationPriority="1" />
+					<Animation
+						AnimationName="CUMale_DIEB"
+						AnimationMode="ONCE"
+						AnimationPriority="1" />
+					<Animation
+						AnimationName="CUMale_DIED"
+						AnimationMode="ONCE"
+						AnimationPriority="1" />
+					<Animation
+						AnimationName="CUMale_DIEE"
+						AnimationMode="ONCE"
+						AnimationPriority="1" />
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="SPC_EmperorDeath"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="SPC_EmporerDeath_Light"
+						FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="CUMale_WLKA"
+						AnimationMode="LOOP"/>
+					<Animation
+						AnimationName="CUMale_WLKB"
+						AnimationMode="LOOP"/>
+					<Animation
+						AnimationName="CUMale_WLKC"
+						AnimationMode="LOOP"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics" />
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					AllowInterleavedFiring="false">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanEmperorYoshiroManipulator"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<InvisibilityUpgrade
+				id="ModuleTag_InvisibilityTrigger"
+				InvisibilityTemplate="CloakingFieldInvisibilityTemplate">
+				<TriggeredBy>Upgrade_CloakingFieldInvisibility</TriggeredBy>
+			</InvisibilityUpgrade>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="JUEmperor_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<SuppressionUpdate
+				id="ModuleTag_SuppressionUpdate"
+			xai:joinAction="Remove"/>
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="3s"
+				SinkRate="2.4"
+				DestructionDelay="8s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+			<SpecialAbilityUpdate
+				id="ModuleTag_ManipulatorDeviceUpdate"
+				SpecialPowerTemplate="SpecialPower_ManipulateObject"
+				StartAbilityRange="300">
+			</SpecialAbilityUpdate>
+			<TemporaryOwnerSpecialPower
+				id="ModuleTag_ManipulatorDeviceWorker"
+				SpecialPowerTemplate="SpecialPower_ManipulateObject"
+				SlaveStatus="HEALTH_PERCENT_0"
+				UpdateModuleStartsAttack="false"/>
+			<AttributeModifierAuraUpdate
+				id="ModuleTagManipulatorDeviceWorkerAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="90000.0"
+				RefreshDelay="0.13s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_Manipulator">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ALLIES ENEMIES"
+					Include="VEHICLE INFANTRY"
+					Exclude="STRUCTURE CAN_TOPPLE COMMANDO UNIQUE_UNIT TIME_BOMB EGG MACHINE"
+					StatusBitFlags="HEALTH_PERCENT_0">
+					<ExcludeThing>JapanScoutInfantry</ExcludeThing>
+					<ExcludeThing>AlliedCommandoTech1</ExcludeThing>
+					<ExcludeThing>SovietCommandoTech1</ExcludeThing>
+					<ExcludeThing>JapanCommandoTech1</ExcludeThing>
+					<ExcludeThing>AlliedScoutInfantry</ExcludeThing>
+					<ExcludeThing>SovietScoutInfantry</ExcludeThing>
+					<ExcludeThing>AlliedInfiltrationInfantry</ExcludeThing>
+					<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+					<ExcludeThing>JapanInfiltrationInfantry</ExcludeThing>
+					<ExcludeThing>JapanMCV</ExcludeThing>
+					<ExcludeThing>SovietMCV</ExcludeThing>
+					<ExcludeThing>AlliedMCV</ExcludeThing>
+					<ExcludeThing>JapanEmperorYoshiro</ExcludeThing>
+					<ExcludeThing>SovietScoutVehicle</ExcludeThing>
+					<ExcludeThing>EUScoutVehicle</ExcludeThing>
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<GrantUpgradeCreate
+				id="ModuleTag_AddYoshiroUpgrade"
+				UpgradeToGrant="Upgrade_YoshiroBuilt" />
+			<UpgradeDie
+				id="ModuleTag_RemoveYoshiroUpgrade"
+				UpgradeId="Upgrade_YoshiroBuilt">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</UpgradeDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateFrozenObjectDie"
+			  xai:joinAction="Remove"/>
+			<CreateObjectDie
+				id="ModuleTag_CreateInfantryBombObjectDie"
+			  xai:joinAction="Remove"/>
+			<FXListBehavior
+				id="ModuleTag_FXPsycicDeath"
+			  xai:joinAction="Remove"/>
+			<FXListBehavior
+				id="ModuleTag_FXPsycicBlastDeath"
+			  xai:joinAction="Remove"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					CanPickDynamicTargetType="AGGRESSIVE_STANCE"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="300.0" />
+		</Body>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_Emperor_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="JAP_Emperor_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_Emperor_VoiceSelect" AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="7.0"
+				Height="13.0"
+				ContactPointGeneration="SQUAD_MEMBER"/>
+		</Geometry>
+		<ShadowInfo
+			Type="DECAL"
+			SizeX="14"
+			SizeY="14"
+			Texture="ShadowI"/>
+		<VisionInfo
+			VisionRange="350"
+			ShroudClearingRange="=$ADVANCE_INFANTRY_SHROUD_CLEAR"/>
+	</GameObject>
+	<GameObject
+		id="JapanEmperorYoshiroTwoBoss"
+		inheritFrom="JapanEmperorYoshiro"
+		EditorName="JapanEmperorYoshiroTwoBoss">
+		<EquivalentTo>JapanEmperorYoshiro</EquivalentTo>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate"
+				xai:joinAction="Replace">
+				<WeaponSlotHardpoint
+					ID="1"
+					AllowInterleavedFiring="false">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanEmperorYoshiroManipulatorBoss"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<SpecialAbilityUpdate
+				id="ModuleTag_ManipulatorDeviceUpdateBoss"
+				SpecialPowerTemplate="SpecialPower_ManipulateObjectBoss"
+				StartAbilityRange="300">
+			</SpecialAbilityUpdate>
+			<TemporaryOwnerSpecialPower
+				id="ModuleTag_ManipulatorDeviceWorkerBoss"
+				SpecialPowerTemplate="SpecialPower_ManipulateObjectBoss"
+				SlaveStatus="TEMPORARILY_DEFECTED"
+				UpdateModuleStartsAttack="false"/>
+			<SpecialAbilityUpdate
+				id="ModuleTag_ManipulatorDeviceUpdate"
+				xai:joinAction="Remove"/>
+			<TemporaryOwnerSpecialPower
+				id="ModuleTag_ManipulatorDeviceWorker"
+				xai:joinAction="Remove"/>
+			<GrantUpgradeCreate
+				id="ModuleTag_AddYoshiroUpgrade"
+				xai:joinAction="Remove"/>
+			<UpgradeDie
+				id="ModuleTag_RemoveYoshiroUpgrade"
+				xai:joinAction="Remove"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				xai:joinAction="Replace"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				xai:joinAction="Replace"
+				MaxHealth="400.0" />
+		</Body>
+	</GameObject>
+	<GameObject
+		id="JapanEmperorYoshiro_Crate"
+		inheritFrom="JapanEmperorYoshiro"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="JapanEmperorYoshiro_Crate">
+		<EquivalentTo>JapanEmperorYoshiro</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

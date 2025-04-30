@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="instance"
+			source="ART:EXTnkTrack.xml" />
+		<Include
+			type="all"
+			source="ART:Units/AlliedAntiNavyShipTech1/AUAntiNavyShipTech1_FP.w3x" />
+		<Include
+			type="all"
+			source="ART:Units/AlliedAntiNavyShipTech1/AUANTINAVYSHIPTECH1_FX_CTR.w3x" />
+		<Include
+			type="all"
+			source="ART:Units/AlliedAntiNavyShipTech1/AUANTINAVYSHIPTECH1_FX_HRC.w3x" />
+		<Include
+			type="all"
+			source="ART:AUAntiNavyShipTech1_D.xml" />
+		<Include
+			type="all"
+			source="ART:EXMagneticShield.w3x" />
+		<Include
+			type="all"
+			source="ART:Units/AlliedAntiNavyShipTech1/AUAntiNavyShipTech1_SKLN.w3x" />
+		<Include
+			type="all"
+			source="ART:Units/AlliedAntiNavyShipTech1/AUANTINAVYSHIPTECH1_SKN.w3x" />
+		<Include
+			type="all"
+			source="ART:Units/AlliedAntiNavyShipTech1/AUANTINAVYSHIPTECH1_TRANS.w3x" />
+		<Include
+			type="all"
+			source="ART:Units/AlliedAntiNavyShipTech1/AUANTINAVYSHIPTECH1_SKN.NEWSKIN.w3x" />
+		<Include
+			type="all"
+			source="ART:Units/AlliedAntiNavyShipTech1/AUANTINAVYSHIPTECH1_SKN.NEWSKIN_TREADS.w3x" />
+		<Include
+			type="all"
+			source="ART:Units/AlliedAntiNavyShipTech1/AUANTINAVYSHIPTECH1_SKN.OBBOX01.w3x" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- aka The Assault Destroyer -->
+	<GameObject
+		id="AlliedAntiNavyShipTech1"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_AlliedAntiNavyShipTech1"
+		ButtonImage="Button_AlliedAntiNavyShipTech1_on"
+		Side="Allies"
+		SubGroupPriority="515"
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="20"
+		BuildTime="17"
+		CommandSet="AlliedAntiNavyShipTech1CommandSet"
+		KindOf="PRELOAD SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS AMPHIBIOUS SCORE VEHICLE CAN_BE_FAVORITE_UNIT T2_UNIT TRANSFORMER"
+		RadarPriority="UNIT"
+		ProductionQueueType="WATERCRAFT"
+		UnitCategory="VEHICLE"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		BountyValue="250"
+		EditorName="AlliedAntiNavyShipTech1"
+		Description="Desc:AlliedAntiNavyShipTech1"
+		TypeDescription="Type:AntiArmorAndSub"
+		UnitIntro="Allied_AssaultDestroyer_UnitIntro"
+		SelectPortraitTransformed="PortraitAlliedAntiNavyShipTech1B"
+		ButtonImageTransformed="ButtonAlliedAntiNavyShipTech1B"
+		DescriptionTransformed="Desc:AlliedAntiNavyShipTech1"
+		TypeDescriptionTransformed="Type:AntiArmorAndSub">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedAntiNavyShipTech1</DisplayName>
+		<DisplayNameTransformed
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedAntiNavyShipTech1</DisplayNameTransformed>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1700" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="AdvanceShipArmor"
+			DamageFX="VehicleDamageFX" />
+		<GameDependency>
+			<NeededUpgrade>Upgrade_AlliedTech2</NeededUpgrade>
+		</GameDependency>
+		<LocomotorSet
+			Locomotor="TestReactiveLocomotorSHIPWATER"
+			Condition="NORMAL"
+			Speed="75" />
+		<LocomotorSet
+			Locomotor="TestReactiveLocomotorSHIPLAND"
+			Condition="NORMAL_UPGRADED"
+			Speed="50.0" />
+		<LocomotorSet
+			Locomotor="TestReactiveLocomotorSHIPWATER"
+			Condition="NORMAL_UPGRADED"
+			Speed="75" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="4.0"
+			ConquerMetricsOverrideDamageType="CONCUSSIVE"
+			ConquerMetricsOverrideAntiMask="ANTI_WATER ANTI_SUBMERGED" />
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.5"
+				MaxRecoilDistance="5"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="FX_WEAPON_A FX_TROPEDO_01 FX_TROPEDO_02 Bone_Treads_Rear_Right Bone_Treads_Rear_Left Bone_Treads_Front_Right Bone_Treads_Front_Left Bone_Tracks_Front_Left Bone_Tracks_Front_Right Bone_Tracks_Rear_Left Bone_Tracks_Rear_Right"
+				TrackMarks="EXTnkTrack"
+				TrackMarksLeftBone="Bone_Tracks_Rear_Left"
+				TrackMarksRightBone="Bone_Tracks_Rear_Right"
+				LeftFrontTireBone="Bone_Tracks_Front_Left"
+				RightFrontTireBone="Bone_Tracks_Front_Right"
+				LeftRearTireBone="Bone_Tracks_Rear_Left"
+				RightRearTireBone="Bone_Tracks_Rear_Right"
+				TireRotationMultiplier="0.0"
+				TireRotationMultiplierFront="0.0">
+				<TreadTerrainParticles>AmphibiousTankTerrainParticleMapping</TreadTerrainParticles>
+				<TreadScrollingMap
+					LeftTrack="Bone_Treads_Front_Left"
+					RightTrack="Bone_Treads_Front_Right"
+					SpeedMultiplier="-0.05" />
+				<TreadScrollingMap
+					LeftTrack="Bone_Treads_Rear_Left"
+					RightTrack="Bone_Treads_Rear_Right"
+					SpeedMultiplier="-0.05" />
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="AUANTINAVYSHIPTECH1_SKNTNW" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_A" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_GUN" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_A" />
+					<Turret
+						TurretNameKey="Bone_Turret"
+						TurretPitch="turret_pitch"
+						TurretID="1" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_TROPEDO_" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_TROPEDO_" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="AUANTINAVYSHIPTECH1_FPN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_2">
+					<Model
+						Name="AUANTINAVYSHIPTECH1_SKNTNW" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="AUAntiNavyShipTech12_D" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_2">
+					<Model
+						Name="AUANTINAVYSHIPTECH1_SKNTNW" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="AUAntiNavyShipTech12" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="WEAPONSTATE_ONE USER_2">
+					<Model
+						Name="AUANTINAVYSHIPTECH1_SKNTNW" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="AUAntiNavyShipTech12" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="AUANTINAVYSHIPTECH1_SKNTNW" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="AUAntiNavyShipTech12" />
+				</ModelConditionState>
+				<!-- TEMPORARY Magnetic Armor FX -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUANTINAVYSHIPTECH1_SKNTNW" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="AUAntiNavyShipTech1_D" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AUANTINAVYSHIPTECH1_SKNTNW" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="WEAPONSTATE_ONE">
+					<Model
+						Name="AUANTINAVYSHIPTECH1_SKNTNW" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					StateName="STATE_Land"
+					Flags="START_FRAME_FIRST">
+					<Animation
+						AnimationName="AUANTINAVYSHIPTECH1_TRANSN"
+						AnimationMode="ONCE_BACKWARDS" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Water" then
+						CurDrawableSetTransitionAnimState("TRANS_Land")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					Flags="START_FRAME_LAST"
+					StateName="STATE_Water">
+					<Animation
+						AnimationName="AUANTINAVYSHIPTECH1_TRANSN"
+						AnimationMode="ONCE" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="SUAntiStructureShipWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Fx_WaterFroth"
+						FXParticleSystemTemplate="AlliedAntiNavyShipFroth"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Fx_WaterFrothBody"
+						FXParticleSystemTemplate="AlliedAntiNavyShipFrothBody"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Fx_WaterMist"
+						FXParticleSystemTemplate="AlliedAntiNavyShipWaterMistR"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Fx_WaterMist"
+						FXParticleSystemTemplate="AlliedAntiNavyShipWaterMistL"
+						FollowBone="true" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Land" then
+						CurDrawableSetTransitionAnimState("TRANS_Water")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					StateName="STATE_Land"
+					Flags="START_FRAME_FIRST">
+					<Animation
+						AnimationName="AUANTINAVYSHIPTECH1_TRANSN"
+						AnimationMode="ONCE_BACKWARDS" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Water" then
+						CurDrawableSetTransitionAnimState("TRANS_Land")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER"
+					Flags="START_FRAME_LAST"
+					StateName="STATE_Water">
+					<Animation
+						AnimationName="AUANTINAVYSHIPTECH1_TRANSN"
+						AnimationMode="ONCE" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="true" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Land" then
+						CurDrawableSetTransitionAnimState("TRANS_Water")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_Land"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="AUANTINAVYSHIPTECH1_TRANSN"
+						AnimationMode="ONCE_BACKWARDS" />
+					<Script>
+						CurDrawablePlaySound("AmphibiousWaterUnitToLand_ScrapeTreadsOut")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_Water"
+					Flags="START_FRAME_FIRST">
+					<Animation
+						AnimationName="AUANTINAVYSHIPTECH1_TRANSN"
+						AnimationMode="ONCE" />
+					<Script>
+						CurDrawablePlaySound("ALL_Prospector_WaterSplashMS")
+					</Script>
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AUMCVWaterWakeSplash"
+						FollowBone="true" />
+				</AnimationState>
+			</TruckDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<!-- TEMPORARY Magnetic Armor FX -->
+			<ScriptedModelDraw
+				id="ModuleTag_ShieldDraw"
+				NoRotate="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="EXMagneticShield" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableHideSubObjectPermanently("TORUS01")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6">
+					<Script>
+						CurDrawableShowSubObjectPermanently("TORUS01")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW PARTICLES -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUANTINAVYSHIPTECH1_FXN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AUANTINAVYSHIPTECH1_FXN" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="AlliesShipDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUANTINAVYSHIPTECH1_FXN" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="AlliesShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedAntiNavyShipTech1Cannon"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE WEAPON_UPGRADED_02" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedAntiNavyShipTech1ParticleCannon"
+						ObjectStatus="WEAPON_UPGRADED_02"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE" />
+					<TurretSettings
+						TurretTurnRate="180"
+						MinimumPitch="-15d"
+						AllowsPitch="true"
+						RecenterWhenOutOfTurnRange="false"
+						TurretPitchRate="180"
+						MaxDeflectionClockwise="120d"
+						MaxDeflectionAntiClockwise="120d"
+						MinIdleScanTime="5.0s"
+						MaxIdleScanTime="8.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0"
+						ComeToHaltJiggle="3d">
+						<TurretAITargetChooserData
+							RotateToTargetWhenAiming="true"
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedAntiNavyShipTech1Torpedo"
+						ObjectStatus="WATER_LOCOMOTOR_ACTIVE"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE" />
+					<TurretSettings
+						TurretTurnRate="360"
+						MaxDeflectionClockwise="100d"
+						MaxDeflectionAntiClockwise="100d"
+						AllowsPitch="false"
+						ComeToHaltJiggle="2d">
+						<TurretAITargetChooserData
+							RotateToTargetWhenAiming="true"
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<MagneticEffectUpdate
+				id="ModuleTag_MagneticEffectUpdate"
+				Radius="200"
+				ScalableDrawModuleId="ModuleTag_ShieldDraw"
+				ScaledBoneName="TORUS01">
+				<ObjectStatusValidation
+					RequiredStatus="TRANSFORMATION_TOGGLE_STATE" />
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES"
+					Include="PROJECTILE SMALL_MISSILE INFANTRY VEHICLE"
+					StatusBitFlagsExclude="MAGNETIZED">
+					<ExcludeThing>ParticleCannonProjectile</ExcludeThing>
+				</ObjectFilter>
+			</MagneticEffectUpdate>
+			<SpecialPower
+				id="ModuleTag_ActivateMagneticArmorTrigger"
+				SpecialPowerTemplate="SpecialPower_ToggleMagneticArmor"
+				UpdateModuleStartsAttack="true" />
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ActivateMagneticArmorTriggerUpdate"
+				SpecialPowerTemplate="SpecialPower_ToggleMagneticArmor"
+				Options="RECONSTITUTE_STORED_COMMAND">
+				<ToggleState EnterStateSound="ALL_AssaultDestroyer_BlackHoleArmorOff">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT" />
+				</ToggleState>
+				<ToggleState
+					ObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+					ModelConditions="WEAPONSTATE_ONE"
+					AttributeModifier="AttributeModifier_MagneticArmor">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFENSE_PROTECT_OTHERS"
+						NeverUseWhenHealthIsBelow="750" />
+				</ToggleState>
+			</ToggleStatusSpecialAbilityUpdate>
+
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieOnGround"
+				CreationList="AUAntiNavyShipTech1_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FLOODED EXTRA_7 EXTRA_6"
+					ExemptStatus="OVER_WATER" />
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgradeOnGround"
+				CreationList="AUAntiNavyShipTech1_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FLOODED EXTRA_7 EXTRA_6"
+					ExemptStatus="OVER_WATER" />
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieOnWater"
+				CreationList="AUAntiNavyShipTech1_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED FLOODED EXTRA_7 EXTRA_6"
+					RequiredStatus="OVER_WATER"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET" />
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieByTorpedoOnWater"
+				CreationList="AUAntiNavyShipTech1_TorpedoDie_OCL">
+				<DieMuxData
+					DeathTypes="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED"
+					DeathTypesForbidden="FLOODED EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"
+					RequiredStatus="OVER_WATER" />
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectUpgradeDieOnWater"
+				CreationList="AUAntiNavyShipTech1_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED FLOODED EXTRA_7 EXTRA_6"
+					RequiredStatus="OVER_WATER"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET" />
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectUpgradeDieByTorpedoOnWater"
+				CreationList="AUAntiNavyShipTech1_UpgradeTorpedoDie_OCL">
+				<DieMuxData
+					DeathTypes="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED"
+					DeathTypesForbidden="FLOODED EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"
+					RequiredStatus="OVER_WATER" />
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieWhole"
+				CreationList="AUAntiNavyShipTech1_Die_Whole_OCL">
+				<DieMuxData
+					DeathTypes="FLOODED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectUpgradeDieWhole"
+				CreationList="AUAntiNavyShipTech1_UpgradeDie_Whole_OCL">
+				<DieMuxData
+					DeathTypes="FLOODED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieFreeze"
+				CreationList="AUAntiNavyShipTech1_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FLOODED EXTRA_7 EXTRA_6"
+					RequiredStatus="UNDER_FROZEN" />
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieFreezeNavy"
+				CreationList="AUAntiNavyShipTech1_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FLOODED EXTRA_7 EXTRA_6"
+					RequiredStatus="UNDER_FROZEN" />
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSky"
+				CreationList="AUAntiNavyShipTech1_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FLOODED EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET" />
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSkyNavy"
+				CreationList="AUAntiNavyShipTech1_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FLOODED EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET" />
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_LargeVehicleDie" />
+				<Event
+					Index="onDeath"
+					FX="FX_LargeBuildingDieExplosionRumble" />
+			</FXListBehavior>
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_02">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<LocomotorSetUpgrade
+				id="ModuleTag_LocomotorUpgrade">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+				<TriggeredBy>Upgrade_ConfigTrigger</TriggeredBy>
+			</LocomotorSetUpgrade>
+			<!-- Anti Sub Invisibility-->
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AntiSubInvisibilityAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="350.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_AntiSubInvisibility">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="SUBMARINE">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech2/child::*)" />
+			<!-- Japan NavalPower -->
+			<xi:include
+				href="DATA:Includes/JapanNavalPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanNavalPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="true" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1100" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_MoveLoop">
+				<ModelConditionSound Sound="Tank_Land_MoveLoop" RequiredFlags="MOVING"
+					ExcludedFlags="OVER_WATER DYING" />
+				<ModelConditionSound Sound="Ship_Large_MoveLoopWater"
+					RequiredFlags="MOVING OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="ALL_AssaultDestroyer_VoiceShrunken"
+					RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_BlackHoleArmor">
+				<ModelConditionSound Sound="ALL_AssaultDestroyer_BlackHoleArmorLoop"
+					RequiredFlags="USER_6" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_VoiceSelectShield">
+				<Override RequiredFlags="USER_6">
+					<AudioArrayVoice>
+						<AudioEntry Sound="ALL_AssaultDestroyer_VoiceSelectSpecial"
+							AudioType="voiceSelect" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_WaterVoiceAndSounds">
+				<Override RequiredFlags="OVER_WATER">
+					<AudioArrayVoice>
+						<AudioEntry Sound="ALL_AssaultDestroyer_VoiceMoveWater"
+							AudioType="voiceMove" />
+						<AudioEntry Sound="ALL_AssaultDestroyer_VoiceSelectWaterMS"
+							AudioType="voiceSelect" />
+					</AudioArrayVoice>
+					<AudioArraySound>
+						<AudioEntry Sound="ALL_AssaultDestroyer_MoveStart"
+							AudioType="soundMoveStart" />
+						<!-- <AudioEntry Sound="Ship_Large_MoveLoopWater" AudioType="soundMoveLoop"
+						/> -->
+					</AudioArraySound>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="42.0"
+				MinorRadius="17.5"
+				Height="35.0"
+				ContactPointGeneration="VEHICLE" />
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="ALL_AssaultDestroyer_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="ALL_AssaultDestroyer_VoiceMoveAttack"
+				AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="ALL_AssaultDestroyer_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="ALL_AssaultDestroyer_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="ALL_AssaultDestroyer_VoiceMoveToLand"
+				AudioType="voiceMoveWaterToLand" />
+			<AudioEntry Sound="ALL_AssaultDestroyer_VoiceMoveToWater"
+				AudioType="voiceMoveLandToWater" />
+			<AudioEntry Sound="ALL_AssaultDestroyer_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="ALL_AssaultDestroyer_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="ALL_AssaultDestroyer_VoiceSelectBattleMS"
+				AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="ALL_AssaultDestroyer_VoiceSelectUnderFireMS"
+				AudioType="voiceSelectUnderFire" />
+			<ObjectSpecificEntry Sound="ALL_AssaultDestroyer_VoiceAttackSub"
+				AudioType="voiceAttackUnit" TargetObject="SovietAntiNavyShipTech2" />
+			<ObjectSpecificEntry Sound="ALL_AssaultDestroyer_VoiceAttackSub"
+				AudioType="voiceAttackUnit" TargetObject="JapanNavyScoutShip" />
+			<ObjectSpecificEntry Sound="ALL_AssaultDestroyer_VoiceAttackSub"
+				AudioType="voiceAttackUnit" TargetObject="EUAntiNavyShipTech2" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALL_AssaultDestroyer_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="=$ADVANCE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="30"
+			CrushableLevel="31"
+			CrushDecelerationPercent="50%"
+			CrushWeapon="SovietCrushWeapon"
+			CrushEqualLevelProps="true">
+			<ExtraCrushLevels CrusherLevel="1" CrushableLevel="30" ModelConditionMatch="OVER_WATER" />
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="AlliedAntiNavyShipTech1_Ground"
+		inheritFrom="AlliedAntiNavyShipTech1"
+		EditorName="AlliedAntiNavyShipTech1_Ground"
+		ProductionQueueType="VEHICLE">
+		<EquivalentTo>AlliedAntiNavyShipTech1</EquivalentTo>
+	</GameObject>
+	<GameObject
+		id="AlliedAntiNavyShipTech1_Crate"
+		inheritFrom="AlliedAntiNavyShipTech1"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="AlliedAntiNavyShipTech1_Crate">
+		<EquivalentTo>AlliedAntiNavyShipTech1</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

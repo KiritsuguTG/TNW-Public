@@ -1,0 +1,481 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include type="all" source="ART:Units/Multigunner IFV/AUIFV_SKN.UPGRADE_ARCHERMAIDEN.w3x" />
+		<Include type="all"
+			source="ART:Units/Multigunner IFV/AUIFV_SKN.UPGRADE_ARCHERMAIDENSTRING.w3x" />
+		<Include type="all" source="ART:Units/Multigunner IFV/AUIFV_SKN.UPGRADE_CRYO.w3x" />
+		<Include type="all" source="ART:Units/Multigunner IFV/AUIFV_SKN.UPGRADE_DESOLATOR.w3x" />
+		<Include type="all" source="ART:Units/Multigunner IFV/AUIFV_Upheaval_CTR.w3x" />
+		<Include type="all" source="ART:Units/Multigunner IFV/AUIFV_Upheaval_HRC.w3x" />
+		<Include type="all" source="ART:Units/Multigunner IFV/AUIFV_SKL.w3x" />
+		<Include type="all" source="ART:Units/Multigunner IFV/AUIFV_SKN.w3x" />
+		<Include type="all" source="ART:AUIFV_SKN.w3x" />
+		<Include type="instance" source="ART:EXTnkTrack.xml" />
+		<Include type="instance" source="ART:EXTireTrack2.xml" />
+		<Include type="instance" source="ART:EX_Headlights.w3x" />
+		<Include type="all" source="ART:AUIFV_D.xml" />
+		<Include type="all" source="ART:FXJapanTracer.xml" />
+	</Includes>
+	<GameObject
+		id="AlliedAntiAirVehicleTech1"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_AlliedIFV"
+		ButtonImage="Button_AlliedIFV_on"
+		Side="Allies"
+		SubGroupPriority="705"
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="25"
+		BuildTime="8"
+		CommandSet="AlliedAntiAirVehicleTech1CommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT FS_RADAR"
+		WeaponCategory="MISSILE"
+		VoicePriority="188"
+		BountyValue="150"
+		EditorName="AlliedAntiAirVehicleTech1"
+		Description="Desc:AlliedAntiAirVehicleTech1"
+		TypeDescription="Type:AntiAirAndArmor"
+		UnitIntro="Allied_IFV_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedAntiAirVehicleTech1</DisplayName>
+		<GameDependency
+			ForbiddenModelConditions="OVER_WATER">
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="0" Amount="800" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAntiAirVehicleArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="DefaultLocomotor"
+			Locomotor="TestReactiveLocomotorWHEELS"
+			Condition="NORMAL"
+			Speed="130.0" />
+		<LocomotorSet
+			id="UpgradeLocomotor"
+			Locomotor="TestReactiveLocomotorWHEELS"
+			Condition="NORMAL_UPGRADED"
+			Speed="130.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsOverrideDamageType="ROCKET"
+			ConquerMetricsDpsBonusAgainstDefenses="2.0"
+			ConquerMetricsOverrideAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_VEHICLE"
+			ConquerMetricsOverrideForbiddenAntiMask="ANTI_INFANTRY ANTI_WATER" />
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="Bone_Tire_Left_Front Bone_Tire_Right_Front Bone_Tire_Left_Rear Bone_Tire_Right_Rear AUIFV_WEAPONCOVER FX_PRIMARY FX_PRIMARYUPGRADE"
+				TrackMarks="EXTireTrack2"
+				LeftFrontTireBone="Bone_Tire_Left_Front"
+				RightFrontTireBone="Bone_Tire_Right_Front"
+				LeftRearTireBone="Bone_Tire_Left_Rear"
+				RightRearTireBone="Bone_Tire_Right_Rear"
+				TrackMarksLeftBone="Bone_Tire_Left_Rear"
+				TrackMarksRightBone="Bone_Tire_Right_Rear">
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="AUIFV_SKNNEW" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_PRIMARYUPGRADE" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_PRIMARYUPGRADE" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_PRIMARYUPGRADE" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_PRIMARYUPGRADE" />
+					<Turret
+						TurretNameKey="UPGRADE_MISSILELAUNCHER"
+						TurretID="2" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_PRIMARY" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_PRIMARY" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_PRIMARY" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_PRIMARY" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AUIFV_SKNNEW" />
+					<ParticleSysBone
+						BoneName="AUIFV_WeaponCover"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUIFV_SKNNEW" />
+					<Texture
+						Original="AUIFV"
+						New="AUIFV_D" />
+					<ParticleSysBone
+						BoneName="AUIFV_WeaponCover"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="AUIFV_WeaponCover"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableShowSubObjectPermanently( "UPGRADE_DEFAULT_MISSILE" )
+						CurDrawableHideSubObjectPermanently( "UPGRADE_DEFAULT_MISSILEUPGRADE" )
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ConditionsYes="USER_2"
+					ParseCondStateType="PARSE_NORMAL">
+					<Script>
+						CurDrawableShowSubObjectPermanently( "UPGRADE_DEFAULT_MISSILEUPGRADE" )
+						CurDrawableHideSubObjectPermanently( "UPGRADE_DEFAULT_MISSILE" )
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ConditionsYes="FORMATION_PREVIEW"
+					ParseCondStateType="PARSE_NORMAL">
+					<Script>
+						CurDrawableShowSubObjectPermanently( "UPGRADE_DEFAULT_MISSILE" )
+						CurDrawableHideSubObjectPermanently( "UPGRADE_DEFAULT_MISSILEUPGRADE" )
+					</Script>
+				</AnimationState>
+			</TruckDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<!-- include Headlight draw module. -->
+			<xi:include
+				href="DATA:Includes/HeadlightDraw2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:HeadlightDraw2/child::*)" />
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					WeaponChoiceCriteria="PREFER_GRAB_OVER_DAMAGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedAntiAirVehicleTech1MissileLauncher_AdvancedMissile"
+						ObjectStatus="ADVANCED_MISSILE_PACKS"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_01 WEAPON_UPGRADED_02"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedAntiAirVehicleTech1MissileLauncher"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_01 ADVANCED_MISSILE_PACKS WEAPON_UPGRADED_02"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedAntiAirVehicleTech1MissileLauncherUnmiliWeapon"
+						ObjectStatus="WEAPON_UPGRADED_01"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_02"
+						ConquerMetricsAlwaysCount="true" />
+				</WeaponSlotHardpoint>
+				<WeaponSlotTurret
+					ID="2"
+					WeaponChoiceCriteria="PREFER_GRAB_OVER_DAMAGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedAntiAirVehicleTech1MissileLauncher_AdvancedMissile"
+						ObjectStatus="ADVANCED_MISSILE_PACKS WEAPON_UPGRADED_02"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_01"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedAntiAirVehicleTech1MissileLauncher"
+						ObjectStatus="WEAPON_UPGRADED_02"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_01 ADVANCED_MISSILE_PACKS"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedAntiAirVehicleTech1MissileLauncherUnmiliWeapon"
+						ObjectStatus="WEAPON_UPGRADED_01 WEAPON_UPGRADED_02"
+						ConquerMetricsAlwaysCount="true" />
+					<TurretSettings
+						TurretTurnRate="720"
+						TurretPitchRate="720"
+						AllowsPitch="true"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="4.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0"
+						ComeToHaltJiggle="3d">
+						<TurretAITargetChooserData
+							TargetingCompareList="CommandoTargetingCompareList"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanPickDynamicTargets="true"
+							CanAcquireDynamicIfAssignedOutOfRange="true">
+							<ObjectVisionRange
+								id="ObjectVisionRange_Aircraft"
+								Range="125">
+								<Filter
+									Rule="ANY"
+									Include="AIRCRAFT INFANTRY VEHICLE"
+									StatusBitFlags="AIRBORNE_TARGET" />
+							</ObjectVisionRange>
+						</TurretAITargetChooserData>
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<LocomotorSetUpgrade
+				id="ModuleTag_LocomotorUpgrade">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</LocomotorSetUpgrade>
+			<FireWeaponCollide
+				id="ModuleTag_FireBaseAutoAndShipWeaponCollide"
+				xai:joinAction="Remove" />
+			<StatusBitsUpgrade
+				id="ModuleTag_UnmiliWeapon"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</StatusBitsUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_BaseUpgradObjectStatus"
+				StatusToSet="WEAPON_UPGRADED_02">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_AlliedUnitUpgrade"
+				AddConditionFlags="USER_2">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</ModelConditionUpgrade>
+			<Physics
+				id="ModuleTag_Physics" />
+			<TransportContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED NO_ATTACK"
+				ContainMax="1"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="AlliedMultigunnerIFVvehicleExitWithVoiceMS"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY" />
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="BONEGARRISON">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</PassengerData>
+			</TransportContain>
+			<FireWeaponUpdate
+				id="Upgrade_TransportRepairHeal"
+				FireInterval="1.0s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="TransportRepairHealShortCircuit"
+					OneShot="false" />
+				<ObjectStatusValidation
+					RequiredStatus="PLAYER_POWER_5" />
+			</FireWeaponUpdate>
+			<StatusBitsUpgrade
+				id="ModuleTag_TransportRepairObjectStatus"
+				StatusToSet="PLAYER_POWER_5">
+				<TriggeredBy>Uprade_IFV_Repair</TriggeredBy>
+				<TriggeredBy>Uprade_SovietEngineer</TriggeredBy>
+			</StatusBitsUpgrade>
+			<SecondaryObjectListenerModule
+				id="ModuleTag_TransportRepairObjectListener"
+				Flags="NOTIFY_WEAPON_SET_UPDATE">
+				<!-- AlliedEngineer, SovietEngineer & JapanEngineer -->
+				<ObjectEffectTuple>
+					<ObjectFilter Rule="NONE">
+						<IncludeThing>JapanEngineer</IncludeThing>
+						<IncludeThing>AlliedEngineer</IncludeThing>
+					</ObjectFilter>
+					<UpgradeSelf>Uprade_IFV_Repair</UpgradeSelf>
+				</ObjectEffectTuple>
+				<ObjectEffectTuple>
+					<ObjectFilter Rule="NONE">
+						<IncludeThing>SovietEngineer</IncludeThing>
+					</ObjectFilter>
+					<UpgradeSelf>Uprade_SovietEngineer</UpgradeSelf>
+				</ObjectEffectTuple>
+			</SecondaryObjectListenerModule>
+
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AUAntiAirVehicleTech1_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="TOPPLED EXTRA_7 EXTRA_6" />
+			</CreateObjectDie>
+
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_AlliedChieftanDie" />
+			</FXListBehavior>
+			<AttributeModifierUpgrade
+				id="ModuleTag_JapanAdvancedMissilePacks"
+				AttributeModifier="AttributeModifer_JapanAdvancedMissilePacks">
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_DeBugUnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="AlliedAntiAirVehicleTech1Functions" />
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech1.xml" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+					<ObjectVisionRange
+						id="ObjectVisionRange_Aircraft"
+						Range="125">
+						<Filter
+							Rule="ANY"
+							Include="INFANTRY VEHICLE AIRCRAFT"
+							StatusBitFlags="AIRBORNE_TARGET" />
+					</ObjectVisionRange>
+				</UnitAITargetChooserData>
+			</AIUpdate>
+			<AIUpdate
+				id="ModuleTag_AI_Upgrade"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine"
+				DefaultLocomotorSet="NORMAL_UPGRADED">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="300" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="ALL_MultigunnerIFV_VoiceShrunken"
+					RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<UpgradeSoundSelectorClientBehavior id="VoiceMoveRepair">
+				<Override>
+					<AudioArrayVoice>
+						<AudioEntry Sound="ALL_IFV_VoiceMoveRepair" AudioType="voiceMove" />
+						<AudioEntry Sound="ALL_IFV_VoiceMoveRepair" AudioType="voiceAttack" />
+						<AudioEntry Sound="ALL_IFV_VoiceMoveRepair"
+							AudioType="voiceAttackAfterMoving" />
+					</AudioArrayVoice>
+					<RequiredUpgrade>Uprade_IFV_Repair</RequiredUpgrade>
+				</Override>
+			</UpgradeSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="14.0"
+				MinorRadius="14.0"
+				Height="16.0"
+				ContactPointGeneration="VEHICLE">
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="ALL_IFV_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="ALL_IFV_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="ALL_IFV_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="ALL_IFV_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="ALL_IFV_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="ALL_MultiGunnerIFV_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="ALL_IFV_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="ALL_IFV_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALL_MultiGunnerIFV_MovStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushEqualLevelProps="true"
+			CrusherLevel="0"
+			CrushableLevel="25" />
+	</GameObject>
+	<GameObject
+		id="AlliedAntiAirVehicleTech1_Crate"
+		inheritFrom="AlliedAntiAirVehicleTech1"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="AlliedAntiAirVehicleTech1_Crate">
+		<EquivalentTo>AlliedAntiAirVehicleTech1</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

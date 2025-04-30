@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:xai="uri:ea.com:eala:asset:instance"  xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:Neutral/Props/NUMarine1_Collapse.xml" />
+		<Include type="all" source="ART:Units/AlliedAntiAirAircraft/NUMARINE1.MARINE1.w3x" />	
+		<Include type="all" source="ART:Units/AlliedAntiAirAircraft/NUMARINE1_CTR.w3x" />	
+		<Include type="all" source="ART:Units/AlliedAntiAirAircraft/NUMARINE1.OBBOX01.w3x" />	
+		<Include type="all" source="ART:Units/AlliedAntiAirAircraft/NUMARINE1.OBBOX02.w3x" />	
+		<Include type="all" source="ART:Units/AlliedAntiAirAircraft/NUMARINE1.ROTARS.w3x" />	
+		<Include type="all" source="ART:Units/AlliedAntiAirAircraft/NUMARINE1_COL.NEWSKIN.w3x" />	
+		<Include type="all" source="ART:Units/AlliedAntiAirAircraft/NUMARINE1_COL.OBBOX01.w3x" />	
+		<Include type="all" source="ART:Units/AlliedAntiAirAircraft/NUMARINE1_COL.OBBOX02.w3x" />	
+		<Include type="all" source="ART:Units/AlliedAntiAirAircraft/NUMARINE1_COL_CTR.w3x" />	
+		<Include type="all" source="ART:Units/AlliedAntiAirAircraft/NUMARINE1_COL_HRC.w3x" />	
+		<Include type="all" source="ART:Units/AlliedAntiAirAircraft/NUMARINE1_HRC.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiAirAircraft/NUMARINE1_FP.w3x" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseAircraft.xml" />	
+    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<GameObject
+		id="EUSupportAircraft"
+		inheritFrom="BaseAircraft"
+		SelectPortrait="PortraitAlliedAntiAirAircraft"
+		ButtonImage="ButtonAlliedAntiAirAircraft"
+		Side="Allies"
+		EditorSorting="UNIT"
+		BuildTime="10"
+		CommandSet="EUSupportAircraftCommandSet"
+		KindOf="CAN_CAST_REFLECTIONS CAN_ATTACK SELECTABLE SCORE AIRCRAFT VEHICLE LINE_OF_SIGHT_IGNORES_BUILDINGS CAN_BE_FAVORITE_UNIT LEAVE_PARKING_ON_BUILD_COMPLETE PRODUCED_AT_HELIPAD CAN_HEAL_ALLIES TRANSFORMER BEAM_TARGET_REFLECTOR"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="AIRCRAFT"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="MISSILE"
+		VoicePriority="148"
+		EditorName="EUSupportAircraft"
+		Description="Desc:EUSupportAircraft"
+		TypeDescription="Type:SupportUnit"
+		HealthBoxHeightOffset="30"
+		BountyValue="150"
+		SelectPortraitTransformed="PortraitAlliedAntiAirAircraft"
+		ButtonImageTransformed="ButtonEUSupportAircraftB"
+		DescriptionTransformed="Desc:EUSupportAircraft"
+		TypeDescriptionTransformed="Type:EUSupportAircraft">
+		<DisplayName xai:joinAction="Replace">Name:EUSupportAircraft</DisplayName>
+		<DisplayNameTransformed xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:EUSupportAircraft</DisplayNameTransformed>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="BasicHelicopterTaxiLocomotor"
+			Condition="TAXIING"
+			Speed="10" />
+		<LocomotorSet
+			Locomotor="EUSupportAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="160.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDamageType="HEALING"
+			ConquerMetricsOverrideDefendingAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="FX_WEAPON_01 FX_WEAPON_02 FX_WEAPON_03">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NUMarine1" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_01" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_WEAPON_02" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_WEAPON_02" />
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_01" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_01" />
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_WEAPON_02" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_WEAPON_02" />
+					<Turret
+						TurretNameKey="SUANTIGROUNDAIRCRAFT"
+						TurretID="3" />
+				</ModelConditionState>
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="NUMARINE1_FP" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="NUMarine1" />
+					<Texture
+						Original="NUMarine1"
+						New="NUMarine1_D" />
+					<ParticleSysBone
+						BoneName="FX_Rfan"
+						FXParticleSystemTemplate="ChopperDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Rfan"
+						FXParticleSystemTemplate="ChopperDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="NUMarine1" />
+					<ParticleSysBone
+						BoneName="FX_Rfan"
+						FXParticleSystemTemplate="ChopperDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Model
+						Name="NUMarine1" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="NUMarine1" />
+				</ModelConditionState>
+
+			</ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+				id="ModuleTag_Water_FX">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="FXInvisBone" />
+					<ParticleSysBone
+						BoneName="InvisBone01"
+						FXParticleSystemTemplate="HelicopterMovingWaterWake"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_User_FX"
+				AttachToBoneInAnotherModule="FX_WEAPON_02">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+					<ParticleSysBone
+						BoneName="InvisBone01"
+						FXParticleSystemTemplate="Allied_Target_Laser"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Model
+						Name="FXInvisBone" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+
+			<LaserDraw
+				id="ModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".03"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="10"
+				LaserStateID="1">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>5.000000</Value>
+							<Value>1.000000</Value>
+							<Value>1.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_RepairLaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".03"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="7"
+				LaserStateID="2">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXMagneticLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXMagneticLaser</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDistort"
+				UseDistortionShader="true"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".01"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="1"
+				LaserWidth="50"
+				LaserStateID="503">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXRailGunCoreDistortion</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXRailGunCoreMask</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDistort2"
+				UseDistortionShader="true"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".01"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="1"
+				LaserWidth="50"
+				LaserStateID="504">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXRailGunCoreDistortion</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXRailGunCoreMask</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<!-- Used in the Weapon Scramble Beam -->
+			<LaserDraw
+				id="ModuleTag_ScramblerLaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="0"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="40"
+				LaserStateID="3">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+										Name="Texture1">
+							<Value>FXGrid_3</Value>
+						</Texture>
+						<Texture
+										Name="Texture2">
+							<Value>FXInterlacedMask2</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>0.00000</Value>
+							<Value>2.00000</Value>
+							<Value>1.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUSupportAircraftTargetRepair"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="EUSupportAircraftWeaponScrambler"
+						ObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="EUSupportAircraftTargetPainter"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE WEAPON_UPGRADED_01"/>
+				</WeaponSlotHardpoint>
+				<WeaponSlotHardpoint
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUSupportAircraftTargetRepairLaser"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE"/>
+				</WeaponSlotHardpoint>
+				<WeaponSlotTurret
+					ID="3">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUSupportAircraftTargetRepair"
+						ObjectStatus="WEAPON_UPGRADED_01"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE"/>
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="EUSupportAircraftWeaponScrambler"
+						ObjectStatus="WEAPON_UPGRADED_01 TRANSFORMATION_TOGGLE_STATE"/>
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="EUSupportAircraftTargetPainterUpgrade"
+						ObjectStatus="WEAPON_UPGRADED_01"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE"/>
+					<TurretSettings
+						TurretTurnRate="360">
+						<TurretAITargetChooserData
+							CanPickDynamicTargets="true"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<SpecialPower
+				id="SpecialPower_EUSupportAircraftLevelGrant"
+				SpecialPowerTemplate="SpecialPower_EUSupportAircraftLevelGrantSpecialPower"
+				UpdateModuleStartsAttack="true"/>
+			<SpecialAbilityUpdate
+				id="SpecialPower_EUSupportAircraftLevelGrantAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_EUSupportAircraftLevelGrantSpecialPower"
+				UnpackTime="0s"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				AwardXPForTriggering="30"/>
+			<SpecialPower
+				id="SpecialPower_EUSupportAircraftLaserUpgradeLevelGrant"
+				SpecialPowerTemplate="SpecialPower_EUSupportAircraftLaserUpgradeLevelGrantSpecialPower"
+				UpdateModuleStartsAttack="true"/>
+			<SpecialAbilityUpdate
+				id="SpecialPower_EUSupportAircraftLaserUpgradeLevelGrantLevelGrantAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_EUSupportAircraftLaserUpgradeLevelGrantSpecialPower"
+				UnpackTime="0s"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				AwardXPForTriggering="40"/>
+			<Physics
+				id="ModuleTag_Physics" 
+				GravityMultiplier="30" />
+			<LaserState
+				id="ModuleTag_ScramblerLaserState"
+				LaserId="3"
+				OriginBoneName="FX_WEAPON_02">
+				<LaserEndParticleSystem>AlliedHydroScrambler_Sparks</LaserEndParticleSystem>
+				<LaserStartParticleSystem>AlliedHydroScrambler_Start</LaserStartParticleSystem>
+			</LaserState>
+			<LaserState
+				id="ModuleTag_RepairLaserState"
+				LaserId="2"
+				OriginBoneName="FX_WEAPON_03">
+				<LaserEndParticleSystem>RepairSparks</LaserEndParticleSystem>
+				<LaserEndParticleSystem>RepairLight</LaserEndParticleSystem>
+			</LaserState>
+			<LaserState
+				id="ModuleTag_LaserState"
+				LaserId="1"
+				OriginBoneName="FX_WEAPON_02">
+				<LaserEndParticleSystem>Allied_Target_LaserEnd</LaserEndParticleSystem>
+			</LaserState>
+			<LaserState
+				id="ModuleTag_LaserDistortStateA"
+				LaserId="503"
+				OriginBoneName="FX_WEAPON_03">
+			</LaserState>
+			<LaserState
+				id="ModuleTag_LaserDistortStateB"
+				LaserId="504"
+				OriginBoneName="FX_WEAPON_02">
+			</LaserState>
+			<SpecialPower
+				id="ModuleTag_ActivateTargetPainterTrigger"
+				SpecialPowerTemplate="SpecialPower_ToggleEUSupportAircraftScrambler"
+				UpdateModuleStartsAttack="true" />
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ActivateTargetPainterTriggerUpdate"
+				SpecialPowerTemplate="SpecialPower_ToggleEUSupportAircraftScrambler"
+				Options="RECONSTITUTE_STORED_COMMAND" >
+				<ToggleState
+					ObjectStatus="REPAIR_ALLIES_WHEN_IDLE"
+					EnterStateSound="ALL_Guardian_PainterOn">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT">
+					<StateWeapon
+						Weapon="EUSupportAircraftTargetRepair" />
+					</SkirmishAiInfo>
+				</ToggleState>
+				<ToggleState
+					ObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+					EnterStateSound="ALL_HydroFoil_ScramblerToggleOnMS"
+					ModelConditions="USER_1">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_LOCKDOWN"
+						NeverUseWhenTargetIsAnyKindOf="INFANTRY HARVESTER UNATTACKABLE">
+						<StateWeapon
+							Weapon="EUSupportAircraftWeaponScrambler" />
+					</SkirmishAiInfo>
+				</ToggleState>
+			</ToggleStatusSpecialAbilityUpdate>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="NUMarine1_Dying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_AlliedAircraftDie" />
+			</FXListBehavior>
+			<StatusBitsUpgrade
+					id="ModuleTag_UpgradeWeapon"
+					StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_AlliedLaserUpgradeUpgradeFX"
+				AttributeModifier="AttributeMod_PlayerPowerUpgradeAttributeFX">
+				<TriggeredBy>Upgrade_AlliedLaserUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+			<!-- the actual power, triggered by weapon -->
+			<SpecialPower
+				id="ModuleTag_PaintTarget"
+				SpecialPowerTemplate="SpecialPower_PaintTargetTrigger"
+				UpdateModuleStartsAttack="false" />
+			<!-- The High Technology version of the Special power -->
+			<SpecialPower
+				id="ModuleTag_PaintTarget_HighTechnology"
+				SpecialPowerTemplate="SpecialPower_PaintTargetTrigger_HighTechnology"
+				UpdateModuleStartsAttack="false" />
+			<!-- Anti Sub Invisibility-->
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AntiSubInvisibilityAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="375.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_AntiSubInvisibility">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="SUBMARINE">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<!-- AlliedAirPowerUpgrade -->
+			<xi:include
+				href="DATA:Includes/AlliedAirPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedAirPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<JetAIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="HelicopterAIStateMachine">
+				<UnitAITargetChooserData 
+					RotateToTargetWhenAiming="true"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</JetAIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="400" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="37.0"
+				MinorRadius="3.0"
+				Height="25.0"></Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="8.0"
+				MinorRadius="30.0"
+				Height="25.0">
+				<Offset
+					x="-7.0"
+					y="0.0"
+					z="0.0" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="ALL_AntiAirAircraft_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="ALL_AntiAirAircraft_VoiceAttackAir" AudioType="voiceAttackAir" />
+			<AudioEntry Sound="ALL_AntiAirAircraft_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="ALL_AntiAirAircraft_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="ALL_AntiAirAircraft_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="ALL_AntiAirAircraft_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="ALL_AntiAirAircraft_VoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+			<AudioEntry Sound="ALL_AntiAirAircraft_VoiceSelect" AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="A06_PresidentialHelicopter_MoveLoop" AudioType="soundAmbient" />
+			<AudioEntry Sound="A06_PresidentialHelicopter_MoveStart" AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$BASE_AIRCRAFT_SHROUD_CLEAR"/>
+	</GameObject>
+	  <GameObject
+		id="EUSupportAircraft_Crate"
+		inheritFrom="EUSupportAircraft"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="EUSupportAircraft_Crate">
+		<EquivalentTo>EUSupportAircraft</EquivalentTo>	
+	</GameObject>
+</AssetDeclaration>

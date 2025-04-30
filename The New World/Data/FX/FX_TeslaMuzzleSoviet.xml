@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include source="art:fxsovietmuzzle.w3x" type="instance"/>
+	</Includes>
+	<FXList id="FX_TeslaTrooperFireUpgrade">
+	  <NuggetList>
+		<ParticleSystem
+				  Particle="TeslaFireLightning01Upgrade"
+				  UseTarget="true"
+				  OrientToObject="true"
+				  Ricochet="true" />
+		<ParticleSystem
+				  Particle="TeslaFireLightning01Upgrade"
+				  UseTarget="true"
+				  OrientToObject="true"
+				  Ricochet="true" />
+		<ParticleSystem
+				  Particle="TeslaFireLightning02Upgrade"
+				  UseTarget="true"
+				  OrientToObject="true"
+				  Ricochet="true" />
+		<ParticleSystem
+				  Particle="TeslaFireLightning02Upgrade"
+				  UseTarget="true"
+				  OrientToObject="true"
+				  Ricochet="true" />
+	  </NuggetList>
+	</FXList>
+	<FXList id="FX_TeslaTrooperFireUpgradeVet">
+	  <NuggetList>
+		<ParticleSystem
+				  Particle="TeslaFireLightning01Upgrade_Vet"
+				  UseTarget="true"
+				  OrientToObject="true"
+				  Ricochet="true" />
+		<ParticleSystem
+				  Particle="TeslaFireLightning01Upgrade_Vet"
+				  UseTarget="true"
+				  OrientToObject="true"
+				  Ricochet="true" />
+		<ParticleSystem
+				  Particle="TeslaFireLightning02Upgrade_Vet"
+				  UseTarget="true"
+				  OrientToObject="true"
+				  Ricochet="true" />
+		<ParticleSystem
+				  Particle="TeslaFireLightning02Upgrade_Vet"
+				  UseTarget="true"
+				  OrientToObject="true"
+				  Ricochet="true" />
+	  </NuggetList>
+	</FXList>
+<FXList id="FX_TeslaMuzzleSoviet">
+	<NuggetList>
+		<Sound Value="SOV_SentryGun_WeaponFire" />
+		<ParticleSystem
+			Particle="SovietTeslaMuzzle1"
+			OrientToObject = "true"/>
+		<ParticleSystem
+					  Particle="TeslaBulletHitLight">
+		</ParticleSystem>
+	</NuggetList>
+</FXList>
+<FXList id="FX_TeslaMuzzleSoviet_VET">
+	<NuggetList>
+		<Sound Value="SOV_SentryGun_WeaponFire" />
+		<ParticleSystem
+			Particle="SovietTeslaMuzzle1_Vet"
+			OrientToObject = "true"/>
+		<ParticleSystem
+					  Particle="TeslaBulletHitLight_Vet">
+		</ParticleSystem>
+	</NuggetList>
+</FXList>
+	<FXList id="FX_TeslaMuzzleSovietAir">
+		<NuggetList>
+			<ParticleSystem
+					  Particle="SovietMuzzle1"
+					  OrientToObject = "true"/>
+			<ParticleSystem
+					  Particle="SovietMuzzle2"
+					  OrientToObject = "true"/>
+			<ParticleSystem
+			  Particle="TeslaBulletHitLight">
+			</ParticleSystem>
+		</NuggetList>
+	</FXList>
+	<FXList id="FX_TeslaMuzzleSovietAir_Vet">
+		<NuggetList>
+			<ParticleSystem
+					  Particle="SovietMuzzle1_Vet"
+					  OrientToObject = "true"/>
+			<ParticleSystem
+					  Particle="SovietMuzzle2"
+					  OrientToObject = "true"/>
+			<ParticleSystem
+			  Particle="TeslaBulletHitLight_Vet">
+			</ParticleSystem>
+		</NuggetList>
+	</FXList>
+	<FXParticleSystemTemplate Drawable="FXSOVIETTESLAMUZZLE" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="W3D_ALPHA" SystemLifetime="5" Type="DRAWABLE" id="SovietTeslaMuzzle1">
+		<Lifetime High="3" Low="3"/>
+		<Size High="1" Low="1"/>
+		<BurstDelay High="2" Low="2"/>
+		<BurstCount High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="1" High="1" Low="1" RelativeAge="0"/>
+			<Alpha Frame="2" High="1" Low="1" RelativeAge="50"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+		</Colors>
+		<Physics/>
+		<Draw>
+			<RenderObject>
+				<ObjectSet/>
+				<ObjectSet/>
+				<ObjectSet/>
+			</RenderObject>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="1" Low="1"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<RenderObject Rotation="ROTATE_AROUND_VELOCITY">
+				<AngleX High="7" Low="0"/>
+				<StartSize>
+					<x High="2" Low="1"/>
+					<y High="0.5" Low="0.5"/>
+					<z High="0.5" Low="0.5"/>
+				</StartSize>
+				<SizeRate>
+					<x High="-0.25" Low="-0.25"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</SizeRate>
+				<SizeDamping>
+					<x High="1" Low="1"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</SizeDamping>
+			</RenderObject>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate Drawable="FXSOVIETTESLAMUZZLE_VET" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="W3D_ALPHA" SystemLifetime="5" Type="DRAWABLE" id="SovietTeslaMuzzle1_Vet">
+		<Lifetime High="3" Low="3"/>
+		<Size High="1" Low="1"/>
+		<BurstDelay High="2" Low="2"/>
+		<BurstCount High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="1" High="1" Low="1" RelativeAge="0"/>
+			<Alpha Frame="2" High="1" Low="1" RelativeAge="50"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+		</Colors>
+		<Physics/>
+		<Draw>
+			<RenderObject>
+				<ObjectSet/>
+				<ObjectSet/>
+				<ObjectSet/>
+			</RenderObject>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="1" Low="1"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<RenderObject Rotation="ROTATE_AROUND_VELOCITY">
+				<AngleX High="7" Low="0"/>
+				<StartSize>
+					<x High="2.25" Low="1.75"/>
+					<y High="1" Low="1"/>
+					<z High="1" Low="1"/>
+				</StartSize>
+				<SizeRate>
+					<x High="-0.25" Low="-0.25"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</SizeRate>
+				<SizeDamping>
+					<x High="1" Low="1"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</SizeDamping>
+			</RenderObject>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SystemLifetime="1" id="TeslaBulletHitLight">
+		<Lifetime High="10" Low="6"/>
+		<Size High="80" Low="40"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="30.000002">
+				<Color b="0.960000" g="0.76000" r="0.000000"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<LightSource/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="3"/>
+			</Cylinder>
+		</Volume>
+		<Velocity/>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.5" Low="0.5"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngleZ High="3" Low="-3"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SystemLifetime="1" id="TeslaBulletHitLight_Vet">
+		<Lifetime High="10" Low="6"/>
+		<Size High="80" Low="40"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="30.000002">
+				<Color b="0.960000" g="0.01000" r="1.000000"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<LightSource/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="3"/>
+			</Cylinder>
+		</Volume>
+		<Velocity/>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.5" Low="0.5"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngleZ High="3" Low="-3"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLightningMJ01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="ADDITIVE_ALPHA_TEST" SortLevel="2" SystemLifetime="10" Type="STREAK" id="TeslaFireLightning01Upgrade">
+		<Lifetime High="5" Low="5"/>
+		<Size High="10" Low="5"/>
+		<BurstCount High="10" Low="10"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.34902" g="0.215686" r="0.27451"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="5" Low="5"/>
+		</Colors>
+		<Physics/>
+		<Draw>
+			<Lightning>
+				<StartPoint x="100" y="300" z="220"/>
+				<EndPoint x="300" y="300" z="220"/>
+				<RandomSet>
+					<StartAmplitude High="25" Low="3"/>
+					<EndAmplitudeChange High="1" Low="-1"/>
+					<StartFrequency High="5" Low="1"/>
+					<EndFrequencyChange High="0.1" Low="-0.1"/>
+					<StartPhase High="20" Low="0"/>
+					<EndPhaseChange High="0.05" Low="0"/>
+				</RandomSet>
+				<RandomSet>
+					<StartAmplitude High="5" Low="1"/>
+					<StartFrequency High="10" Low="5"/>
+					<EndFrequencyChange High="1" Low="-1"/>
+					<StartPhase High="20" Low="0"/>
+					<EndPhaseChange High="0.05" Low="0"/>
+				</RandomSet>
+			</Lightning>
+		</Draw>
+		<Volume>
+			<Lightning/>
+		</Volume>
+		<Velocity/>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.1" Low="-0.1"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLightningMJ01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="ADDITIVE_ALPHA_TEST" SortLevel="2" SystemLifetime="10" Type="STREAK" id="TeslaFireLightning01Upgrade_Vet">
+		<Lifetime High="5" Low="5"/>
+		<Size High="10" Low="5"/>
+		<BurstCount High="10" Low="10"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0" g="0" r="0.466667"/>
+			</Color>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.235294" g="0.235294" r="0.643137"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="5" Low="5"/>
+		</Colors>
+		<Physics/>
+		<Draw>
+			<Lightning>
+				<StartPoint x="100" y="300" z="220"/>
+				<EndPoint x="300" y="300" z="220"/>
+				<RandomSet>
+					<StartAmplitude High="25" Low="3"/>
+					<EndAmplitudeChange High="1" Low="-1"/>
+					<StartFrequency High="5" Low="1"/>
+					<EndFrequencyChange High="0.1" Low="-0.1"/>
+					<StartPhase High="20" Low="0"/>
+					<EndPhaseChange High="0.05" Low="0"/>
+				</RandomSet>
+				<RandomSet>
+					<StartAmplitude High="5" Low="1"/>
+					<StartFrequency High="10" Low="5"/>
+					<EndFrequencyChange High="1" Low="-1"/>
+					<StartPhase High="20" Low="0"/>
+					<EndPhaseChange High="0.05" Low="0"/>
+				</RandomSet>
+			</Lightning>
+		</Draw>
+		<Volume>
+			<Lightning/>
+		</Volume>
+		<Velocity/>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.1" Low="-0.1"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLightningMJ02" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="ADDITIVE_ALPHA_TEST" SortLevel="2" SystemLifetime="1" Type="STREAK" id="TeslaFireLightning02Upgrade">
+		<Lifetime High="5" Low="5"/>
+		<Size High="10" Low="5"/>
+		<BurstCount High="10" Low="10"/>
+		<InitialDelay High="15" Low="0"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.752941" g="0.494118" r="0.427451"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="20" Low="10"/>
+		</Colors>
+		<Physics/>
+		<Draw>
+			<Lightning>
+				<StartPoint x="200" y="300" z="220"/>
+				<EndPoint x="300" y="300" z="220"/>
+				<RandomSet>
+					<StartAmplitude High="50" Low="10"/>
+					<EndAmplitudeChange High="1" Low="-1"/>
+					<StartFrequency High="5" Low="1"/>
+					<EndFrequencyChange High="0.1" Low="-0.1"/>
+					<StartPhase High="10" Low="5"/>
+					<EndPhaseChange High="0.05" Low="0"/>
+				</RandomSet>
+				<RandomSet>
+					<StartAmplitude High="5" Low="1"/>
+					<StartFrequency High="10" Low="5"/>
+					<EndFrequencyChange High="1" Low="-1"/>
+					<StartPhase High="10" Low="5"/>
+					<EndPhaseChange High="0.05" Low="0"/>
+				</RandomSet>
+			</Lightning>
+		</Draw>
+		<Volume>
+			<Lightning/>
+		</Volume>
+		<Velocity/>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.1" Low="0"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLightningMJ02" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="ADDITIVE_ALPHA_TEST" SortLevel="2" SystemLifetime="1" Type="STREAK" id="TeslaFireLightning02Upgrade_Vet">
+		<Lifetime High="5" Low="5"/>
+		<Size High="10" Low="5"/>
+		<BurstCount High="10" Low="10"/>
+		<InitialDelay High="15" Low="0"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.619608" g="0.619608" r="0.772549"/>
+			</Color>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.14902" g="0.14902" r="0.85098"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="20" Low="10"/>
+		</Colors>
+		<Physics/>
+		<Draw>
+			<Lightning>
+				<StartPoint x="200" y="300" z="220"/>
+				<EndPoint x="300" y="300" z="220"/>
+				<RandomSet>
+					<StartAmplitude High="50" Low="10"/>
+					<EndAmplitudeChange High="1" Low="-1"/>
+					<StartFrequency High="5" Low="1"/>
+					<EndFrequencyChange High="0.1" Low="-0.1"/>
+					<StartPhase High="10" Low="5"/>
+					<EndPhaseChange High="0.05" Low="0"/>
+				</RandomSet>
+				<RandomSet>
+					<StartAmplitude High="5" Low="1"/>
+					<StartFrequency High="10" Low="5"/>
+					<EndFrequencyChange High="1" Low="-1"/>
+					<StartPhase High="10" Low="5"/>
+					<EndPhaseChange High="0.05" Low="0"/>
+				</RandomSet>
+			</Lightning>
+		</Draw>
+		<Volume>
+			<Lightning/>
+		</Volume>
+		<Velocity/>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.1" Low="0"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

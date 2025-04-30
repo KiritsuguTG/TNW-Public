@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+  <Tags></Tags>
+  <Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseAircraft.xml" />
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="all"
+			source="ART:SUSupportBomber.w3x" />
+  </Includes>
+  <!-- Pulled the AIRCRAFT_TRANSPORT_ONLY_GARRISONABLE_WHILE_PARKED kindof for now, until it gets fixed, can't preload infantry because of it -->
+	<GameObject
+		id="SovietParadropAircraft"
+		inheritFrom="BaseAircraft"
+		Side="Soviet"
+		SubGroupPriority="730"
+		EditorSorting="UNIT"
+		BuildTime="20"
+		CommandSet="AlliedBomberAircraftCommandSet"
+		EnergyProduction="0"
+		KindOf="CAN_CAST_REFLECTIONS CAN_ATTACK AIRCRAFT VEHICLE BOMBER_AIRCRAFT LINE_OF_SIGHT_IGNORES_BUILDINGS T3_UNIT CAN_BE_FAVORITE_UNIT TRANSPORT NO_COLLIDE SUMMONED NO_HEAL_ICON"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="AIRCRAFT"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="MISSILE"
+		VoicePriority="148"
+		Description="Desc:AlliedBomberAircraft"
+		TypeDescription="Type:AlliedBomberAircraft"
+		HealthBoxHeightOffset="20"
+		IsTrainable="false"
+		EditorName="SovietParadropAircraft">
+		<DisplayName xai:joinAction="Replace">Name:AlliedBomberAircraft</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			id="AlliedBomberAircraftLocomotor"
+			Locomotor="AlliedBomberAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="150" />
+		<LocomotorSet
+			id="AlliedBomberAircraftTaxiLocomotor"
+			Locomotor="BasicHelicopterTaxiLocomotor"
+			Condition="TAXIING"
+			Speed="10" />
+			<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDefendingAntiMask="ANTI_AIRBORNE_VEHICLE" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="SUSUPPORTBOMBER">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUSupportBomber" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="SUSUPPORTBOMBER" />
+          <ParticleSysBone
+						BoneName="Box01"
+						FXParticleSystemTemplate="SUBomberConTrail"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box02"
+						FXParticleSystemTemplate="SUBomberConTrail"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box03"
+						FXParticleSystemTemplate="SUBomberConTrail"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box04"
+						FXParticleSystemTemplate="SUBomberConTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+					<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="SUSupportBomber"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SUSupportBomber" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SUSupportBomber" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<SpecialPower
+				id="ModuleTag_EjectPassengers"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_EjectPassengers"
+				UpdateModuleStartsAttack="true" />
+			<EjectPassengersSpecialAbilityUpdate
+				id="ModuleTag_EjectPassengersUpdate"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_EjectPassengers"
+				Height="175.0"
+				StartAbilityRange="0.0"
+				TimePerPassenger=".2s"
+				Radius="0"
+				RunOffMapWhenDone="true"
+				IgnoreTargetLocation="true"
+				Options="RECONSTITUTE_STORED_COMMAND DO_NOT_DO_AI_SPECIAL_POWER"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SUSupportBomber_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FADED"/>
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_SupportBomberDieExplosion" />
+			</FXListBehavior>
+			<StancesBehavior
+				id="ModuleTag_Stance"
+				xai:joinAction="Remove" />
+			<TransportContain
+				id="ModuleTag_Contain"
+				xai:joinAction="Replace"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED"
+				ContainMax="7"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="ParachutingOutOfAirplane"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY" />
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="BONEGARRISON">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</PassengerData>
+				<InitialPayload
+				  Name="SovietAntiInfantryInfantry"
+				  Count="5" />
+				<InitialPayload
+					Name="SovietAntiVehicleInfantry"
+					Count="2" />
+			</TransportContain>
+			<RunOffMapBehavior
+				id="ModuleTag_RunOffMapBehavior"
+				xai:joinAction="Replace"
+				FlyingOffMap="true"
+				RequiresSpecificTrigger="true" />
+
+			<!-- No Invisibility -->
+			<xi:include
+				href="DATA:Includes/NoInvisibilityAndLua.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:NoInvisibilityAndLua/child::*)" />
+    </Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="2000" />
+		</Body>
+		<AI>
+			<JetAIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO"
+				NeedsRunway="false"
+				StateMachine="UnitAIStateMachine"
+			/>
+		</AI>
+		<AudioArraySound>
+			<AudioEntry Sound="A06_ParadropTransport_MoveLoop" AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="150"
+			ShroudClearingRange="350" />
+	</GameObject>
+	<GameObject
+		id="StrategicArmyParadropAircraft"
+		inheritFrom="SovietParadropAircraft"
+		EditorName="StrategicArmyParadropAircraft">
+		<Behaviors>
+			<TransportContain
+				id="ModuleTag_Contain"
+				xai:joinAction="Replace"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED"
+				ContainMax="7"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="ParachutingOutOfAirplane"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY VEHICLE" />
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="BONEGARRISON">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY VEHICLE" />
+				</PassengerData>
+				<InitialPayload
+				  Name="StrategicArmyAntiVehicleInfantry"
+				  Count="2" />
+				<InitialPayload
+				Name="StrategicArmyAntiInfantryInfantry"
+				Count="5" />
+			</TransportContain>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="StrategicArmyParadropAutoShipAircraft"
+		inheritFrom="SovietParadropAircraft"
+		EditorName="StrategicArmyParadropAutoShipAircraft">
+		<Behaviors>
+			<EjectPassengersSpecialAbilityUpdate
+				id="ModuleTag_EjectPassengersUpdate"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_EjectPassengers"
+				Height="175.0"
+				StartAbilityRange="0.0"
+				TimePerPassenger="1s"
+				Radius="0"
+				RunOffMapWhenDone="true"
+				IgnoreTargetLocation="true"
+				Options="RECONSTITUTE_STORED_COMMAND DO_NOT_DO_AI_SPECIAL_POWER"/>
+			<TransportContain
+				id="ModuleTag_Contain"
+				xai:joinAction="Replace"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED"
+				ContainMax="20"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="ParachutingOutOfAirplane"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY VEHICLE" />
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="BONEGARRISON">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY VEHICLE" />
+				</PassengerData>
+				<InitialPayload
+				  Name="StrategicArmyParadropShipAndAuto"
+				  Count="2" />
+			</TransportContain>
+		</Behaviors>
+	</GameObject>
+
+	<GameObject
+		id="SovietThreeBossParadropAircraft"
+		inheritFrom="SovietParadropAircraft"
+		EditorName="SovietThreeBossParadropAircraft">
+		<Behaviors>
+			<TransportContain
+				id="ModuleTag_Contain"
+				xai:joinAction="Replace"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED"
+				ContainMax="14"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="ParachutingOutOfAirplane"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY VEHICLE" />
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="BONEGARRISON">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY VEHICLE" />
+				</PassengerData>
+				<InitialPayload
+				  Name="SovietAntiVehicleVehicleTech3"
+				  Count="1" />
+			</TransportContain>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

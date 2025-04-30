@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<WeaponTemplate
+		id="AlliedSupportAircraftCryobeamAI"
+		AttackRange="200.0"
+		WeaponSpeed="300.0"
+		FiringLoopSound="ALL_Cryocopter_CryobeamFire"
+		RadiusDamageAffects="ENEMIES"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		CanFireWhileMoving="true"
+		AcceptableAimDelta="20d"
+		ReAcquireDetailType="PER_SHOT"
+		RequiredAntiMask="ANTI_STRUCTURE ANTI_GROUND ANTI_WATER">
+		<FiringDuration
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<Nuggets>
+			<ActivateLaserNugget
+				Lifetime="1.0s"
+				LaserId="0">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="INFANTRY VEHICLE AIRCRAFT STRUCTURE TIME_BOMB"
+					Exclude="BRIDGE_GATEHOUSE"
+					StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET PARACHUTING UNDER_FROZEN" />
+			</ActivateLaserNugget>
+			<ProjectileNugget
+				WarheadTemplate="AlliedSupportAircraftCryobeamTreeWeaponWarhead"
+				ProjectileTemplate="MoreDamageNuggetsDeBugDummyProjectile" />
+			<!-- Normal Weapon -->
+			<SecondaryDamageNugget
+				Amount="60">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="BRIDGE_GATEHOUSE"
+					StatusBitFlagsExclude="UNDER_FROZEN SUBMERGED AIRBORNE_TARGET PARACHUTING UNDER_IRON_CURTAIN HAS_TIBERIUM_UPGRADE">
+				</SpecialObjectFilter>
+				<ForbiddenUpgrade>Upgrade_AlliedLaserUpgrade</ForbiddenUpgrade>
+			</SecondaryDamageNugget>
+			<!-- High Technology Special power weapon -->
+			<SecondaryDamageNugget
+				Amount="75">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="BRIDGE_GATEHOUSE"
+					StatusBitFlagsExclude="UNDER_FROZEN SUBMERGED AIRBORNE_TARGET PARACHUTING UNDER_IRON_CURTAIN">
+				</SpecialObjectFilter>
+				<RequiredUpgrade>Upgrade_AlliedLaserUpgrade</RequiredUpgrade>
+			</SecondaryDamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="EUBeamVehicleLaserAIWeapon"
+		Flags="NOT_ATTRACTED_BY_MAGNETS ATTACK_NEEDS_LINE_OF_SIGHT"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		PreAttackFX="FX_None">
+		<Nuggets>
+			<DamageNugget
+				Damage="30.0"
+				DamageType="GRENADE"
+				DeathType="NORMAL">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

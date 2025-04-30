@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+<FXList id="FX_EU_CryoBomb_BombExplosion">
+	<NuggetList>
+		<Sound Value="EU_CryoBomb_FreezeEffect" />
+		<ParticleSystem	Particle="EUCryoBombDecal"/>
+		<ParticleSystem	Particle="EUCryoBombGlow"/>
+		<ParticleSystem	Particle="EUCryoBombMist"/>
+		<ParticleSystem	Particle="EUCryoBombLight"/>
+	</NuggetList>
+</FXList>
+
+	<FXParticleSystemTemplate ParticleTexture="FXCryoSatelliteDecal" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SortLevel="1" SystemLifetime="3" Type="GPU_PARTICLE" id="EUCryoBombDecal">
+		<Lifetime High="125" Low="125"/>
+		<Size High="250" Low="200"/>
+		<BurstDelay High="10" Low="10"/>
+		<BurstCount High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="2" High="1" Low="1" RelativeAge="14"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="2" RelativeAge="19.999998">
+				<Color b="0.882353" g="0.882353" r="0.882353"/>
+			</Color>
+			<Color Frame="3" RelativeAge="60.000004">
+				<Color b="0.811765" g="0.811765" r="0.811765"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Wind AngleChangeMax="10" AngleChangeMin="-10" FullStrengthDist="1" Motion="PING_PONG" PingPongEndAngleMin="5.49779" Strength="1" TurbulenceAmplitude="0.01" TurbulenceFrequency="0.1"/>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.99" Low="0.99"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu Shader="gpuparticlexy.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder IsHollow="true" Radius="25">
+				<Offset x="0" y="0" z="5"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Outward>
+				<Speed High="0" Low="0"/>
+				<OtherSpeed High="0" Low="0"/>
+			</Outward>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default Rotation="ROTATE_IN_WORLD_SPACE">
+				<SizeRateDamping High="0.95" Low="0.92"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularDamping High="0.9" Low="0.9"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+
+<FXParticleSystemTemplate IsEmitAboveGroundOnly="true" ParticleTexture="FXLenzFlare04" PerParticleAttachedSystem="" Priority="VERY_LOW_OR_ABOVE" SortLevel="1" SystemLifetime="1" Type="GPU_PARTICLE" id="EUCryoBombGlow">
+	<Lifetime High="10" Low="10"/>
+	<Size High="200" Low="200"/>
+	<BurstDelay High="5" Low="5"/>
+	<BurstCount High="1" Low="1"/>
+	<Colors>
+		<Color Frame="2" RelativeAge="50">
+			<Color b="0.996078" g="0.760784" r="0.552941"/>
+		</Color>
+		<Color Frame="3" RelativeAge="60.000004">
+			<Color b="0.996078" g="0.772549" r="0.772549"/>
+		</Color>
+		<Color Frame="4" RelativeAge="100">
+			<Color b="0" g="0" r="0"/>
+		</Color>
+		<ColorScale High="6" Low="6"/>
+	</Colors>
+	<Physics>
+		<Default>
+			<VelocityDamping High="0.75" Low="0.7"/>
+		</Default>
+	</Physics>
+	<Draw>
+		<Gpu RandTex="1" SingleRow="1" SpeedMultiplier="1"/>
+	</Draw>
+	<Volume>
+		<Cylinder>
+			<Offset x="0" y="0" z="20"/>
+		</Cylinder>
+	</Volume>
+	<Velocity>
+		<Ortho>
+			<Position>
+				<x High="0" Low="0"/>
+				<y High="0" Low="0"/>
+				<z High="0" Low="0"/>
+			</Position>
+		</Ortho>
+	</Velocity>
+	<Event/>
+	<Update>
+		<Default>
+			<SizeRate High="10" Low="10"/>
+			<SizeRateDamping High="0.99" Low="0.99"/>
+			<AngleZ High="7" Low="0"/>
+			<AngularRateZ High="0.05" Low="-0.05"/>
+			<AngularDampingXY High="1" Low="1"/>
+		</Default>
+	</Update>
+</FXParticleSystemTemplate>
+
+<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" SystemLifetime="1" id="EUCryoBombLight">
+	<Lifetime High="25" Low="25"/>
+	<Size High="500" Low="500"/>
+	<BurstCount High="1" Low="1"/>
+	<Colors>
+		<Color Frame="1" RelativeAge="0">
+			<Color b="1" g="0.784314" r="0.415686"/>
+		</Color>
+		<Color Frame="2" RelativeAge="100">
+			<Color b="0" g="0" r="0"/>
+		</Color>
+		<Color Frame="3" RelativeAge="100">
+			<Color b="0" g="0" r="0"/>
+		</Color>
+		<ColorScale High="2" Low="2"/>
+	</Colors>
+	<Physics>
+		<Default>
+			<VelocityDamping High="1" Low="1"/>
+		</Default>
+	</Physics>
+	<Draw>
+		<LightSource MaximumIntensityRadiusRatio="0.1"/>
+	</Draw>
+	<Volume>
+		<Cylinder>
+			<Offset x="0" y="0" z="5"/>
+		</Cylinder>
+	</Volume>
+	<Velocity>
+		<Ortho>
+			<Position>
+				<x High="1" Low="1"/>
+				<y High="0" Low="0"/>
+				<z High="0" Low="0"/>
+			</Position>
+		</Ortho>
+	</Velocity>
+	<Event/>
+	<Update>
+		<Default>
+			<SizeRate High="5" Low="5"/>
+			<SizeRateDamping High="1" Low="1"/>
+			<AngleZ High="3" Low="-3"/>
+			<AngularDampingXY High="1" Low="1"/>
+		</Default>
+	</Update>
+</FXParticleSystemTemplate>
+
+<FXParticleSystemTemplate ParticleTexture="FXWaterFall" PerParticleAttachedSystem="" Priority="VERY_LOW_OR_ABOVE" Shader="ALPHA" SystemLifetime="3" Type="GPU_PARTICLE" id="EUCryoBombMist">
+	<Lifetime High="60" Low="40"/>
+	<Size High="200" Low="200"/>
+	<BurstCount High="5" Low="5"/>
+	<Alphas>
+		<Alpha Frame="2" High="1" Low="1" RelativeAge="14"/>
+		<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+	</Alphas>
+	<Colors>
+		<Color Frame="1" RelativeAge="0">
+			<Color b="1" g="1" r="1"/>
+		</Color>
+		<Color Frame="2" RelativeAge="14.999999">
+			<Color b="1" g="1" r="1"/>
+		</Color>
+		<Color Frame="3" RelativeAge="100">
+			<Color b="1" g="1" r="1"/>
+		</Color>
+	</Colors>
+	<Wind AngleChangeMax="10" AngleChangeMin="-10" FullStrengthDist="1" Motion="PING_PONG" PingPongEndAngleMin="5.49779" Strength="1" TurbulenceAmplitude="0.01" TurbulenceFrequency="0.1"/>
+	<Physics>
+		<Default>
+			<VelocityDamping High="0.85" Low="0.85"/>
+		</Default>
+	</Physics>
+	<Draw>
+		<Gpu SpeedMultiplier="1"/>
+	</Draw>
+	<Volume>
+		<Cylinder Radius="5">
+			<Offset x="0" y="0" z="5"/>
+		</Cylinder>
+	</Volume>
+	<Velocity>
+		<Ortho>
+			<Position>
+				<x High="4" Low="-4"/>
+				<y High="4" Low="-4"/>
+				<z High="2" Low="0"/>
+			</Position>
+		</Ortho>
+	</Velocity>
+	<Event/>
+	<Update>
+		<Default Rotation="ROTATE_IN_WORLD_SPACE">
+			<SizeRate High="1" Low="1"/>
+			<SizeRateDamping High="0.95" Low="0.92"/>
+			<AngleZ High="7" Low="-7"/>
+			<AngularRateZ High="0.02" Low="0.02"/>
+			<AngularDamping High="0.95" Low="0.95"/>
+			<AngleXY High="0.2" Low="-0.2"/>
+			<AngularRateXY High="0.025" Low="-0.025"/>
+			<AngularDampingXY High="1" Low="1"/>
+		</Default>
+	</Update>
+</FXParticleSystemTemplate>
+</AssetDeclaration>

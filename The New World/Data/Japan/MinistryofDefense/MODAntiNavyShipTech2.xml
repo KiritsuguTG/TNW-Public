@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:Units/MODAntiNavyShipTech2/JUANTISHIPTECH2_SKN.w3x" />
+		<Include type="all" source="ART:Units/MODAntiNavyShipTech2/JUANTISHIPTECH2_FXSKNU.w3x" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- A.k.a. Shogun Battleship -->
+	<GameObject
+		id="MODAntiNavyShipTech2"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_MODAntiNavyShipTech2"
+		ButtonImage="Button_MODAntiNavyShipTech2"
+		Side="Japan"
+		SubGroupPriority="475"
+		EditorSorting="UNIT"
+		TransportSlotCount="20"
+		BuildTime="16"
+		CommandSet="MODAntiNavyShipTech2CommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT SHIP T2_UNIT AIRFIELD"
+		RadarPriority="UNIT"
+		ProductionQueueType="WATERCRAFT"
+		UnitCategory="VEHICLE"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		BountyValue="250"
+		EditorName="MODAntiNavyShipTech2"
+		Description="Desc:MODAntiNavyShipTech2"
+		TypeDescription="Type:AntiArmor"
+		HealthBoxHeightOffset="20">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODAntiNavyShipTech2</DisplayName>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_JapanNavalYardTech2</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1600" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="AdvanceShipArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="JapanAntiVehicleShipWaterLocomotor"
+			Condition="NORMAL"
+			Speed="80.0" />
+		<LocomotorSet
+			Locomotor="JapanAntiVehicleShipWaterLocomotor_LeavingFactory"
+			Condition="EXITING_PRODUCTION_STRUCTURE"
+			Speed="80.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="4.0"
+			ConquerMetricsOverrideDamageType="CANNON"
+			ConquerMetricsOverrideAntiMask="ANTI_SUBMERGED ANTI_WATER"
+			ConquerMetricsOverrideForbiddenAntiMask="ANTI_GROUND" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.5"
+				MaxRecoilDistance="6.0"
+				RecoilDamping="5.0"
+				RecoilSettleSpeed="3.0">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="JUANTISHIPTECH2_SKNU" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<Turret
+						TurretNameKey="TURRET"
+						TurretPitch="TURRET_PITCH"
+						TurretID="1" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_MISSLEL" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_MISSLEL" />
+					<Turret
+						TurretNameKey="TURRETLEFT"
+						TurretID="2" />
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_MISSLER" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_MISSLER" />
+					<Turret
+						TurretNameKey="TURRETRIGHT"
+						TurretID="3" />
+				</ModelConditionState>
+				<!-- UPGRADED MODEL -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED USER_2">
+					<Model
+						Name="JUANTISHIPTECH2_SKNU" />
+					<Texture
+						Original="JURadarShip"
+						New="JURadarShip2_D" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech1_D" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="USER_2">
+					<Model
+						Name="JUANTISHIPTECH2_SKNU" />
+					<Texture
+						Original="JURadarShip"
+						New="JURadarShip2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUANTISHIPTECH2_SKNU" />
+					<Texture
+						Original="JURadarShip"
+						New="JURadarShip_D" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech1_D" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_FX">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUANTISHIPTECH2_FXSKNU" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="JUANTISHIPTECH2_FXSKNU" />
+					<ParticleSysBone
+						BoneName="FX_Damaged_01"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Damaged_02"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUANTISHIPTECH2_FXSKNU" />
+					<ParticleSysBone
+						BoneName="FX_Damaged_01"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Damaged_01"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Damaged_01"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Damaged_01"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Damaged_02"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Damaged_02"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Damaged_02"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Damaged_02"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="false" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<ParticleSysBone
+						BoneName="FX_Wake"
+						FXParticleSystemTemplate="SUAntiStructureShipWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="JapanAntiVehicleVehicleWaterMistBody"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AlliedAntiNavyShipFroth"
+						FollowBone="true" />
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODAntiNavyShipTech2Cannon" />
+					<TurretSettings
+						MaxDeflectionClockwise="120d"
+						MaxDeflectionAntiClockwise="120d"
+						TurretTurnRate="360"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0">
+						<TurretAITargetChooserData
+							CanPickDynamicTargets="true"
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="=$MEDIUM_IDLE_SCAN_DELAY" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="2">
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="MODAntiNavyShipTech2MissileLauncher"
+						ForbiddenObjectStatus="ADVANCED_MISSILE_PACKS" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="MODAntiNavyShipTech2MissileLauncher_JapanAdvancedMissilePacks"
+						ObjectStatus="ADVANCED_MISSILE_PACKS" />
+					<TurretSettings
+						NaturalTurretAngle="0d"
+						MaxDeflectionClockwise="30d"
+						MaxDeflectionAntiClockwise="155d"
+						TurretTurnRate="360"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0">
+						<TurretAITargetChooserData
+							CanPickDynamicTargets="true"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="3">
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="MODAntiNavyShipTech2MissileLauncher"
+						ForbiddenObjectStatus="ADVANCED_MISSILE_PACKS" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="MODAntiNavyShipTech2MissileLauncher_JapanAdvancedMissilePacks"
+						ObjectStatus="ADVANCED_MISSILE_PACKS" />
+					<TurretSettings
+						NaturalTurretAngle="0d"
+						MaxDeflectionClockwise="155d"
+						MaxDeflectionAntiClockwise="30d"
+						TurretTurnRate="360"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0">
+						<TurretAITargetChooserData
+							CanPickDynamicTargets="true"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanBattleShipDie" />
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="JURadarShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET" />
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieByTorpedo"
+				CreationList="MODAntiNavyShipTech2_TorpedoDie_OCL">
+				<DieMuxData
+					DeathTypes="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET" />
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieNavy"
+				CreationList="MODAntiNavyShipTech2_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET" />
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieByTorpedoNavy"
+				CreationList="MODAntiNavyShipTech2_UpgradeTorpedoDie_OCL">
+				<DieMuxData
+					DeathTypes="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET" />
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieFreeze"
+				CreationList="JURadarShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="UNDER_FROZEN" />
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieFreezeNavy"
+				CreationList="MODAntiNavyShipTech2_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="UNDER_FROZEN" />
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSky"
+				CreationList="JURadarShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET" />
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSkyNavy"
+				CreationList="MODAntiNavyShipTech2_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET" />
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<SpecialPower
+				id="ModuleTag_MODAntiNavyShipTech2Short"
+				SpecialPowerTemplate="SpecialPower_MODAntiNavyShipTech2Short"
+				UpdateModuleStartsAttack="true" />
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_MODAntiNavyShipTech2ShortUpdate"
+				SpecialPowerTemplate="SpecialPower_MODAntiNavyShipTech2Short"
+				SpecialWeapon="MODAntiNavyShipTech2ShortWeapon"
+				UnpackTime="0.53s"
+				PackTime="0.53s"
+				StartAbilityRange="0.0"
+				FreezeAfterTriggerDuration="0s" />
+			<ActivateModuleSpecialPower
+				id="ModuleTag_MODAntiNavyShipTech2Short"
+				SpecialPowerTemplate="SpecialPower_MODAntiNavyShipTech2Short"
+				AttributeModifier="AttributeModifier_MODAntiNavyShipTech2ShortWeaponSmoke"
+				AttributeModifierAffectsSelf="true">
+				<Modules
+					ModuleId="ModuleTag_SmokeBombOpacityUpdate"
+					TriggerType="SELF_POSITION" />
+			</ActivateModuleSpecialPower>
+			<TimedOpacityUpdate
+				id="ModuleTag_SmokeBombOpacityUpdate"
+				Duration="1s"
+				Opacity="1.0" />
+			<!-- Anti Sub Invisibility-->
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AntiSubInvisibilityAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="375.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_AntiSubInvisibility">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="SUBMARINE">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech2/child::*)" />
+			<xi:include
+				href="DATA:Includes/JapanAdvancedMissilePacksUpgrade.xml" />
+			<!-- Japan NavalPower -->
+			<xi:include
+				href="DATA:Includes/JapanNavalPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanNavalPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="true"
+					CanChaseAttack="false" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="950" />
+		</Body>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="48.319"
+				MinorRadius="8.07535"
+				Height="12.1645"
+				ContactPointGeneration="VEHICLE" />
+			<Shape
+				Type="BOX"
+				MajorRadius="56.25"
+				MinorRadius="21"
+				Height="21.2214"
+				ContactPointGeneration="VEHICLE">
+			</Shape>
+		</Geometry>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="JAP_Naginata_VoiceShrunken"
+					RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_NaginataCruiser_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="JAP_NaginataCruiser_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_NaginataCruiser_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_NaginataCruiser_VoiceMoveAttack"
+				AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="JAP_NaginataCruiser_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="JAP_NaginataCruiser_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="JAP_NaginataCruiser_VoiceSelectBattleMS"
+				AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="JAP_NaginataCruiser_VoiceSelectBattleMS"
+				AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="JAP_NaginataCruiser_VoiceSelectUnderFireMS"
+				AudioType="voiceSelectUnderFire" />
+			<ObjectSpecificEntry Sound="JAP_NaginataCruiser_VoiceAttackSub"
+				AudioType="voiceAttackUnit" TargetObject="JapanNavyScoutShip" />
+			<ObjectSpecificEntry Sound="JAP_NaginataCruiser_VoiceAttackSub"
+				AudioType="voiceAttackUnit" TargetObject="SovietAntiNavyShipTech2" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="JAP_NaginataCruiser_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+			<AudioEntry
+				Sound="Ship_Large_MoveLoopWater"
+				AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="=$ADVANCE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			CrusherLevel="1"
+			CrushableLevel="31" />
+	</GameObject>
+	<GameObject
+		id="MODAntiNavyShipTech2_Crate"
+		inheritFrom="MODAntiNavyShipTech2"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="MODAntiNavyShipTech2_Crate">
+		<EquivalentTo>MODAntiNavyShipTech2</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include type="all" source="ART:Units/MODAntiVehicleVehicleTech1/MODAntiVehicleVehicleTech1_SKN.w3x" />
+		<Include type="all" source="ART:Units/MODAntiVehicleVehicleTech1/MODAntiVehicleVehicleTech1_TRS.w3x" />
+		<Include type="all" source="ART:Units/MODAntiVehicleVehicleTech1/MODAntiVehicleVehicleTech1_COL.w3x" />
+	</Includes>
+	<GameObject
+		id="MODAntiVehicleVehicleTech1"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_MODAntiVehicleVehicleTech1"
+		ButtonImage="Button_MODAntiVehicleVehicleTech1"
+		Side="Japan"
+		SubGroupPriority="410"
+		EditorSorting="UNIT"
+		BuildTime="9"
+		CommandSet="JapanAntiVehicleVehicleTech1CommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE AMPHIBIOUS CAN_BE_FAVORITE_UNIT T2_UNIT"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		BountyValue="150"
+		EditorName="MODAntiVehicleVehicleTech1"
+		Description="Desc:MODAntiVehicleVehicleTech1"
+		TypeDescription="Type:AntiArmor"
+		HealthBoxHeightOffset="20"
+		UnitIntro="Japan_TsunamiTank_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODAntiVehicleVehicleTech1</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="900"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseTankArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="TestReactiveLocomotorTANK"
+			Condition="NORMAL"
+			Speed="75"/>
+		<LocomotorSet
+			Locomotor="JapanAntiVehicleVehicleTech1_WaterLocomotor"
+			Condition="NORMAL"
+			Speed="75"/>
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="2.0"
+			TargetDuringCrush="true"
+			ConquerMetricsOverrideDamageType="CANNON"
+			ConquerMetricsOverrideAntiMask="ANTI_VEHICLE"/>
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				LeftFrontTireBone="Bone_Tread_Left_Front"
+				RightFrontTireBone="Bone_Tread_Right_Front"
+				LeftRearTireBone="Bone_Tread_Left_Rear"
+				RightRearTireBone="Bone_Tread_Right_Rear"
+				TireRotationMultiplier="0.0"		
+				InitialRecoilSpeed="0.5"
+				MaxRecoilDistance="5"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+								
+				ExtraPublicBone="Bone_Tread_Left_Rear Bone_Tread_Right_Rear
+						Bone_Tread_Left_Front Bone_Tread_Right_Front
+						FXHEADLIGHT"
+				TrackMarks="EXTnkTrack"
+				TrackMarksLeftBone="Tracks_L"
+				TrackMarksRightBone="Tracks_R">
+				<TreadTerrainParticles>AmphibiousTankTerrainParticleMapping</TreadTerrainParticles>
+
+				<TreadScrollingMap
+					LeftTrack="Bone_Tread_Left_Front"
+					RightTrack="Bone_Tread_Right_Front"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%"/>
+				<TreadScrollingMap
+					LeftTrack="Bone_Tread_Left_Rear"
+					RightTrack="Bone_Tread_Right_Rear"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%"/>
+
+				<!-- 主模型 -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="MODANTIVEHICLEVEHICLETECH1_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WeaponA" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WeaponA" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WeaponA" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WeaponA" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WeaponA" />
+					<Turret
+						TurretNameKey="Bone_Turret"
+						TurretPitch="Turret_pitch"
+						TurretID="1" />
+				</ModelConditionState>
+
+				<!-- 编队预览 -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="MODANTIVEHICLEVEHICLETECH1_SKN" />
+				</ModelConditionState>
+
+				<!-- 损伤模型 -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="MODANTIVEHICLEVEHICLETECH1_SKN" />
+					<ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<!-- 严重损伤模型 -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="MODANTIVEHICLEVEHICLETECH1_SKN" />
+					<Texture
+						Original="JUAntiVehicleVehicleTech1"
+						New="JUAntiVehicleVehicleTech1_D" />							
+					<ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<!-- 主动画 -->	
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="START_FRAME_FIRST"
+					StateName="STATE_OnLAND">
+					<Animation
+						AnimationName="MODANTIVEHICLEVEHICLETECH1_TRS"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationBlendTime="15" />
+					<Script>
+						CurDrawableShowSubObjectPermanently("TreadsStop")
+						CurDrawableHideSubObjectPermanently("TreadsMove")
+						CurDrawableHideSubObjectPermanently("TreadsTurnLeft")
+						CurDrawableHideSubObjectPermanently("TreadsTurnRight")
+						CurDrawableHideSubObjectPermanently("Gun_Upgrade01")
+						CurDrawableHideSubObjectPermanently("Turret2")
+					</Script>
+				</AnimationState>
+
+				<!-- 水上移动 -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					Flags="START_FRAME_LAST"
+					StateName="STATE_OnWater">
+					<Animation
+						AnimationName="MODANTIVEHICLEVEHICLETECH1_TRS"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_OnWater" and Prev ~= "TRANS_toWater" then CurDrawableSetTransitionAnimState("TRANS_toWater")	end;
+						CurDrawableShowSubObjectPermanently("TreadsStop")
+						CurDrawableHideSubObjectPermanently("TreadsMove")
+						CurDrawableHideSubObjectPermanently("TreadsTurnLeft")
+						CurDrawableHideSubObjectPermanently("TreadsTurnRight")
+						CurDrawableHideSubObjectPermanently("Gun_Upgrade01")
+						CurDrawableHideSubObjectPermanently("Turret2")
+					</Script>
+				</AnimationState>	
+				<!-- 移动 -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="START_FRAME_FIRST"
+					StateName="STATE_OnLAND">
+					<Animation
+						AnimationName="MODANTIVEHICLEVEHICLETECH1_TRS"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_OnLAND" and Prev ~= "TRANS_toLand" then CurDrawableSetTransitionAnimState("TRANS_toLand")	end;
+						CurDrawableShowSubObjectPermanently("TreadsStop")
+						CurDrawableHideSubObjectPermanently("TreadsMove")
+						CurDrawableHideSubObjectPermanently("TreadsTurnLeft")
+						CurDrawableHideSubObjectPermanently("TreadsTurnRight")
+						CurDrawableHideSubObjectPermanently("Gun_Upgrade01")
+						CurDrawableHideSubObjectPermanently("Turret2")
+					</Script>
+				</AnimationState>	
+				<!-- 水上 -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER"
+					Flags="START_FRAME_LAST"
+					StateName="STATE_OnWater">
+					<Animation
+						AnimationName="MODANTIVEHICLEVEHICLETECH1_TRS"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_OnWater" and Prev ~= "TRANS_toWater" then CurDrawableSetTransitionAnimState("TRANS_toWater")	end;
+						CurDrawableShowSubObjectPermanently("TreadsStop")
+						CurDrawableHideSubObjectPermanently("TreadsMove")
+						CurDrawableHideSubObjectPermanently("TreadsTurnLeft")
+						CurDrawableHideSubObjectPermanently("TreadsTurnRight")
+						CurDrawableHideSubObjectPermanently("Gun_Upgrade01")
+						CurDrawableHideSubObjectPermanently("Turret2")
+					</Script>
+				</AnimationState>	
+				<!-- 下水 -->								
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toWater">
+					<Animation
+						AnimationName="MODANTIVEHICLEVEHICLETECH1_TRS"
+						AnimationMode="ONCE"/>
+					<Script>
+						CurDrawablePlaySound("JAP_OreCollector_WaterSplashMS")
+					</Script>
+				</AnimationState>	
+				<!-- 上岸 -->	
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toLand">
+					<Animation
+						AnimationName="MODANTIVEHICLEVEHICLETECH1_TRS"
+						AnimationMode="ONCE_BACKWARDS" />
+					<Script>
+						CurDrawablePlaySound("AmphibiousWaterUnitToLand_ScrapeTreadsOut")
+					</Script>    
+				</AnimationState>										
+
+			</TruckDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+	<xi:include
+					  href="DATA:Includes/HeadlightDraw1.xml"
+					  xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:HeadlightDraw1/child::*)" />
+			<ScriptedModelDraw
+					  id="ModuleTag_FX"
+			  AttachToBoneInAnotherModule="Bone_Turret">
+				<!-- TEMPORARY Energized Armor FX -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6">
+					<Model
+						Name="AUBuzz_SKN" />
+					<ParticleSysBone
+						BoneName="Bone_00"
+						FXParticleSystemTemplate="MODTankNano"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_01"
+						FXParticleSystemTemplate="MODTankNano"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_02"
+						FXParticleSystemTemplate="MODTankNano"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="MODNANAOTankRING"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="AUBuzzCombIdle"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="1.5"
+						AnimationSpeedFactorMax="1.8" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+					id="ModuleTag_ParticlesDraw" >
+				<ModelConditionState
+							ParseCondStateType="PARSE_DEFAULT">
+					<Model
+								  Name="FXInvisBone" />
+				</ModelConditionState>
+				<AnimationState
+							ParseCondStateType="PARSE_DEFAULT"/>
+
+				<AnimationState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="OVER_WATER MOVING">
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="StingrayWaterWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="SovietAntiNavyShipFroth"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="SovietAntiNavyShipWaterMist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="JapanAntiVehicleVehicleWaterMistBody"
+						FollowBone="true" />
+				</AnimationState>
+
+				<AnimationState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="OVER_WATER">
+					<ParticleSysBone
+								  BoneName="None"
+								  FXParticleSystemTemplate="SmallShipWakeIdle"
+								  FollowBone="false" />
+				</AnimationState>
+
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODAntiVehicleVehicleTech1Cannon"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODAntiVehicleVehicleTech1CannonUnmiliWeapon"
+						ObjectStatus="WEAPON_UPGRADED_01"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="-30d"
+						AllowsPitch="true"
+						TurretPitchRate="180"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0"
+						ComeToHaltJiggle="3d">
+						<TurretAITargetChooserData
+							TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<StatusBitsUpgrade
+				id="ModuleTag_UnmiliWeapon"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</StatusBitsUpgrade>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="MODAntiVehicleVehicleTech1_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+			</FXListBehavior>
+			<ActivateModuleSpecialPower
+				id="ModuleTag_SpecialPower"
+				SpecialPowerTemplate="SpecialPower_ToggleEnergizedArmor"
+				UpdateModuleStartsAttack="true"
+				AttributeModifier="AttributeModifier_MODAntiVehicleVehicleTech1EnergizedArmor"
+				AttributeModifierAffectsSelf="true">
+			</ActivateModuleSpecialPower>
+			<SpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_ToggleEnergizedArmor"
+				Options="RECONSTITUTE_STORED_COMMAND"/>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.4s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="MODAntiVehicleVehicleTech1ShortCircuit"
+					OneShot="false" />
+				<ObjectStatusValidation
+					RequiredStatus="GENERIC_TOGGLE_STATE" />
+			</FireWeaponUpdate>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_JapanEmperorYoshiroInfantryAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="100.0"
+				RefreshDelay="1s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_JapanArcherInfantry"
+				RequiredObjectStatusFlags="GENERIC_TOGGLE_STATE">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ALLIES"
+					Include="INFANTRY"
+					Exclude="NO_GARRISON VEHICLE">
+					<IncludeThing>SovietScoutInfantry</IncludeThing>
+					<IncludeThing>AlliedScoutInfantry</IncludeThing>
+					<ExcludeThing>JapanScoutInfantry</ExcludeThing>
+					<ExcludeThing>SovietScoutVehicle</ExcludeThing>
+					<ExcludeThing>EUScoutVehicle</ExcludeThing>
+					<ExcludeThing>MODNanoFly</ExcludeThing>
+			</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<AttributeModifierUpgrade
+				id="ModuleTag_JapanUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeJapanAntiVehicleVehicleTech1UnitUpgrade">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<!-- These help the AI decide when to use EnergizedArmor -->
+			<TrackIncomingWeaponFireBehavior
+					  id="TrackIncomingWeaponFireForEnergizedArmor" />
+			<TrackDamage
+					  id="TrackDamageForEnergizedArmor"
+					  TimeToTrack="2s"
+					  InstantWeaponsOnly="true" />
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech1.xml"/>
+			<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_DeBugUnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="550" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_MoveLoop">
+				<ModelConditionSound Sound="Tank_Land_MoveLoop" RequiredFlags="MOVING" ExcludedFlags="OVER_WATER DYING" />
+				<ModelConditionSound Sound="SOV_Bullfrog_MoveLoopWaterMS" RequiredFlags="MOVING OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="JAP_Tsunami_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_WaterSounds">
+				<Override RequiredFlags="OVER_WATER">
+					<AudioArrayVoice>
+						<AudioEntry Sound="JAP_TsunamiTank_Water_VoiceSelectMS" AudioType="voiceSelect" />
+						<AudioEntry Sound="JAP_TsunamiTank_Water_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+						<AudioEntry Sound="JAP_TsunamiTank_Water_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+					</AudioArrayVoice>
+					<AudioArraySound>
+						<AudioEntry Sound="JAP_Tsunami_MoveStartWater" AudioType="soundMoveStart" />
+					</AudioArraySound>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<AnimationSoundClientBehavior id="AnimationSoundCB" >
+				<Sound Sound="JAP_MCV_Animation_WTRANS1_1" ExcludedMC="OVER_WATER" Animation="JUAntiVehicleVehicleTech1_TRANS" Frame="18" />
+				<Sound Sound="JAP_MCV_Animation_WTRANS1_2" ExcludedMC="OVER_WATER" Animation="JUAntiVehicleVehicleTech1_TRANS" Frame="31" />
+				<Sound Sound="JAP_MCV_Animation_WTRANS2_1" RequiredMC="OVER_WATER" Animation="JUAntiVehicleVehicleTech1_TRANS" Frame="17" />
+				<Sound Sound="JAP_MCV_Animation_WTRANS2_2" RequiredMC="OVER_WATER" Animation="JUAntiVehicleVehicleTech1_TRANS" Frame="1" />
+			</AnimationSoundClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Name="Shape"
+				Type="BOX"
+				MajorRadius="24"
+				MinorRadius="11.6"
+				Height="18"
+				ContactPointGeneration="VEHICLE">
+				<Offset x="1.8" y="0.0"/>
+			</Shape>
+
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_TsunamiTank_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="JAP_TsunamiTank_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_TsunamiTank_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_TsunamiTank_VoiceMoveToLand" AudioType="voiceMoveWaterToLand" />
+			<AudioEntry Sound="JAP_TsunamiTank_VoiceMoveToWater" AudioType="voiceMoveLandToWater" />
+			<AudioEntry Sound="JAP_TsunamiTank_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="JAP_TsunamiTank_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="JAP_TsunamiTank_Land_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="JAP_TsunamiTank_Land_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="JAP_TsunamiTank_Land_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="JAP_Tsunami_MoveStartLand"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+			<!-- <AudioEntry
+				Sound="Tank_Land_MoveLoop"
+				AudioType="soundMoveLoop" /> -->
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+				CrushableLevel="25"
+				CrusherLevel="20"
+				CrushWeapon="SovietCrushWeapon"
+				CrushDecelerationPercent="80%">
+			<ExtraCrushLevels CrusherLevel="1" CrushableLevel="25" ModelConditionMatch="OVER_WATER"/>
+		</CrusherInfo>
+	</GameObject>
+	  <GameObject
+		id="MODAntiVehicleVehicleTech1_Crate"
+		inheritFrom="MODAntiVehicleVehicleTech1"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="MODAntiVehicleVehicleTech1_Crate">
+		<EquivalentTo>MODAntiVehicleVehicleTech1</EquivalentTo>
+	</GameObject>
+	<GameObject
+		id="MODAntiVehicleVehicleTech1_Naval"
+		inheritFrom="MODAntiVehicleVehicleTech1"
+		EditorName="MODAntiVehicleVehicleTech1_Naval"
+		ProductionQueueType="WATERCRAFT">
+		<EquivalentTo>MODAntiVehicleVehicleTech1</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,1052 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Includes>
+		<Include type="instance" source="DATA:SageXml/BaseObjects/BaseProjectile.xml" />
+		<Include type="all" source="ART:Units/Archer Maiden/EXJAPANARROWGEO.PLANE01.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/EXJAPANARROWGEO.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/EXJAPANARROWGEO_CTR.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/EXJAPANARROWGEO_HRC.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/EXJAPANARROWGEOVET.PLANE01.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/EXJAPANARROWGEOVET.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/EXJAPANARROWGEOVET_CTR.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/EXJAPANARROWGEOVET_HRC.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/EXJAPANARROWSHARD.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/EXJAPANARROWSHARD_VET.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/FXJAPANSPEARBLAST.PLANE01.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/FXJAPANSPEARBLAST.PLANE02.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/FXJAPANSPEARBLAST_CTR.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/FXJAPANSPEARBLAST_HRC.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/FXJAPANSPEARBLAST_VET.PLANE01.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/FXJAPANSPEARBLAST_VET.PLANE02.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/FXJAPANSPEARBLAST_VET_CTR.w3x" />
+		<Include type="all" source="ART:Units/Archer Maiden/FXJAPANSPEARBLAST_VET_HRC.w3x" />
+	</Includes>
+	<GameObject
+		id="JapanArcherInfantryEnergyArrowProjectile"
+		inheritFrom="BaseProjectile" 
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="+DEFLECT_BY_SPECIAL_POWER"
+		EditorName="JapanArcherInfantryEnergyArrowProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EXJapanArrowGeo" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FXJapanMIRVTrailHIGH"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FXJapanMIRVTrailLOW"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JAP_ArcherMaiden_EnergyArrowImpact" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="20"
+				SecondPercentIndent="50"
+				GroundHitFX="FX_JAP_ArcherMaiden_EnergyArrowImpact"
+				MaxDistanceReachedFX="FX_JAP_ArcherMaiden_EnergyArrowImpact"
+				FlightPathAdjustDistPerSecond="100.0"
+				MaxDistanceToTravel="750.0"/>
+		</Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"/>
+		</Geometry>
+	</GameObject>
+	<GameObject
+		id="JapanArcherInfantryEnergyArrowProjectile_Veteran"
+		inheritFrom="BaseProjectile" 
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="+DEFLECT_BY_SPECIAL_POWER"
+		EditorName="JapanArcherInfantryEnergyArrowProjectile_Veteran">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EXJapanArrowGeoVet" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetHIGH"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetLOW"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="20"
+				SecondPercentIndent="50"
+				GroundHitFX="FX_JAP_ArcherMaiden_EnergyArrowImpact_Vet"
+				MaxDistanceReachedFX="FX_JAP_ArcherMaiden_EnergyArrowImpact_Vet"
+				FlightPathAdjustDistPerSecond="100.0"
+				MaxDistanceToTravel="750.0"/>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="JapanArcherInfantryUpgradeEnergyArrowProjectile"
+		inheritFrom="BaseProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="+DEFLECT_BY_SPECIAL_POWER"
+		EditorName="JapanArcherInfantryUpgradeEnergyArrowProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EXJapanArrowGeo" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FXJapanMIRVTrailHIGH"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FXJapanMIRVTrailLOW"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="JapanArcherInfantryShellTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JAP_ArcherMaiden_EnergyArrowImpact" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="20"
+				SecondPercentIndent="50"
+				GroundHitFX="FX_JAP_ArcherMaiden_EnergyArrowImpact"
+				MaxDistanceReachedFX="FX_JAP_ArcherMaiden_EnergyArrowImpact"
+				FlightPathAdjustDistPerSecond="110.0"
+				MaxDistanceToTravel="750.0"/>
+		</Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"/>
+		</Geometry>
+	</GameObject>
+	<GameObject
+		id="JapanArcherInfantryUpgradeEnergyArrowProjectile_Veteran"
+		inheritFrom="BaseProjectile" 
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="+DEFLECT_BY_SPECIAL_POWER"
+		EditorName="JapanArcherInfantryUpgradeEnergyArrowProjectile_Veteran">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EXJapanArrowGeoVet" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetHIGH"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetLOW"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="JapanArcherInfantryShellTrailVet"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="20"
+				SecondPercentIndent="50"
+				GroundHitFX="FX_JAP_ArcherMaiden_EnergyArrowImpact_Vet"
+				MaxDistanceReachedFX="FX_JAP_ArcherMaiden_EnergyArrowImpact_Vet"
+				FlightPathAdjustDistPerSecond="110.0"
+				MaxDistanceToTravel="750.0"/>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="JapanArcherInfantryEnergyArrowBarrageArrowProjectile"
+		inheritFrom="BaseProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="+DEFLECT_BY_SPECIAL_POWER"
+		EditorName="JapanArcherInfantryEnergyArrowBarrageArrowProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EXJapanArrowShard" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="JapanArrowMIRVRHigh"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="JapanArrowMIRVRLow"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanArrowMIRVBitHit" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="PING_PONG_SIDEWAYS_DRIFT DETONATE_CALLS_KILL ORIENT_TO_FLIGHT_PATH"
+				FirstHeightMin="1"
+				FirstHeightMax="1"
+				SecondHeightMin="5"
+				SecondHeightMax="5"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				GroundHitFX="FX_JapanArrowMIRVBitHit"
+				SidewaysDrift="10"
+				FlightPathAdjustDistPerSecond="100.0"
+				/>
+		</Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_V4MissileLauncher_MIRVincoming" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+	<GameObject
+		id="JapanArcherInfantryEnergyArrowBarrageArrowProjectileVet"
+		inheritFrom="BaseProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="+DEFLECT_BY_SPECIAL_POWER"
+		EditorName="JapanArcherInfantryEnergyArrowBarrageArrowProjectileVet">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EXJapanArrowShard_Vet" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetHIGH"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetLOW"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanArrowMIRVBitHit" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+        xai:joinAction="Replace"
+				Flags="PING_PONG_SIDEWAYS_DRIFT DETONATE_CALLS_KILL ORIENT_TO_FLIGHT_PATH"
+				FirstHeightMin="1"
+				FirstHeightMax="1"
+				SecondHeightMin="5"
+				SecondHeightMax="5"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				GroundHitFX="FX_JapanArrowMIRVBitHitVet"
+				SidewaysDrift="10"
+				FlightPathAdjustDistPerSecond="100.0"
+				/>
+		</Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_V4MissileLauncher_MIRVincoming" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+	<!-- NOTE - this projectile is just for looks, it doesn't do any damage, check
+			JapanArcherInfantryEnergyArrowBarrageMIRVingDamageProjectile just below to modify
+			the damage dealing projectile.  PROJECTILE kindOf removed to fix DT#23807, stops Magnetic Armor
+			from sucking up the MIRVing projectile before it splits -->
+	<GameObject
+		id="JapanArcherInfantryEnergyArrowBarrageMIRVingProjectile"
+		inheritFrom="BaseProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="+DEFLECT_BY_SPECIAL_POWER -PROJECTILE"
+		EditorName="JapanArcherInfantryEnergyArrowBarrageMIRVingProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="EXJapanArrowGeo" />
+          <ParticleSysBone
+						BoneName="Box02"
+						FXParticleSystemTemplate="JapanArrowMIRVLHigh"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box03"
+						FXParticleSystemTemplate="JapanArrowMIRVLHigh"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box02"
+						FXParticleSystemTemplate="JapanArrowMIRVLLow"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box03"
+						FXParticleSystemTemplate="JapanArrowMIRVLLow"
+						FollowBone="true" />
+				</ModelConditionState>
+        <AnimationState
+        ParseCondStateType="PARSE_DEFAULT">
+          <Animation
+            AnimationName="EXJapanArrowGeo"
+            AnimationMode="LOOP" />
+        </AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  IgnoreProjectileState="true"
+			  MinLifetime="5.8s"
+			  MaxLifetime="6.3s" />
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanArrowMIRV" />
+			</FXListBehavior>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponA"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponB"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponC"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponD"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponE"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponF"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponG"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponH"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponI"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponJ"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_ON_APEX DETONATE_CALLS_KILL"
+				FirstHeightMin="360"
+				FirstHeightMax="360"
+				SecondHeightMin="200"
+				SecondHeightMax="250"
+				FirstPercentIndent="40"
+				SecondPercentIndent="75"
+				FlightPathAdjustDistPerSecond="0.0"
+				Acceleration="20.0" />
+		</Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"/>
+		</Geometry>
+	</GameObject>
+  <GameObject
+		id="JapanArcherInfantryEnergyArrowBarrageMIRVingProjectileVet"
+		inheritFrom="JapanArcherInfantryEnergyArrowBarrageMIRVingProjectile"
+		EditorName="JapanArcherInfantryEnergyArrowBarrageMIRVingProjectileVet">
+    <Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+        xai:joinAction="Replace">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="EXJapanArrowGeoVet" />
+          <ParticleSysBone
+						BoneName="Box02"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetHIGH"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box03"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetHIGH"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box02"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetLOW"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box03"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetLOW"
+						FollowBone="true" />
+        </ModelConditionState>
+        <AnimationState
+        ParseCondStateType="PARSE_DEFAULT">
+          <Animation
+            AnimationName="EXJapanArrowGeoVet"
+            AnimationMode="LOOP" />
+        </AnimationState>
+      </ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+      <FXListBehavior
+				id="ModuleTag_FXLists"
+        xai:joinAction="Replace">
+        <DieMuxData
+					DeathTypes="ALL" />
+        <Event
+					Index="onDeath"
+					FX="FX_JapanArrowMIRVVet" />
+      </FXListBehavior>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponA"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponB"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponC"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponD"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponE"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponF"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponG"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponH"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponI"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponJ"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+    </Behaviors>
+  </GameObject>
+	<GameObject
+		id="JapanArcherInfantryEnergyArrowBarrageUpgradeMIRVingProjectile"
+		inheritFrom="BaseProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="+DEFLECT_BY_SPECIAL_POWER -PROJECTILE"
+		EditorName="JapanArcherInfantryEnergyArrowBarrageUpgradeMIRVingProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="EXJapanArrowGeo" />
+          <ParticleSysBone
+						BoneName="Box02"
+						FXParticleSystemTemplate="JapanArrowMIRVLHigh"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box03"
+						FXParticleSystemTemplate="JapanArrowMIRVLHigh"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box02"
+						FXParticleSystemTemplate="JapanArrowMIRVLLow"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box03"
+						FXParticleSystemTemplate="JapanArrowMIRVLLow"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="JapanArcherInfantryShellTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+        <AnimationState
+        ParseCondStateType="PARSE_DEFAULT">
+          <Animation
+            AnimationName="EXJapanArrowGeo"
+            AnimationMode="LOOP" />
+        </AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  IgnoreProjectileState="true"
+			  MinLifetime="5.8s"
+			  MaxLifetime="6.3s" />
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanArrowMIRV" />
+			</FXListBehavior>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponA"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowUpgradeLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponB"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowUpgradeLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponC"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowUpgradeLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponD"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowUpgradeLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponE"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowUpgradeLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponF"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowUpgradeLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponG"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowUpgradeLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponH"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowUpgradeLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponI"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowUpgradeLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponJ"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowUpgradeLauncher">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_ON_APEX DETONATE_CALLS_KILL"
+				FirstHeightMin="360"
+				FirstHeightMax="360"
+				SecondHeightMin="200"
+				SecondHeightMax="250"
+				FirstPercentIndent="40"
+				SecondPercentIndent="75"
+				FlightPathAdjustDistPerSecond="0.0"
+				Acceleration="20.0" />
+		</Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"/>
+		</Geometry>
+	</GameObject>
+  <GameObject
+		id="JapanArcherInfantryEnergyArrowBarrageUpgradeMIRVingProjectileVet"
+		inheritFrom="JapanArcherInfantryEnergyArrowBarrageUpgradeMIRVingProjectile"
+		EditorName="JapanArcherInfantryEnergyArrowBarrageUpgradeMIRVingProjectileVet">
+    <Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+        xai:joinAction="Replace">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="EXJapanArrowGeoVet" />
+          <ParticleSysBone
+						BoneName="Box02"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetHIGH"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box03"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetHIGH"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box02"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetLOW"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="Box03"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetLOW"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="JapanArcherInfantryShellTrailVet"
+						FollowBone="true" />
+        </ModelConditionState>
+        <AnimationState
+        ParseCondStateType="PARSE_DEFAULT">
+          <Animation
+            AnimationName="EXJapanArrowGeoVet"
+            AnimationMode="LOOP" />
+        </AnimationState>
+      </ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+      <FXListBehavior
+				id="ModuleTag_FXLists"
+        xai:joinAction="Replace">
+        <DieMuxData
+					DeathTypes="ALL" />
+        <Event
+					Index="onDeath"
+					FX="FX_JapanArrowMIRVVet" />
+      </FXListBehavior>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponA"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherUpgradeVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponB"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherUpgradeVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponC"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherUpgradeVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponD"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherUpgradeVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponE"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherUpgradeVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponF"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherUpgradeVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponG"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherUpgradeVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponH"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherUpgradeVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponI"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherUpgradeVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+		<FireWeaponWhenDead
+			id="ModuleTag_FinalWeaponJ"
+			xai:joinAction="Replace"
+			InitiallyActive="true"
+			ContinueToBezierDestination="true"
+			DeathWeapon="JapanArcherInfantryEnergyArrowBarrageArrowLauncherUpgradeVet">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</FireWeaponWhenDead>
+    </Behaviors>
+  </GameObject>
+	<GameObject
+		id="JapanArcherInfantryEnergyArrowBarrageArrowProjectileUpgrade"
+		inheritFrom="BaseProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="+DEFLECT_BY_SPECIAL_POWER"
+		EditorName="JapanArcherInfantryEnergyArrowBarrageArrowProjectileUpgrade">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EXJapanArrowShard" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="JapanArrowMIRVRHigh"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="JapanArrowMIRVRLow"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanArrowMIRVBitHit" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="PING_PONG_SIDEWAYS_DRIFT DETONATE_CALLS_KILL ORIENT_TO_FLIGHT_PATH"
+				FirstHeightMin="1"
+				FirstHeightMax="1"
+				SecondHeightMin="5"
+				SecondHeightMax="5"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				GroundHitFX="FX_JapanArrowMIRVBitHitUpgrade"
+				SidewaysDrift="10"
+				FlightPathAdjustDistPerSecond="100.0"
+				/>
+		</Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_V4MissileLauncher_MIRVincoming" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+	<GameObject
+		id="JapanArcherInfantryEnergyArrowBarrageArrowProjectileUpgradeVet"
+		inheritFrom="BaseProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="+DEFLECT_BY_SPECIAL_POWER"
+		EditorName="JapanArcherInfantryEnergyArrowBarrageArrowProjectileUpgradeVet">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EXJapanArrowShard_Vet" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetHIGH"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FXJapanMIRVTrail_VetLOW"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanArrowMIRVBitHit" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+        xai:joinAction="Replace"
+				Flags="PING_PONG_SIDEWAYS_DRIFT DETONATE_CALLS_KILL ORIENT_TO_FLIGHT_PATH"
+				FirstHeightMin="1"
+				FirstHeightMax="1"
+				SecondHeightMin="5"
+				SecondHeightMax="5"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				GroundHitFX="FX_JapanArrowMIRVBitHitVetUpgrade"
+				SidewaysDrift="10"
+				FlightPathAdjustDistPerSecond="100.0"
+				/>
+		</Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_V4MissileLauncher_MIRVincoming" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+</AssetDeclaration>

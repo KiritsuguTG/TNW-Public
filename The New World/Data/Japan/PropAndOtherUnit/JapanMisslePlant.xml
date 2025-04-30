@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- aka Chopper-VX -->
+	<GameObject
+		id="JapanMisslePlantSpawner"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="IMMOBILE UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE"
+		EditorName="JapanMisslePlantSpawner"
+		Description="Desc:JapanMisslePlantSpawner"
+		TypeDescription="Type:JapanMisslePlantSpawner">
+		<DisplayName>JapanMisslePlantSpawner</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+    <SkirmishAIInformation
+      DodgeSafetyDistance="400.0">
+      <DodgeWithUnits Rule="ALL"
+			Exclude="INFANTRY">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="BeaconFlare"/> 
+					<ParticleSysBone
+						BoneName="None"
+					FXParticleSystemTemplate="BeaconSmoke"/> 	
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"/>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="4s"
+			  MaxLifetime="4s"/>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_JapanMisslePlant">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="ALL_SurgicalStrike_BeaconMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+	<GameObject
+		id="JapanMisslePlant"
+		inheritFrom="BaseVehicle"
+		Side="Japan"
+		SubGroupPriority="330"
+		EditorSorting="UNIT"
+		BuildTime="0"
+		RadarPriority="NOT_ON_RADAR"
+		KindOf="NO_COLLIDE CAN_ATTACK CAN_CAST_REFLECTIONS VEHICLE NOT_AUTOACQUIRABLE AUTO_ACQUIRABLE_BY_AI IGNORE_FOR_VICTORY RESIST_EMP UNATTACKABLE"
+		WeaponCategory="MISSILE"
+		VoicePriority="188"
+		EditorName="JapanMisslePlant"
+		HealthBoxHeightOffset="40">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanMisslePlant</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="JapanAntiAirVehicleTech1Armor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="JapanMisslePlantLocomotor"
+			Locomotor="JapanMisslePlantLocomotor"
+			Condition="NORMAL"
+			Speed="0" />
+    <SkirmishAIInformation
+      DodgeSafetyDistance="250.0">
+      <DodgeWithUnits Rule="ALL"
+			Exclude="INFANTRY">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="invisbone01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="FXInvisBone" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					WeaponChoiceCriteria="PREFER_GRAB_OVER_DAMAGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanMisslePlantWeapon"
+            ConquerMetricsAlwaysCount="true"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<!-- Different deaths based on whether it is airborne or not -->
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="5s"
+				MaxLifetime="5s" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+
+			<!-- No Invisibility -->
+			<xi:include
+				href="DATA:Includes/NoInvisibilityAndLua.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:NoInvisibilityAndLua/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+				IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+				</UnitAITargetChooserData>	
+			</AIUpdate>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry>
+			<Shape
+				Type="CYLINDER"
+				Name="Geom_Orig"
+				MajorRadius="1.0"
+				MinorRadius="0.0"
+				Height="1.0">
+			</Shape>
+		</Geometry>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="" EvaType="ambushed" />
+			<EvaEntry EvaEvent="" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="" EvaType="buildCancelled" />
+			<EvaEntry EvaEvent="" EvaType="promotedOwner" />
+		</EvaEventArray>
+		<VisionInfo
+			VisionRange="260"
+			ShroudClearingRange="200" />
+	</GameObject>
+</AssetDeclaration>

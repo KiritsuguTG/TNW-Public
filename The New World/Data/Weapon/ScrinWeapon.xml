@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="ScatterableWeapon.xml"/>
+	</Includes>
+	<WeaponTemplate
+		  id="AlienSeekerTankPlasmaDiskLauncherAntiGround"
+			inheritFrom="ScatterableWeapon"
+		  AttackRange="350.0"
+		  WeaponSpeed="400.0"
+		  FireSound="ALI_SeekerTank_DiskWeaponFire"
+		  FireFX="FX_AlienPlasmaDiskFire"
+		  RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+		  ClipSize="5"
+		  CanFireWhileMoving="true"
+		  ReAcquireDetailType="PER_SHOT">
+		<FiringDuration
+				MinSeconds="0.13s"
+				MaxSeconds="0.13s"/>
+		<ClipReloadTime
+			MinSeconds="1.7s"
+			MaxSeconds="1.7s"/>
+		<Nuggets>
+			<ProjectileNugget 
+				WarheadTemplate="AlienSeekerTankPlasmaDiskLauncherWarhead" 
+				ProjectileTemplate="AlienPlasmaDisk">
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		  id="AlienSeekerTankPlasmaDiskLauncherAntiAir"
+			inheritFrom="ScatterableWeapon"
+		  AttackRange="350.0"
+		  WeaponSpeed="400.0"
+		  FireSound="ALI_SeekerTank_DiskWeaponFire"
+		  FireFX="FX_AlienPlasmaDiskFire"
+		  RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE"
+		  ClipSize="5"
+		  CanFireWhileMoving="true"
+		  ReAcquireDetailType="PER_SHOT"
+		  Flags="ATTACK_NEEDS_LINE_OF_SIGHT">
+		<FiringDuration
+				MinSeconds="0.13s"
+				MaxSeconds="0.13s"/>
+		<ClipReloadTime
+			MinSeconds="1.7s"
+			MaxSeconds="1.7s"/>
+		<Nuggets>
+			<ProjectileNugget 
+				WarheadTemplate="AlienSeekerTankPlasmaDiskLauncherWarhead" 
+				ProjectileTemplate="AlienPlasmaDisk">
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlienSeekerTankPlasmaDiskLauncherWarhead"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE">
+		<Nuggets>
+			<DamageNugget
+				Damage="15.0"
+				Radius="10.0"
+				DamageType="ROCKET">
+				<DamageScalarDetails Scalar= "200%">
+					<Filter
+						Rule="NONE"
+						Include="AIRCRAFT" />
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="AlienZeusPlasmaDiskBattery"
+		AttackRange="600.0" 
+		WeaponSpeed="300.0"
+		ScatterRadius="1"
+		ScatterLength="150"
+		FireSound="ALI_DevastatorWarship_DiskWeaponFire"
+		FireFX="FX_AlienPlasmaDiskFire"
+		ClipSize="8"
+		ReAcquireDetailType="PRE_FIRE"
+		Flags="LENGTH_SCATTER"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE ANTI_SUBMERGED"
+		AcceptableAimDelta="45d">
+		<FiringDuration
+			MinSeconds="0.05s"
+			MaxSeconds="0.05s" />
+		<ClipReloadTime
+			MinSeconds="4.4s"
+			MaxSeconds="4.5s" />
+		<Nuggets>
+			<ProjectileNugget 
+				WarheadTemplate="AlienZeusPlasmaDiskWarhead" 
+				ProjectileTemplate="AlienPlasmaDisk">
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlienZeusPlasmaDiskWarhead"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE ANTI_SUBMERGED">
+		<Nuggets>
+			<DamageNugget
+				Damage="400.0"
+				Radius="20"
+				DamageType="EXPLOSIVE"
+				DeathType="NORMAL">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate 
+		id="AlienDevourerBeamLaser"
+		FireSound="ALI_DevourerTank_BeamWeaponFire"
+		FireFX="FX_AlienDevourerFire"
+		AttackRange="250.0" 
+		WeaponSpeed="999999.0"
+		ClipSize="1"
+		AutoReloadsClip="AUTO"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE ANTI_SUBMERGED"
+		FiringLoopSound="ALI_DevourerTank_BeamWeaponLoopMS"
+		FiringLoopSoundContinuesDuringReload="false"
+		CanFireWhileMoving="true"
+		AcceptableAimDelta="5d">
+		<PreAttackDelay
+			MinSeconds="0.5s"
+			MaxSeconds="0.5s" />
+		<FiringDuration
+			MinSeconds="1.25s"
+			MaxSeconds="1.25s" />
+		<ClipReloadTime 
+			MinSeconds="1s"
+			MaxSeconds="1s" />
+		<Nuggets>
+			<ActivateLaserNugget
+				Lifetime="1s"
+				LaserId="1"/>
+			<DamageNugget 
+				Damage="150.0"
+				Radius="10.0"
+				DelayTimeSeconds="0.5s"
+				DamageType="CANNON"
+				DeathType="NORMAL">
+				<DamageScalarDetails
+					Scalar= "2000%">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY"/>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		  id="AlienStormRiderPlasmaDiskLauncherAntiAir"
+		  inheritFrom="ScatterableWeapon"
+		  AttackRange="300.0"
+		  WeaponSpeed="999999.0"
+		  AcceptableAimDelta="360d"
+		  FireSound="ALI_StormRider_DiskWeaponFire"
+		  FireFX="FX_AlienAutoCannonFire"
+			RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE"
+		  CanFireWhileMoving="true"
+		  ClipSize="4">
+		<FiringDuration
+				MinSeconds="0.4s"
+				MaxSeconds="0.4s"/>
+		<ClipReloadTime
+			MinSeconds="0.75s"
+			MaxSeconds="0.75s"/>
+		<Nuggets>
+			<DamageNugget 
+				Damage="50.0"
+				Radius="5.0" 
+				DamageType="ROCKET"
+				DamageFXType="ALIEN_CANNON"
+				DeathType="NORMAL">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		  id="AlienStormRiderPlasmaDiskLauncherAntiGround"
+			inheritFrom="ScatterableWeapon"
+		  AttackRange="300.0"
+		  WeaponSpeed="999999.0"
+		  AcceptableAimDelta="360d"
+		  FireSound="ALI_StormRider_DiskWeaponFire"
+		  FireFX="FX_AlienAutoCannonFire"
+			RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE ANTI_SUBMERGED"
+		  CanFireWhileMoving="true"
+		  ClipSize="4">
+		<FiringDuration
+				MinSeconds="0.4s"
+				MaxSeconds="0.4s"/>
+		<ClipReloadTime
+			MinSeconds="0.75s"
+			MaxSeconds="0.75s"/>
+		<Nuggets>
+			<DamageNugget
+				Damage="25.0"
+				Radius="5.0"
+				DamageType="ROCKET"
+				DamageFXType="ALIEN_CANNON"
+				DeathType="NORMAL">
+				<DamageScalarDetails
+					Scalar= "200%">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY"/>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+		<ScatterRadiusVsType
+	Radius="30.0">
+			<Filter
+				Rule="NONE"
+				Include="INFANTRY" />
+		</ScatterRadiusVsType>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="AlienInvaderFighterCannon"
+		AttackRange="190.0" 
+		WeaponSpeed="999999.0"
+		CanFireWhileMoving="true"
+		ClipSize="=$UNLIMITED_CLIP_SIZE"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		FireSound="ALI_PAC_Weapon_Invader_GunFire"
+		FireFX="FX_AlienAutoCannonFire"
+		AcceptableAimDelta="360d"
+		ReAcquireDetailType="PER_CLIP"
+		UseCenterForRangeCheck="true"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE">
+		<FiringDuration
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<Nuggets>
+			<DamageNugget 
+				Damage="1.0"
+				Radius="0.0"
+				DelayTimeSeconds="0.13s"
+				DamageType="ROCKET"
+				DeathType="NORMAL">
+				<DamageScalarDetails
+					Scalar= "200%">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY"/>
+				</DamageScalarDetails>
+			</DamageNugget>
+			<SuppressionNugget
+				Radius="20.0"
+				Suppression="50"
+				DurationSeconds="5s" />
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="AlienConquerShipPulseCannonA"
+		AttackRange="1400.0"
+		WeaponSpeed="999.0"
+		FireSound="ALI_AnnihilatorTripod_Weapon1FireMS"
+		AcceptableAimDelta="90d"
+		ClipSize="1"
+		FireFX="FX_AlienDevourerFire"
+		CanFireWhileMoving="true"
+		PreAttackType="PER_TARGET"
+		AutoReloadsClip="AUTO"
+		ReAcquireDetailType="PER_CLIP"
+		RadiusDamageAffects="ENEMIES"
+		ProjectileCollidesWith="ENEMIES NEUTRAL"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY">
+		<FiringDuration
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<ClipReloadTime
+			MinSeconds="1.5s"
+			MaxSeconds="1.5s" />
+		<Nuggets>
+			<ActivateLaserNugget
+				Lifetime="0.5s"
+				LaserId="1"/>
+			<DamageNugget
+				Damage="1000.0"
+				Radius="20.0"
+				DamageType="CANNON"
+				DamageFXType="ALIEN_CANNON"
+				DeathType="ELECTROCUTED">
+			</DamageNugget>
+			<LineDamageNugget
+        id="DefaultDamageNugget"
+				Damage="2000.0"
+				LineWidth="10.0"
+				DamageType="EXPLOSIVE"
+				DamageFXType="ALIEN_CANNON"
+				DeathType="ELECTROCUTED"
+				UseDynamicLineLength="true"
+				OverShootDistance="0.0">
+				<SpecialObjectFilter
+					Rule="ALL"
+					StatusBitFlagsExclude="UNATTACKABLE">
+				</SpecialObjectFilter>
+			</LineDamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlienConquerShipPulseCannonB"
+		AttackRange="1400.0"
+		WeaponSpeed="999.0"
+		FireSound="ALI_AnnihilatorTripod_Weapon1FireMS"
+		AcceptableAimDelta="90d"
+		ClipSize="1"
+		FireFX="FX_AlienDevourerFire"
+		CanFireWhileMoving="true"
+		PreAttackType="PER_TARGET"
+		AutoReloadsClip="AUTO"
+		ReAcquireDetailType="PER_CLIP"
+		RadiusDamageAffects="ENEMIES"
+		ProjectileCollidesWith="ENEMIES NEUTRAL"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY">
+		<FiringDuration
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<ClipReloadTime
+			MinSeconds="2.0s"
+			MaxSeconds="2.0s" />
+		<Nuggets>
+			<ActivateLaserNugget
+				Lifetime="0.5s"
+				LaserId="2"/>
+			<DamageNugget
+				Damage="1000.0"
+				Radius="20.0"
+				DamageType="CANNON"
+				DamageFXType="ALIEN_CANNON"
+				DeathType="ELECTROCUTED">
+			</DamageNugget>
+			<LineDamageNugget
+        id="DefaultDamageNugget"
+				Damage="2000.0"
+				LineWidth="20.0"
+				DamageType="EXPLOSIVE"
+				DamageFXType="ALIEN_CANNON"
+				DeathType="ELECTROCUTED"
+				UseDynamicLineLength="true"
+				OverShootDistance="0.0">
+				<SpecialObjectFilter
+					Rule="ALL"
+					StatusBitFlagsExclude="UNATTACKABLE">
+				</SpecialObjectFilter>
+			</LineDamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlienConquerShipPlasmaDiskBattery"
+		AttackRange="1200.0" 
+		WeaponSpeed="600.0"
+		ScatterRadius="1"
+		ScatterLength="150"
+		FireSound="ALI_DevastatorWarship_DiskWeaponFire"
+		FireFX="FX_AlienPlasmaDiskFire"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT LENGTH_SCATTER"
+		RadiusDamageAffects="ENEMIES"
+		ClipSize="12"
+		ReAcquireDetailType="PRE_FIRE"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER ANTI_STRUCTURE ANTI_SUBMERGED"
+		AcceptableAimDelta="60d">
+		<FiringDuration
+			MinSeconds="0.05s"
+			MaxSeconds="0.05s" />
+		<ClipReloadTime
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<Nuggets>
+			<ProjectileNugget 
+				WarheadTemplate="AlienConquerShipPlasmaDiskWarhead" 
+				ProjectileTemplate="AlienPlasmaDisk">
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlienConquerShipPlasmaDiskBatteryAntiAir"
+		AttackRange="1200.0"
+		WeaponSpeed="600.0"
+		FireSound="ALI_DevastatorWarship_DiskWeaponFire"
+		FireFX="FX_AlienPlasmaDiskFire"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		RadiusDamageAffects="ENEMIES"
+		ClipSize="6"
+		ReAcquireDetailType="PRE_FIRE"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+		AcceptableAimDelta="60d">
+		<FiringDuration
+			MinSeconds="0.05s"
+			MaxSeconds="0.05s" />
+		<ClipReloadTime
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="AlienConquerShipPlasmaDiskWarhead"
+				ProjectileTemplate="AlienPlasmaDisk">
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlienConquerShipPlasmaDiskWarhead"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		ProjectileCollidesWith="ENEMIES NEUTRAL"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER ANTI_SUBMERGED ANTI_STRUCTURE ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY">
+		<Nuggets>
+			<DamageNugget 
+				Damage="1000.0"
+				Radius="50"
+				DamageType="CANNON"
+				DamageFXType="ALIEN_CANNON"
+				DeathType="EXPLODED">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlienAnnihilatorPulseCannonA"
+		AttackRange="300.0"
+		WeaponSpeed="999.0"
+		FireSound="ALI_AnnihilatorTripod_Weapon1FireMS"
+		MinTargetPitch="-15d"
+		MaxTargetPitch="15d"
+		ClipSize="1"
+		FireFX="FX_AlienDevourerFireHeroic"
+		FireVeteranFX="FX_AlienDevourerFireHeroic"
+		CanFireWhileMoving="true"
+		PreAttackType="PER_TARGET"
+		ReAcquireDetailType="PRE_FIRE"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_SUBMERGED">
+		<FiringDuration
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<ClipReloadTime
+			MinSeconds="0.25s"
+			MaxSeconds="0.75s" />
+		<Nuggets>
+			<ActivateLaserNugget
+				Lifetime="0.9s"
+				LaserId="1"/>
+			<DamageNugget
+				Damage="250.0"
+				DamageType="EXPLOSIVE"
+				DamageFXType="ALIEN_LASER"
+				DeathType="ELECTROCUTED">
+				<DamageScalarDetails Scalar= "200%">
+					<Filter
+						Rule="NONE"
+						Include="CIVILIAN_BUILDING" />
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="AlienAnnihilatorPulseCannonB"
+		AttackRange="300.0"
+		WeaponSpeed="999.0"
+		FireSound="ALI_AnnihilatorTripod_Weapon1FireMS"
+		MinTargetPitch="-15d"
+		MaxTargetPitch="15d"
+		ClipSize="1"
+		FireFX="FX_AlienDevourerFireHeroic"
+		FireVeteranFX="FX_AlienDevourerFireHeroic"
+		CanFireWhileMoving="true"
+		PreAttackType="PER_TARGET"
+		ReAcquireDetailType="PRE_FIRE"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_SUBMERGED">
+		<FiringDuration
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<ClipReloadTime
+			MinSeconds="0.25s"
+			MaxSeconds="0.75s" />
+		<Nuggets>
+			<ActivateLaserNugget
+				Lifetime="0.9s"
+				LaserId="2"/>
+			<DamageNugget
+				Damage="250.0"
+				DamageType="EXPLOSIVE"
+				DamageFXType="ALIEN_LASER"
+				DeathType="ELECTROCUTED">
+				<DamageScalarDetails Scalar= "200%">
+					<Filter
+						Rule="NONE"
+						Include="CIVILIAN_BUILDING" />
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="AlienAnnihilatorPulseCannonC"
+		AttackRange="300.0"
+		WeaponSpeed="999.0"
+		FireSound="ALI_AnnihilatorTripod_Weapon1FireMS"
+		MinTargetPitch="-15d"
+		MaxTargetPitch="15d"
+		ClipSize="1"
+		FireFX="FX_AlienDevourerFireHeroic"
+		FireVeteranFX="FX_AlienDevourerFireHeroic"
+		CanFireWhileMoving="true"
+		PreAttackType="PER_TARGET"
+		ReAcquireDetailType="PRE_FIRE"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_SUBMERGED">
+		<FiringDuration
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<ClipReloadTime
+			MinSeconds="0.25s"
+			MaxSeconds="0.75s" />
+		<Nuggets>
+			<ActivateLaserNugget
+				Lifetime="0.9s"
+				LaserId="3"/>
+			<DamageNugget
+				Damage="250.0"
+				DamageType="EXPLOSIVE"
+				DamageFXType="ALIEN_LASER"
+				DeathType="ELECTROCUTED">
+				<DamageScalarDetails Scalar= "200%">
+					<Filter
+						Rule="NONE"
+						Include="CIVILIAN_BUILDING" />
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlienGunWalkerPlasmaAutoCannon"
+		AttackRange="200.0"
+		WeaponSpeed="999999.0" 
+		FireSound="ALI_GunWalker_WeaponFire"
+		FireFX="FX_AlienAutoCannonFire"
+		FireVeteranFX="FX_AlienAutoCannonFireHeroic"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		ClipSize="4"
+		CanFireWhileMoving="true"
+		AcceptableAimDelta="10d" 
+		RadiusDamageAffects="ENEMIES"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE">
+		<FiringDuration
+			MinSeconds="0.4s"
+			MaxSeconds="0.4s" />
+		<ClipReloadTime
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<Nuggets>
+			<DamageNugget 
+				Damage="150.0"
+				Radius="1" 
+				DamageType="AUTO_CANNON"
+				DamageFXType="ALIEN_CANNON"
+				DeathType="ELECTROCUTED">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="ScrinHugeTower25"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		RequiredAntiMask="ANTI_INFANTRY ANTI_VEHICLE ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE"
+		FireFX="FX_NODRedeemerRageGenerator">
+		<Nuggets>
+			<AttributeModifierNugget
+				AttributeModifierName="AttributeModifier_MODAntiNavyShipTech2ShortWeapon"
+				Radius="9000" >
+			</AttributeModifierNugget>
+			<InformationWarfareNugget
+				InfoWarType="RADAR_JAM"
+				RadarJamRadius="9000.0"
+				RadarJamDuration="10s">
+			</InformationWarfareNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+	id="ScrinHugeTowerWeapon"
+	AttackRange="99999.0"
+	WeaponSpeed="999999.0"
+	ClipSize="1"
+	ReAcquireDetailType="PER_CLIP"
+	AutoReloadsClip="AUTO"
+	Flags="NOT_ATTRACTED_BY_MAGNETS"
+	RadiusDamageAffects="ENEMIES"
+	RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+	CanFireWhileMoving="true"
+	RevealShroudOnFire="true"
+	AcceptableAimDelta="360d"
+	ShotsPerBarrel="1">
+		<FiringDuration
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<ClipReloadTime
+			MinSeconds="60s"
+			MaxSeconds="60s" />
+		<WeaponAiHintInfo
+			UseLongLockOnTimeCode="true" />
+		<Nuggets>
+			<WeaponOCLNugget
+				WeaponOCL="OCL_IronStormCloudScrinSpawn">
+			</WeaponOCLNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="IronStormCloudSpawnEffectWeapon"
+		ClipSize="1"
+		AutoReloadsClip="NONE"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		AttackRange="10000"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS">
+		<Nuggets>
+			<WeaponOCLNugget
+				WeaponOCL="OCL_IronStormCloudScrin" />
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlienMotherShipCatalystCannon"
+		AttackRange="50.0"
+		WeaponSpeed="999999.0"
+		AcceptableAimDelta="180d"
+		HitPercentage="0%"
+		ScatterRadius="0"
+		CanFireWhileMoving="false"
+		ClipSize="1"
+		FireSoundPerClip="ALI_MotherShip_WeaponFire"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE">
+		<PreAttackDelay
+		  MinSeconds="5.3s"
+		  MaxSeconds="5.3s" />
+		<FiringDuration
+				MinSeconds="4s"
+				MaxSeconds="4s" />
+		<ClipReloadTime
+				MinSeconds="0.13s"
+				MaxSeconds="0.13s" />
+		<Nuggets>
+			<WeaponOCLNugget
+				WeaponOCL="OCLMotherShipBeam">
+			</WeaponOCLNugget>
+			<DamageNugget
+				Damage="1"
+				Radius="750"
+				DelayTimeSeconds=".5s"
+				DamageType="EXPLOSIVE"
+				DamageFXType="ALIEN_LASER"
+				DeathType="CATALYST">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlienMotherShipCatalystCannonWarhead"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		ProjectileCollidesWith="ENEMIES NEUTRAL"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE"
+		Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<Nuggets>
+			<DamageNugget
+				Damage="1000"
+				Radius="750"
+				DamageType="EXPLOSIVE"
+				DamageFXType="ALIEN_LASER"
+				DeathType="CATALYST">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlienEradicatorPlasmaDiskBattery"
+		AttackRange="350.0"
+		WeaponSpeed="300.0"
+		ScatterRadius="30"
+		ScatterLength="200"
+		FireSound="ALI_SeekerTank_DiskWeaponFire"
+		FireFX="FX_AlienPlasmaDiskLrgFire"
+		FireVeteranFX="FX_AlienPlasmaDiskLrgFireHeroic"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		ClipSize="7"
+		ReAcquireDetailType="PRE_FIRE"
+		Flags="LENGTH_SCATTER NOT_ATTRACTED_BY_MAGNETS"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE"
+		AcceptableAimDelta="60d">
+		<FiringDuration
+			MinSeconds="0.05s"
+			MaxSeconds="0.05s" />
+		<ClipReloadTime
+			MinSeconds="1.8s"
+			MaxSeconds="2.0s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="AlienEradicatorPlasmaDiskBatteryWarhead"
+				ProjectileTemplate="AlienPlasmaDisk">
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlienEradicatorPlasmaDiskBatteryAntiAir"
+		AttackRange="350.0"
+		WeaponSpeed="300.0"
+		FireSound="ALI_SeekerTank_DiskWeaponFire"
+		FireFX="FX_AlienPlasmaDiskLrgFire"
+		FireVeteranFX="FX_AlienPlasmaDiskLrgFireHeroic"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		ClipSize="7"
+		ReAcquireDetailType="PRE_FIRE"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE"
+		AcceptableAimDelta="60d">
+		<FiringDuration
+			MinSeconds="0.05s"
+			MaxSeconds="0.05s" />
+		<ClipReloadTime
+			MinSeconds="1.8s"
+			MaxSeconds="2.0s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="AlienEradicatorPlasmaDiskBatteryWarhead"
+				ProjectileTemplate="AlienPlasmaDisk">
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlienEradicatorPlasmaDiskBatteryWarhead"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		ProjectileCollidesWith="ENEMIES NEUTRAL"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE"
+		Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<Nuggets>
+			<DamageNugget
+				Damage="150.0"
+				Radius="20"
+				DamageType="EXPLOSIVE"
+				DamageFXType="ALIEN_PLASMADISK"
+				DeathType="NORMAL">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+	id="IronStormCloudScrin"
+	AttackRange="100.0"
+	WeaponSpeed="9999"
+	FireFX="FX_LightningSpikeFire"
+FireSound="ALI_StormColumn_BigWeaponFire"
+	AcceptableAimDelta="180d"
+	PreAttackType="PER_SHOT"
+	ReAcquireDetailType="PRE_FIRE"
+	ClipSize="1"
+	Flags="NOT_ATTRACTED_BY_MAGNETS"
+	RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_AIRBORNE_INFANTRY ANTI_AIRBORNE_VEHICLE"
+	RadiusDamageAffects="ENEMIES NEUTRALS"
+	CanFireWhileMoving="true">
+		<FiringDuration
+				MinSeconds="0.5s"
+				MaxSeconds="0.5s" />
+		<ClipReloadTime
+				MinSeconds="0.5s"
+				MaxSeconds="0.5s"	/>
+		<Nuggets>
+			<DamageNugget
+				Damage="185.0"
+				Radius="5.0"
+				DamageType="TESLA"
+				DamageFXType="SOVIET_TESLA"
+				DeathType="ELECTROCUTED">
+				<DamageScalarDetails Scalar= "75%">
+					<Filter
+					Rule="ANY"
+					Include="INFANTRY VEHICLE"
+					StatusBitFlags="AIRBORNE_TARGET">
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="ART:Units/JapanAntiGroundAircraft/JapanAntiGroundAircraft_ROCKET.w3x"/>
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseProjectile.xml"/>
+	</Includes>
+	<GameObject
+		id="JapanAntiGroundAircraftBombProjectile"
+		inheritFrom="BaseProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		EditorName="JapanAntiGroundAircraftBombProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JapanAntiGroundAircraft_ROCKET" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ProjectileUpdate
+				id="ModuleTag_BombUpdate"
+				StateMachine="BombProjectile"
+				MinDetonationHeight="10"
+				MinTargetDistance="1">
+				<Movement>
+					<MoveToGround
+						Acceleration="1.2"
+						TerminalVelocity="15.0"
+						RotationSpeedPerSecond="30d"/>
+				</Movement>
+			</ProjectileUpdate>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_JapanBomber_BombExplosion" />
+				<Event
+					Index="onTerrainCollision"
+					FX=""/>
+			</FXListBehavior>
+		</Behaviors>
+	</GameObject>
+
+  <GameObject
+		inheritFrom="JapanAntiGroundAircraftBombProjectile"
+		id="JapanAntiGroundAircraftBombProjectile_Vet"
+		EditorName="JapanAntiGroundAircraftBombProjectile_Vet">
+    <Draws>
+    </Draws>
+    <Behaviors>
+      <FXListBehavior
+				id="ModuleTag_FXList">
+        <DieMuxData
+					DeathTypes="ALL" />
+        <Event
+					Index="onDeath"
+					FX="FX_ALL_JapanBomber_BombExplosion_Vet" />
+      </FXListBehavior>
+    </Behaviors>
+  </GameObject>
+
+</AssetDeclaration>

@@ -1,0 +1,613 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<!-- aka Cryocopter -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+
+		<Include type="all" source="ART:AUSupportAircraft.w3x" />
+		<Include type="all" source="ART:AUSupportAircraft_D.xml" />
+		<Include type="all" source="ART:AUSupportAircraft_FP.w3x" />
+		<Include type="all" source="ART:FXCryoBeamLaser.xml" />
+		<Include type="all" source="ART:FXShrinkRay.xml" />
+		<Include type="all" source="ART:FXInterlacedMask.xml" />
+		<Include type="all" source="ART:Units/AlliedSupportAircraft/AUSUPPORTAIRCRAFT_CTR.w3x" />
+		<Include type="all" source="ART:Units/AlliedSupportAircraft/AUSUPPORTAIRCRAFT_HRC.w3x" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseAircraft.xml" />
+		<Include type="all" source="ART:AUSupportAircraft_02.xml" />
+		<Include type="all" source="ART:AUSupportAircraft_02_D.xml" />
+	</Includes>
+	<GameObject
+		id="AlliedSupportAircraft"
+		inheritFrom="BaseAircraft"
+		SelectPortrait="Portrait_AlliedSupportAircraft"
+		ButtonImage="Button_AlliedSupportAircraft_on"
+		Side="Allies"
+		SubGroupPriority="530"
+		EditorSorting="UNIT"
+		TransportSlotCount="20"
+		BuildTime="14"
+		CommandSet="AlliedSupportAircraftCommandSet"
+		KindOf="CAN_CAST_REFLECTIONS CAN_ATTACK SELECTABLE SCORE AIRCRAFT VEHICLE LINE_OF_SIGHT_IGNORES_BUILDINGS CAN_BE_FAVORITE_UNIT LEAVE_PARKING_ON_BUILD_COMPLETE PRODUCED_AT_HELIPAD BEAM_TARGET_REFLECTOR"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="AIRCRAFT"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="CANNON"
+		VoicePriority="148"
+		BountyValue="250"
+		EditorName="AlliedSupportAircraft"
+		Description="Desc:AlliedSupportAircraft"
+		TypeDescription="Type:SupportUnit"
+		HealthBoxHeightOffset="20"
+		UnitIntro="Allied_Cryocopter_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedSupportAircraft</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1400" />
+		</ObjectResourceInfo>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_AlliedTech2</NeededUpgrade>
+		</GameDependency>
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			Locomotor="BasicHelicopterTaxiLocomotor"
+			Condition="TAXIING"
+			Speed="10" />
+		<LocomotorSet
+			id="DefaultLocomotor"
+			Locomotor="AlliedSupportAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="150.0" />
+		<LocomotorSet
+			id="UpgradeLocomotor"
+			Locomotor="AlliedSupportAircraftLocomotor"
+			Condition="NORMAL_UPGRADED"
+			Speed="150.0" />
+		<!-- Need ConquerMetricsOverrideDefendingAntiMask or else the TAXIING locomotor will make
+		the AI try to build anti-ground units against this -->
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="2.0"
+			DoesSecondaryDamage="true">
+		</SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUSUPPORTAIRCRAFT_TNWSKN" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXWEAPON_01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXWEAPON_01" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FXWEAPON_01" />
+					<Turret
+						TurretNameKey="ausupportaircraft"
+						TurretID="3" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="AUSupportAircraft_FP" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_2">
+					<Model
+						Name="AUSUPPORTAIRCRAFT_TNWSKN" />
+					<Texture
+						Original="AUSupportAircraft"
+						New="AUSupportAircraft_02_D" />
+					<ParticleSysBone
+						BoneName="FX_Rfan"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_2">
+					<Model
+						Name="AUSUPPORTAIRCRAFT_TNWSKN" />
+					<Texture
+						Original="AUSupportAircraft"
+						New="AUSupportAircraft_02_D" />
+					<ParticleSysBone
+						BoneName="FX_Rfan"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Rfan"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Rfan"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING USER_2">
+					<Model
+						Name="AUSUPPORTAIRCRAFT_TNWSKN" />
+					<Texture
+						Original="AUSupportAircraft"
+						New="AUSupportAircraft_02_D" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="AUSUPPORTAIRCRAFT_TNWSKN" />
+					<Texture
+						Original="AUSupportAircraft"
+						New="AUSupportAircraft_02" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AUSUPPORTAIRCRAFT_TNWSKN" />
+					<ParticleSysBone
+						BoneName="FX_Rfan"
+						FXParticleSystemTemplate="ChopperDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUSUPPORTAIRCRAFT_TNWSKN" />
+					<Texture
+						Original="AUSupportAircraft"
+						New="AUSupportAircraft_D" />
+					<ParticleSysBone
+						BoneName="FX_Rfan"
+						FXParticleSystemTemplate="ChopperDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Rfan"
+						FXParticleSystemTemplate="ChopperDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Model
+						Name="AUSUPPORTAIRCRAFT_TNWSKN" />
+					<Texture
+						Original="AUSupportAircraft"
+						New="AUSupportAircraft_D" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="AUSupportAircraft"
+						AnimationMode="LOOP" />
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+				id="ModuleTag_Particles">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					Skeleton="">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="HelicopterMovingWaterWake"
+						FollowBone="false" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDraw_CryoBeam"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".03"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				FadeInTime="0.1s"
+				FadeOutTime="0.1s"
+				LaserWidth="15"
+				WeaponSlotID="1"
+				LaserStateID="0">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXCryoBeamLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDraw_ShrinkRay"
+				Texture1_UTile="1"
+				Texture1_VTile="5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="1"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				FadeInTime="0.2s"
+				FadeOutTime="0.2s"
+				LaserWidth="15"
+				WeaponSlotID="2"
+				LaserStateID="1">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXShrinkRay</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXShrinkRay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>3.000000</Value>
+							<Value>3.000000</Value>
+							<Value>3.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDraw_ShrinkRayAI"
+				Texture1_UTile="1"
+				Texture1_VTile="5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="1"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				FadeInTime="0.2s"
+				FadeOutTime="0.2s"
+				LaserWidth="15"
+				WeaponSlotID="4"
+				LaserStateID="2">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXShrinkRay</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXShrinkRay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>3.000000</Value>
+							<Value>3.000000</Value>
+							<Value>3.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSet">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedSupportAircraftCryobeam"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_02" />
+				</WeaponSlotHardpoint>
+				<WeaponSlotTurret
+					ID="3">
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="AlliedSupportAircraftCryobeam"
+						ObjectStatus="WEAPON_UPGRADED_02"
+						Upgrade="AlliedUnitUpgrade" />
+					<TurretSettings
+						TurretTurnRate="360"
+						ControlledWeaponSlots="SECONDARY_WEAPON">
+						<TurretAITargetChooserData
+							CanPickDynamicTargets="true"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<SpecialPower
+				id="SpecialPower_AlliedSupportAircraftLevelGrant"
+				SpecialPowerTemplate="SpecialPower_AlliedSupportAircraftLevelGrantSpecialPower"
+				UpdateModuleStartsAttack="true" />
+			<SpecialAbilityUpdate
+				id="SpecialPower_AlliedSupportAircraftLevelGrantAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_AlliedSupportAircraftLevelGrantSpecialPower"
+				UnpackTime="0s"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				AwardXPForTriggering="60" />
+			<SpecialPower
+				id="SpecialPower_AlliedSupportAircraftLaserUpgradeLevelGrant"
+				SpecialPowerTemplate="SpecialPower_AlliedSupportAircraftLaserUpgradeLevelGrantSpecialPower"
+				UpdateModuleStartsAttack="true" />
+			<SpecialAbilityUpdate
+				id="SpecialPower_AlliedSupportAircraftLaserUpgradeLevelGrantAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_AlliedSupportAircraftLaserUpgradeLevelGrantSpecialPower"
+				UnpackTime="0s"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				AwardXPForTriggering="75" />
+			<LocomotorSetUpgrade
+				id="ModuleTag_LocomotorUpgrade">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</LocomotorSetUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_02">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_AlliedLaserUpgradeUpgradeFX"
+				AttributeModifier="AttributeMod_PlayerPowerUpgradeAttributeFX">
+				<TriggeredBy>Upgrade_AlliedLaserUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_AlliedUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieAir"
+				CreationList="AUSupportAircraft_Dying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<UpgradeForbidden>Upgrade_AlliedAirPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_UpgradeCreateObjectDieAir"
+				CreationList="AUSupportAircraft_UpgradeDying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<UpgradeRequired>Upgrade_AlliedAirPower</UpgradeRequired>
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_CryocpterDie" />
+			</FXListBehavior>
+			<LaserState
+				id="ModuleTag_LaserStateCryobeam"
+				LaserId="0"
+				OriginBoneName="FXWEAPON_01">
+				<LaserEndParticleSystem>AlliedCryoBeamHitRichochet</LaserEndParticleSystem>
+				<LaserEndParticleSystem>AlliedCryoBeamHitMist</LaserEndParticleSystem>
+				<LaserEndParticleSystem>AlliedCryoBeamHitGlow</LaserEndParticleSystem>
+				<LaserStartParticleSystem>AlliedCryoBeamFireGlow</LaserStartParticleSystem>
+			</LaserState>
+			<LaserState
+				id="ModuleTag_LaserStateShrinkRay"
+				LaserId="1"
+				OriginBoneName="FXWEAPON_01"/>
+
+			<SpecialPower
+				id="ModuleTag_ShrinkRaySpecialPower"
+				SpecialPowerTemplate="SpecialPower_ShrinkRay"
+				UpdateModuleStartsAttack="true"/>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_ShrinkRaySpecialAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_ShrinkRay"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="2"
+				SpecialWeapon="AlliedSupportAircraftShrinkRay"
+				StartAbilityRange="350"
+				UnpackTime="0s"
+				PackTime="1s"
+				NeedLivingTargets="true"
+				TriggerSound="ALL_CryocopterShrinkrayFire"/>
+			<SpecialPower
+				id="ModuleTag_ShrinkRaySpecialPowerAI"
+				SpecialPowerTemplate="SpecialPower_ShrinkRayAI"
+				UpdateModuleStartsAttack="true"/>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_ShrinkRaySpecialAbilityUpdateAI"
+				SpecialPowerTemplate="SpecialPower_ShrinkRayAI"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="2"
+				SpecialWeapon="AlliedSupportAircraftShrinkRayAI"
+				StartAbilityRange="350"
+				UnpackTime="0s"
+				PackTime="1s"
+				NeedLivingTargets="true"
+				TriggerSound="ALL_CryocopterShrinkrayFire" />
+
+			<CommandSetUpgrade
+				id="ModuleTag_CommandSetUpgrade_AI"
+				CommandSet="AlliedSupportAircraftAICommandSet">
+				<TriggeredBy>NormalAIUpgrade</TriggeredBy>
+			</CommandSetUpgrade>
+			<!-- Anti Sub Invisibility-->
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AntiSubInvisibilityAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="350.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_AntiSubInvisibility">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="SUBMARINE">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+
+			<!-- AlliedAirPowerUpgrade -->
+			<xi:include
+				href="DATA:Includes/AlliedAirPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedAirPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<JetAIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="HelicopterAIStateMachine">
+				<UnitAITargetChooserData
+					RotateToTargetWhenAiming="true" />
+			</JetAIUpdate>
+			<JetAIUpdate
+				id="ModuleTag_UpgradeAIUpdate"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="HelicopterAIStateMachine"
+				DefaultLocomotorSet="NORMAL_UPGRADED">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="true" />
+			</JetAIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="550" />
+		</Body>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="25" />
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior
+				id="ModuleTag_Flying">
+				<ModelConditionSound Sound="ALL_Cryocopter_TakeOff" RequiredFlags="CLIMBING"
+					ExcludedFlags="DYING" />
+				<ModelConditionSound Sound="ALL_Cryocopter_Land" RequiredFlags="LANDING"
+					ExcludedFlags="DYING" />
+				<ModelConditionSound Sound="ALL_Cryocopter_MoveLoop" RequiredFlags="FLYING MOVING"
+					ExcludedFlags="DAMAGED REALLYDAMAGED DYING" />
+				<ModelConditionSound Sound="ALL_Cryocopter_MoveDamageLoop"
+					RequiredFlags="FLYING MOVING DAMAGED" ExcludedFlags="REALLYDAMAGED DYING" />
+				<ModelConditionSound Sound="ALL_Cryocopter_MoveReallyDamageLoop"
+					RequiredFlags="FLYING MOVING REALLYDAMAGED" ExcludedFlags="DAMAGED DYING" />
+				<ModelConditionSound Sound="ALL_Cryocopter_IdleLoop" RequiredFlags="FLYING"
+					ExcludedFlags="DAMAGED REALLYDAMAGED MOVING DYING" />
+				<ModelConditionSound Sound="ALL_Cryocopter_IdleDamageLoop"
+					RequiredFlags="FLYING DAMAGED" ExcludedFlags="REALLYDAMAGED MOVING DYING" />
+				<ModelConditionSound Sound="ALL_Cryocopter_IdleReallyDamageLoop"
+					RequiredFlags="FLYING REALLYDAMAGED" ExcludedFlags="DAMAGED MOVING DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="16.0"
+				MinorRadius="11.0"
+				Height="8.0"
+				ContactPointGeneration="VEHICLE">
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="ALL_Cryocopter_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="ALL_Cryocopter_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="ALL_Cryocopter_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="ALL_Cryocopter_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="ALL_Cryocopter_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="ALL_Cryocopter_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="ALL_Cryocopter_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="ALL_Cryocopter_VoiceSelectUnderFireMS"
+				AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="ALL_Cryocopter_VoiceAttackSpecial" Name="VoiceShrinkRay" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="ALL_Cryocopter_MoveStart" AudioType="soundMoveStart" />
+			<!-- <AudioEntry Sound="ALL_Cryocopter_IdleLoop" AudioType="soundMoveLoop" /> -->
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$BASE_AIRCRAFT_SHROUD_CLEAR" />
+	</GameObject>
+	<GameObject
+		id="AlliedSupportAircraft_Crate"
+		inheritFrom="AlliedSupportAircraft"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="AlliedSupportAircraft_Crate">
+		<EquivalentTo>AlliedSupportAircraft</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

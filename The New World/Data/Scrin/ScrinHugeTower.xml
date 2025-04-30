@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all"	source="ART:Structures/ScrinHugeTower/ABTOWER.OBBOX01.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinHugeTower/ABTOWER.OBBOX02.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinHugeTower/ABTOWER.OBBOX03.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinHugeTower/ABTOWER.OBBOX04.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinHugeTower/ABTOWER.OBBOX05.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinHugeTower/ABTOWER.OBBOX06.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinHugeTower/ABTOWER_SKN.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinHugeTower/ABTOWERR_SKN.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinHugeTower/ABTOWER_D4.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinHugeTower/ABTOWER_D4_SKN.w3x" />
+	</Includes>
+	<GameObject
+		id="ScrinHugeTower"
+		SelectPortrait="Portrait_AlienTower"
+		ButtonImage="Portrait_AlienTower"
+		Side="Neutral"
+		EditorSorting="STRUCTURE"
+		TransportSlotCount="1"
+		BuildTime="10.0"
+		CommandSet="EmptyCommandSet"
+		KindOf="STRUCTURE IMMOBILE CAN_CAST_REFLECTIONS KEEP_CLASSIFIED_WHEN_DEAD SELECTABLE AIRCRAFT_PATH_AROUND PRELOAD CAN_ATTACK CAN_SEE_THROUGH_STRUCTURE RESIST_EMP"
+		RadarPriority="STRUCTURE"
+		PlacementViewAngle="225d"
+		ProductionQueueType="OTHER_STRUCTURE"
+		BuildPlacementTypeFlag="OTHER_STRUCTURE"
+		EditorName="ScrinHugeTower"
+		Description="Desc:ScrinHugeTower"
+		TypeDescription="Type:ScrinHugeTower">
+		<DisplayName>Name:ScrinHugeTower</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			id="DefaultArmor" 
+			Armor="ScrinHugeTowerArmor"
+			DamageFX="InfantryAlienDamageFX" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ABTower" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBone01" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBone01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBone01" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone02"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone03"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+				</ModelConditionState>
+				<!-- DAMAGE STATES -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="RUBBLE">
+					<Model
+						Name="ABTower_D4" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone02"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone03"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone04"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone02"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone03"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone04"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone02"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone03"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone04"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="ABTower" />
+					<Texture
+						Original="ABTower"
+						New="ABTowerD" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBone01" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBone01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBone01" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone02"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone03"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone04"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone02"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone03"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone04"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="ABTower" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBone01" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBone01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBone01" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone02"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone03"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone02"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone03"
+						FXParticleSystemTemplate="AlienTowerTibMaster"
+						FollowBone="true" />
+				</ModelConditionState>
+				
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4">
+					<Model
+						Name="ABTower" />
+					<Texture
+						Original="HC_ABTower"
+						New="HC_ABTower_Build" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBone01" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBone01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBone01" />
+				</ModelConditionState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<!-- no anim -->
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="RUBBLE"
+					StateName="STATE_Rubble"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="ABTower_D4"
+						AnimationMode="MANUAL" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState();
+						if Prev ~= "STATE_Rubble" and Prev ~= "TRANS_IntoRubble" then
+						CurDrawableSetTransitionAnimState("TRANS_IntoRubble")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4">
+					<Script>
+						CurDrawableHideSubObject("Plane05")
+					</Script>	
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_IntoRubble">
+					<Animation
+						AnimationName="ABTower_D4"
+						AnimationMode="ONCE"
+						AnimationBlendTime="0" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_rest"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ABTowerR" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4">
+					<Model
+						Name="ABTowerR" />
+					<Texture
+						Original="HC_ABTower"
+						New="HC_ABTower_Build" />							
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="ScrinHugeTowerWeapon"
+						ObjectStatus="HEALTH_PERCENT_50"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="ScrinHugeTowerWeapon"
+						ObjectStatus="HEALTH_PERCENT_75"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<DamageStateList
+				id="ModuleTag_DamageStateList">
+				<Data
+					MinHealth="0%"
+					MaxHealth="25%"
+					ObjectStatus="HEALTH_PERCENT_25"/>
+				<Data
+					MinHealth="0%"
+					MaxHealth="50%"
+					ObjectStatus="HEALTH_PERCENT_50"/>
+				<Data
+					MinHealth="0%"
+					MaxHealth="75%"
+					ObjectStatus="HEALTH_PERCENT_75"/>
+				<Data
+					MinHealth="0%"
+					MaxHealth="100%"
+					ObjectStatus="HEALTH_PERCENT_100"/>
+			</DamageStateList>
+			<FireWeaponUpdate
+				id="ModuleTag_25FireWeaponUpdate"
+				FireInterval="1s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="ScrinHugeTower25"
+					OneShot="true" />
+				<ObjectStatusValidation
+					RequiredStatus="HEALTH_PERCENT_25" />
+			</FireWeaponUpdate>
+			<FireWeaponUpdate
+				id="ModuleTag_75FireWeaponUpdate"
+				FireInterval="1s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="ScrinHugeTower25"
+					OneShot="true" />
+				<ObjectStatusValidation
+					RequiredStatus="HEALTH_PERCENT_75" />
+			</FireWeaponUpdate>
+			<SecondaryDamageTracker
+				id="ModuleTag_SecondaryDamageTracker"
+				UpdateDuration="1s"
+				DissipateAmount="25"
+				MaxDamageClampScaler="=$MAX_SECONDARY_DAMAGE_SCALER">
+				<Color R="1.0" G="1.0" B="1.75"/>
+				<EffectInfo
+					Fraction="0.4"
+					AttributeModifier="AttributeModifer_CryoBeam_02"
+				/>
+				<EffectInfo
+					Fraction="0.8"
+					AttributeModifier="AttributeModifer_CryoBeam_04"
+				/>
+				<EffectInfo
+					Fraction="1.2"
+					AttributeModifier="AttributeModifer_CryoBeam_06"
+				/>
+				<EffectInfo
+					Fraction="1.6"
+					AttributeModifier="AttributeModifer_CryoBeam_08"
+				/>
+				<EffectInfo
+					Fraction="2.0"
+					SetUpgradedArmor="true"
+					OnEnterDisable="true"
+					OnEnterCancelSpecialAbilities="true"
+					AttributeModifier="AttributeModifer_CryoBeam_10"
+				/>
+				<ObjectStatusValidation
+					ForbiddenStatus="UNDER_IRON_CURTAIN"/>
+			</SecondaryDamageTracker>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+				IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100000.0"/>
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="183.736"
+				MinorRadius="140.0"
+				Height="34.816">
+				<Offset
+					x="-115.544"
+					y="-73.8479"
+					z="-4.71191e-007" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="183.736"
+				MinorRadius="140.0"
+				Height="66.8467">
+				<Offset
+					x="-115.544"
+					y="-17.4258"
+					z="1.9951e-006" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="183.736"
+				MinorRadius="140.0"
+				Height="104.281">
+				<Offset
+					x="-115.544"
+					y="38.916"
+					z="4.45787e-006" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="183.736"
+				MinorRadius="140.0"
+				Height="156.421">
+				<Offset
+					x="-115.544"
+					y="75.6718"
+					z="6.06452e-006" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="183.736"
+				MinorRadius="140.0"
+				Height="209.605">
+				<Offset
+					x="-115.544"
+					y="108.195"
+					z="7.48616e-006" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="183.736"
+				MinorRadius="140.0"
+				Height="268.294">
+				<Offset
+					x="-115.544"
+					y="136.445"
+					z="8.72102e-006" />
+			</Shape>
+			<ContactPoint>
+				<Pos
+					x="-274.94"
+					y="-189.831"
+					z="9.27735" />
+			</ContactPoint>
+			<ContactPoint>
+				<Pos
+					x="44.1086"
+					y="39.8856"
+					z="209.277" />
+			</ContactPoint>
+			<ContactPoint>
+				<Pos
+					x="44.1086"
+					y="-105.96"
+					z="9.27735" />
+			</ContactPoint>
+			<ContactPoint>
+				<Pos
+					x="-274.94"
+					y="118.027"
+					z="209.277" />
+			</ContactPoint>
+			<ContactPoint>
+				<Pos
+					x="-274.94"
+					y="39.8856"
+					z="209.277" />
+			</ContactPoint>
+			<ContactPoint>
+				<Pos
+					x="44.1086"
+					y="-189.831"
+					z="9.27735" />
+			</ContactPoint>
+			<ContactPoint>
+				<Pos
+					x="44.1086"
+					y="118.027"
+					z="209.277" />
+			</ContactPoint>
+			<ContactPoint>
+				<Pos
+					x="-274.94"
+					y="-105.96"
+					z="9.27735" />
+			</ContactPoint>
+		</Geometry>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="90000" />
+	</GameObject>
+</AssetDeclaration>

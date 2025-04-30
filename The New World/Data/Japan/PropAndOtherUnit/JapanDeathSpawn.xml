@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="instance"
+			source="DATA:SageXML/BaseObjects/BaseStructure.xml" />
+	</Includes>	
+	<GameObject
+		id="JapanDeathSpawn"
+		inheritFrom="BaseStructure"
+		Side="Japan"
+		EditorSorting="STRUCTURE"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="NOT_AUTOACQUIRABLE IGNORE_FOR_VICTORY NO_COLLIDE IGNORE_IN_AI_HUNT_TACTIC RESIST_EMP DONT_DESTROY_IF_ON_BRIDGE"
+		EditorName="JapanDeathSpawn">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanDeathSpawn</DisplayName>
+		<ArmorSet
+			Armor="StructureArmor"
+			DamageFX="GenericStructureDamageFX" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<!-- the slow death is for being blown up -->
+			<SlowDeath
+				id="ModuleTag_Death"
+				FadeTime="0.2s"
+				DestructionDelay="0.2s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_DeathSpawnShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="350.0"
+				RefreshDelay="0.13s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_DeathSpawn">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ALLIES"
+					Include="INFANTRY"
+					Exclude="CANNOT_HIJACK NO_GARRISON VEHICLE MACHINE"
+					StatusBitFlagsExclude="CLONED HEALTH_PERCENT_50">
+					<IncludeThing>SovietScoutInfantry</IncludeThing>
+					<IncludeThing>AlliedScoutInfantry</IncludeThing>
+					<ExcludeThing>SovietScoutVehicle</ExcludeThing>
+					<ExcludeThing>EUScoutVehicle</ExcludeThing>
+					<ExcludeThing>MODNanoFly</ExcludeThing>
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="2s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="JapanDeathSpawnWeapon"
+					OneShot="false" />
+			</FireWeaponUpdate>
+			<LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				MinLifetime="15s"
+				MaxLifetime="15s"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="JapanDeathSpawn_Loop" AudioType="soundAmbient"/>
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="125"
+			ShroudClearingRange="350" />
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:xai="uri:ea.com:eala:asset:instance"  xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- aka Hind aka Twinblade -->
+	<GameObject
+		id="BaseBuildByAI"
+		inheritFrom="BaseVehicle"
+		Side="Neutral"
+		SubGroupPriority="610"
+		EditorSorting="UNIT"
+		BuildTime="1"
+		KindOf="CAN_CAST_REFLECTIONS VEHICLE LINE_OF_SIGHT_IGNORES_BUILDINGS NO_COLLIDE CAN_ATTACK UNIQUE_UNIT SKIRMISH_AI_CAN_BUILD_DURING_EMERGENCY_NO_INCOME CAN_BE_FAVORITE_UNIT"
+		VoicePriority="148"
+		EditorName="BaseBuildByAI"
+		MaxSimultaneousOfType="1">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:BaseBuildByAI</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="CanNotAttackArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			id="AIPlayerAlliedFighterAircraftLocomotor"
+			Locomotor="JapanLightTransportVehicleLocomotor"
+			Condition="NORMAL"
+			Speed="0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true" />
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="0.13s"
+				MaxLifetime="0.13s"/>
+			<FireWeaponWhenDead
+				id="ModuleTag_DamageSelfAlliedWarFactoryWarhead"
+				DeathWeapon="DamageSelfAlliedWarFactoryWarhead"
+				InitiallyActive="true">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="AIPlayerModuleTag_Body"
+				MaxHealth="1" />
+		</Body>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="" EvaType="ambushed" />
+			<EvaEntry EvaEvent="" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="" EvaType="buildCancelled" />
+			<EvaEntry EvaEvent="" EvaType="promotedOwner" />
+		</EvaEventArray>
+	</GameObject>
+	<GameObject
+		id="AIPlayerAlliedAntiAirVehicleTech1"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerAlliedAntiAirVehicleTech1"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerAlliedAntiAirVehicleTech1">
+		<Object>AIPlayerAlliedAntiAirVehicleTech1</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerAlliedAntiAirVehicleTech1" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerJapanAntiVehicleVehicleTech1"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerJapanAntiVehicleVehicleTech1"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerJapanAntiVehicleVehicleTech1">
+		<Object>AIPlayerJapanAntiVehicleVehicleTech1</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerJapanAntiVehicleVehicleTech1" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerSovietAntiVehicleVehicleTech1"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerSovietAntiVehicleVehicleTech1"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerSovietAntiVehicleVehicleTech1">
+		<Object>AIPlayerSovietAntiVehicleVehicleTech1</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerSovietAntiVehicleVehicleTech1" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerAlliedAntiVehicleVehicleTech1"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerAlliedAntiVehicleVehicleTech1"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerAlliedAntiVehicleVehicleTech1">
+		<Object>AIPlayerAlliedAntiVehicleVehicleTech1</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerAlliedAntiVehicleVehicleTech1" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerJapanAntiVehicleVehicleTech3"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerJapanAntiVehicleVehicleTech3"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerJapanAntiVehicleVehicleTech3">
+		<Object>AIPlayerJapanAntiVehicleVehicleTech3</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerJapanAntiVehicleVehicleTech3" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerSovietAntiStructureVehicle"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerSovietAntiStructureVehicle"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerSovietAntiStructureVehicle">
+		<Object>AIPlayerSovietAntiStructureVehicle</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerSovietAntiStructureVehicle" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerAlliedFighterAircraft"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerAlliedFighterAircraft"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerAlliedFighterAircraft">
+		<Object>AIPlayerAlliedFighterAircraft</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerAlliedFighterAircraft" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerJapanLightTransportVehicle"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerJapanLightTransportVehicle"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerJapanLightTransportVehicle">
+		<Object>AIPlayerJapanLightTransportVehicle</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerJapanLightTransportVehicle" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerSovietScoutVehicle"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerSovietScoutVehicle"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerSovietScoutVehicle">
+		<Object>AIPlayerSovietScoutVehicle</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerSovietScoutVehicle" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerAlliedSupportAircraft"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerAlliedSupportAircraft"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerAlliedSupportAircraft">
+		<Object>AIPlayerAlliedSupportAircraft</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerAlliedSupportAircraft" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerJapanAntiVehicleInfantryTech3"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerJapanAntiVehicleInfantryTech3"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerJapanAntiVehicleInfantryTech3">
+		<Object>AIPlayerJapanAntiVehicleInfantryTech3</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerJapanAntiVehicleInfantryTech3" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerSovietAntiGroundAircraft"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerSovietAntiGroundAircraft"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerSovietAntiGroundAircraft">
+		<Object>AIPlayerSovietAntiGroundAircraft</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerSovietAntiGroundAircraft" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerSovietBomberAircraft"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerSovietBomberAircraft"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerSovietBomberAircraft">
+		<Object>AIPlayerSovietBomberAircraft</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerSovietBomberAircraft" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerJapanCommandoTech1"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerJapanCommandoTech1"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerJapanCommandoTech1">
+		<Object>AIPlayerJapanCommandoTech1</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerJapanCommandoTech1" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerAlliedAntiVehicleVehicleTech3"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerAlliedAntiVehicleVehicleTech3"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerAlliedAntiVehicleVehicleTech3">
+		<Object>AIPlayerAlliedAntiVehicleVehicleTech3</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerAlliedAntiVehicleVehicleTech3" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerAlliedAntiNavyShipTech1"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerAlliedAntiNavyShipTech1"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerAlliedAntiNavyShipTech1">
+		<Object>AIPlayerAlliedAntiNavyShipTech1</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerAlliedAntiNavyShipTech1" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerSovietDesolatorInfantry"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerSovietDesolatorInfantry"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerSovietDesolatorInfantry">
+		<Object>AIPlayerSovietDesolatorInfantry</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerSovietDesolatorInfantry" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerAlliedGunshipAircraft"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerAlliedGunshipAircraft"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerAlliedGunshipAircraft">
+		<Object>AIPlayerAlliedGunshipAircraft</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerAlliedGunshipAircraft" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerAlliedAntiAirShip"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerAlliedAntiAirShip"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerAlliedAntiAirShip">
+		<Object>AIPlayerAlliedAntiAirShip</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerAlliedAntiAirShip" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerSovietSurveyor"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerSovietSurveyor"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerSovietSurveyor">
+		<Object>AIPlayerSovietSurveyor</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerSovietSurveyor" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerSovietAntiAirShip"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerSovietAntiAirShip"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerSovietAntiAirShip">
+		<Object>AIPlayerSovietAntiAirShip</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerSovietAntiAirShip" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerJapanAntiAirVehicleTech1"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerJapanAntiAirVehicleTech1"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerJapanAntiAirVehicleTech1">
+		<Object>AIPlayerJapanAntiAirVehicleTech1</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerJapanAntiAirVehicleTech1" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerJapanSentinelVehicle"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerJapanSentinelVehicle"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerJapanSentinelVehicle">
+		<Object>AIPlayerJapanSentinelVehicle</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerJapanSentinelVehicle" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+	
+	<GameObject
+		id="AIPlayerJapanAntiInfantryVehicle"
+		inheritFrom="BaseBuildByAI">
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="AIPlayerModuleTag_UpgradeTech"
+			  UpgradeToGrant="AIPlayerJapanAntiInfantryVehicle"/>
+		</Behaviors>
+	</GameObject>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAIPlayerJapanAntiInfantryVehicle">
+		<Object>AIPlayerJapanAntiInfantryVehicle</Object>
+	</LogicCommand>
+	<UpgradeTemplate id="AIPlayerJapanAntiInfantryVehicle" Type="PLAYER" Options="DO_NOT_TRANSFER"/>
+
+	<UpgradeTemplate
+	id="Upgrade_PlayerAI"
+	Type="PLAYER"
+	Options="DO_NOT_TRANSFER"
+	BuildTime="0.0s"
+	BuildCost="0"
+	IconImage="Button_UpgradeMortar">
+	</UpgradeTemplate>
+	<LogicCommand
+        Type="OBJECT_UPGRADE"
+        id="Command_Upgrade_PlayerAI">
+		<Upgrade>Upgrade_PlayerAI</Upgrade>
+	</LogicCommand>
+	
+	<UpgradeTemplate
+	id="Upgrade_AIEasyPower"
+	Type="PLAYER"
+	Options="DO_NOT_TRANSFER"
+	BuildTime="0.0s"
+	BuildCost="0"
+	IconImage="Button_UpgradeMortar">
+	</UpgradeTemplate>
+	<LogicCommand
+        Type="OBJECT_UPGRADE"
+        id="Command_Upgrade_AIEasyPower">
+		<Upgrade>Upgrade_AIEasyPower</Upgrade>
+	</LogicCommand>
+
+	<UpgradeTemplate
+	id="Upgrade_AIMiddlePower"
+	Type="PLAYER"
+	Options="DO_NOT_TRANSFER"
+	BuildTime="0.0s"
+	BuildCost="0"
+	IconImage="Button_UpgradeMortar">
+	</UpgradeTemplate>
+	<LogicCommand
+        Type="OBJECT_UPGRADE"
+        id="Command_Upgrade_AIMiddlePower">
+		<Upgrade>Upgrade_AIMiddlePower</Upgrade>
+	</LogicCommand>
+
+	<UpgradeTemplate
+	id="Upgrade_AIHardPower"
+	Type="PLAYER"
+	Options="DO_NOT_TRANSFER"
+	BuildTime="0.0s"
+	BuildCost="0"
+	IconImage="Button_UpgradeMortar">
+	</UpgradeTemplate>
+	<LogicCommand
+        Type="OBJECT_UPGRADE"
+        id="Command_Upgrade_AIHardPower">
+		<Upgrade>Upgrade_AIHardPower</Upgrade>
+	</LogicCommand>
+
+	<UpgradeTemplate
+	id="Upgrade_AIBrutalPower"
+	Type="PLAYER"
+	Options="DO_NOT_TRANSFER"
+	BuildTime="0.0s"
+	BuildCost="0"
+	IconImage="Button_UpgradeMortar">
+	</UpgradeTemplate>
+	<LogicCommand
+        Type="OBJECT_UPGRADE"
+        id="Command_Upgrade_AIBrutalPower">
+		<Upgrade>Upgrade_AIBrutalPower</Upgrade>
+	</LogicCommand>
+	
+	<LogicCommandSet
+		id="StartYardCommandSet">
+		<Cmd>Command_Upgrade_PlayerAI</Cmd>
+		<Cmd>Command_Upgrade_AIEasyPower</Cmd>
+		<Cmd>Command_Upgrade_AIMiddlePower</Cmd>
+		<Cmd>Command_Upgrade_AIHardPower</Cmd>
+		<Cmd>Command_Upgrade_AIBrutalPower</Cmd>
+	</LogicCommandSet>
+	<LogicCommandSet
+		id="AlliedWarFactoryAICommandSet">
+		<Cmd>Command_ConstructAlliedAntiAirVehicleTech1AI</Cmd>
+		<Cmd>Command_ConstructJapanAntiVehicleVehicleTech1AI</Cmd>
+		<Cmd>Command_ConstructSovietAntiVehicleVehicleTech1AI</Cmd>
+		<Cmd>Command_ConstructAlliedAntiVehicleVehicleTech1AI</Cmd>
+		<Cmd>Command_ConstructJapanAntiVehicleVehicleTech3AI</Cmd>
+		<Cmd>Command_ConstructSovietAntiStructureVehicleAI</Cmd>
+		<Cmd>Command_ConstructAlliedFighterAircraftAI</Cmd>
+		<Cmd>Command_ConstructJapanLightTransportVehicleAI</Cmd>
+		<Cmd>Command_ConstructSovietScoutVehicleAI</Cmd>
+		<Cmd>Command_ConstructAlliedSupportAircraftAI</Cmd>
+		<Cmd>Command_ConstructJapanAntiVehicleInfantryTech3AI</Cmd>
+		<Cmd>Command_ConstructSovietAntiGroundAircraftAI</Cmd>
+		<Cmd>Command_ConstructSovietBomberAircraftAI</Cmd>
+		<Cmd>Command_ConstructJapanCommandoTech1AI</Cmd>
+		<Cmd>Command_ConstructAlliedAntiVehicleVehicleTech3AI</Cmd>
+		<Cmd>Command_ConstructAlliedAntiNavyShipTech1AI</Cmd>
+		<Cmd>Command_ConstructSovietDesolatorInfantryAI</Cmd>
+		<Cmd>Command_ConstructAlliedGunshipAircraftAI</Cmd>
+		<Cmd>Command_ConstructAlliedAntiAirShipAI</Cmd>
+		<Cmd>Command_ConstructSovietAntiAirShipAI</Cmd>
+		<Cmd>Command_ConstructSovietSurveyorAI</Cmd>
+		<Cmd>Command_ConstructJapanAntiAirVehicleTech1AI</Cmd>
+		<Cmd>Command_ConstructJapanSentinelVehicleAI</Cmd>
+		<Cmd>Command_ConstructJapanAntiInfantryVehicleAI</Cmd>
+		<Cmd>Command_ConstructAlliedMinerAI</Cmd>
+	</LogicCommandSet>
+	<LogicCommandSet
+		id="ChooseUnitStructureAICommandSet">
+		<Cmd>Command_ConstructAIPlayerAlliedAntiAirVehicleTech1</Cmd>
+		<Cmd>Command_ConstructAIPlayerJapanAntiVehicleVehicleTech1</Cmd>
+		<Cmd>Command_ConstructAIPlayerSovietAntiVehicleVehicleTech1</Cmd>
+		<Cmd>Command_ConstructAIPlayerAlliedAntiVehicleVehicleTech1</Cmd>
+		<Cmd>Command_ConstructAIPlayerJapanAntiVehicleVehicleTech3</Cmd>
+		<Cmd>Command_ConstructAIPlayerSovietAntiStructureVehicle</Cmd>
+		<Cmd>Command_ConstructAIPlayerAlliedFighterAircraft</Cmd>
+		<Cmd>Command_ConstructAIPlayerJapanLightTransportVehicle</Cmd>
+		<Cmd>Command_ConstructAIPlayerSovietScoutVehicle</Cmd>
+		<Cmd>Command_ConstructAIPlayerAlliedSupportAircraft</Cmd>
+		<Cmd>Command_ConstructAIPlayerJapanAntiVehicleInfantryTech3</Cmd>
+		<Cmd>Command_ConstructAIPlayerSovietAntiGroundAircraft</Cmd>
+		<Cmd>Command_ConstructAIPlayerSovietBomberAircraft</Cmd>
+		<Cmd>Command_ConstructAIPlayerJapanCommandoTech1</Cmd>
+		<Cmd>Command_ConstructAIPlayerAlliedAntiVehicleVehicleTech3</Cmd>
+		<Cmd>Command_ConstructAIPlayerAlliedAntiNavyShipTech1</Cmd>
+		<Cmd>Command_ConstructAIPlayerSovietDesolatorInfantry</Cmd>
+		<Cmd>Command_ConstructAIPlayerAlliedGunshipAircraft</Cmd>
+		<Cmd>Command_ConstructAIPlayerAlliedAntiAirShip</Cmd>
+		<Cmd>Command_ConstructAIPlayerSovietAntiAirShip</Cmd>
+		<Cmd>Command_ConstructAIPlayerSovietSurveyor</Cmd>
+		<Cmd>Command_ConstructAIPlayerJapanAntiAirVehicleTech1</Cmd>
+		<Cmd>Command_ConstructAIPlayerJapanSentinelVehicle</Cmd>
+		<Cmd>Command_ConstructAIPlayerJapanAntiInfantryVehicle</Cmd>
+	</LogicCommandSet>
+</AssetDeclaration>

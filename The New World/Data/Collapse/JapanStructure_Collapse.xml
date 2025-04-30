@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+    <Include
+		type="all"
+		source="ART:MJ_MtFujiViewingTower_COL.w3x" />
+    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+		id="JapanStructure_Collapse"
+		inheritFrom="BaseObject" 
+		EditorName="JapanStructure_Collapse">
+		<Draws>
+    <ScriptedModelDraw
+         id="ModuleTag_Animated_Draw">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="MJ_MtFujiViewingTower_COL" />
+        </ModelConditionState>
+        <AnimationState
+         ParseCondStateType="PARSE_DEFAULT">
+          <Animation
+            AnimationName="MJ_MtFujiViewingTower_COL"
+            AnimationBlendTime="0"
+            AnimationMode="ONCE"/>
+					<FXEvent
+						Frame="1"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShake"
+						Bone="FX_Bone_01" />
+        </AnimationState>
+     </ScriptedModelDraw>
+	</Draws>
+	  <Behaviors>
+<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="0.4s"
+				SinkRate="5"
+				DestructionDelay="5s">
+        <DieMuxData
+					DeathTypes="ALL" />
+      </SlowDeath>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="6s"
+				MaxLifetime="6s" />
+    </Behaviors>
+    <Body>
+      <PropBody
+				id="ModuleTag_Body"/>
+    </Body>   
+</GameObject>
+</AssetDeclaration>

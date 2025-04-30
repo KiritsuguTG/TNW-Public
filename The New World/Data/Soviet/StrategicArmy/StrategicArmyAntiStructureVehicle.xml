@@ -1,0 +1,1154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Includes>
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERTURRET_GAR.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_ABTA.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_AIDA.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_AIDB.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_AIFA.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_BATA.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_BIDA.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_BIFA.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_BIFB.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_BIFC.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_JMPA.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_JMPB.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_JMPC_LEGS.SCYTHE.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_JMPC_LEGS.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_JMPC_LEGS_CTR.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_JMPC_LEGS_HRC.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_SKL.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_SKN.BOX01.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_SKN.SCYTHE.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_SKN.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_TRNL.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_TRNR.w3x" />
+		<Include type="all" source="ART:Units/Reaper/SUHEAVYWALKERVEHICLE_WLKA.w3x" />
+		<Include type="instance" source="DATA:BaseObjects/BaseObject.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="StrategicArmyAntiStructureVehicle"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_SovietReaperWalker"
+		ButtonImage="Button_SovietReaperWalker"
+		Side="Soviet"
+		SubGroupPriority="300"
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="27.5"
+		BuildTime="14"
+		CommandSet="StrategicArmyAntiStructureVehicleCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS VEHICLE SCORE CAN_BE_FAVORITE_UNIT T2_UNIT SIEGE_WEAPON"
+		ThreatLevel="10"
+		WeaponCategory="CANNON"
+		VoicePriority="176"
+		BountyValue="250"
+		EditorName="StrategicArmyAntiStructureVehicle"
+		Description="Desc:StrategicArmyAntiStructureVehicle"
+		TypeDescription="Type:AntiInfantryAndStructure">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietHeavyWalkerVehicle</DisplayName>
+		<GameDependency
+			ForbiddenModelConditions="OVER_WATER">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="ALLIES"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietTechStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="0" Amount="1400" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseArtilleryArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="DefaultLocomotorSet"
+			Locomotor="SovietHeavyWalkerLocomotor"
+			Condition="NORMAL"
+			Speed="60.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="5.0"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			ConquerMetricsOverrideAntiMask="ANTI_INFANTRY ANTI_STRUCTURE" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUHeavyWalkerVehicle_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_ROCKET" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_FX_02" />
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_FX_01" />
+					<WeaponFireFXBone
+						WeaponSlotID="4"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_FX_03" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_ROCKET" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_FX_02" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_FX_01" />
+					<WeaponLaunchBone
+						WeaponSlotID="4"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_FX_03" />
+					<!-- front -->
+					<Turret
+						TurretNameKey="B_Turret_03"
+						TurretID="2" />
+					<!-- right -->
+					<Turret
+						TurretNameKey="B_Turret_02"
+						TurretID="3" />
+					<!-- left -->
+					<Turret
+						TurretNameKey="B_Turret_04"
+						TurretID="4" />
+					<!-- missile -->
+					<Turret
+						TurretNameKey="B_Turret_05"
+						TurretPitch="B_TurretPitch_05"
+						TurretID="1" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SUHeavyWalkerVehicle_SKN" />
+					<ParticleSysBone
+						BoneName="B_Turret_04"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SUHeavyWalkerVehicle_SKN" />
+					<Texture
+						Original="SUHeavyWalkerVehicle"
+						New="SUHeavyWalkerVehicle_D" />
+					<ParticleSysBone
+						BoneName="B_LegFR_03"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="B_Turret_04"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="B_Turret_04"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="B_Turret_04"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					AllowRepeatInRandomPick="true"
+					StateName="STATE_bored">
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_BIDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="100"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_BIFA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="30"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.1" />
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_BIFB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="75"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_BIFC"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="75"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Jumping" then
+						CurDrawableSetTransitionAnimState("TRANS_JumpToIdle")
+						elseif Prev == "STATE_SelectedPose" then
+						CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+					<Animation
+						AnimationName="SUHeavyWalkerTurret_GAR"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<!-- anims for leap power -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_JMPA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="2.0"
+						AnimationSpeedFactorMax="2.0" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="THROWN_PROJECTILE"
+					StateName="STATE_Jumping">
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_JMPB"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ACCELERATE"
+					Flags="RANDOMSTART"
+					StateName="STATE_DoorClosed">
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_WLKA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<ParticleSysBone
+						BoneName="FXExhaust01"
+						FXParticleSystemTemplate="Soviet_Tank_Exhaust"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXExhaust02"
+						FXParticleSystemTemplate="Soviet_Tank_Exhaust"
+						FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING BACKING_UP"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_WLKA"
+						AnimationMode="LOOP_BACKWARDS"
+						AnimationBlendTime="10"
+						Distance="32" />
+					<FXEvent
+						Frame="20"
+						FireWhenSkipped="true"
+						Effect="FX_SovietSickleFootprint"
+						Bone="FX_Foot02" />
+					<FXEvent
+						Frame="40"
+						FireWhenSkipped="true"
+						Effect="FX_SovietSickleFootprint"
+						Bone="FX_Foot01" />
+					<FXEvent
+						Frame="40"
+						FireWhenSkipped="true"
+						Effect="FX_SovietSickleFootprint"
+						Bone="FX_Foot03" />
+					<FXEvent
+						Frame="20"
+						FireWhenSkipped="true"
+						Effect="FX_SovietSickleFootprint"
+						Bone="FX_Foot04" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_WLKA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10"
+						Distance="32" />
+					<FXEvent
+						Frame="20"
+						FireWhenSkipped="true"
+						Effect="FX_SovietSickleFootprint"
+						Bone="FX_Foot02" />
+					<FXEvent
+						Frame="40"
+						FireWhenSkipped="true"
+						Effect="FX_SovietSickleFootprint"
+						Bone="FX_Foot01" />
+					<FXEvent
+						Frame="40"
+						FireWhenSkipped="true"
+						Effect="FX_SovietSickleFootprint"
+						Bone="FX_Foot03" />
+					<FXEvent
+						Frame="20"
+						FireWhenSkipped="true"
+						Effect="FX_SovietSickleFootprint"
+						Bone="FX_Foot04" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="TURN_LEFT">
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_TRNL"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="2"
+						AnimationSpeedFactorMax="2" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="TURN_RIGHT">
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_TRNR"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="2"
+						AnimationSpeedFactorMax="2" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ENGAGED">
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_AIDA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<!-- SELECTED -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					StateName="STATE_SelectedPose"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_AIDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="10"
+						AnimationPriority="100" />
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_AIFA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="10"
+						AnimationPriority="75" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Jumping" then
+						CurDrawableSetTransitionAnimState("TRANS_JumpToIdle")
+						elseif Prev == "STATE_bored" then
+						CurDrawableSetTransitionAnimState("TRANS_IdleToSelected")
+						end
+					</Script>
+				</AnimationState>
+				<!-- TRANSITIONS -->
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_IdleToSelected">
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_BATA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="5"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SelectedToIdle">
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_ABTA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<!-- Missiles -->
+				<WeaponSlotTurret
+					ID="1"
+					WeaponChoiceCriteria="PREFER_GRAB_OVER_DAMAGE"
+					AllowInterleavedFiring="true">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietHeavyWalkerRocketWeapon"
+						ForbiddenObjectStatus="ADVANCED_MISSILE_PACKS" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietHeavyWalkerRocketWeapon_AdvancedMissile"
+						ObjectStatus="ADVANCED_MISSILE_PACKS" />
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="-30d"
+						TurretPitchRate="180"
+						AllowsPitch="true"
+						PitchHeight="90%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0"
+						NaturalTurretAngle="0d"
+						RecenterWhenOutOfTurnRange="false"
+						ComeToHaltJiggle="3d">
+						<TurretAITargetChooserData
+							TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="0.0s" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<!-- front -->
+				<WeaponSlotTurret
+					ID="2"
+					AllowInterleavedFiring="true">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietHeavyWalkerGrenadeWeapon" />
+					<TurretSettings
+						TurretTurnRate="90"
+						TurretPitchRate="20"
+						AllowsPitch="true"
+						MinimumPitch="-15d"
+						PitchHeight="90%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="60.0"
+						MaxDeflectionAntiClockwise="90d"
+						MaxDeflectionClockwise="90d"
+						NaturalTurretAngle="0d"
+						RecenterWhenOutOfTurnRange="false"
+						ComeToHaltJiggle="1d">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="0.0s" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<!-- right -->
+				<WeaponSlotTurret
+					ID="3"
+					AllowInterleavedFiring="true">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietHeavyWalkerGrenadeWeapon" />
+					<TurretSettings
+						TurretTurnRate="90"
+						TurretPitchRate="20"
+						AllowsPitch="true"
+						MinimumPitch="-15d"
+						PitchHeight="90%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="50.0"
+						MaxDeflectionAntiClockwise="90d"
+						MaxDeflectionClockwise="90d"
+						NaturalTurretAngle="270d"
+						RecenterWhenOutOfTurnRange="false"
+						ComeToHaltJiggle="1d">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="0.0s" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<!-- left -->
+				<WeaponSlotTurret
+					ID="4"
+					AllowInterleavedFiring="true">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietHeavyWalkerGrenadeWeapon" />
+					<TurretSettings
+						TurretTurnRate="90"
+						TurretPitchRate="20"
+						AllowsPitch="true"
+						MinimumPitch="-15d"
+						PitchHeight="90%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="50.0"
+						MaxDeflectionAntiClockwise="90d"
+						MaxDeflectionClockwise="90d"
+						NaturalTurretAngle="90d"
+						RecenterWhenOutOfTurnRange="false"
+						ComeToHaltJiggle="1d">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="0.0s" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<AttributeModifierUpgrade
+				id="ModuleTag_SovietUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>SovietUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUnitUpgrade"
+				CreationList="SUHeavyWalkerVehicle_Legs_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="CRUSHED EXTRA_7 EXTRA_6 DETONATED SLAUGHTERED"
+					ExemptStatus="AIRBORNE_TARGET OVER_WATER UNDER_FROZEN" />
+				<UpgradeRequired>SovietUnitUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUnitNoUpgrade"
+				CreationList="SUHeavyWalkerVehicle_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="CRUSHED EXTRA_7 EXTRA_6 DETONATED SLAUGHTERED"
+					ExemptStatus="AIRBORNE_TARGET OVER_WATER UNDER_FROZEN" />
+				<UpgradeForbidden>SovietUnitUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectOverDieInSky"
+				CreationList="SUHeavyWalkerVehicle_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="CRUSHED EXTRA_7 EXTRA_6 DETONATED SLAUGHTERED"
+					RequiredStatus="AIRBORNE_TARGET OVER_WATER UNDER_FROZEN" />
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_MediumVehicleDie" />
+			</FXListBehavior>
+			<SpecialPower
+				id="ModuleTag_LeapDeploy"
+				SpecialPowerTemplate="SpecialPower_TriggerLeapDeploy"
+				UpdateModuleStartsAttack="true" />
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_LeapUpdate"
+				ActiveModelCondition="USER_1"
+				SpecialWeapon="StrategicArmyAntiStructureVehicleLeapWeapon"
+				SpecialPowerTemplate="SpecialPower_TriggerLeapDeploy"
+				Options="USE_OBJECT_GEOMETRY_FOR_WITHIN_RANGE_CHECK FAIL_WITH_INVALID_APPROACH"
+				TriggerSound="SOV_ProtoSickle_MoveLeapMS"
+				StartAbilityRange="300.0"
+				WhichSpecialWeapon="1" />
+			<BezierProjectile
+				id="ModuleTag_Projectile"
+				Flags="CRUSH_STYLE NO_DETONATE DETONATE_CALLS_KILL"
+				FirstHeightMin="150"
+				FirstHeightMax="160"
+				SecondHeightMin="100"
+				SecondHeightMax="110"
+				FirstPercentIndent="40%"
+				SecondPercentIndent="60%"
+				BounceCount="0"
+				FinalStuckTime="1.0s"
+				GroundHitWeapon="StrategicArmyAntiStructureVehicleLandDeployWeapon"
+				GroundHitFX="FX_SOV_ProtoSickle_MoveLand"/>
+			<AttributeModifierUpgrade
+				id="ModuleTag_JapanAdvancedMissilePacks"
+				AttributeModifier="AttributeModifer_JapanAdvancedMissilePacks">
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech2/child::*)" />
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech2.xml" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					IdleScanDelay="0.0s"
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="false">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="350" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="SOV_Reaper_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<AnimationSoundClientBehavior id="ModuleTag_ASCB">
+				<Sound Sound="SOV_ProtoSickle_Footstep" Animation="SUHeavyWalkerVehicle_WLKA"
+					Frame="1 21" />
+			</AnimationSoundClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_Leaping">
+				<ModelConditionSound Sound="SOV_Reaper_VoiceJumpReaction"
+					RequiredFlags="THROWN_PROJECTILE" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="BOX"
+				MajorRadius="19.0"
+				MinorRadius="15.0"
+				Height="35.2"
+				ContactPointGeneration="VEHICLE">
+				<Offset
+					x="0.146641"
+					y="-0.203505"
+					z="0.0" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="SOV_Reaper_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SOV_Reaper_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="SOV_Reaper_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="SOV_Reaper_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="SOV_Reaper_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="SOV_Reaper_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="SOV_Reaper_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="SOV_Reaper_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="SOV_Reaper_VoiceAttackJump" Name="voiceLeapDeploy" />
+		</AudioArrayVoice>
+		<!--
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_ProtoSickle_MoveLoop" AudioType="soundMoveLoop" />
+		</AudioArraySound>
+-->
+		<VisionInfo
+			VisionRange="750"
+			ShroudClearingRange="=$ADVANCE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="20"
+			CrushableLevel="25"
+			CrushWeapon="SovietCrushWeapon">
+			<ExtraCrushLevels
+				CrusherLevel="21"
+				CrushableLevel="31"
+				ModelConditionMatch="USER_1">
+			</ExtraCrushLevels>
+			<ExtraCrushLevels
+				CrusherLevel="21"
+				CrushableLevel="31"
+				ModelConditionMatch="SPECIAL_WEAPON_ONE">
+			</ExtraCrushLevels>
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="StrategicArmyAntiStructureVehicle_Crate"
+		inheritFrom="StrategicArmyAntiStructureVehicle"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="StrategicArmyAntiStructureVehicle_Crate">
+		<EquivalentTo>StrategicArmyAntiStructureVehicle</EquivalentTo>
+	</GameObject>
+	<GameObject
+		id="SovietHeavyWalkerDeployedTurret"
+		inheritFrom="BaseStructure"
+		SelectPortrait="Portrait_SovietReaperTurret"
+		ButtonImage="Button_SovietReaperTurret"
+		Side="Soviet"
+		EditorSorting="STRUCTURE"
+		TransportSlotCount="0"
+		BuildTime="0.0"
+		EnergyProduction="0"
+		CommandSet="SovietBaseDefenseGroundCommandSet"
+		KindOf="-NOT_AUTOACQUIRABLE +CAN_ATTACK +FS_BASE_DEFENSE -CAN_BUILD_ON_WATER -CAN_BUILD_ON_DEEP_WATER +STICK_TO_TERRAIN_SLOPE"
+		RadarPriority="STRUCTURE"
+		PlacementViewAngle="225d"
+		CampnessValue="2000"
+		ProductionQueueType="OTHER_STRUCTURE"
+		BuildPlacementTypeFlag="OTHER_STRUCTURE"
+		EditorName="SovietHeavyWalkerDeployedTurret"
+		WeaponCategory="CANNON"
+		UnitCategory="VEHICLE"
+		TypeDescription="Type:SovietHeavyWalkerDeployedTurret"
+		Description="Desc:SovietHeavyWalkerDeployedTurret"
+		HealthBoxHeightOffset="20">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietHeavyWalkerDeployedTurret</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="0" Amount="0" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseArtilleryArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<SkirmishAIInformation
+			BaseBuildingLocation="DEFENSE">
+			<ConstructionBaseSelectionCriteria
+				ExcludedBaseTypes="NO_BUILD_RADIUS"
+				PreferredBaseTypes="ENEMIES_IN_BASE UNDER_ATTACK"
+				SortOrder="PREFER_MOST_RECENTLY_ATTACKED" />
+		</SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUHeavyWalkerVehicle_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_ROCKET" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_FX_02" />
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_FX_01" />
+					<WeaponFireFXBone
+						WeaponSlotID="4"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_FX_03" />
+
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_ROCKET" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_FX_02" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_FX_01" />
+					<WeaponLaunchBone
+						WeaponSlotID="4"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_FX_03" />
+
+					<!-- front -->
+					<Turret
+						TurretNameKey="B_Turret_03"
+						TurretID="2" />
+					<!-- right -->
+					<Turret
+						TurretNameKey="B_Turret_02"
+						TurretID="3" />
+					<!-- left -->
+					<Turret
+						TurretNameKey="B_Turret_04"
+						TurretID="4" />
+					<!-- missile -->
+					<Turret
+						TurretNameKey="B_Turret_05"
+						TurretPitch="B_TurretPitch_05"
+						TurretID="1" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SUHeavyWalkerVehicle_SKN" />
+					<ParticleSysBone
+						BoneName="B_Turret_04"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SUHeavyWalkerVehicle_SKN" />
+					<Texture
+						Original="SUHeavyWalkerVehicle"
+						New="SUHeavyWalkerVehicle_D" />
+					<ParticleSysBone
+						BoneName="B_Turret_04"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="B_Turret_04"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="B_Turret_04"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_AIDB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="20"
+						AnimationAbsoluteTime="0.25s" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW DECAL -->
+			<ScriptedModelDraw
+				id="ModuleTag_ScorchDecal"
+				OkToChangeModelColor="false">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="FXInvisBone" />
+					<ShadowInfo
+						Type="DECAL"
+						SizeX="62"
+						SizeY="62"
+						OverrideLODVisibility="true"
+						MaxHeight="200"
+						UseHouseColor="true"
+						IsRotatingWithObject="false"
+						Texture="SovietHeavyTurretScorch" />
+				</ModelConditionState>
+				<!-- don't show anything during placement preview -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<!-- Missiles -->
+				<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietHeavyWalkerRocketWeapon"
+						ForbiddenObjectStatus="ADVANCED_MISSILE_PACKS" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietHeavyWalkerRocketWeapon_AdvancedMissile"
+						ObjectStatus="ADVANCED_MISSILE_PACKS" />
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="-30d"
+						TurretPitchRate="180"
+						AllowsPitch="true"
+						PitchHeight="90%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0"
+						NaturalTurretAngle="0d"
+						RecenterWhenOutOfTurnRange="false"
+						ComeToHaltJiggle="3d">
+						<TurretAITargetChooserData
+							TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="0.0s" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<!-- front -->
+				<WeaponSlotTurret
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietHeavyWalkerGrenadeWeapon" />
+					<TurretSettings
+						TurretTurnRate="90"
+						TurretPitchRate="20"
+						AllowsPitch="true"
+						MinimumPitch="-15d"
+						PitchHeight="90%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="60.0"
+						MaxDeflectionAntiClockwise="90d"
+						MaxDeflectionClockwise="90d"
+						NaturalTurretAngle="0d"
+						RecenterWhenOutOfTurnRange="false"
+						ComeToHaltJiggle="1d">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="0.0s" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<!-- right -->
+				<WeaponSlotTurret
+					ID="3">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietHeavyWalkerGrenadeWeapon" />
+					<TurretSettings
+						TurretTurnRate="90"
+						TurretPitchRate="20"
+						AllowsPitch="true"
+						MinimumPitch="-15d"
+						PitchHeight="90%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="50.0"
+						MaxDeflectionAntiClockwise="90d"
+						MaxDeflectionClockwise="90d"
+						NaturalTurretAngle="270d"
+						RecenterWhenOutOfTurnRange="false"
+						ComeToHaltJiggle="1d">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="0.0s" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<!-- left -->
+				<WeaponSlotTurret
+					ID="4">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietHeavyWalkerGrenadeWeapon" />
+					<TurretSettings
+						TurretTurnRate="90"
+						TurretPitchRate="20"
+						AllowsPitch="true"
+						MinimumPitch="-15d"
+						PitchHeight="90%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="50.0"
+						MaxDeflectionAntiClockwise="90d"
+						MaxDeflectionClockwise="90d"
+						NaturalTurretAngle="90d"
+						RecenterWhenOutOfTurnRange="false"
+						ComeToHaltJiggle="1d">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="0.0s" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<StancesBehavior
+				id="ModuleTag_Stance"
+				StanceTemplate="OffensiveStructures" />
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SUHeavyWalkerTurret_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+			</CreateObjectDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_MediumVehicleDie" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate" />
+			<AutoHealBehavior
+				id="Upgrade_PassiveHeal"
+				InitiallyActive="true"
+				HealOnlyIfNotInCombat="false"
+				HealOnlyIfNotUnderAttack="false"
+				StartHealingDelay="1s"
+				HealingAmount="5"
+				HealingDelay="1s" />
+			<CreateObjectDie
+				id="ModuleTag_CreateOccupiedSuicide"
+				xai:joinAction="Replace"
+				CreationList="OCL_GenericStrategicArmyBuildingSuicide">
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateOccupiedConfigSuicide"
+				xai:joinAction="Replace"
+				CreationList="OCL_GenericStrategicArmyBuildingConfigSuicide">
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+			</CreateObjectDie>
+			<xi:include
+				href="DATA:Includes/GenericBuildingRepair.xml" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="OffensiveStructureAIStateMachine">
+				<UnitAITargetChooserData
+					IdleScanDelay="0.0s"
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="false">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="300" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="7.5"
+				MinorRadius="7.5"
+				Height="15.0"
+				ContactPointGeneration="STRUCTURE">
+				<Offset
+					x="0.0"
+					y="0.0"
+					z="0.0" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="15.0"
+				MinorRadius="15.0"
+				Height="8.1">
+				<Offset
+					x="0.0"
+					y="0.0"
+					z="0.0" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry
+				Sound="AudioEvent:SOV_ProtoSickleTurret_Select"
+				AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<EvaEventArray>
+			<EvaEntry xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance"
+				EvaEvent="" EvaType="productionComplete" />
+		</EvaEventArray>
+		<VisionInfo
+			VisionRange="750"
+			ShroudClearingRange="=$ADVANCE_VEHICLE_SHROUD_CLEAR" />
+		<ProjectedBuildabilityInfo
+			Radius="0"
+			BuildPlacementTypes="MAIN_STRUCTURE OTHER_STRUCTURE" />
+	</GameObject>
+	<GameObject
+		id="StrategicArmyAntiStructureVehicleDummy"
+		inheritFrom="BaseObject"
+		Side="Soviet"
+		EditorName="StrategicArmyAntiStructureVehicleDummy"
+		KindOf="DRAWABLE_ONLY UNATTACKABLE NOT_AUTOACQUIRABLE SCORE"
+		RadarPriority="NOT_ON_RADAR">
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="0s"
+				MaxLifetime="0s" />
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="UnitAIStateMachine">
+			</AIUpdate>
+		</AI>
+	</GameObject>
+	<GameObject
+		id="SovietHeavyWalkerTurret_Legs"
+		inheritFrom="BaseObject"
+		EditorName="SovietHeavyWalkerTurret_Legs">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUHeavyWalkerVehicle_JMPC_LEGS" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="SUHeavyWalkerVehicle_JMPC_LEGS"
+						AnimationMode="ONCE"
+						AnimationBlendTime="0" />
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="5s"
+				SinkRate="1.5"
+				DestructionDelay="8s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="5s"
+				MaxLifetime="5s" />
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+	</GameObject>
+
+</AssetDeclaration>

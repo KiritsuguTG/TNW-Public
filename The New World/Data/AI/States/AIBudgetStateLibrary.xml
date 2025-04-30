@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes></Includes>
+	<AIBudgetStateDefinition
+        id="DefenseBudget_02">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+					<IncludeThing>RushattackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic Weight="2"/>
+			<TimerHeuristic StartTime="10s" EndTime="300s" CountFrom="AI_START"/>
+			<IsBuildingHeuristic KindOf="FS_TECHNOLOGY FS_POWER" PassIfBuilding="false"/>
+			<OpeningMoveHeuristic Complete="true"/>
+			<PowerAdvantageHeuristic Value="2.0" Above="false" IncludeOwnDefenses="true" IncludeEnemyDefenses="false"/>
+			<EnemyNearbyHeuristic Distance="500.0" EnemyNearby="true" MinEnemyValue="2500">
+				<EnemyFilter
+                    Relationship="ENEMIES"
+                    Rule="ANY"
+                    Include="CAN_ATTACK ENGINEER INFILTRATOR">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+			<!-- Need at least one structure that can build base defenses-->
+			<ObjectOfTypeExistsHeuristic
+                PassIfExists="true">
+				<ObjectFilter
+                    Relationship="SAME_PLAYER"
+                    Rule="ANY" >
+					<IncludeThing>AlliedConstructionYard</IncludeThing>
+					<IncludeThing>JapanConstructionYard</IncludeThing>
+					<IncludeThing>SovietConstructionYard</IncludeThing>
+					<IncludeThing>SovietCrane</IncludeThing>
+					<IncludeThing>JapanCrane</IncludeThing>
+					<IncludeThing>AlliedCrane</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<!-- Need at least one structure that's pre-requsite to building base defenses-->
+			<ObjectOfTypeExistsHeuristic
+                PassIfExists="true">
+				<ObjectFilter
+                    Relationship="SAME_PLAYER"
+                    Rule="ANY" >
+					<IncludeThing>AlliedPowerPlant</IncludeThing>
+					<IncludeThing>AlliedTechStructure</IncludeThing>
+					<IncludeThing>SovietPowerPlant</IncludeThing>
+					<IncludeThing>SovietPowerPlantAdvanced</IncludeThing>
+					<IncludeThing>JapanPowerPlant</IncludeThing>
+					<IncludeThing>JapanRefinery</IncludeThing>
+					<IncludeThing>JapanTechStructure</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<Budget>
+			<AccountShare Account="PRODUCTION" Percent="80%"/>
+			<AccountShare Account="DEFENSE" Percent="20%"/>
+			<AccountShare Account="SLUSH_FUND" Percent="0%"/>
+		</Budget>
+	</AIBudgetStateDefinition>
+	<AIBudgetStateDefinition
+      id="BossOpeningMoveBudget">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="false"/>
+		</Heuristic>
+		<Budget>
+			<AccountShare Account="PRODUCTION" Percent="30%"/>
+			<AccountShare Account="DEFENSE" Percent="0%"/>
+			<AccountShare Account="SLUSH_FUND" Percent="70%"/>
+		</Budget>
+	</AIBudgetStateDefinition>
+
+	<AIBudgetStateDefinition
+      id="HardNormalBudget">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+		</Heuristic>
+		<Budget>
+			<AccountShare Account="PRODUCTION" Percent="80%"/>
+			<AccountShare Account="DEFENSE" Percent="20%"/>
+			<AccountShare Account="SLUSH_FUND" Percent="0%"/>
+		</Budget>
+	</AIBudgetStateDefinition>
+	<AIBudgetStateDefinition
+      id="NoSpawnBudget">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+					<IncludeThing>RushattackSpawn</IncludeThing>
+					<IncludeThing>SiegeattackSpawn</IncludeThing>
+					<IncludeThing>OverattackSpawn</IncludeThing>
+					<IncludeThing>FlankattackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<Budget>
+			<AccountShare Account="PRODUCTION" Percent="80%"/>
+			<AccountShare Account="DEFENSE" Percent="20%"/>
+			<AccountShare Account="SLUSH_FUND" Percent="0%"/>
+		</Budget>
+	</AIBudgetStateDefinition>
+	<AIBudgetStateDefinition
+      id="ExpansionMoveBudget">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<Budget>
+			<AccountShare Account="PRODUCTION" Percent="70%"/>
+			<AccountShare Account="DEFENSE" Percent="30%"/>
+			<AccountShare Account="SLUSH_FUND" Percent="0%"/>
+		</Budget>
+	</AIBudgetStateDefinition>
+	<AIBudgetStateDefinition
+      id="RushattackMoveBudget">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="false"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>RushattackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<Budget>
+			<AccountShare Account="PRODUCTION" Percent="90%"/>
+			<AccountShare Account="DEFENSE" Percent="0%"/>
+			<AccountShare Account="SLUSH_FUND" Percent="0%"/>
+		</Budget>
+	</AIBudgetStateDefinition>
+	<AIBudgetStateDefinition
+      id="BalanceMoveBudget">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="false"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>SiegeattackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<Budget>
+			<AccountShare Account="PRODUCTION" Percent="80%"/>
+			<AccountShare Account="DEFENSE" Percent="20%"/>
+			<AccountShare Account="SLUSH_FUND" Percent="0%"/>
+		</Budget>
+	</AIBudgetStateDefinition>
+	<AIBudgetStateDefinition
+      id="OverattackMoveBudget">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="false"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>OverattackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<Budget>
+			<AccountShare Account="PRODUCTION" Percent="80%"/>
+			<AccountShare Account="DEFENSE" Percent="10%"/>
+			<AccountShare Account="SLUSH_FUND" Percent="0%"/>
+		</Budget>
+	</AIBudgetStateDefinition>
+	<AIBudgetStateDefinition
+      id="FlankattackMoveBudget">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="false"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>FlankattackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<Budget>
+			<AccountShare Account="PRODUCTION" Percent="80%"/>
+			<AccountShare Account="DEFENSE" Percent="25%"/>
+			<AccountShare Account="SLUSH_FUND" Percent="0%"/>
+		</Budget>
+	</AIBudgetStateDefinition>
+</AssetDeclaration>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="StrategicArmyMoveBunker"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_SovietBunker_big"
+		ButtonImage="Button_SovietBunker_small"
+		Side="Soviet"
+		SubGroupPriority="355"
+		EditorSorting="UNIT"
+		BuildTime="10"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT T2_UNIT AMPHIBIOUS"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		EditorName="StrategicArmyMoveBunker"
+		Description="Desc:SovietBunker"
+		TypeDescription="Type:SovietBunker">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietBunker</DisplayName>
+		<GameDependency
+			ForbiddenModelConditions="OVER_WATER STRUCTURE_UNPACKING"/>
+		<ObjectResourceInfo>
+			<BuildCost Account="0" Amount="1000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseDefenseArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<LocomotorSet
+			id="ModuleTag_Locomotor_Normal" 
+			Locomotor="SovietAntiAirShipTech1Locomotor"
+			Condition="NORMAL"
+			Speed="70.0" />
+		<LocomotorSet
+			id="ModuleTag_LocomotorUpgrade_Normal"
+			Locomotor="SovietAntiAirShipWaterLocomotor"
+			Condition="NORMAL"
+			Speed="70.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				StaticModelLODMode="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SBBunker_SKN" />
+					<!-- main cannon -->
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONEGARRISON01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONEGARRISON01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONEGARRISON02" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONEGARRISON02" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+			</ScriptedModelDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<!-- include Headlight draw module. -->
+			<ScriptedModelDraw
+					  id="ModuleTag_Draw_HeadLightL"
+					  AttachToBoneInAnotherModule="fxheadlight_L"
+					  OkToChangeModelColor="true">
+				<ModelConditionState
+				  ParseCondStateType="PARSE_DEFAULT">
+					<Model
+					  Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+				  ParseCondStateType="PARSE_NORMAL"
+				  ConditionsYes="NIGHT">
+					<Model
+					  Name="EX_Headlights" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<StreamDraw
+				id="ModuleTag_StreamDraw"
+				UseDistortionShader="false"
+				Velocity="300.0"
+				ArcHeightFactor="0.0625"
+				UVWorldSize="100.0"
+				NumTubeSides="4"
+				TubeRadius="1.5"
+				WeaponSlotID="1"
+				StreamStateID="0">
+				<FXShader
+					ShaderName="Stream.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXCorrupterStream</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXCorrupterStream</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+				<ParticleSystems>
+					<ParticleSys>SovietToxicStreamDrip</ParticleSys>
+					<ParticleSys>SovietToxicStreamCloud</ParticleSys>
+					<ParticleSys>SovietToxicStreamDistortion</ParticleSys>
+				</ParticleSystems>
+			</StreamDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyMoveBunkerDesolatorSprayWeapon"/>
+				</WeaponSlotHardpoint>
+				<WeaponSlotHardpoint
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyMoveBunkerTeslaWeapon"/>
+				</WeaponSlotHardpoint>
+		</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<StreamState
+				id="ModuleTag_StreamState"
+				StreamId="0" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SBBunker_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<FXListBehavior
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+				 Index="onDeath"
+				 FX="FX_Civ_Explosion_Tiny" />
+			</FXListBehavior>
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech1.xml"/>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+			<xi:include
+				href="DATA:Includes/GenericBuildingRepair.xml" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1000" />
+		</Body>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius = "15.0"
+				MinorRadius = "15.0"
+				Height = "5.0"
+				ContactPointGeneration="VEHICLE"/>
+			<Shape
+				Type="BOX"
+				MajorRadius = "9.0"
+				MinorRadius = "9.0"
+				Height = "18.0"
+				ContactPointGeneration="VEHICLE"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="SOV_Bunker_Select" AudioType="voiceAttack" />
+			<AudioEntry Sound="SOV_Bunker_Select" AudioType="voiceCreated" />
+			<AudioEntry Sound="SOV_Bunker_Select" AudioType="voiceMove" />
+			<AudioEntry Sound="SOV_Bunker_Select" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="SOV_Bunker_Select" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="SOV_Bunker_Select" AudioType="voiceSelect" />
+			<AudioEntry Sound="SOV_Bunker_Select" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="SOV_Bunker_Select" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="300" />
+		<CrusherInfo
+			CrusherLevel="20"
+			CrushableLevel="40"
+			CrushWeapon="SovietCrushWeapon"
+			CrushDecelerationPercent="80%" />
+	</GameObject>
+		  <GameObject
+		id="StrategicArmyMoveBunker_Crate"
+		inheritFrom="StrategicArmyMoveBunker"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="StrategicArmyMoveBunker_Crate">
+		<EquivalentTo>StrategicArmyMoveBunker</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

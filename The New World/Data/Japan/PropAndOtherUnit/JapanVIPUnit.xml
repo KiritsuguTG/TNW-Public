@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseProjectile.xml" />
+		<Include type="instance" source="ART:Structures/VIPBunkerAll/EmpireArrow.w3x" />
+	</Includes>
+	<GameObject
+		id="JapanVIPUnit"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_IonCannon"
+		ButtonImage="Button_IonCannon"
+		Side="Japan"
+		SubGroupPriority="810"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="20"
+		BuildTime="0"
+		CommandSet="JapanVIPUnitCommandSet"
+		KindOf="NO_COLLIDE DONT_DESTROY_IF_ON_BRIDGE CAN_CAST_REFLECTIONS SELECTABLE RESIST_EMP UNATTACKABLE HIDE_IF_FOGGED IGNORES_SELECT_ALL POWERED SKIRMISH_AI_DONT_CONSIDER_THREAT IGNORE_IN_AI_HUNT_TACTIC"
+		RadarPriority="NOT_ON_RADAR"
+		ThreatLevel="10"
+		UnitCategory="AIRCRAFT"
+		VoicePriority="500"
+		EditorName="JapanVIPUnit"
+		Description="Desc:JapanVIPUnit"
+		TypeDescription="Type:JapanVIPUnit">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanVIPUnit</DisplayName>
+		<ArmorSet
+			Armor="InvulnerableArmor" />
+		<LocomotorSet
+			Locomotor="VIPUnitLocomotor"
+			Condition="NORMAL"
+			Speed="75.0" />
+		<!-- Need ConquerMetricsOverrideDefendingAntiMask or else the TAXIING locomotor will make
+		the AI try to build anti-ground units against this -->
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EmpireArrow" />
+					<ShadowInfo
+						Type="ADDITIVE_DECAL"
+						SizeX="120"
+						SizeY="120"
+						OverrideLODVisibility="true"
+						MaxHeight="300"
+						UseHouseColor="true"
+						IsRotatingWithObject="false"
+						LocalPlayerOnly="true"
+						Texture="Target_IonCannon" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"
+				GravityMultiplier="30" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="" />
+			</FXListBehavior>
+			<SpecialPower
+				id="ModuleTag_IonCannonEffect"
+				SpecialPowerTemplate="SpecialPower_SmallTelekineticProjectorDevice"
+				AvailableAtStart="true"
+				UpdateModuleStartsAttack="true" />
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_IonCannonEffectUpdate"
+				SpecialPowerTemplate="SpecialPower_SmallTelekineticProjectorDevice"
+				SpecialWeapon="VIPTelekineticSpawnWeapon"
+				WhichSpecialWeapon="1"
+				Options="BUSY_DURING_PACK BUSY_DURING_UNPACK"
+				PackTime="4s"
+				FaceTarget="false"
+				FreezeAfterTriggerDuration="1s" />
+			<SelectiveVisibilityBehavior
+				id="ModuleTag_SelectiveVisibility"
+				UpdateRate="0.5s"
+				AllowedPlayers="ALLIES NEUTRAL" />
+			<TechUpgradeReceiver
+				id="ModuleTag_VIPWeaponReceiver"
+				Radius="99999.0"
+				FXLineBoneName="ROOTTRANSFORM"
+				RadarRotateSpeed="1r"
+				RadarRotateOffset="1r">
+				<TriggeredBy>Upgrade_VIPWeapon</TriggeredBy>
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ALLIES">
+					<IncludeThing>JapanTechStructure</IncludeThing>
+				</ObjectFilter>
+			</TechUpgradeReceiver>
+			<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_UnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+
+			<!-- No Invisibility -->
+			<xi:include
+				href="DATA:Includes/NoInvisibilityAndLua.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:NoInvisibilityAndLua/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="false"
+					ReacquireDelay="1s" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="1.0"
+				Height="10.0">
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="SOV_MagneticSatellite_Attack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SOV_MagneticSatellite_MoveStart" AudioType="voiceMove" />
+			<AudioEntry Sound="SOV_MagneticSatellite_Select" AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="0" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="50">
+		</CrusherInfo>
+	</GameObject>
+	<LogicCommandSet
+		id="JapanVIPUnitCommandSet">
+		<Cmd>Command_SmallTelekineticProjectorDevice</Cmd>
+	</LogicCommandSet>
+	<WeaponTemplate
+		id="VIPTelekineticSpawnWeapon"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		WeaponSpeed="100.0">
+		<Nuggets>
+			<WeaponOCLNugget
+				WeaponOCL="OCLVIPTelekineticProjectorDevice">
+			</WeaponOCLNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="VIPTelekineticWeapon"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_SUBMERGED ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+		FireFX="FX_JapanSuperWeaponAdvancedHit">
+		<Nuggets>
+			<DamageNugget
+				Damage="1000.0"
+				DamageTaperOff="350"
+				Radius="250.0"
+				DamageType="EXPLOSIVE"
+				DeathType="DETONATED"
+				PartitionFilterTestType="CIRCLE"
+				RadiusAffectsBridges="true">
+				<DamageScalarDetails Scalar="200%">
+					<Filter
+						Rule="NONE"
+						Relationship="ALLIES ENEMIES NEUTRAL"
+						Include="FS_BASE_DEFENSE">
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+			<AttributeModifierNugget
+				Radius="200.0"
+				AttributeModifierName="AttributeFireTree">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Relationship="ALLIES ENEMIES NEUTRAL"
+					Include="MACHINE">
+				</SpecialObjectFilter>
+			</AttributeModifierNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<GameObject
+		id="VIPTelekineticProjectorDeviceEffect"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE INERT_SHROUD_REVEALER SKIRMISH_AI_ATTEMPT_TO_DODGE ALWAYS_COLLIDE_WITH_OWN_SHIELD_SPHERES"
+		EditorName="VIPTelekineticProjectorDeviceEffect">
+		<DisplayName>VIPTelekineticProjectorDeviceEffect</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<SkirmishAIInformation
+			DodgeSafetyDistance="500.0">
+		</SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL">
+					<Model
+						Name="" />
+					<!-- This is the build up for the Super Weapon-->
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="JapanPsyonicBlastAdditiveCoreSmall"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="JapanPsyonicBlastDistortionCoreSmall"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="JapanPsyonicBlastLightRaysSmall"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="JapanPsyonicBlastMultiplySmall"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_RepairDecal"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="FXInvisBone" />
+					<ShadowInfo
+						Type="ADDITIVE_DECAL"
+						SizeX="300"
+						SizeY="300"
+						OverrideLODVisibility="true"
+						MaxHeight="200"
+						UseHouseColor="true"
+						IsRotatingWithObject="false"
+						Texture="SuperWeaponJapan" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="5.5s"
+				MaxLifetime="5.5s" />
+			<DestroyDie
+				id="ModuleTag_DestroyDie">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeapon"
+				InitiallyActive="true"
+				DeathWeapon="VIPTelekineticWeapon">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<DestroyObjectsUpdate
+				id="ModuleTag_DestroyObjectsUpdate"
+				Radius="500">
+				<ObjectFilter Rule="NONE" Include="CIVILIAN_UNIT" />
+			</DestroyObjectsUpdate>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_VIPSPDie" />
+			</FXListBehavior>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="AllSideSuperWeaponFunctions" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine" />
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="50.0"
+				Height="300.0"></Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_SmallPsionicDecimator_Explo" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<ShadowInfo
+			Type="NONE" />
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="300" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+</AssetDeclaration>

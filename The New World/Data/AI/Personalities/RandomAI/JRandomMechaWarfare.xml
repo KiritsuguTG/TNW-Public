@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+
+	<Includes>
+		<Include type="instance" source="JRandomCoopBaseSkirmishPersonality.xml" />
+	</Includes>
+
+	<AIPersonalityDefinition
+		id="02RJ"
+		PersonalityType="02RJ"
+		inheritFrom="JRandomCoopBaseSkirmishPersonality"
+		EnemySortingBrutalDifficulty="StrongestFirst_AllowTies"
+		EnemySortingHardDifficulty="StrongestFirst_AllowTies"
+		EnemySortingMediumDifficulty="StrongestFirst_AllowTies"
+		EnemySortingEasyDifficulty="StrongestFirst_AllowTies"
+		SkirmishPersonality="true"
+		PersonalityUIName="Personality:Kenji"
+		CommanderPortrait="Kenji">
+		<BuildState id="JapanUpgradeTechBuildState_MechaWarfare" State="JapanUpgradeTechBuildState_MechaWarfare" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="JapanTechBuildState_MechaWarfare" State="JapanTechBuildState_MechaWarfare" Difficulty="MEDIUM HARD BRUTAL"/>
+		
+		<BuildState id="JapanAntiAirOnlyBuildState_WaterMechaWarfareTNW" State="JapanAntiAirOnlyBuildState_WaterMechaWarfareTNW" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="JapanAntiAirOnlyBuildState_LandMechaWarfareTNW" State="JapanAntiAirOnlyBuildState_LandMechaWarfareTNW" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="JapanFavouriteLandUnitBuildState_MechaWarfare" State="JapanFavouriteLandUnitBuildState_MechaWarfare" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="JapanFavouriteWaterUnitBuildState_MechaWarfare" State="JapanFavouriteWaterUnitBuildState_MechaWarfare" Difficulty="MEDIUM HARD BRUTAL"/>
+
+		<BuildState id="MODFavouriteLandUnitBuildState_MechaWarfare" State="MODFavouriteLandUnitBuildState_MechaWarfare" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODFavouriteWaterUnitBuildState_MechaWarfare" State="MODFavouriteWaterUnitBuildState_MechaWarfare" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="JapanAntiAirOnlyBuildState_TNW" xai:joinAction="Remove" xmlns:xai="uri:ea.com:eala:asset:instance"/>
+		<!-- Don't go too crazy with base defenses. This isn't a cap on how many defenses it can build, only a cap on how many it can try simulaneously. This prevents the AI
+from over-responding to minor threats. 
+		<SpecificUnitCap Unit="JapanPowerPlantEgg" Cap="3" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		-->
+		<SpecificUnitCap Unit="JapanBaseDefenseEgg" Cap="2" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="JapanBaseDefenseAdvancedEgg" Cap="2" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="JapanScoutInfantry" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="JapanInfiltrationInfantry" Cap="4" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="JapanTransportVehicle" Cap="4" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="JapanAntiInfantryInfantry" Cap="15" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="JapanAntiVehicleInfantry" Cap="30" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="JapanAntiAirVehicleTech1" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="JapanSentinelVehicle" Cap="20" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<SpecificUnitCap Unit="JapanNavyScoutShip" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="JapanAntiVehicleShip" Cap="8" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="JapanAntiStructureShip" Cap="7" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="JapanAntiInfantryInfantry" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<UnitModifier Unit="JapanScoutInfantry" OffensiveModifier="0.5" DefensiveModifier="0.5"/>
+		<UnitModifier Unit="JapanAntiInfantryInfantry" OffensiveModifier="1.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="JapanArcherInfantry" OffensiveModifier="1.5" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="JapanAntiVehicleInfantry" OffensiveModifier="0.5" DefensiveModifier="0.5"/>
+		<UnitModifier Unit="JapanAntiVehicleInfantryTech3" OffensiveModifier="500" DefensiveModifier="500.0"/>
+		<UnitModifier Unit="JapanCommandoTech1" OffensiveModifier="100.0" DefensiveModifier="10.0"/>
+		<!-- Commandos are good. You pretty much always want them. -->
+
+		<UnitModifier Unit="JapanAntiInfantryVehicle" OffensiveModifier="2.0" DefensiveModifier="10.0"/>
+		<UnitModifier Unit="JapanAntiAirVehicleTech1" OffensiveModifier="2.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="JapanAntiVehicleVehicleTech1" OffensiveModifier="1.0" DefensiveModifier="20.0"/>
+		<UnitModifier Unit="JapanSentinelVehicle" OffensiveModifier="5.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="JapanAntiVehicleVehicleTech3" OffensiveModifier="2.0" DefensiveModifier="2.0"/>
+		<UnitModifier Unit="JapanAntiStructureVehicle" OffensiveModifier="5.0" DefensiveModifier="5.0"/>
+
+		<UnitModifier Unit="JapanNavyScoutShip" OffensiveModifier="5.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="JapanAntiAirShip" OffensiveModifier="2.0" DefensiveModifier="2.0"/>
+		<UnitModifier Unit="JapanAntiVehicleShip" OffensiveModifier="5.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="JapanAntiStructureShip" OffensiveModifier="5.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="JapanFortressShipEgg" OffensiveModifier="200.0" DefensiveModifier="200.0"/>
+
+		<SpecificUnitCap Unit="MODTechStructureEgg" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODRefineryEgg" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODSuperWeaponAdvancedEgg" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODWarFactoryEgg" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODWarFactoryAI" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="JapanAirfieldEgg" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODTechStructureEgg" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODRefineryEgg" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODSuperWeaponAdvancedEgg" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODInfiltrationInfantry" Cap="7" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODNanoFly" Cap="40" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiVehicleInfantry" Cap="20" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiStructureVehicle" Cap="3" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiVehicleVehicleTech1" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiNavyShipTech2" Cap="8" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiStructureVehicle_Naval" Cap="11" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiInfantryVehicle" Cap="20" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiVehicleVehicleTech3" Cap="10" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="MODAntiVehicleVehicleTech3" Cap="30" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODNanoFlyMaster" Cap="10" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="MODNanoFlyMaster" Cap="20" Difficulty="MEDIUM HARD BRUTAL"/>
+		<UnitModifier Unit="MODNanoFly" OffensiveModifier="1.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="MODAntiVehicleInfantry" OffensiveModifier="0.5" DefensiveModifier="0.5"/>
+		<UnitModifier Unit="MODAntiVehicleInfantryTech3" OffensiveModifier="2" DefensiveModifier="2.0"/>
+		<SpecificUnitCap Unit="MODBombVehicle" Cap="2" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<UnitModifier Unit="MODBombVehicle" OffensiveModifier="1.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="MODAntiAirVehicleTech1" OffensiveModifier="2.0" DefensiveModifier="2.0"/>
+		<UnitModifier Unit="MODAntiInfantryVehicle" OffensiveModifier="5.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="MODAntiVehicleVehicleTech3" OffensiveModifier="8.0" DefensiveModifier="8.0"/>
+		<UnitModifier Unit="MODAntiStructureVehicle" OffensiveModifier="5.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="MODAntiVehicleVehicleTech1" OffensiveModifier="1.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="MODAntiNavyShipTech2" OffensiveModifier="5.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="MODAntiStructureVehicle_Naval" OffensiveModifier="5.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="MODFortressShipEgg" OffensiveModifier="200.0" DefensiveModifier="200.0"/>
+		<SpecificUnitCap Unit="MODFighterAircraft" Cap="4" Difficulty="EASY MEDIUM"/>
+		<SpecificUnitCap Unit="MODFighterAircraft" Cap="8" Difficulty="HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiGroundAircraft" Cap="2" Difficulty="EASY MEDIUM"/>
+		<SpecificUnitCap Unit="MODAntiGroundAircraft" Cap="6" Difficulty="HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODBomberAircraft" Cap="2" Difficulty="EASY MEDIUM"/>
+		<SpecificUnitCap Unit="MODBomberAircraft" Cap="6" Difficulty="HARD BRUTAL"/>
+		<UnitModifier Unit="MODFighterAircraft" OffensiveModifier="2.5" DefensiveModifier="2.5"/>
+		<UnitModifier Unit="MODAntiGroundAircraft" OffensiveModifier="3.5" DefensiveModifier="3.5"/>
+		<UnitModifier Unit="MODAntiNavyShipTech2" OffensiveModifier="6" DefensiveModifier="6"/>
+		<UnitModifier Unit="MODBomberAircraft" OffensiveModifier="4" DefensiveModifier="4"/>
+		<UnitModifier Unit="MODNanoFlyMaster" OffensiveModifier="3" DefensiveModifier="3"/>
+		<!-- Player Tech -->
+		<!-- Tier 1 -->
+		<PowerChoice PlayerPower="PlayerTech_Japan_Suppression" Weight="20%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_EVAAttack" Weight="20%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_NanoFly" Weight="100%"/>
+
+		<!-- Tier 2 -->
+		<PowerChoice PlayerPower="PlayerTech_Japan_PointDefenseDrones" Weight="100%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_EmperorsRage_Rank1" Weight="100%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_Ambush" Weight="100%"/>
+
+		<!-- Tier 3 -->
+		<PowerChoice PlayerPower="PlayerTech_Japan_FinalSquadron_Rank1" Weight="20%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_EmperorsRage_Rank2" Weight="100%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_BalloonAttack_Rank1" Weight="20%"/>
+
+		<!-- Tier 4 -->
+		<PowerChoice PlayerPower="PlayerTech_Japan_FinalSquadron_Rank2" Weight="20%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_EmperorsRage_Rank3" Weight="100%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_BalloonAttack_Rank2" Weight="20%"/>
+
+		<!-- Tier 5 -->
+		<PowerChoice PlayerPower="PlayerTech_Japan_FinalSquadron_Rank3" Weight="20%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_DeathSpawn" Weight="20%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_BalloonAttack_Rank3" Weight="20%"/>
+
+		<!-- Voice Responses -->
+		<FeedbackEntry FeedbackKey="PlanAttackBeaconPlaced" EvaEvent="EmpireCoopKenjiPlanAttack" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="PlanAttackOrderComplete" EvaEvent="EmpireCoopKenjiPlanAttackDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionBeaconPlaced" EvaEvent="EmpireCoopKenjiTakePos" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionOrderComplete" EvaEvent="EmpireCoopKenjiTakePosDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetBeaconPlaced" EvaEvent="EmpireCoopKenjiStrikeThis" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetOrderComplete" EvaEvent="EmpireCoopKenjiStrikeThisDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="OrderCanceled" EvaEvent="EmpireCoopKenjiAutoPilot" FeedbackTo="ALLIES"/>
+
+		<!-- Skirmish feedback -->
+
+		<!-- Greet ally at beginning of game -->
+		<FeedbackEntry
+				FeedbackKey="StartGame"
+				Video="JKEGR1"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="StartGame"
+				Video="JKEGR2"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="StartGame"
+				Video="JKEGR3"
+				FeedbackTo="ALLIES"/>
+
+		<!-- Tell ally I'm in trouble -->
+		<!-- N.B.: If you wanted to add FeedbackTo="ENEMIES" or "NEUTRAL", you would also need to 
+			    adjust the InTroubleSkirmishFeedbackControl block's OnlyIfLocalPlayerIs list -->
+		<FeedbackEntry
+				FeedbackKey="InTrouble"
+				Video="JKEND1"
+				FeedbackTo="ALLIES"
+				Timeout="600s"/>
+		<FeedbackEntry
+				FeedbackKey="InTrouble"
+				Video="JKEND2"
+				FeedbackTo="ALLIES"
+				Timeout="600s"/>
+		<FeedbackEntry
+				FeedbackKey="InTrouble"
+				Video="JKEND3"
+				FeedbackTo="ALLIES"
+				Timeout="600s"/>
+
+		<!-- Tell ally I'm dead -->
+		<FeedbackEntry
+				FeedbackKey="Lost"
+				Video="JKEDE1"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="Lost"
+				Video="JKEDE2"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="Lost"
+				Video="JKEDE3"
+				FeedbackTo="ALLIES"/>
+
+		<!-- Tell enemy I'm going to defeat them! (when I first meet them) -->
+		<FeedbackEntry
+				FeedbackKey="FirstSeen"
+				Video="JKETG1"
+				FeedbackTo="ENEMIES"
+				Timeout="9999999s"/>
+		<FeedbackEntry
+				FeedbackKey="FirstSeen"
+				Video="JKETG2"
+				FeedbackTo="ENEMIES"
+				Timeout="9999999s"/>
+		<FeedbackEntry
+				FeedbackKey="FirstSeen"
+				Video="JKETG3"
+				FeedbackTo="ENEMIES"
+				Timeout="9999999s"/>
+
+		<!-- Curse enemy who defeated me -->
+		<FeedbackEntry
+				FeedbackKey="DefeatedByLocalPlayer"
+				Video="JKETD1"
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedByLocalPlayer"
+				Video="JKETD2"
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedByLocalPlayer"
+				Video="JKETD3"
+				FeedbackTo="ENEMIES"/>
+
+		<!-- Laugh at enemy whom I defeated -->
+		<FeedbackEntry
+				FeedbackKey="DefeatedLocalPlayer"
+				Video="JKETV1"
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedLocalPlayer"
+				Video="JKETV2"
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedLocalPlayer"
+				Video="JKETV3"
+				FeedbackTo="ENEMIES"/>
+		<!-- 樱井 -->
+		<!--<FeedbackEntry FeedbackKey="PlanAttackBeaconPlaced" EvaEvent="JapanCoopBossAIPlanAttack" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="PlanAttackOrderComplete" EvaEvent="JapanCoopBossAIPlanAttackDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionBeaconPlaced" EvaEvent="JapanCoopBossAITakePositionBeaconPlaced" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionOrderComplete" EvaEvent="JapanCoopBossAITakePositionBeaconPlacedDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetBeaconPlaced" EvaEvent="JapanCoopBossAIStrikeThis" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetOrderComplete" EvaEvent="JapanCoopBossAIStrikeThisDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="OrderCanceled" EvaEvent="JapanCoopBossAIAutoPilot" FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="StartGame"
+				Video="YJAS1"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="StartGame"
+				Video="YJAS2"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="StartGame"
+				Video="YJAS3"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="Lost"
+				Video="YJAD1"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="Lost"
+				Video="YJAD2"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="FirstSeen"
+				Video="YJES1"
+				FeedbackTo="ENEMIES"
+				Timeout="9999999s"/>
+		<FeedbackEntry
+				FeedbackKey="FirstSeen"
+				Video="YJES2"
+				FeedbackTo="ENEMIES"
+				Timeout="9999999s"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedByLocalPlayer"
+				Video="YJDBP1"
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedByLocalPlayer"
+				Video="YJDBP2"
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedLocalPlayer"
+				Video="YJDP1"
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedLocalPlayer"
+				Video="YJDP2"
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="InTrouble"
+				Video="YJNH1"
+				FeedbackTo="ALLIES"
+				Timeout="600s"/>
+		<FeedbackEntry
+				FeedbackKey="InTrouble"
+				Video="YJNH2"
+				FeedbackTo="ALLIES"
+				Timeout="600s"/>
+		<FeedbackEntry
+				FeedbackKey="InTrouble"
+				Video="YJNH3"
+				FeedbackTo="ALLIES"
+				Timeout="600s"/>-->
+	</AIPersonalityDefinition>
+</AssetDeclaration>

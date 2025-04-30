@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<FXParticleSystemTemplate ParticleTexture="FX_Debris01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="ALPHA" SortLevel="1" SystemLifetime="5" Type="GPU_PARTICLE" id="JapanFortressTrans_AirToLand">
+		<Lifetime High="50" Low="50"/>
+		<Size High="45" Low="30"/>
+		<BurstCount High="3" Low="2"/>
+		<InitialDelay High="115" Low="115"/>
+		<Alphas>
+			<Alpha Frame="1" High="1" Low="1" RelativeAge="0"/>
+			<Alpha Frame="2" High="1" Low="1" RelativeAge="19"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.6" g="0.67451" r="0.733333"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0.505882" g="0.6" r="0.670588"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.1" Swirly="true">
+				<VelocityDamping High="0.95" Low="0.95"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu Shader="GPUParticleLit.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder Radius="15">
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="2" Low="-2"/>
+					<y High="2" Low="-2"/>
+					<z High="6.5" Low="4"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FX_Debris01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="ALPHA" SortLevel="1" SystemLifetime="5" Type="GPU_PARTICLE" id="JapanFortressTrans_LandToAir">
+		<Lifetime High="50" Low="50"/>
+		<Size High="45" Low="30"/>
+		<BurstCount High="3" Low="2"/>
+		<InitialDelay High="4" Low="4"/>
+		<Alphas>
+			<Alpha Frame="1" High="1" Low="1" RelativeAge="0"/>
+			<Alpha Frame="2" High="1" Low="1" RelativeAge="19"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.6" g="0.67451" r="0.733333"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0.505882" g="0.6" r="0.670588"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.1" Swirly="true">
+				<VelocityDamping High="0.95" Low="0.95"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu Shader="GPUParticleLit.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder Radius="15">
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="2" Low="-2"/>
+					<y High="2" Low="-2"/>
+					<z High="6.5" Low="4"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+  <FXParticleSystemTemplate ParticleTexture="FXSmoke01" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="ALPHA" SortLevel="3" SystemLifetime="1" Type="GPU_PARTICLE" id="JapanFortressTrans_Land2">
+		<Lifetime High="60" Low="120"/>
+		<Size High="100" Low="80"/>
+		<BurstDelay High="2" Low="2"/>
+		<BurstCount High="3" Low="3"/>
+		<InitialDelay High="115" Low="115"/>
+		<Alphas>
+			<Alpha Frame="1" High="0" Low="0" RelativeAge="0"/>
+			<Alpha Frame="2" High="0.7" Low="0.6" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.5" g="0.5" r="0.6"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0.6" g="0.6" r="0.8"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default Gravity="0.0">
+				<VelocityDamping High="0.98" Low="0.98"/>
+				<DriftVelocity x="0" y="0" z="0.7"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<!--<Gpu DetailTexture="FXFracTileNRM" FramesPerRow="4" SpeedMultiplier="0.05" TotalFrames="16"/>-->
+			<Gpu DetailTexture="FXFracTileNRM" GeometryType="TWO_CONCENTRIC_QUADS" MiscValue1="0.15" MiscValue2="0.1" MiscValue3="45" MiscValue4="0.4" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder IsHollow="true" Length="30" Radius="100">
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Outward>
+				<Speed High="-1.86" Low="-1.86"/>
+				<OtherSpeed High="-1.8" Low="-1.8"/>
+			</Outward>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.5" Low="0.2"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngleZ High="0" Low="0"/>
+				<AngularRateZ High="0.01" Low="-0.01"/>
+				<AngularDamping High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXSmoke01" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="ALPHA" SortLevel="2" SystemLifetime="1" Type="GPU_PARTICLE" id="JapanFortressTrans_ToLandMushroomRing">
+		<Lifetime High="120" Low="240"/>
+		<Size High="60" Low="40"/>
+		<BurstCount High="150" Low="90"/>
+		<InitialDelay High="115" Low="115"/>
+		<Alphas>
+			<Alpha Frame="1" High="0.8" Low="0.9" RelativeAge="0"/>
+			<Alpha Frame="2" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.6" g="0.6" r="0.8"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0.3" g="0.3" r="0.4"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default Gravity="0">
+				<VelocityDamping High="0.96" Low="0.94"/>
+				<DriftVelocity x="0" y="0" z="-0.4"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXFracTileNRM" GeometryType="TWO_CONCENTRIC_QUADS" MiscValue1="0.15" MiscValue2="0.1" MiscValue3="45" MiscValue4="0.4" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder IsHollow="true" Length="30" Radius="50">
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Outward>
+				<Speed High="0.8" Low="0.7"/>
+				<OtherSpeed High="0" Low="0"/>
+			</Outward>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="1" Low="1"/>
+				<SizeRateDamping High="0.98" Low="0.98"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularRateZ High="0.03" Low="-0.03"/>
+				<AngularDamping High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

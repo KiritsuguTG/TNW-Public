@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<AIBuildStateDefinition
+		id="MODAntiAirOnlyBuildState_TNW">
+		<Heuristic>
+			<EnemyNearbyHeuristic Distance="700.0" EnemyNearby="true" MinEnemyValue="1200">
+				<EnemyFilter
+						Relationship="ENEMIES"
+						Rule="ANY"
+						Include="AIRCRAFT MONSTER">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="MODAntiVehicleInfantry" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="MODAntiAirVehicleTech1" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="MODFighterAircraft" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="MODAmphibiousUnitBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Land Water">
+				<ObjectFilter
+				  Relationship="ENEMIES"
+				  Rule="ANY"
+				  Include="CAN_ATTACK STRUCTURE"
+				  Exclude="IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+				  StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic Weight="0.5"/>
+			<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+			<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="MODNanoFly" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="MODAntiVehicleInfantryTech3" Heuristic="FEWEST_UNIT" BlockIfThingNearFactoryDistance="300">
+			<BlockIfThingNearFactory
+				Rule="ANY"
+				Relationship="ENEMIES"
+				Include="FIGHTER_AIRCRAFT COMMANDO">
+				<IncludeThing>SovietAntiAirShip</IncludeThing>
+				<IncludeThing>MODAntiAirVehicleTech1</IncludeThing>
+				<IncludeThing>AlliedAntiAirShip</IncludeThing>
+				<IncludeThing>AlliedAntiAirVehicleTech1</IncludeThing>
+				<IncludeThing>EUAntiAirVehicleTech1</IncludeThing>
+				<IncludeThing>StrategicArmyAntiStructureVehicle</IncludeThing>
+				<IncludeThing>MODAntiAirVehicleTech1</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="JapanCommandoTech1" Heuristic="FEWEST_UNIT" ExpectedEfficiencyWeight="1.0">
+			<BlockIfThingNearFactory Rule="NONE" Relationship="ENEMIES">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+				<IncludeThing>AlliedAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanSentinelVehicle</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="MODAntiAirVehicleTech1" Heuristic="BEST_UNIT_WEIGHTED" BlockIfThingNearFactoryDistance="200">
+			<BlockIfThingNearFactory
+				Rule="ANY"
+				Relationship="ENEMIES"
+				Include="COMMANDO T3_UNIT T2_UNIT">
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="MODAntiStructureVehicle" Heuristic="BEST_UNIT_WEIGHTED"/>
+		<BuildEntry Build="MODAntiInfantryVehicle" Heuristic="BEST_UNIT_WEIGHTED"/>
+		<BuildEntry Build="MODAntiVehicleVehicleTech1" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="MODNanoFlyMaster" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="JapanGenericUnitBuildState">
+		<Heuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="MODBombVehicle" Heuristic="BEST_UNIT_WEIGHTED"/>
+		<BuildEntry Build="JapanCommandoTech1" Heuristic="FEWEST_UNIT" ExpectedEfficiencyWeight="1.0">
+			<BlockIfThingNearFactory Rule="NONE" Relationship="ENEMIES">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+				<IncludeThing>AlliedAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanSentinelVehicle</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+	</AIBuildStateDefinition>
+    
+	<AIBuildStateDefinition
+	  id="MODStructureTNWBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+		</Heuristic>
+		<BuildEntry Build="MODPowerPlant" Heuristic="POWER"/>
+		<BuildEntry Build="MODRefinery" Heuristic="REFINERY"/>
+		<BuildEntry Build="MODBarracks" Heuristic="FACTORY"/>
+		<BuildEntry Build="MODMiner" Heuristic="HARVESTER"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="MODStructureTNWBuildState_BRUTAL">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+		</Heuristic>
+		<BuildEntry Build="MODPowerPlant" Heuristic="POWER"/>
+		<BuildEntry Build="MODRefinery" Heuristic="REFINERY"/>
+		<BuildEntry Build="MODBarracksAI" Heuristic="FACTORY"/>
+		<BuildEntry Build="MODWarFactoryAI" Heuristic="FACTORY"/>
+		<BuildEntry Build="MODNavalYard" Heuristic="FACTORY"/>
+		<BuildEntry Build="MODAirfield" Heuristic="FACTORY"/>
+		<BuildEntry Build="MODMiner" Heuristic="HARVESTER"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="MODFortressShipEggBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>MODFortressShipEgg</IncludeThing>
+					<IncludeThing>MODFortressShipDummy</IncludeThing>
+					<IncludeThing>MODFortressShip</IncludeThing>
+					<IncludeThing>MODFortressShip_WorldBuilder</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="MODFortressShipEgg" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+    
+	<AIBuildStateDefinition
+		id="MODDefenseBuildState002">
+		<Heuristic>
+			<EnemyNearbyHeuristic Distance="1200.0" EnemyNearby="true" MinEnemyValue="4000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Water Land">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>MODConstructionYard</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="MODBaseDefense" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="MODDefenseBuildState003">
+		<Heuristic>
+			<EnemyNearbyHeuristic Distance="1200.0" EnemyNearby="true" MinEnemyValue="5000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Water Land">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>MODConstructionYard</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="JapanBaseDefenseAdvanced" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+    
+	<AIBuildStateDefinition
+	  id="MODWarFactoryBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>MODWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="MODWarFactory" Heuristic="BUILD_TEST" Score="100"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="MODNavalYardBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>MODNavalYard</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+			<CanBuildBuildingsOnSurfaceHeuristic
+				Surfaces="WATER DEEP_WATER"
+				MinPlacementGridCells="0"
+				MaxPlacementGridCells="0" />
+		</Heuristic>
+		<BuildEntry Build="MODNavalYard" Heuristic="BUILD_TEST" Score="100"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="MODAirfieldBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>MODAirfield</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="MODAirfield" Heuristic="BUILD_TEST"/>
+	</AIBuildStateDefinition>
+    
+	<AIBuildStateDefinition
+	  id="MODAntiBaseDefenceBuildUnit">
+		<Heuristic>
+			<EnemyNearbyHeuristic Distance="1500.0" EnemyNearby="false" MinEnemyValue="5000">
+				<EnemyFilter
+					Rule="ANY"
+					Relationship="ENEMIES"
+					Include="FS_BASE_DEFENSE"
+					Exclude="SUPER_WEAPON">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="MODAntiStructureVehicle" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+</AssetDeclaration>

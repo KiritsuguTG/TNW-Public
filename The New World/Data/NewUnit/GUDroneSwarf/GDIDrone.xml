@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all"	source="Art/GUDrone_SKN.w3x" />							
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="GDIDrone"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_GDIDrone"
+		ButtonImage="Button_GDIDrone"
+		Side="Allies"
+		SubGroupPriority="710" 
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="30"
+		BuildTime="5"
+		CommandSet="GDIDroneCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS VEHICLE SCORE AIRCRAFT CAN_BE_FAVORITE_UNIT TRANSPORT AMPHIBIOUS"
+		RadarPriority="UNIT"
+		ProductionQueueType="AIRCRAFT"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		EditorName="GDIDrone"
+		Description="Desc:NODInfernoBomber"
+		TypeDescription="Type:NODInfernoBomber">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">NAME:GDIDrone</DisplayName>
+		
+		<ArmorSet
+			Armor="AlliedAntiInfantryVehicleArmor"
+			DamageFX="AircraftDamageFX" />
+
+		<LocomotorSet
+			Locomotor="SovietAntiGroundAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="200.0" />
+			
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="GUDrone_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw"
+				MinLength="30.0"
+				MaxLength="30.0"
+				Width="10.0"
+				MinSpeed="20"
+				MaxSpeed="20"
+				SweepSpeed="3.0"
+				SpreadAngle="4.0"
+				MinTracersPerFrame=".2"
+				MaxTracersPerFrame=".35"
+				FrameLifeTime="30"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracer"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="0.5"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="0.5"
+					a="0.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01"/>
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawVeterancy"
+				MinLength="30.0"
+				MaxLength="35.0"
+				Width="15.0"
+				MinSpeed="20"
+				MaxSpeed="20"
+				SweepSpeed="1.0"
+				SpreadAngle="1.0"
+				MinTracersPerFrame="0.2"
+				MaxTracersPerFrame="0.35"
+				FrameLifeTime="30"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracerHeroic"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="0.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietAntiGroundAircraftAutoCannon"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="-60d"
+						AllowsPitch="true"
+						PitchHeight="10%"
+						TurretPitchRate="180"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="4.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+      </WeaponSetUpdate>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_JetFighter_Die" />
+			</FXListBehavior>
+
+			<Physics
+				id="ModuleTag_Physics" />
+			<SlowDeath
+				id="ModuleTag_Death"
+				DestructionDelay="0.5s"
+				Fade="true"
+				FadeTime="0.5s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+		</Behaviors>		
+		<AI>		
+			<JetAIUpdate
+				id="ModuleTag_JetAI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				CirclesForAttack="true"
+				StateMachine="JetAIStateMachine"
+				DefaultLocomotorSet="NORMAL">
+				<UnitAITargetChooserData />
+			</JetAIUpdate>
+		</AI>
+    <Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="60.0"/>
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_LandLaunch">
+				<ModelConditionSound Sound="ALL_JetFighter_Land" RequiredFlags="LANDING" />
+				<ModelConditionSound Sound="ALL_JetFighter_Launch" RequiredFlags="TAKING_OFF" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.0"
+				Height="5.0">
+			</Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="ALL_JetFighter_moveByLoop" AudioType="soundMoveLoop" />
+		</AudioArraySound>
+
+			<EvaEventArray>
+				<EvaEntry EvaEvent="" EvaType="dieOwner" />
+				<EvaEntry EvaEvent="" EvaType="damagedOwner" />
+				<EvaEntry EvaEvent="" EvaType="damagedAlly" />
+			</EvaEventArray>
+
+		<VisionInfo
+			VisionRange="200"
+			ShroudClearingRange="=$STANDARD_SHROUD_CLEAR" />
+	</GameObject>
+</AssetDeclaration>

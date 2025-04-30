@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+		<Include type="all" source="ART:Units/JapanAntiGroundAircraft/JapanAntiGroundAircraft_COL_SKN.w3x"/>
+	</Includes>
+	<GameObject
+		id="JapanAntiGroundAircraft_Dying"
+		EditorName="JapanAntiGroundAircraft_Dying"
+		Description="Desc:JapanAntiGroundAircraft_Dying"
+		KindOf="PROJECTILE INERT NO_COLLIDE UNATTACKABLE">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUANTIGROUNDAIRCRAFT" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_D" />
+					<Texture
+						Original="JUNavyScoutShip"
+						New="JUNavyScoutShip_D" />
+				<xi:include
+					href="DATA:Includes/VehicleCollapseParticles/JapanAircraftDyingCollapseParticles.xml"
+					xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanAircraftDyingCollapseParticles/child::*)" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"
+				TumbleRandomly="true"
+				MaxXRotationVelocity="0"
+				MaxYRotationVelocity="50"
+				MaxZRotationVelocity="200"
+				KillWhenRestingOnGround="true"/>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="JapanAntiGroundAircraft_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<FireWeaponWhenDead
+				id="ModuleTag_JapanAntiGroundAircraftDeathWeapon"
+				DeathWeapon="NormalAircraftDeathWeapon"
+				InitiallyActive="true">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+			id="ModuleTag_KamikazeExplosion"
+			InitiallyActive="true"
+			DeathWeapon="AlliesEnhancedKamikazeDeathPlayerPowerWeapon">
+				<DieMuxData
+				  DeathTypes="ALL"
+				  DeathTypesForbidden="SUICIDED"
+				  RequiredStatus="PLAYER_POWER_1"/>
+			</FireWeaponWhenDead>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+			</FXListBehavior>
+			<xi:include
+				href="DATA:Includes/JapanEnhancedKamikazeUpgradeStatus.xml" />
+			<!-- -->
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_PropBody" />
+		</Body>
+	<AudioArraySound>
+		<AudioEntry Sound="RA3VehicleExplosionMediumNoDelay" AudioType="soundAmbient" />
+	</AudioArraySound>	
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="300" />
+	</GameObject>
+	<GameObject
+		id="JapanAntiGroundAircraft_Collapse"
+		inheritFrom="BaseCollapsingObject"
+		EditorName="JapanAntiGroundAircraft_Collapse">
+		<Draws>
+			<DynamicsDraw
+			id="ModuleTag_Draw"
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="15"
+			Explodiness="8" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JAPANANTIGROUNDAIRCRAFT_COL_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_D" />
+					<Texture
+						Original="JUNavyScoutShip"
+						New="JUNavyScoutShip_D" />
+					<xi:include
+						href="DATA:Includes/VehicleCollapseParticles/JapanAircraftDyingCollapseParticles.xml"
+						xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanAircraftDyingCollapseParticles/child::*)" />
+				</ModelConditionState>
+				<BoneVolumes>
+					<BoneVolume BoneName="Bone_D_01" Mass="1673" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="14.3532" HalfSizeY="9.9206" HalfSizeZ="1.16092" >
+							<Translation x="-1.50887" y="11.7817" z="-0.0962114" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_02" Mass="1673" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="14.3532" HalfSizeY="9.9206" HalfSizeZ="1.16092" >
+							<Translation x="-1.50887" y="-10.314" z="-0.0962088" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_03" Mass="1673" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="14.3532" HalfSizeY="9.9206" HalfSizeZ="1.16092" >
+							<Translation x="-12.4135" y="0.657412" z="4.22528" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_04" Mass="1673" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="14.3532" HalfSizeY="9.9206" HalfSizeZ="1.16092" >
+							<Translation x="0.444541" y="0.0742455" z="1.21213" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+				</BoneVolumes>
+				<Lifetime
+					Delay="5s"
+					FadeTime="4s" />
+			</DynamicsDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="4s"
+				MaxLifetime="5s" />
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="1s"
+				SinkRate="1.5"
+				DestructionDelay="8s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+		</Behaviors>
+
+	</GameObject>
+</AssetDeclaration>

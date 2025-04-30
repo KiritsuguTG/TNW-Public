@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+<FXList id="FX_NOD_BlkHndLeadershipBuff">
+	<NuggetList>
+		<ParticleSystem
+			Particle="FXBlkHndLeadershipGlow"
+			OrientToObject = "true">
+			<Offset x="0.0" y="0.0" z="1.0" />
+		</ParticleSystem>
+	</NuggetList>
+</FXList>
+<FXParticleSystemTemplate ParticleTexture="FXBloomAdd" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Type="GPU_PARTICLE" id="FXBlkHndLeadershipGlow">
+	<Lifetime High="12" Low="12"/>
+	<Size High="15" Low="10"/>
+	<BurstCount High="1" Low="1"/>
+	<Colors>
+		<Color Frame="2" RelativeAge="50">
+			<Color b="0" g="0" r="0.576471"/>
+		</Color>
+		<Color Frame="3" RelativeAge="100">
+			<Color b="0" g="0" r="0"/>
+		</Color>
+		<ColorScale High="2" Low="2"/>
+	</Colors>
+	<Physics>
+		<Default>
+			<VelocityDamping High="1" Low="1"/>
+		</Default>
+	</Physics>
+	<Draw>
+		<Gpu SpeedMultiplier="1"/>
+	</Draw>
+	<Volume>
+		<Cylinder>
+			<Offset x="0" y="0" z="5"/>
+		</Cylinder>
+	</Volume>
+	<Velocity>
+		<Ortho>
+			<Position>
+				<x High="0" Low="0"/>
+				<y High="0" Low="0"/>
+				<z High="0" Low="0"/>
+			</Position>
+		</Ortho>
+	</Velocity>
+	<Event/>
+	<Update>
+		<Default>
+			<SizeRateDamping High="0.99" Low="0.99"/>
+			<AngleZ High="3" Low="-3"/>
+			<AngleXY High="2" Low="2"/>
+			<AngularRateXY High="2" Low="2"/>
+			<AngularDampingXY High="1" Low="1"/>
+		</Default>
+	</Update>
+</FXParticleSystemTemplate>
+</AssetDeclaration>

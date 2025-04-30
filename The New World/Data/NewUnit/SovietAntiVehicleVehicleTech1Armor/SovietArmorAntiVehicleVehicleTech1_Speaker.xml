@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<GameObject
+		id="SovietArmorAntiVehicleVehicleTech1_Speaker"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="SUMMONED NO_COLLIDE VEHICLE NOT_AUTOACQUIRABLE IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+		EditorName="SovietArmorAntiVehicleVehicleTech1_Speaker">
+		<DisplayName>SovietArmorAntiVehicleVehicleTech1_Speaker</DisplayName>
+		<ArmorSet
+			Armor="SpecialArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="JapanPointDefenseDroneLocomotor"
+			Condition="NORMAL"
+			Speed="200.0" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<ParticleSysBone
+						BoneName="invisbone01" 
+						FXParticleSystemTemplate="Soviet_RadioBroadcastSpread_Small"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<ParticleSysBone
+						BoneName="invisbone01" 
+						FXParticleSystemTemplate="Soviet_RadioBroadcastSpread_Small"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_3">
+					<ParticleSysBone
+						BoneName="invisbone01" 
+						FXParticleSystemTemplate="Soviet_RadioBroadcastSpread_Small"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4">
+					<ParticleSysBone
+						BoneName="invisbone01" 
+						FXParticleSystemTemplate="Soviet_RadioBroadcastSpread_Small"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_5">
+					<ParticleSysBone
+						BoneName="invisbone01" 
+						FXParticleSystemTemplate="Soviet_RadioBroadcastSpread_Small"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6">
+					<ParticleSysBone
+						BoneName="invisbone01" 
+						FXParticleSystemTemplate="Soviet_RadioBroadcastSpread_Small"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_7">
+					<ParticleSysBone
+						BoneName="invisbone01" 
+						FXParticleSystemTemplate="Soviet_RadioBroadcastSpread_Small"
+						FollowBone="true"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+
+			<AttachUpdate
+				id="ModuleTag_Attach"
+				Flags="DIE_WHEN_PARENT_DIES_FROM_NOT_ME STICK_TO_PARENT TELEPORT INSTANT_TELEPORT_ON_PARENT_TELEPORT DIE_WHEN_DETACH_ALWAYS DEFECT_WHEN_PARENT_DEFECTS DETACH_WHEN_PARENT_UNMANNED"
+				ParentStatus="PLAYER_POWER_4"
+				CloseEnoughRange="1.0">
+			</AttachUpdate>
+			
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+
+
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AttributeModifier_ZheJiangWenZhou_Buff"
+				InitiallyActive="true"
+				AllowSelf="True" 
+				Range="800"
+				RefreshDelay="2s"
+				AttributeModifierName="AttributeMod_ZheJiangWenZhou_Buff"
+				RequiredObjectStatusFlags="PLAYER_POWER_1">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="SAME_PLAYER">
+					<IncludeThing>SovietConstructionYardArmor</IncludeThing>
+					<IncludeThing>SovietCraneArmor</IncludeThing>
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AttributeModifier_ZheJiangWenZhou_BuffFX"
+				InitiallyActive="true"
+				AllowSelf="True"
+				Range="800"
+				RefreshDelay="2s"
+				AttributeModifierName="AttributeMod_ZheJiangWenZhou_BuffFX"
+				RequiredObjectStatusFlags="PLAYER_POWER_1">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="SAME_PLAYER"
+					Include="STRUCTURE">
+					<ExcludeThing>SovietConstructionYardArmor</ExcludeThing>
+					<ExcludeThing>SovietCraneArmor</ExcludeThing>
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AttributeModifier_ZheJiangWenZhou_Debuff"
+				InitiallyActive="true"
+				AllowSelf="True" 
+				Range="800"
+				RefreshDelay="2s"
+				AttributeModifierName="AttributeMod_ZheJiangWenZhou_Debuff"
+				RequiredObjectStatusFlags="PLAYER_POWER_1">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES"
+					Include="HARVESTER">
+					<ExcludeThing>SovietMinerArmor</ExcludeThing>
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AttributeModifier_LiangJian_Buff"
+				InitiallyActive="true"
+				AllowSelf="True" 
+				Range="800"
+				RefreshDelay="2s"
+				AttributeModifierName="AttributeMod_LiangJian_Buff"
+				RequiredObjectStatusFlags="PLAYER_POWER_2">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="SAME_PLAYER"
+					Include="VEHICLE INFANTRY SHIP"
+					Exclude="AIRCRAFT"
+					StatusBitFlagsExclude="AIRBORNE_TARGET OVER_WATER WATER_LOCOMOTOR_ACTIVE NOT_IN_WORLD">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AttributeModifier_International_BuffSelf"
+				InitiallyActive="true"
+				AllowSelf="True" 
+				Range="800"
+				RefreshDelay="2s"
+				AttributeModifierName="AttributeMod_International_Buff"
+				RequiredObjectStatusFlags="PLAYER_POWER_3">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="SAME_PLAYER"
+					Include="VEHICLE INFANTRY AIRCRAFT">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AttributeModifier_International_Buff"
+				InitiallyActive="true"
+				AllowSelf="True" 
+				Range="800"
+				RefreshDelay="2s"
+				AttributeModifierName="AttributeMod_International_Buff"
+				RequiredObjectStatusFlags="PLAYER_POWER_3">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ALLIES">
+					<IncludeThing>SovietAntiGroundAircraft</IncludeThing>
+					<IncludeThing>SovietBomberAircraft</IncludeThing>
+					<IncludeThing>SovietFighterAircraft</IncludeThing>
+					<IncludeThing>SovietSupportBomber</IncludeThing>
+					<IncludeThing>SovietAntiInfantryInfantry</IncludeThing>
+					<IncludeThing>SovietAntiVehicleInfantry</IncludeThing>
+					<IncludeThing>SovietCommandoTech1</IncludeThing>
+					<IncludeThing>SovietEngineer</IncludeThing>
+					<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+					<IncludeThing>SovietScoutInfantry</IncludeThing>
+					<IncludeThing>SovietAntiAirShip</IncludeThing>
+					<IncludeThing>SovietAntiInfantryVehicle</IncludeThing>
+					<IncludeThing>SovietAntiNavyShipTech1</IncludeThing>
+					<IncludeThing>SovietAntiNavyShipTech2</IncludeThing>
+					<IncludeThing>SovietAntiStructureShip</IncludeThing>
+					<IncludeThing>SovietAntiStructureVehicle</IncludeThing>
+					<IncludeThing>SovietAntiVehicleVehicleTech0</IncludeThing>
+					<IncludeThing>SovietAntiVehicleVehicleTech1</IncludeThing>
+					<IncludeThing>SovietAntiVehicleVehicleTech3</IncludeThing>
+					<IncludeThing>SovietMCV</IncludeThing>
+					<IncludeThing>SovietMiner</IncludeThing>
+					<IncludeThing>SovietScoutVehicle</IncludeThing>
+					<IncludeThing>SovietAntiGroundAircraftTesla</IncludeThing>
+					<IncludeThing>SovietFighterAircraftTesla</IncludeThing>
+					<IncludeThing>SovietSupportBomberTesla</IncludeThing>
+					<IncludeThing>SovietAntiInfantryInfantryTesla</IncludeThing>
+					<IncludeThing>SovietAntiVehicleInfantryTesla</IncludeThing>
+					<IncludeThing>SovietEngineerTesla</IncludeThing>
+					<IncludeThing>SovietHeavyAntiVehicleInfantryTesla</IncludeThing>
+					<IncludeThing>SovietScoutInfantryTesla</IncludeThing>
+					<IncludeThing>SovietCommandoTech1Tesla</IncludeThing>
+					<IncludeThing>SovietAntiAirShipTesla</IncludeThing>
+					<IncludeThing>SovietAntiInfantryVehicleTesla</IncludeThing>
+					<IncludeThing>SovietAntiNavyShipTech1Tesla</IncludeThing>
+					<IncludeThing>SovietAntiNavyShipTech2Tesla</IncludeThing>
+					<IncludeThing>SovietAntiStructureShipTesla</IncludeThing>
+					<IncludeThing>SovietAntiStructureVehicleTesla</IncludeThing>
+					<IncludeThing>SovietAntiVehicleVehicleTech2Tesla</IncludeThing>
+					<IncludeThing>SovietAntiVehicleVehicleTech3Tesla</IncludeThing>
+					<IncludeThing>SovietMCVTesla</IncludeThing>
+					<IncludeThing>SovietScoutVehicleTesla</IncludeThing>
+					<IncludeThing>SovietSurveyorTesla</IncludeThing>
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AttributeModifier_Katyusha_Buff"
+				InitiallyActive="true"
+				AllowSelf="True" 
+				Range="800"
+				RefreshDelay="2s"
+				AttributeModifierName="AttributeMod_Katyusha_Buff"
+				RequiredObjectStatusFlags="PLAYER_POWER_4">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="SAME_PLAYER"
+					Include="STRUCTURE">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AttributeModifier_RedSorghum_Buff"
+				InitiallyActive="true"
+				AllowSelf="True" 
+				Range="800"
+				RefreshDelay="2s"
+				AttributeModifierName="AttributeMod_RedSorghum_Buff"
+				RequiredObjectStatusFlags="ADVANCED_MISSILE_PACKS">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="SAME_PLAYER"
+					Include="STRUCTURE">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AttributeModifier_RedSorghum_BuffForInfantry"
+				InitiallyActive="true"
+				AllowSelf="True" 
+				Range="800"
+				RefreshDelay="2s"
+				AttributeModifierName="AttributeMod_RedSorghum_BuffForInfantry"
+				RequiredObjectStatusFlags="ADVANCED_MISSILE_PACKS">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="SAME_PLAYER"
+					Include="INFANTRY">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AttributeModifier_GeChangZuGuo_BuffUnits"
+				InitiallyActive="true"
+				AllowSelf="True" 
+				Range="800"
+				RefreshDelay="2s"
+				AttributeModifierName="AttributeMod_GeChangZuGuo_BuffUnits"
+				RequiredObjectStatusFlags="WEAPON_UPGRADED_01">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="SAME_PLAYER"
+					Include="VEHICLE INFANTRY AIRCRAFT">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AttributeModifier_GeChangZuGuo_BuffSuperWeapon"
+				InitiallyActive="true"
+				AllowSelf="True" 
+				Range="800"
+				RefreshDelay="2s"
+				AttributeModifierName="AttributeMod_GeChangZuGuo_BuffSuperWeapon"
+				RequiredObjectStatusFlags="WEAPON_UPGRADED_01">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="SAME_PLAYER">
+					<IncludeThing>SovietSuperWeaponAdvancedArmor</IncludeThing>
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+
+
+			<Physics
+				id="ModuleTag_Physics" />	
+				
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="999999" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="10.0"
+				Height="10.0">
+			</Shape>
+		</Geometry>
+		<ShadowInfo
+			Type="NONE" />
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="50" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+
+    <WeaponTemplate
+		id="SovietArmorAntiVehicleVehicleTech1SpawnSpeakerWeapon"
+		AttackRange="999999"
+		Flags="NOT_ATTRACTED_BY_MAGNETS" 
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		RadiusDamageAffects="ALLIES">
+		<PreAttackDelay
+			MinSeconds="0.0s"
+			MaxSeconds="0.0s" />
+		<Nuggets>
+			<WeaponOCLNugget
+				WeaponOCL="OCL_SovietArmorAntiVehicleVehicleTech1_Speaker">
+			</WeaponOCLNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<ObjectCreationList
+		id="OCL_SovietArmorAntiVehicleVehicleTech1_Speaker">
+		<CreateObject
+			Options="ATTACH_TO_SOURCE">
+			<CreateObject>SovietArmorAntiVehicleVehicleTech1_Speaker</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+
+    <WeaponTemplate
+		id="SovietArmorAntiVehicleVehicleTech1KillSpeakerWeapon"
+		AttackRange="999999"
+        Flags="NOT_ATTRACTED_BY_MAGNETS" 
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		RadiusDamageAffects="ALLIES">
+		<Nuggets>
+			<DamageNugget
+				Damage="999999.0"
+				Radius="1"
+				DamageType="UNRESISTABLE"
+				DeathType="NORMAL">
+				<SpecialObjectFilter				
+					Rule="NONE">
+					<IncludeThing>SovietArmorAntiVehicleVehicleTech1_Speaker</IncludeThing>
+				</SpecialObjectFilter>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<ArmorTemplate
+		id="SpecialArmor"
+		Default="0">
+		<Armor
+			Damage="UNRESISTABLE"
+			Percent="100" />
+	</ArmorTemplate>
+
+
+</AssetDeclaration>

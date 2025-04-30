@@ -1,0 +1,648 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+    <Include
+      type="instance"
+      source="ART:EXTnkTrack.xml"/>
+		
+		<Include
+			type="all"
+			source="ART:AUMCV_D.xml" />				
+		<Include
+			type="all"
+			source="ms/msztank.w3x" />
+		
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<Defines>
+		<Define name="ALLIED_MCV_LOCAL_UNPACK_TIME_2" value="2.0s" />
+	</Defines>		
+	<GameObject
+		id="msztank"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Button_M4A3E2"
+		ButtonImage="Button_M4A3E2"
+		Side="Allies"
+		SubGroupPriority="820"
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="30"
+		TransportSlotCount="10"
+		BuildTime="40"
+		CommandSet="AlliedAntiNavyShipTech1CommandSet"
+		KindOf="T3_UNIT PRELOAD SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS AMPHIBIOUS SCORE VEHICLE CAN_BE_FAVORITE_UNIT UNIQUE_UNIT"
+		ProductionQueueType="VEHICLE"
+		PlacementViewAngle="315d"
+		VoicePriority="32"
+		EditorName="msztank"
+		Description="Desc:msztank"
+		TypeDescription="Type:yhtank"
+		MaxSimultaneousOfType="1">
+		<DisplayName
+			xai:joinAction="Replace">Name:msztank</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="4000"/>
+		</ObjectResourceInfo>
+              		<GameDependency>
+			<NeededUpgrade>Upgrade_AlliedTech3</NeededUpgrade>
+			<RequiredObject>AlliedTechStructure</RequiredObject>
+		</GameDependency>
+		<ArmorSet
+			Armor="WTheavyTankArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="DefaultLandLocomotor"
+			Locomotor="AlliedMCVLocomotor"
+			Condition="NORMAL"
+			Speed="50.0" />
+		<LocomotorSet
+			id="DefaultWaterLocomotor"
+			Locomotor="SovietAntiAirShipWaterLocomotor"
+			Condition="NORMAL"
+			Speed="50.0" />
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="Bone_Treads_Rear_Right Bone_Treads_Rear_Left Bone_Treads_Front_Right Bone_Treads_Front_Left FX_MUZZLEFLASH_01 FX_MUZZLEFLASH_02 FX_A barral_01 barral_02"
+                                InitialRecoilSpeed="0.75"
+				MaxRecoilDistance="5"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="1.5"
+				TrackMarks="EXTnkTrack"
+				TrackMarksLeftBone="FXTracksLR"
+				TrackMarksRightBone="FXTracksRR"
+
+				LeftFrontTireBone="Bone_Tracks_Front_Left"
+				RightFrontTireBone="Bone_Tracks_Front_Right"
+				LeftRearTireBone="Bone_Tracks_Rear_Left"
+				RightRearTireBone="Bone_Tracks_Rear_Right"
+				TireRotationMultiplier="0.0"
+				TireRotationMultiplierFront="0.0"
+				>
+				<TreadTerrainParticles>MCVTerrainParticleMapping</TreadTerrainParticles>
+
+				<TreadScrollingMap
+					LeftTrack="Bone_Treads_Front_Left"
+					RightTrack="Bone_Treads_Front_Right"
+					SpeedMultiplier="-0.05"/>
+
+				<TreadScrollingMap
+					LeftTrack="Bone_Treads_Rear_Left"
+					RightTrack="Bone_Treads_Rear_Right"
+					SpeedMultiplier="-0.05"/>
+									
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="msztank" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_MUZZLEFLASH_"/>
+                                        <WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="barral_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_MUZZLEFLASH_" />
+                                        <WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_A"/>
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_A" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="Turret_Pitch"
+						TurretID="1" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="msztank" />
+				</ModelConditionState>					
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED USER_5">
+					<Model
+						Name="msztank" />
+					<ParticleSysBone
+						BoneName="FXTracksB"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED USER_5">
+					<Model
+						Name="msztank" />
+					<Texture
+						Original="JUAntiVehicleVehicleTech1"
+						New="JUAntiVehicleVehicleTech1_D" />
+          <ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="USER_5">
+					<Model
+						Name="msztank"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="msztank" />
+					<ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="msztank" />
+					<Texture
+						Original="JUAntiVehicleVehicleTech1"
+						New="JUAntiVehicleVehicleTech1_D" />							
+					<ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+								
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="START_FRAME_FIRST"
+					StateName="STATE_OnLAND">
+	
+					<Script>
+						CurDrawableShowSubObjectPermanently("TreadsStop")
+						CurDrawableHideSubObjectPermanently("TreadsMove")
+						CurDrawableHideSubObjectPermanently("TreadsTurnLeft")
+						CurDrawableHideSubObjectPermanently("TreadsTurnRight")
+						CurDrawableHideSubObjectPermanently("Gun_Upgrade01")
+						CurDrawableHideSubObjectPermanently("Turret2")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					Flags="START_FRAME_LAST"
+					StateName="STATE_OnWater">
+
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_OnWater" and Prev ~= "TRANS_toWater" then CurDrawableSetTransitionAnimState("TRANS_toWater")	end;
+
+						CurDrawableShowSubObjectPermanently("TreadsStop")
+						CurDrawableHideSubObjectPermanently("TreadsMove")
+						CurDrawableHideSubObjectPermanently("TreadsTurnLeft")
+						CurDrawableHideSubObjectPermanently("TreadsTurnRight")
+						CurDrawableHideSubObjectPermanently("Gun_Upgrade01")
+						CurDrawableHideSubObjectPermanently("Turret2")
+					</Script>
+				</AnimationState>	
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="START_FRAME_FIRST"
+					StateName="STATE_OnLAND">
+
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_OnLAND" and Prev ~= "TRANS_toLand" then CurDrawableSetTransitionAnimState("TRANS_toLand")	end;
+
+						CurDrawableShowSubObjectPermanently("TreadsStop")
+						CurDrawableHideSubObjectPermanently("TreadsMove")
+						CurDrawableHideSubObjectPermanently("TreadsTurnLeft")
+						CurDrawableHideSubObjectPermanently("TreadsTurnRight")
+						CurDrawableHideSubObjectPermanently("Gun_Upgrade01")
+						CurDrawableHideSubObjectPermanently("Turret2")
+					</Script>
+				</AnimationState>	
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER"
+					Flags="START_FRAME_LAST"
+					StateName="STATE_OnWater">
+
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_OnWater" and Prev ~= "TRANS_toWater" then CurDrawableSetTransitionAnimState("TRANS_toWater")	end;
+
+						CurDrawableShowSubObjectPermanently("TreadsStop")
+						CurDrawableHideSubObjectPermanently("TreadsMove")
+						CurDrawableHideSubObjectPermanently("TreadsTurnLeft")
+						CurDrawableHideSubObjectPermanently("TreadsTurnRight")
+						CurDrawableHideSubObjectPermanently("Gun_Upgrade01")
+						CurDrawableHideSubObjectPermanently("Turret2")
+					</Script>
+				</AnimationState>									
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toWater">
+	
+					<Script>
+						CurDrawablePlaySound("JAP_OreCollector_WaterSplashMS")
+					</Script>
+				</AnimationState>	
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toLand">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech1_TRANS2"
+						AnimationMode="ONCE" />
+					<Script>
+						CurDrawablePlaySound("AmphibiousWaterUnitToLand_ScrapeTreadsOut")
+					</Script>    
+				</AnimationState>										
+
+			</TruckDraw>
+      <!-- include Headlight draw module. -->
+      <xi:include
+				href="DATA:Includes/HeadlightDraw1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:HeadlightDraw1/child::*)" />
+      <ScriptedModelDraw
+				id="ModuleTag_FX"
+        AttachToBoneInAnotherModule="Bone_Turret">
+        <!-- TEMPORARY Energized Armor FX -->
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="FXInvisBone" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6">
+					<Model
+						Name="FXInvisBone" />
+					
+					<ParticleSysBone
+						BoneName="invisbone01"
+						FXParticleSystemTemplate="JapanTankNano"
+						FollowBone="true" />
+				</ModelConditionState>
+				<!-- These blank states are here to prevent contrail drawing during Stratofighter 
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PACKING_TYPE_1 UNPACKING USER_1"/>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PACKING_TYPE_1 PACKING USER_1"/>-->
+			</ScriptedModelDraw>
+      <ScriptedModelDraw
+              id="ModuleTag_ParticlesDraw" >
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="FXInvisBone" />
+        </ModelConditionState>
+
+        <AnimationState
+					ParseCondStateType="PARSE_DEFAULT"/>
+
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER MOVING">
+          <ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="StingrayWaterWake"
+						FollowBone="false" />
+        </AnimationState>
+
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+          <ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="SmallShipWakeIdle"
+						FollowBone="false" />
+        </AnimationState>
+
+      </ScriptedModelDraw>
+       
+	<ScriptedModelDraw
+				id="ModuleTag_ShieldDraw"
+                NoRotate="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="EXMagneticShield" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableHideSubObjectPermanently("TORUS01")
+					</Script>													
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6">
+					<Script>
+						CurDrawableShowSubObjectPermanently("TORUS01")
+					</Script>						
+				</AnimationState>								
+			</ScriptedModelDraw>						
+		</Draws>
+		<Behaviors>
+                               <WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedAntiNavyShipTech1CannonEX"
+                                                ForbiddenObjectStatus="GENERIC_TOGGLE_STATE"/>
+					<TurretSettings
+						TurretTurnRate="60"
+						MinimumPitch="-30d"
+						AllowsPitch="true" 
+						TurretPitchRate="120" 
+						ComeToHaltJiggle="3d">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+                                
+				
+      </WeaponSetUpdate>
+      
+
+       <AutoHealBehavior
+				id="Upgrade_PassiveHeal"
+				InitiallyActive="true"
+				HealOnlyIfNotInCombat="false"
+				HealOnlyIfNotUnderAttack="false"
+				StartHealingDelay="1s"
+				HealingAmount="2"
+				HealingDelay=".5s">
+			</AutoHealBehavior>
+			<Physics
+				id="ModuleTag_Physics" />
+			<ProductionUpdate
+				id="ModuleTag_ProductionUpdate" />
+			<ProductionUpdateInfo
+				id="ModuleTag_ProductionUpdateInfo"/>
+
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_ApocalypseDie" />
+				<Event
+					Index="onDeath"
+					FX="FX_OilDerrickXP" />
+			</FXListBehavior>
+			<xi:include
+				href="DATA:Includes/GenericUnpackPower.xml" />
+<MagneticEffectUpdate
+				id="ModuleTag_MagneticEffectUpdate"
+				Radius="250"
+				ScalableDrawModuleId="ModuleTag_ShieldDraw"
+				ScaledBoneName="TORUS01">
+				<ObjectStatusValidation
+					RequiredStatus="GENERIC_TOGGLE_STATE" />
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES"
+					Include="PROJECTILE SMALL_MISSILE INFANTRY VEHICLE"
+					StatusBitFlagsExclude="MAGNETIZED">	<!-- don't affect something that's already under another MagneticEffect -->
+                    <!-- This filter will do 2 things in code.  If the object has a BezierProjectile, it will take the object
+                         and change its path to hit this object.  If it is anything else, it will force its weapon's target to
+                         be this object-->
+				</ObjectFilter>
+			</MagneticEffectUpdate>
+
+			<SpecialPower
+				id="ModuleTag_ActivateMagneticArmorTrigger"
+				SpecialPowerTemplate="SpecialPower_ToggleMagneticArmor"
+				UpdateModuleStartsAttack="true" />
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ActivateMagneticArmorTriggerUpdate"
+				SpecialPowerTemplate="SpecialPower_ToggleMagneticArmor"
+				Options="RECONSTITUTE_STORED_COMMAND" >
+
+				<ToggleState EnterStateSound="ALL_AssaultDestroyer_BlackHoleArmorOff">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT"/>
+				</ToggleState>
+
+				<ToggleState
+					ObjectStatus="GENERIC_TOGGLE_STATE"
+					ModelConditions="WEAPONSTATE_ONE"
+					AttributeModifier="AttributeModifier_MagneticArmor">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFENSE_PROTECT_OTHERS"/>
+				</ToggleState>
+
+			</ToggleStatusSpecialAbilityUpdate>
+			<!-- No stances because there's no weapon -->
+			<StancesBehavior
+				id="ModuleTag_Stance"
+				xai:joinAction="Remove" />
+			<!-- This is used to save the upgrade status of packed ConYards -->
+			<SubStructureStorageBehavior
+					 id="ModuleTag_SubStructureStorageBehavior" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="false" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="9000" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_MoveLoop">
+				<ModelConditionSound Sound="Tank_Land_MoveLoop" RequiredFlags="MOVING" ExcludedFlags="OVER_WATER DYING" />
+				<ModelConditionSound Sound="Ship_Large_MoveLoopWater" RequiredFlags="MOVING OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="ALL_MCV_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_MCALCB">
+				<ModelConditionSound Sound="ALL_MCV_UnpackWater" RequiredFlags="UNPACKING OVER_WATER" />
+				<ModelConditionSound Sound="ALL_MCV_UnpackLand" RequiredFlags="UNPACKING" />
+				<ModelConditionSound Sound="ALL_MCV_WaterIdleLoop" RequiredFlags="OVER_WATER" ExcludedFlags="DYING"/>
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_WaterMoveStart">
+				<Override RequiredFlags="OVER_WATER">
+					<AudioArraySound>
+						<AudioEntry Sound="ALL_MCV_MoveStartWater" AudioType="soundMoveStart" />
+						<AudioEntry Sound="ALL_MCV_WaterMoveLoop" AudioType="soundMoveLoop" />
+					</AudioArraySound>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<AnimationSoundClientBehavior id="AnimationSoundCB" >
+				<Sound Sound="ALL_MCV_Animation_WaterToLand1" ExcludedMC="OVER_WATER" Animation="AUMCV_Hover" Frame="1" />	
+				<Sound Sound="ALL_MCV_Animation_WaterToLand2" ExcludedMC="OVER_WATER" Animation="AUMCV_Hover" Frame="25" />	
+				<Sound Sound="ALL_MCV_Animation_LandtoWater2" RequiredMC="OVER_WATER" Animation="AUMCV_Hover" Frame="1" />	
+				<Sound Sound="ALL_MCV_Animation_LandtoWater1" RequiredMC="OVER_WATER" Animation="AUMCV_Hover" Frame="25" />	
+			</AnimationSoundClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="34.5"
+				MinorRadius="25.7"
+				Height="26.5"
+				ContactPointGeneration="VEHICLE">
+				<Offset x="-4.0" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="ALL_MCV_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="ALL_MCV_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="ALL_MCV_VoiceMoveToLand" AudioType="voiceMoveWaterToLand" />
+			<AudioEntry Sound="ALL_MCV_VoiceMoveToWater" AudioType="voiceMoveLandToWater" />
+			<AudioEntry Sound="ALL_MCV_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="ALL_MCV_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="ALL_MCV_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" /> 
+			<NamedEntry Sound="ALL_MCV_VoiceMoveSpecial" Name="VoiceDeploy" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="maus_IdleLoop"
+				AudioType="soundAmbient" />
+			<AudioEntry
+				Sound="maus_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="maus_MoveLoop"
+				AudioType="soundMoveLoop" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />	
+		</AudioArraySound>
+
+		<EvaEventArray>
+			<EvaEntry EvaEvent="StructurePlacementFailed" EvaType="placementFailed" />
+		</EvaEventArray>
+		
+		<VisionInfo
+			VisionRange="600"
+			ShroudClearingRange="=$STANDARD_SHROUD_CLEAR" />
+    <CrusherInfo
+      id="id_CrusherInfo"
+      CrusherLevel="33"
+      CrushableLevel="61"
+      CrushDecelerationPercent="80%">
+    	<ExtraCrushLevels CrusherLevel="32" CrushableLevel="61" ModelConditionMatch="OVER_WATER"/>	 
+    </CrusherInfo>
+	</GameObject>
+	
+	
+	<GameObject
+		id="msztank_Naval"
+		inheritFrom="msztank"
+		EditorName="msztank_Naval"
+		ProductionQueueType="WATERCRAFT">
+		<EquivalentTo>msztank</EquivalentTo>
+	</GameObject>
+	
+	<ArmorTemplate
+		id="WTheavyTankArmor"
+		SideDamageScalar="150"
+		RearDamageScalar="125">
+		<Armor
+			Damage="MELEE"
+			Percent="0" />
+		<Armor
+			Damage="SNIPER"
+			Percent="0" />
+		<Armor
+			Damage="GUN"
+			Percent="0.1" />		
+		<Armor
+			Damage="AUTO_CANNON"
+			Percent="0.1" />
+		<Armor
+			Damage="IMPACT"
+			Percent="75" />
+		<Armor
+			Damage="FLAK"
+			Percent="100" />	
+		<Armor
+			Damage="ROCKET"
+			Percent="100" />
+		<Armor
+			Damage="CANNON"
+			Percent="100" />
+		<Armor
+			Damage="PRISM"
+			Percent="125" />
+		<Armor
+			Damage="TESLA"
+			Percent="125" />
+		<Armor
+			Damage="EXPLOSIVE"
+			Percent="250" />
+		<Armor
+			Damage="CONCUSSIVE"
+			Percent="50" />
+		<Armor
+			Damage="RADIATION"
+			Percent="5" />
+	</ArmorTemplate>
+	
+</AssetDeclaration>

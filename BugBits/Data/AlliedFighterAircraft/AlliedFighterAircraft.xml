@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+
+		<Include type="all"	source="ART:AUFighterAircraft_SKN.w3x" />
+		<Include type="all"	source="ART:AUFighterAircraft_FX.w3x" />
+    <Include type="all"	source="ART:AUFighterAircraft_FP.w3x" />
+		<Include type="all"	source="ART:AUFighterAircraft_HVRA.w3x" />
+		<Include type="all" source="ART:AUFighterAircraft_MOVA.w3x" />
+		<Include type="all" source="ART:AUFighterAircraft_D.xml" />			
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include type="all"	source="ART:AUFighterAircraft_02.xml" />				
+		<Include type="all"	source="ART:AUFighterAircraft_02_D.xml" />
+		<Include type="all" source="Weapon.xml" />			
+	</Includes>
+	<GameObject
+		id="AlliedFighterAircraft"
+		inheritFrom="BaseVehicle"
+		Side="Allies"
+		SubGroupPriority="610"
+		EditorSorting="UNIT"
+		BuildTime="0.2"
+		KindOf="CAN_CAST_REFLECTIONS VEHICLE LINE_OF_SIGHT_IGNORES_BUILDINGS NO_COLLIDE UNATTACKABLE"
+		VoicePriority="148"
+		EditorName="AlliedFighterAircraft"
+		HealthBoxHeightOffset="10">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedFighterAircraft</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="CanNotAttackArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			id="AlliedFighterAircraftLocomotor"
+			Locomotor="AlliedFighterAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="0" />
+		<Behaviors>
+			<ObjectCreationUpgrade
+				id="ModuleTagPlayer_AlliedSpellBookUpgrade"
+			  ThingToSpawn="AlliedFighterAircraftB">
+				<TriggeredBy>Upgrade_ObjectDefault</TriggeredBy>
+			</ObjectCreationUpgrade>
+			<GrantUpgradeCreate
+				id="ModuleTag_Upgrade_ObjectDefault"
+			  UpgradeToGrant="Upgrade_ObjectDefault"/>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="1.0s"
+				MaxLifetime="1.0s"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					ReacquireDelay="0.4s"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1" />
+		</Body>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="" EvaType="ambushed" />
+			<EvaEntry EvaEvent="" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="" EvaType="buildCancelled" />
+			<EvaEntry EvaEvent="" EvaType="promotedOwner" />
+		</EvaEventArray>
+	</GameObject>
+	<GameObject
+		id="AlliedFighterAircraftB"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_AlliedFighterAircraft"
+		ButtonImage="Button_AlliedFighterAircraft_on"
+		Side="Allies"
+		SubGroupPriority="610"
+		EditorSorting="UNIT"
+		BuildTime="0.2"
+		CommandSet="AlliedFighterAircraftCommandSet"
+		EnergyProduction="-25"
+		KindOf="CAN_CAST_REFLECTIONS CAN_ATTACK SCORE AIRCRAFT VEHICLE FIGHTER_AIRCRAFT LINE_OF_SIGHT_IGNORES_BUILDINGS CAN_BE_FAVORITE_UNIT SELECTABLE NO_COLLIDE"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="VEHICLE"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="MISSILE"
+		VoicePriority="148"
+		EditorName="AlliedFighterAircraftB"
+		Description="Desc:AlliedFighterAircraft"
+		TypeDescription="Type:AlliedFighterAircraft"
+		HealthBoxHeightOffset="10"
+		UnitIntro="Allied_Apollo_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedFighterAircraft</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="DefaultUnitArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			id="AlliedFighterAircraftLocomotor"
+			Locomotor="AlliedFighterAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="300" />
+		<!-- Need ConquerMetricsOverrideDefendingAntiMask or else the TAXIING locomotor will make the AI try to build anti-ground units against this -->
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDefendingAntiMask="ANTI_AIRBORNE_VEHICLE" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="BONE_FRONT_L BONE_REAR">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUFighterAircraft_SKN" />
+
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_01"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="1"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_01"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="2"
+						FXAction="SPAWN" />
+
+          <WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_MUZZLE_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_MUZZLE_" />
+				</ModelConditionState>
+<!-- UPGRADED MODEL -->
+
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="AUFighterAircraft_FP" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_2">
+					<Texture
+						Original="AUFighterAircraft"
+						New="AUFighterAircraft_02" />						
+					<Model
+						Name="AUFighterAircraft_SKN" />
+					<ParticleSysBone
+						BoneName="BONE_REAR"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+        </ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_2">
+					<Model
+						Name="AUFighterAircraft_SKN" />
+					<Texture
+						Original="AUFighterAircraft"
+						New="AUFighterAircraft_02_D" />						
+					<ParticleSysBone
+						BoneName="BONE_REAR"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_REAR"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_REAR"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="AUFighterAircraft_SKN" />
+					<Texture
+						Original="AUFighterAircraft"
+						New="AUFighterAircraft_02" />							
+				</ModelConditionState>		
+<!-- UPGRADED MODEL -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AUFighterAircraft_SKN" />
+					<ParticleSysBone
+						BoneName="BONE_REAR"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+         
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUFighterAircraft_SKN" />
+					<Texture
+						Original="AUFighterAircraft"
+						New="AUFighterAircraft_D" />						
+					<ParticleSysBone
+						BoneName="BONE_REAR"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_REAR"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_REAR"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<Animation
+						AnimationName="AUFighterAircraft_MOVA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FLYING">
+					<Animation
+						AnimationName="AUFighterAircraft_HVRA"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+
+			</ScriptedModelDraw>
+			
+			<ScriptedModelDraw
+				id="ModuleTag_FX">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUFighterAircraft_FX" />
+					<ParticleSysBone
+						BoneName="FX_Bone01"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Bone02"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw"
+				MinLength="20.0"
+				MaxLength="20.0"
+				Width="10.0"
+				MinSpeed="10"
+				MaxSpeed="20"
+				SweepSpeed="1.0"
+				SpreadAngle="7.0"
+				MinTracersPerFrame="0.2"
+				MaxTracersPerFrame="0.3"
+				FrameLifeTime="25"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracer"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+			</TracerModelDraw>
+
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+						WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedFighterAircraftCannon" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<!-- gravity mult of 30 is temporary -->
+			<Physics
+				id="ModuleTag_Physics"
+				GravityMultiplier="30" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AUFighterAircraft_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_ApolloDie" />
+			</FXListBehavior>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					ReacquireDelay="0.4s"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="500" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior
+				id="ModuleTag_FlyingLoop">
+				<ModelConditionSound
+					Sound="ALL_Apollo_IdleLoop"
+					RequiredFlags="FLYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="16.0"
+				MinorRadius="16.0"
+				Height="8.0"
+				ContactPointGeneration="VEHICLE"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="ALL_Apollo_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="ALL_Apollo_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="ALL_Apollo_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="ALL_Apollo_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="ALL_Apollo_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="ALL_Apollo_VoiceReturn" AudioType="voiceEnter" />
+			<AudioEntry Sound="ALL_Apollo_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="ALL_Apollo_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="ALL_Apollo_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="ALL_Apollo_VoiceReturn" Name="ReturnToProducer" />
+			<NamedEntry Sound="ALL_Apollo_VoiceRetreat" Name="ReturnToProducerWhileUnderAttack" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+		 	<AudioEntry
+				Sound="ALL_Apollo_MoveLoop"
+				AudioType="soundMoveLoop" />
+			<AudioEntry
+				Sound="ALL_Apollo_MoveStart"
+				AudioType="soundMoveStart" />
+		</AudioArraySound>
+
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="500" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="50" />
+	</GameObject>
+
+	<GameObject
+		id="AlliedFighterAircraftAI"
+		inheritFrom="AlliedFighterAircraft">
+		<GameDependency
+			ForbiddenModelConditions="USER_7">
+			<NeededUpgrade>AIPlayerAlliedFighterAircraft</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo
+			xai:joinAction="Replace">
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="500"/>
+		</ObjectResourceInfo>
+		<Behaviors>
+			<ObjectCreationUpgrade
+				id="ModuleTagPlayer_AlliedSpellBookUpgrade"
+			xai:joinAction="Replace"
+			  ThingToSpawn="AlliedFighterAircraftBAI">
+				<TriggeredBy>Upgrade_ObjectDefault</TriggeredBy>
+			</ObjectCreationUpgrade>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="SpecialPower_AlliedFighterAircraftAIWeapon"
+					OneShot="true" />
+			</FireWeaponUpdate>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedFighterAircraftBAI"
+		inheritFrom="AlliedFighterAircraftB"
+		KindOf="-SELECTABLE"/>
+	<WeaponTemplate
+		id="SpecialPower_AlliedFighterAircraftAIWeapon"
+		RadiusDamageAffects="ALLIES"
+        Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_STRUCTURE">
+		<Nuggets>
+			<AttributeModifierNugget
+			Radius="50.0"
+			AttributeModifierName="SpecialPower_AlliedFighterAircraftAI">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Relationship="SAME_PLAYER">
+					<IncludeThing>AlliedWarFactoryAI</IncludeThing>
+				</SpecialObjectFilter>
+			</AttributeModifierNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructAlliedFighterAircraftAI">
+		<Object>AlliedFighterAircraftAI</Object>
+	</LogicCommand>
+</AssetDeclaration>

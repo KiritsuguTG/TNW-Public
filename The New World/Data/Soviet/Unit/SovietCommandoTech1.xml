@@ -1,0 +1,1516 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="all"
+			source="ART:FXRailGunCoreMask.xml" />
+		<Include
+			type="all"
+			source="ART:FXRailGunCoreDistortion.xml" />
+		<Include
+			type="all"
+			source="ART:FXTracer.xml" />
+		<Include
+			type="all"
+			source="ART:FXTracerHeroic.xml" />
+		<Include
+			type="all"
+			source="ART:Decal_Natasha.xml" />
+		<Include
+			type="all"
+			source="ART:FXInvisBone.w3x" />
+    <Include type="all"	source="ART:FXObeliskLaser.xml" />
+    <Include type="all"	source="ART:FXLaserOverlay.xml" />
+    <Include type="all"	source="ART:FXJapanOverlay_Vet.xml" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseInfantry.xml" />
+	</Includes>
+	<Defines>
+		<Define name="LOCAL_PILOT_SNIPE_TIMING" value="2s" />
+	</Defines>
+	<GameObject
+		id="SovietCommandoTech1"
+		inheritFrom="BaseInfantry"
+		SelectPortrait="Portrait_SovietCommando_big"
+		ButtonImage="Button_SovietCommando_small"
+		Side="Soviet"
+		SubGroupPriority="220"
+		EditorSorting="UNIT"
+		BuildTime="15"
+		CommandSet="SovietCommandoTech1CommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS AMPHIBIOUS INFANTRY COMMANDO SCORE UNIQUE_UNIT SKIRMISH_AI_DONT_GARRISON IGNORE_FORCE_MOVE CAN_PLACE_CHARGE SNIPER CAN_BE_FAVORITE_UNIT PATH_THROUGH_INFANTRY PRELOAD FS_RADAR"
+		ThreatLevel="10"
+		WeaponCategory="GUN"
+		VoicePriority="120"
+		EditorName="SovietCommandoTech1"
+		Description="Desc:SovietCommandoTech1"
+		TypeDescription="Type:CommandoUnit"
+		UnitTypeIcon="CommandoIcon"
+		MaxSimultaneousOfType="1"
+		HealthBoxHeightOffset="30"
+		BountyValue="150"
+		UnitIntro="Soviet_Natasha_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietCommandoTech1</DisplayName>
+		<GameDependency
+			id="SovietCommandoTech1_Dependency">
+				<ObjectFilter
+					Rule="NONE"
+					Relationship="ALLIES"
+					StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+						<IncludeThing>SovietTechStructure</IncludeThing>
+				</ObjectFilter>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1500"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseCommandoArmor"
+			DamageFX="InfantryDamageFX" />
+		<LocomotorSet
+			Locomotor="TestReactiveLocomotorHUMAN"
+			Condition="NORMAL"
+			Speed="55" />
+		<LocomotorSet
+			Locomotor="HumanWaterLocomotor"
+			Condition="NORMAL"
+			Speed="55" />
+    <SkirmishAIInformation
+		UnitBuilderStandardCombatUnit="true"
+		OutOfRangePenalty="3.0"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="B_WEAPONA_FX">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUCommandoTNW_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPONA_FX"/>
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPONA_FX"/>
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPONA_FX"/>
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Laser"/>
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Laser"/>
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPONA_FX"/>
+					<WeaponRecoilBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPONA_FX"/>
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPONA_FX"/>
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Laser"/>
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Laser"/>
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+					<Model
+						Name="" />
+				</ModelConditionState>
+					<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+					<!-- no anim -->
+				</AnimationState>
+							
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1">
+					<Model
+						Name="NPSkeletonTNW_SKN" />
+				</ModelConditionState>
+				
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_5">
+					<Model
+						Name="NPRadiationTNW" />
+						<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="RadiationPuddle"
+						FollowBone="true" />
+          <ParticleSysBone
+            BoneName="None"
+            FXParticleSystemTemplate="RadiationSplash"
+            FollowBone="true" />
+          <ParticleSysBone
+            BoneName="None"
+            FXParticleSystemTemplate="RadiationLightSmall"
+            FollowBone="true" />
+				</ModelConditionState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4"
+					StateName="STATE_CINA">
+					<Animation
+						AnimationName="SUCommandoTNW_CINA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_bored">
+					<Animation
+						AnimationName="SUCommandoTNW_BIDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="100" />
+					<Animation
+						AnimationName="SUCommandoTNW_BIFA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+					  AnimationPriority="10" />
+					<Animation
+						AnimationName="SUCommandoTNW_BIFB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="SUCommandoTNW_BIFC"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="SUCommandoTNW_BIFD"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="SUCommandoTNW_BIFW"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="1" />
+					<Animation
+						AnimationName="SUCommandoTNW_BIFX"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="1" />
+					<Animation
+						AnimationName="SUCommandoTNW_BIFY"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="1" />
+					<Animation
+						AnimationName="SUCommandoTNW_BIFZ"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_CINA" then
+						CurDrawableSetTransitionAnimState("TRANS_fromCINA")
+						elseif Prev == "STATE_Suppressed" then
+						CurDrawableSetTransitionAnimState("TRANS_fromSuppressed")
+						elseif Prev == "STATE_Parachuting" then
+						CurDrawableSetTransitionAnimState("TRANS_fromParachuting")
+						elseif Prev == "STATE_SelectedPose" then
+						CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle")
+						end
+					</Script>
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING SPLATTED OVER_WATER">
+					<Animation
+						AnimationName="SUCommandoTNW_WLNDA"
+						AnimationMode="ONCE"/>
+				<ParticleSysBone
+            BoneName="NONE"
+            FXParticleSystemTemplate="FXDebrisWaterWaveMedium"
+            FollowBone="true" 
+            OnlyIfOnWater="true"/>
+            <ParticleSysBone
+            BoneName="NONE"
+            FXParticleSystemTemplate="FXDebrisWaterSplashMedium"
+            FollowBone="true" 
+            OnlyIfOnWater="true"/>
+            <ParticleSysBone
+            BoneName="NONE"
+            FXParticleSystemTemplate="FXDebrisWaterFrothMedium"
+            FollowBone="true" 
+            OnlyIfOnWater="true"/>
+            <ParticleSysBone
+            BoneName="NONE"
+            FXParticleSystemTemplate="FXDebrisWaterMistMedium"
+            FollowBone="true" 
+            OnlyIfOnWater="true"/>
+				</AnimationState>
+				
+				<!-- meta impact anims -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_FLAILING"
+					StateName="STATE_stunned_flailing">
+					<Animation
+						AnimationName="SUCommandoTNW_FLYA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING SPLATTED">
+					<Animation
+						AnimationName="SUCommandoTNW_LNDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_STANDING_UP">
+					<Animation
+						AnimationName="SUCommandoTNW_GTPA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED">
+					<Animation
+						AnimationName="SUCommandoTNW_LNDA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FRONTCRUSHED">
+					<Animation
+						AnimationName="SUCommandoTNW_CDTA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BACKCRUSHED">
+					<Animation
+						AnimationName="SUCommandoTNW_CDTB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+								<!-- radiation death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_5 OVER_WATER">
+					<Animation
+						AnimationName="NPSkeletonTNW_WDIEA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<!-- tesla death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1 OVER_WATER">
+					<Animation
+						AnimationName="NPSkeletonTNW_WDIEA"
+						AnimationMode="ONCE" />
+          <ParticleSysBone
+						BoneName="HIPS"
+						FXParticleSystemTemplate="Soviet_TeslaDeath_Spark"
+						FollowBone="true" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING OVER_WATER"
+					StateName="STATE_OverWater">
+					<Animation
+						AnimationName="SUCommandoTNW_WDIEA"
+						AnimationMode="ONCE" />					
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP OVER_WATER">
+					<Animation
+						AnimationName="SUCommandoTNW_WCWRA"
+						AnimationMode="LOOP" />
+						<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="Allied_DogStun01"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="Allied_DogStunGlows01"
+							FollowBone="true" />
+				</AnimationState>
+
+<!-- parachuting anims -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="LAUNCHED"
+					StateName="STATE_ParachuteLaunch">
+					<Animation
+						AnimationName="SUCommandoTNW_MCNA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PARACHUTING"
+					StateName="STATE_Parachuting">
+					<Animation
+						AnimationName="SUCommandoTNW_MCNC"
+						AnimationMode="LOOP" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_ParachuteLaunch" then
+						CurDrawableSetTransitionAnimState("TRANS_toParachuting")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toParachuting" >
+					<Animation
+						AnimationName="SUCommandoTNW_MCNB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_fromParachuting" >
+					<Animation
+						AnimationName="SUCommandoTNW_MCND"
+						AnimationMode="ONCE" />
+				</AnimationState>
+								
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED DYING"
+					StateName="STATE_Suppressed">
+					<Animation
+						AnimationName="SUCommandoTNW_SDIA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<!-- radiation death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_5">
+					<Animation
+						AnimationName="NPSkeletonTNW_DIEA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+<!-- sword death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_4">
+					<Animation
+						AnimationName="SUCommandoTNW_DTKA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- fire death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_3">
+					<Animation
+						AnimationName="SUCommandoTNW_DTFA"
+						AnimationMode="ONCE" />
+					<ParticleSysBone
+						BoneName="HIPS"
+						FXParticleSystemTemplate="InfantryFireDeath"
+						FollowBone="true" />
+				</AnimationState>
+
+				<!-- prism/laser death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_2">
+					<Animation
+						AnimationName="SUCommandoTNW_DTPA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- tesla death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1">
+					<Animation
+						AnimationName="NPSkeletonTNW_DIEA"
+						AnimationMode="ONCE" />
+          <ParticleSysBone
+						BoneName="HIPS"
+						FXParticleSystemTemplate="Soviet_TeslaDeath_Spark"
+						FollowBone="true" />
+				</AnimationState>
+
+				<!-- dying when running -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING_WASMOVING">
+					<Animation
+						AnimationName="SUCommandoTNW_RNDA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+								
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimNickName="DTA"
+						AnimationName="SUCommandoTNW_DTBA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP">
+					<Animation
+						AnimationName="SUCommandoTNW_CWRZ"
+						AnimationMode="LOOP" />
+						<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="Allied_DogStun01"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="Allied_DogStunGlows01"
+							FollowBone="true" />
+				</AnimationState>
+			
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED MOVING"
+					StateName="STATE_Suppressed"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="SUCommandoTNW_SMVA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED USING_WEAPON_A"
+					StateName="STATE_Suppressed">
+					<Animation
+						AnimationName="SUCommandoTNW_SATA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_Suppressed">
+					<Animation
+						AnimationName="SUCommandoTNW_SIDA"
+						AnimationMode="ONCE"
+						AnimationPriority="5" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_Suppressed" and Prev ~= "TRANS_toSuppressed" then
+						CurDrawableSetTransitionAnimState("TRANS_toSuppressed")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toSuppressed">
+					<Animation
+						AnimationName="SUCommandoTNW_SDVA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_fromSuppressed"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="SUCommandoTNW_SGTA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					StateName="STATE_OverWater">
+					<Animation
+						AnimationName="SUCommandoTNW_SWMB"
+						AnimationMode="LOOP" />
+            <ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="AUScoutInfantrySplash"
+							FollowBone="false" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_OverWater" and Prev ~= "TRANS_ToWater" then
+						CurDrawableSetTransitionAnimState("TRANS_ToWater")
+						end
+					</Script>
+				</AnimationState>
+
+				<!-- pilot snipe -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1 OVER_WATER"
+          StateName="STATE_OverWater">
+					<Animation
+						AnimationName="SUCommandoTNW_WATKA"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="=$LOCAL_PILOT_SNIPE_TIMING"/>
+						<ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="AUScoutInfantrySplash"
+							FollowBone="false" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_B OVER_WATER"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+          StateName="STATE_OverWater">
+					<Animation
+						AnimationName="SUCommandoTNW_WPNTA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="7" />
+            <ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="AUScoutInfantrySplash"
+							FollowBone="false" />
+        </AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_C OVER_WATER"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+          StateName="STATE_OverWater">
+					<Animation
+						AnimationName="SUCommandoTNW_WPNTA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="7" />
+            <ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="AUScoutInfantrySplash"
+							FollowBone="false" />
+        </AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_A OVER_WATER"
+          StateName="STATE_OverWater">
+            <!-- timing here should match weapon FiringDuration -->
+          <Animation
+					  AnimationName="SUCommandoTNW_WATKA"
+					  AnimationMode="ONCE"
+					  AnimationAbsoluteTime="1.5s"/>
+            <ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="AUScoutInfantrySplash"
+							FollowBone="false" />
+        </AnimationState>
+        
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ENGAGED OVER_WATER"
+          StateName="STATE_OverWater">
+					<Animation
+						AnimationName="SUCommandoTNW_WPNTA"
+						AnimationMode="LOOP" />
+            <ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="AUScoutInfantrySplash"
+							FollowBone="false" />
+				</AnimationState>
+
+				<!-- idle in water -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_OverWater">
+					<Animation
+						AnimationName="SUCommandoTNW_WAIDA"
+						AnimationMode="ONCE" 
+						AnimationBlendTime="15" />
+            <ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="AUScoutInfantrySplash"
+							FollowBone="false" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="SUCommandoTNW_RUNA"
+						AnimationMode="LOOP"
+						Distance="110" />
+						<ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="AUScoutInfantrySplash"
+							FollowBone="false" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_OverWater" or Prev == "TRANS_ToWater" then
+						CurDrawableSetTransitionAnimState("TRANS_FromWater")
+						end
+					</Script>
+				</AnimationState>
+
+				<!-- pilot snipe -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Animation
+						AnimationName="SUCommandoTNW_ATKA"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="=$LOCAL_PILOT_SNIPE_TIMING"/>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_B"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="SUCommandoTNW_PNTA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="7" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_C"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="SUCommandoTNW_PNTA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="7" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_A">
+					<!-- timing here should match weapon FiringDuration -->
+					<Animation
+						AnimationName="SUCommandoTNW_ATKA"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="1.5s"/>
+					<Animation
+						AnimationName="SUCommandoTNW_ATKB"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="1.5s"/>
+					<Animation
+						AnimationName="SUCommandoTNW_ATKC"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="1.5s"/>
+					<Animation
+						AnimationName="SUCommandoTNW_ATKD"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="1.5s"/>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ENGAGED">
+					<Animation
+						AnimationName="SUCommandoTNW_AIDA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="EMOTION_CELEBRATING"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="SUCommandoTNW_CHRA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_SelectedPose">
+					<Animation
+						AnimationName="SUCommandoTNW_AIDA"
+						AnimationMode="ONCE"
+						AnimationPriority="100"
+						AnimationBlendTime="15" />
+					<Animation
+						AnimationName="SUCommandoTNW_AIFA"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15" />
+					<Animation
+						AnimationName="SUCommandoTNW_AIFB"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15" />
+					<Animation
+						AnimationName="SUCommandoTNW_AIFC"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15" />
+					<Animation
+						AnimationName="SUCommandoTNW_AIFX"
+						AnimationMode="ONCE"
+						AnimationPriority="1"
+						AnimationBlendTime="15" />
+					<Animation
+						AnimationName="SUCommandoTNW_AIFY"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15" />
+					<Animation
+						AnimationName="SUCommandoTNW_AIFZ"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_bored" then
+						CurDrawableSetTransitionAnimState("TRANS_IdleToSelected")
+						end
+					</Script>
+				</AnimationState>
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_IdleToSelected">
+					<Animation
+						AnimationName="SUCommandoTNW_BATA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SelectedToIdle">
+					<Animation
+						AnimationName="SUCommandoTNW_ABTA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_ToWater">
+					<Animation
+						AnimationName="SUCommandoTNW_SWMA"
+						AnimationMode="ONCE" />
+					<Script>
+						CurDrawablePlaySound("SOV_Commando_WaterSplash")
+					</Script>
+          <ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="AUTanyaWaterSpray"
+							FollowBone="false" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_FromWater">
+					<Animation
+						AnimationName="SUCommandoTNW_SWMC"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_fromCINA">
+					<Animation
+						AnimationName="SUCommandoTNW_CINA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+			</ScriptedModelDraw>
+<!-- DRAW DECAL -->
+			<ScriptedModelDraw
+				id="ModuleTag_RepairDecal"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="FXInvisBone" />
+					<ShadowInfo
+						Type="ADDITIVE_DECAL"
+						SizeX="30"
+						SizeY="30"
+						OverrideLODVisibility="true"
+						MaxHeight="200"
+						UseHouseColor="true"
+						IsRotatingWithObject="false"
+						Texture="Decal_Natasha"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="RIDERLESS">
+					<Model Name="FXInvisBone" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PARACHUTING">
+					<Model Name="FXInvisBone" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model Name="FXInvisBone" />
+				</ModelConditionState>				
+			</ScriptedModelDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="0"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".03"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="0"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="4"
+				LaserStateID="5">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+            <Float Name="ColorEmissive">
+              <Value>5.000000</Value>
+              <Value>1.000000</Value>
+              <Value>1.000000</Value>
+            </Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<!-- include parachute draw module. -->
+			<xi:include
+				href="DATA:Includes/ParachuteDrawSoviet.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:ParachuteDraws/child::*)" />
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw"
+				MinLength="360.0"
+				MaxLength="360.0"
+				Width="15.0"
+				MinSpeed="30"
+				MaxSpeed="30"
+				SweepSpeed="0.0"
+				SpreadAngle="0.0"
+				MinTracersPerFrame="0.01"
+				MaxTracersPerFrame="0.01"
+				FrameLifeTime="30"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="1">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01"/>
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawVeterancy"
+				MinLength="360.0"
+				MaxLength="360.0"
+				Width="15.0"
+				MinSpeed="30"
+				MaxSpeed="30"
+				SweepSpeed="0.0"
+				SpreadAngle="0.0"
+				MinTracersPerFrame="0.01"
+				MaxTracersPerFrame="0.01"
+				FrameLifeTime="30"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="1">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="0.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawT"
+				MinLength="360.0"
+				MaxLength="360.0"
+				Width="15.0"
+				MinSpeed="30"
+				MaxSpeed="30"
+				SweepSpeed="0.0"
+				SpreadAngle="0.0"
+				MinTracersPerFrame="0.01"
+				MaxTracersPerFrame="0.01"
+				FrameLifeTime="30"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="2">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01"/>
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawVeterancyT"
+				MinLength="360.0"
+				MaxLength="360.0"
+				Width="15.0"
+				MinSpeed="30"
+				MaxSpeed="30"
+				SweepSpeed="0.0"
+				SpreadAngle="0.0"
+				MinTracersPerFrame="0.01"
+				MaxTracersPerFrame="0.01"
+				FrameLifeTime="30"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="2">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="0.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+		</Draws>
+		<Behaviors>
+			<ProductionUpdate
+				id="ModuleTag_ProductionUpdate"
+				GiveNoXP="true" />
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietCommandoSniperRifle"
+						ForbiddenObjectStatus="INSIDE_GARRISON"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietCommandoSniperRifleStr"
+						ObjectStatus="INSIDE_GARRISON"/>
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="SovietCommandoCallBombingRun"
+						ForbiddenObjectStatus="INSIDE_GARRISON"/>
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="SovietCommandoCallBombingRunStr"
+						ObjectStatus="INSIDE_GARRISON"/>
+				</WeaponSlotHardpoint>
+				<WeaponSlotHardpoint
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietCommandoSniperRifleAntiAir"
+						ForbiddenObjectStatus="INSIDE_GARRISON HEALTH_PERCENT_25"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietCommandoSniperRifleAntiAirStr"
+						ObjectStatus="INSIDE_GARRISON"/>
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="SovietCommandoCallBombingRunAntiAir"
+						ForbiddenObjectStatus="INSIDE_GARRISON HEALTH_PERCENT_25"/>
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="SovietCommandoCallBombingRunAntiAirStr"
+						ObjectStatus="INSIDE_GARRISON"/>
+				</WeaponSlotHardpoint>		
+			</WeaponSetUpdate>
+      <LaserState
+        id="ModuleTag_LaserState"                                
+        LaserId="5" >
+        <LaserEndParticleSystem>Allied_Target_LaserEnd</LaserEndParticleSystem>
+		  <LaserEndParticleSystem>SovietNatashaLaserEnd_VetSparks</LaserEndParticleSystem>
+      </LaserState>
+			<SuppressionUpdate
+				id="ModuleTag_SuppressionUpdate"
+				UpdateDelay="1s"
+				Suppressability="1000"
+				SuppressionDuration="5s"
+				AttributeModifierSuppressed="Modifier_Test_Suppression"
+				AttributeModifierForceMove="Modifier_Test_Suppression_ForceMove" />
+			<OCLSpecialPower
+				id="ModuleTag_BombingRun"
+				SpecialPowerTemplate="SpecialPowerBombingRun"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="true"
+				OCL="OCL_SovietBombingRun"
+				CreateLocation="USE_SECONDARY_OBJECT_LOCATION">
+				<NearestSecondaryObjectFilter
+					Relationship="SAME_PLAYER">
+					<IncludeThing>SovietCommandoTech1</IncludeThing>
+				</NearestSecondaryObjectFilter>
+			</OCLSpecialPower>
+			<OCLSpecialPower
+				id="ModuleTag_BombingRunAntiAir"
+				SpecialPowerTemplate="SpecialPowerBombingRunAntiAir"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="true"
+				OCL="OCL_SovietBombingRunAntiAir"
+				CreateLocation="USE_SECONDARY_OBJECT_LOCATION">
+				<NearestSecondaryObjectFilter
+					Relationship="SAME_PLAYER">
+					<IncludeThing>SovietCommandoTech1</IncludeThing>
+				</NearestSecondaryObjectFilter>
+			</OCLSpecialPower>
+			<OCLMonitorUpdate
+				id="ModuleTag_BombingRunMonitor"
+				Options="MASTER RELEASE_WHEN_MASTER_CHANGES_TARGET"/>
+			<Physics
+				id="ModuleTag_Physics" />
+			<EmotionTrackerUpdate
+				id="Module_ETU">
+				<TauntAndPointExcluded
+					Rule="NONE" />
+				<AddEmotion>CheerIdle_Base</AddEmotion>
+				<AddEmotion>CheerBusy_Base</AddEmotion>
+			</EmotionTrackerUpdate>
+            <SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+                <DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="ELECTROCUTED LASERED BURNED STABBED IRRADIATED MAULED"
+                    ExemptStatus="OVER_WATER"/>
+                <Sound Type="INITIAL" List="SOV_Commando_VoiceDie" />
+            </SlowDeath>
+            <SlowDeath
+				id="ModuleTag_DeathWater"
+                Fade="true"
+                FadeDelay="6s"
+                FadeTime="2s"
+				SinkDelay="0.5s"
+				SinkRate="1.2"
+				DestructionDelay="10.0s">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="IRRADIATED ELECTROCUTED"
+                    RequiredStatus="OVER_WATER" />
+                <Sound Type="INITIAL" List="SOV_Commando_VoiceDie" />
+            </SlowDeath>
+			<SlowDeath
+				id="ModuleTag_BearDeath"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s"
+				FlingForce="5"
+				FlingForceVariance="2"
+				FlingPitch="20d"
+				FlingPitchVariance="10d">
+				<DieMuxData
+					DeathTypes="MAULED"
+					DeathTypesForbidden="BITTEN ELECTROCUTED LASERED BURNED STABBED IRRADIATED"
+					ExemptStatus="OVER_WATER"/>
+				<Sound
+					Type="INITIAL"
+					List="SOV_Commando_VoiceDie" />
+			</SlowDeath>
+			<SlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="6s"
+				FadeTime="2s"
+				SinkDelay="0.5s"
+				SinkRate="1.2"
+				DestructionDelay="10.0s"
+				FlingForce="5"
+				FlingForceVariance="2"
+				FlingPitch="20d"
+				FlingPitchVariance="10d">
+				<DieMuxData
+					DeathTypes="MAULED"
+					DeathTypesForbidden="BITTEN ELECTROCUTED LASERED BURNED STABBED IRRADIATED"
+			  RequiredStatus="OVER_WATER"/>
+				<Sound
+					Type="INITIAL"
+					List="SOV_Commando_VoiceDie" />
+			</SlowDeath>
+             <SlowDeath
+				id="ModuleTag_TeslaDeath"
+				DeathFlags="DEATH_1"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+                <DieMuxData
+					DeathTypes="ELECTROCUTED"
+					DeathTypesForbidden="LASERED BURNED STABBED IRRADIATED MAULED" />
+				<Sound Type="INITIAL" List="SOV_Natasha_VoiceDieShock" />
+			</SlowDeath>
+			<SlowDeath
+				id="ModuleTag_LaserDeath"
+				DeathFlags="DEATH_2"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="LASERED"
+					DeathTypesForbidden="ELECTROCUTED BURNED STABBED IRRADIATED MAULED"
+                    ExemptStatus="OVER_WATER"/>
+				<Sound Type="INITIAL" List="SOV_Commando_VoiceDie" />
+			</SlowDeath>
+			<SlowDeath
+				id="ModuleTag_FireDeath"
+				DeathFlags="DEATH_3"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="BURNED"
+					DeathTypesForbidden="ELECTROCUTED LASERED STABBED IRRADIATED MAULED"
+                    ExemptStatus="OVER_WATER"/>
+                <Sound Type="INITIAL" List="SOV_Natasha_VoiceDieFire" />
+            </SlowDeath>
+            <SlowDeath
+				id="ModuleTag_SwordDeath"
+				DeathFlags="DEATH_4"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+                <DieMuxData
+					DeathTypes="STABBED"
+					DeathTypesForbidden="ELECTROCUTED LASERED BURNED IRRADIATED MAULED"
+                    ExemptStatus="OVER_WATER"/>
+				<Sound Type="INITIAL" List="SOV_Commando_VoiceDie" />
+			</SlowDeath>
+			<SlowDeath
+				id="ModuleTag_RadiationDeath"
+				DeathFlags="DEATH_5"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="IRRADIATED"
+					DeathTypesForbidden="ELECTROCUTED LASERED BURNED STABBED MAULED"/>
+				<Sound Type="INITIAL" List="SOV_Commando_VoiceDie" />
+			</SlowDeath>
+            <SpecialPower
+				id="ModuleTag_PilotSnipe"
+				SpecialPowerTemplate="SpecialPower_PilotSnipe"
+				UpdateModuleStartsAttack="true" />
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_PilotSnipeUpdate"
+				SpecialWeapon="SovietCommandoPilotSnipeWeapon"
+				SpecialPowerTemplate="SpecialPower_PilotSnipe"
+				UnpackTime="=$LOCAL_PILOT_SNIPE_TIMING"
+				PackTime="0s"
+				StartAbilityRange="500.0"
+				BusyForDuration="0.2s"
+				ActiveModelCondition="USER_1"/>
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<xi:include
+				href="DATA:Includes/CaptureBehavior.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:Behaviors/child::*)" />
+			<SuppressionUpdate
+				id="ModuleTag_SuppressionUpdate"
+				xai:joinAction="Remove"/>		
+			<!-- Soviet Parachute Behaviors -->
+			<ModelConditionUpgrade
+				id="ModuleTag_JapanFaction"
+				AddConditionFlags="USER_8">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_AlliesFaction"
+				AddConditionFlags="USER_9">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+			</ModelConditionUpgrade>			
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="JapanAntiInfantryVehicleFunctions"/>		
+			<AttributeModifierUpgrade
+							id="ModuleTag_SovietUnitUpgradeSpecialPower"
+							AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>SovietUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<FireWeaponWhenDead
+				id="ModuleTag_CelebratingWeapon"
+				InitiallyActive="true"
+				DeathWeapon="UnitCelebratingCommando">
+				<DieMuxData
+					DeathTypes="ALL"
+		DeathTypesForbidden="SUICIDED SLAUGHTERED"/>
+			</FireWeaponWhenDead>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+         RotateToTargetWhenAiming="true"
+					IdleScanDelay="0.01s" >
+					</UnitAITargetChooserData>	
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="200" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_YurikoVoiceDieFall">
+				<ModelConditionSound Sound="SOV_Natasha_VoiceDieYurikoFall" RequiredFlags="IMPENDING_DOOM" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_YurikoVoiceUp">
+				<ModelConditionSound Sound="SOV_Natasha_VoiceDieYurikoUp" RequiredFlags="STUNNED_FLAILING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<AnimationSoundClientBehavior id="ModuleTag_ASCB">
+				<Sound Sound="SOV_Bear_ParachuteOpen" Animation="SUCommandoTNW_MCNB" Frame="3" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="SUCommandoTNW_CDTA" Frame="11" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="SUCommandoTNW_CDTB" Frame="13" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="SUCommandoTNW_DTBA" Frame="18" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="SUCommandoTNW_DTFA" Frame="100" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="SUCommandoTNW_DTKA" Frame="40" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="SUCommandoTNW_DTPA" Frame="93" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="SUCommandoTNW_DTSA" Frame="9" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="SUCommandoTNW_LNDA" Frame="7" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="SUCommandoTNW_MCND" Frame="3" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="SUCommandoTNW_RNDA" Frame="23" />				
+			</AnimationSoundClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_Paint">
+				<ModelConditionSound Sound="SOV_Commando_PaintMS" RequiredFlags="FIRING_B" ExcludedFlags="DYING" />
+				<ModelConditionSound Sound="SOV_Commando_PaintMS" RequiredFlags="FIRING_C" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_WaterSounds">
+				<Override RequiredFlags="OVER_WATER">
+					<AudioArrayVoice>
+						<AudioEntry Sound="SOV_Natasha_VoiceSelectWaterMS" AudioType="voiceSelect" />
+						<AudioEntry Sound="SOV_Natasha_VoiceSelectBattleWaterMS" AudioType="voiceSelectBattle" />
+						<!-- <AudioEntry Sound="SOV_Natasha_VoiceSelectUnderFireWaterMS" AudioType="voiceSelectUnderFire" />-->
+					</AudioArrayVoice>
+					<AudioArraySound>
+						<AudioEntry Sound="SOV_Commando_MoveStartWater" AudioType="soundMoveStart" />
+						<AudioEntry Sound="Infantry_MoveLoopWater" AudioType="soundMoveLoop" />
+					</AudioArraySound>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.25"
+				Height="13.0"
+				ContactPointGeneration="SQUAD_MEMBER"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="SOV_Natasha_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackStructure" />
+			<AudioEntry Sound="SOV_Natasha_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="SOV_Natasha_VoiceHelpMe" AudioType="voiceFear" />
+			<AudioEntry Sound="SOV_Natasha_VoiceGarrison" AudioType="voiceGarrison" />
+			<AudioEntry Sound="SOV_Natasha_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="SOV_Natasha_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="SOV_Natasha_VoiceMoveToLand" AudioType="voiceMoveWaterToLand" />
+			<AudioEntry Sound="SOV_Natasha_VoiceMoveToWater" AudioType="voiceMoveLandToWater" />
+			<AudioEntry Sound="SOV_Natasha_VoiceSelectLandMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="SOV_Natasha_VoiceSelectBattleLandMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="SOV_Natasha_VoiceSelectUnderFireLandMS" AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="SOV_Natasha_VoiceAttackPilotSnipe" Name="VoiceInitiatePilotSnipe" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedAntiAirShip" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedAntiAirVehicleTech1" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedAntiGroundAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedAntiInfantryVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedAntiStructureVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedAntiVehicleVehicleTech1" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedAntiVehicleVehicleTech3" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedBomberAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedFighterAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedMCV" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedMiner" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedSupersonicBomber" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedSupportAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="JapanAntiAirVehicleTech1" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="JapanAntiInfantryVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="JapanAntiStructureVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="JapanAntiVehicleVehicleTech1" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="JapanLightTransportVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="JapanMCV" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="JapanMiner" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="JapanTransportVehicle2" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietAntiAirShip" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietAntiGroundAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietAntiInfantryVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietAntiNavyShipTech1" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietAntiStructureVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietAntiVehicleVehicleTech1" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietAntiVehicleVehicleTech2" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietAntiVehicleVehicleTech3" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietBomberAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietBomberAircraft_Special" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietFighterAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietMCV" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietMiner" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietSupportBomber" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="StrategicArmyAntiStructureVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="StrategicArmyGrinderVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietBomberAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="GDIMARVBase" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietEpicUnit" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="JapanFortressShip" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="JapanSentinelVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedEpicUnit" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="EUAntiVehicleVehicleTech3" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="EUAntiGroundAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="MODFighterAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="JapanFighterAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="MODAntiGroundAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="MODAntiAirVehicleTech1" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="MODAntiNavyShipTech2" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="StrategicArmyAntiNavyShipTech2" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietSupportBomber" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="TechStructureSalvageShip" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="CUAuto01" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="TH_Auto04" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="Alliedprismfortress" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="mantikeer" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="msztank" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="NODInfernoBomber" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietAntiVehicleVehicleTech1Armor" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="PZ6" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="VietnamFighterAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="yhtank" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="ScrinAntiAirVehicleTech1" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="ScrinAntiInfantryVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="ScrinAntiVehicleVehicleTech1" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="ScrinAntiStructureAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="ScrinAntiVehicleVehicleTech3" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="ScrinConquerShip" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="ScrinFighterAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedBossGunshipAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedBossBomberAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="EUAntiAirVehicleTech1Boss" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="JapanBossMecha" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="JapanBossMechaKing" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="MordorMumakil" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietBossBomberAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="EUAntiNavyShipTech2" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="EUAntiAirVehicleTech1" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="EUAntiStructureVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="EUBomberAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="EUAntiAirAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="StrategicArmyGrinderVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietAntiGroundAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietBomberAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="SovietFighterAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedFighterAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedSupportAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedBomberAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="AlliedAntiGroundAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="StrategicArmyFighterAircraft" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="EUAntiStructureShip" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="EUAntiVehicleVehicleTech1" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="EULightTransportVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="MODAntiVehicleVehicleTech1" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="MODAntiVehicleVehicleTech3" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="MODAntiInfantryVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="MODAntiStructureVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="StrategicArmyAntiInfantryVehicle" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="StrategicArmyAntiAirShip" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="StrategicArmyAntiVehicleVehicleTech1" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="StrategicArmyAntiVehicleVehicleTech3" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="JapanOutPostEgg" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="MODCraneEgg" />
+			<ObjectSpecificEntry Sound="SOV_Natasha_VoiceAttackAirstrike" AudioType="voiceAttackUnit" TargetObject="EUSupportAircraft" />
+		</AudioArrayVoice>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="NatashaLost" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="EnemyCommandoDetected" EvaType="enemyObjectSighted" />
+		</EvaEventArray>
+		
+		<ShadowInfo
+			Type="DECAL"
+			SizeX="14"
+			SizeY="14"
+			Texture="ShadowI" />
+		<VisionInfo
+			VisionRange="350"
+			ShroudClearingRange="=$COMMANDO_SHROUD_CLEAR" />
+		<CrusherInfo
+			CrushableLevel="60" />
+	</GameObject>
+		  <GameObject
+		id="SovietCommandoTech1_Crate"
+		inheritFrom="SovietCommandoTech1"
+		KindOf="+TIBERIUM_BASED -UNIQUE_UNIT"
+		EditorName="SovietCommandoTech1_Crate">
+		<EquivalentTo>SovietCommandoTech1</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

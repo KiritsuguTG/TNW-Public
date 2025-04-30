@@ -1,0 +1,70 @@
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<AIStrategicStateDefinition
+		  id="GDICounterattack">
+		<Heuristic>
+			<PathToTargetHeuristic Surface="Land" PathExists="true" ObjectTypeToUseForTest="SovietAntiVehicleVehicleTech3" LocomotorConditionToUseForTest="NORMAL" />
+			<TimerHeuristic StartTime="600s" EndTime="-1s"/>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ClosestStructureHeuristic"/>
+		<Tactic id="Attack" Tactic="SimpleAttack">
+			<TeamTemplate MinUnits="12" IncludeKindOf="CAN_ATTACK" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false" MicroManager="TNWStandardMicroManager"/>
+		</Tactic>
+	</AIStrategicStateDefinition>
+
+	<AIStrategicStateDefinition
+	  id="GDIFinalAttack">
+		<Heuristic>
+			<PathToTargetHeuristic Surface="Land" PathExists="true" ObjectTypeToUseForTest="SovietAntiVehicleVehicleTech3" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<Tactic id="Attack" Tactic="SimpleAttack">
+			<TeamTemplate MinUnits="50" IncludeKindOf="CAN_ATTACK" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false" MicroManager="TNWStandardMicroManager"/>
+		</Tactic>
+	</AIStrategicStateDefinition>
+
+	
+	<AIStrategicStateDefinition
+		  id="GDIOptimalDirectAttack1">
+		<Heuristic>
+			<TimerHeuristic StartTime="0s" EndTime="180s"/>
+			<PathToTargetHeuristic Surface="Land" PathExists="true" ObjectTypeToUseForTest="SovietAntiVehicleVehicleTech3" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SafestToGroundStructureHeuristic"/>
+		<Tactic id="Attack" Tactic="DefenseAvoidanceAttack">
+			<TeamTemplate MinUnits="5" IncludeKindOf="CAN_ATTACK" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false" MicroManager="TNWStandardMicroManager"/>
+		</Tactic>
+	</AIStrategicStateDefinition>
+
+	<AIStrategicStateDefinition
+		  id="GDIOptimalDirectAttack2">
+		<Heuristic>
+			<TimerHeuristic StartTime="181s" EndTime="-1s"/>
+			<PathToTargetHeuristic Surface="Land" PathExists="true" ObjectTypeToUseForTest="SovietAntiVehicleVehicleTech3" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SafestToGroundStructureHeuristic"/>
+		<Tactic id="Attack" Tactic="DefenseAvoidanceAttack">
+			<TeamTemplate MinUnits="5" IncludeKindOf="CAN_ATTACK" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false" MicroManager="TNWStandardMicroManager"/>
+		</Tactic>
+	</AIStrategicStateDefinition>
+
+	<AIStrategicStateDefinition
+		  id="GDIOptimalEconomyAttack">
+		<Heuristic>
+			<PathToTargetHeuristic Surface="Land" PathExists="true" ObjectTypeToUseForTest="SovietAntiVehicleVehicleTech3" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SafestToGroundHarvesterHeuristic"/>
+		<Tactic id="Attack" Tactic="DefenseAvoidanceAttack">
+			<TeamTemplate MinUnits="6" MaxUnits="6" IncludeKindOf="CAN_ATTACK" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false" MicroManager="TNWStandardMicroManager"/>
+		</Tactic>
+	</AIStrategicStateDefinition>
+
+	<AIStrategicStateDefinition
+		  id="GDIOptimalOverwhelmAttack">
+		<Heuristic>
+		<PathToTargetHeuristic Surface="Land" PathExists="true" ObjectTypeToUseForTest="SovietAntiVehicleVehicleTech3" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SafestToGroundStructureHeuristic"/>
+		<Tactic id="Attack" Tactic="DefenseAvoidanceAttack">
+			<TeamTemplate MinUnits="20" IncludeKindOf="CAN_ATTACK" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false" MicroManager="TNWStandardMicroManager"/>
+		</Tactic>
+	</AIStrategicStateDefinition>
+</AssetDeclaration>

@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="ART:Structures/JapanSuperStructure/TH_TOKYO_TOWER01_HRCTNW.W3X" />
+		<Include type="all" source="ART:Structures/JapanSuperStructure/TH_TOKYO_TOWER01.TH_TOKYO_TOWER01.W3X" />
+		<Include type="all" source="ART:Structures/JapanSuperStructure/TH_TOKYO_TOWER01.FX_LIGHTS01.W3X" />
+		<Include type="all" source="ART:Structures/JapanSuperStructure/TH_TOKYO_TOWER01.NIGHT_GLOW.W3X" />
+		<Include type="all" source="ART:Structures/JapanSuperStructure/TH_TOKYO_TOWER01.OBBOX01.W3X" />
+		<Include type="all" source="ART:Structures/JapanSuperStructure/TH_TOKYO_TOWER01.OBBOX02.W3X" />
+		<Include type="all" source="ART:Structures/JapanSuperStructure/TH_TOKYO_TOWER01.OBBOX03.W3X" />
+		<Include type="all" source="ART:Structures/JapanSuperStructure/TH_TOKYO_TOWER01_TNW.W3X" />
+		<Include type="all" source="ART:Structures/JapanSuperStructure/JapanSuperStructure_BLD.W3X" />
+		<Include type="all" source="ART:Structures/JapanSuperStructure/JapanSuperStructure_BLD2.W3X" />
+		<Include type="all" source="ART:TH_tokyo_tower01.W3X" />
+		<Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+	</Includes>
+	<GameObject
+		id="JapanSuperStructure"
+		inheritFrom="BaseStructure"
+		CommandSet="JapanSuperStructureCommandSet"
+		ButtonImage="Button_JapanSuperStructure"
+		SelectPortrait="Portrait_JapanSuperStructure"
+		EditorName="JapanSuperStructure"
+		EditorSorting="STRUCTURE"
+		Side="Japan"
+		BuildTime="250"
+		KindOf="+RESIST_EMP +NOT_SELLABLE +CAN_ATTACK +TACTICAL_MARKER +REVEAL_TO_ALL +UNIQUE_UNIT +SUPER_WEAPON +PRELOAD -CAN_BUILD_ON_WATER -CRUSHABLE_BUILDING -CAN_BUILD_ON_DEEP_WATER"
+		RadarPriority="COMMANDO"
+		EnergyProduction="-150"
+		ProductionQueueType="OTHER_STRUCTURE"
+		BuildPlacementTypeFlag="OTHER_STRUCTURE"
+		TypeDescription="Type:EpicBuild"
+		Description="Desc:JapanSuperStructure"
+		MaxSimultaneousOfType="1"
+		PlacementViewAngle="-45d"
+		ThreatLevel="50">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanSuperStructure</DisplayName>
+		<GameDependency>
+			<RequiredObject>JapanVIPStructure</RequiredObject>
+			<NeededUpgrade>Upgrade_JapanFaction</NeededUpgrade>
+			<ForbiddenUpgrade>SideSuperStructure</ForbiddenUpgrade>
+			<ForbiddenUpgrade>AINoSuperWeaponEffect</ForbiddenUpgrade>
+			<ForbiddenUpgrade>UpgradeUprising</ForbiddenUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="25000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseStructureArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<SkirmishAIInformation
+			BaseBuildingLocation="SPREAD">
+      <ConstructionBaseSelectionCriteria
+        ExcludedBaseTypes="NO_BUILD_RADIUS CAPTURED"
+        PreferredBaseTypes="MAIN_BASE"
+        SortOrder="PREFER_OLDEST" />
+    </SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+					ExtraPublicBone="FX_WEAPON01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="TH_TOKYO_TOWER01_TNW" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON01" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="TH_tokyo_tower01" />
+					<Material ShaderName="ObjectsGeneric.fx" TechniqueName="Default">
+						<Constants>
+							<Texture Name="DiffuseTexture">
+								<Value>TH_tokyo_tower01</Value>
+							</Texture>
+							<Texture Name="NormalMap">
+								<Value>TH_tokyo_tower01_NRM</Value>
+							</Texture>
+							<Texture Name="SpecMap">
+								<Value>TH_tokyo_tower01_SPM</Value>
+							</Texture>
+							<Float Name="BumpScale">
+								<Value>1.000000</Value>
+							</Float>
+							<Float Name="AmbientColor">
+								<Value>0.400000</Value>
+								<Value>0.400000</Value>
+								<Value>0.400000</Value>
+							</Float>
+							<Float Name="DiffuseColor">
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+							</Float>
+							<Float Name="SpecularColor">
+								<Value>0.800000</Value>
+								<Value>0.800000</Value>
+								<Value>0.800000</Value>
+							</Float>
+							<Float Name="SpecularExponent">
+								<Value>50.000000</Value>
+							</Float>
+							<Float Name="EnvMult">
+								<Value>1.000000</Value>
+							</Float>
+							<Bool Name="AlphaTestEnable">
+								<Value>false</Value>
+							</Bool>
+						</Constants>
+					</Material>						
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="TH_tokyo_tower01" />
+					<Material ShaderName="BasicW3DHolographic.fx" TechniqueName="Default">
+						<Constants>
+							<Float Name="ColorAmbient">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorDiffuse">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorSpecular">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="Shininess">
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorEmissive">
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+							</Float>
+							<Texture Name="Texture_0">
+								<Value>FXJapanBuildMask</Value>
+							</Texture>
+							<Bool Name="DepthWriteEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="AlphaTestEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="CullingEnable">
+								<Value>true</Value>
+							</Bool>
+							<Int Name="BlendMode">
+								<Value>1</Value>
+							</Int>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableShowSubObjectPermanently("NIGHT_GLOW")
+						CurDrawableShowSubObjectPermanently("FX_LIGHTS01")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="JapanSuperStructure_BLD"
+						AnimationMode="ONCE"
+						AnimationBlendTime="0" />
+					<Script>
+						CurDrawableHideSubObjectPermanently("NIGHT_GLOW")
+						CurDrawableHideSubObjectPermanently("FX_LIGHTS01")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="JapanSuperStructure_BLD2"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+					<Script>
+						CurDrawableHideSubObjectPermanently("NIGHT_GLOW")
+						CurDrawableHideSubObjectPermanently("FX_LIGHTS01")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Buildup"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="TH_tokyo_tower01" />
+					<Material ShaderName="BuildingsJapanBuildup.fx" TechniqueName="Default">
+						<Constants>
+							<Texture Name="DiffuseTexture">
+								<Value>TH_tokyo_tower01</Value>
+							</Texture>
+							<Texture Name="NormalMap">
+								<Value>TH_tokyo_tower01_NRM</Value>
+							</Texture>
+							<Texture Name="SpecMap">
+								<Value>TH_tokyo_tower01_SPM</Value>
+							</Texture>
+							<Float Name="EnvMult">
+								<Value>1.000000</Value>
+							</Float>
+							<Bool Name="AlphaTestEnable">
+								<Value>true</Value>
+							</Bool>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableShowSubObjectPermanently("NIGHT_GLOW")
+						CurDrawableShowSubObjectPermanently("FX_LIGHTS01")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="JapanSuperStructure_BLD"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+					<Script>
+						CurDrawableHideSubObjectPermanently("NIGHT_GLOW")
+						CurDrawableHideSubObjectPermanently("FX_LIGHTS01")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- Player-->
+			<xi:include
+					  href="DATA:Includes/PlayerInformationDraw.xml"
+					  xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:PlayerInformationDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanSuperStructureBeamWeapon"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_02"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<BuildingDestructionBehavior
+				id="ModuleTag_BuildingDestruction">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Item
+					BonePrefix="BONE_CONTACT_POINT_"
+					FX="FX_StatueOfLiberty_BoneContactPointExplosion"
+					CreationObject="AlliedBarracks_Debris"
+					FlingVelocity="100.0"/> 
+			</BuildingDestructionBehavior>
+			<FXListBehavior
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_Civ_Explosion_XLarge" />
+			</FXListBehavior>
+			<GrantUpgradeCreate
+				id="ModuleTag_SideSuperStructure"
+			  UpgradeToGrant="SideSuperStructure"/>
+			<BuildingBehavior
+				id="ModuleTag_BuildingBehavior"
+				NightWindowObject="LIGHT_01" />
+			<xi:include
+				href="DATA:Includes/GenericBuildingRepair.xml" />
+			<DestroyDie
+				id="ModuleTag_DestroyDie">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="JapanSuperStructure_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSuperStructure"
+				CreationList="OCL_SuperStructureDieUpgrade">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+				<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				UnpackTime="2s" />
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="JapanSuperStructureFunctions" />
+			<SpecialPower
+				id="ModuleTag_SuperStructure"
+				SpecialPowerTemplate="SpecialPower_JapanSuperStructure"
+				UpdateModuleStartsAttack="true"
+				AvailableAtStart="false"/>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_ModuleTag_SuperStructureUpdate"
+				SpecialPowerTemplate="SpecialPower_JapanSuperStructure"
+				SpecialWeapon="SuperStructureWeaponNova"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure300"
+				SpecialPowerTemplate="SpecialPower_SuperStructure300"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure420"
+				SpecialPowerTemplate="SpecialPower_SuperStructure420"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure540"
+				SpecialPowerTemplate="SpecialPower_SuperStructure540"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure570"
+				SpecialPowerTemplate="SpecialPower_SuperStructure570"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure590"
+				SpecialPowerTemplate="SpecialPower_SuperStructure590"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+			<SubObjectsUpgrade
+				id="ModuleTag_SubObjectsPlayerInformationUpgrade">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_JapanFaction"
+					ShowSubObjects="Upgrade_01"/>
+				<CustomAnimAndDuration	AnimState="SPECIAL_WEAPON_THREE"/>
+			</SubObjectsUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_SuperStructureCanNotUseWeapon"
+				AttributeModifier="AttributeModifier_SuperStructureCanNotUseWeapon">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<FireWeaponWhenDead
+				id="ModuleTag_CelebratingWeapon"
+				InitiallyActive="true"
+				DeathWeapon="UnitCelebratingSuperStructure">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED"
+					ExemptStatus="SOLD"/>
+			</FireWeaponWhenDead>
+			<StancesBehavior
+				id="ModuleTag_Stance"
+				StanceTemplate="OffensiveStructures" />
+		</Behaviors>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">
+		</CrusherInfo>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="OffensiveStructureAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="true"
+					IdleScanDelay="0.0s">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="25000"/>
+		</Body>
+    <ClientUpdates>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady300"
+			AnnouncementEventEnemy="Countdown5MinsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure300"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady420"
+			AnnouncementEventEnemy="Countdown3MinsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure420"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady540"
+			AnnouncementEventEnemy="Countdown1MinsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure540"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady570"
+			AnnouncementEventEnemy="Countdown30SecsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure570"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady590"
+			AnnouncementEventEnemy="Countdown10SecsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure590"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady"
+			AnnouncementEventEnemy="EnemySuperStructureAccomplished"
+			AnnouncementEventOwner="OurSuperStructureAccomplished"
+			SpecialPowerTemplate="SpecialPower_AlliedSuperStructure"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceClientCreate
+          id="SuperWeaponDetected"
+          AnnouncementEventEnemy="NewBonusObjective"
+          UseObjectsPosition="true" />
+	</ClientUpdates>
+	<EvaEventArray>
+		<EvaEntry EvaEvent="CriticalStructureUnderAttack" EvaType="damagedOwner" />
+		<EvaEntry EvaEvent="SuperStructureDieForPlayer" EvaType="dieOwner" />
+		<EvaEntry EvaEvent="SuperStructureDieForEnemy" EvaType="dieEnemy" />
+	</EvaEventArray>
+		<Geometry
+			IsSmall="false">
+			<PlacementShape
+				 Type= "BOX"
+				 MajorRadius = "100.025"
+				 MinorRadius = "99.39"
+				 Height = "54.4" >
+				<Offset
+					x = "0.0"
+					y = "0.0"
+					z = "0.0" />
+			</PlacementShape>
+			<Shape
+				Type= "BOX"
+           MajorRadius = "23.5"
+           MinorRadius = "23.5"
+           Height = "36.5"
+				 ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "75.0"
+					y = "75.0"
+					z = "0.0" />
+			</Shape>
+			<Shape
+				Type= "BOX"
+           MajorRadius = "23.5"
+           MinorRadius = "23.5"
+           Height = "36.5"
+				 ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "-75.0"
+					y = "75.0"
+					z = "0.0" />
+			</Shape>
+			<Shape
+				Type= "BOX"
+           MajorRadius = "23.5"
+           MinorRadius = "23.5"
+           Height = "36.5"
+				 ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "75.0"
+					y = "-75.0"
+					z = "0.0" />
+			</Shape>
+			<Shape
+				Type= "BOX"
+           MajorRadius = "23.5"
+           MinorRadius = "23.5"
+           Height = "36.5"
+				 ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "-75.0"
+					y = "-75.0"
+					z = "0.0" />
+			</Shape>
+			<Shape
+				Type= "BOX"
+           MajorRadius = "16.5"
+           MinorRadius = "16.5"
+           Height = "126.5"
+				 ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "0.0"
+					y = "0.0"
+					z = "0.0" />
+			</Shape>
+			<Shape
+				 Type= "BOX"
+		   MajorRadius = "32.5"
+		   MinorRadius = "32.5"
+		   Height = "81."
+		   ContactPointGeneration = "STRUCTURE" >
+				<Offset
+						x = "0.0"
+						y = "0.0"
+						z = "55"/>
+			</Shape>
+			<Shape
+				 Type= "BOX"
+		   MajorRadius = "21"
+		   MinorRadius = "18.4"
+		   Height = "119"
+		   ContactPointGeneration = "STRUCTURE" >
+				<Offset
+						x = "0.0"
+						y = "0.0"
+						z = "173.56"/>
+			</Shape>
+			<Shape
+				 Type= "BOX"
+		   MajorRadius = "45"
+		   MinorRadius = "45"
+		   Height = "37"
+		   ContactPointGeneration = "STRUCTURE" >
+				<Offset
+						x = "0.0"
+						y = "0.0"
+						z = "136.8"/>
+			</Shape>
+	
+	</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="HumanFaction_MediumBuilding_LightDamageMS" AudioType="soundOnDamaged" />
+			<AudioEntry Sound="HumanFaction_MediumBuilding_HeavyDamageMS" AudioType="soundOnReallyDamaged" />
+		<AudioEntry Sound="JAP_Nanocore_DeployLoop" AudioType="soundUnderConstruction" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="3050"
+			ShroudClearingRange="=$SUPER_STRUCTURE_SHROUD_CLEAR"
+			ShroudClearingHeight="500"/>
+	</GameObject>
+	<GameObject
+		id="JapanSuperStructureUpgrade"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="NO_COLLIDE SUMMONED VEHICLE NOT_AUTOACQUIRABLE UNATTACKABLE RESIST_EMP"
+		EditorName="JapanSuperStructureUpgrade">
+		<DisplayName>JapanSuperStructureUpgrade</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<LocomotorSet
+			Locomotor="JapanPointDefenseDroneLocomotor"
+			Condition="NORMAL"
+			Speed="200.0" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="ModuleTag_UpgradeSideSuperStructure"
+			  UpgradeToGrant="SideSuperStructure"/>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="0.13s"
+				MaxLifetime="0.13s" />
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<Physics
+				id="ModuleTag_Physics" />
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="JapanSuperStructureFunctions" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				StateMachine="UnitAIStateMachine" />
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.0"
+				Height="0.0">
+			</Shape>
+		</Geometry>
+		<ShadowInfo
+			Type="NONE" />
+		<VisionInfo
+			VisionRange="1"
+			ShroudClearingRange="500"
+			ShroudClearingHeight="500" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+</AssetDeclaration>

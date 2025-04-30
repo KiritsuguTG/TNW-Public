@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+		id="StrategicArmyBossSpawn"
+		inheritFrom="BaseObject"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		KindOf="IGNORE_FOR_VICTORY STRUCTURE IMMOBILE CAN_CAST_REFLECTIONS NOT_AUTOACQUIRABLE AUTO_ACQUIRABLE_BY_AI COVER CAN_BUILD_ON_WATER CAN_BUILD_ON_DEEP_WATER NO_COLLIDE"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		EditorName="StrategicArmyBossSpawn"
+		UnitCategory="STRUCTURE">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:StrategicArmyBossSpawn</DisplayName>
+		<ArmorSet
+			Armor="StructureArmor"
+			DamageFX="GenericStructureDamageFX" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_PlayerInformation">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED" />
+			</DestroyDie>
+			<LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				MinLifetime="2s"
+				MaxLifetime="2s" />
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="StrategicArmyBossAIFunctions" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<VisionInfo
+			VisionRange="10"
+			ShroudClearingRange="0" />
+	</GameObject>
+</AssetDeclaration>

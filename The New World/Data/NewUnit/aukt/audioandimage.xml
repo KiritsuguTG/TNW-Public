@@ -1,0 +1,235 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Includes>
+		<Include type="instance" source="DATA:SageXml/Sounds/BaseSoundEffect.xml" />
+		<Include type="instance" source="DATA:Base/BaseExperienceLevelTemplate.xml" />
+	</Includes>
+	<AudioFile id="Pkselect1" File="paladinvedios/Pkselect1.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+	<AudioFile id="Pkselect2" File="paladinvedios/Pkselect2.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+	<AudioFile id="Pkselect3" File="paladinvedios/Pkselect3.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+	<AudioFile id="Pkselect4" File="paladinvedios/Pkselect4.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+	<AudioFile id="Pkmove1" File="paladinvedios/Pkmove1.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+		<AudioFile id="Pkmove2" File="paladinvedios/Pkmove2.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+	<AudioFile id="Pkmove3" File="paladinvedios/Pkmove3.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+	<AudioFile id="Pkready" File="paladinvedios/Pkready.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+	<AudioFile id="attackmv" File="paladinvedios/attackmv.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+	<AudioFile id="Pkatak1" File="paladinvedios/Pkatak1.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+		<AudioFile id="Pkattmove3" File="paladinvedios/Pkattmove3.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+	<AudioFile id="retreat" File="paladinvedios/retreat.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+	<AudioFile id="underatk" File="paladinvedios/underatk.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+	<AudioFile id="underatk2" File="paladinvedios/underatk2.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+	<AudioFile id="underattack3" File="paladinvedios/underattack3.wav" GUIPreset="Default" PCCompression="XAS" IsStreamedOnPC="false" />
+	<AudioEvent id="AU_KNGHT___VoiceSelect" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>Pkselect1</Sound>
+		<Sound>Pkselect2</Sound>
+		<Sound>Pkselect3</Sound><Sound>Pkselect4</Sound>
+	</AudioEvent>
+	<AudioEvent id="AU_KNGHT___VoiceSelectBattle" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>retreat</Sound>
+		<Sound>underatk2</Sound>
+	</AudioEvent>
+	<AudioEvent id="AU_KNGHT___VoiceSelectUnderFire" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>underatk</Sound>
+		<Sound>underattack3</Sound>
+	</AudioEvent>
+	<AudioEvent id="AU_KNGHT___VoiceVoiceShrunken" inheritFrom="AudioEvent:BaseUnitResponse"
+	Volume = "100"
+	MinVolume = "0"
+	Priority = "HIGH"
+	Limit="1"
+	Type = "WORLD SHROUDED EVERYONE VOICE"
+	SubmixSlider = "VOICE" >
+	<PitchShift Low="-1" High="1" />
+	<Delay Low="1300" High="1400" />
+	<Sound>Pkselect2</Sound>
+		<Sound>Pkselect3</Sound>
+	</AudioEvent>
+	<AudioEvent id="AU_KNGHT____VoiceAttack" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>Pkatak1</Sound>
+		<Sound>attackmv</Sound>
+		<Sound>Pkattmove3</Sound>
+	</AudioEvent>
+	<AudioEvent id="AU_KNGHT____VoiceCreate" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<!-- <Sound>SUReape_voiCreatea</Sound> This Reaper looks ready -->
+		<Sound>Pkready</Sound>
+	</AudioEvent>
+	<AudioEvent id="AU_KNGHT____VoiceMove" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>Pkmove1</Sound>
+		<Sound>Pkmove2</Sound>
+		<Sound>Pkmove3</Sound>
+	</AudioEvent>
+	<AudioEvent id="AU_KNGHT____VoiceMoveAttack" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>Pkatak1</Sound>
+		<Sound>attackmv</Sound>
+	</AudioEvent>
+	<AudioEvent id="AU_KNGHT____VoiceRetreat" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>Pkmove1</Sound>
+		<!-- <Sound>SUReape_voiRetread</Sound> Don't fail me now Sickle! -->
+	</AudioEvent>
+	<Texture id="buttonpaladin" File="buttonpaladin.tga" OutputFormat="A8R8G8B8" GenerateMipMaps="false" AllowAutomaticResize="false"/>
+	<PackedTextureImage id="buttonpaladin" Texture="buttonpaladin" Rotated="false">
+		<Dimensions x="130" y="130"/>
+		<Coords x="0" y="0"/>
+		<TextureDimensions x="130" y="130"/>
+	</PackedTextureImage>
+	<Texture id="buttonpaladin2" File="portantpaladin.tga" OutputFormat="A8R8G8B8" GenerateMipMaps="false" AllowAutomaticResize="false"/>
+	<PackedTextureImage id="buttonpaladin2" Texture="buttonpaladin2" Rotated="false">
+		<Dimensions x="130" y="130"/>
+		<Coords x="0" y="0"/>
+		<TextureDimensions x="130" y="130"/>
+	</PackedTextureImage>
+	<LogicCommandSet
+		id="AlliedprismfortressCommandSet">
+		<Cmd>Command_Toggleautime</Cmd>
+		<Cmd>Command_AttackMove</Cmd>
+	</LogicCommandSet>
+	<LogicCommand
+		Type="SPECIAL_POWER"
+		id="Command_Toggleautime">
+		<SpecialPower>SpecialPower_ToggleAumeltingmod</SpecialPower>
+	</LogicCommand>
+	<SpecialPowerTemplate
+		id="SpecialPower_ToggleAumeltingmod"
+		TargetType="NONE"
+		ReloadTime="5s"
+		PreventConditions="UNDER_FROZEN"
+		WaypointModeTerminal="false" />
+	<UnitAbilityButtonTemplate
+		id="MouseButtonToggleCommand_Toggleautime"
+		LogicCommand="Command_Toggleautime">
+		<Data>
+			<ToggleSpecialPower>
+				<StateData>ButtonStateAbilityToggleAumeltingmod</StateData>
+				<StateData>ButtonStateAbilityToggleAuprismmod</StateData>
+			</ToggleSpecialPower>
+		</Data>
+	</UnitAbilityButtonTemplate>
+	<ButtonSingleStateData
+		id="ButtonStateAbilityToggleAumeltingmod">
+		<State
+			Image="AUA_Shrink_Beam"
+			Title="NAME:ToggleSovietmisslemod123"
+			Description="DESC:ToggleSovietmisslemod123" />
+	</ButtonSingleStateData>
+	<ButtonSingleStateData
+		id="ButtonStateAbilityToggleAuprismmod">
+		<State
+			Image="AUA_FutureTank_RiotBeam"
+			Title="NAME:ToggleSovietfirerainmod456"
+			Description="DESC:ToggleSovietfirerainmod456" />
+	</ButtonSingleStateData>
+	<ExperienceLevelTemplate
+		id="AlliedprismfortressExperienceLevel_1"
+		inheritFrom="ExperienceLevel_AlliedRank1"
+		RequiredExperience="1"
+		ExperienceAward="5000">
+		<Target>Alliedprismfortress</Target>
+	</ExperienceLevelTemplate>
+	<ExperienceLevelTemplate
+		id="AlliedprismfortressExperienceLevel_2"
+		inheritFrom="ExperienceLevel_AlliedRank2"
+		Prerequisite="AlliedprismfortressExperienceLevel_1"
+		RequiredExperience="10800"
+		ExperienceAward="5000">
+		<Target>Alliedprismfortress</Target>
+	</ExperienceLevelTemplate>
+	<ExperienceLevelTemplate
+		id="AlliedprismfortressExperienceLevel_3"
+		inheritFrom="ExperienceLevel_AlliedRank3"
+		Prerequisite="AlliedprismfortressExperienceLevel_2"
+		RequiredExperience="20000"
+		ExperienceAward="6000">
+		<Target>Alliedprismfortress</Target>
+	</ExperienceLevelTemplate>
+	<ExperienceLevelTemplate
+		id="AlliedprismfortressExperienceLevel_4"
+		inheritFrom="ExperienceLevel_AlliedRank4"
+		Prerequisite="AlliedprismfortressExperienceLevel_3"
+		RequiredExperience="30000"
+		ExperienceAward="7750">
+		<Target>Alliedprismfortress</Target>
+	</ExperienceLevelTemplate>
+		<AttributeModifier
+		id="AttributeModifier_ReturnToBaseAAA8789879"
+    Shader="ShaderOverride_ObjectsChronoRift"
+    StartFX="FX_ChronoRiftHit"
+		EndFX="FX_ChronoRiftHit" >
+		<Modifier Type="SPEED" Value="80%"/>
+<Modifier Type="ARMOR" Value="0%"/>
+	</AttributeModifier>
+	<AttributeModifier
+		id="AttributeModifier_ReturnToBaseAAA87898798979898797"
+		ObjectStatusToSet="NO_BRIBE UNDER_IRON_CURTAIN"
+		ModelConditionsSet="IRONCURTAIN"
+    Shader="ShaderOverride_ObjectsChronoRift"
+    StartFX="FX_ChronoRiftHit"
+		EndFX="FX_ChronoRiftHit"
+		Duration="2s"	>
+		<Modifier Type="SPEED" Value="0%"/>
+		<Modifier Type="RATE_OF_FIRE" Value="0%"/><Modifier Type="PRODUCTION" Value="0.001%"/>
+	</AttributeModifier>
+</AssetDeclaration>

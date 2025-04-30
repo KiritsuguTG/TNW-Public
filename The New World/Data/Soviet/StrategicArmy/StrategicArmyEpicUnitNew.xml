@@ -1,0 +1,796 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include type="all" source="ART:Units/SovietEpicUnit/SUHeavyTank_SKL.w3x" />
+		<Include type="all" source="ART:Units/SovietEpicUnit/SUHeavyTank_SKN.w3x" />
+	</Includes>
+	<GameObject
+		id="StrategicArmyEpicUnit"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_StrategicArmyEpicUnitNew"
+		ButtonImage="Button_StrategicArmyEpicUnitNew"
+		Side="Soviet"
+		BuildTime="50"
+		CommandSet="GDIMARVBaseCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE COMMANDO VEHICLE CAN_BE_FAVORITE_UNIT UNIQUE_UNIT CRUSH_CRUSHABLE_BUILDINGS SKIRMISH_AI_DONT_REPAIR EXPANSION_UNIT"
+		UnitCategory="VEHICLE"
+		EditorSorting="UNIT"
+		RadarPriority="COMMANDO"
+		VoicePriority="246"
+		WeaponCategory="MISSILE"
+		EditorName="StrategicArmyEpicUnit"
+		Description="Desc:GDIMARV"
+		TypeDescription="Type:EpicUnit"
+		MaxSimultaneousOfType="1"
+		HealthBoxHeightOffset="35"
+		BountyValue="500">
+		<EquivalentTo>SovietEpicUnit</EquivalentTo>
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:GDIMARV</DisplayName>
+		<GameDependency>
+			<RequiredObject>SovietTechStructure</RequiredObject>
+			<NeededUpgrade>Upgrade_SovietTerrorDroneEggs</NeededUpgrade>
+			<NeededUpgrade>Upgrade_SovietCrushPuppiesPower</NeededUpgrade>
+			<NeededUpgrade>Upgrade_SovietFaction</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="5000" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseEpicArmor"
+			DamageFX="VehicleDamageFX" />
+		<ArmorSet
+			id="ModuleTag_ShrinkRayEffectArmor"
+			xai:joinAction="Replace"
+			Armor="BaseAdvanceTankShrinkRayEffectArmor"
+			DamageFX="VehicleDamageFX"
+			Conditions="SHRINK_EFFECT" />
+		<LocomotorSet
+			Locomotor="GDIMammothLocomotor"
+			Condition="NORMAL"
+			Speed="40.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			DodgeSafetyDistance="80.0"
+			TargetDuringCrush="true">
+			<DodgeWithUnits
+				Rule="ANY"
+				Include="VEHICLE INFANTRY"
+				Exclude="COMMANDO"
+				StatusBitFlagsExclude="AIRBORNE_TARGET">
+			</DodgeWithUnits>
+		</SkirmishAIInformation>
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.5"
+				MaxRecoilDistance="6.0"
+				RecoilDamping="5.0"
+				RecoilSettleSpeed="3.0"
+				TrackMarks="EXMARVTracks"
+				TrackMarksLeftBone="TRACKS_L"
+				TrackMarksRightBone="TRACKS_R"
+				ExtraPublicBone="Bone_RocketTurretA_Left Bone_RocketTurretA_Right Bone_RocketTurretB_Left Bone_RocketTurretB_Right BONE_TURRET BONE_TREAD_LEFT_BACK BONE_TREAD_RIGHT_BACK BONE_TREAD_LEFT_FRONT BONE_TREAD_RIGHT_FRONT">
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+				<TreadScrollingMap
+					LeftTrack="BONE_TREAD_LEFT_FRONT"
+					RightTrack="BONE_TREAD_RIGHT_FRONT"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%" />
+				<TreadScrollingMap
+					LeftTrack="BONE_TREAD_LEFT_BACK"
+					RightTrack="BONE_TREAD_RIGHT_BACK"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%" />
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="SUHEAVYTANK_SKN" />
+					<!-- main cannon -->
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_BARREL_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_BARREL_" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_BARREL_" />
+					<Turret
+						TurretNameKey="BONE_TURRET"
+						TurretID="1" />
+					<!--left
+					small rocket -->
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone_RocketLA_" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone_RocketLA_" />
+					<WeaponRecoilBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone_RocketLA_" />
+					<Turret
+						TurretNameKey="Bone_RocketTurretA_Left"
+						TurretID="2" />
+					<!--right
+					small rocket -->
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone_RocketRA_" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone_RocketRA_" />
+					<WeaponRecoilBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone_RocketRA_" />
+					<Turret
+						TurretNameKey="Bone_RocketTurretA_Right"
+						TurretID="3" />
+					<!--left
+					big rocket -->
+					<WeaponFireFXBone
+						WeaponSlotID="4"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone_RocketLB_" />
+					<WeaponLaunchBone
+						WeaponSlotID="4"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone_RocketLB_" />
+					<WeaponRecoilBone
+						WeaponSlotID="4"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone_RocketLB_" />
+					<Turret
+						TurretNameKey="Bone_RocketTurretB_Left"
+						TurretID="4" />
+					<!--right
+					big rocket -->
+					<WeaponFireFXBone
+						WeaponSlotID="5"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone_RocketRB_" />
+					<WeaponLaunchBone
+						WeaponSlotID="5"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone_RocketRB_" />
+					<WeaponRecoilBone
+						WeaponSlotID="5"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone_RocketRB_" />
+					<Turret
+						TurretNameKey="Bone_RocketTurretB_Right"
+						TurretID="5" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="SUHEAVYTANK_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED USER_5">
+					<Model
+						Name="SUHEAVYTANK_SKN" />
+					<Texture
+						Original="SUHeavyTank"
+						New="SUHeavyTank_D" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretB_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretB_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretB_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretB_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretB_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretB_Right"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretB_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="MARVTeslaSingularityCoreLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="SovietTeslaTank_EMP" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="TeslaTankSingularityCoreDistortion"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="TeslaTankSingularityCoreFlare"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SUHEAVYTANK_SKN" />
+					<Texture
+						Original="SUHeavyTank"
+						New="SUHeavyTank_D" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretB_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretB_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretB_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretB_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretB_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretB_Right"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretB_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedSparks"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED USER_5">
+					<Model
+						Name="SUHEAVYTANK_SKN" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="MARVTeslaSingularityCoreLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="SovietTeslaTank_EMP" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="TeslaTankSingularityCoreDistortion"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="TeslaTankSingularityCoreFlare"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SUHEAVYTANK_SKN" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Left"
+						FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_RocketTurretA_Right"
+						FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="USER_5">
+					<Model
+						Name="SUHEAVYTANK_SKN" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="MARVTeslaSingularityCoreLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="SovietTeslaTank_EMP" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="TeslaTankSingularityCoreDistortion"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="TeslaTankSingularityCoreFlare"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ConditionsYes="FORMATION_PREVIEW"
+					ParseCondStateType="PARSE_NORMAL">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<ParticleSysBone
+						BoneName="TRACKS_R"
+						FXParticleSystemTemplate="AlliedTankDirtAcc"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="TRACKS_L"
+						FXParticleSystemTemplate="AlliedTankDirtAcc"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="TRACKS_R"
+						FXParticleSystemTemplate="AlliedTankDustAcc"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="TRACKS_L"
+						FXParticleSystemTemplate="AlliedTankDustAcc"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="TRACKS_L"
+						FXParticleSystemTemplate="TeslaTankExhaust"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="TRACKS_R"
+						FXParticleSystemTemplate="TeslaTankExhaust"
+						FollowBone="true" />
+				</AnimationState>
+			</TruckDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<!-- include Headlight draw module. -->
+			<xi:include
+				href="DATA:Includes/HeadlightDraw2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:HeadlightDraw2/child::*)" />
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHierarchicalTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyEpicUnitNewCannon" />
+					<TurretSettings
+						TurretTurnRate="90"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="60.0">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotHierarchicalTurret>
+				<WeaponSlotHierarchicalTurret
+					ParentID="1"
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyEpicUnitAntiGroundMissile" />
+					<TurretSettings
+						TurretTurnRate="360"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="60.0"
+						MaxDeflectionAntiClockwise="180d"
+						MaxDeflectionClockwise="60d">
+						<TurretAITargetChooserData
+							TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+							<ObjectVisionRange
+								id="ObjectVisionRange_Ground"
+								Range="70">
+								<Filter
+									Rule="ANY"
+									Include="INFANTRY VEHICLE"
+									StatusBitFlagsExclude="AIRBORNE_TARGET" />
+							</ObjectVisionRange>
+						</TurretAITargetChooserData>
+					</TurretSettings>
+				</WeaponSlotHierarchicalTurret>
+				<WeaponSlotHierarchicalTurret
+					ParentID="1"
+					ID="3">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyEpicUnitAntiGroundMissile" />
+					<TurretSettings
+						TurretTurnRate="360"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="60.0"
+						MaxDeflectionAntiClockwise="180d"
+						MaxDeflectionClockwise="60d">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotHierarchicalTurret>
+				<WeaponSlotHierarchicalTurret
+					ParentID="1"
+					ID="4">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyEpicUnitAntiAirMissile" />
+					<TurretSettings
+						TurretTurnRate="720"
+						NaturalTurretAngle="40d"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="30.0"
+						MaxDeflectionAntiClockwise="150d"
+						MaxDeflectionClockwise="35d">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotHierarchicalTurret>
+				<WeaponSlotHierarchicalTurret
+					ParentID="1"
+					ID="5">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyEpicUnitAntiAirMissile" />
+					<TurretSettings
+						TurretTurnRate="720"
+						NaturalTurretAngle="-40d"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="30.0"
+						MaxDeflectionAntiClockwise="35d"
+						MaxDeflectionClockwise="150d">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+					<!-- All the leech weapons -->
+				</WeaponSlotHierarchicalTurret>
+			</WeaponSetUpdate>
+			<AutoHealBehavior
+				id="Upgrade_PassiveHeal"
+				InitiallyActive="true"
+				HealOnlyIfNotInCombat="false"
+				HealOnlyIfNotUnderAttack="false"
+				StartHealingDelay="1s"
+				HealingAmount="10"
+				HealingDelay="1s">
+			</AutoHealBehavior>
+			<SpecialPower
+				id="ModuleTag_ActivateFiredate"
+				SpecialPowerTemplate="SpecialPower_Firedate"
+				UpdateModuleStartsAttack="true"
+				AttributeModifier="AttributeModifier_Firedate"
+				AttributeModifierAffectsSelf="true"
+				DisabledTypesToIgnore="HELD" />
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.1s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="SovietEpicUnitShortCircuit"
+					OneShot="false" />
+				<ObjectStatusValidation
+					RequiredStatus="GENERIC_TOGGLE_STATE" />
+			</FireWeaponUpdate>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="StrategicArmyEpicUnitNewOCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+			</CreateObjectDie>
+			<Physics
+				id="ModuleTag_Physics" />
+			<DestroyDie
+				id="ModuleTag_DestroyDie">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SovPPXP" />
+			</FXListBehavior>
+			<FireWeaponWhenDead
+				id="ModuleTag_GDIMARVDeathWeapon"
+				DeathWeapon="GDIMARVDeathWeapon"
+				InitiallyActive="true">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_UnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false">
+					<ObjectVisionRange
+						id="ObjectVisionRange_Ground"
+						Range="70">
+						<Filter
+							Rule="ANY"
+							Include="INFANTRY VEHICLE"
+							StatusBitFlagsExclude="AIRBORNE_TARGET" />
+					</ObjectVisionRange>
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="3750" />
+		</Body>
+		<ClientUpdates>
+			<EvaAnnounceClientCreate
+				id="GDIMARVCreatedWarning"
+				AnnouncementEventEnemy="StrategicArmyEpicUnitCreatedWarning"
+				AnnouncementEventAlly="StrategicArmyEpicUnitCreatedWarning"
+				AnnouncementEventOwner="StrategicArmyEpicUnitCreatedWarning" />
+		</ClientUpdates>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_EMDisruptors">
+				<ModelConditionSound Sound="SOV_TeslaTrooper_EMDisruptorsLoopMS"
+					RequiredFlags="USER_5" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="50"
+				MinorRadius="38.8276"
+				Height="56.2495"
+				ContactPointGeneration="VEHICLE">
+				<Offset x="-5.90498" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="SAUEpicVoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SAUEpicVoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="SAUEpicVoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="SAUEpicVoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="SAUEpicVoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="SAUEpicVoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="SAUEpicVoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="SOV_Apocalypse_IdleLoop"
+				AudioType="soundAmbient" />
+			<AudioEntry
+				Sound="SOV_Apocalypse_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="SOV_Apocalypse_MoveLoop"
+				AudioType="soundMoveLoop" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+		</AudioArraySound>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="CriticalUnitUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="CriticalUnitLost" EvaType="dieOwner" />
+		</EvaEventArray>
+		<VisionInfo
+			VisionRange="400"
+			ShroudClearingRange="=$EPIC_SHROUD_CLEAR" />
+		<CrusherInfo
+			CrusherLevel="45"
+			CrushableLevel="75"
+			CrushDecelerationPercent="80%"
+			CrushWeapon="SovietCrushWeapon" />
+	</GameObject>
+	<GameObject
+		id="StrategicArmyEpicUnit_Crate"
+		inheritFrom="StrategicArmyEpicUnit"
+		KindOf="+TIBERIUM_BASED -UNIQUE_UNIT"
+		EditorName="StrategicArmyEpicUnit_Crate">
+		<EquivalentTo>StrategicArmyEpicUnit</EquivalentTo>
+	</GameObject>
+	<GameObject
+		id="StrategicArmyEpicUnitSandBox"
+		inheritFrom="StrategicArmyEpicUnit"
+		KindOf="-UNIQUE_UNIT"
+		EditorName="StrategicArmyEpicUnitSandBox"
+		MaxSimultaneousOfType="99">
+	</GameObject>
+</AssetDeclaration>

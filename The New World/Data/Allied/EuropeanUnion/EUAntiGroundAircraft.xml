@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include type="instance" source="DATA:BaseObjects/BaseAircraft.xml" />
+		<Include type="all" source="ART:Units/EUAntiGroundAircraft/EUAntiGroundAircraft_SKN.W3X" />
+		<Include type="all" source="ART:Units/EUAntiGroundAircraft/EUAntiGroundAircraft_FP_SKN.W3X" />
+	</Includes>
+	<GameObject
+		id="EUAntiGroundAircraft"
+		inheritFrom="BaseAircraft"
+		SelectPortrait="Portrait_EUAntiGroundAircraft"
+		ButtonImage="Button_EUAntiGroundAircraft"
+		Side="Allies"
+		SubGroupPriority="730" 
+		EditorSorting="UNIT"
+		BuildTime="18"
+		CommandSet="EUAntiGroundAircraftCommandSet"
+		KindOf="CAN_CAST_REFLECTIONS CAN_ATTACK SELECTABLE SCORE AIRCRAFT VEHICLE ASSAULT_AIRCRAFT LINE_OF_SIGHT_IGNORES_BUILDINGS CAN_BE_FAVORITE_UNIT SCORE LIMITED_PRODUCTION_AIRCRAFT T2_UNIT"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="AIRCRAFT"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="BLAST"
+		VoicePriority="148"
+		BountyValue="250"
+		EditorName="EUAntiGroundAircraft"
+		Description="Desc:SupersonicAircraft"
+		TypeDescription="Type:AntiAllWitoutAir"
+		HealthBoxHeightOffset="20">
+		<DisplayName xai:joinAction="Replace">Name:SupersonicAircraft</DisplayName>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_AlliedTech2</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1800"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			id="Locomotor_Normal"
+			Locomotor="AlliedAntiGroundAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="200.0" />
+		<LocomotorSet
+			id="AlliedBomberAircraftTaxiLocomotor"
+			Locomotor="BasicHelicopterTaxiLocomotor"
+			Condition="TAXIING"
+			Speed="10" />
+		<!-- Need ConquerMetricsOverrideDefendingAntiMask or else the TAXIING locomotor will make the AI try to build anti-ground units against this -->
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsDpsBonusAgainstDefenses="2.0"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			ConquerMetricsOverrideAntiMask="ANTI_VEHICLE"
+			ConquerMetricsOverrideDefendingAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="FXJET01 FXJET02 FXDAMAGE01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EUAntiGroundAircraft_SKN" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXWEAPON01" />
+					<ParticleSysBone
+						BoneName="FXJET01"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXJET02"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+	<!-- UPGRADED MODEL -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW USER_2">
+					<Model
+						Name="EUAntiGroundAircraft_FP_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED HIDDEN">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED HIDDEN">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="HIDDEN">
+					<Model
+						Name="" />					
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_2">
+					<Model
+						Name="EUAntiGroundAircraft_SKN" />
+					<Texture
+							Original="AUAntiGroundAircraft"
+							New="AUAntiGroundAircraft_02" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+							BoneName="FXJET01"
+							FXParticleSystemTemplate="FireHawkConTrail"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="FXJET02"
+							FXParticleSystemTemplate="FireHawkConTrail"
+							FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_2">
+					<Model
+						Name="EUAntiGroundAircraft_SKN" />
+					<Texture
+							Original="AUAntiGroundAircraft"
+							New="AUAntiGroundAircraft_02_D" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+							BoneName="FXJET01"
+							FXParticleSystemTemplate="FireHawkConTrail"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="FXJET02"
+							FXParticleSystemTemplate="FireHawkConTrail"
+							FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="EUAntiGroundAircraft_SKN" />
+					<Texture
+							Original="AUAntiGroundAircraft"
+							New="AUAntiGroundAircraft_02" />
+					<ParticleSysBone
+							BoneName="FXJET01"
+							FXParticleSystemTemplate="FireHawkConTrail"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="FXJET02"
+							FXParticleSystemTemplate="FireHawkConTrail"
+							FollowBone="true" />
+				</ModelConditionState>
+	<!-- UPGRADED MODEL -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="EUAntiGroundAircraft_FP_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="EUAntiGroundAircraft_SKN" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+							BoneName="FXJET01"
+							FXParticleSystemTemplate="FireHawkConTrail"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="FXJET02"
+							FXParticleSystemTemplate="FireHawkConTrail"
+							FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="EUAntiGroundAircraft_SKN" />
+					<Texture
+							Original="AUAntiGroundAircraft"
+							New="AUAntiGroundAircraft_D" />
+					<ParticleSysBone
+							BoneName="FXDAMAGE01"
+							FXParticleSystemTemplate="AircraftDamageSmoke"
+							FollowBone="true"/>
+					<ParticleSysBone
+							BoneName="FXDAMAGE01"
+							FXParticleSystemTemplate="AircraftDamageSmoke"
+							FollowBone="true"/>
+					<ParticleSysBone
+							BoneName="FXDAMAGE01"
+							FXParticleSystemTemplate="AircraftDamageFire"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="FXJET01"
+							FXParticleSystemTemplate="FireHawkConTrail"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="FXJET02"
+							FXParticleSystemTemplate="FireHawkConTrail"
+							FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+							Ordering="PRIMARY_WEAPON"
+							Template="AlliedAntiGroundAircraftMissilePodWeapon"
+							ForbiddenObjectStatus="WEAPON_UPGRADED_01 WEAPON_UPGRADED_03"/>
+					<Weapon
+							Ordering="PRIMARY_WEAPON"
+							Template="AlliedAntiGroundAircraftMissilePodWeapon_AirPower"
+							ObjectStatus="WEAPON_UPGRADED_01"
+							ForbiddenObjectStatus="WEAPON_UPGRADED_03"/>
+					<Weapon
+							Ordering="PRIMARY_WEAPON"
+							Template="AlliedAntiGroundAircraftMissilePodWeaponUnmiliWeapon"
+							ObjectStatus="WEAPON_UPGRADED_03"
+							ForbiddenObjectStatus="WEAPON_UPGRADED_01"/>
+					<Weapon
+							Ordering="PRIMARY_WEAPON"
+							Template="AlliedAntiGroundAircraftMissilePodWeaponUnmiliWeapon_AirPower"
+							ObjectStatus="WEAPON_UPGRADED_01 WEAPON_UPGRADED_03"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>			
+			<Physics
+				id="ModuleTag_Physics" 
+				GravityMultiplier="30" />
+			<AttributeModifierUpgrade
+							id="ModuleTag_AlliedUnitUpgradeSpecialPower"
+							AttributeModifier="AttributeModifer_JapanBaseUpgradeTengGu">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<CreateObjectDie
+					id="ModuleTag_CreateObjectDie"
+					CreationList="EUUAntiGroundAircraft_Dying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<UpgradeForbidden>Upgrade_AlliedAirPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+					id="ModuleTag_UpgradeCreateObjectDie"
+					CreationList="EUUAntiGroundAircraft_UpgradeDying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<UpgradeRequired>Upgrade_AlliedAirPower</UpgradeRequired>
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_CenturyBomberDie" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<ReturnToProducerSpecialPower
+				id="ModuleTag_ReturnToProducerSpecialPower"
+				SpecialPowerTemplate="SpecialPowerReturnToProducerSuperSonic"
+				AttributeModifier="AttributeModifier_EUAntiGroundAircraft"
+				AttributeModifierAffectsSelf="true"
+				SetModelCondition="HIDDEN"
+				SetModelConditionTime="1s"/>
+			<StatusBitsUpgrade
+					id="ModuleTag_UnmiliWeapon"
+					StatusToSet="WEAPON_UPGRADED_03">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</StatusBitsUpgrade>
+			<!-- AlliedAirPowerUpgrade -->
+			<xi:include
+				href="DATA:Includes/AlliedAirPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedAirPowerUpgrade/child::*)" />
+			<!-- High Technology  -->
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_AlliedAirPower</TriggeredBy>
+			</StatusBitsUpgrade>
+		</Behaviors>
+		<AI>
+			<JetAIUpdate
+				id="ModuleTag_JetAIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO"
+				NeedsRunway="false"
+				KeepsParkingSpaceWhenAirborne="true"
+				OutOfAmmoDamagePerSecond="1.5"
+				CirclesForAttack="true"
+				ReturnToBaseWhenVictimDead="true"
+				StateMachine="JetAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					CanPickDynamicTargetType="ATTACK_MOVE AGGRESSIVE_STANCE"
+					CheckVisionRange="true"/>
+			</JetAIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="400" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="26"
+				MinorRadius="4"
+				Height="7"
+				ContactPointGeneration="VEHICLE">
+			<Offset z="-2"/>
+		</Shape>
+			<Shape
+					Type="BOX"
+					MajorRadius="5"
+					MinorRadius="25"
+					Height="3"
+					ContactPointGeneration="VEHICLE">
+				<Offset  z="-2"/>
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="GDI_Firehawk_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="GDI_Firehawk_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="GDI_Firehawk_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="GDI_Firehawk_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="GDI_Firehawk_VoiceMoveAirfield" AudioType="voiceEnter" />
+			<AudioEntry Sound="GDI_Firehawk_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="GDI_Firehawk_VoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="GDI_Firehawk_VoiceMoveAirfield" Name="ReturnToProducer" />
+			<NamedEntry Sound="GDI_Firehawk_VoiceRetreat" Name="ReturnToProducerWhileUnderAttack" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="FireHawkMoveStart" AudioType="soundMoveStart" />
+			<AudioEntry Sound="TEMP_FireHawkMoveLoop" AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="150"
+			ShroudClearingRange="=$BASE_AIRCRAFT_SHROUD_CLEAR" />
+	</GameObject>
+	  <GameObject
+		id="EUAntiGroundAircraft_Crate"
+		inheritFrom="EUAntiGroundAircraft"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="EUAntiGroundAircraft_Crate">
+		<EquivalentTo>EUAntiGroundAircraft</EquivalentTo>	
+	</GameObject>
+</AssetDeclaration>

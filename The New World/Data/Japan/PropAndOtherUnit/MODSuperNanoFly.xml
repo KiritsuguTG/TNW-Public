@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			  type="instance"
+			  source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+		  id="MODNanoFlySeed"
+		  inheritFrom="BaseObject"
+		  KindOf="IMMOBILE NO_COLLIDE NOT_AUTOACQUIRABLE IGNORE_FOR_VICTORY CANNOT_BE_DETECTED"
+		  EditorName="MODNanoFlySeed">
+		<SkirmishAIInformation
+		  DodgeSafetyDistance="250.0">
+			<DodgeWithUnits Rule="ANY"
+			  Include="INFANTRY"
+			  StatusBitFlagsExclude="AIRBORNE_TARGET">
+			</DodgeWithUnits>
+		</SkirmishAIInformation>
+		<DisplayName>MODNanoFlySeed</DisplayName>
+		<ArmorSet
+				Armor="BaseUnAttackVehicleArmor" />
+		<LocomotorSet
+			  Locomotor="SpecialPowerAllTerrainValidLocomotor"
+			  Condition="NORMAL"
+			  Speed="0.0" />
+		<Draws>
+			<ScriptedModelDraw
+					id="ModuleTag_Draw_FX"
+					OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics" />
+			<LifetimeUpdate
+					 id="ModuleTag_LifetimeUpdate"
+					 MinLifetime="5.0s"
+					 MaxLifetime="5.0s"/>
+			<FXListBehavior id="ModuleTag_FXList">
+				<DieMuxData
+							DeathTypes="ALL" />
+				<Event Index="onCreate" FX="FX_JapanNanoFly" />
+			</FXListBehavior>
+			<DestroyDie
+					  id="ModuleTag_DestroyDie">
+				<DieMuxData
+							DeathTypes="ALL" />
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_MOD_MODNanoFly">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>JapanSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_MOD_MODNanoFlyUpgrade">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>JapanSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="NO"/>
+		</AI>
+		<Body>
+			<PropBody
+					  id="ModuleTag_PropBody" />
+		</Body>
+		<Geometry
+				IsSmall="true">
+			<Shape
+					  Type="CYLINDER"
+					  MajorRadius="1.0"
+					  Height="1.0">
+			</Shape>
+		</Geometry>
+	</GameObject>
+	<GameObject
+		id="MODSuperNanoFly"
+		Side="Japan"
+		KindOf="IMMOBILE UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		EditorName="MODSuperNanoFly">
+		<DisplayName>NAME:JapanNanoFly</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUBUZZ_SKN" />
+					<ParticleSysBone
+						BoneName="Bone_00"
+						FXParticleSystemTemplate="FXMODSuperNano"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_01"
+						FXParticleSystemTemplate="FXMODSuperNano"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_02"
+						FXParticleSystemTemplate="FXMODSuperNano"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="AUBuzzCombIdle"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics" />
+      <LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				MinLifetime="10s"
+				MaxLifetime="10s"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.1s">
+				<FireWeaponNugget
+					WeaponName="MODSuperNanoFlyWeapon" />
+			</FireWeaponUpdate>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_MODSuperNanoShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="75.0"
+				RefreshDelay="1s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_MODSuperNanoEffect">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES"
+					Include="VEHICLE"
+					Exclude="INFANTRY">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+					  id="ModuleTag_AI"
+					  StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<VisionInfo
+				VisionRange="100"
+				ShroudClearingRange="0" />
+	</GameObject>
+	<GameObject
+		id="MODSuperNanoFlyUpgrade"
+		inheritFrom="MODSuperNanoFly"
+		EditorName="MODSuperNanoFlyUpgrade">
+		<Behaviors>
+			<LifetimeUpdate
+					  id="ModuleTag_Lifetime"
+			xai:joinAction="Replace"
+					  MinLifetime="15s"
+					  MaxLifetime="15s"/>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

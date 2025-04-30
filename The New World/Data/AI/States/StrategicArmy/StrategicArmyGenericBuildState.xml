@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<AIBuildStateDefinition
+		id="StrategicArmyAntiAirOnlyBuildState_TNW">
+		<Heuristic>
+			<EnemyNearbyHeuristic Distance="700.0" EnemyNearby="true" MinEnemyValue="1200">
+				<EnemyFilter
+						Relationship="ENEMIES"
+						Rule="ANY"
+						Include="AIRCRAFT MONSTER">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="StrategicArmyFighterAircraft_AI" Heuristic="CONSTANT" Score="100"/>
+		<BuildEntry Build="StrategicArmyAntiVehicleInfantry" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="StrategicArmyAntiAirShip" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="StrategicArmyAntiAirShip_Ground" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="StrategicArmyAmphibiousUnitBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Land Water">
+				<ObjectFilter
+				  Relationship="ENEMIES"
+				  Rule="ANY"
+				  Include="CAN_ATTACK STRUCTURE"
+				  Exclude="IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+				  StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic Weight="0.5"/>
+			<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+			<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="SovietCommandoTech1" Heuristic="FEWEST_UNIT" ExpectedEfficiencyWeight="1.0">
+			<BlockIfThingNearFactory Rule="ANY" Relationship="ENEMIES">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="SovietScoutVehicle" Heuristic="BEST_UNIT_WEIGHTED"/>
+		<BuildEntry Build="StrategicArmyGrinderVehicle" Heuristic="BEST_UNIT_WEIGHTED"/>
+		<BuildEntry Build="StrategicArmyAntiAirShip" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	
+	<AIBuildStateDefinition
+	  id="StrategicArmyGenericUnitBuildState">
+		<Heuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="SovietCommandoTech1" Heuristic="FEWEST_UNIT" ExpectedEfficiencyWeight="1.0">
+			<BlockIfThingNearFactory Rule="ANY" Relationship="ENEMIES">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="SovietScoutVehicle" Heuristic="BEST_UNIT_WEIGHTED"/>
+		<BuildEntry Build="StrategicArmyFighterAircraft_AI" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="StrategicArmyScoutVehicle" Heuristic="BEST_UNIT_WEIGHTED"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="StrategicArmyStructureBuildState_TNW">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+		</Heuristic>
+		<BuildEntry Build="StrategicArmyPowerPlant" Heuristic="POWER"/>
+		<BuildEntry Build="StrategicArmyRefinery" Heuristic="REFINERY"/>
+		<BuildEntry Build="StrategicArmyBarracksAI" Heuristic="FACTORY"/>
+		<BuildEntry Build="StrategicArmyWarFactoryAI" Heuristic="FACTORY"/>
+		<BuildEntry Build="StrategicArmyNavalYard" Heuristic="FACTORY"/>
+		<BuildEntry Build="StrategicArmyAirfield" Heuristic="FACTORY"/>
+		<BuildEntry Build="StrategicArmyMiner" Heuristic="HARVESTER"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="StrategicArmyWarFactoryBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>StrategicArmyWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="StrategicArmyWarFactory" Heuristic="FACTORY" Score="100"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="StrategicArmyNavalYardBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>StrategicArmyNavalYard</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+			<CanBuildBuildingsOnSurfaceHeuristic
+				Surfaces="WATER DEEP_WATER"
+				MinPlacementGridCells="0"
+				MaxPlacementGridCells="0" />
+		</Heuristic>
+		<BuildEntry Build="StrategicArmyNavalYard" Heuristic="FACTORY" Score="100"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="StrategicArmyAirfieldBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>StrategicArmyAirfield</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="StrategicArmyAirfield" Heuristic="FACTORY" Score="100"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+    id="StrategicArmyEpicUnitStructureDefence">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>StrategicArmyEpicUnit</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>StrategicArmyTechStructure</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="StrategicArmyEpicUnitStructure" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="StrategicArmyAntiBaseDefenceBuildUnit">
+		<Heuristic>
+			<EnemyNearbyHeuristic Distance="1500.0" EnemyNearby="false" MinEnemyValue="5000">
+				<EnemyFilter
+					Rule="ANY"
+					Relationship="ENEMIES"
+					Include="FS_BASE_DEFENSE"
+					Exclude="SUPER_WEAPON">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="StrategicArmyScoutVehicle" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="StrategicArmyScoutVehicle" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="StrategicArmyGrinderVehicle" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="StrategicArmyAntiStructureVehicle" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+</AssetDeclaration>

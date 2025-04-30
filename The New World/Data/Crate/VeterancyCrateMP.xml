@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include
+			type="all"
+			source="ART:NPVeterancyCrate.w3x" />
+	</Includes>
+	<GameObject
+		id="VeterancyCrate"
+		SelectPortrait="Portrait_Neutral_Random"
+		ButtonImage="Portrait_Neutral_Random"
+		Side="Neutral"
+		EditorSorting="UNIT"
+		TransportSlotCount="1"
+		BuildTime="0"
+		CommandSet="EmptyCommandSet"
+		KindOf="SELECTABLE IMMOBILE NOT_AUTOACQUIRABLE UNATTACKABLE CAN_CAST_REFLECTIONS CRATE REVEAL_TO_ALL"
+		RadarPriority="COMMANDO"
+		EditorName="CrateVeterancy"
+		UnitCategory="STRUCTURE"
+		Description="DESC:UnitCrate">
+		<DisplayName>NAME:UnitCrate</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="99999"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NPCrate01" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<VeterancyCrateCollide
+				id="ModuleTag_VeterancyCrateCollide"
+				RangeOfEffect="100"
+				AddsOwnerVeterancy="false"
+				IsPilot="false"
+				AffectsUpToLevel="9">
+			</VeterancyCrateCollide>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CrateSpawn">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FADED"/>
+			</CreateObjectDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="120s"
+				MaxLifetime="120s"
+				DeathType="FADED"/>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+      <Shape 
+          Type= "CYLINDER"
+          MajorRadius = "9.68515"
+          MinorRadius = "9.68515"
+          Height = "16.0349" >
+        <Offset
+            x = "0.0348139"
+            y = "-0.0732222"
+            z = "0.0" />
+      </Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="1"
+			ShroudClearingRange="1" />
+	</GameObject>
+	<GameObject
+		id="SuperVeterancyCrate"
+		SelectPortrait="Portrait_Neutral_Random"
+		ButtonImage="Portrait_Neutral_Random"
+		Side="Neutral"
+		EditorSorting="UNIT"
+		TransportSlotCount="1"
+		BuildTime="0"
+		CommandSet="EmptyCommandSet"
+		KindOf="SELECTABLE IMMOBILE NOT_AUTOACQUIRABLE UNATTACKABLE CAN_CAST_REFLECTIONS CRATE REVEAL_TO_ALL"
+		RadarPriority="COMMANDO"
+		EditorName="SuperVeterancyCrate"
+		UnitCategory="STRUCTURE"
+		Description="DESC:SuperVeterancyCrate">
+		<DisplayName>NAME:SuperVeterancyCrate</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="99999"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NPCrate01" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<VeterancyCrateCollide
+				id="ModuleTag_VeterancyCrateCollide"
+				RangeOfEffect="99999"
+				AddsOwnerVeterancy="false"
+				IsPilot="false"
+				AffectsUpToLevel="9">
+			</VeterancyCrateCollide>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CrateSpawn">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FADED"/>
+			</CreateObjectDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="120s"
+				MaxLifetime="120s"
+				DeathType="FADED"/>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type= "CYLINDER"
+				MajorRadius = "9.68515"
+				MinorRadius = "9.68515"
+				Height = "16.0349" >
+				<Offset
+					x = "0.0348139"
+					y = "-0.0732222"
+					z = "0.0" />
+			</Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="1"
+			ShroudClearingRange="1" />
+	</GameObject>
+</AssetDeclaration>

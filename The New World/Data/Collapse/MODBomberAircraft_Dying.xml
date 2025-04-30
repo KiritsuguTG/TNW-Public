@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:Units/MODBomberAircraft/JUADVANCEAIRCRAFT_COLSKN.W3X"/>
+    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<GameObject
+		id="MODBomberAircraft_Dying"
+		EditorName="MODBomberAircraft_Dying"
+		Description="Desc:MODBomberAircraft_Dying"
+		KindOf="PROJECTILE INERT NO_COLLIDE UNATTACKABLE">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUADVANCEAIRCRAFT_SKN" />
+					<Texture
+						Original="JUFortressShip"
+						New="JUFortressShip_D" />			
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_FXDamageDraw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUADVANCEAIRCRAFT_FXSKN" />
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedFire"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedLight"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE02"
+								  FXParticleSystemTemplate="JapanVehicleDamagedFire"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE02"
+								  FXParticleSystemTemplate="JapanVehicleDamagedLight"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE02"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE02"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE03"
+								  FXParticleSystemTemplate="JapanVehicleDamagedFire"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE03"
+								  FXParticleSystemTemplate="JapanVehicleDamagedLight"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE03"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE03"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+								  FollowBone="true"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"
+				TumbleRandomly="true"
+				MaxXRotationVelocity="0"
+				MaxYRotationVelocity="50"
+				MaxZRotationVelocity="200"				
+				KillWhenRestingOnGround="true"/>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="MODBomberAircraft_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<FireWeaponWhenDead
+				id="ModuleTag_JapanAntiAirVehicleDeathWeapon"
+				DeathWeapon="BomberAircraftDeathWeapon"
+				InitiallyActive="true">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+			</FXListBehavior>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech2/child::*)" />
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_PropBody" />
+		</Body>
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="300" />
+	</GameObject>
+	<GameObject
+		id="MODBomberAircraft_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="MODBomberAircraft_Collapse">
+		<Draws>
+			<DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="25"
+			Explodiness="10" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUADVANCEAIRCRAFT_COLSKN" />
+					<Texture
+						Original="JUFortressShip"
+						New="JUFortressShip_D" />
+					<xi:include
+						href="DATA:Includes/VehicleCollapseParticles/JapanShipCollapseParticles.xml"
+						xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanShipCollapseParticles/child::*)" />
+				</ModelConditionState>
+				<BoneVolumes><BoneVolume BoneName="Bone_D_01" Mass="5603" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box HalfSizeX="9.62686" HalfSizeY="8.28358" HalfSizeZ="6.9403" >
+		<Translation x="0.0468555" y="-2.86102e-006" z="-19.2806" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_02" Mass="5603" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box HalfSizeX="9.62686" HalfSizeY="8.28358" HalfSizeZ="6.9403" >
+		<Translation x="-4.76837e-007" y="-2.86102e-006" z="22.1886" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_03" Mass="102349" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box HalfSizeX="31.767" HalfSizeY="28.1787" HalfSizeZ="11.2926" >
+		<Translation x="0.485345" y="-1.52588e-005" z="11.4511" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_04" Mass="102349" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box HalfSizeX="31.767" HalfSizeY="28.1787" HalfSizeZ="11.2926" >
+		<Translation x="0.375297" y="0.527691" z="-8.69784" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_05" Mass="980" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box HalfSizeX="5.44776" HalfSizeY="4.1791" HalfSizeZ="4.25373" >
+		<Translation x="18.0927" y="-12.3435" z="17.7029" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_06" Mass="980" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box HalfSizeX="5.44776" HalfSizeY="4.1791" HalfSizeZ="4.25373" >
+		<Translation x="18.0963" y="12.2493" z="17.7029" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_07" Mass="980" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box HalfSizeX="5.44776" HalfSizeY="4.1791" HalfSizeZ="4.25373" >
+		<Translation x="-5.13689" y="19.9741" z="17.7029" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_08" Mass="980" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box HalfSizeX="5.44776" HalfSizeY="4.1791" HalfSizeZ="4.25373" >
+		<Translation x="-19.4676" y="0.0456429" z="17.7029" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_09" Mass="980" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box HalfSizeX="5.44776" HalfSizeY="4.1791" HalfSizeZ="4.25373" >
+		<Translation x="-5.10709" y="-20.0933" z="17.7029" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+			</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="4s"
+			MaxLifetime="5s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1.5"
+			DestructionDelay="8s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+	<AudioArraySound>
+		<AudioEntry Sound="RA3VehicleExplosionMediumNoDelay" AudioType="soundAmbient" />
+	</AudioArraySound>	
+</GameObject>
+</AssetDeclaration>

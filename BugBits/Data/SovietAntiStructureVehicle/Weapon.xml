@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="SovietAntiStructureVehicleV4Rocket"
+		AttackRange="1000.0"
+		WeaponSpeed="250"
+        MinWeaponSpeed="0"
+		AcceptableAimDelta="180d"
+		ClipSize="1"
+		AutoReloadsClip="AUTO"
+		CanFireWhileMoving="false"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND"
+		ForbiddenAntiMask="ANTI_STRUCTURE"
+		FireSound="SOV_V4MissileLauncher_MissileFire"
+		FireFX="FX_None"
+		FireVeteranFX="FX_None"
+		RadiusDamageAffects="ENEMIES"
+		ReAcquireDetailType="PRE_FIRE"
+		VirtualDamage="SHARE"
+		RevealShroudOnFire="true">
+		<PreAttackDelay
+		  MinSeconds=".5s"
+		  MaxSeconds=".5s" />
+		<FiringDuration
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<ClipReloadTime
+			MinSeconds="8.0s"
+			MaxSeconds="8.0s" />
+		<WeaponAiHintInfo
+		  UseLongLockOnTimeCode="true" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="SovietAntiStructureVehicleV4RocketWarhead"
+				ProjectileTemplate="SovietAntiStructureVehicleV4RocketProjectile">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="REFINERY HARVESTER"/>
+				<VeterancyProjectiles
+					VeterancyLevel="HEROIC"
+					ProjectileTemplate="SovietAntiStructureVehicleV4RocketProjectile_Veteran"/>
+			</ProjectileNugget>
+			<InformTargetNugget>
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="REFINERY HARVESTER"/>
+			</InformTargetNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+			id="SovietAntiStructureVehicleV4RocketWarhead"
+			ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL"
+			RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+			Flags="NOT_ATTRACTED_BY_MAGNETS"
+			RequiredAntiMask="ANTI_WATER ANTI_GROUND"
+			ForbiddenAntiMask="ANTI_STRUCTURE">
+		<Nuggets>
+			<DamageNugget
+				Damage="450.0"
+				DamageType="EXPLOSIVE"
+				DeathType="EXPLODED"
+				Radius="40">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="REFINERY HARVESTER"/>
+				<DamageScalarDetails Scalar= "0%">
+					<Filter
+						Rule="ALL"
+					      Relationship="ALLIES"
+					      StatusBitFlagsExclude="HEALTH_PERCENT_100"/>
+				</DamageScalarDetails>
+				<DamageScalarDetails Scalar= "100%">
+					<Filter
+						Rule="ALL"
+					      Relationship="ALLIES"
+					      StatusBitFlags="HEALTH_PERCENT_100"/>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

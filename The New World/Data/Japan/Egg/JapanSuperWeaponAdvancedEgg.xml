@@ -1,0 +1,1603 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="all"
+			source="ART:Allied_Place_Holder.xml" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseEgg.xml" />
+	</Includes>
+	<GameObject
+		id="JapanSuperWeaponAdvancedEgg"
+		inheritFrom="BaseEgg"
+		SelectPortrait="Portrait_JapanSuperWeaponAdv"
+		ButtonImage="Button_JapanSuperWeaponAdv"
+		Side="Japan"		
+		SubGroupPriority="819"
+		CommandSet="JapanSuperWeaponAdvancedEggCommandSet"
+		KindOf="EGG UNPACKS_INTO_BUILDING SELECTABLE CAN_CAST_REFLECTIONS VEHICLE FS_FACTORY EXPANSION_UNIT CAN_BE_FAVORITE_UNIT IGNORES_SELECT_ALL CYCLE_SELECTION AMPHIBIOUS SCORE"
+		PlacementViewAngle="225d"
+		EditorName="JapanSuperWeaponAdvancedEgg"
+		Description="Desc:JapanSuperWeaponAdvancedEgg"
+		TypeDescription="Type:FinalWeapon"
+		MaxSimultaneousOfType="1">
+		<EquivalentTo>JapanSuperWeaponAdvanced</EquivalentTo>
+		<DisplayName
+			xai:joinAction="Replace">Name:JapanSuperWeaponAdvancedEgg</DisplayName>
+		<GameDependency>
+			<ForbiddenUpgrade>AINoSuperWeaponEffect</ForbiddenUpgrade>
+				<ObjectFilter
+					Rule="NONE"
+					Relationship="ALLIES"
+					StatusBitFlagsExclude="NOT_IN_WORLD UNPACKING RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+						<IncludeThing>JapanTechStructure</IncludeThing>
+				</ObjectFilter>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="3000"/>
+		</ObjectResourceInfo>
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_DrawEgg"
+				LeftFrontTireBone="Bone_LFTire"
+				RightFrontTireBone="Bone_RFTire"
+				MidLeftRearTireBone="Bone_LMTire"
+				MidRightRearTireBone="Bone_RMTire"
+				LeftRearTireBone="Bone_LRTire"
+				RightRearTireBone="Bone_RRTire"
+				TireRotationMultiplier="0.1"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUEggA" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AIR_POWER_EFFECT FORMATION_PREVIEW">
+					<Model
+						Name="FP_EGG" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="JUEggA" />
+				</ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+          <Model
+						Name="JUEggA" />
+          <ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+          <Model
+						Name="JUEggA" />
+          <Texture
+						Original="JUEgg"
+						New="JUEgg_D" />
+          <ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+        </ModelConditionState>
+        <AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="START_FRAME_LAST">
+					<Script>
+						CurDrawableHideSubObjectPermanently("ConstructionYardEggA")
+						CurDrawableHideSubObjectPermanently("BarracksEggA")
+						CurDrawableHideSubObjectPermanently("NavalYardEggA")
+						CurDrawableHideSubObjectPermanently("PowerPlantEggA")
+						CurDrawableHideSubObjectPermanently("RefineryEggA")
+						CurDrawableHideSubObjectPermanently("SuperWeaponEggA")
+						CurDrawableHideSubObjectPermanently("WarFactoryEggA")
+						CurDrawableShowSubObjectPermanently("SuperWeaponAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("TECHSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("EconomicStructureEggA")
+						CurDrawableHideSubObjectPermanently("STRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("SUPERSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("FORTRESSSHIPEGGA")
+						CurDrawableHideSubObjectPermanently("CRANEEGGA")
+					</Script>						
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<Script>
+						CurDrawableHideSubObjectPermanently("ConstructionYardEggA")
+						CurDrawableHideSubObjectPermanently("BarracksEggA")
+						CurDrawableHideSubObjectPermanently("NavalYardEggA")
+						CurDrawableHideSubObjectPermanently("PowerPlantEggA")
+						CurDrawableHideSubObjectPermanently("RefineryEggA")
+						CurDrawableHideSubObjectPermanently("SuperWeaponEggA")
+						CurDrawableHideSubObjectPermanently("WarFactoryEggA")
+						CurDrawableShowSubObjectPermanently("SuperWeaponAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseEggA")
+            CurDrawableHideSubObjectPermanently("TECHSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("EconomicStructureEggA")
+						CurDrawableHideSubObjectPermanently("STRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("SUPERSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("FORTRESSSHIPEGGA")
+						CurDrawableHideSubObjectPermanently("CRANEEGGA")
+					</Script>						
+				</AnimationState>
+        <AnimationState
+          ParseCondStateType="PARSE_NORMAL"
+          ConditionsYes="DAMAGED">
+          <Script>
+						CurDrawableHideSubObjectPermanently("ConstructionYardEggA")
+						CurDrawableHideSubObjectPermanently("BarracksEggA")
+						CurDrawableHideSubObjectPermanently("NavalYardEggA")
+						CurDrawableHideSubObjectPermanently("PowerPlantEggA")
+						CurDrawableHideSubObjectPermanently("RefineryEggA")
+						CurDrawableHideSubObjectPermanently("SuperWeaponEggA")
+						CurDrawableHideSubObjectPermanently("WarFactoryEggA")
+						CurDrawableShowSubObjectPermanently("SuperWeaponAdvancedEggA")
+            CurDrawableHideSubObjectPermanently("TECHSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("EconomicStructureEggA")
+						CurDrawableHideSubObjectPermanently("STRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("SUPERSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("FORTRESSSHIPEGGA")
+						CurDrawableHideSubObjectPermanently("CRANEEGGA")
+          </Script>
+        </AnimationState>
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+          <Script>
+						CurDrawableHideSubObjectPermanently("ConstructionYardEggA")
+						CurDrawableHideSubObjectPermanently("BarracksEggA")
+						CurDrawableHideSubObjectPermanently("NavalYardEggA")
+						CurDrawableHideSubObjectPermanently("PowerPlantEggA")
+						CurDrawableHideSubObjectPermanently("RefineryEggA")
+						CurDrawableHideSubObjectPermanently("SuperWeaponEggA")
+						CurDrawableHideSubObjectPermanently("WarFactoryEggA")
+						CurDrawableShowSubObjectPermanently("SuperWeaponAdvancedEggA")
+            CurDrawableHideSubObjectPermanently("TECHSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("EconomicStructureEggA")
+						CurDrawableHideSubObjectPermanently("STRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("SUPERSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("FORTRESSSHIPEGGA")
+						CurDrawableHideSubObjectPermanently("CRANEEGGA")
+          </Script>
+        </AnimationState>
+			</TruckDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="JBSuperweaponAdvanced_SKN" />
+					<Material ShaderName="BasicW3DHolographic.fx" TechniqueName="Default">
+						<Constants>
+							<Float Name="ColorAmbient">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorDiffuse">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorSpecular">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="Shininess">
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorEmissive">
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+							</Float>
+							<Texture Name="Texture_0">
+								<Value>FXJapanBuildMask</Value>
+							</Texture>
+							<Bool Name="DepthWriteEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="AlphaTestEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="CullingEnable">
+								<Value>true</Value>
+							</Bool>
+							<Int Name="BlendMode">
+								<Value>1</Value>
+							</Int>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="JBSuperweaponAdvanced_BLD2"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+					<Script>
+						CurDrawableHideSubObjectPermanently("NewSkin_Fill")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Buildup"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="JBSuperweaponAdvanced_SKN" />
+					<Material ShaderName="BuildingsJapanBuildup.fx" TechniqueName="Default">
+						<Constants>
+							<Texture Name="DiffuseTexture">
+								<Value>JBSuperweaponAdvanced</Value>
+							</Texture>
+							<Texture Name="NormalMap">
+								<Value>JBSuperweaponAdvanced_NRM</Value>
+							</Texture>
+							<Texture Name="SpecMap">
+								<Value>JBSuperweaponAdvanced_SPM</Value>
+							</Texture>
+							<Float Name="EnvMult">
+								<Value>1.000000</Value>
+							</Float>
+							<Bool Name="AlphaTestEnable">
+								<Value>true</Value>
+							</Bool>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="JBSuperweaponAdvanced_BLD"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+					<Script>
+						CurDrawableHideSubObjectPermanently("NewSkin_Fill")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Platform"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER UNPACKING">
+					<Model
+						Name="JBSuperweaponAdvanced_Platform_SKN" />
+					<Material ShaderName="BasicW3DHolographic.fx" TechniqueName="Default">
+						<Constants>
+							<Float Name="ColorAmbient">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorDiffuse">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorSpecular">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="Shininess">
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorEmissive">
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+							</Float>
+							<Texture Name="Texture_0">
+								<Value>FXJapanBuildMask</Value>
+							</Texture>
+							<Bool Name="DepthWriteEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="AlphaTestEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="CullingEnable">
+								<Value>true</Value>
+							</Bool>
+							<Int Name="BlendMode">
+								<Value>1</Value>
+							</Int>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER UNPACKING"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="JBSuperweaponAdvanced_Platform_BLD"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+					<Script>
+						CurDrawableHideSubObjectPermanently("Bib")
+						CurDrawableShowSubObjectPermanently("Platform")
+						CurDrawableShowSubObjectPermanently("Platform_FX")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Buildup_Platform"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER UNPACKING">
+					<Model
+						Name="JBSuperweaponAdvanced_Platform_SKN" />
+					<Material ShaderName="BuildingsJapanBuildup.fx" TechniqueName="Default">
+						<Constants>
+							<Texture Name="DiffuseTexture">
+								<Value>JBPlatform</Value>
+							</Texture>
+							<Texture Name="NormalMap">
+								<Value>JBPlatform_NRM</Value>
+							</Texture>
+							<Texture Name="SpecMap">
+								<Value>JBPlatform_SPM</Value>
+							</Texture>
+							<Float Name="EnvMult">
+								<Value>1.000000</Value>
+							</Float>
+							<Bool Name="AlphaTestEnable">
+								<Value>true</Value>
+							</Bool>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER UNPACKING"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="JBSuperweaponAdvanced_Platform_BLD"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+					<Script>
+						CurDrawableShowSubObjectPermanently("Bib")
+						CurDrawableHideSubObjectPermanently("Platform")
+						CurDrawableHideSubObjectPermanently("Platform_FX")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+			id="ModuleTag_Draw_EggUnpack"
+			OkToChangeModelColor="true"
+			StaticModelLODMode="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="JUEgg_Unpack" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Animation
+						AnimationName="JUEgg_Unpack"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="JUEgg_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"  />
+			</CreateObjectDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"  />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+			</FXListBehavior>
+			<xi:include
+				href="DATA:Includes/GenericUnpackPower.xml" />
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelf"
+				SpecialPowerTemplate="SpecialPower_UnpackReplaceSelf"
+				Options="IGNORE_FACING_CHECK USE_OBJECT_GEOMETRY_FOR_WITHIN_RANGE_CHECK FAIL_WITH_INVALID_APPROACH"
+				PackTime="2.0s"
+				StartAbilityRange="2.0"
+				ReplaceOptions="COPY_UPGRADES CHECK_BUILD_ASSISTANT DISABLE_DURING_REPLACE CLEAR_LOCATION">
+				<ReplacementTemplate>JapanSuperWeaponAdvanced</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+			<FireWeaponWhenDead
+				id="ModuleTag_CelebratingWeapon"
+				InitiallyActive="true"
+				DeathWeapon="UnitCelebratingCommando">
+				<DieMuxData
+					DeathTypes="ALL"
+		DeathTypesForbidden="SUICIDED SLAUGHTERED"/>
+			</FireWeaponWhenDead>
+		</Behaviors>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_Nanocore1_VoiceCreateDecimator" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_Nanocore1_VoiceHelpMe" AudioType="voiceFear" />
+			<AudioEntry Sound="JAP_Nanocore1_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_Nanocore1_VoiceSelectDecimatorMS" AudioType="voiceSelect" />
+			<NamedEntry Sound="JAP_Nanocore1_VoiceMoveSpecial" Name="VoiceDeploy" />
+		</AudioArrayVoice>
+	</GameObject>
+	<GameObject
+		id="MODSuperWeaponAdvancedEgg"
+		inheritFrom="JapanSuperWeaponAdvancedEgg"
+		EditorName="MODSuperWeaponAdvancedEgg">
+		<EquivalentTo>MODSuperWeaponAdvanced</EquivalentTo>
+		<EquivalentTo>JapanSuperWeaponAdvancedEgg</EquivalentTo>
+		<Behaviors>
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelf"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_UnpackReplaceSelf"
+				Options="IGNORE_FACING_CHECK USE_OBJECT_GEOMETRY_FOR_WITHIN_RANGE_CHECK FAIL_WITH_INVALID_APPROACH"
+				PackTime="2.0s"
+				StartAbilityRange="2.0"
+				ReplaceOptions="CHECK_BUILD_ASSISTANT DISABLE_DURING_REPLACE CLEAR_LOCATION">
+				<ReplacementTemplate>MODSuperWeaponAdvanced</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedSuperWeaponAdvancedEgg"
+		inheritFrom="JapanSuperWeaponAdvancedEgg"
+		Side="Allies"
+		CommandSet="AlliedEggCommandSet"
+		ButtonImage="Button_AlliedSuperweaponAdvanced_on"
+		SelectPortrait="Portrait_AlliedSuperweaponAdvanced"
+		EditorName="AlliedSuperWeaponAdvancedEgg"
+		Description="Desc:AlliedSuperWeaponAdvanced">
+		<EquivalentTo>AlliedSuperWeaponAdvanced</EquivalentTo>
+		<EquivalentTo>EUSuperWeaponAdvanced</EquivalentTo>
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedSuperWeaponAdvanced</DisplayName>
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_DrawEgg"
+				xai:joinAction="Replace"
+				LeftFrontTireBone="Bone_LFTire"
+				RightFrontTireBone="Bone_RFTire"
+				MidLeftRearTireBone="Bone_LMTire"
+				MidRightRearTireBone="Bone_RMTire"
+				LeftRearTireBone="Bone_LRTire"
+				RightRearTireBone="Bone_RRTire"
+				TireRotationMultiplier="0.1"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUEggA" />
+					<Texture
+						Original="JUEgg"
+						New="AUEgg" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AIR_POWER_EFFECT FORMATION_PREVIEW">
+					<Model
+						Name="FP_EGG" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="JUEggA" />
+					<Texture
+						Original="JUEgg"
+						New="AUEgg" />
+				</ModelConditionState>
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="DAMAGED">
+					<Model
+						Name="JUEggA" />
+					<Texture
+						Original="JUEgg"
+						New="AUEgg" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUEggA" />
+					<Texture
+						Original="JUEgg"
+						New="AUEgg_D" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="START_FRAME_LAST">
+					<Script>
+						CurDrawableHideSubObjectPermanently("ConstructionYardEggA")
+						CurDrawableHideSubObjectPermanently("BarracksEggA")
+						CurDrawableHideSubObjectPermanently("NavalYardEggA")
+						CurDrawableHideSubObjectPermanently("PowerPlantEggA")
+						CurDrawableHideSubObjectPermanently("RefineryEggA")
+						CurDrawableHideSubObjectPermanently("SuperWeaponEggA")
+						CurDrawableHideSubObjectPermanently("WarFactoryEggA")
+						CurDrawableShowSubObjectPermanently("SuperWeaponAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("TECHSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("EconomicStructureEggA")
+						CurDrawableHideSubObjectPermanently("STRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("SUPERSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("FORTRESSSHIPEGGA")
+						CurDrawableHideSubObjectPermanently("CRANEEGGA")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<Script>
+						CurDrawableHideSubObjectPermanently("ConstructionYardEggA")
+						CurDrawableHideSubObjectPermanently("BarracksEggA")
+						CurDrawableHideSubObjectPermanently("NavalYardEggA")
+						CurDrawableHideSubObjectPermanently("PowerPlantEggA")
+						CurDrawableHideSubObjectPermanently("RefineryEggA")
+						CurDrawableHideSubObjectPermanently("SuperWeaponEggA")
+						CurDrawableHideSubObjectPermanently("WarFactoryEggA")
+						CurDrawableShowSubObjectPermanently("SuperWeaponAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("TECHSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("EconomicStructureEggA")
+						CurDrawableHideSubObjectPermanently("STRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("SUPERSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("FORTRESSSHIPEGGA")
+						CurDrawableHideSubObjectPermanently("CRANEEGGA")
+					</Script>
+				</AnimationState>
+				<AnimationState
+				  ParseCondStateType="PARSE_NORMAL"
+				  ConditionsYes="DAMAGED">
+					<Script>
+						CurDrawableHideSubObjectPermanently("ConstructionYardEggA")
+						CurDrawableHideSubObjectPermanently("BarracksEggA")
+						CurDrawableHideSubObjectPermanently("NavalYardEggA")
+						CurDrawableHideSubObjectPermanently("PowerPlantEggA")
+						CurDrawableHideSubObjectPermanently("RefineryEggA")
+						CurDrawableHideSubObjectPermanently("SuperWeaponEggA")
+						CurDrawableHideSubObjectPermanently("WarFactoryEggA")
+						CurDrawableShowSubObjectPermanently("SuperWeaponAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("TECHSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("EconomicStructureEggA")
+						CurDrawableHideSubObjectPermanently("STRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("SUPERSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("FORTRESSSHIPEGGA")
+						CurDrawableHideSubObjectPermanently("CRANEEGGA")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Script>
+						CurDrawableHideSubObjectPermanently("ConstructionYardEggA")
+						CurDrawableHideSubObjectPermanently("BarracksEggA")
+						CurDrawableHideSubObjectPermanently("NavalYardEggA")
+						CurDrawableHideSubObjectPermanently("PowerPlantEggA")
+						CurDrawableHideSubObjectPermanently("RefineryEggA")
+						CurDrawableHideSubObjectPermanently("SuperWeaponEggA")
+						CurDrawableHideSubObjectPermanently("WarFactoryEggA")
+						CurDrawableShowSubObjectPermanently("SuperWeaponAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("TECHSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("EconomicStructureEggA")
+						CurDrawableHideSubObjectPermanently("STRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("SUPERSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("FORTRESSSHIPEGGA")
+						CurDrawableHideSubObjectPermanently("CRANEEGGA")
+					</Script>
+				</AnimationState>
+			</TruckDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				xai:joinAction="Replace"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="ABSuperweaponAdvanced_SKN" />
+					<Material ShaderName="BasicW3DHolographic.fx" TechniqueName="Default">
+						<Constants>
+							<Float Name="ColorAmbient">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorDiffuse">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorSpecular">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="Shininess">
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorEmissive">
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+							</Float>
+							<Texture Name="Texture_0">
+								<Value>FXJapanBuildMask</Value>
+							</Texture>
+							<Bool Name="DepthWriteEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="AlphaTestEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="CullingEnable">
+								<Value>true</Value>
+							</Bool>
+							<Int Name="BlendMode">
+								<Value>1</Value>
+							</Int>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="ABSUPERWEAPONADVANCED_BLDN2"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW BUILD UP -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Buildup"
+				xai:joinAction="Replace"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="ABSuperweaponAdvanced_SKN" />
+					<Material ShaderName="BuildingsJapanBuildup.fx" TechniqueName="Default">
+						<Constants>
+							<Texture Name="DiffuseTexture">
+								<Value>ABSuperweaponAdvanced_CM</Value>
+							</Texture>
+							<Texture Name="NormalMap">
+								<Value>ABSuperweaponAdvanced_NM</Value>
+							</Texture>
+							<Texture Name="SpecMap">
+								<Value>ABSuperweaponAdvanced_SM</Value>
+							</Texture>
+							<Float Name="EnvMult">
+								<Value>1.000000</Value>
+							</Float>
+							<Bool Name="AlphaTestEnable">
+								<Value>true</Value>
+							</Bool>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="ABSUPERWEAPONADVANCED_BLDN"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Platform"
+				xai:joinAction="Replace"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER UNPACKING">
+					<Model
+						Name="ABSuperWeapon_Platform" />
+					<Material ShaderName="BasicW3DHolographic.fx" TechniqueName="Default">
+						<Constants>
+							<Float Name="ColorAmbient">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorDiffuse">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorSpecular">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="Shininess">
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorEmissive">
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+							</Float>
+							<Texture Name="Texture_0">
+								<Value>FXJapanBuildMask</Value>
+							</Texture>
+							<Bool Name="DepthWriteEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="AlphaTestEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="CullingEnable">
+								<Value>true</Value>
+							</Bool>
+							<Int Name="BlendMode">
+								<Value>1</Value>
+							</Int>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER UNPACKING"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="ABSUPERWEAPON_PLATFORMEGGBLD2"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW BUILD UP -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Buildup_Platform"
+				xai:joinAction="Replace"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER UNPACKING">
+					<Model
+						Name="ABSuperWeapon_Platform" />
+					<Material ShaderName="BuildingsJapanBuildup.fx" TechniqueName="Default">
+						<Constants>
+							<Texture Name="DiffuseTexture">
+								<Value>ABPlatform</Value>
+							</Texture>
+							<Texture Name="NormalMap">
+								<Value>ABPlatform_NRM</Value>
+							</Texture>
+							<Texture Name="SpecMap">
+								<Value>ABPlatform_SPM</Value>
+							</Texture>
+							<Float Name="EnvMult">
+								<Value>1.000000</Value>
+							</Float>
+							<Bool Name="AlphaTestEnable">
+								<Value>true</Value>
+							</Bool>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER UNPACKING"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="ABSUPERWEAPON_PLATFORMEGGBLD"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+			id="ModuleTag_Draw_EggUnpack"
+				xai:joinAction="Replace"
+			OkToChangeModelColor="true"
+			StaticModelLODMode="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="JUEgg_Unpack" />
+					<Texture
+						Original="JUEgg"
+						New="AUEgg" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Animation
+						AnimationName="JUEgg_Unpack"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<SpecialPower
+				id="ModuleTag_ReplaceSelfUnpackSpecialPowerTrigger"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_UnpackReplaceSelfEgg"
+				UpdateModuleStartsAttack="true"/>
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelf"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_UnpackReplaceSelfEgg"
+				Options="IGNORE_FACING_CHECK USE_OBJECT_GEOMETRY_FOR_WITHIN_RANGE_CHECK FAIL_WITH_INVALID_APPROACH"
+				PackTime="2.0s"
+				StartAbilityRange="2.0"
+				ReplaceOptions="CHECK_BUILD_ASSISTANT DISABLE_DURING_REPLACE CLEAR_LOCATION">
+				<ReplacementTemplate>AlliedSuperWeaponAdvancedNano</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+			<FXListBehavior
+				id="ModuleTag_FXList"
+				xai:joinAction="Replace">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_AlliedChieftanDie" />
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				xai:joinAction="Replace"
+				CreationList="AUEgg_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="EUSuperWeaponAdvancedEgg"
+		inheritFrom="AlliedSuperWeaponAdvancedEgg"
+		Side="Allies"
+		EditorName="EUSuperWeaponAdvancedEgg">
+		<EquivalentTo>AlliedSuperWeaponAdvancedEgg</EquivalentTo>
+		<Behaviors>
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelf"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_UnpackReplaceSelfEgg"
+				Options="IGNORE_FACING_CHECK USE_OBJECT_GEOMETRY_FOR_WITHIN_RANGE_CHECK FAIL_WITH_INVALID_APPROACH"
+				PackTime="2.0s"
+				StartAbilityRange="2.0"
+				ReplaceOptions="COPY_UPGRADES CHECK_BUILD_ASSISTANT DISABLE_DURING_REPLACE CLEAR_LOCATION">
+				<ReplacementTemplate>EUSuperWeaponAdvancedNano</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="SovietSuperWeaponAdvancedEgg"
+		inheritFrom="JapanSuperWeaponAdvancedEgg"
+		Side="Soviet"
+		CommandSet="SovietEggCommandSet"
+		ButtonImage="Button_SovietSuperWeaponAdv_small"
+		SelectPortrait="Portrait_SovietSuperWeaponAdv_big"
+		EditorName="SovietSuperWeaponAdvancedEgg"
+		Description="Desc:SovietSuperWeaponAdvanced">
+		<EquivalentTo>SovietSuperWeaponAdvanced</EquivalentTo>
+		<EquivalentTo>StrategicArmySuperWeaponAdvancedEgg</EquivalentTo>
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietSuperWeaponAdvanced</DisplayName>
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_DrawEgg"
+				xai:joinAction="Replace"
+				LeftFrontTireBone="Bone_LFTire"
+				RightFrontTireBone="Bone_RFTire"
+				MidLeftRearTireBone="Bone_LMTire"
+				MidRightRearTireBone="Bone_RMTire"
+				LeftRearTireBone="Bone_LRTire"
+				RightRearTireBone="Bone_RRTire"
+				TireRotationMultiplier="0.1"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUEggA" />
+					<Texture
+						Original="JUEgg"
+						New="SUEgg" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AIR_POWER_EFFECT FORMATION_PREVIEW">
+					<Model
+						Name="FP_EGG" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="JUEggA" />
+					<Texture
+						Original="JUEgg"
+						New="SUEgg" />
+				</ModelConditionState>
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="DAMAGED">
+					<Model
+						Name="JUEggA" />
+					<Texture
+						Original="JUEgg"
+						New="SUEgg" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUEggA" />
+					<Texture
+						Original="JUEgg"
+						New="SUEgg_D" />
+					<ParticleSysBone
+           				BoneName="FXBone01"
+           				FXParticleSystemTemplate="VehicleDamageSmoke"
+           				FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="START_FRAME_LAST">
+					<Script>
+						CurDrawableHideSubObjectPermanently("ConstructionYardEggA")
+						CurDrawableHideSubObjectPermanently("BarracksEggA")
+						CurDrawableHideSubObjectPermanently("NavalYardEggA")
+						CurDrawableHideSubObjectPermanently("PowerPlantEggA")
+						CurDrawableHideSubObjectPermanently("RefineryEggA")
+						CurDrawableHideSubObjectPermanently("SuperWeaponEggA")
+						CurDrawableHideSubObjectPermanently("WarFactoryEggA")
+						CurDrawableShowSubObjectPermanently("SuperWeaponAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("EconomicStructureEggA")
+						CurDrawableHideSubObjectPermanently("TECHSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("STRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("SUPERSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("FORTRESSSHIPEGGA")
+						CurDrawableHideSubObjectPermanently("CRANEEGGA")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<Script>
+						CurDrawableHideSubObjectPermanently("ConstructionYardEggA")
+						CurDrawableHideSubObjectPermanently("BarracksEggA")
+						CurDrawableHideSubObjectPermanently("NavalYardEggA")
+						CurDrawableHideSubObjectPermanently("PowerPlantEggA")
+						CurDrawableHideSubObjectPermanently("RefineryEggA")
+						CurDrawableHideSubObjectPermanently("SuperWeaponEggA")
+						CurDrawableHideSubObjectPermanently("WarFactoryEggA")
+						CurDrawableShowSubObjectPermanently("SuperWeaponAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("EconomicStructureEggA")
+						CurDrawableHideSubObjectPermanently("TECHSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("STRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("SUPERSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("FORTRESSSHIPEGGA")
+						CurDrawableHideSubObjectPermanently("CRANEEGGA")
+					</Script>
+				</AnimationState>
+				<AnimationState
+				  ParseCondStateType="PARSE_NORMAL"
+				  ConditionsYes="DAMAGED">
+					<Script>
+						CurDrawableHideSubObjectPermanently("ConstructionYardEggA")
+						CurDrawableHideSubObjectPermanently("BarracksEggA")
+						CurDrawableHideSubObjectPermanently("NavalYardEggA")
+						CurDrawableHideSubObjectPermanently("PowerPlantEggA")
+						CurDrawableHideSubObjectPermanently("RefineryEggA")
+						CurDrawableHideSubObjectPermanently("SuperWeaponEggA")
+						CurDrawableHideSubObjectPermanently("WarFactoryEggA")
+						CurDrawableShowSubObjectPermanently("SuperWeaponAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("EconomicStructureEggA")
+						CurDrawableHideSubObjectPermanently("TECHSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("STRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("SUPERSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("FORTRESSSHIPEGGA")
+						CurDrawableHideSubObjectPermanently("CRANEEGGA")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Script>
+						CurDrawableHideSubObjectPermanently("ConstructionYardEggA")
+						CurDrawableHideSubObjectPermanently("BarracksEggA")
+						CurDrawableHideSubObjectPermanently("NavalYardEggA")
+						CurDrawableHideSubObjectPermanently("PowerPlantEggA")
+						CurDrawableHideSubObjectPermanently("RefineryEggA")
+						CurDrawableHideSubObjectPermanently("SuperWeaponEggA")
+						CurDrawableHideSubObjectPermanently("WarFactoryEggA")
+						CurDrawableShowSubObjectPermanently("SuperWeaponAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseEggA")
+						CurDrawableHideSubObjectPermanently("BaseDefenseAdvancedEggA")
+						CurDrawableHideSubObjectPermanently("EconomicStructureEggA")
+						CurDrawableHideSubObjectPermanently("TECHSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("STRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("SUPERSTRUCTUREEGGA")
+						CurDrawableHideSubObjectPermanently("FORTRESSSHIPEGGA")
+						CurDrawableHideSubObjectPermanently("CRANEEGGA")
+					</Script>
+				</AnimationState>
+			</TruckDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				xai:joinAction="Replace"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="SBSuperweaponAdvanced_SKN" />
+					<Material ShaderName="BasicW3DHolographic.fx" TechniqueName="Default">
+						<Constants>
+							<Float Name="ColorAmbient">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorDiffuse">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorSpecular">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="Shininess">
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorEmissive">
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+							</Float>
+							<Texture Name="Texture_0">
+								<Value>FXJapanBuildMask</Value>
+							</Texture>
+							<Bool Name="DepthWriteEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="AlphaTestEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="CullingEnable">
+								<Value>true</Value>
+							</Bool>
+							<Int Name="BlendMode">
+								<Value>1</Value>
+							</Int>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="SBSUPERWEAPONADVANCED_BLDN2"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW BUILD UP -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Buildup"
+				xai:joinAction="Replace"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="SBSuperweaponAdvanced_SKN" />
+					<Material ShaderName="BuildingsJapanBuildup.fx" TechniqueName="Default">
+						<Constants>
+							<Texture Name="DiffuseTexture">
+								<Value>SBSuperweaponAdvanced</Value>
+							</Texture>
+							<Texture Name="NormalMap">
+								<Value>SBSuperweaponAdvanced_NRM</Value>
+							</Texture>
+							<Texture Name="SpecMap">
+								<Value>SBSuperweaponAdvanced_SPM</Value>
+							</Texture>
+							<Float Name="EnvMult">
+								<Value>1.000000</Value>
+							</Float>
+							<Bool Name="AlphaTestEnable">
+								<Value>true</Value>
+							</Bool>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="SBSUPERWEAPONADVANCED_BLDN"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Platform"
+				xai:joinAction="Replace"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER UNPACKING">
+					<Model
+						Name="SBSuperweaponAdvanced_Platform" />
+					<Material ShaderName="BasicW3DHolographic.fx" TechniqueName="Default">
+						<Constants>
+							<Float Name="ColorAmbient">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorDiffuse">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorSpecular">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="Shininess">
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorEmissive">
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+							</Float>
+							<Texture Name="Texture_0">
+								<Value>FXJapanBuildMask</Value>
+							</Texture>
+							<Bool Name="DepthWriteEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="AlphaTestEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="CullingEnable">
+								<Value>true</Value>
+							</Bool>
+							<Int Name="BlendMode">
+								<Value>1</Value>
+							</Int>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER UNPACKING"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="SBSUPERWEAPONADVANCED_PLATFORM_BLDN2"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW BUILD UP -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Buildup_Platform"
+				xai:joinAction="Replace"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER UNPACKING">
+					<Model
+						Name="SBSuperweaponAdvanced_Platform" />
+					<Material ShaderName="BuildingsJapanBuildup.fx" TechniqueName="Default">
+						<Constants>
+							<Texture Name="DiffuseTexture">
+								<Value>SBPlatform</Value>
+							</Texture>
+							<Texture Name="NormalMap">
+								<Value>SBPlatform_NRM</Value>
+							</Texture>
+							<Texture Name="SpecMap">
+								<Value>SBPlatform_SPM</Value>
+							</Texture>
+							<Float Name="EnvMult">
+								<Value>1.000000</Value>
+							</Float>
+							<Bool Name="AlphaTestEnable">
+								<Value>true</Value>
+							</Bool>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER UNPACKING"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="SBSUPERWEAPONADVANCED_PLATFORM_BLDN"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+			id="ModuleTag_Draw_EggUnpack"
+				xai:joinAction="Replace"
+			OkToChangeModelColor="true"
+			StaticModelLODMode="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="JUEgg_Unpack" />
+					<Texture
+						Original="JUEgg"
+						New="SUEgg" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Animation
+						AnimationName="JUEgg_Unpack"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<SpecialPower
+				id="ModuleTag_ReplaceSelfUnpackSpecialPowerTrigger"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_UnpackReplaceSelfEgg"
+				UpdateModuleStartsAttack="true"/>
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelf"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_UnpackReplaceSelfEgg"
+				Options="IGNORE_FACING_CHECK USE_OBJECT_GEOMETRY_FOR_WITHIN_RANGE_CHECK FAIL_WITH_INVALID_APPROACH"
+				PackTime="2.0s"
+				StartAbilityRange="2.0"
+				ReplaceOptions="CHECK_BUILD_ASSISTANT DISABLE_DURING_REPLACE CLEAR_LOCATION">
+				<ReplacementTemplate>SovietSuperWeaponAdvancedNano</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+			<FXListBehavior
+				id="ModuleTag_FXList"
+				xai:joinAction="Replace">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_MediumVehicleDie" />
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				xai:joinAction="Replace"
+				CreationList="SUEgg_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="StrategicArmySuperWeaponAdvancedEgg"
+		inheritFrom="SovietSuperWeaponAdvancedEgg"
+		Side="Soviet"
+		EditorName="StrategicArmySuperWeaponAdvancedEgg">
+		<EquivalentTo>SovietSuperWeaponAdvancedEgg</EquivalentTo>
+		<EquivalentTo>StrategicArmySuperWeaponAdvanced</EquivalentTo>
+		<Behaviors>
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelf"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_UnpackReplaceSelfEgg"
+				Options="IGNORE_FACING_CHECK USE_OBJECT_GEOMETRY_FOR_WITHIN_RANGE_CHECK FAIL_WITH_INVALID_APPROACH"
+				PackTime="2.0s"
+				StartAbilityRange="2.0"
+				ReplaceOptions="COPY_UPGRADES CHECK_BUILD_ASSISTANT DISABLE_DURING_REPLACE CLEAR_LOCATION">
+				<ReplacementTemplate>StrategicArmySuperWeaponAdvancedNano</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

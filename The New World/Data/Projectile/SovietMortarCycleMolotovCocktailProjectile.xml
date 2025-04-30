@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Includes>
+		<Include type="all" source="ART:Units/Mortar Cycle/EXSOVMORTAR.NBRDEFMIS.w3x" />
+		<Include type="all" source="ART:Units/Mortar Cycle/EXSOVMORTAR.w3x" />
+		<Include type="all" source="ART:Units/Mortar Cycle/EXSOVMORTAR_CTR.w3x" />
+		<Include type="all" source="ART:Units/Mortar Cycle/EXSOVMORTAR_HRC.w3x" />
+		<Include type="instance" source="DATA:SageXml/BaseObjects/BaseProjectile.xml" />
+	</Includes>
+	<GameObject
+		id="SovietMortarCycleMolotovCocktailProjectile"
+		inheritFrom="BaseProjectile"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE INERT"
+		EditorName="SovietMortarCycleMolotovCocktailProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUMOLOTOV" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="Soviet_Mol_BottleFX"
+						FollowBone="true" />
+				</ModelConditionState>
+				<!-- Animations -->
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_bored">
+					<Animation
+						AnimationName="SUMOLOTOV"
+						AnimationMode="LOOP" />
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>			
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_Soviet_MolCocktailBIGHit" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL ADJUST_STRAIGHT_ONLY"
+				FirstHeightMin="50"
+				FirstHeightMax="50"
+				SecondHeightMin="50"
+				SecondHeightMax="50"
+				FirstPercentIndent="20"
+				SecondPercentIndent="90"
+				FlightPathAdjustDistPerSecond="0"
+				/>
+		</Behaviors>	
+	</GameObject>
+	<GameObject
+		inheritFrom="SovietMortarCycleMolotovCocktailProjectile"
+		id="SovietMortarCycleMolotovCocktailProjectile_Veteran"
+		EditorName="SovietMortarCycleyMolotovCocktailProjectile_Veteran">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				xai:joinAction="Replace">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUMOLOTOV" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="Soviet_Mol_BottleFX"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="SUMOLOTOV"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList"
+				xai:joinAction="Replace">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_Soviet_MolCocktailBIGHitVet" />
+			</FXListBehavior>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="SovietMortarcycleMortarWeaponProjectile"
+		inheritFrom="BaseProjectile" 
+		Side="SOVIET"
+		EditorSorting="SYSTEM"
+		KindOf="+DEFLECT_BY_SPECIAL_POWER"	
+		EditorName="SovietMortarcycleMortarWeaponProjectile">
+	  <Draws>
+		<ScriptedModelDraw
+			id="ModuleTag_ScriptedModelDraw">
+		  <ModelConditionState
+			  ParseCondStateType="PARSE_DEFAULT">
+			<Model
+				Name="EXSovMortar" />
+        <ParticleSysBone
+                    BoneName="NONE"
+                    FXParticleSystemTemplate="SovietGrenadeTrailSlave"
+                    FollowBone="true"/>
+			  <ParticleSysBone
+				  BoneName="NONE"
+				  FXParticleSystemTemplate="Soviet_Mol_BottleFX"
+				  FollowBone="true" />
+      </ModelConditionState>
+		</ScriptedModelDraw>
+	  </Draws>
+	  <Behaviors>
+		<FXListBehavior
+			id="ModuleTag_FXLists">
+			<DieMuxData
+				DeathTypes="ALL" />
+			<Event
+				Index="onDeath"
+				FX="FX_SOV_MortarCycle_MortarExplo1" />
+		</FXListBehavior>
+		<DestroyDie
+			id="ModuleTag_Die">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</DestroyDie>		  
+		  
+		<BezierProjectile
+			id="ModuleTag_BezierProjectileBehavior"
+			Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL FIRE_STRAIGHT_THEN_CURVE"
+			FirstHeightMin="170"
+			FirstHeightMax="200"
+			SecondHeightMin="170"
+			SecondHeightMax="200"
+			FirstPercentIndent="33"
+			SecondPercentIndent="66"		
+			GroundHitFX="FX_SOV_MortarCycle_MortarExplo2"
+			MaxDistanceReachedFX="FX_SOV_MortarCycle_MortarExplo2"
+			SidewaysDrift="0"
+			FlightPathAdjustDistPerSecond="300.0" />
+	  </Behaviors>
+	  <Geometry
+		  IsSmall="true">
+		<Shape
+			Type="SPHERE"
+			MajorRadius="0.8"/>
+	  </Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_MortarCycle_MortarIncoming" AudioType="soundAmbient" />
+		</AudioArraySound>
+
+	</GameObject>
+	<!-- VETERAN -->
+	<GameObject
+		id="SovietMortarcycleMortarWeaponProjectile_Veteran"
+		inheritFrom="SovietMortarcycleMortarWeaponProjectile"
+		EditorName="SovietMortarcycleMortarWeaponProjectile_Veteran">
+	  <Draws>
+		<ScriptedModelDraw
+			id="ModuleTag_ScriptedModelDraw"
+			xai:joinAction="Replace">
+		  <ModelConditionState
+			  ParseCondStateType="PARSE_DEFAULT">
+			<Model
+				Name="EXSovMortar" />
+        <ParticleSysBone
+                    BoneName="NONE"
+                    FXParticleSystemTemplate="SovietGrenadeTrailSlaveVet"
+                    FollowBone="true"/>
+			  <ParticleSysBone
+				  BoneName="NONE"
+				  FXParticleSystemTemplate="Soviet_Mol_BottleFX"
+				  FollowBone="true" />
+		  </ModelConditionState>
+		</ScriptedModelDraw>
+	  </Draws>
+	  <Behaviors>
+      <FXListBehavior
+        id="ModuleTag_FXLists"
+        xai:joinAction="Replace">
+        <DieMuxData
+          DeathTypes="ALL" />
+        <Event
+          Index="onDeath"
+          FX="FX_SOV_MortarCycle_MortarExplo1Vet" />
+      </FXListBehavior>
+		  <BezierProjectile
+			  id="ModuleTag_BezierProjectileBehavior"
+			  Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL FIRE_STRAIGHT_THEN_CURVE"
+			  FirstHeightMin="170"
+			  FirstHeightMax="200"
+			  SecondHeightMin="170"
+			  SecondHeightMax="200"
+			  FirstPercentIndent="33"
+			  SecondPercentIndent="66" 
+			GroundHitFX="FX_SOV_MortarCycle_MortarExplo2Vet"
+			  MaxDistanceReachedFX="FX_SOV_MortarCycle_MortarExplo2Vet"
+			  SidewaysDrift="0"
+			  FlightPathAdjustDistPerSecond="300.0" />
+	  </Behaviors>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_MortarCycle_MortarIncoming" AudioType="soundAmbient" />
+		</AudioArraySound>
+  </GameObject>
+	<GameObject
+		id="SovietMortarcycleMortarUpgradeWeaponProjectile"
+		Side="SOVIET"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE SMALL_MISSILE DEFLECT_BY_SPECIAL_POWER NO_COLLIDE"
+		EditorName="SovietMortarcycleMortarUpgradeWeaponProjectile">
+		<ArmorSet
+			Armor="NoArmor" />
+	  <Draws>
+		<ScriptedModelDraw
+			id="ModuleTag_ScriptedModelDraw">
+		  <ModelConditionState
+			  ParseCondStateType="PARSE_DEFAULT">
+			<Model
+				Name="EXSovMortar" />
+        <ParticleSysBone
+                    BoneName="NONE"
+                    FXParticleSystemTemplate="SovietGrenadeTrailSlave"
+                    FollowBone="true"/>
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true"/>
+			  <ParticleSysBone
+				  BoneName="NONE"
+				  FXParticleSystemTemplate="Soviet_Mol_BottleFX"
+				  FollowBone="true" />
+      </ModelConditionState>
+		</ScriptedModelDraw>
+	  </Draws>
+	  <Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="1.0s"
+			  MaxLifetime="1.0s" />
+		<FXListBehavior
+			id="ModuleTag_FXLists">
+			<DieMuxData
+				DeathTypes="ALL" />
+			<Event
+				Index="onDeath"
+				FX="FX_SOV_MortarCycle_MortarExplo1" />
+		</FXListBehavior>
+		<DestroyDie
+			id="ModuleTag_Die">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</DestroyDie>		  
+		  
+		<BezierProjectile
+			id="ModuleTag_BezierProjectileBehavior"
+			Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+			FirstHeightMin="170"
+			FirstHeightMax="200"
+			SecondHeightMin="170"
+			SecondHeightMax="200"
+			FirstPercentIndent="33"
+			SecondPercentIndent="66"
+			GroundHitFX="FX_SOV_MortarCycle_MortarExplo2"
+			MaxDistanceReachedFX="FX_SOV_MortarCycle_MortarExplo2"
+			FlightPathAdjustDistPerSecond="15.0" />
+	  </Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+	  <Geometry
+		  IsSmall="true">
+		<Shape
+			Type="SPHERE"
+			MajorRadius="0.8"/>
+	  </Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_MortarCycle_MortarIncoming" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	<!-- VETERAN -->
+	<GameObject
+		id="SovietMortarcycleMortarUpgradeWeaponProjectile_Veteran"
+		inheritFrom="SovietMortarcycleMortarUpgradeWeaponProjectile"
+		EditorName="SovietMortarcycleMortarUpgradeWeaponProjectile_Veteran">
+	  <Draws>
+		<ScriptedModelDraw
+			id="ModuleTag_ScriptedModelDraw"
+			xai:joinAction="Replace">
+		  <ModelConditionState
+			  ParseCondStateType="PARSE_DEFAULT">
+			<Model
+				Name="EXSovMortar" />
+        <ParticleSysBone
+                    BoneName="NONE"
+                    FXParticleSystemTemplate="SovietGrenadeTrailSlaveVet"
+                    FollowBone="true"/>
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="MortarCycleFireTrailVet"
+						FollowBone="true"/>
+			  <ParticleSysBone
+				  BoneName="NONE"
+				  FXParticleSystemTemplate="Soviet_Mol_BottleFX"
+				  FollowBone="true" />
+		  </ModelConditionState>
+		</ScriptedModelDraw>
+	  </Draws>
+	  <Behaviors>
+      <FXListBehavior
+        id="ModuleTag_FXLists"
+        xai:joinAction="Replace">
+        <DieMuxData
+          DeathTypes="ALL" />
+        <Event
+          Index="onDeath"
+          FX="FX_SOV_MortarCycle_MortarExplo1Vet" />
+      </FXListBehavior>
+		<BezierProjectile
+			id="ModuleTag_BezierProjectileBehavior"
+			Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+			FirstHeightMin="170"
+			FirstHeightMax="200"
+			SecondHeightMin="170"
+			SecondHeightMax="200"
+			FirstPercentIndent="33"
+			SecondPercentIndent="66"
+			GroundHitFX="FX_SOV_MortarCycle_MortarExplo2Vet"
+			MaxDistanceReachedFX="FX_SOV_MortarCycle_MortarExplo2Vet"
+			FlightPathAdjustDistPerSecond="15.0" />
+	  </Behaviors>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_MortarCycle_MortarIncoming" AudioType="soundAmbient" />
+		</AudioArraySound>
+  </GameObject>
+</AssetDeclaration>

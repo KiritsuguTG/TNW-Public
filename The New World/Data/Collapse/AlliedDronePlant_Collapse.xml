@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<GameObject
+		id="AlliedDronePlant_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="AlliedDronePlant_Collapse">
+		<Draws>
+			<DynamicsDraw
+			id="ModuleTag_Draw"
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="5"
+			Explodiness="0.5">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ABDRONEPLANT_SKN" />
+					<xi:include
+						href="DATA:Includes/VehicleCollapseParticles/AlliedStructureCollapseParticles.xml"
+						xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedStructureCollapseParticles/child::*)" />
+				</ModelConditionState>
+				<BoneVolumes>
+					<BoneVolume BoneName="DRONEPLANT" Mass="9063" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="10.8957" HalfSizeY="11.7295" HalfSizeZ="7.00436" >
+							<Translation x="6.17051" y="-0.277951" z="0.0" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="RADAR" Mass="6540" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="7.72703" HalfSizeY="11.8407" HalfSizeZ="7.05995" >
+							<Translation x="-13.1193" y="-0.611492" z="0.0" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+				</BoneVolumes>
+				<Lifetime
+					Delay="5s"
+					FadeTime="4s" />
+			</DynamicsDraw>
+		</Draws>
+    <Behaviors/>
+		<AudioArraySound>
+			<AudioEntry Sound="HumanFaction_SmallBuilding_DieMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+</GameObject>
+</AssetDeclaration>

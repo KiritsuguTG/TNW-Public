@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTR_FLYA.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTR_SKL.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTR_SKN.FIGHTER_01.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTR_SKN.OBBOX.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTR_SKN.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTR_TRNL.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTR_TRNR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTRION.FIGHTER_01.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTRION.OBBOX.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTRION_CTR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTRR.FIGHTER_01.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTRR_CTR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTRR01.R01.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTRR01_CTR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTRR02.R02.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTRR01_HRC.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTRR02_CTR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinInvaderFighterAircraft/AUINVFTRR02_HRC.w3x" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseAircraft.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseDebris.xml" />
+	</Includes>
+	<GameObject
+		id="ScrinInvaderFighterAircraft"
+		inheritFrom="BaseAircraft"
+		SelectPortrait="Portrait_AlienMiniMCV"
+		ButtonImage="Button_AlienMiniMCV"
+		Side="Neutral"
+		SubGroupPriority="610"
+		EditorSorting="UNIT"
+		BuildTime="1"
+		KindOf="CAN_CAST_REFLECTIONS CAN_ATTACK SCORE AIRCRAFT VEHICLE LINE_OF_SIGHT_IGNORES_BUILDINGS CAN_BE_FAVORITE_UNIT SELECTABLE TIBERIUM_BASED LEAVE_PARKING_ON_BUILD_COMPLETE PRODUCED_AT_HELIPAD"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="AIRCRAFT"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="MISSILE"
+		VoicePriority="148"
+		CommandSet="ScrinAirUnitCommandSet"
+		EditorName="ScrinInvaderFighterAircraft"
+		Description="Desc:ScirnUnit"
+		TypeDescription="Type:ScirnUnit"
+		HealthBoxHeightOffset="10">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:ScrinInvaderFighterAircraft</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="50"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="InfantryAlienDamageFX" />
+		<LocomotorSet
+			id="AlienInvaderFighter"
+			Locomotor="JapanAntiAirShipTestLocomotor"
+			Condition="NORMAL"
+			Speed="200" />
+		<!-- Need ConquerMetricsOverrideDefendingAntiMask or else the TAXIING locomotor will make the AI try to build anti-ground units against this -->
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDefendingAntiMask="ANTI_AIRBORNE_VEHICLE" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUInvFtr_SKN" />
+					<WeaponLaunchBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="AUInvFtr_FLYA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="TURN_LEFT">
+					<Animation
+						AnimationName="AUInvFtr_TRNL"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="TURN_RIGHT">
+					<Animation
+						AnimationName="AUInvFtr_TRNR"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<Animation
+						AnimationName="AUInvFtr_FLYA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawAdd"
+				MinLength="50.0"
+				MaxLength="50.0"
+				Width="8.0"
+				MinSpeed="25"
+				MaxSpeed="25"
+				SweepSpeed="1.0"
+				SpreadAngle="0.0"
+				MinTracersPerFrame="0.08"
+				MaxTracersPerFrame="0.08"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracerAlien"
+				UseAdditiveBlending="true"
+				TracerHitFx="FX_AlienAutoCannonHit">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="0.0"
+					g="0.0"
+					b="0.0"
+					a="0.0" />		
+			</TracerModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlienInvaderFighterCannon" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<!-- gravity mult of 30 is temporary -->
+			<Physics
+				id="ModuleTag_Physics"
+				GravityMultiplier="30" />
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="0s"
+				SinkRate="0.5"
+				DestructionDelay="0s">
+				<OCL
+					Type="INITIAL">
+					<OCL>OCL_ALIENInvaderFighterDebris</OCL>
+				</OCL>
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="TOPPLED EXTRA_7" />
+				<Sound
+					Type="INITIAL"
+					List="ALI_PAC_SoundDie_SmallExplosion" />
+			</SlowDeath>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7"/>
+				<Event
+					Index="onDeath"
+					FX="FX_ALIENVehicleExplode" />
+			</FXListBehavior>
+			<SquishCollide
+				id ="DefaultSquishCollide"
+				CrushKillDelay="0.13s" />
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="TOPPLED EXTRA_7"/>
+			</DestroyDie>
+		</Behaviors>
+		<AI>
+			<JetAIUpdate
+				id="ModuleTag_JetAI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				CirclesForAttack="true"
+				StateMachine="JetAIStateMachine">
+				<UnitAITargetChooserData />
+			</JetAIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="50" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="15.0"
+				MinorRadius="3.0"
+				Height="5.0"></Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry
+				Sound="AudioEvent:ALI_PAC_Weapon_Invader_Attack"
+				AudioType="voiceAttack" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="AudioEvent:ALI_PAC_Weapon_Invader_Attack"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="AudioEvent:ALI_PAC_Weapon_Invader_MoveLoop"
+				AudioType="soundMoveLoop" />
+		</AudioArraySound>
+
+		<EvaEventArray>
+			<EvaEntry EvaEvent="" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedAlly" />
+		</EvaEventArray>
+		<VisionInfo
+			VisionRange="200"
+			ShroudClearingRange="400" />
+	</GameObject>
+	<GameObject
+		id="ScrinInvaderFighterAircraftBoss"
+		inheritFrom="ScrinInvaderFighterAircraft"
+		KindOf="-TIBERIUM_BASED"
+		EditorName="ScrinInvaderFighterAircraftBoss">
+		<GameDependency
+			ForbiddenModelConditions="STRUCTURE_UNPACKING">
+		</GameDependency>
+	</GameObject>
+	<GameObject
+		id="ALIENInvaderFighterDebris_01"
+		inheritFrom="BaseDebris" 
+		EditorName="ALIENInvaderFighterDebris_01">		
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUInvFtrR01" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="AlienDamageFire01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="AlienDamageFireGlow01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="AlienDamageFireGlow02"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>		
+	</GameObject>
+	<GameObject
+		id="ALIENInvaderFighterDebris_02"
+		inheritFrom="BaseDebris"
+		EditorName="ALIENInvaderFighterDebris_02">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUInvFtrR02" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="AlienDamageFire01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="AlienDamageFireGlow01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="AlienDamageFireGlow02"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>		
+	</GameObject>
+	<GameObject
+		id="ALIENInvaderFighterDebris_03"
+		inheritFrom="BaseDebris"
+		EditorName="ALIENInvaderFighterDebris_03">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUInvFtrR" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="AlienDamageFire01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="AlienDamageFireGlow01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="AlienDamageFireGlow02"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"
+				xai:joinAction="overwrite" 
+				TumbleRandomly="true"
+				MaxXRotationVelocity="360"
+				MaxYRotationVelocity="0"
+				MaxZRotationVelocity="0"
+				BounceCount="0" 
+				KillWhenRestingOnGround="false"
+				GroundHitFX="FX_ALIENVehicleExplode"
+				/>			
+			<SlowDeath
+				id="ModuleTag_Death"
+				xai:joinAction="overwrite" 
+				SinkDelay="0s"
+				SinkRate=".5"
+				DestructionDelay="0s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>			
+		</Behaviors>		
+	</GameObject>
+</AssetDeclaration>

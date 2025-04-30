@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseProjectile.xml"/>
+	</Includes>
+	<GameObject
+		id="OrbitalRefuseProjectileBase"
+		inheritFrom="BaseProjectile"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		RadarPriority="STRUCTURE">
+		<Behaviors>
+			<!-- fire weapon to take out any aircraft. -->
+			<FireWeaponUpdate
+				id="ModuleTag_AntiAirWeapon"
+				FireInterval="0.13s">
+				<FireWeaponNugget
+					WeaponName="OrbitalRefuseProjectileWeapon" />
+			</FireWeaponUpdate>	  
+			
+			<Physics
+				id="ModuleTage_Physics" 
+				AllowBouncing="false" 
+				GravityMultiplier="100.0"
+				KillWhenRestingOnGround="true"
+				OrientToFlightPath="true"
+				TumbleRandomly="true"
+				MaxXRotationVelocity="200"
+				MaxYRotationVelocity="0"
+				MaxZRotationVelocity="0"/>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="OrbitalRefuseProjectileUpgradeBase"
+		inheritFrom="BaseProjectile"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		RadarPriority="STRUCTURE">
+		<Behaviors>
+			<!-- fire weapon to take out any aircraft. -->
+			<FireWeaponUpdate
+				id="ModuleTag_AntiAirWeapon"
+				FireInterval="0.13s">
+				<FireWeaponNugget
+					WeaponName="OrbitalRefuseProjectileWeapon" />
+			</FireWeaponUpdate>
+
+			<Physics
+				id="ModuleTage_Physics"
+				AllowBouncing="false"
+				GravityMultiplier="100.0"
+				KillWhenRestingOnGround="true"
+				OrientToFlightPath="true"
+				TumbleRandomly="true"
+				MaxXRotationVelocity="400"
+				MaxYRotationVelocity="0"
+				MaxZRotationVelocity="0"/>
+		</Behaviors>
+	</GameObject>
+	<!-- Level 1 Orbital Refuse Sattelite Debris Object -->
+	<GameObject
+		id="OrbitalRefuseSatteliteDebris_Level1"
+		inheritFrom="OrbitalRefuseProjectileBase"
+		EditorName="OrbitalRefuseSatteliteDebris_Level1">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw_OrbitalRefuse_Level1">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUSateliteA" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisFire"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisGlow"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisSmoke"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisSparks"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FireWeaponWhenDead
+				id="ModuleTag_OrbitalRefuse_Level1_ImpactWarhead"
+				InitiallyActive="true"
+				DeathWeapon="SovietOrbitalRefuse_Level1_WarHead">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FXListBehavior
+				id="ModuleTag_FXList_OrbitalRefuse_Level1">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_OrbitalDebrisLvl1" />
+				<Event
+					Index="onTerrainCollision"
+					FX=""/>
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SUSateliteA_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+		<Geometry>
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="10.0"
+				Height="5.0"/>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_OrbitalDrop_MetalDebrisByLoopMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="100" />
+	</GameObject>
+	<GameObject
+		id="OrbitalRefuseSatteliteDebrisUpgrade_Level1"
+		inheritFrom="OrbitalRefuseProjectileUpgradeBase"
+		EditorName="OrbitalRefuseSatteliteDebrisUpgrade_Level1">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw_OrbitalRefuse_Level1">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUSateliteA" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisFire"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisGlow"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisSmoke"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisSparks"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FireWeaponWhenDead
+				id="ModuleTag_OrbitalRefuse_Level1_ImpactWarhead"
+				InitiallyActive="true"
+				DeathWeapon="SovietOrbitalRefuse_Level1_WarHead">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FXListBehavior
+				id="ModuleTag_FXList_OrbitalRefuse_Level1">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_OrbitalDebrisLvl1" />
+				<Event
+					Index="onTerrainCollision"
+					FX=""/>
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SUSateliteA_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+		<Geometry>
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="10.0"
+				Height="5.0"/>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_OrbitalDrop_MetalDebrisByLoopMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="100" />
+	</GameObject>
+
+	<!-- Level 2 Orbital Refuse Sattelite Debris Object -->
+	<GameObject
+		id="OrbitalRefuseSatteliteDebris_Level2"
+		inheritFrom="OrbitalRefuseProjectileBase"
+		EditorName="OrbitalRefuseSatteliteDebris_Level2">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUSateliteB" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisFire"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisGlow"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisSmoke"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisSparks"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FireWeaponWhenDead
+				id="ModuleTag_ImpactWarhead"
+				InitiallyActive="true"
+				DeathWeapon="SovietOrbitalRefuse_Level2_WarHead">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_OrbitalDebrisLvl1" />
+				<Event
+					Index="onTerrainCollision"
+					FX=""/>
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SUSateliteB_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+		<Geometry>
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="20.0"
+				Height="5.0"/>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_OrbitalDrop_MetalDebrisByLoopMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="100" />
+	</GameObject>
+	<GameObject
+		id="OrbitalRefuseSatteliteDebrisUpgrade_Level2"
+		inheritFrom="OrbitalRefuseProjectileUpgradeBase"
+		EditorName="OrbitalRefuseSatteliteDebrisUpgrade_Level2">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUSateliteB" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisFire"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisGlow"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisSmoke"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisSparks"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FireWeaponWhenDead
+				id="ModuleTag_ImpactWarhead"
+				InitiallyActive="true"
+				DeathWeapon="SovietOrbitalRefuse_Level2_WarHead">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_OrbitalDebrisLvl1" />
+				<Event
+					Index="onTerrainCollision"
+					FX=""/>
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SUSateliteB_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+		<Geometry>
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="20.0"
+				Height="5.0"/>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_OrbitalDrop_MetalDebrisByLoopMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="100" />
+	</GameObject>
+
+	<!-- Level 3 Orbital Refuse Sattelite Debris Object -->
+	<GameObject
+		id="OrbitalRefuseSatteliteDebris_Level3"
+		inheritFrom="OrbitalRefuseProjectileBase"
+		EditorName="OrbitalRefuseSatteliteDebris_Level3">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUSateliteC" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisLargeFire"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisLargeGlow"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisLargeSmoke"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisLargeSparks"/>          
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FireWeaponWhenDead
+				id="ModuleTag_ImpactWarhead"
+				InitiallyActive="true"
+				DeathWeapon="SovietOrbitalRefuse_Level3_WarHead">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_OrbitalDebrisLvl3" />
+				<Event
+					Index="onTerrainCollision"
+					FX=""/>
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SUSateliteC_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+		<Geometry>
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="30.0"
+				Height="5.0"/>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_OrbitalDrop_SatteliteByLoopMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="100" />
+	</GameObject>
+	<GameObject
+		id="OrbitalRefuseSatteliteDebrisUpgrade_Level3"
+		inheritFrom="OrbitalRefuseProjectileUpgradeBase"
+		EditorName="OrbitalRefuseSatteliteDebrisUpgrade_Level3">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUSateliteC" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisLargeFire"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisLargeGlow"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisLargeSmoke"/>
+          <ParticleSysBone
+						FXParticleSystemTemplate="SovietOrbitalDebrisLargeSparks"/>          
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FireWeaponWhenDead
+				id="ModuleTag_ImpactWarhead"
+				InitiallyActive="true"
+				DeathWeapon="SovietOrbitalRefuse_Level3_WarHead">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_OrbitalDebrisLvl3" />
+				<Event
+					Index="onTerrainCollision"
+					FX=""/>
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SUSateliteC_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+		<Geometry>
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="30.0"
+				Height="5.0"/>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_OrbitalDrop_SatteliteByLoopMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="100" />
+	</GameObject>
+	<GameObject
+		id="OrbitalRefuseSatteliteDebris_SuperStructure"
+		inheritFrom="OrbitalRefuseProjectileUpgradeBase"
+		EditorName="OrbitalRefuseSatteliteDebris_SuperStructure">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUSateliteC" />
+					<ParticleSysBone
+								  FXParticleSystemTemplate="SovietOrbitalDebrisLargeFire"/>
+					<ParticleSysBone
+								  FXParticleSystemTemplate="SovietOrbitalDebrisLargeGlow"/>
+					<ParticleSysBone
+								  FXParticleSystemTemplate="SovietOrbitalDebrisLargeSmoke"/>
+					<ParticleSysBone
+								  FXParticleSystemTemplate="SovietOrbitalDebrisLargeSparks"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FireWeaponUpdate
+				id="ModuleTag_AntiAirWeapon"
+			xai:joinAction="Replace">
+				<FireWeaponNugget
+					WeaponName="SovietSuperStructureWeaponProjectileWeapon" />
+			</FireWeaponUpdate>
+			<FireWeaponWhenDead
+				id="ModuleTag_ImpactWarhead"
+				InitiallyActive="true"
+				DeathWeapon="SovietSuperStructureWeapon_WarHead">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_OrbitalDebrisLvl3" />
+				<Event
+					Index="onTerrainCollision"
+					FX=""/>
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SUSateliteC_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+		<Geometry>
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="30.0"
+				Height="5.0"/>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_OrbitalDrop_SatteliteByLoopMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="100" />
+	</GameObject>
+</AssetDeclaration>

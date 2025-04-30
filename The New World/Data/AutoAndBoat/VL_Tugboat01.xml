@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml"/> 
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseBoat.xml"/>
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseCollapsingObject.xml"/>
+	</Includes>
+	<GameObject
+		id="VL_TugBoat01"
+		inheritFrom="BaseBoat"
+		VoicePriority="188"
+		EditorName="VL_TugBoat01">
+		<LocomotorSet
+			Locomotor="AlliedAntiInfantryWaterLocomotor"
+			Condition="NORMAL_UPGRADED"
+			Speed="60" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"/>
+		<Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw"
+				  ExtraPublicBone="BONE_D_01 BONE_D_02 BONE_D_03 BONE_D_04 BONE_D_05 BONE_D_06 BONE_D_07 BONE_D_08 BONE_D_09 BONE_D_10 BONE_D_11 BONE_D_12 BONE_D_13 BONE_D_14 BONE_D_15 BONE_D_16 BONE_D_17 BONE_D_18 BONE_D_19 BONE_D_20">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="OD_TUGBOAT01N"/>
+					<Texture
+						Original="OD_Tugboat01"
+						New="VL_Tugboat01" />
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="OD_TUGBOAT01N"/>
+					<Material
+						ShaderName="FX_FormPreview.fx"
+						TechniqueName="Default">
+						<Constants>
+							<Texture Name="SpecMap">
+								<Value>FXGradient01</Value>
+							</Texture>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="OD_TUGBOAT01N" />
+					<Texture
+						Original="OD_Tugboat01"
+						New="VL_Tugboat01" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="OD_TUGBOAT01N" />
+					<Texture
+						Original="OD_Tugboat01"
+						New="VL_Tugboat01_D" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/> 
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					StateName="STATE_OnWater">					
+					<ParticleSysBone
+						BoneName="FX_Wake"
+						FXParticleSystemTemplate="SVAntiAirShipWaterWake"
+						FollowBone="true"/>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes=" OVER_WATER"
+					StateName="STATE_OnWater">					
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="SmallShipWakeIdle"
+						FollowBone="true"/>
+				</AnimationState>
+      </ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<ContestableGarrisonContain
+				id="ModuleTag_Garrison"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED CAN_ATTACK"
+				ContainMax="8"
+				EnterSound="VehicleEnter"
+				ExitSound="VehicleExit"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="false"
+				AllowNeutralInside="true"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				KillPassengersOnDeath="true"
+				RequiredClearingObjectStatus="CAN_CONTEST_GARRISON"
+				IgnoreDisabledBitsForRiders="HELD UNDERPOWERED TEMPORARILY_BUSY INFILTRATED PARALYZED"
+				EjectSpeed="3">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY">
+					<ExcludeThing>AlliedScoutInfantry</ExcludeThing>
+					<ExcludeThing>SovietScoutInfantry</ExcludeThing>
+					<ExcludeThing>EUScoutVehicle</ExcludeThing>
+					<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+				</PassengerFilter>
+				<PassengerData
+					BonePrefix="BONE_D_01 BONE_D_02 BONE_D_03 BONE_D_04 BONE_D_05 BONE_D_06 BONE_D_07 BONE_D_08 BONE_D_09 BONE_D_10 BONE_D_11 BONE_D_12 BONE_D_13 BONE_D_14 BONE_D_15 BONE_D_16 BONE_D_17 BONE_D_18 BONE_D_19 BONE_D_20">
+					<Filter
+						Rule="ANY"
+						Include="INFANTRY"/>					
+				</PassengerData>
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ContestableGarrisonContain>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="VL_TugBoat01_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="500"
+				MaxHealthReallyDamagedPercentage="20">
+				</ActiveBody>
+		</Body>
+    <Geometry>
+		<Shape
+			 Type= "BOX"
+			 MajorRadius = "51.3662"
+			 MinorRadius = "18.0723"
+			 Height = "24.0654"
+			 ContactPointGeneration = "VEHICLE" >
+			<Offset
+				x = "1.79689"
+				y = "-0.323912"
+				z = "0.0" />
+		</Shape>
+    </Geometry>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushEqualLevelProps="true"
+			CrusherLevel="10"
+			CrushableLevel="20"/>
+	</GameObject>
+	<GameObject
+		id="VL_TugBoat01_Collapse"
+		inheritFrom="BaseCollapsingObject"
+		EditorName="VL_TugBoat01_Collapse">
+		<Draws>
+			<DynamicsDraw
+				id="ModuleTag_Draw"
+				Collision="NONINTERCOLLIDING"
+				Explodiness="1.0"
+				InitiallyActive="false">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="OD_TUGBOAT01N" />
+					<Texture
+						Original="OD_Tugboat01"
+						New="VL_Tugboat01_D" />
+				</ModelConditionState>
+				<BoneVolumes>
+<BoneVolume BoneName="Bone_D_01" Mass="294" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="2.265" HalfSizeY="4.061" HalfSizeZ="1.6" >
+		<Translation x="-16.371" y="-1.478" z="9.544" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_02" Mass="38" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="8.485" HalfSizeY="0.452" HalfSizeZ="0.507" >
+		<Translation x="-2.025" y="2.247" z="35.363" />
+		<Rotation x="-0.0386195" y="0.321334" z="0.112904" w="0.939418" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_03" Mass="1903" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="7.766" HalfSizeY="4.092" HalfSizeZ="2.995" >
+		<Translation x="6.17" y="2.995" z="12.359" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_04" Mass="739" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="7.216" HalfSizeY="3.486" HalfSizeZ="1.47" >
+		<Translation x="-1.155" y="-2.49" z="30.125" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_05" Mass="4769" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="11.71" HalfSizeY="4.246" HalfSizeZ="4.796" >
+		<Translation x="5.891" y="8.955" z="1.016" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_06" Mass="170" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="2.146" HalfSizeY="1.711" HalfSizeZ="2.326" >
+		<Translation x="44.917" y="11.817" z="7.029" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_07" Mass="170" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="1.711" HalfSizeY="2.146" HalfSizeZ="2.326" >
+		<Translation x="49.654" y="-6.141" z="7.57" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_08" Mass="114" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="2.269" HalfSizeY="1.088" HalfSizeZ="2.326" >
+		<Translation x="14.115" y="17.952" z="5.611" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_09" Mass="114" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="2.269" HalfSizeY="1.088" HalfSizeZ="2.326" >
+		<Translation x="-16.41" y="-17.706" z="5.611" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_10" Mass="28" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="8.555" HalfSizeY="0.465" HalfSizeZ="0.359" >
+		<Translation x="0.047" y="-3.813" z="33.592" />
+		<Rotation x="0.0272549" y="0.325857" z="-0.0787677" w="0.941738" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_11" Mass="1607" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="4.658" HalfSizeY="3.32" HalfSizeZ="5.198" >
+		<Translation x="24.767" y="2.614" z="15.564" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_12" Mass="886" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="7.099" HalfSizeY="1.415" HalfSizeZ="4.414" >
+		<Translation x="22.941" y="-5.615" z="15.557" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_13" Mass="647" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="9.269" HalfSizeY="6.382" HalfSizeZ="0.547" >
+		<Translation x="23.324" y="0.558" z="24.476" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_14" Mass="367" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="2.99" HalfSizeY="1.956" HalfSizeZ="3.145" >
+		<Translation x="6.653" y="-0.041" z="25.241" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_15" Mass="6984" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="7.376" HalfSizeY="9.798" HalfSizeZ="4.832" >
+		<Translation x="37.129" y="0.079" z="4.452" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_16" Mass="2807" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3.985" HalfSizeY="6.463" HalfSizeZ="5.45" >
+		<Translation x="-19.968" y="6.856" z="1.016" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_17" Mass="2778" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="6.701" HalfSizeY="3.968" HalfSizeZ="5.225" >
+		<Translation x="-39.289" y="-7.524" z="4.529" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_18" Mass="1783" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3.562" HalfSizeY="4.594" HalfSizeZ="5.45" >
+		<Translation x="-20.253" y="-9.654" z="1.016" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_19" Mass="3568" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="6.294" HalfSizeY="4.842" HalfSizeZ="5.855" >
+		<Translation x="-39.289" y="6.536" z="3.885" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_20" Mass="5591" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="13.367" HalfSizeY="4.264" HalfSizeZ="4.905" >
+		<Translation x="6.028" y="-7.55" z="1.016" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+				</BoneVolumes>
+				<Lifetime
+					Delay="10s"
+					FadeTime="10s" />
+			</DynamicsDraw>
+		</Draws>
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="15s"
+			MaxLifetime="15s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1"
+			DestructionDelay="20s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+	</GameObject>
+	<ObjectCreationList
+		id="VL_TugBoat01_Die_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="LIKE_EXISTING INHERIT_VELOCITY"
+			Count="1"
+			VelocityScale="20.0"
+			MinForceMagnitude="1.0"
+			MaxForceMagnitude="2.0"
+			MinForcePitch="90d"
+			MaxForcePitch="75d">
+			<CreateObject>VL_TugBoat01_Collapse</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+</AssetDeclaration>

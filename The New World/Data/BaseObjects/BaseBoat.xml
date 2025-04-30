@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="instance"
+			source="BaseVehicle.xml" />
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<GameObject
+		id="BaseBoat"
+		inheritFrom="BaseVehicle"
+		Side="Neutral"
+		EditorSorting="UNIT"
+		SelectPortrait="Portrait_Ship"
+		ButtonImage="Button_Ship"
+		CommandSet="NeutralVehicleCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS VEHICLE GARRISON AMPHIBIOUS T1_UNIT NO_HEAL_ICON GARRISONABLE_UNTIL_DESTROYED CANNOT_HIJACK IGNORES_SELECT_ALL CYCLE_SELECTION CIVILIAN_UNIT"
+		UnitCategory="VEHICLE"
+		Description="Desc:Boat"
+		TypeDescription="Type:Boat">
+		<EquivalentTo>AM_Boat04Spawn</EquivalentTo>
+		<EquivalentTo>AM_Boat02</EquivalentTo>
+		<EquivalentTo>NY_Boat01Spawn</EquivalentTo>
+		<EquivalentTo>AM_Boat03</EquivalentTo>
+		<EquivalentTo>NY_Boat03Spawn</EquivalentTo>
+		<EquivalentTo>CC_Boat01Spawn</EquivalentTo>
+		<EquivalentTo>OD_WaterTaxi01Spawn</EquivalentTo>
+		<EquivalentTo>GI_Boat01Spawn</EquivalentTo>
+		<EquivalentTo>AM_Boat01Spawn</EquivalentTo>
+		<EquivalentTo>NY_Boat02Spawn</EquivalentTo>
+		<EquivalentTo>OD_TugBoat01</EquivalentTo>
+		<EquivalentTo>VL_ShippingBoat01Spawn</EquivalentTo>
+		<EquivalentTo>HA_Kayak02Spawn</EquivalentTo>
+		<EquivalentTo>HA_Kayak01Spawn</EquivalentTo>
+		<EquivalentTo>VL_TugBoat01</EquivalentTo>
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:Boat</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0" />
+		</ObjectResourceInfo>
+		<LocomotorSet
+			id="NoManLandLocomotor"
+			Locomotor="ShipSmallNoManLocomotor"
+			Condition="NORMAL"
+			Speed="0.0" />
+		<LocomotorSet
+			id="LandLocomotor"
+			Locomotor="BaseBoatLandLocomotor"
+			Condition="NORMAL_UPGRADED"
+			Speed="2" />
+		<ArmorSet
+			Armor="AutoAndShipArmor"
+			DamageFX="VehicleDamageFX" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ContainedMembersProvideWeapon="true" />
+		<Behaviors>
+			<FireWeaponCollide
+				id="ModuleTag_FireBaseAutoAndShipWeaponCollide"
+				xai:joinAction="Remove" />
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Veteran"
+				xai:joinAction="Remove" />
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Elite"
+				xai:joinAction="Remove" />
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Heroic"
+				xai:joinAction="Remove" />
+			<AutoHealBehavior
+				id="Upgrade_HeroicHeal"
+				xai:joinAction="Remove" />
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="CivilianAutoShipWeaponDummy"
+						ObjectStatus="WEAPON_UPGRADED_01" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_ObjectDefault</TriggeredBy>
+			</StatusBitsUpgrade>
+			<LocomotorSetUpgrade
+				id="ModuleTag_LocomotorUpgrade">
+				<TriggeredBy>Upgrade_ObjectDefault</TriggeredBy>
+				<TriggeredBy>Upgrade_NoWeaponPassenger</TriggeredBy>
+			</LocomotorSetUpgrade>
+			<SecondaryObjectListenerModule
+				id="ModuleTag_SecondaryObjectListener">
+				<ObjectEffectTuple>
+					<ObjectFilter
+						Rule="ALL">
+						<ExcludeThing>AlliedEngineer</ExcludeThing>
+						<ExcludeThing>JapanEngineer</ExcludeThing>
+					</ObjectFilter>
+					<UpgradeSelf>Upgrade_ObjectDefault</UpgradeSelf>
+				</ObjectEffectTuple>
+				<ObjectEffectTuple>
+					<ObjectFilter
+						Rule="NONE">
+						<IncludeThing>AlliedEngineer</IncludeThing>
+						<IncludeThing>JapanEngineer</IncludeThing>
+					</ObjectFilter>
+					<UpgradeSelf>Upgrade_NoWeaponPassenger</UpgradeSelf>
+				</ObjectEffectTuple>
+			</SecondaryObjectListenerModule>
+			<SquishCollide
+				id="DefaultSquishCollide"
+				xai:joinAction="Replace"
+				CrushKillDelay="0.13s"
+				UseVehicleStyleCrush="true"
+				UseDirectionCheck="false" />
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AttributeModifierAura"
+				InitiallyActive="true"
+				AttributeModifierName="AttributeModifier_AutoAndShipGarrisoned"
+				RefreshDelay="0.52s"
+				AllowSelf="false"
+				AffectContainedOnly="true">
+				<ObjectFilter
+					Rule="ALL"
+					Exclude="SURPRISE_ATTACKER" />
+			</AttributeModifierAuraUpdate>
+			<InvisibilityBehavior
+				id="ModuleTag_Invisibility"
+				InvisibilityTemplate="StealthGarrisonInvisibilityTemplate" />
+			<LoseHealthUpdate
+				id="ModuleTag_RapidLaunchHealthDrain"
+				HealthTrigger="101%"
+				DamagePerSecond="10">
+				<ObjectStatusValidation
+					RequiredStatus="REALLYDAMAGED"
+					ForbiddenStatus="UNDER_IRON_CURTAIN" />
+			</LoseHealthUpdate>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_RiptideDie" />
+			</FXListBehavior>
+			<Physics
+				id="ModuleTag_Physics" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="UnitStopFunctions" />
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="DefaultBody" />
+		</Body>
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="250" />
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALL_Hydrofoil_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+			<AudioEntry
+				Sound="Ship_Small_MoveLoopWater"
+				AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false" />
+			</AIUpdate>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine"
+				DefaultLocomotorSet="NORMAL_UPGRADED">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="true"
+					CheckVisionRange="true" />
+			</AIUpdate>
+		</AI>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			xai:joinAction="Replace"
+			CrusherLevel="1"
+			CrushableLevel="10">
+			<ExtraCrushLevels CrusherLevel="1" CrushableLevel="127"
+				ModelConditionMatch="IRONCURTAIN" />
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="BaseAutoSpawn"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="VEHICLE UNATTACKABLE SKIRMISH_AI_DONT_CONSIDER_THREAT IGNORE_IN_AI_HUNT_TACTIC IGNORES_SELECT_ALL WB_DISPLAY_SCRIPT_NAME">
+		<ArmorSet
+			Armor="NoArmor" />
+		<LocomotorSet
+			Locomotor="JapanPointDefenseDroneLocomotor"
+			Condition="NORMAL"
+			Speed="0.0" />
+		<Behaviors>
+			<ObjectSMCHelper
+				id="ObjectSMCHelper" />
+			<ObjectDefectionHelper
+				id="ObjectDefectionHelper" />
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime" />
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<Physics
+				id="ModuleTag_Physics" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				StateMachine="UnitAIStateMachine" />
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1" />
+		</Body>
+		<ShadowInfo
+			Type="NONE" />
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="0" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+</AssetDeclaration>

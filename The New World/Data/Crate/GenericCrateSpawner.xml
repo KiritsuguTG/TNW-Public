@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+	</Includes>
+
+	<GameObject
+		id="GenericCrateSpawner"
+		Side="Neutral"
+		EditorSorting="UNIT"
+		CommandSet="EmptyCommandSet"
+		KindOf="NO_COLLIDE"
+		RadarPriority="NOT_ON_RADAR"
+		EditorName="GenericCrateSpawner">
+		<DisplayName>GenericCrateSpawner</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+		</Draws>
+		<Behaviors>
+			<SpawnCrateUpdate
+				id="ModuleTag_SpawnCrateUpdate"
+				CreateFrequency="20s">
+				<CrateList>SpawnCrateSystem</CrateList>
+				<BlockingUnits
+					Rule="ANY"
+					Include="VEHICLE INFANTRY TIBERIUM"/>
+			</SpawnCrateUpdate>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="7.0"
+				Height="13.0"/>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="0" />
+	</GameObject>
+
+	<GameObject
+		id="SpawnCrateSystem"
+		SelectPortrait="Portrait_Neutral"
+		ButtonImage="Button_Neutral"
+		Side="Neutral"
+		EditorSorting="UNIT"
+		TransportSlotCount="1"
+		BuildTime="0"
+		CommandSet="EmptyCommandSet"
+		KindOf="IMMOBILE NOT_AUTOACQUIRABLE UNATTACKABLE CAN_CAST_REFLECTIONS"
+		RadarPriority="COMMANDO"
+		UnitCategory="STRUCTURE"
+		PlacementViewAngle="0d"
+		EditorName="SpawnCrateSystem"
+		Description="DESC:UnitCrate">
+		<DisplayName>NAME:UnitCrate</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="0" Amount="99999"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NPCrate01" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CrateRandomSpawn">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type= "CYLINDER"
+				MajorRadius = "9.68515"
+				MinorRadius = "9.68515"
+				Height = "16.0349" >
+				<Offset
+					x = "0.0348139"
+					y = "-0.0732222"
+					z = "0.0" />
+			</Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="1"
+			ShroudClearingRange="50" />
+	</GameObject>
+	<ObjectCreationList
+		id="OCL_CrateRandomSpawn"
+		Flags="CHOOSE_ONE_CREATE_NUGGET_FROM_LIST">
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>HealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VeterancyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>ShroudCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>UnitCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>ShroudCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>UnitCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>ShroudCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>UnitCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>ShroudCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>UnitCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>ShroudCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>UnitCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>ShroudCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>UnitCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SuperMoneyCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SuperHealCrate</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SuperVeterancyCrate</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+</AssetDeclaration>

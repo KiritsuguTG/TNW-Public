@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<AIStrategicStateDefinition
+		  id="TNWLastAttackForHumanNoSpawn">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>OverattackSpawn</IncludeThing>
+					<IncludeThing>SiegeattackSpawn</IncludeThing>
+					<IncludeThing>FlankattackSpawn</IncludeThing>
+					<IncludeThing>RushattackSpawn</IncludeThing>
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<TimerHeuristic StartTime="2400s" CountFrom="AI_START"/>
+		</Heuristic>
+		<Tactic id="Attack" Tactic="Hunt" Targetless="true">
+			<TeamTemplate MinUnits="1"
+						  RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+						  AllowedLocomotorTypes="LAND WATER AMPHIBIOUS AIR"
+						  IncludeKindOf="CAN_ATTACK" ExcludeKindOf="ENGINEER IGNORES_SELECT_ALL HARVESTER LIMITED_PRODUCTION_AIRCRAFT"
+						  Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true" AllowRecruitUnitsInCombat="true" SortByDistance="false"
+						  MicroManager="TNWHuntMicroManager"/>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+	  id="TNWBalancedAttackGroundNoSpawn"
+	  MaxTargets="1"
+		CannotAttackTargetReaction="Ignore">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>OverattackSpawn</IncludeThing>
+					<IncludeThing>SiegeattackSpawn</IncludeThing>
+					<IncludeThing>FlankattackSpawn</IncludeThing>
+					<IncludeThing>RushattackSpawn</IncludeThing>
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<PathToTargetHeuristic Surface="Land" PathExists="true" ObjectTypeToUseForTest="SovietAntiVehicleVehicleTech3" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ClosestToEnemyAllLandAttackUnitHeuristic" Priority="100"/>
+		<TargetHeuristic TargetHeuristic="SafestToGroundHarvesterHeuristic" Priority="50"/>
+		<TargetHeuristic TargetHeuristic="SafestToGroundStructureHeuristic" Priority="50"/>
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandBaseStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterBaseStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterStructureHeuristic" Priority="10" />
+		<Tactic id="Attack" Tactic="SimpleAttack" DisbandAfterRetreatTeamSize="999">
+			<TeamTemplate MinUnits="10"
+						  RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+						  IncludeKindOf="CAN_ATTACK" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER SHIP LIMITED_PRODUCTION_AIRCRAFT"
+						  AllowedLocomotorTypes="LAND AMPHIBIOUS AIR"
+						  Priority="STANDARD" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false" SortByDistance="false"
+						  MicroManager="TNWStandardMicroManager">
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+	  id="TNWBalancedAttackWaterNoSpawn"
+	  MaxTargets="1"
+		CannotAttackTargetReaction="Ignore">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>OverattackSpawn</IncludeThing>
+					<IncludeThing>SiegeattackSpawn</IncludeThing>
+					<IncludeThing>FlankattackSpawn</IncludeThing>
+					<IncludeThing>RushattackSpawn</IncludeThing>
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<PathToTargetHeuristic Surface="Water" PathExists="true" ObjectTypeToUseForTest="SovietAntiNavyShipTech2" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ClosestToEnemyAllWaterAttackUnitHeuristic" Priority="50"/>
+		<TargetHeuristic TargetHeuristic="SafestToWaterHarvesterHeuristic" Priority="50"/>
+		<TargetHeuristic TargetHeuristic="SafestToWaterStructureHeuristicTNW" Priority="50"/>
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandBaseStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterBaseStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterStructureHeuristic" Priority="10" />
+		<Tactic id="Attack" Tactic="SimpleAttack" DisbandAfterRetreatTeamSize="999">
+			<TeamTemplate MinUnits="5"
+						  RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+						  IncludeKindOf="CAN_ATTACK" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER INFANTRY LIMITED_PRODUCTION_AIRCRAFT"
+						  AllowedLocomotorTypes="WATER AMPHIBIOUS AIR"
+						  Priority="STANDARD" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false" SortByDistance="false"
+						  MicroManager="TNWStandardMicroManager">
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+	  id="TNWCleanup_BRUTALNoSpawn"
+	  MaxTargets="3"
+		CannotAttackTargetReaction="Ignore">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>OverattackSpawn</IncludeThing>
+					<IncludeThing>SiegeattackSpawn</IncludeThing>
+					<IncludeThing>FlankattackSpawn</IncludeThing>
+					<IncludeThing>RushattackSpawn</IncludeThing>
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<IncomeAdvantageHeuristic Value="6.0" Above="true"/>
+			<PowerAdvantageHeuristic Value="6.0" Above="true" IncludeOwnDefenses="false" IncludeEnemyDefenses="true"/>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="AttackEnemySuperStructure" Priority="100"/>
+		<TargetHeuristic TargetHeuristic="ClosestStructureHeuristic_NonUnique" Priority="50"/>
+		<TargetHeuristic TargetHeuristic="ClosestUnitHeuristic_NonUnique" Priority="50"/>
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandBaseStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterBaseStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterStructureHeuristic" Priority="10" />
+		<Tactic id="Attack" Tactic="SimpleAttack" EndBehavior="RAMPAGE" DisbandAfterRetreatTeamSize="999" UseAestheticsManager="false">
+			<TeamTemplate MinUnits="1"
+						  RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+						  IncludeKindOf="CAN_ATTACK" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER LIMITED_PRODUCTION_AIRCRAFT"
+						  AllowedLocomotorTypes="LAND WATER AMPHIBIOUS AIR"
+						  Priority="STANDARD" ReleaseType="RELEASE_TO_PRIORITY" AlwaysRecruit="true" SortByDistance="false"
+						  MicroManager="TNWCleanupMicroManager">
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+	  id="TNWLandDefenseNoSpawn"
+	  MaxTargets="3">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>OverattackSpawn</IncludeThing>
+					<IncludeThing>SiegeattackSpawn</IncludeThing>
+					<IncludeThing>FlankattackSpawn</IncludeThing>
+					<IncludeThing>RushattackSpawn</IncludeThing>
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="FriendlyLandStructureHeuristic"/>
+		<Tactic id="Defense" Tactic="StaticDefense" Distance="450" EndBehavior="DISBAND">
+			<TeamTemplate MinUnits="1" MaxUnits="14"
+						  RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+						  IncludeKindOf="CAN_ATTACK" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER LIMITED_PRODUCTION_AIRCRAFT INFILTRATOR ENGINEER"
+						  AllowedLocomotorTypes="LAND AMPHIBIOUS AIR"
+						  Priority="DEFENSE" AlwaysRecruit="true" SortByDistance="true"
+						  MicroManager="TNWDefenseMicroManager">
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+	  id="TNWWaterDefenseNoSpawn"
+	  MaxTargets="3">
+		<Heuristic>
+			<ConstantHeuristic/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>OverattackSpawn</IncludeThing>
+					<IncludeThing>SiegeattackSpawn</IncludeThing>
+					<IncludeThing>FlankattackSpawn</IncludeThing>
+					<IncludeThing>RushattackSpawn</IncludeThing>
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="FriendlyWaterStructureHeuristic"/>
+		<Tactic id="Defense" Tactic="StaticDefense" Distance="450" EndBehavior="DISBAND">
+			<TeamTemplate MinUnits="1" MaxUnits="14"
+						  RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+						  IncludeKindOf="CAN_ATTACK" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER LIMITED_PRODUCTION_AIRCRAFT INFILTRATOR ENGINEER"
+						  AllowedLocomotorTypes="WATER AMPHIBIOUS AIR"
+						  Priority="DEFENSE" AlwaysRecruit="true" SortByDistance="true"
+						  MicroManager="TNWDefenseMicroManager">
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+</AssetDeclaration>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<FXList id="FX_MUMFootStep">
+		<NuggetList>
+			<ParticleSystem
+				Particle=""
+				OnlyIfOnLand="true" />
+			<ParticleSystem
+				Particle=""
+				OnlyIfOnWater="false" />
+			<DynamicDecal
+				Decal="SCCBalrogFoot"
+				Size="15"
+				OpacityStart="0"
+				OpacityFadeTimeOne="0.5s"
+				OpacityPeak="0.25"
+				OpacityPeakTime="0.225s"
+				OpacityFadeTimeTwo="20s"
+				OpacityEnd="0"
+				StartingDelay="0s"
+				Lifetime="21s">
+				<Color R="128" G="128" B="128" />
+			</DynamicDecal>
+		</NuggetList>
+	</FXList>
+
+	<FXList id="FX_MUMRightFrontFootStep">
+		<NuggetList>
+			<FXListAtBonePos
+				FX="FX_MUMFootStep"
+				Bone="E_FRONTRIGHT" />
+		</NuggetList>
+	</FXList>
+
+	<FXList id="FX_MUMLeftFrontFootStep">
+		<NuggetList>
+			<FXListAtBonePos
+				FX="FX_MUMFootStep"
+				Bone="E_FRONTLEFT" />
+		</NuggetList>
+	</FXList>
+
+	<FXList id="FX_MUMRightRearFootStep">
+		<NuggetList>
+			<FXListAtBonePos
+				FX="FX_MUMFootStep"
+				Bone="E_BACKRIGHT" />
+		</NuggetList>
+	</FXList>
+
+	<FXList id="FX_MUMLeftRearFootStep">
+		<NuggetList>
+			<FXListAtBonePos
+				FX="FX_MUMFootStep"
+				Bone="E_BACKLEFT" />
+		</NuggetList>
+	</FXList>
+
+	<FXList id="FX_GDI_JuggernaughtShellDust">
+		<NuggetList>
+			<ParticleSystem
+				Particle="JuggDust"
+				OrientToObject = "true">
+			</ParticleSystem>
+		</NuggetList>
+	</FXList>
+
+	<FXList id="FX_MammothTankGun">
+		<NuggetList>
+			<ParticleSystem
+				Particle="GDIMammothGunDust"
+				OrientToObject="true" />
+			<ParticleSystem
+				Particle="GDIMammothGunFire"
+				OrientToObject="true" />
+			<ParticleSystem
+				Particle="GDIMammothGunFireRecoil"
+				OrientToObject="true" />
+			<ParticleSystem
+				Particle="GDIMammothGunGlow"
+				OrientToObject="true" />
+		<!--	<ParticleSystem
+				Particle="TankShellEject"
+				OrientToObject = "true">
+				<Offset x="-30.0" y="0.0" z="0.0" />
+			</ParticleSystem>	-->
+			<ParticleSystem
+				Particle="JuggSmoke"
+				OrientToObject = "true">
+				<Offset x="-30.0" y="0.0" z="0.0" />
+			</ParticleSystem>
+		</NuggetList>
+	</FXList>
+
+	<FXList id="FX_MammothTankGunHeroic">
+		<NuggetList>
+			<ParticleSystem
+				Particle="GDIMammothGunDust"
+				OrientToObject="true" />
+			<ParticleSystem
+				Particle="GDIMammothGunFireHeroic"
+				OrientToObject="true" />
+			<ParticleSystem
+				Particle="GDIMammothGunFireRecoilHeroic"
+				OrientToObject="true" />
+			<ParticleSystem
+				Particle="GDIMammothGunGlowHeroic"
+				OrientToObject="true" />
+		<!--	<ParticleSystem
+				Particle="TankShellEject"
+				OrientToObject = "true">
+				<Offset x="-30.0" y="0.0" z="0.0" />
+			</ParticleSystem>	-->
+			<ParticleSystem
+				Particle="JuggSmoke"
+				OrientToObject = "true">
+				<Offset x="-30.0" y="0.0" z="0.0" />
+			</ParticleSystem>
+		</NuggetList>
+	</FXList>
+
+	<FXList id="FX_MUMStructureAtk">
+		<NuggetList>
+			<FXParticleSysBone Particle="OliphantStructDebris" Bone="Trunk005">
+				<SecondaryObjectFilter
+					Rule="NONE"
+					Include="STRUCTURE" />
+			</FXParticleSysBone>
+			<FXParticleSysBone Particle="OliphantStructDust" Bone="Trunk005">
+				<SecondaryObjectFilter
+					Rule="NONE"
+					Include="STRUCTURE" />
+			</FXParticleSysBone>
+			<ParticleSystem Particle="OliphantUnitDust" OrientToObject="true">
+				<Offset x="75.0" y="0.0" z="10.0" />
+			</ParticleSystem>
+			<ViewShake
+				Type="SUBTLE">
+				<SecondaryObjectFilter
+					Rule="NONE"
+					Include="STRUCTURE" />
+			</ViewShake>
+			<Sound Value="ImpactCatapultRock">
+				<SecondaryObjectFilter
+					Rule="NONE"
+					Include="STRUCTURE" />
+			</Sound>
+		</NuggetList>
+	</FXList>
+
+	<FXList id="FX_EmotionTerror">
+		<NuggetList />
+	</FXList>
+	<FXList id="FX_EmotionRegroup">
+		<NuggetList />
+	</FXList>
+	<FXList id="FX_EmotionCheerForAboutToCrush">
+		<NuggetList />
+	</FXList>
+
+	<FXList id="FX_FireStartWoosh">
+		<NuggetList>
+			<Sound Value="FireStartWoosh" />
+		</NuggetList>
+	</FXList>
+
+	<FXList id="FX_OliphantDie">
+		<NuggetList>
+			<Sound Value="OliphantDie" />
+		</NuggetList>
+	</FXList>
+
+	<FXList id="FX_CavalryBurningFlame"
+		PlayEvenIfShrouded="true">
+		<NuggetList>
+			<FXParticleSysBone Particle="GPUCavalryFire" Bone="">
+				<Offset x="0.0" y="0.0" z="10.0" />
+			</FXParticleSysBone>
+		</NuggetList>
+	</FXList>
+
+	<FXList id="FX_GenericCrushImpactSound">
+		<NuggetList>
+			<Sound Value="ImpactCrushGeneric" />
+		</NuggetList>
+	</FXList>
+
+</AssetDeclaration>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<LogicCommand
+		Type="UNIT_BUILD"
+		id="Command_ConstructJapanSentinelVehicle">
+		<Object>JapanSentinelVehicle</Object>
+	</LogicCommand>
+	
+	<LogicCommand
+        Type="SPECIAL_POWER"
+        id="Command_ActivateLaserGlaiveBlastSpecialPower">
+        <SpecialPower>SpecialPower_TriggerLaserGlaiveBlast</SpecialPower>
+        <AISpecialPowerInfo 
+            Heuristic="AOE_ATTACK"
+            Manager="MICRO_MANAGER"
+            NeverUseWhileRetreating="true"
+            NeverUseWhilePullingBack="true">
+            <SpecialPowerWeapon
+                Weapon="JapanSentinelVehicleLaserGlaiveBlastWeapon"
+                AoeAttackPowerLocationPreference="PREFER_MAXIMUM_DAMAGE"/>
+        </AISpecialPowerInfo>
+    </LogicCommand>
+</AssetDeclaration>

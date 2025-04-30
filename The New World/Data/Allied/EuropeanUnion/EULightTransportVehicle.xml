@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<!-- aka Sudden Transport -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:Units/EULightTransportVehicle/MIRAGETRANSPORT.w3x" />
+		<Include type="all" source="ART:Units/EULightTransportVehicle/MIRAGETRANSPORT_IDLA.w3x" />
+		<Include type="all" source="ART:Units/EULightTransportVehicle/MIRAGETRANSPORTSTEAL.w3x" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+  
+	<GameObject
+		id="EULightTransportVehicle"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_AlliedAntiVehicleVehicleTech3"
+		ButtonImage="Button_AlliedAntiVehicleVehicleTech3_on"
+		Side="Allies"
+		SubGroupPriority="725"
+		EditorSorting="UNIT"
+		BuildTime="5"
+		CommandSet="EULightTransportVehicleCommandSet"
+		KindOf="SELECTABLE DISGUISER AMPHIBIOUS CAN_CAST_REFLECTIONS SCORE TRANSPORT VEHICLE CAN_BE_FAVORITE_UNIT GARRISONABLE_UNTIL_DESTROYED"
+		ThreatLevel="10"
+		WeaponCategory="GUN"
+		VoicePriority="176"
+		BountyValue="150"
+		EditorName="EULightTransportVehicle"
+		Description="Desc:EULightTransportVehicle"
+		TypeDescription="Type:TransportUnit"
+		HealthBoxHeightOffset="25">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:EULightTransportVehicle</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="500"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseUnAttackVehicleArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="JapanLightTransportVehicleLocomotor"
+			Condition="NORMAL"
+			Speed="100.0" />
+		<LocomotorSet
+			Locomotor="JapanLightTransportVehicle_WaterLocomotor"
+			Condition="NORMAL"
+			Speed="100.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="false"
+			OverrideOuterDistanceToTarget="350"/> 
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="FXWeapon ">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="MIRAGETRANSPORT" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED DISGUISED">
+					<Model
+						Name="MIRAGETRANSPORT" />
+					<Texture
+						Original="AUAntiVehicleVehicleTech3"
+						New="AUAntiVehicleVehicleTech3_D" />
+					<ParticleSysBone
+						BoneName="Bone_Ear_Left"
+						FXParticleSystemTemplate="Primage_Disguise_Rays"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_Ear_Right"
+						FXParticleSystemTemplate="Primage_Disguise_Rays02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DISGUISED">
+					<Model
+						Name="MIRAGETRANSPORT" />
+					<ParticleSysBone
+						BoneName="Bone_Ear_Left"
+						FXParticleSystemTemplate="Primage_Disguise_Rays"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_Ear_Right"
+						FXParticleSystemTemplate="Primage_Disguise_Rays02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="MIRAGETRANSPORT" />
+					<Texture
+						Original="AUAntiVehicleVehicleTech3"
+						New="AUAntiVehicleVehicleTech3_D" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="MIRAGETRANSPORT_IDLA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_WaterDraw"
+				InvertStealthOpacity="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="FXInvisBone" />
+					<ParticleSysBone
+						BoneName="FX_WAKE"
+						FXParticleSystemTemplate="RiptideDust"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+				  ParseCondStateType="PARSE_NORMAL"
+				  ConditionsYes="OVER_WATER">
+					<Model Name="FXInvisBone" />
+					<ParticleSysBone
+					  BoneName="None"
+					  FXParticleSystemTemplate="HelicopterMovingWaterWake"
+					  FollowBone="false" />
+					<ParticleSysBone
+					  BoneName="None"
+					  FXParticleSystemTemplate="HoverTransportWaterMist"
+					  FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<!-- DRAW PARTICLES -->
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUAntiVehicleVehicleTech3_FX" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED DISGUISED">
+					<Model
+						Name="AUAntiVehicleVehicleTech3_FX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED DISGUISED">
+					<Model
+						Name="AUAntiVehicleVehicleTech3_FX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AUAntiVehicleVehicleTech3_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUAntiVehicleVehicleTech3_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+					  id="ModuleTag_Draw_HeadLightL"
+					  AttachToBoneInAnotherModule="fxheadlight_L"
+					  OkToChangeModelColor="true">
+				<ModelConditionState
+				  ParseCondStateType="PARSE_DEFAULT">
+					<Model
+					  Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+				  ParseCondStateType="PARSE_NORMAL"
+				  ConditionsYes="DISGUISED NIGHT">
+					<Model
+					  Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+				  ParseCondStateType="PARSE_NORMAL"
+				  ConditionsYes="DISGUISED">
+					<Model
+					  Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+				  ParseCondStateType="PARSE_NORMAL"
+				  ConditionsYes="NIGHT">
+					<Model
+					  Name="EX_Headlights" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+			  id="ModuleTag_Draw_HeadLightR"
+			  AttachToBoneInAnotherModule="fxheadlight_R"
+			  OkToChangeModelColor="true">
+				<ModelConditionState
+				  ParseCondStateType="PARSE_DEFAULT">
+					<Model
+					  Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+				  ParseCondStateType="PARSE_NORMAL"
+				  ConditionsYes="DISGUISED NIGHT">
+					<Model
+					  Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+				  ParseCondStateType="PARSE_NORMAL"
+				  ConditionsYes="DISGUISED">
+					<Model
+					  Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+				  ParseCondStateType="PARSE_NORMAL"
+				  ConditionsYes="NIGHT">
+					<Model
+					  Name="EX_Headlights" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FireWeaponCollide
+				id="ModuleTag_FireBaseAutoAndShipWeaponCollide"
+				xai:joinAction="Remove"/>
+			<SpecialPower
+				id="ModuleTag_Disguise"
+				SpecialPowerTemplate="SpecialPower_PrimageDisguise"
+				UpdateModuleStartsAttack="true" />
+			<SpecialDisguiseUpdate
+				id="ModuleTag_DisguiseUpdate"
+				SpecialPowerTemplate="SpecialPower_PrimageDisguise"
+				OpacityTarget="0.5"
+				ScanRadiusForPropDisguise="250.0"
+				DisguiseFX="FX_PrimageDisguise">
+				<TerrainData
+					TerrainClass="Misc"
+					ObjectTemplate="PrimageDisguise_Tree01"/>
+				<TerrainData
+					TerrainClass="Grass"
+					ObjectTemplate="PrimageDisguise_Tree01"/>
+				<TerrainData
+					TerrainClass="Snow"
+					ObjectTemplate="PrimageDisguise_Tree02"/>
+				<TerrainData
+					TerrainClass="Mud"
+					ObjectTemplate="PrimageDisguise_Rock01"/>
+				<TerrainData
+					TerrainClass="Dirt"
+					ObjectTemplate="PrimageDisguise_Rock01"/>
+				<TerrainData
+					TerrainClass="Cliff"
+					ObjectTemplate="PrimageDisguise_Rock01"/>
+				<TerrainData
+					TerrainClass="Sand"
+					ObjectTemplate="PrimageDisguise_Rock01"/>
+				<TerrainData
+					TerrainClass="Rock"
+					ObjectTemplate="PrimageDisguise_Rock01"/>
+				<TerrainData
+					TerrainClass="Road"
+					ObjectTemplate="PrimageDisguise_Truck01"/>
+				<TerrainData
+					TerrainClass="Shrub"
+					ObjectTemplate="PrimageDisguise_Tree01"/>
+			</SpecialDisguiseUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AUAntiVehicleVehicleTech3_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_AlliedChieftanDie" />
+			</FXListBehavior>
+			<TransportContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED NO_ATTACK"
+				ContainMax="7"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="VehicleExit"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY">
+					<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+				</PassengerFilter>
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="CHASSIS">
+					<Filter
+						Rule="ANY"
+						Include="INFANTRY">
+						<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+					</Filter>
+				</PassengerData>
+			</TransportContain>
+			<SpecialPower
+				id="ModuleTag_GenericGroundEjectPassengers"
+				SpecialPowerTemplate="SpecialPower_GenericGroundEjectPassengers"
+				UpdateModuleStartsAttack="true" />
+			<EjectPassengersSpecialAbilityUpdate
+				id="ModuleTag_GenericGroundEjectPassengersUpdate"
+				SpecialPowerTemplate="SpecialPower_GenericGroundEjectPassengers"
+				Height="0.0"
+				TimePerPassenger="0s"
+				IgnoreTargetLocation="true"
+				Radius="30"
+				Options="RECONSTITUTE_STORED_COMMAND DO_NOT_DO_AI_SPECIAL_POWER"/>
+			<FireWeaponUpdate
+				id="Upgrade_TransportRepairHeal"
+				FireInterval="1.0s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="TransportRepairHealShortCircuit"
+					OneShot="false" />
+				<ObjectStatusValidation
+					RequiredStatus="PLAYER_POWER_5" />
+			</FireWeaponUpdate>
+			<StatusBitsUpgrade
+				id="ModuleTag_TransportRepairObjectStatus"
+				StatusToSet="PLAYER_POWER_5">
+				<TriggeredBy>Uprade_IFV_Repair</TriggeredBy>
+				<TriggeredBy>Uprade_SovietEngineer</TriggeredBy>
+			</StatusBitsUpgrade>
+			<SecondaryObjectListenerModule
+				id="ModuleTag_TransportRepairObjectListener"
+				Flags="NOTIFY_WEAPON_SET_UPDATE">
+				<!-- AlliedEngineer, SovietEngineer & JapanEngineer -->
+				<ObjectEffectTuple>
+					<ObjectFilter Rule="NONE">
+						<IncludeThing>JapanEngineer</IncludeThing>
+						<IncludeThing>AlliedEngineer</IncludeThing>
+					</ObjectFilter>
+					<UpgradeSelf>Uprade_IFV_Repair</UpgradeSelf>
+				</ObjectEffectTuple>
+				<ObjectEffectTuple>
+					<ObjectFilter Rule="NONE">
+						<IncludeThing>SovietEngineer</IncludeThing>
+					</ObjectFilter>
+					<UpgradeSelf>Uprade_SovietEngineer</UpgradeSelf>
+				</ObjectEffectTuple>
+			</SecondaryObjectListenerModule>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionSmall.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionSmall/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="DisguiseWhenIdleAIStateMachine">
+				<UnitAITargetChooserData />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="350" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_MoveLoop">
+				<ModelConditionSound Sound="Tank_Land_MoveLoop" RequiredFlags="MOVING" ExcludedFlags="OVER_WATER DYING" />
+				<ModelConditionSound Sound="Ship_Small_MoveLoopWater" RequiredFlags="MOVING OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="EU_MirageTransport_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_WaterEntrySplash">
+				<ModelConditionSound Sound="JAP_OreCollector_WaterSplashMS" RequiredFlags="OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="20.0"
+				MinorRadius="14.0"
+				Height="17.0"
+				ContactPointGeneration="VEHICLE"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="EU_MirageTransport_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="EU_MirageTransport_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="EU_MirageTransport_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="EU_MirageTransport_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="EU_MirageTransport_VoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_SuddenTransport_MoveStartLand" AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="200"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR"/>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="1"
+			CrushableLevel="25"
+			CrushWeapon="SovietCrushWeapon"/>
+	</GameObject>
+	  <GameObject
+		id="EULightTransportVehicle_Crate"
+		inheritFrom="EULightTransportVehicle"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="EULightTransportVehicle_Crate">
+		<EquivalentTo>EULightTransportVehicle</EquivalentTo>
+	</GameObject>
+	<GameObject
+		id="EULightTransportVehicle_Water"
+		inheritFrom="EULightTransportVehicle"
+		EditorName="EULightTransportVehicle_Water"
+		ProductionQueueType="WATERCRAFT">
+		<EquivalentTo>EULightTransportVehicle</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all"	source="ART:Units/StrategicArmyFighterAircraft/Su47MigMissle.w3x" />	
+	</Includes>
+	<GameObject
+		id="StrategicArmyTankMissileProjectile"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE SMALL_MISSILE DEFLECT_BY_SPECIAL_POWER"
+		EditorName="StrategicArmyTankMissileProjectile">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SU47MIGMISSLE" />
+					<ParticleSysBone
+						BoneName="FX_TRIL"
+						FXParticleSystemTemplate="SovietV4Trail"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_LIGHTS"
+				OkToChangeModelColor="true"
+				AttachToBoneInAnotherModule="FX_LIGHT01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUSUPPORTAIRCRAFTLIGHT.FX_LIGHTS" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+				Index="onDeath"
+				FX="FX_SOV_Mig_MissileImpactGround" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="DETONATE_CALLS_KILL ORIENT_TO_FLIGHT_PATH"
+				GroundHitFX="FX_SOV_Hind_MissleExplosionGround"
+				CurveFlattenMinDist="5"
+				Acceleration="10"
+				FlightPathAdjustDistPerSecond="40"
+				MaxDistanceToTravel="600.0"/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"/>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	<GameObject
+		id="StrategicArmyTankMissileProjectile_Veteran"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE SMALL_MISSILE DEFLECT_BY_SPECIAL_POWER"
+		EditorName="StrategicArmyTankMissileProjectile_Veteran">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SU47MIGMISSLE" />
+					<ParticleSysBone
+						BoneName="FX_TRIL"
+						FXParticleSystemTemplate="SovietV4Trail_Vet"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+				Index="onDeath"
+				FX="FX_SOV_Mig_MissileImpact_Vet" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="DETONATE_CALLS_KILL ORIENT_TO_FLIGHT_PATH"
+				GroundHitFX="FX_SOV_Hind_MissleExplosionGround_Vet"
+				CurveFlattenMinDist="5"
+				Acceleration="10"
+				FlightPathAdjustDistPerSecond="40"
+				MaxDistanceToTravel="600.0"/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"/>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+</AssetDeclaration>

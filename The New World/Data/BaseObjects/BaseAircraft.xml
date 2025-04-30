@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="instance"
+			source="BaseVehicle.xml" />
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<GameObject
+		id="BaseAircraft"
+		inheritFrom="BaseVehicle"
+		UnitCategory="AIRCRAFT">
+		<Behaviors>
+				<SquishCollide
+				id ="DefaultSquishCollideAircraft"
+				xai:joinAction="Replace"
+				CrushKillDelay="0.06s" />
+			<FireWeaponCollide
+				id="ModuleTag_FireBaseAutoAndShipWeaponCollide"
+				xai:joinAction="Remove"/>
+		</Behaviors>
+		<EvaEventArray
+				xai:joinAction="Replace">
+			<EvaEntry EvaEvent="UnitLost" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="BuildingConstructionStarted" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="UnitUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="UnitUnderAttackFromShroudedUnit" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="GenericUnitBeingBurned" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="AllyUnitUnderAttack" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="UnitAmbushed" EvaType="ambushed" />
+			<EvaEntry EvaEvent="EnemyAircraftDetected" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="EnemyAircraftDetected" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="NewConstructionOptions" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="BuildOnHold" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="BuildCancelled" EvaType="buildCancelled" />
+		</EvaEventArray>
+	</GameObject>
+</AssetDeclaration>

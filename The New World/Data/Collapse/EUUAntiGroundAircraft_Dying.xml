@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <Tags></Tags>
+    <Includes>
+        <Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+        <Include
+                type="instance"
+                source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+        <Include type="all" source="ART:Units/EUAntiGroundAircraft/EUAntiGroundAircraft_COL_SKN.W3X" />
+    </Includes>
+    <GameObject
+            id="EUAntiGroundAircraft_Dying"
+            EditorName="EUAntiGroundAircraft_Dying"
+            Description="Desc:EUAntiGroundAircraft_Dying"
+            KindOf="PROJECTILE INERT NO_COLLIDE">
+        <Draws>
+            <ScriptedModelDraw
+                    id="ModuleTag_ScriptedModelDraw"
+                    OkToChangeModelColor="true" >
+                <ModelConditionState
+                        ParseCondStateType="PARSE_DEFAULT">
+                    <Model
+                            Name="EUAntiGroundAircraft_SKN" />
+                    <Texture
+                            Original="AUAntiGroundAircraft"
+                            New="AUAntiGroundAircraft_D" />
+                    <xi:include
+                            href="DATA:Includes/VehicleCollapseParticles/AircraftDyingCollapseParticles.xml"
+                            xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AircraftDyingCollapseParticles/child::*)" />
+                </ModelConditionState>
+            </ScriptedModelDraw>
+        </Draws>
+        <Behaviors>
+            <Physics
+                    id="ModuleTag_Physics"
+                    TumbleRandomly="true"
+                    MaxXRotationVelocity="50"
+                    MaxYRotationVelocity="50"
+                    MaxZRotationVelocity="0"
+                    KillWhenRestingOnGround="true"/>
+            <CreateObjectDie
+                    id="ModuleTag_CreateObjectDie"
+                    CreationList="EUUAntiGroundAircraft_Die_OCL">
+                <DieMuxData
+                        DeathTypes="ALL" />
+            </CreateObjectDie>
+            <FireWeaponWhenDead
+                    id="ModuleTag_AlliedAntiGroundAircraftDeathWeapon"
+                    DeathWeapon="NormalAircraftDeathWeapon"
+                    InitiallyActive="true">
+                <DieMuxData
+                        DeathTypes="ALL" />
+            </FireWeaponWhenDead>
+            <DestroyDie
+                    id="ModuleTag_Die">
+                <DieMuxData
+                        DeathTypes="ALL" />
+            </DestroyDie>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+        </Behaviors>
+        <Body>
+            <ActiveBody
+                    id="ModuleTag_ActiveBody"
+                    MaxHealth="100" />
+        </Body>
+        <AudioArraySound>
+            <AudioEntry Sound="RA3VehicleExplosionMediumNoDelay" AudioType="soundAmbient" />
+        </AudioArraySound>
+        <VisionInfo
+                VisionRange="300"
+                ShroudClearingRange="300" />
+    </GameObject>
+	<GameObject
+            id="EUAntiGroundAircraft_UpgradeDying"
+            EditorName="EUAntiGroundAircraft_UpgradeDying"
+            Description="Desc:EUAntiGroundAircraft_Dying"
+            KindOf="PROJECTILE INERT NO_COLLIDE">
+		<Draws>
+			<ScriptedModelDraw
+                    id="ModuleTag_ScriptedModelDraw"
+                    OkToChangeModelColor="true" >
+				<ModelConditionState
+                        ParseCondStateType="PARSE_DEFAULT">
+					<Model
+                            Name="EUAntiGroundAircraft_SKN" />
+					<Texture
+							Original="AUAntiGroundAircraft"
+							New="AUAntiGroundAircraft_02_D" />
+					<xi:include
+                            href="DATA:Includes/VehicleCollapseParticles/AircraftDyingCollapseParticles.xml"
+                            xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AircraftDyingCollapseParticles/child::*)" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+                    id="ModuleTag_Physics"
+                    TumbleRandomly="true"
+                    MaxXRotationVelocity="50"
+                    MaxYRotationVelocity="50"
+                    MaxZRotationVelocity="0"
+                    KillWhenRestingOnGround="true"/>
+			<CreateObjectDie
+                    id="ModuleTag_CreateObjectDie"
+                    CreationList="EUUAntiGroundAircraft_Die_OCL">
+				<DieMuxData
+                        DeathTypes="ALL" />
+			</CreateObjectDie>
+			<FireWeaponWhenDead
+                    id="ModuleTag_AlliedAntiGroundAircraftDeathWeapon"
+                    DeathWeapon="NormalAircraftDeathWeapon"
+                    InitiallyActive="true">
+				<DieMuxData
+                        DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<DestroyDie
+                    id="ModuleTag_Die">
+				<DieMuxData
+                        DeathTypes="ALL" />
+			</DestroyDie>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+		</Behaviors>
+		<Body>
+			<ActiveBody
+                    id="ModuleTag_ActiveBody"
+                    MaxHealth="100" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="RA3VehicleExplosionMediumNoDelay" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+                VisionRange="300"
+                ShroudClearingRange="300" />
+	</GameObject>
+
+	<GameObject
+            id="EUAntiGroundAircraft_Collapse"
+            inheritFrom="BaseCollapsingObject"
+            EditorName="EUAntiGroundAircraft_Collapse">
+        <Draws>
+            <DynamicsDraw
+                    id="ModuleTag_Draw"
+                    Collision="NONINTERCOLLIDING"
+                    FlingPerturbation="1"
+                    Explodiness="1" >
+                <ModelConditionState
+                        ParseCondStateType="PARSE_DEFAULT">
+                    <Model
+                            Name="EUAntiGroundAircraft_COL_SKN" />
+                    <Texture
+                            Original="AUAntiGroundAircraft"
+                            New="AUAntiGroundAircraft_D" />
+                    <xi:include
+                            href="DATA:Includes/VehicleCollapseParticles/AlliedAircraftCollapseParticles.xml"
+                            xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedAircraftCollapseParticles/child::*)" />
+                </ModelConditionState>
+                <BoneVolumes>
+                    <BoneVolume BoneName="Bone_D_01" Mass="2904" Spinniness="3.0" ContactTag="DEBRIS" >
+                        <Box HalfSizeX="19.0218" HalfSizeY="3.66588" HalfSizeZ="4.11393" >
+                            <Translation x="-6.49582" y="-0.220423" z="-1.4849" />
+                            <Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+                        </Box>
+                    </BoneVolume>
+                    <BoneVolume BoneName="Bone_D_02" Mass="2707" Spinniness="3.0" ContactTag="DEBRIS" >
+                        <Box HalfSizeX="4.9693" HalfSizeY="12.464" HalfSizeZ="4.31759" >
+                            <Translation x="20.8353" y="-0.0574949" z="0.110563" />
+                            <Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+                        </Box>
+                    </BoneVolume>
+                    <BoneVolume BoneName="Bone_D_03" Mass="379" Spinniness="3.0" ContactTag="DEBRIS" >
+                        <Box HalfSizeX="5.74321" HalfSizeY="11.4457" HalfSizeZ="0.570248" >
+                            <Translation x="-0.386052" y="13.8149" z="-0.244589" />
+                            <Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+                        </Box>
+                    </BoneVolume>
+                    <BoneVolume BoneName="Bone_D_04" Mass="379" Spinniness="3.0" ContactTag="DEBRIS" >
+                        <Box HalfSizeX="5.74321" HalfSizeY="11.4457" HalfSizeZ="0.570248" >
+                            <Translation x="-0.386052" y="-13.815" z="-0.244589" />
+                            <Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+                        </Box>
+                    </BoneVolume>
+                </BoneVolumes>
+                <Lifetime
+                        Delay="5s"
+                        FadeTime="4s" />
+            </DynamicsDraw>
+        </Draws>
+        <Behaviors>
+            <LifetimeUpdate
+                    id="ModuleTag_LifeTime"
+                    MinLifetime="10s"
+                    MaxLifetime="14s" />
+            <SlowDeath
+                    id="ModuleTag_Death"
+                    SinkDelay="1s"
+                    SinkRate="1.5"
+                    DestructionDelay="8s">
+                <DieMuxData
+                        DeathTypes="ALL" />
+            </SlowDeath>
+        </Behaviors>
+        <AudioArraySound>
+            <AudioEntry Sound="RA3VehicleExplosionMediumNoDelay" AudioType="soundAmbient" />
+        </AudioArraySound>
+    </GameObject>
+</AssetDeclaration>

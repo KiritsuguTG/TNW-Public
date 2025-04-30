@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="ART:FXInvisBone.w3x" />
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<GameObject
+		id="SovietPowerSpawned"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="NOT_AUTOACQUIRABLE NO_COLLIDE SUMMONED"
+		EditorName="SovietPowerSpawned">
+		<DisplayName>SovietPowerSpawned</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+						<ShadowInfo
+						Type="ADDITIVE_DECAL"
+						SizeX="300"
+						SizeY="300"
+						OverrideLODVisibility="true"
+						MaxHeight="300"
+						UseHouseColor="true"
+						IsRotatingWithObject="false"
+						LocalPlayerOnly="false"
+						Texture="Target_SovietPower"/>
+        </ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<AttachUpdate
+				id="ModuleTag_Attach"
+				Flags="TELEPORT STICK_TO_PARENT DIE_WHEN_DETACH_ALWAYS"
+				ParentStatus="DOES_CONTAIN_TIBERIUM"
+				CloseEnoughRange="5"/>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_SovietPowerShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="150.0"
+				RefreshDelay="0.13s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeSovietPower">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ALLIES"
+					Include="INFANTRY VEHICLE AIRCRAFT">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<PassiveAreaEffectBehavior
+				id="ModuleTag_AlliedHeal"
+				EffectRadius="0"
+				MaxBeneficiaries="0"
+				HealingPointsPerSecond="10"
+				AffectAttached="true"
+				AffectWoundedOnly="true"
+				AffectUnderAttack="true"
+				DisabledTypesToProcess="HELD">
+				<AllowFilter
+					Rule="ALL"
+                    Relationship="ALLIES"
+					StatusBitFlags="DOES_CONTAIN_TIBERIUM"/>
+			</PassiveAreaEffectBehavior>
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="179s"
+				MaxLifetime="179s" />
+				<SelectiveVisibilityBehavior
+				id="ModuleTag_SelectiveVisibility"
+				UpdateRate="0.5s"
+				AllowedPlayers="ALLIES NEUTRAL"/>
+			<Physics
+				id="ModuleTag_Physics" />
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="1.0"
+				Height="1.0">
+			</Shape>
+		</Geometry>
+		<ShadowInfo
+			Type="NONE" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+	<GameObject
+		id="SovietPowerSpawnedUpgrade"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="NOT_AUTOACQUIRABLE NO_COLLIDE SUMMONED"
+		EditorName="SovietPowerSpawnedUpgrade">
+		<DisplayName>SovietPowerSpawnedUpgrade</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+						<ShadowInfo
+						Type="ADDITIVE_DECAL"
+						SizeX="400"
+						SizeY="400"
+						OverrideLODVisibility="true"
+						MaxHeight="300"
+						UseHouseColor="true"
+						IsRotatingWithObject="false"
+						LocalPlayerOnly="false"
+						Texture="Target_SovietPower"/>      
+        </ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<AttachUpdate
+				id="ModuleTag_Attach"
+				Flags="TELEPORT STICK_TO_PARENT DIE_WHEN_DETACH_ALWAYS"
+				ParentStatus="DOES_CONTAIN_TIBERIUM"
+				CloseEnoughRange="5"/>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_SovietPowerShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="200.0"
+				RefreshDelay="0.13s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeSovietPowerUpgrade">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ALLIES"
+					Include="INFANTRY VEHICLE AIRCRAFT">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<PassiveAreaEffectBehavior
+				id="ModuleTag_AlliedHeal"
+				EffectRadius="0"
+				MaxBeneficiaries="0"
+				HealingPointsPerSecond="15"
+				AffectAttached="true"
+				AffectWoundedOnly="true"
+				AffectUnderAttack="true"
+				DisabledTypesToProcess="HELD">
+				<AllowFilter
+					Rule="ALL"
+                    Relationship="ALLIES"
+					StatusBitFlags="DOES_CONTAIN_TIBERIUM"/>
+			</PassiveAreaEffectBehavior>
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="179s"
+				MaxLifetime="179s" />
+				<SelectiveVisibilityBehavior
+				id="ModuleTag_SelectiveVisibility"
+				UpdateRate="0.5s"
+				AllowedPlayers="ALLIES NEUTRAL"/>
+			<Physics
+				id="ModuleTag_Physics" />
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="1.0"
+				Height="1.0">
+			</Shape>
+		</Geometry>
+		<ShadowInfo
+			Type="NONE" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+</AssetDeclaration>

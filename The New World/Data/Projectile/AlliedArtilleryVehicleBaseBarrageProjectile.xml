@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="ART:Units/Pacifier FAV/EXALLIEDSHELL.PLANE01.w3x" />
+		<Include type="all" source="ART:Units/Pacifier FAV/EXALLIEDSHELL_CTR.w3x" />
+		<Include type="all" source="ART:Units/Pacifier FAV/EXALLIEDSHELL_HRC.w3x" />
+		<Include type="all" source="ART:Units/Pacifier FAV/EXALLIEDSHELL_VET.PLANE01.w3x" />
+		<Include type="all" source="ART:Units/Pacifier FAV/EXALLIEDSHELL_VET_CTR.w3x" />
+		<Include type="all" source="ART:Units/Pacifier FAV/EXALLIEDSHELL_VET_HRC.w3x" />
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseProjectile.xml"/>
+	</Includes>
+	<GameObject
+		id="AlliedArtilleryVehicleBarrageProjectile"
+		inheritFrom="BaseProjectile" 
+		KindOf="-NO_COLLIDE"
+		Side="Allies"
+		EditorName="AlliedArtilleryVehicleBarrageProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EXAlliedShell" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AlliedArtilleryShellTrail"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AlliedArtilleryShellTrail02"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AlliedArtilleryShellTrail03"
+						FollowBone="true"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList"
+				xai:joinAction="Replace">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_AlliedArtilleryVehicleBarrageExplosion" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="50"
+				FirstHeightMax="50"
+				SecondHeightMin="50"
+				SecondHeightMax="50"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				FlightPathAdjustDistPerSecond="0"/>
+		</Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="6">
+			</Shape>
+		</Geometry>
+	</GameObject>
+	<GameObject
+		id="AlliedArtilleryVehicleBarrageProjectile_Veteran"
+		inheritFrom="AlliedArtilleryVehicleBarrageProjectile"
+		EditorName="AlliedArtilleryVehicleBarrageProjectile_Veteran">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				xai:joinAction="Replace">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EXAlliedShell_Vet" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AlliedArtilleryShellTrailVet"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AlliedArtilleryShellTrail02Vet"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AlliedArtilleryShellTrail03Vet"
+						FollowBone="true"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList"
+				xai:joinAction="Replace">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_AlliedArtilleryVehicleBarrageExplosionVet" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				xai:joinAction="Replace"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="50"
+				FirstHeightMax="50"
+				SecondHeightMin="50"
+				SecondHeightMax="50"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				FlightPathAdjustDistPerSecond="0"/>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

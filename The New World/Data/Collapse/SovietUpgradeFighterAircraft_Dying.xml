@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all"	source="ART:Units/SovietUpgradeFighterAircraft/Su47Mig.w3x" />
+	</Includes>
+	<GameObject
+		id="SovietUpgradeFighterAircraft_Dying"
+		EditorName="SovietUpgradeFighterAircraft_Dying"
+		Description="Desc:SovietUpgradeFighterAircraft_Dying"
+		KindOf="PROJECTILE INERT NO_COLLIDE">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				OkToChangeModelColor="true" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SU47MIG" />
+					<Texture
+					Original="SUFighterAircraft"
+					New="SUFighterAircraft_D" />
+				<xi:include
+					href="DATA:Includes/VehicleCollapseParticles/AircraftDyingCollapseParticles.xml"
+					xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AircraftDyingCollapseParticles/child::*)" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"
+				TumbleRandomly="true"
+				MaxXRotationVelocity="200"
+				MaxYRotationVelocity="0"
+				MaxZRotationVelocity="0"
+				KillWhenRestingOnGround="true"/>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SUFighterAircraft_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<FireWeaponWhenDead
+				id="ModuleTag_SovietAntiGroundAircraftDeathWeapon"
+				DeathWeapon="NormalAircraftDeathWeapon"
+				InitiallyActive="true">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+    <FireWeaponWhenDead
+	id="ModuleTag_KamikazeExplosion"
+	InitiallyActive="true"
+	DeathWeapon="AlliesEnhancedKamikazeDeathPlayerPowerWeapon">
+	  <DieMuxData
+		DeathTypes="ALL"
+		DeathTypesForbidden="SUICIDED"
+		RequiredStatus="PLAYER_POWER_1"/>
+    </FireWeaponWhenDead>
+    <StatusBitsUpgrade
+			id="ModuleTag_EnhancedKamikazeObjectStatus"
+			StatusToSet="PLAYER_POWER_1">
+	 <TriggeredBy>Upgrade_JapanEnhancedKamikaze</TriggeredBy>
+    </StatusBitsUpgrade>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="RA3VehicleExplosionMediumNoDelay" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="300" />		
+	</GameObject>
+</AssetDeclaration>

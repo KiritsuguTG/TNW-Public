@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKER_SKL.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKER_SKN.AU_SEEKER01.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKER_SKN.AUSHARDWEAPON_C_G.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKER_SKN.GUN.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKER_SKN.OBBOX.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKER_SKN.UG_SHARDWEAPON.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKER_SKN.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR.AU_SEEKER01.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR.GUN.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR_CTR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR_HRC.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR01.R01.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR01_CTR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR01_HRC.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR02.R02.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR02_CTR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR02_HRC.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR03.R03.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR03_CTR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR03_HRC.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR04.R04.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR04_CTR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiAirVehicleTech1/AUSEEKERR04_HRC.w3x" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseDebris.xml" />
+	</Includes>
+	<!-- AKA Guardian Tank aka The Chieftain -->
+	<GameObject
+		id="ScrinAntiAirVehicleTech1"
+		inheritFrom="BaseVehicle"
+		Side="Neutral"
+		SelectPortrait="Portrait_AlienSeekerTank"
+		ButtonImage="Button_AlienSeekerTank"
+		SubGroupPriority="425"
+		EditorSorting="UNIT"
+		BuildTime="6"
+		KindOf="CAN_ATTACK CAN_CAST_REFLECTIONS VEHICLE CAN_BE_FAVORITE_UNIT SELECTABLE TIBERIUM_BASED"
+		WeaponCategory="GUN"
+		CommandSet="ScrinGroundUnitCommandSet"
+		VoicePriority="188"
+		EditorName="ScrinAntiAirVehicleTech1"
+		Description="Desc:ScirnUnit"
+		TypeDescription="Type:ScirnUnit">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:ScrinAntiAirVehicleTech1</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="900"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="ScrinAntiAirVehicleTech1Armor"
+			DamageFX="InfantryAlienDamageFX" />
+		<LocomotorSet
+			Locomotor="TestReactiveLocomotorTANK"
+			Condition="NORMAL"
+			Speed="90.0" />
+		<LocomotorSet
+			Locomotor="JapanAntiVehicleVehicleTech1_WaterLocomotor"
+			Condition="NORMAL"
+			Speed="90" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"/>
+		<Draws>
+			<TankDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUSeeker_SKN" />
+					<ShadowInfo
+						Type="ADDITIVE_DECAL"
+						SizeX="40"
+						SizeY="30"
+						OverrideLODVisibility="true"
+						MaxHeight="200"
+						UseHouseColor="true"
+						Texture="AUDronShipDecalIdle" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="MuzzleFX" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="MuzzleFX" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretID="1" />
+				</ModelConditionState>	
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUSeeker_SKN" />
+					<Texture
+						Original="AUSeeker"
+						New="AUSeeker_D" />
+					<ShadowInfo
+						Type="ADDITIVE_DECAL"
+						SizeX="40"
+						SizeY="30"
+						OverrideLODVisibility="true"
+						MaxHeight="200"
+						UseHouseColor="true"
+						Texture="AUDronShipDecalIdle" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFire01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFireGlow01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFireGlow02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Model
+						Name="AUSeekerR" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING"
+					Flags="START_FRAME_FIRST">
+					<Animation
+						AnimationName="AUSeekerR"
+						AnimationMode="ONCE" />
+				</AnimationState>
+			</TankDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlienSeekerTankPlasmaDiskLauncherAntiGround" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="AlienSeekerTankPlasmaDiskLauncherAntiAir" />
+					<TurretSettings
+						TurretTurnRate="200"
+						TurretPitchRate="40"
+						AllowsPitch="true"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="5s"
+				SinkRate="1.0"
+				DestructionDelay="15s">
+				<OCL
+					Type="INITIAL">
+					<OCL>OCL_ALIENSeekerDebris</OCL>
+				</OCL>
+				<Sound Type="INITIAL" List="ALI_SeekerTank_Die" />
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="TOPPLED EXTRA_7" />
+			</SlowDeath>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7"/>
+				<Event
+					Index="onDeath"
+					FX="FX_ALIENVehicleExplodeScorch" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="TOPPLED EXTRA_7"/>
+			</DestroyDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="600" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="BOX"
+				MajorRadius="20.0"
+				MinorRadius="10.0"
+				Height="10.0"
+				ContactPointGeneration="VEHICLE" />
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry
+				Sound="ALI_SeekerTank_SoundAttack"
+				AudioType="voiceAttack" />
+			<AudioEntry
+				Sound="ALI_SeekerTank_SoundMove"
+				AudioType="voiceMove" />
+			<AudioEntry
+				Sound="ALI_SeekerTank_SoundSelectMS"
+				AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALI_SeekerTank_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="ALI_SeekerTank_IdleLoop"
+				AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="360"
+			ShroudClearingRange="400" />
+	<CrusherInfo 
+			CrushableLevel="25"
+			CrusherLevel="1"
+			CrushEqualLevelProps="true"
+			CrushDecelerationPercent="80%" />
+	</GameObject>
+	<GameObject
+		id="ScrinAntiAirVehicleTech1Boss"
+		inheritFrom="ScrinAntiAirVehicleTech1"
+		KindOf="-TIBERIUM_BASED"
+		EditorName="ScrinAntiAirVehicleTech1Boss">
+		<GameDependency
+			ForbiddenModelConditions="STRUCTURE_UNPACKING">
+		</GameDependency>
+	</GameObject>
+	<GameObject
+		id="ScrinAntiAirVehicleTech1Boss_Naval"
+		inheritFrom="ScrinAntiAirVehicleTech1Boss"
+		EditorName="ScrinAntiAirVehicleTech1Boss_Naval"
+		ProductionQueueType="WATERCRAFT">
+		<EquivalentTo>ScrinAntiAirVehicleTech1Boss</EquivalentTo>
+		<GameDependency
+			ForbiddenModelConditions="STRUCTURE_UNPACKING">
+		</GameDependency>
+	</GameObject>
+	<GameObject
+		id="ALIENSeekerDebris_01"
+		inheritFrom="BaseDebris" 
+		EditorName="ALIENSeekerDebris_01">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUSeekerR01" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFire01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFireGlow01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFireGlow02"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+	</GameObject>
+	<GameObject
+		id="ALIENSeekerDebris_02"
+		inheritFrom="BaseDebris" 
+		EditorName="ALIENSeekerDebris_02">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUSeekerR02" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFire01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFireGlow01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFireGlow02"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+	</GameObject>
+	<GameObject
+		id="ALIENSeekerDebris_03"
+		inheritFrom="BaseDebris" 
+		EditorName="ALIENSeekerDebris_03">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUSeekerR03" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+	</GameObject>
+	<GameObject
+		id="ALIENSeekerDebris_04"
+		inheritFrom="BaseDebris" 
+		EditorName="ALIENSeekerDebris_04">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUSeekerR04" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="GDIDebrisSmallSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include type="instance" source="DATA:SageXml/Sounds/BaseSoundEffect.xml" />
+	</Includes>
+	
+	
+	
+	<!-- Sound effect -->
+	<AudioEvent
+	id="SOV_DesolatorTrooper_Select"
+	inheritFrom="AudioEvent:BaseSoundEffect"
+	Volume="40"
+	VolumeShift="-10"
+	MinVolume="15"
+	Limit="3"
+	Type="WORLD PLAYER"
+	SubmixSlider="SOUNDFX">
+	<PitchShift
+	Low="5"
+	High="15" />
+		<Sound>SUDesal_selectA</Sound> <Sound>SUDesal_selectB</Sound> <Sound>SUDesal_selectC</Sound> <Sound>SUDesal_selectD</Sound>
+	</AudioEvent>
+	
+	<AudioEvent
+	id="SOV_DesolatorTrooper_BlatGunToggle"
+	inheritFrom="AudioEvent:BaseSoundEffect"
+	Volume="40"
+	VolumeShift="-10"
+	MinVolume="15"
+	Limit="3"
+	Type="WORLD PLAYER"
+	SubmixSlider="SOUNDFX">
+	<PitchShift
+	Low="-2"
+	High="2" />
+		<Sound>SUDesal_wpnToggleBlatGunA</Sound>
+	</AudioEvent>		
+
+	<AudioEvent
+	id="SOV_DesolatorTrooper_SprayGunToggle"
+	inheritFrom="AudioEvent:BaseSoundEffect"
+	Volume="40"
+	VolumeShift="-10"
+	MinVolume="15"
+	Limit="3"
+	Type="WORLD PLAYER"
+	SubmixSlider="SOUNDFX">
+	<PitchShift
+	Low="-2"
+	High="2" />
+		<Sound>SUDesal_wpnToggleSprayGunA</Sound>
+	</AudioEvent>				
+
+	<AudioEvent
+	id="SOV_DesolatorTrooper_SprayGunFire"
+	inheritFrom="AudioEvent:BaseSoundEffect"
+	Volume="=60"
+	VolumeShift="-10"
+	Limit="3"
+	Priority="HIGH"
+	Type="WORLD SHROUDED EVERYONE"
+	Control="INTERRUPT LOOP FADE_ON_KILL"
+	SubmixSlider="SOUNDFX">
+	<PitchShift
+	Low="-5"
+	High="5" />
+		<Sound>SUDesal_wpnFireSprayGunA</Sound> <Sound>SUDesal_wpnFireSprayGunB</Sound> <Sound>SUDesal_wpnFireSprayGunC</Sound> 
+		<Sound>SUDesal_wpnFireSprayGunD</Sound> <Sound>SUDesal_wpnFireSprayGunE</Sound> <Sound>SUDesal_wpnFireSprayGunF</Sound>
+	</AudioEvent>
+	
+	<AudioEvent
+	id="SOV_DesolatorTrooper_BlatGunFire"
+	inheritFrom="AudioEvent:BaseSoundEffect"
+	Volume="=$WEAPON_FIRE + 15"
+	VolumeShift="-10"
+	Limit="3"
+	Priority="HIGH"
+	Type="WORLD SHROUDED EVERYONE"
+	Control="INTERRUPT"
+	SubmixSlider="SOUNDFX">
+	<NonInterruptibleTime Low="0.0s" High="0.9s" />
+	<PitchShift
+	Low="-5"
+	High="5" />
+		<Sound>SUDesal_wpnFireBlatGunA</Sound> <Sound>SUDesal_wpnFireBlatGunB</Sound> <Sound>SUDesal_wpnFireBlatGunC</Sound> 
+		<Sound>SUDesal_wpnFireBlatGunD</Sound> <Sound>SUDesal_wpnFireBlatGunE</Sound> <Sound>SUDesal_wpnFireBlatGunF</Sound>
+	</AudioEvent>
+	
+	<AudioEvent
+	id="SOV_DesolatorTrooper_BlatGunExplo"
+	inheritFrom="AudioEvent:BaseSoundEffect"
+	Volume="=$WEAPON_IMPACT + 10"
+	VolumeShift="-5"
+	Limit="3"
+	Priority="HIGH"
+	Type="WORLD SHROUDED EVERYONE"
+	Control="INTERRUPT"
+	SubmixSlider="SOUNDFX">
+	<PitchShift Low="-5" High="5" />
+	<NonInterruptibleTime Low="0.0s" High="0.8s" />
+		<Sound>SUDesal_blatgunExploA</Sound>
+		<Sound>SUDesal_blatgunExploB</Sound>
+		<Sound>SUDesal_blatgunExploC</Sound>
+		<Sound>SUDesal_blatgunExploD</Sound>
+		<Sound>SUDesal_blatgunExploE</Sound>
+		<Sound>SUDesal_blatgunExploF</Sound>
+		<Sound>SUDesal_blatgunExploG</Sound>
+	</AudioEvent>
+
+	<AudioEvent
+	id="SOV_DesolatorTrooper_Footstep"
+	inheritFrom="AudioEvent:BaseSoundEffect"
+	Volume="30"
+	VolumeShift="-25"
+	MaxRange="600"
+	Priority="LOWEST"
+	Control="INTERRUPT"
+	Limit="3"
+	Type="WORLD SHROUDED EVERYONE"
+	SubmixSlider="SOUNDFX">
+	<NonInterruptibleTime Low="0.0s" High="0.6s" />	
+	<Delay Low="0" High="30" />
+	<PitchShift
+	Low="-5"
+	High="5" />	
+		<Sound>SUDesal_footstepA</Sound> <Sound>SUDesal_footstepB</Sound> <Sound>SUDesal_footstepC</Sound> <Sound>SUDesal_footstepD</Sound> <Sound>SUDesal_footstepE</Sound>
+		<Sound>SUDesal_footstepF</Sound> <Sound>SUDesal_footstepG</Sound> <Sound>SUDesal_footstepH</Sound> <Sound>SUDesal_footstepI</Sound> <Sound>SUDesal_footstepJ</Sound> 
+	</AudioEvent>
+	
+	
+	
+	<!-- Voice -->
+	<AudioEvent id="SOV_Desolator_VoiceAttack" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>SUDesol_voiAttacka</Sound>
+		<Sound>SUDesol_voiAttackb</Sound>
+		<Sound>SUDesol_voiAttackc</Sound>
+		<Sound>SUDesol_voiAttackd</Sound>
+		<Sound>SUDesol_voiAttacke</Sound>
+		<Sound>SUDesol_voiAttackf</Sound>
+		<Sound>SUDesol_voiAttackg</Sound>
+		<Sound>SUDesol_voiAttackh</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="SOV_Desolator_VoiceAttackBlatGun" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>SUDesol_voiAttSpeca</Sound>
+		<Sound>SUDesol_voiAttSpecb</Sound>
+		<Sound>SUDesol_voiAttSpecc</Sound>
+		<Sound>SUDesol_voiAttSpecd</Sound>
+		<Sound>SUDesol_voiAttSpece</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="SOV_Desolator_VoiceCreate" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>SUDesol_voiCreatea</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="SOV_Desolator_VoiceDie" inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "80"
+		VolumeShift = "-10"
+		MinVolume="0"
+		Type = "WORLD SHROUDED EVERYONE VOICE"
+		SubmixSlider = "SOUNDFX" >
+		<PitchShift Low="-1" High="1" />
+		<Sound>SUDesol_voiDiea</Sound>
+		<Sound>SUDesol_voiDieb</Sound>
+		<Sound>SUDesol_voiDiec</Sound>
+		<Sound>SUDesol_voiDied</Sound>
+		<Sound>SUDesol_voiDiee</Sound>
+		<Sound>SUDesol_voiDieg</Sound>
+		<Sound>SUDesol_voiDieh</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="SOV_Desolator_VoiceDieFire" inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "80"
+		VolumeShift = "-10"
+		MinVolume="0"
+		Type = "WORLD SHROUDED EVERYONE VOICE"
+		SubmixSlider = "SOUNDFX" >
+		<PitchShift Low="-1" High="1" />
+		<Delay Low = "0" High = "750" />
+		<Sound>SUDesol_voiDieFirea</Sound>
+		<Sound>SUDesol_voiDieFireb</Sound>
+		<Sound>SUDesol_voiDieFirec</Sound>
+		<Sound>SUDesol_voiDieFired</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="SOV_Desolator_VoiceDiePoison" inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "80"
+		VolumeShift = "-10"
+		MinVolume="0"
+		Type = "WORLD SHROUDED EVERYONE VOICE"
+		SubmixSlider = "SOUNDFX" >
+		<PitchShift Low="-1" High="1" />
+		<Delay Low = "0" High = "750" />
+		<Sound>SUDesol_voiDiePoisona</Sound>
+		<Sound>SUDesol_voiDiePoisonb</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="SOV_Desolator_VoiceDieShock" inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "80"
+		VolumeShift = "-10"
+		MinVolume="0"
+		Type = "WORLD SHROUDED EVERYONE VOICE"
+		SubmixSlider = "SOUNDFX" >
+		<PitchShift Low="-1" High="1" />
+		<Sound>SUDesol_voiDieShocka</Sound>
+		<Sound>SUDesol_voiDieShockb</Sound>
+		<Sound>SUDesol_voiDieShockc</Sound>
+		<Sound>SUDesol_voiDieShockd</Sound>
+		<Sound>SUDesol_voiDieShocke</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="SOV_Desolator_VoiceDieYurikoFall" inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "80"
+		VolumeShift = "-10"
+		MinVolume="0"
+		Limit="1"
+		Type = "WORLD SHROUDED EVERYONE VOICE"
+		SubmixSlider = "SOUNDFX" >
+		<PitchShift Low="-1" High="1" />
+		<Sound>SUDesol_voiDieYurikoFalla</Sound>
+		<Sound>SUDesol_voiDieYurikoFallb</Sound>
+		<Sound>SUDesol_voiDieYurikoFallc</Sound>
+		<Sound>SUDesol_voiDieYurikoFalld</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="SOV_Desolator_VoiceDieYurikoUp" inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "80"
+		VolumeShift = "-10"
+		MinVolume="0"
+		Limit="1"
+		Type = "WORLD SHROUDED EVERYONE VOICE"
+		SubmixSlider = "SOUNDFX" >
+		<PitchShift Low="-1" High="1" />
+		<Delay Low = "0" High = "750" />
+		<Sound>SUDesol_voiDieYurikoUpa</Sound>
+		<Sound>SUDesol_voiDieYurikoUpb</Sound>
+		<Sound>SUDesol_voiDieYurikoUpc</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="SOV_Desolator_VoiceGarrison" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>SUDesol_voiGarrisa</Sound>
+		<Sound>SUDesol_voiGarrisb</Sound>
+		<Sound>SUDesol_voiGarrisc</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="SOV_Desolator_VoiceMove" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>SUDesol_voiMovea</Sound>
+		<Sound>SUDesol_voiMoveb</Sound>
+		<Sound>SUDesol_voiMovec</Sound>
+		<Sound>SUDesol_voiMoved</Sound>
+		<Sound>SUDesol_voiMovee</Sound>
+		<Sound>SUDesol_voiMovef</Sound>
+		<Sound>SUDesol_voiMoveg</Sound>
+		<Sound>SUDesol_voiMoveh</Sound>
+		<Sound>SUDesol_voiMovei</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="SOV_Desolator_VoiceMoveAttack" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>SUDesol_voiMvAtta</Sound>
+		<Sound>SUDesol_voiMvAttb</Sound>
+		<Sound>SUDesol_voiMvAttc</Sound>
+		<Sound>SUDesol_voiMvAttd</Sound>
+		<Sound>SUDesol_voiMvAtte</Sound>
+		<Sound>SUDesol_voiMvAttg</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="SOV_Desolator_VoiceSelect" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>SUDesol_voiCreateb</Sound>
+		<Sound>SUDesol_voiSelecta</Sound>
+		<Sound>SUDesol_voiSelectb</Sound>
+		<Sound>SUDesol_voiSelectc</Sound>
+		<Sound>SUDesol_voiSelectd</Sound>
+		<Sound>SUDesol_voiSelecte</Sound>
+		<Sound>SUDesol_voiSelectf</Sound>
+		<Sound>SUDesol_voiSelectg</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="SOV_Desolator_VoiceSelectBattle" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>SUDesol_voiSelBata</Sound>
+		<Sound>SUDesol_voiSelBatb</Sound>
+		<Sound>SUDesol_voiSelBatc</Sound>
+		<Sound>SUDesol_voiSelBatd</Sound>
+		<Sound>SUDesol_voiSelBate</Sound>
+		<Sound>SUDesol_voiSelBatf</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="SOV_Desolator_VoiceSelectUnderFire" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>SUDesol_voiSelUnda</Sound>
+		<Sound>SUDesol_voiSelUndb</Sound>
+		<Sound>SUDesol_voiSelUndc</Sound>
+		<Sound>SUDesol_voiSelUndd</Sound>
+	</AudioEvent>
+</AssetDeclaration>

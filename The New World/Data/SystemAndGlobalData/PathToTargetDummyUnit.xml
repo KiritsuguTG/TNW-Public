@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all"	source="ART:FXShotgunFlash.w3x" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseInfantry.xml" />
+	</Includes>
+	<!-- aka The Peacekeeper -->
+	<GameObject
+		id="BaseOpeningMove"
+		inheritFrom="BaseInfantry"
+		SelectPortrait="Portrait_AlliedAntiInfantryInfantry"
+		ButtonImage="Button_AlliedAntiInfantryInfantry_on"
+		Side="CIVILIAN"
+		SubGroupPriority="360"
+		EditorSorting="SYSTEM"
+		BuildTime="0"
+		KindOf="SELECTABLE CAN_CAST_REFLECTIONS INFANTRY"
+		Description="Desc:AlliedAntiInfantryInfantry"
+		TypeDescription="Type:AntiInfantry">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedAntiInfantryInfantry</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseInfantryArmor"
+			DamageFX="InfantryDamageFX" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="false"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUAntiInfantryInfantryTNW_SKN" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5"
+				Height="5.0"/>
+		</Geometry>
+		<VisionInfo
+			VisionRange="1"
+			ShroudClearingRange="1" />
+	</GameObject>
+	<GameObject
+		id="OpeningMoveGroundToGround"
+		inheritFrom="BaseOpeningMove"
+		EditorName="OpeningMoveGroundToGround">
+		<LocomotorSet
+			Locomotor="TestReactiveLocomotorHUMAN"
+			Condition="NORMAL"
+			Speed="150"/>
+	</GameObject>
+	<GameObject
+		id="OpeningMoveWaterToWater"
+		inheritFrom="BaseOpeningMove"
+		EditorName="OpeningMoveWaterToWater">
+		<LocomotorSet
+			Locomotor="AlliedAntiNavalScoutLocomotor"
+			Condition="NORMAL"
+			Speed="150"/>
+	</GameObject>
+	<GameObject
+		id="OpeningMoveAmphibious"
+		inheritFrom="BaseOpeningMove"
+		EditorName="OpeningMoveAmphibious">
+		<LocomotorSet
+			Locomotor="JapanMechaKingLocomotor"
+			Condition="NORMAL"
+			Speed="150"/>
+	</GameObject>
+	<GameObject
+		id="OpeningMoveOnlyAircraft"
+		inheritFrom="BaseOpeningMove"
+		EditorName="OpeningMoveOnlyAircraft">
+		<LocomotorSet
+			Locomotor="AlliedFighterAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="150"/>
+	</GameObject>
+</AssetDeclaration>

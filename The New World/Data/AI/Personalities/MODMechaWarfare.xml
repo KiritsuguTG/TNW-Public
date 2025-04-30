@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+
+	<Includes>
+		<Include type="instance" source="MODCoopBaseSkirmishPersonality.xml" />
+	</Includes>
+
+	<AIPersonalityDefinition
+		id="02MOD"
+		PersonalityType="02MOD"
+		inheritFrom="MODCoopBaseSkirmishPersonality"
+		EnemySortingBrutalDifficulty="NearestFirst_BreakTies"
+		EnemySortingHardDifficulty="NearestFirst_BreakTies"
+		EnemySortingMediumDifficulty="NearestFirst_BreakTies"
+		EnemySortingEasyDifficulty="NearestFirst_BreakTies"
+		SkirmishPersonality="true"
+		PersonalityUIName="Personality:Kenji"
+		CommanderPortrait="Kenji">
+		<!-- Voice Responses -->
+		<FeedbackEntry FeedbackKey="PlanAttackBeaconPlaced" EvaEvent="EmpireCoopKenjiPlanAttack" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="PlanAttackOrderComplete" EvaEvent="EmpireCoopKenjiPlanAttackDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionBeaconPlaced" EvaEvent="EmpireCoopKenjiTakePos" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionOrderComplete" EvaEvent="EmpireCoopKenjiTakePosDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetBeaconPlaced" EvaEvent="EmpireCoopKenjiStrikeThis" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetOrderComplete" EvaEvent="EmpireCoopKenjiStrikeThisDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="OrderCanceled" EvaEvent="EmpireCoopKenjiAutoPilot" FeedbackTo="ALLIES"/>
+
+		<!-- Skirmish feedback -->
+
+		<!-- Greet ally at beginning of game -->
+		<FeedbackEntry
+		FeedbackKey="StartGame"
+		Video="JKEGR1"
+		FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+		FeedbackKey="StartGame"
+		Video="JKEGR2"
+		FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+		FeedbackKey="StartGame"
+		Video="JKEGR3"
+		FeedbackTo="ALLIES"/>
+
+		<!-- Tell ally I'm in trouble -->
+		<!-- N.B.: If you wanted to add FeedbackTo="ENEMIES" or "NEUTRAL", you would also need to
+adjust the InTroubleSkirmishFeedbackControl block's OnlyIfLocalPlayerIs list -->
+		<FeedbackEntry
+		FeedbackKey="InTrouble"
+		Video="JKEND1"
+		FeedbackTo="ALLIES"
+		Timeout="600s"/>
+		<FeedbackEntry
+		FeedbackKey="InTrouble"
+		Video="JKEND2"
+		FeedbackTo="ALLIES"
+		Timeout="600s"/>
+		<FeedbackEntry
+		FeedbackKey="InTrouble"
+		Video="JKEND3"
+		FeedbackTo="ALLIES"
+		Timeout="600s"/>
+
+		<!-- Tell ally I'm dead -->
+		<FeedbackEntry
+		FeedbackKey="Lost"
+		Video="JKEDE1"
+		FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+		FeedbackKey="Lost"
+		Video="JKEDE2"
+		FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+		FeedbackKey="Lost"
+		Video="JKEDE3"
+		FeedbackTo="ALLIES"/>
+
+		<!-- Tell enemy I'm going to defeat them! (when I first meet them) -->
+		<FeedbackEntry
+		FeedbackKey="FirstSeen"
+		Video="JKETG1"
+		FeedbackTo="ENEMIES"
+		Timeout="9999999s"/>
+		<FeedbackEntry
+		FeedbackKey="FirstSeen"
+		Video="JKETG2"
+		FeedbackTo="ENEMIES"
+		Timeout="9999999s"/>
+		<FeedbackEntry
+		FeedbackKey="FirstSeen"
+		Video="JKETG3"
+		FeedbackTo="ENEMIES"
+		Timeout="9999999s"/>
+
+		<!-- Curse enemy who defeated me -->
+		<FeedbackEntry
+		FeedbackKey="DefeatedByLocalPlayer"
+		Video="JKETD1"
+		FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+		FeedbackKey="DefeatedByLocalPlayer"
+		Video="JKETD2"
+		FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+		FeedbackKey="DefeatedByLocalPlayer"
+		Video="JKETD3"
+		FeedbackTo="ENEMIES"/>
+
+		<!-- Laugh at enemy whom I defeated -->
+		<FeedbackEntry
+		FeedbackKey="DefeatedLocalPlayer"
+		Video="JKETV1"
+		FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+		FeedbackKey="DefeatedLocalPlayer"
+		Video="JKETV2"
+		FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+		FeedbackKey="DefeatedLocalPlayer"
+		Video="JKETV3"
+		FeedbackTo="ENEMIES"/>
+
+	</AIPersonalityDefinition>
+
+</AssetDeclaration>

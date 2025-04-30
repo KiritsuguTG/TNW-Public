@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all"	source="ART:Units/EUTransportAircraft/AlliedTransportAirship_COL.w3x" />
+    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<GameObject
+            id="EUTransportAircraft_Dying"
+            EditorName="EUTransportAircraft_Dying"
+            Description="Desc:EUTransportAircraft_Dying"
+            KindOf="PROJECTILE INERT NO_COLLIDE">
+		<Draws>
+			<ScriptedModelDraw
+                    id="ModuleTag_ScriptedModelDraw"
+                    OkToChangeModelColor="true" >
+				<ModelConditionState
+                        ParseCondStateType="PARSE_DEFAULT">
+					<Model
+                            Name="ALLIEDTRANSPORTAIRSHIP_SKN" />
+					<Texture
+                            Original="AlliedTransportAirship"
+                            New="AlliedTransportAirship_D" />
+					<xi:include
+                            href="DATA:Includes/VehicleCollapseParticles/AircraftDyingCollapseParticles.xml"
+                            xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AircraftDyingCollapseParticles/child::*)" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+                    id="ModuleTag_Physics"
+                    TumbleRandomly="true"
+                    MaxXRotationVelocity="50"
+                    MaxYRotationVelocity="50"
+                    MaxZRotationVelocity="0"
+                    KillWhenRestingOnGround="true"/>
+			<CreateObjectDie
+                    id="ModuleTag_CreateObjectDie"
+                    CreationList="EUTransportAircraft_Die_OCL">
+				<DieMuxData
+                        DeathTypes="ALL" />
+			</CreateObjectDie>
+			<FireWeaponWhenDead
+                    id="ModuleTag_AlliedAntiGroundAircraftDeathWeapon"
+                    DeathWeapon="NormalAircraftDeathWeapon"
+                    InitiallyActive="true">
+				<DieMuxData
+                        DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<DestroyDie
+                    id="ModuleTag_Die">
+				<DieMuxData
+                        DeathTypes="ALL" />
+			</DestroyDie>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech2/child::*)" />
+		</Behaviors>
+		<Body>
+			<ActiveBody
+                    id="ModuleTag_ActiveBody"
+                    MaxHealth="100" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="RA3VehicleExplosionMediumNoDelay" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+                VisionRange="300"
+                ShroudClearingRange="300" />
+	</GameObject>
+	<GameObject
+            id="EUTransportAircraft_UpgradeDying"
+            EditorName="EUTransportAircraft_UpgradeDying"
+            Description="Desc:EUTransportAircraft_Dying"
+            KindOf="PROJECTILE INERT NO_COLLIDE">
+		<Draws>
+			<ScriptedModelDraw
+                    id="ModuleTag_ScriptedModelDraw"
+                    OkToChangeModelColor="true" >
+				<ModelConditionState
+                        ParseCondStateType="PARSE_DEFAULT">
+					<Model
+                            Name="ALLIEDTRANSPORTAIRSHIP_SKN" />
+					<Texture
+                            Original="AlliedTransportAirship"
+                            New="AlliedTransportAirship2_D" />
+					<xi:include
+                            href="DATA:Includes/VehicleCollapseParticles/AircraftDyingCollapseParticles.xml"
+                            xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AircraftDyingCollapseParticles/child::*)" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+                    id="ModuleTag_Physics"
+                    TumbleRandomly="true"
+                    MaxXRotationVelocity="50"
+                    MaxYRotationVelocity="50"
+                    MaxZRotationVelocity="0"
+                    KillWhenRestingOnGround="true"/>
+			<CreateObjectDie
+                    id="ModuleTag_CreateObjectDie"
+                    CreationList="EUTransportAircraft_Die_OCL">
+				<DieMuxData
+                        DeathTypes="ALL" />
+			</CreateObjectDie>
+			<FireWeaponWhenDead
+                    id="ModuleTag_AlliedAntiGroundAircraftDeathWeapon"
+                    DeathWeapon="NormalAircraftDeathWeapon"
+                    InitiallyActive="true">
+				<DieMuxData
+                        DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<DestroyDie
+                    id="ModuleTag_Die">
+				<DieMuxData
+                        DeathTypes="ALL" />
+			</DestroyDie>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech2/child::*)" />
+		</Behaviors>
+		<Body>
+			<ActiveBody
+                    id="ModuleTag_ActiveBody"
+                    MaxHealth="100" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="RA3VehicleExplosionMediumNoDelay" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+                VisionRange="300"
+                ShroudClearingRange="300" />
+	</GameObject>
+	<GameObject
+		id="EUTransportAircraft_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="EUTransportAircraft_Collapse">
+		<Draws>
+			<DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="1"
+			Explodiness="1" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ALLIEDTRANSPORTAIRSHIP_COL" />
+					<Texture
+						Original="AlliedTransportAirship"
+						New="AlliedTransportAirship_D" />	
+				<xi:include
+					href="DATA:Includes/VehicleCollapseParticles/AlliedAircraftCollapseParticles.xml"
+					xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedAircraftCollapseParticles/child::*)" />
+				</ModelConditionState>
+				<BoneVolumes>
+					<BoneVolume BoneName="Bone_D_01" Mass="97200" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="40.0" HalfSizeY="20.0" HalfSizeZ="12.0" >
+							<Translation x="44.0" y="0.0" z="-4.0" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_02" Mass="87480" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="36.0" HalfSizeY="20.0" HalfSizeZ="12.0" >
+							<Translation x="-32.0" y="0.0" z="-4.0" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_03" Mass="25312" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="25.0" HalfSizeY="25.0" HalfSizeZ="4.0" >
+							<Translation x="0.0" y="0.0" z="22.0" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+			</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="10s"
+			MaxLifetime="14s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1.5"
+			DestructionDelay="8s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+	<AudioArraySound>
+		<AudioEntry Sound="RA3VehicleExplosionMediumNoDelay" AudioType="soundAmbient" />
+	</AudioArraySound>	
+</GameObject>
+</AssetDeclaration>

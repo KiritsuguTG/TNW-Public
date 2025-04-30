@@ -1,0 +1,455 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseInfantry.xml" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZMASTER_SKN.w3x" />
+	</Includes>
+	<GameObject
+		id="MODNanoFlyMaster"
+		inheritFrom="BaseInfantry"
+		Side="Japan"
+		SubGroupPriority="350"
+		EditorSorting="UNIT"
+		SelectPortrait="PortraitMODNanoFlyMaster"
+		ButtonImage="ButtonMODNanoFlyMaster"
+		BuildTime="12"
+		HealthBoxHeightOffset="30"
+		TransportSlotCount="10"
+		CommandSet="MODNanoFlyMasterCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK AMPHIBIOUS VEHICLE CAN_CAST_REFLECTIONS CANNOT_HIJACK NO_GARRISON RESIST_EMP NO_COLLIDE LINE_OF_SIGHT_IGNORES_BUILDINGS T2_UNIT SKIRMISH_AI_ATTEMPT_TO_DODGE PATH_THROUGH_EACH_OTHER WB_DISPLAY_SCRIPT_NAME"
+		RadarPriority="UNIT"
+		ProductionQueueType="VEHICLE"
+		WeaponCategory="BLAST"
+		ThreatLevel="10"
+		VoicePriority="50"
+		EditorName="MODNanoFlyMaster"
+		Description="Desc:MODNanoFlyMaster"
+		TypeDescription="Type:AntiAllWitoutAir"
+		ShockwaveResistance="99999"
+		BountyValue="250">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODNanoFlyMaster</DisplayName>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_JapanWarFactoryTech2</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1200" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="MODNanoFlyMasterArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="DefaultLandLocomotor"
+			Locomotor="JapanNanoFlyLocomotor"
+			Condition="NORMAL"
+			Speed="75.0" />
+		<LocomotorSet
+			id="DefaultWaterLocomotor"
+			Locomotor="JapanNanoFlyWaterLocomotor"
+			Condition="NORMAL"
+			Speed="75.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			TargetDuringCrush="true"
+			DodgeSafetyDistance="75.0"
+			ConquerMetricsOverrideAntiMask="ANTI_GROUND ANTI_WATER ANTI_INFANTRY">
+			<DodgeWithUnits
+				Rule="ANY"
+				Include="INFANTRY VEHICLE"
+				StatusBitFlagsExclude="AIRBORNE_TARGET">
+			</DodgeWithUnits>
+		</SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUBUZZMASTER_SKN" />
+					<ShadowInfo
+						Type="ADDITIVE_DECAL"
+						SizeX="40"
+						SizeY="40"
+						OverrideLODVisibility="true"
+						MaxHeight="50"
+						UseHouseColor="true"
+						Texture="AUDronShipDecalIdle" />
+					<ParticleSysBone
+						BoneName="Bone_00"
+						FXParticleSystemTemplate="AUBuzzer"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_01"
+						FXParticleSystemTemplate="AUBuzzer"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_02"
+						FXParticleSystemTemplate="AUBuzzer"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1">
+					<Model
+						Name="AUBUZZMASTER_SKN" />
+					<ParticleSysBone
+						BoneName="Bone_00"
+						FXParticleSystemTemplate="FXMODNanoFlyMasterDeath"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_01"
+						FXParticleSystemTemplate="FXMODNanoFlyMasterDeath"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_02"
+						FXParticleSystemTemplate="FXMODNanoFlyMasterDeath"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6">
+					<Model
+						Name="AUBUZZMASTER_SKN" />
+					<ParticleSysBone
+						BoneName="Bone_00"
+						FXParticleSystemTemplate="AUBuzzer"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_01"
+						FXParticleSystemTemplate="AUBuzzer"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_02"
+						FXParticleSystemTemplate="AUBuzzer"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_00"
+						FXParticleSystemTemplate="AUBuzzer"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_01"
+						FXParticleSystemTemplate="AUBuzzer"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_02"
+						FXParticleSystemTemplate="AUBuzzer"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="FXBuzzer_FP" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="HIDDEN">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="AUBuzz_IDLA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="AUBuzzCombIdle"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USING_WEAPON_A">
+					<Animation
+						AnimationName="AUBuzz_ATKA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_RepairDecal"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP">
+					<Model Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FROZEN">
+					<Model Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED">
+					<Model Name="FXInvisBone" />
+					<ShadowInfo
+						Type="ADDITIVE_DECAL"
+						SizeX="87"
+						SizeY="87"
+						OverrideLODVisibility="true"
+						MaxHeight="200"
+						UseHouseColor="true"
+						IsRotatingWithObject="false"
+						Texture="Decal_AttackRange"
+						LocalPlayerOnly="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODNanoFlyMasterDummyWeapon"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<SuppressionUpdate
+				id="ModuleTag_SuppressionUpdate"
+				xai:joinAction="Remove" />
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.2s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="MODNanoFlyMasterShortCircuit"
+					OneShot="false" />
+			</FireWeaponUpdate>
+			<FireWeaponUpdate
+				id="ModuleTag_UnmiliWeaponFireWeaponUpdate"
+				FireInterval="0.2s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="MODNanoFlyMasterUnmiliWeaponShortCircuit"
+					OneShot="false" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</FireWeaponUpdate>
+			<StatusBitsUpgrade
+				id="ModuleTag_UnmiliWeapon"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</StatusBitsUpgrade>
+			<Physics
+				id="ModuleTag_Physics" />
+			<ActivateModuleSpecialPower
+				id="ModuleTag_SpecialPower"
+				SpecialPowerTemplate="SpecialPower_MODNanoFlyMasterCrazy"
+				UpdateModuleStartsAttack="true"
+				AttributeModifier="AttributeModifier_MODNanoFlyMasterCrazy"
+				AttributeModifierAffectsSelf="true">
+			</ActivateModuleSpecialPower>
+			<SpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_MODNanoFlyMasterCrazy" />
+			<SecondaryDamageTracker
+				id="ModuleTag_SecondaryDamageTracker"
+				xai:joinAction="Replace"
+				UpdateDuration="1s"
+				DissipateAmount="25"
+				MaxDamageClampScaler="=$MAX_SECONDARY_DAMAGE_SCALER">
+				<Color R="1.0" G="1.0" B="1.75" />
+				<EffectInfo
+					Fraction="1.0"
+					Options="DIE_ON_ENTER" />
+				<ObjectStatusValidation
+					ForbiddenStatus="UNDER_IRON_CURTAIN" />
+			</SecondaryDamageTracker>
+			<AttributeModifierUpgrade
+				id="ModuleTag_JapanNanoFlyMaster"
+				AttributeModifier="AttributeModifier_MODNanoFlyMasterUnitUpgradeEffect">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_MODNanoFlyMasterSpecialAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="125.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_MODNanoFlyMasterSpecialEffect"
+				RequiredObjectStatusFlags="GENERIC_TOGGLE_STATE">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="VEHICLE INFANTRY"
+					StatusBitFlagsExclude="SUBMERGED UNDER_IRON_CURTAIN AIRBORNE_TARGET">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<SlowDeath
+				id="ModuleTag_SuicidedDeath"
+				DeathFlags="DEATH_1"
+				SinkDelay="0s"
+				SinkRate="2.4"
+				DestructionDelay="4s">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Sound
+					Type="INITIAL"
+					List="ALI_Buzzers_Die" />
+			</SlowDeath>
+			<StealthDetectorUpdate
+				id="ModuleTag_StealthDetect"
+				DetectionRange="250"
+				ExtraForbiddenKindOf="SUBMARINE"/>
+			<!-- Anti Sub Invisibility-->
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AntiSubInvisibilityAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="250.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_AntiSubInvisibility">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="SUBMARINE">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_DeBugDamageMultUnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<!-- remove base infantry frozen death modules -->
+			<CreateObjectDie
+				id="ModuleTag_CreateFrozenObjectDie"
+				xai:joinAction="Remove" />
+			<CreateObjectDie
+				id="ModuleTag_CreateInfantryBombObjectDie"
+				xai:joinAction="Remove" />
+			<FXListBehavior
+				id="ModuleTag_FXPsycicDeath"
+				xai:joinAction="Remove" />
+			<FXListBehavior
+				id="ModuleTag_FXPsycicBlastDeath"
+				xai:joinAction="Remove" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="800.0" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior
+				id="ModuleTag_AttackLoop">
+				<ModelConditionSound
+					Sound="ALI_Buzzers_AttackingLoop"
+					RequiredFlags="ATTACKING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior
+				id="ModuleTag_AmbLoop">
+				<ModelConditionSound
+					Sound="ALI_Buzzers_IdleLoop"
+					ExcludedFlags="TRANSPORT_STOPPED" />	<!-- In case you are wondering,
+				TRANSPORT_STOPPED is on the entire time you are in a transport, even if the
+				transport is moving :-P -->
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="BOX"
+				MajorRadius="5.0"
+				MinorRadius="5.0"
+				Height="30.0"
+				ContactPointGeneration="VEHICLE">
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry
+				Sound="ALI_Buzzers_SoundJoin"
+				AudioType="voiceAttack" />
+			<AudioEntry
+				Sound="ALI_Buzzers_SoundSplit"
+				AudioType="voiceCreated" />
+			<AudioEntry
+				Sound="ALI_Buzzers_Uncombine"
+				AudioType="voiceMove" />
+			<AudioEntry
+				Sound="ALI_Buzzers_SoundSelect"
+				AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALI_Buzzers_MoveLoop"
+				AudioType="soundMoveLoop" />
+			<AudioEntry
+				Sound="ALI_Buzzers_MoveStart"
+				AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<ShadowInfo
+			Type="DECAL" />
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			xai:joinAction="Replace"
+			CrusherLevel="0"
+			CrushableLevel="75">
+			<ExtraCrushLevels CrushableLevel="75" ModelConditionMatch="OVER_WATER" />
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="MODNanoFlyMaster_Naval"
+		inheritFrom="MODNanoFlyMaster"
+		EditorName="MODNanoFlyMaster_Naval"
+		ProductionQueueType="WATERCRAFT">
+		<EquivalentTo>MODNanoFlyMaster</EquivalentTo>
+		<GameDependency
+			xai:joinAction="Replace">
+			<NeededUpgrade>Upgrade_JapanNavalYardTech2</NeededUpgrade>
+		</GameDependency>
+	</GameObject>
+	<GameObject
+		id="MODNanoFlyMaster_OneBoss"
+		inheritFrom="MODNanoFlyMaster_Naval"
+		BuildTime="8"
+		EditorName="MODNanoFlyMaster_OneBoss">
+		<GameDependency
+			xai:joinAction="Replace"
+			ForbiddenModelConditions="">
+		</GameDependency>
+	</GameObject>
+	<GameObject
+		id="MODNanoFlyMaster_Crate"
+		inheritFrom="MODNanoFlyMaster"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="MODNanoFlyMaster_Crate">
+		<EquivalentTo>MODNanoFlyMaster</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

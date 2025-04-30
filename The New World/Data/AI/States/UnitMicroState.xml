@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<AIStrategicStateDefinition
+		id="TNWBombardmentShipAttack"
+		MaxTargets="2">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="ANY">
+					<IncludeThing>AlliedAntiStructureShip</IncludeThing>
+					<IncludeThing>SovietAntiStructureShip</IncludeThing>
+					<IncludeThing>JapanAntiStructureShip</IncludeThing>
+					<IncludeThing>StrategicArmyBomberAircraft</IncludeThing>
+					<IncludeThing>EUAntiStructureShip</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ThreatToWaterAllAttackUnitHeuristic" Priority="100" />
+		<TargetHeuristic TargetHeuristic="ClosestWaterStructureHeuristic" Priority="50" />
+		<TargetHeuristic TargetHeuristic="CloseToShoreStructureHeuristic" Priority="40" />
+		<TargetHeuristic TargetHeuristic="BombardmentShipRangeToShoreStructureHeuristic"
+			Priority="30" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterStructureHeuristic" Priority="10" />
+		<Tactic id="Attack" Tactic="SimpleAttack" EndBehavior="RAMPAGE"
+			DisbandAfterRetreatTeamSize="999" EndIfStateTurnsOff="true">
+			<TeamTemplate MinUnits="1" MaxUnits="5" MinPowerAdvantage="0.25"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				AllowedLocomotorTypes="WATER AMPHIBIOUS AIR"
+				Priority="STANDARD" ReleaseType="RELEASE_TO_PRIORITY" AlwaysRecruit="true"
+				SortByDistance="true"
+				MicroManager="BombardmentShipMicroManager01">
+				<ObjectFilter Rule="ANY"
+					Include="CAN_ATTACK"
+					Exclude="IGNORES_SELECT_ALL HARVESTER">
+					<IncludeThing>AlliedAntiStructureShip</IncludeThing>
+					<IncludeThing>SovietAntiStructureShip</IncludeThing>
+					<IncludeThing>JapanAntiStructureShip</IncludeThing>
+					<IncludeThing>StrategicArmyBomberAircraft</IncludeThing>
+					<IncludeThing>EUAntiStructureShip</IncludeThing>
+				</ObjectFilter>
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="AntiGroundAircraftAttack"
+		MaxTargets="3">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="ANY">
+					<IncludeThing>AlliedAntiGroundAircraft</IncludeThing>
+					<IncludeThing>EUAntiGroundAircraft</IncludeThing>
+					<IncludeThing>MODAntiGroundAircraft</IncludeThing>
+					<IncludeThing>StrategicArmyFighterAircraft_AI</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SafestToAirAircraftAttackAllAntiAirUnitHeuristic"
+			Priority="100" />
+		<TargetHeuristic TargetHeuristic="AntiGroundBomberClosestUnitHeuristic" Priority="80" />
+		<TargetHeuristic TargetHeuristic="AntiGroundBomberClosestStructureHeuristic" Priority="80" />
+		<TargetHeuristic TargetHeuristic="SafestToAirVindicatorAntiUnArmyHeuristic" Priority="60" />
+		<TargetHeuristic TargetHeuristic="SafestToAirPowerPlantHeuristic" Priority="50" />
+		<TargetHeuristic TargetHeuristic="ClosestStructureHeuristic_NonUnique" Priority="40" />
+		<TargetHeuristic TargetHeuristic="SafestToAirStructureHeuristic" Priority="30" />
+		<Tactic id="Attack" Tactic="SimpleAttack" Distance="150"
+			EndBehavior="DISBAND" DisbandAfterRetreatTeamSize="999">
+			<TeamTemplate MinUnits="1" MaxUnits="4"
+				RegisteredObjectSet="AIRCRAFT"
+				IncludeKindOf="CAN_ATTACK" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER"
+				AllowedLocomotorTypes="AIR"
+				ReleaseType="RELEASE_TO_PRIORITY"
+				Priority="STANDARD" AlwaysRecruit="false" SortByDistance="false"
+				MicroManager="TNWVindicatorMicroManager">
+				<ObjectFilter Rule="ANY">
+					<IncludeThing>AlliedAntiGroundAircraft</IncludeThing>
+					<IncludeThing>EUAntiGroundAircraft</IncludeThing>
+					<IncludeThing>MODAntiGroundAircraft</IncludeThing>
+				</ObjectFilter>
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="SquadronLeader_BommberAttack"
+		MaxTargets="2">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="ANY">
+					<IncludeThing>AlliedBomberAircraft</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<ConstantHeuristic />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="AttackEnemySuperStructure" Priority="100" />
+		<TargetHeuristic TargetHeuristic="SafestToAirEpicUnitHeuristic" Priority="65" />
+		<TargetHeuristic TargetHeuristic="SafestToAirMONEYHeuristic" Priority="50" />
+		<TargetHeuristic TargetHeuristic="SafestToAirStructureHeuristic" Priority="20" />
+		<TargetHeuristic TargetHeuristic="SafestToAirSurfaceUnitHeuristic" Priority="20" />
+		<TargetHeuristic TargetHeuristic="SafestToAirPowerPlantHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="ClosestStructureHeuristic_NonUnique" Priority="5" />
+		<TargetHeuristic TargetHeuristic="SafestToAirSurfaceVehicleHeuristic" Priority="20" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterStructureHeuristic" Priority="10" />
+		<Tactic id="Attack" Tactic="SimpleAttack" EndBehavior="DISBAND" Distance="350"
+			DisbandAfterRetreatTeamSize="999">
+			<TeamTemplate MinUnits="1" MaxUnits="3"
+				RegisteredObjectSet="AIRCRAFT"
+				IncludeKindOf="ASSAULT_AIRCRAFT" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER"
+				AllowedLocomotorTypes="AIR"
+				Priority="STANDARD" ReleaseType="RELEASE_TO_PRIORITY" AlwaysRecruit="false"
+				SortByDistance="false"
+				MicroManager="TNWStandardMicroManager">
+				<ObjectFilter Rule="ANY">
+					<IncludeThing>AlliedBomberAircraft</IncludeThing>
+				</ObjectFilter>
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="SquadronLeader_BommberFlankAttack"
+		MaxTargets="2">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="ANY">
+					<IncludeThing>AlliedBomberAircraft</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<ConstantHeuristic />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="AttackEnemySuperStructure" Priority="100" />
+		<TargetHeuristic TargetHeuristic="SafestToAirMONEYHeuristic" Priority="50" />
+		<TargetHeuristic TargetHeuristic="SafestToAirStructureHeuristic" Priority="30" />
+		<TargetHeuristic TargetHeuristic="SafestToAirEpicUnitHeuristic" Priority="30" />
+		<TargetHeuristic TargetHeuristic="SafestToAirPowerPlantHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterStructureHeuristic" Priority="10" />
+		<Tactic id="Attack" Tactic="FlankAttack" EndBehavior="DISBAND" Distance="350"
+			DisbandAfterRetreatTeamSize="999">
+			<TeamTemplate MinUnits="1" MaxUnits="3"
+				RegisteredObjectSet="AIRCRAFT"
+				IncludeKindOf="ASSAULT_AIRCRAFT" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER"
+				AllowedLocomotorTypes="AIR"
+				Priority="STANDARD" ReleaseType="RELEASE_TO_PRIORITY" AlwaysRecruit="false"
+				SortByDistance="false"
+				MicroManager="TNWStandardMicroManager">
+				<ObjectFilter Rule="ANY">
+					<IncludeThing>AlliedBomberAircraft</IncludeThing>
+				</ObjectFilter>
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	
+	<AIStrategicStateDefinition
+		id="JapanInfiltrationStructure"
+		MaxTargets="1">
+		<Heuristic>
+			<IntervalHeuristic IntervalTime="100s" ActiveTime="30s" />
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>FlankattackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SafestToGroundStructureHeuristic" />
+		<TargetHeuristic TargetHeuristic="SafestToWaterStructureHeuristic" />
+		<Tactic id="Attack" Tactic="DefenseAvoidanceAttack" EndBehavior="DISBAND">
+			<TeamTemplate MinUnits="1" MaxUnits="1"
+				RegisteredObjectSet="INFANTRY"
+				IncludeKindOf="CAN_ATTACK INFANTRY" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER"
+				AllowedLocomotorTypes="LAND AMPHIBIOUS"
+				Priority="STANDARD" AlwaysRecruit="false"
+				MicroManager="TNWStandardMicroManager">
+				<ObjectFilter
+					Rule="ANY">
+					<IncludeThing>JapanInfiltrationInfantry</IncludeThing>
+				</ObjectFilter>
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+  <AIStrategicStateDefinition
+    id="JapanInfiltrationStructureFearless"
+    MaxTargets="1">
+    <Heuristic>
+			<IntervalHeuristic IntervalTime="100s" ActiveTime="30s" />
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>FlankattackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+    </Heuristic>
+    <TargetHeuristic TargetHeuristic="SafestToGroundStructureHeuristic"/>
+    <Tactic id="Attack" Tactic="DefenseAvoidanceAttack" EndBehavior="RAMPAGE">
+      <TeamTemplate MinUnits="1" MaxUnits="1"
+                    RegisteredObjectSet="INFANTRY"
+                    IncludeKindOf="CAN_ATTACK INFANTRY" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER"
+                    AllowedLocomotorTypes="LAND AMPHIBIOUS"
+                    Priority="STANDARD" AlwaysRecruit="false" SortByDistance="false"
+                    MicroManager="FearlessMicroManager">
+        <CreateUnits UnitName="JapanInfiltrationInfantry" MinUnits="1" MaxUnits="1"/>
+      </TeamTemplate>
+    </Tactic>
+  </AIStrategicStateDefinition>
+
+	<AIStrategicStateDefinition
+		id="AlliedInfiltrationStructure"
+		MaxTargets="1">
+		<Heuristic>
+			<IntervalHeuristic IntervalTime="100s" ActiveTime="30s" />
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>FlankattackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SafestToGroundStructureHeuristic" />
+		<TargetHeuristic TargetHeuristic="SafestToWaterStructureHeuristic" />
+		<Tactic id="Attack" Tactic="DefenseAvoidanceAttack" EndBehavior="DISBAND">
+			<TeamTemplate MinUnits="1" MaxUnits="1"
+				RegisteredObjectSet="INFANTRY"
+				IncludeKindOf="CAN_ATTACK INFANTRY" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER"
+				AllowedLocomotorTypes="LAND AMPHIBIOUS"
+				Priority="STANDARD" AlwaysRecruit="false"
+				MicroManager="TNWStandardMicroManager">
+				<ObjectFilter
+					Rule="ANY">
+					<IncludeThing>AlliedInfiltrationInfantry</IncludeThing>
+				</ObjectFilter>
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+  <AIStrategicStateDefinition
+    id="AlliedInfiltrationStructureFearless"
+    MaxTargets="1">
+    <Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>FlankattackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+    </Heuristic>
+    <TargetHeuristic TargetHeuristic="SafestToGroundStructureHeuristic"/>
+    <Tactic id="Attack" Tactic="DefenseAvoidanceAttack" EndBehavior="RAMPAGE">
+      <TeamTemplate MinUnits="1" MaxUnits="1"
+                    RegisteredObjectSet="INFANTRY"
+                    IncludeKindOf="CAN_ATTACK INFANTRY" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER"
+                    AllowedLocomotorTypes="LAND AMPHIBIOUS"
+                    Priority="STANDARD" AlwaysRecruit="false" SortByDistance="false"
+                    MicroManager="FearlessMicroManager">
+        <CreateUnits UnitName="AlliedInfiltrationInfantry" MinUnits="1" MaxUnits="1"/>
+      </TeamTemplate>
+    </Tactic>
+  </AIStrategicStateDefinition>
+
+	<AIStrategicStateDefinition
+		id="StrategicArmyInfiltrationStructure"
+		MaxTargets="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>FlankattackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SafestToGroundStructureHeuristic" />
+		<TargetHeuristic TargetHeuristic="SafestToWaterStructureHeuristic" />
+		<Tactic id="Attack" Tactic="DefenseAvoidanceAttack" EndBehavior="DISBAND">
+			<TeamTemplate MinUnits="1" MaxUnits="1"
+				RegisteredObjectSet="INFANTRY"
+				IncludeKindOf="CAN_ATTACK INFANTRY" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER"
+				AllowedLocomotorTypes="LAND AMPHIBIOUS"
+				Priority="STANDARD" AlwaysRecruit="false"
+				MicroManager="TNWStandardMicroManager">
+				<ObjectFilter
+					Rule="ANY">
+					<IncludeThing>StrategicArmyInfiltrationInfantry</IncludeThing>
+				</ObjectFilter>
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+  <AIStrategicStateDefinition
+    id="StrategicArmyInfiltrationStructureFearless"
+    MaxTargets="1">
+    <Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>FlankattackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+    </Heuristic>
+    <TargetHeuristic TargetHeuristic="SafestToGroundStructureHeuristic"/>
+    <Tactic id="Attack" Tactic="DefenseAvoidanceAttack" EndBehavior="RAMPAGE">
+      <TeamTemplate MinUnits="1" MaxUnits="1"
+                    RegisteredObjectSet="INFANTRY"
+                    IncludeKindOf="CAN_ATTACK INFANTRY" ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER"
+                    AllowedLocomotorTypes="LAND AMPHIBIOUS"
+                    Priority="STANDARD" AlwaysRecruit="false" SortByDistance="false"
+                    MicroManager="FearlessMicroManager">
+        <CreateUnits UnitName="StrategicArmyInfiltrationInfantry" MinUnits="1" MaxUnits="1"/>
+      </TeamTemplate>
+    </Tactic>
+  </AIStrategicStateDefinition>
+</AssetDeclaration>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+<WeaponTemplate
+	id="AlliedAntiAirVehicleTech1MissileGroundLauncher"
+	AttackRange="150.0"
+	WeaponSpeed="200"
+	MinWeaponSpeed="300"
+	MaxWeaponSpeed="310"
+	FireFX="FX_AlliedIFVMissileFire"
+	FireVeteranFX="FX_AlliedIFVMissileFire_Vet"
+	FireSound="ALL_JavelinSoldier_MissileFire"
+	AcceptableAimDelta="20d"
+	PreAttackType="PER_SHOT"
+	ReAcquireDetailType="PRE_FIRE"
+	ClipSize="3"
+	RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+	ForbiddenAntiMask="ANTI_STRUCTURE"
+	CanFireWhileMoving="true">
+	<FiringDuration
+		MinSeconds=".25s"
+		MaxSeconds=".25s" />
+	<ClipReloadTime
+		MinSeconds="0.5s"
+		MaxSeconds="0.5s" />
+	<Nuggets>
+		<ProjectileNugget
+			ProjectileTemplate="AlliedAntiAirMissileProjectile"
+			WarheadTemplate="AlliedAntiAirVehicleTech1MissileLauncherGroundWarhead">
+			<VeterancyProjectiles
+				VeterancyLevel="HEROIC"
+				ProjectileTemplate="AlliedAntiAirMissileProjectile_Veteran"/>
+		</ProjectileNugget>
+		<SuppressionNugget
+			Radius="20.0"
+			Suppression="10"
+			DurationSeconds="1.0s"/>
+		<InformTargetNugget
+			MaxTimeToImpactFudgeFactor="1.6" />
+	</Nuggets>
+</WeaponTemplate>
+<WeaponTemplate
+	id="AlliedAntiAirVehicleTech1MissileAirLauncher"
+	AttackRange="250.0"
+	WeaponSpeed="200"
+	MinWeaponSpeed="300"
+	MaxWeaponSpeed="310"
+	FireFX="FX_AlliedIFVMissileFire"
+	FireVeteranFX="FX_AlliedIFVMissileFire_Vet"
+	FireSound="ALL_JavelinSoldier_MissileFire"
+	AcceptableAimDelta="90d"
+	PreAttackType="PER_SHOT"
+	ReAcquireDetailType="PRE_FIRE"
+	ClipSize="6"
+	RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+	CanFireWhileMoving="true">
+	<FiringDuration
+		MinSeconds=".25s"
+		MaxSeconds=".25s" />
+	<ClipReloadTime
+		MinSeconds="4s"
+		MaxSeconds="4s" />
+	<Nuggets>
+		<ProjectileNugget
+			ProjectileTemplate="AlliedAntiAirMissileProjectile"
+			WarheadTemplate="AlliedAntiAirVehicleTech1MissileLauncherAirWarhead">
+			<VeterancyProjectiles
+				VeterancyLevel="HEROIC"
+				ProjectileTemplate="AlliedAntiAirMissileProjectile_Veteran"/>
+		</ProjectileNugget>
+		<SuppressionNugget
+			Radius="20.0"
+			Suppression="10"
+			DurationSeconds="1.0s"/>
+		<InformTargetNugget
+			MaxTimeToImpactFudgeFactor="1.6" />
+	</Nuggets>
+</WeaponTemplate>
+<WeaponTemplate
+	id="AlliedAntiAirVehicleTech1MissileLauncherGroundWarhead"
+	ProjectileCollidesWith="ENEMIES NEUTRAL"
+	RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+	Flags="NOT_ATTRACTED_BY_MAGNETS"
+	RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY" >
+	<Nuggets>
+		<DamageNugget
+			Damage="30.0"
+			DamageType="ROCKET"
+			DamageFXType="ALLIED_SAM"
+			DeathType="EXPLODED">
+			<DamageScalarDetails Scalar= "200%">
+				<Filter
+					Rule="NONE">
+					<IncludeThing>AlliedAntiAirVehicleTech1</IncludeThing>
+					<IncludeThing>AlliedAntiAirVehicleTech1AI</IncludeThing>
+				</Filter>
+			</DamageScalarDetails>
+		</DamageNugget>
+	</Nuggets>
+</WeaponTemplate>
+<WeaponTemplate
+	id="AlliedAntiAirVehicleTech1MissileLauncherAirWarhead"
+	ProjectileCollidesWith="ENEMIES NEUTRAL"
+	RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+	Flags="NOT_ATTRACTED_BY_MAGNETS"
+	RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY" >
+	<Nuggets>
+		<DamageNugget
+			Damage="50.0"
+			DamageType="ROCKET"
+			DamageFXType="ALLIED_SAM"
+			DeathType="EXPLODED">
+			<DamageScalarDetails Scalar= "200%">
+				<Filter
+					Rule="NONE">
+					<IncludeThing>AlliedAntiAirVehicleTech1</IncludeThing>
+					<IncludeThing>AlliedAntiAirVehicleTech1AI</IncludeThing>
+				</Filter>
+			</DamageScalarDetails>
+		</DamageNugget>
+	</Nuggets>
+</WeaponTemplate>
+</AssetDeclaration>

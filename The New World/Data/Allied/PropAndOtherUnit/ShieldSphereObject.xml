@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<!-- Base Object -->
+		<Include type="all" source="ART:Units/ATHENASHIELD_SKN.w3x" />
+		<Include type="instance" source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<!-- A.k.a. Athena Cannon -->
+	<GameObject
+		id="ShieldSphereObject"
+		inheritFrom="BaseObject"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="STRUCTURE NOT_AUTOACQUIRABLE IGNORE_FOR_VICTORY NO_COLLIDE IGNORE_IN_AI_HUNT_TACTIC RESIST_EMP DONT_DESTROY_IF_ON_BRIDGE"
+		EditorName="ShieldSphereObject">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedAntiStructureVehicle</DisplayName>
+		<ArmorSet
+			Armor="AlliedAntiStructureVehicleArmor"
+			DamageFX="VehicleDamageFX" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="false"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="ATHENASHIELD_SKN" />
+				</ModelConditionState>	
+				<AnimationState
+					  ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="AUAntiStructureVehicle_SHLD"
+						AnimationMode="ONCE" />
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ActivateSpecialPowerOnCreate
+				id="ModuleTag_ActivateSpecialPowerOnCreate">
+				<SpecialPowerTemplate>SpecialPower_ToggleShieldSphere</SpecialPowerTemplate>
+			</ActivateSpecialPowerOnCreate>
+			<SpecialPower
+				id="ModuleTag_AthenaCannonWeaponTrigger"
+				SpecialPowerTemplate="SpecialPower_AthenaCannonTrigger"
+				UpdateModuleStartsAttack="false" />			
+			<ActivateModuleSpecialPower
+				id="ModuleTag_SpecialPower_ToggleShieldSphere"
+				SpecialPowerTemplate="SpecialPower_ToggleShieldSphere">
+				<Modules
+					ModuleId="ModuleTag_ShieldSphere"
+					TriggerAtTargetPosition="false" 
+					TriggerType="SELF_POSITION" />
+			</ActivateModuleSpecialPower>
+			<ShieldSphereUpdate
+				id="ModuleTag_ShieldSphere"
+				InitiallyActive="false"
+				RadiusMin="50"
+				RadiusMax="200"
+				ScanFrequency="0.4s"
+				Duration="30s"
+				MaxDamage="3000"
+				DamageTypesNotToAbsorb="HEALING RADIATION UNRESISTABLE KI CRUSH"
+				ObjectStatus="GENERIC_TOGGLE_STATE IGNORING_STEALTH"
+				Options="ALLOW_ALLIES_PROJECTTILE_GOTHROUGH"
+				ShieldBoneName="FX_Cannon"
+				ShieldSizeMultiplier="2.0">
+				<ObjectFilter Rule="ANY" Relationship="ALLIES" Include="INFANTRY VEHICLE STRUCTURE" />
+				<IgnoreInsideToInsideCheck
+					Rule="NONE" >
+					<IncludeThing>AlliedAntiStructureVehicleCannonEffect</IncludeThing>
+					<IncludeThing>AlliedAntiStructureVehicleCannonEffect_Vet</IncludeThing>
+				</IgnoreInsideToInsideCheck>
+			</ShieldSphereUpdate>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="30.0s"
+				MaxLifetime="30.0s"/>
+			<Physics
+				id="ModuleTag_Physics" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<SecondaryDamageTracker
+				id="ModuleTag_SecondaryDamageTracker"
+				UpdateDuration="1s"
+				DissipateAmount="25"
+				MaxDamageClampScaler="=$MAX_SECONDARY_DAMAGE_SCALER">
+				<Color R="1.0" G="1.0" B="1.75"/>
+				<EffectInfo
+					Fraction="0.2"
+					AttributeModifier="AttributeModifer_CryoBeam_02"
+				/>
+				<EffectInfo
+					Fraction="0.4"
+					AttributeModifier="AttributeModifer_CryoBeam_04"
+				/>
+				<EffectInfo
+					Fraction="0.6"
+					AttributeModifier="AttributeModifer_CryoBeam_06"
+				/>
+				<EffectInfo
+					Fraction="0.8"
+					AttributeModifier="AttributeModifer_CryoBeam_08"
+				/>
+				<EffectInfo
+					Fraction="1.0"
+					SetUpgradedArmor="true"
+					OnEnterDisable="true"
+					OnEnterCancelSpecialAbilities="true"
+					AttributeModifier="AttributeModifer_CryoBeam_10"
+				/>
+				<ObjectStatusValidation
+					ForbiddenStatus="UNDER_IRON_CURTAIN" />
+			</SecondaryDamageTracker>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<ClientBehaviors>
+			<AnimationSoundClientBehavior id="ModuleTag_ASCB">
+				<Sound Sound="ALL_AthenaCannon_AegisShieldAnimationOpen" Animation="AUAntiStructureVehicle_SHLD" Frame="1" />
+				<Sound Sound="ALL_AthenaCannon_AegisShieldAnimationClose" Animation="AUAntiStructureVehicle_SHLD" Frame="10" />
+				<Sound Sound="ALL_AthenaCannon_AegisShieldOff" Animation="AUAntiStructureVehicle_SHLD" Frame="5" />
+			</AnimationSoundClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_AegisShield">
+				<ModelConditionSound Sound="ALL_AthenaCannon_AegisShieldLoopMS" RequiredFlags="LOCOMOTOR_NORMAL_UPGRADED" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="false">
+			<PlacementShape
+				 Type= "BOX"
+				 MajorRadius = "0"
+				 MinorRadius = "0"
+				 Height = "0" >
+				<Offset
+					x = "0.0"
+					y = "0.0"
+					z = "0.0" />
+			</PlacementShape>
+			<Shape
+				Type= "BOX"
+				MajorRadius = "1"
+				MinorRadius = "1"
+				Height = "1"
+				 ContactPointGeneration = "STRUCTURE" >
+			</Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="200" />
+	</GameObject>
+</AssetDeclaration>

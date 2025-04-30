@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<!-- aka Sudden Transport -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+
+		<Include type="all" source="ART:JULightTransportVehicle.w3x" />
+		<Include type="all" source="ART:JULightTransportVehicle_02_D.xml" />
+		<Include type="all" source="ART:FXTracerHeroic.xml" />
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+
+	<GameObject
+		id="JapanTransportVehicle"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_JapanLightTransportVehicle"
+		ButtonImage="Button_JapanLightTransportVehicle"
+		Side="Japan"
+		SubGroupPriority="725"
+		EditorSorting="UNIT"
+		BuildTime="5"
+		BountyValue="150"
+		CommandSet="JapanLightTransportVehicleCommandSet"
+		KindOf="SELECTABLE DISGUISER AMPHIBIOUS CAN_CAST_REFLECTIONS SCORE TRANSPORT VEHICLE CAN_BE_FAVORITE_UNIT GARRISONABLE_UNTIL_DESTROYED"
+		ThreatLevel="10"
+		WeaponCategory="GUN"
+		VoicePriority="176"
+		EditorName="JapanTransportVehicle"
+		Description="Desc:JapanLightTransportVehicle"
+		TypeDescription="Type:TransportUnit"
+		HealthBoxHeightOffset="35"
+		UnitIntro="Japan_SuddenTransport_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanLightTransportVehicle</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="500" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseUnAttackVehicleArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="JapanLightTransportVehicleLocomotor"
+			Condition="NORMAL"
+			Speed="100.0" />
+		<LocomotorSet
+			Locomotor="JapanLightTransportVehicle_WaterLocomotor"
+			Condition="NORMAL"
+			Speed="100.0" />
+
+		<!-- OverrideOuterDistanceToTarget - same as a Tankbuster, since we'd need to get at least
+		that close to
+			   the target to be of any use. -->
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="false"
+			OverrideOuterDistanceToTarget="350" />
+		<Draws>
+			<!-- build error	TrackMarks="EXTireTrack2" -->
+			<!-- i want this TruckDraw's id to be different from the first drawModuleID of
+			everything that this can disguise as ;-) -->
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				TrackMarksOnlyWhenCorneringQuickly="true"
+				TrackMarksLeftBone="Bone_TireLR"
+				TrackMarksRightBone="Bone_TireRR"
+				LeftFrontTireBone="Bone_TireLF"
+				RightFrontTireBone="Bone_TireRF"
+				MidLeftRearTireBone="Bone_TireLR"
+				MidRightRearTireBone="Bone_TireRR"
+				LeftRearTireBone="Bone_TireLR1"
+				RightRearTireBone="Bone_TireRR1"
+				TireRotationMultiplier="0.2"
+				PowerslideRotationAddition="1.25"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="FXWeapon Bone_Turret BoneGarrison01 BoneGarrison02 BoneGarrison03 BoneGarrison04 BoneGarrison05 BoneGarrison06 BoneGarrison07 BoneGarrison08 BoneGarrison09 BoneGarrison10">
+
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JULightTransportVehicle" />
+
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROOTTRANSFORM" />
+					<WeaponRecoilBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROOTTRANSFORM" />
+					<WeaponMuzzleFlash
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROOTTRANSFORM" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROOTTRANSFORM" />
+					<Turret
+						TurretNameKey="Bone_Turret"
+						TurretID="1" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="JULightTransportVehicle" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="JULightTransportVehicle" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JULightTransportVehicle" />
+					<Texture
+						Original="JULightTransportVehicle_02"
+						New="JULightTransportVehicle_02_D" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="JULightTransportVehicle"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Animation
+						AnimationName="JULightTransportVehicle"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="HelicopterMovingWaterWake"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="HoverTransportWaterMist"
+						FollowBone="false" />
+				</AnimationState>
+			</TruckDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="7">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanLightTransportVehicleDisguiser"
+						ForbiddenObjectStatus="IGNORING_STEALTH"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MaxDeflectionAntiClockwise="180d"
+						MaxDeflectionClockwise="180d">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="false"
+							CanPickDynamicTargets="false"
+							IdleScanDelay="=$MEDIUM_IDLE_SCAN_DELAY" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<FireWeaponCollide
+				id="ModuleTag_FireBaseAutoAndShipWeaponCollide"
+				xai:joinAction="Remove" />
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="JULightTransportVehicle_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+			</CreateObjectDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+			</FXListBehavior>
+			<StatusBitsUpgrade
+				id="ModuleTag_JapanUnitUpgradeEnhancedKamikazeObjectStatus"
+				StatusToSet="PLAYER_POWER_2">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<FireWeaponWhenDead
+				id="ModuleTag_JapanLightTransportVehicleUpgradeDeathWeapon"
+				DeathWeapon="JapanLightTransportVehicleUpgradeDeathWeapon"
+				InitiallyActive="true">
+				<DieMuxData
+					DeathTypes="ALL"
+					RequiredStatus="PLAYER_POWER_2" />
+			</FireWeaponWhenDead>
+			<TransportContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED NO_ATTACK"
+				ContainMax="7"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="JapaneseSuddenTransportVehicleExitWithVoiceMS"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY">
+					<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+				</PassengerFilter>
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="CHASSIS">
+					<Filter
+						Rule="ANY"
+						Include="INFANTRY">
+						<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+					</Filter>
+				</PassengerData>
+			</TransportContain>
+			<SpecialPower
+				id="ModuleTag_GenericGroundEjectPassengers"
+				SpecialPowerTemplate="SpecialPower_GenericGroundEjectPassengers"
+				UpdateModuleStartsAttack="true" />
+			<EjectPassengersSpecialAbilityUpdate
+				id="ModuleTag_GenericGroundEjectPassengersUpdate"
+				SpecialPowerTemplate="SpecialPower_GenericGroundEjectPassengers"
+				Height="0.0"
+				TimePerPassenger="0s"
+				IgnoreTargetLocation="true"
+				Radius="30"
+				Options="RECONSTITUTE_STORED_COMMAND DO_NOT_DO_AI_SPECIAL_POWER LOSE_STEALTH_ON_TRIGGER"/>
+			<FireWeaponUpdate
+				id="Upgrade_TransportRepairHeal"
+				FireInterval="1.0s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="TransportRepairHealShortCircuit"
+					OneShot="false" />
+				<ObjectStatusValidation
+					RequiredStatus="PLAYER_POWER_5" />
+			</FireWeaponUpdate>
+			<StatusBitsUpgrade
+				id="ModuleTag_TransportRepairObjectStatus"
+				StatusToSet="PLAYER_POWER_5">
+				<TriggeredBy>Uprade_IFV_Repair</TriggeredBy>
+				<TriggeredBy>Uprade_SovietEngineer</TriggeredBy>
+			</StatusBitsUpgrade>
+			<SecondaryObjectListenerModule
+				id="ModuleTag_TransportRepairObjectListener"
+				Flags="NOTIFY_WEAPON_SET_UPDATE">
+				<!-- AlliedEngineer, SovietEngineer & JapanEngineer -->
+				<ObjectEffectTuple>
+					<ObjectFilter Rule="NONE">
+						<IncludeThing>JapanEngineer</IncludeThing>
+						<IncludeThing>AlliedEngineer</IncludeThing>
+					</ObjectFilter>
+					<UpgradeSelf>Uprade_IFV_Repair</UpgradeSelf>
+				</ObjectEffectTuple>
+				<ObjectEffectTuple>
+					<ObjectFilter Rule="NONE">
+						<IncludeThing>SovietEngineer</IncludeThing>
+					</ObjectFilter>
+					<UpgradeSelf>Uprade_SovietEngineer</UpgradeSelf>
+				</ObjectEffectTuple>
+			</SecondaryObjectListenerModule>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<SpecialPower
+				id="ModuleTag_Disguise"
+				SpecialPowerTemplate="SpecialPower_JapanLightTransportVehicleDisguise"
+				UpdateModuleStartsAttack="true" />
+			<SpecialDisguiseUpdate
+				id="ModuleTag_DisguiseUpdateBecome"
+				Options="CHECK_SPECIALPOWER_REQUIREMENTS_DURING_UPDATE"
+				TriggerInstantlyOnCreate="false"
+				SpecialPowerTemplate="SpecialPower_JapanLightTransportVehicleDisguise"
+				OpacityTarget="0.0"
+				DisguiseFX="FX_JAP_SuddenDisguise"
+				UnpackTime="1s"
+				UnpackSound="JAP_SuddenTransport_DisguiseOnMS"
+				FaceTarget="false" />
+			<!-- TriggerSound="JAP_SuddenTransport_DisguiseOnMS" this gets triggered twice -->
+
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+			<!-- -->
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="JapanLightTransportVehicleFunctions"/>
+		</Behaviors>
+		<AI>
+			<TransportAIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="false" />
+			</TransportAIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="350" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_MoveLoop">
+				<ModelConditionSound Sound="Tank_Land_MoveLoop" RequiredFlags="MOVING"
+					ExcludedFlags="OVER_WATER DYING" />
+				<ModelConditionSound Sound="Ship_Small_MoveLoopWater"
+					RequiredFlags="MOVING OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="JAP_Sudden_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_WaterSounds">
+				<Override RequiredFlags="OVER_WATER">
+					<AudioArrayVoice>
+						<AudioEntry Sound="JAP_SuddenTransport_VoiceSelectWaterMS"
+							AudioType="voiceSelect" />
+						<AudioEntry Sound="JAP_SuddenTransport_VoiceSelectUnderFireWaterMS"
+							AudioType="voiceSelectUnderFire" />
+					</AudioArrayVoice>
+					<AudioArraySound>
+						<AudioEntry Sound="JAP_SuddenTransport_MoveStartWater"
+							AudioType="soundMoveStart" />
+					</AudioArraySound>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_WaterEntrySplash">
+				<ModelConditionSound Sound="JAP_OreCollector_WaterSplashMS"
+					RequiredFlags="OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="20.0"
+				MinorRadius="10.0"
+				Height="18"
+				ContactPointGeneration="VEHICLE" />
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_SuddenTransport_VoiceDisguiseMS" AudioType="voiceAttack" />
+			<AudioEntry Sound="JAP_SuddenTransport_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_SuddenTransport_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_SuddenTransport_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="JAP_SuddenTransport_VoiceSelectLandMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="JAP_SuddenTransport_VoiceSelectUnderFireLandMS"
+				AudioType="voiceSelectUnderFire" />
+			<!-- <NamedEntry Sound="JAP_SuddenTransport_VoiceDisguise" Name="VoiceDisguise" hooked
+			to voiceAttack/> -->
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_SuddenTransport_MoveStartLand" AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="200"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushEqualLevelProps="true"
+			CrushableLevel="25"
+			CrushWeapon="SovietCrushWeapon" />
+	</GameObject>
+	<GameObject
+		id="JapanLightTransportVehicle_Crate"
+		inheritFrom="JapanTransportVehicle"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="JapanLightTransportVehicle_Crate">
+		<EquivalentTo>JapanTransportVehicle</EquivalentTo>
+	</GameObject>
+	<WeaponTemplate
+		id="JapanLightTransportVehicleDisguiser"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RadiusDamageAffects="ALLIES ENEMIES NOT_SIMILAR NEUTRALS"
+		AttackRange="999999.0"
+		WeaponSpeed="999999.0"
+		ClipSize="0"
+		AutoReloadsClip="AUTO"
+		CanFireWhileMoving="false"
+		InstantLoadClipOnActivate="false"
+		ContactWeapon="false"
+		AcceptableAimDelta="180d"
+	>
+		<FiringDuration
+			MinSeconds="5.01s"
+			MaxSeconds="5.01s"
+		/>
+		<Nuggets>
+			<SpecialPowerNugget
+				SpecialPowerTemplate="SpecialPower_JapanLightTransportVehicleDisguise">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Relationship="ALLIES ENEMIES NEUTRAL"
+					Include="VEHICLE">
+					<ExcludeThing>JapanMechaKing</ExcludeThing>
+					<ExcludeThing>ScrinInvaderFighterAircraft</ExcludeThing>
+					<ExcludeThing>JapanBossMechaKing</ExcludeThing>
+					<ExcludeThing>ScrinAntiInfantryVehicle</ExcludeThing>
+					<ExcludeThing>ScrinFighterAircraft</ExcludeThing>
+					<ExcludeThing>ScrinAntiAirVehicleTech1</ExcludeThing>
+					<ExcludeThing>ScrinAntiVehicleVehicleTech3</ExcludeThing>
+					<ExcludeThing>ScrinConquerShip</ExcludeThing>
+					<ExcludeThing>ScrinAntiVehicleVehicleTech1</ExcludeThing>
+					<ExcludeThing>ScrinAntiStructureAircraft</ExcludeThing>
+					<ExcludeThing>ScrinAntiInfantryVehicle</ExcludeThing>
+					<ExcludeThing>MODNanoFlyMaster</ExcludeThing>
+				</SpecialObjectFilter>
+			</SpecialPowerNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

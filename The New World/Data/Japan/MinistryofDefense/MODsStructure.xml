@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:Japan/Structures/JapanTechStructure.xml" />
+		<Include type="instance" source="DATA:Japan/Structures/JapanSuperWeaponAdvanced.xml" />
+		<Include type="instance" source="DATA:Japan/Structures/JapanSuperWeapon.xml" />
+		<Include type="instance" source="DATA:Japan/Structures/JapanCrane.xml" />
+	</Includes>
+	<GameObject
+		id="MODCrane"
+		inheritFrom="JapanCrane"
+		CommandSet="MODCraneCommandSet"
+		EditorName="MODCrane">
+		<EquivalentTo>JapanCrane</EquivalentTo>
+		<Behaviors>
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelfEgg"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_PackReplaceSelfEgg"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				NewObjectUnpackTime="2s"
+				ReplaceOptions="COPY_UPGRADES DISABLE_DURING_REPLACE DISABLE_NEW_OBJECT_DURING_UNPACK">
+				<ReplacementTemplate>MODCraneEgg</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+			<CreateObjectDie
+		id="ModuleTag_CreateOccupiedDie"
+			xai:joinAction="Replace"
+		CreationList="OCL_GenericMODBuildingDestruction" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6"/>
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+		id="ModuleTag_CreateOccupiedConfigDie"
+			xai:joinAction="Replace"
+		CreationList="OCL_GenericMODBuildingConfigDestruction" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6"/>
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+	id="ModuleTag_CreateOccupiedSuicide"
+			xai:joinAction="Replace"
+	CreationList="OCL_GenericMODBuildingSuicide" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+	id="ModuleTag_CreateOccupiedConfigSuicide"
+			xai:joinAction="Replace"
+	CreationList="OCL_GenericMODBuildingConfigSuicide" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+			</CreateObjectDie>
+			<!--Command Upgrade-->
+			<CommandSetUpgrade
+				id="ModuleTag_CommandSetRedAlert"
+			xai:joinAction="Replace"
+				CommandSet="MODCraneCommandSetRedAlert">
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+			</CommandSetUpgrade>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="MODTechStructure"
+		inheritFrom="JapanTechStructure">
+		<EquivalentTo>JapanTechStructure</EquivalentTo>
+		<Behaviors>
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelfEgg"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_PackReplaceSelfEgg"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				NewObjectUnpackTime="2s"
+				ReplaceOptions="COPY_UPGRADES DISABLE_DURING_REPLACE DISABLE_NEW_OBJECT_DURING_UNPACK">
+				<ReplacementTemplate>MODTechStructureEgg</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+			<CreateObjectDie
+		id="ModuleTag_CreateOccupiedDie"
+			xai:joinAction="Replace"
+		CreationList="OCL_GenericMODBuildingDestruction" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6"/>
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+		id="ModuleTag_CreateOccupiedConfigDie"
+			xai:joinAction="Replace"
+		CreationList="OCL_GenericMODBuildingConfigDestruction" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6"/>
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+	id="ModuleTag_CreateOccupiedSuicide"
+			xai:joinAction="Replace"
+	CreationList="OCL_GenericMODBuildingSuicide" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+	id="ModuleTag_CreateOccupiedConfigSuicide"
+			xai:joinAction="Replace"
+	CreationList="OCL_GenericMODBuildingConfigSuicide" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="MODSuperWeaponAdvanced"
+		inheritFrom="JapanSuperWeaponAdvanced">
+		<EquivalentTo>JapanSuperWeaponAdvanced</EquivalentTo>
+		<Behaviors>
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelfEgg"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_PackReplaceSelfEgg"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				NewObjectUnpackTime="2s"
+				ReplaceOptions="COPY_UPGRADES DISABLE_DURING_REPLACE DISABLE_NEW_OBJECT_DURING_UNPACK">
+				<ReplacementTemplate>MODSuperWeaponAdvancedEgg</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+			<CreateObjectDie
+		id="ModuleTag_CreateOccupiedDie"
+			xai:joinAction="Replace"
+		CreationList="OCL_GenericMODBuildingDestruction" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6"/>
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+		id="ModuleTag_CreateOccupiedConfigDie"
+			xai:joinAction="Replace"
+		CreationList="OCL_GenericMODBuildingConfigDestruction" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6"/>
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+	id="ModuleTag_CreateOccupiedSuicide"
+			xai:joinAction="Replace"
+	CreationList="OCL_GenericMODBuildingSuicide" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+	id="ModuleTag_CreateOccupiedConfigSuicide"
+			xai:joinAction="Replace"
+	CreationList="OCL_GenericMODBuildingConfigSuicide" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="MODSuperWeapon"
+		inheritFrom="JapanSuperWeapon">
+		<EquivalentTo>JapanSuperWeapon</EquivalentTo>
+		<Behaviors>
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelfEgg"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_PackReplaceSelfEgg"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				NewObjectUnpackTime="2s"
+				ReplaceOptions="COPY_UPGRADES DISABLE_DURING_REPLACE DISABLE_NEW_OBJECT_DURING_UNPACK">
+				<ReplacementTemplate>MODSuperWeaponEgg</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+			<CreateObjectDie
+		id="ModuleTag_CreateOccupiedDie"
+			xai:joinAction="Replace"
+		CreationList="OCL_GenericMODBuildingDestruction" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6"/>
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+		id="ModuleTag_CreateOccupiedConfigDie"
+			xai:joinAction="Replace"
+		CreationList="OCL_GenericMODBuildingConfigDestruction" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6"/>
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+	id="ModuleTag_CreateOccupiedSuicide"
+			xai:joinAction="Replace"
+	CreationList="OCL_GenericMODBuildingSuicide" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+	id="ModuleTag_CreateOccupiedConfigSuicide"
+			xai:joinAction="Replace"
+	CreationList="OCL_GenericMODBuildingConfigSuicide" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

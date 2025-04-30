@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<AIBuildStateDefinition
+		id="AlliedAntiAirOnlyBuildState_TNW">
+		<Heuristic>
+			<EnemyNearbyHeuristic Distance="700.0" EnemyNearby="true" MinEnemyValue="1200">
+					<EnemyFilter
+							Relationship="ENEMIES"
+							Rule="ANY"
+							Include="AIRCRAFT MONSTER">
+					</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="AlliedFighterAircraft" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="AlliedAntiAirShip" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="AlliedAntiAirVehicleTech1" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="AlliedAntiVehicleInfantry" Heuristic="FEWEST_UNIT">
+			<BlockIfThingNearFactory
+				Rule="ANY"
+				Relationship="ENEMIES"
+				Include="INFANTRY"
+				StatusBitFlagsExclude="AIRBORNE_TARGET">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+				<IncludeThing>AlliedAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>SovietAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>AlliedAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>JapanSentinelVehicle</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="AlliedAmphibiousUnitBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Land Water">
+				<ObjectFilter
+				  Relationship="ENEMIES"
+				  Rule="ANY"
+				  Include="CAN_ATTACK STRUCTURE"
+				  Exclude="IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+				  StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+			<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+			<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="AlliedLegionnaireInfantry" Heuristic="FEWEST_UNIT">
+			<BlockIfThingNearFactory
+				Rule="ANY"
+				Relationship="ENEMIES"
+				StatusBitFlagsExclude="AIRBORNE_TARGET">
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+				<IncludeThing>AlliedAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>SovietAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>AlliedAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>JapanSentinelVehicle</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="AlliedCommandoTech1" Heuristic="FEWEST_UNIT" ExpectedEfficiencyWeight="1.0">
+			<BlockIfThingNearFactory Rule="ANY" Relationship="ENEMIES">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+				<IncludeThing>AlliedAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>SovietAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>AlliedAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>JapanSentinelVehicle</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="AlliedAntiNavyShipTech1" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+    
+	<AIBuildStateDefinition
+	  id="AlliedGenericUnitBuildState">
+		<Heuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="AlliedScoutInfantry" Heuristic="BEST_UNIT_WEIGHTED">
+			<BlockIfThingNearFactory
+				Rule="ANY"
+				Relationship="ENEMIES"
+				StatusBitFlagsExclude="AIRBORNE_TARGET">
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+				<IncludeThing>AlliedAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>SovietAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>AlliedAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>JapanSentinelVehicle</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="AlliedCommandoTech1" Heuristic="FEWEST_UNIT" ExpectedEfficiencyWeight="1.0" BlockIfThingNearFactoryDistance="100">
+			<BlockIfThingNearFactory Rule="ANY" Relationship="ENEMIES">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+				<IncludeThing>AlliedAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>SovietAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>AlliedAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>JapanSentinelVehicle</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="AlliedAntiInfantryVehicle" Heuristic="BEST_UNIT_WEIGHTED" BlockIfThingNearFactoryDistance="200">
+			<BlockIfThingNearFactory
+				Rule="ANY"
+				Relationship="ENEMIES"
+				Include="COMMANDO T3_UNIT T2_UNIT">
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="AlliedWarFactoryBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ConstantHeuristic/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>AlliedWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="AlliedWarFactory" Heuristic="FACTORY" Score="100"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="AlliedNavalYardBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ConstantHeuristic/>
+			<CanBuildBuildingsOnSurfaceHeuristic
+				Surfaces="WATER DEEP_WATER"
+				MinPlacementGridCells="0"
+				MaxPlacementGridCells="0" />
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>AlliedNavalYard</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="AlliedNavalYard" Heuristic="FACTORY" Score="100"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="AlliedAirfieldBuildState">
+		<Heuristic>
+			<ConstantHeuristic/>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>AlliedAirfield</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="AlliedAirfield" Heuristic="FACTORY" Score="100"/>
+	</AIBuildStateDefinition>
+    
+	<AIBuildStateDefinition
+	  id="AlliedStructureTNWBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+		</Heuristic>
+		<BuildEntry Build="AlliedPowerPlant" Heuristic="POWER"/>
+		<BuildEntry Build="AlliedRefinery" Heuristic="REFINERY"/>
+		<BuildEntry Build="AlliedBarracks" Heuristic="FACTORY"/>
+		<BuildEntry Build="AlliedMiner" Heuristic="HARVESTER"/>
+		<BuildEntry Build="KodiakSpwan" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="AlliedStructureTNWBuildState_BRUTAL">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+		</Heuristic>
+		<BuildEntry Build="AlliedPowerPlant" Heuristic="POWER"/>
+		<BuildEntry Build="AlliedRefinery" Heuristic="REFINERY"/>
+		<BuildEntry Build="AlliedBarracksAI" Heuristic="FACTORY"/>
+		<BuildEntry Build="AlliedAirfield" Heuristic="FACTORY"/>
+		<BuildEntry Build="AlliedWarFactoryAI" Heuristic="FACTORY"/>
+		<BuildEntry Build="AlliedNavalYard" Heuristic="FACTORY"/>
+		<BuildEntry Build="AlliedMiner" Heuristic="HARVESTER"/>
+		<BuildEntry Build="KodiakSpwan" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="AlliedAntiBaseDefenceBuildUnit">
+		<Heuristic>
+			<EnemyNearbyHeuristic Distance="1500.0" EnemyNearby="false" MinEnemyValue="5000">
+				<EnemyFilter
+					Rule="ANY"
+					Relationship="ENEMIES"
+					Include="FS_BASE_DEFENSE"
+					Exclude="SUPER_WEAPON">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="AlliedAntiStructureVehicle" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="AlliedAntiStructureShip" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+</AssetDeclaration>

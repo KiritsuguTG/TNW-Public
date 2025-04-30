@@ -1,0 +1,487 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZ_ATKA.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZ_IDLA.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZ_SKL.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZ_SKN.BOX01.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZ_SKN.OBBOX00.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZ_SKN.OBBOX01.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZ_SKN.OBBOX02.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZ_SKN.OBBOX03.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZ_SKN.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZCOMBIDLE.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZEMPTY.OBBOX.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZEMPTY.PLANE01.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZEMPTY_CTR.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZEMPTY_HRC.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/FXBUZZER_FP.PLANE01.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/FXBUZZER_FP.PLANE02.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/FXBUZZER_FP_CTR.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/FXBUZZER_FP_HRC.w3x" />
+		<Include type="all" source="ART:Units/NanoFly/AUBUZZMASTER_SKN.BOX01.w3x" />
+		<Include type="all" source="ART:FXInvisBone.w3x" />
+		<Include source="art:fxlenzflarehdr01.xml" type="instance"/>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseInfantry.xml" />
+	</Includes>
+	<GameObject
+		id="MODNanoFly"
+		inheritFrom="BaseInfantry"
+		Side="Japan"
+		SubGroupPriority="350"
+		EditorSorting="UNIT"
+		SelectPortrait="PortraitJapanNanoFly"
+		ButtonImage="ButtonJapanNanoFly"
+		HealthBoxHeightOffset="30"
+		TransportSlotCount="10"
+		CommandSet="MODNanoFlyCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK AMPHIBIOUS INFANTRY CAN_CAST_REFLECTIONS RESIST_EMP PRELOAD PATH_THROUGH_INFANTRY SKIRMISH_AI_DONT_GARRISON WB_DISPLAY_SCRIPT_NAME CANNOT_HIJACK"
+		RadarPriority="UNIT"
+		ProductionQueueType="INFANTRY"
+		WeaponCategory="GUN"
+		ThreatLevel="10"
+		VoicePriority="50"
+		EditorName="MODNanoFly"
+		Description="Desc:JapanNanoFly"
+		TypeDescription="Type:AntiInfantry"
+		ShockwaveResistance="99999"
+		BuildTime="2"
+		BountyValue="25"
+		UnitTypeIcon="NanoflyIcon">
+		<DisplayName
+			xai:joinAction="Replace">Name:JapanNanoFly</DisplayName>
+		<SkirmishAIInformation
+		  DodgeSafetyDistance="150.0">
+			<DodgeWithUnits Rule="ANY"
+					  Include="INFANTRY"
+			  StatusBitFlagsExclude="AIRBORNE_TARGET">
+			</DodgeWithUnits>
+		</SkirmishAIInformation>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="100"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseInfantryArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+		  id="DefaultLandLocomotor"
+		  Locomotor="JapanNanoFlyLocomotor"
+		  Condition="NORMAL"
+		  Speed="65.0" />
+		<LocomotorSet
+		  id="DefaultWaterLocomotor"
+		  Locomotor="JapanNanoFlyWaterLocomotor"
+		  Condition="NORMAL"
+		  Speed="65.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			TargetDuringCrush="true"
+      ConquerMetricsDpsBonusAgainstDefenses="5.0"
+			ConquerMetricsOverrideDamageType="SNIPER"
+			ConquerMetricsOverrideAntiMask="ANTI_INFANTRY"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUBUZZ_SKN" />
+					<ShadowInfo
+						Type="ADDITIVE_DECAL"
+						SizeX="30"
+						SizeY="30"
+						OverrideLODVisibility="true"
+						MaxHeight="50"
+						UseHouseColor="true"
+						Texture="AUDronShipDecalIdle" />
+					<ParticleSysBone
+						BoneName="Bone_00"
+						FXParticleSystemTemplate="FXJapanNanoFly"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_01"
+						FXParticleSystemTemplate="FXJapanNanoFly"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_02"
+						FXParticleSystemTemplate="FXJapanNanoFly"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1">
+					<Model
+						Name="AUBuzz_SKN" />
+					<ParticleSysBone
+						BoneName="Bone_00"
+						FXParticleSystemTemplate="FXJapanNanoFlyDeath"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_01"
+						FXParticleSystemTemplate="FXJapanNanoFlyDeath"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_02"
+						FXParticleSystemTemplate="FXJapanNanoFlyDeath"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_2">
+					<Model
+						Name="AUBuzz_SKN" />
+					<ParticleSysBone
+						BoneName="Bone_00"
+						FXParticleSystemTemplate="AUBuzzerDeath"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_01"
+						FXParticleSystemTemplate="AUBuzzerDeath"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_02"
+						FXParticleSystemTemplate="AUBuzzerDeath"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="FXBuzzer_FP" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="HIDDEN">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="AUBuzz_IDLA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="AUBuzzCombIdle"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="1.0"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USING_WEAPON_A">
+					<Animation
+						AnimationName="AUBuzz_ATKA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Garrison"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+					<Model
+						Name="AUBuzz_SKN" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="AUBuzzCombIdle"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.6"
+						AnimationSpeedFactorMax="0.8" />
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanNanoFlyWeapon"
+						ForbiddenObjectStatus="INSIDE_GARRISON"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanNanoFlyWeaponAntiForzen"
+						ForbiddenObjectStatus="INSIDE_GARRISON"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanNanoFlyWeaponStr"
+						ObjectStatus="INSIDE_GARRISON"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanNanoFlyWeaponAntiForzenStr"
+						ObjectStatus="INSIDE_GARRISON"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<SuppressionUpdate
+				id="ModuleTag_SuppressionUpdate"
+			xai:joinAction="Remove"/>
+			<Physics
+				id="ModuleTag_Physics" />
+			<StealthDetectorUpdate
+				id="ModuleTag_StealthDetect"
+				DetectionRange="350"
+				ExtraForbiddenKindOf="SUBMARINE"/>
+			<SecondaryDamageTracker
+				id="ModuleTag_SecondaryDamageTracker"
+				xai:joinAction="Replace"
+				UpdateDuration="1s"
+				DissipateAmount="25"
+				MaxDamageClampScaler="=$MAX_SECONDARY_DAMAGE_SCALER">
+				<Color R="1.0" G="1.0" B="1.75"/>
+				<EffectInfo
+					Fraction="1.0"
+					Options="DIE_ON_ENTER" />
+				<ObjectStatusValidation
+					ForbiddenStatus="UNDER_IRON_CURTAIN" />
+			</SecondaryDamageTracker>
+			<SpecialPower
+				id="ModuleTag_SpecialPower"
+				SpecialPowerTemplate="SpecialPower_MODNanoFlyBlast"
+				UpdateModuleStartsAttack="true"
+				AttributeModifier="AttributeModifier_MODNanoFlyBlast"
+				AttributeModifierAffectsSelf="true"/>
+			<SpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_MODNanoFlyBlast"
+				UnpackTime="0s"
+				Options="RECONSTITUTE_STORED_COMMAND"/>
+			<MaxHealthUpgrade
+				id="ModuleTag_HealthUpgrade"
+					AddMaxHealth="75"
+					ChangeType="ADD_CURRENT_HEALTH_TOO">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</MaxHealthUpgrade>
+			<SlowDeath
+				id="ModuleTag_Death"
+				DeathFlags="DEATH_1"
+				SinkDelay="0s"
+				SinkRate="2.4"
+				DestructionDelay="4s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+				<Sound
+					Type="INITIAL"
+					List="ALI_Buzzers_Die" />
+			</SlowDeath>
+			<CreateObjectDie
+				id="ModuleTag_CreateFrozenObjectDie"
+			  xai:joinAction="Remove"/>
+			<CreateObjectDie
+				id="ModuleTag_CreateInfantryBombObjectDie"
+			  xai:joinAction="Remove"/>
+			<FXListBehavior
+				id="ModuleTag_FXPsycicDeath"
+			  xai:joinAction="Remove"/>
+			<FXListBehavior
+				id="ModuleTag_FXPsycicBlastDeath"
+			  xai:joinAction="Remove"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="125.0" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior
+				id="ModuleTag_AttackLoop">
+				<ModelConditionSound
+					Sound="ALI_Buzzers_AttackingLoop"
+					RequiredFlags="ATTACKING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior
+				id="ModuleTag_AmbLoop">
+				<ModelConditionSound
+					Sound="ALI_Buzzers_IdleLoop"
+					ExcludedFlags="TRANSPORT_STOPPED" />
+				<!-- In case you are wondering, TRANSPORT_STOPPED is on the entire time you are in a transport, even if the transport is moving :-P -->
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.0"
+				Height="10.0">
+			</Shape>
+		</Geometry>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="UnitLost" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="UnitConstructionStarted" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="UnitUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="UnitUnderAttackFromShroudedUnit" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="GenericUnitBeingBurned" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="AllyUnitUnderAttack" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="UnitAmbushed" EvaType="ambushed" />
+			<EvaEntry EvaEvent="GenericEnemyUnitSighted" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="EnemyStealthUnitDiscovered" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="NewConstructionOptions" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="BuildOnHold" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="BuildCancelled" EvaType="buildCancelled" />
+			<EvaEntry EvaEvent="UnitPromoted" EvaType="promotedOwner" />
+		</EvaEventArray>
+		<AudioArrayVoice>
+			<AudioEntry
+				Sound="ALI_Buzzers_SoundAttack"
+				AudioType="voiceAttack" />
+			<AudioEntry
+				Sound="ALI_Buzzers_SoundCreateMS"
+				AudioType="voiceCreated" />
+			<AudioEntry
+				Sound="ALI_Buzzers_SoundMove"
+				AudioType="voiceGarrison" />
+			<AudioEntry
+				Sound="ALI_Buzzers_SoundMove"
+				AudioType="voiceGuard" />
+			<AudioEntry
+				Sound="ALI_Buzzers_SoundMove"
+				AudioType="voiceMove" />
+			<AudioEntry
+				Sound="ALI_Buzzers_SoundSelect"
+				AudioType="voiceSelect" />
+			<NamedEntry
+				Sound="ALI_Buzzers_SoundJoin"
+				Name="CombineWithUnit" />
+			<NamedEntry
+				Sound="ALI_Buzzers_SoundSplit"
+				Name="UncombineWithUnit" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALI_Buzzers_MoveLoop"
+				AudioType="soundMoveLoop" />
+			<AudioEntry
+				Sound="ALI_Buzzers_MoveStart"
+				AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<ShadowInfo
+			Type="DECAL" />
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$DOG_BEAR_SHROUD_CLEAR" />
+		<CrusherInfo
+			CrusherLevel="0"
+			CrushableLevel="75"/>
+	</GameObject>
+	<GameObject
+	  id="MODNanoFly_Crate"
+	  inheritFrom="MODNanoFly"
+	  KindOf="+TIBERIUM_BASED"
+	  EditorName="MODNanoFly_Crate">
+		<EquivalentTo>MODNanoFly</EquivalentTo>
+	</GameObject>
+	<GameObject
+		id="JapanBossNanoFly"
+		inheritFrom="MODNanoFly"
+		EditorName="JapanBossNanoFly">
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate"
+			xai:joinAction="Replace">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanNanoFlyBossWeapon" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="JapanNanoFly_Tower"
+		inheritFrom="MODNanoFly"
+		KindOf="-SELECTABLE +CAN_SEE_THROUGH_STRUCTURE +LINE_OF_SIGHT_IGNORES_BUILDINGS +NO_HEAL_ICON"
+		EditorName="JapanNanoFly_Tower"
+		BountyValue="0">
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate"
+			xai:joinAction="Replace">
+				<WeaponSlotHardpoint
+					ID="1"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanNanoFlyWeapon_Tower"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanNanoFlyWeaponAntiForzen_Tower"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<SlowDeath
+				id="ModuleTag_Death"
+			  xai:joinAction="Remove"/>
+			<SlowDeath
+				id="ModuleTag_SuicidedDeath"
+			xai:joinAction="Replace"
+				SinkDelay="0s"
+				SinkRate="2.4"
+				DestructionDelay="4s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+				<Sound
+					Type="INITIAL"
+					List="ALI_Buzzers_Die" />
+			</SlowDeath>
+			<SlavedUpdate
+				id="ModuleTag_SlavedUpdate"
+				LeashRange="10"
+				GuardMaxRange="10"
+				GuardWanderRange="10"
+				DieOnMastersDeath="true"
+				AttackRange="300"
+				UseSlaverAsControlForEvaObjectSightedEvents="false" />
+		</Behaviors>
+		<AI
+			xai:joinAction="Replace">
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</AIUpdate>
+		</AI>
+		<VisionInfo
+			xai:joinAction="Replace"
+			VisionRange="35"
+			ShroudClearingRange="1" />
+	</GameObject>
+</AssetDeclaration>

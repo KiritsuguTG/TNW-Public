@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:xai="uri:ea.com:eala:asset:instance"  xmlns:xi="http://www.w3.org/2001/XInclude">
+	<!-- aka Apocolypse tank -->
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:Units/SovietAntiVehicleVehicleTech3/SAUAntiVehicleVehicleTech3.w3x" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- aka Apocolypse tank -->
+	<GameObject
+		id="StrategicArmyAntiVehicleVehicleTech3"
+		inheritFrom="BaseVehicle"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT T3_UNIT"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		BuildTime="30"
+		SubGroupPriority="450"
+		EditorSorting="UNIT"
+		Side="Soviet"
+		CommandSet="StrategicArmyAntiVehicleVehicleTech3CommandSet"
+		SelectPortrait="Portrait_StrategicArmyAntiVehicleVehicleTech3"
+		ButtonImage="Button_StrategicArmyAntiVehicleVehicleTech3"
+		EditorName="StrategicArmyAntiVehicleVehicleTech3"
+		Description="Desc:StrategicArmyAntiVehicleVehicleTech3"
+		TypeDescription="Type:AntiArmor"
+		HealthBoxHeightOffset="30"
+		BountyValue="350"
+		UnitIntro="Soviet_ApocTank_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:StrategicArmyAntiVehicleVehicleTech3</DisplayName>
+		<GameDependency
+			ForbiddenModelConditions="OVER_WATER">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="ALLIES"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietTechStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="3000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAdvanceTankArmor"
+			DamageFX="VehicleDamageFX" />
+		<ArmorSet
+			id="ModuleTag_ShrinkRayEffectArmor"
+			xai:joinAction="Replace"
+			Armor="BaseAdvanceTankShrinkRayEffectArmor"
+			DamageFX="VehicleDamageFX"
+			Conditions="SHRINK_EFFECT" />
+		<LocomotorSet
+			id="ModuleTag_Locomotor_Normal"
+			Locomotor="SovietAntiVehicleVehicleTech3Locomotor"
+			Condition="NORMAL"
+			Speed="40" />
+		<SkirmishAIInformation
+			ConquerMetricsOverrideDPS="150"
+			ConquerMetricsDpsBonusAgainstDefenses="4.0"
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDamageType="CANNON"
+			ConquerMetricsOverrideAntiMask="ANTI_VEHICLE ANTI_STRUCTURE"/>
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.75"
+				MaxRecoilDistance="5"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="1.5"
+				ExtraPublicBone="BONE_TREAD_BACK_LEFT BONE_TREAD_BACK_RIGHT BONE_TREAD_FRONT_LEFT BONE_TREAD_FRONT_RIGHT BONE_TURRET TURRET_PITCH BONE_BARRAL_01 BONE_BARRAL_02 FX_WEAPON_01 FX_WEAPON_02 FX_MISSLE_01 FX_MISSLE_02"
+				TrackMarks="EXTnkTrack"
+				TrackMarksLeftBone="FXTRACKSL"
+				TrackMarksRightBone="FXTRACKSR">
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+				<TreadScrollingMap
+					LeftTrack="BONE_TREAD_FRONT_LEFT"
+					RightTrack="BONE_TREAD_FRONT_RIGHT"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%"/>
+				<TreadScrollingMap
+					LeftTrack="BONE_TREAD_BACK_LEFT"
+					RightTrack="BONE_TREAD_BACK_RIGHT"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%"/>
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SAUAntiVehicleVehicleTech3_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_BARRAL_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_MISSLE_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_MISSLE_" />
+					<Turret
+						TurretNameKey="BONE_TURRET"
+						TurretPitch="TURRET_PITCH"
+						TurretID="1" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="SAUAntiVehicleVehicleTech3_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SAUAntiVehicleVehicleTech3_SKN" />
+					<Texture
+						Original="SAUAntiVehicleVehicleTech3"
+						New="SAUAntiVehicleVehicleTech3_D" />
+			<ParticleSysBone
+				BoneName="FX_MISSLE_02"
+				FXParticleSystemTemplate="VehicleDamageSmoke"
+				FollowBone="true" />
+			<ParticleSysBone
+				BoneName="BONE_SPEAKER"
+				FXParticleSystemTemplate="VehicleDamageSmoke"
+				FollowBone="true" />
+			<ParticleSysBone	
+				BoneName="FX_MISSLE_02"
+				FXParticleSystemTemplate="VehicleDamageFire02"
+				FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SAUAntiVehicleVehicleTech3_SKN" />
+					<Texture
+						Original="SAUAntiVehicleVehicleTech3"
+						New="SAUAntiVehicleVehicleTech3_D" />
+			<ParticleSysBone
+				BoneName="FX_MISSLE_02"
+				FXParticleSystemTemplate="VehicleDamageSmoke"
+				FollowBone="true" />
+			<ParticleSysBone
+				BoneName="FX_MISSLE_02"
+				FXParticleSystemTemplate="VehicleDamageSmoke"
+				FollowBone="true" />
+			<ParticleSysBone	
+				BoneName="FX_MISSLE_02"
+				FXParticleSystemTemplate="VehicleDamageFire02"
+				FollowBone="true" />
+			<ParticleSysBone
+				BoneName="BONE_SPEAKER"
+				FXParticleSystemTemplate="VehicleDamageSmoke"
+				FollowBone="true" />
+			<ParticleSysBone
+				BoneName="BONE_SPEAKER"
+				FXParticleSystemTemplate="VehicleDamageSmoke"
+				FollowBone="true" />
+			<ParticleSysBone	
+				BoneName="BONE_SPEAKER"
+				FXParticleSystemTemplate="VehicleDamageFire02"
+				FollowBone="true" />
+				</ModelConditionState>
+			</TruckDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<xi:include
+					  href="DATA:Includes/HeadlightDraw2.xml"
+					  xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:HeadlightDraw2/child::*)" />
+	</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHierarchicalTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyAntiVehicleVehicleTech3Cannon"/>
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="StrategicArmyAntiVehicleVehicleTech3Rocket"
+						ObjectStatus="GENERIC_TOGGLE_STATE"/>
+					<TurretSettings
+						TurretTurnRate="120"
+						MinimumPitch="-20d"
+						AllowsPitch="true"
+						PitchHeight="85%"
+						TurretPitchRate="120"
+						IdleTurnRateModifier="100%"
+						ComeToHaltJiggle="1d">
+						<TurretAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true" 
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+					</TurretSettings>
+				</WeaponSlotHierarchicalTurret>
+			</WeaponSetUpdate>
+			<AttributeModifierUpgrade
+			id="ModuleTag_SovietUnitUpgradeSpecialPower"
+			AttributeModifier="AttributeUnitUpgradeSpecialPower">
+			<TriggeredBy>SovietUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SAUAntiVehicleVehicleTech3_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<SpecialPower
+				id="ModuleTag_UnTargetedMissileSalvoTrigger"
+				SpecialPowerTemplate="SpecialPower_SteamFastBeam"
+				UpdateModuleStartsAttack="true"
+				AttributeModifier="AttributeModifier_StrategicArmyAntiVehicleVehicleTech3Rocket"
+				AttributeModifierAffectsSelf="true"/>
+			<SpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_SteamFastBeam"
+				UnpackTime="0s"
+				Options="RECONSTITUTE_STORED_COMMAND"/>
+			<Physics
+				id="ModuleTag_Physics" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_ApocalypseDie" />
+				<Event
+					Index="onDeath"
+					FX="FX_LargeBuildingDieExplosionRumble" />
+			</FXListBehavior>
+			<AutoHealBehavior
+				id="Upgrade_PassiveHeal"
+				InitiallyActive="true"
+				HealOnlyIfNotInCombat="false"
+				HealOnlyIfNotUnderAttack="false"
+				StartHealingDelay="1s"
+				HealingAmount="4"
+				HealingDelay="1s">
+			</AutoHealBehavior>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech3.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech3/child::*)" />
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech3.xml"/>
+			<FireWeaponWhenDead
+				id="ModuleTag_CelebratingWeapon"
+				InitiallyActive="true"
+				DeathWeapon="UnitCelebratingCommando">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED SLAUGHTERED"/>
+			</FireWeaponWhenDead>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="2250" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="SAOV_BigTank_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="41.3"
+				MinorRadius="19.5"
+				Height="27"
+				ContactPointGeneration="VEHICLE">
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="SAOV_BigTank_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SAOV_BigTank_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="SAOV_BigTank_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="SAOV_BigTank_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="SAOV_BigTank_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="SAOV_BigTank_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="SAOV_BigTank_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="SAOV_BigTank_VoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="SAOV_BigTank_VoiceAttack" Name="voiceMissile" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="SOV_Apocalypse_IdleLoop"
+				AudioType="soundAmbient" />
+			<AudioEntry
+				Sound="SOV_Apocalypse_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="SOV_Apocalypse_MoveLoop"
+				AudioType="soundMoveLoop" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="=$ADVANCE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			CrusherLevel="30"
+			CrushableLevel="31"
+			CrushWeapon="SovietCrushWeapon"
+			CrushDecelerationPercent="80%"/>
+	</GameObject>
+		  <GameObject
+		id="StrategicArmyAntiVehicleVehicleTech3_Crate"
+		inheritFrom="StrategicArmyAntiVehicleVehicleTech3"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="StrategicArmyAntiVehicleVehicleTech3_Crate">
+		<EquivalentTo>StrategicArmyAntiVehicleVehicleTech3</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

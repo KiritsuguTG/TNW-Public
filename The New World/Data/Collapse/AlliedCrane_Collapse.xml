@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="ART:Structures/AlliedCrane/AlliedCraneCol_SKN.w3x" />
+    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<GameObject
+		id="AlliedCrane_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="AlliedCrane_Collapse">
+		<Draws>
+			<DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="10"
+			Explodiness="2">
+			<ModelConditionState
+				ParseCondStateType="PARSE_DEFAULT">
+				<Model
+					Name="ALLIEDCRANECOL_SKN" />
+				<xi:include
+					href="DATA:Includes/VehicleCollapseParticles/AlliedStructureCollapseParticles.xml"
+					xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedStructureCollapseParticles/child::*)" />
+			</ModelConditionState>
+			<BoneVolumes>
+				<BoneVolume BoneName="D_BONE02" Mass="35514" Spinniness="3.0" ContactTag="DEBRIS" >
+					<Box HalfSizeX="18.5747" HalfSizeY="18.2581" HalfSizeZ="10.3428" >
+						<Translation x="0.949844" y="-0.527692" z="14.5366" />
+						<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+					</Box>
+				</BoneVolume>
+				<BoneVolume BoneName="D_BONE03" Mass="12004" Spinniness="3.0" ContactTag="DEBRIS" >
+					<Box HalfSizeX="10.8704" HalfSizeY="10.7649" HalfSizeZ="10.1317" >
+						<Translation x="1.05538" y="0.633229" z="15.1705" />
+						<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+					</Box>
+				</BoneVolume>
+				<BoneVolume BoneName="D_BONE04" Mass="2915" Spinniness="3.0" ContactTag="DEBRIS" >
+					<Box HalfSizeX="13.2978" HalfSizeY="11.3981" HalfSizeZ="1.89969" >
+						<Translation x="0.316615" y="-16.301155" z="15.6189" />
+						<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+					</Box>
+				</BoneVolume>
+				<BoneVolume BoneName="D_BONE05" Mass="2915" Spinniness="3.0" ContactTag="DEBRIS" >
+					<Box HalfSizeX="13.2978" HalfSizeY="11.3981" HalfSizeZ="1.89969" >
+						<Translation x="0.316615" y="16.301155" z="15.6189" />
+						<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+					</Box>
+				</BoneVolume>
+			</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	<Behaviors/>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_CrusherCrane_Die" AudioType="soundAmbient" />
+		</AudioArraySound>
+</GameObject>
+	<GameObject
+		id="AlliedCrane_WaterCollapse"
+		inheritFrom="BaseCollapsingObject"
+		EditorName="AlliedCrane_WaterCollapse">
+		<Draws>
+			<DynamicsDraw
+			id="ModuleTag_Draw"
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="10"
+			Explodiness="2">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ALLIEDCRANECOLWATER_SKN" />
+					<xi:include
+						href="DATA:Includes/VehicleCollapseParticles/AlliedStructureCollapseParticles.xml"
+						xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedStructureCollapseParticles/child::*)" />
+				</ModelConditionState>
+				<BoneVolumes>
+					<BoneVolume BoneName="D_BONE01" Mass="89687" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="24.4849" HalfSizeY="23.6406" HalfSizeZ="15.3031" >
+							<Translation x="0.0" y="0.0" z="-14.82257" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="D_BONE02" Mass="35514" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="18.5747" HalfSizeY="18.2581" HalfSizeZ="10.3428" >
+							<Translation x="0.949844" y="-0.527692" z="14.5366" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="D_BONE03" Mass="12004" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="10.8704" HalfSizeY="10.7649" HalfSizeZ="10.1317" >
+							<Translation x="1.05538" y="0.633229" z="15.1705" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="D_BONE04" Mass="2915" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="13.2978" HalfSizeY="11.3981" HalfSizeZ="1.89969" >
+							<Translation x="0.316615" y="-16.301155" z="15.6189" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="D_BONE05" Mass="2915" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="13.2978" HalfSizeY="11.3981" HalfSizeZ="1.89969" >
+							<Translation x="0.316615" y="16.301155" z="15.6189" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+				</BoneVolumes>
+				<Lifetime
+					Delay="5s"
+					FadeTime="4s" />
+			</DynamicsDraw>
+		</Draws>
+		<Behaviors/>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_CrusherCrane_Die" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="ART:Units/EUAntiAirAircraft/EUAntiAirAircraft_COL.W3X" />
+		<Include
+		type="instance"
+		source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<GameObject
+		id="EUAntiAirAircraft_Dying"
+		EditorName="EUAntiAirAircraft_Dying"
+		Description="Desc:EUAntiAirAircraft_Dying"
+		KindOf="PROJECTILE INERT NO_COLLIDE HIDE_IF_FOGGED">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				OkToChangeModelColor="true" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EUAntiAirAircraft_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="EUAntiAirAircraft_D" />
+				<xi:include
+					href="DATA:Includes/VehicleCollapseParticles/AircraftDyingCollapseParticles.xml"
+					xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AircraftDyingCollapseParticles/child::*)" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"
+				TumbleRandomly="true"
+				MaxXRotationVelocity="200"
+				MaxYRotationVelocity="0"
+				MaxZRotationVelocity="0"
+				KillWhenRestingOnGround="true"/>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="EUAntiAirAircraft_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<FireWeaponWhenDead
+				id="ModuleTag_AlliedBomberDeathWeapon"
+				DeathWeapon="NormalAircraftDeathWeapon"
+				InitiallyActive="true">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+	<AudioArraySound>
+		<AudioEntry Sound="RA3VehicleExplosionMediumNoDelay" AudioType="soundAmbient" />
+	</AudioArraySound>	
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="300" />		
+	</GameObject>
+	<GameObject
+		id="EUAntiAirAircraft_UpgradeDying"
+		EditorName="EUAntiAirAircraft_UpgradeDying"
+		Description="Desc:EUAntiAirAircraft_Dying"
+		KindOf="PROJECTILE INERT NO_COLLIDE HIDE_IF_FOGGED">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				OkToChangeModelColor="true" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EUAntiAirAircraft_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="EUAntiAirAircraft2_D" />
+					<xi:include
+						href="DATA:Includes/VehicleCollapseParticles/AircraftDyingCollapseParticles.xml"
+						xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AircraftDyingCollapseParticles/child::*)" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"
+				TumbleRandomly="true"
+				MaxXRotationVelocity="200"
+				MaxYRotationVelocity="0"
+				MaxZRotationVelocity="0"
+				KillWhenRestingOnGround="true"/>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="EUAntiAirAircraft_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<FireWeaponWhenDead
+				id="ModuleTag_AlliedBomberDeathWeapon"
+				DeathWeapon="NormalAircraftDeathWeapon"
+				InitiallyActive="true">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="RA3VehicleExplosionMediumNoDelay" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="300" />
+	</GameObject>
+
+	<GameObject
+		id="EUAntiAirAircraft_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="EUAntiAirAircraft_Collapse">
+		<Draws>
+			<DynamicsDraw 
+				id="ModuleTag_Draw" 
+				Collision="NONINTERCOLLIDING"
+				FlingPerturbation="15"
+				Explodiness="8" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EUAntiAirAircraft_COL" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="EUAntiAirAircraft_D" />
+				<xi:include
+					href="DATA:Includes/VehicleCollapseParticles/AlliedAircraftCollapseParticles.xml"
+					xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedAircraftCollapseParticles/child::*)" />
+				</ModelConditionState>
+				<BoneVolumes>
+					<BoneVolume BoneName="Bone_D_10" Mass="221" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="6.2706" HalfSizeY="1.83715" HalfSizeZ="1.89788" >
+							<Translation x="8.3203" y="-6.678" z="5.09073" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_01" Mass="3108" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="26.2309" HalfSizeY="3.09847" HalfSizeZ="3.77759" >
+							<Translation x="-3.85694" y="0.0" z="7.76952" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_02" Mass="30" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="6.32428" HalfSizeY="0.742784" HalfSizeZ="0.636672" >
+							<Translation x="21.9397" y="0.0" z="2.08418" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_03" Mass="124" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="3.65025" HalfSizeY="3.90792" HalfSizeZ="0.858883" >
+							<Translation x="7.30698" y="6.4611" z="8.15502" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_04" Mass="221" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="6.2706" HalfSizeY="1.83715" HalfSizeZ="1.89788" >
+							<Translation x="8.3203" y="6.67767" z="5.09073" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_09" Mass="159" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="4.46382" HalfSizeY="4.16016" HalfSizeZ="0.850251" >
+							<Translation x="4.7417" y="0.0213633" z="16.217" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_06" Mass="63" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="13.055" HalfSizeY="1.11655" HalfSizeZ="0.429442" >
+							<Translation x="15.5646" y="-10.7428" z="14.6032" />
+							<Rotation x="0.0" y="0.0" z="-0.382683" w="0.92388" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_07" Mass="63" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="13.055" HalfSizeY="1.11655" HalfSizeZ="0.429442" >
+							<Translation x="-5.73649" y="-10.6705" z="14.6032" />
+							<Rotation x="0.0" y="0.0" z="0.382683" w="0.92388" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_08" Mass="63" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="13.055" HalfSizeY="1.11655" HalfSizeZ="0.429442" >
+							<Translation x="-6.24407" y="10.7635" z="14.6032" />
+							<Rotation x="0.0" y="0.0" z="-0.92388" w="-0.382683" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_05" Mass="63" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="13.055" HalfSizeY="1.11655" HalfSizeZ="0.429442" >
+							<Translation x="15.8317" y="11.0256" z="14.6032" />
+							<Rotation x="0.0" y="0.0" z="0.382683" w="0.92388" />
+						</Box>
+					</BoneVolume>
+			</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="4s"
+			MaxLifetime="5s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1.5"
+			DestructionDelay="8s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+	<AudioArraySound>
+		<AudioEntry Sound="RA3VehicleExplosionMediumNoDelay" AudioType="soundAmbient" />
+	</AudioArraySound>	
+</GameObject>
+</AssetDeclaration>

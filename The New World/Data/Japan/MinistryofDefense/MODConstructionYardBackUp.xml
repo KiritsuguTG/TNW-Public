@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:Japan/Structures/JapanConstructionYard.xml" />
+	</Includes>
+	<GameObject
+		id="MODConstructionYard_Random"
+		inheritFrom="MODConstructionYard"
+		EditorName="MODConstructionYard_Random">
+		<EquivalentTo>JapanConstructionYard</EquivalentTo>
+		<EquivalentTo>MODConstructionYard</EquivalentTo>
+		<Behaviors>
+			<ObjectCreationUpgrade
+				id="ModuleTag_JapanFactionOCL"
+				xai:joinAction="Replace"
+				ThingToSpawn="MinistryofDefenseFaction">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<ConflictsWith>Upgrade_JapanFactionSearch</ConflictsWith>
+			</ObjectCreationUpgrade>
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				xai:joinAction="Replace"
+				UnpackTime="0.0s" />
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

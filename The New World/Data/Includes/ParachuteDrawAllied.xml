@@ -1,0 +1,181 @@
+<ParachuteDraws xmlns="uri:ea.com:eala:asset" xmlns:xi="http://www.w3.org/2001/XInclude" >
+      <!-- Must Have DisguiseDraw -->
+			<ScriptedModelDraw
+				id="ModuleTag_DisguiseDraw"
+				InvertStealthOpacity="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+	<ScriptedModelDraw
+		id="ModuleTag_ParachuteDraw"
+		OkToChangeModelColor="true">
+		<ModelConditionState
+			ParseCondStateType="PARSE_DEFAULT">
+			<Model
+				Name="" />
+		</ModelConditionState>
+		<ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="LAUNCHED">
+			<Model
+				Name="" />
+		</ModelConditionState>
+		
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER PARACHUTING USER_8">
+					<Model
+						Name="NPPARACHUTEALLIED_SKNTNW" />
+					<Texture
+						Original="NPParachuteAllied"
+						New="NPParachuteJapan" />
+					<Texture
+						Original="HC_NPParachuteAllied"
+						New="HC_NPParachuteJapan" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER PARACHUTING USER_9">
+					<Model
+						Name="NPPARACHUTEALLIED_SKNTNW" />
+					<Texture
+						Original="NPParachuteAllied"
+						New="NPParachuteSoviet" />
+					<Texture
+						Original="HC_NPParachuteAllied"
+						New="HC_NPParachuteSoviet" />
+				</ModelConditionState>	
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER PARACHUTING">
+					<Model
+						Name="NPPARACHUTEALLIED_SKNTNW" />
+						</ModelConditionState>
+		
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PARACHUTING USER_8">
+					<Model
+						Name="NPPARACHUTEALLIED_SKNTNW" />
+					<Texture
+						Original="NPParachuteAllied"
+						New="NPParachuteJapan" />
+					<Texture
+						Original="HC_NPParachuteAllied"
+						New="HC_NPParachuteJapan" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PARACHUTING USER_9">
+					<Model
+						Name="NPPARACHUTEALLIED_SKNTNW" />
+					<Texture
+						Original="NPParachuteAllied"
+						New="NPParachuteSoviet" />
+					<Texture
+						Original="HC_NPParachuteAllied"
+						New="HC_NPParachuteSoviet" />
+				</ModelConditionState>	
+						
+		<ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="PARACHUTING">
+			<Model
+				Name="NPPARACHUTEALLIED_SKNTNW" />
+		</ModelConditionState>
+		<AnimationState
+			ParseCondStateType="PARSE_DEFAULT"
+			StateName="STATE_Idle">
+		</AnimationState>
+		<AnimationState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="LAUNCHED"
+			StateName="STATE_Launched">
+		</AnimationState>
+		<AnimationState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="PARACHUTING"
+			StateName="STATE_Parachuting">
+			<Animation
+				AnimationName="NPParachute_FALL"
+				AnimationMode="LOOP" />
+			<Script>	
+				Prev = CurDrawablePrevAnimationState()
+				if Prev ~= "STATE_Parachuting" and Prev ~= "TRANS_toOpen" then
+				CurDrawableSetTransitionAnimState("TRANS_toOpen")
+				end
+			</Script>
+		</AnimationState>
+		<AnimationState
+			ParseCondStateType="PARSE_TRANSITION"
+			StateName="TRANS_toOpen">
+			<Animation
+				AnimationName="NPParachute_OPEN"
+				AnimationMode="ONCE"
+				AnimationBlendTime="0"/>
+		</AnimationState>	
+			
+	</ScriptedModelDraw>
+	<ScriptedModelDraw
+		id="ModuleTag_ClonedDecal"
+		OkToChangeModelColor="true">
+		<ModelConditionState
+			ParseCondStateType="PARSE_DEFAULT">
+			<Model Name="FXInvisBone" />
+		</ModelConditionState>
+		<ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="RIDERLESS">
+			<Model
+				Name="FXInvisBone" />
+			<ShadowInfo
+				Type="ADDITIVE_DECAL"
+				SizeX="20"
+			  SizeY="20"
+			  MaxHeight="50"
+			  OverrideLODVisibility="true"
+			  UseHouseColor="true"
+			  IsRotatingWithObject="false"
+			  LocalPlayerOnly="true"
+				Texture="AUDronShipDecalIdle" />
+		</ModelConditionState>
+	</ScriptedModelDraw>
+	<ScriptedModelDraw
+	id="ModuleTag_StrongInfantryDraw"
+	OkToChangeModelColor="true">
+		<ModelConditionState
+			ParseCondStateType="PARSE_DEFAULT">
+			<Model Name="FXInvisBone" />
+		</ModelConditionState>
+		<ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="EMOTION_DOOM">
+			<Model
+				Name="FXInvisBone" />
+			<ParticleSysBone
+			BoneName="None"
+			FXParticleSystemTemplate="FXBlkHndLeadershipGlow"
+			FollowBone="true" />
+		</ModelConditionState>
+	</ScriptedModelDraw>
+	<ScriptedModelDraw
+	id="ModuleTag_DeathSpawnDraw"
+	OkToChangeModelColor="true">
+		<ModelConditionState
+			ParseCondStateType="PARSE_DEFAULT">
+			<Model Name="FXInvisBone" />
+		</ModelConditionState>
+		<ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="EMOTION_ALERT">
+			<Model
+				Name="FXInvisBone" />
+			<ParticleSysBone
+			BoneName="None"
+			FXParticleSystemTemplate="JapanDeathSpawnIdleSparks"
+			FollowBone="true" />
+		</ModelConditionState>
+	</ScriptedModelDraw>
+</ParachuteDraws>

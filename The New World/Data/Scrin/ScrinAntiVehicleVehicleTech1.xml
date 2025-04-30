@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURER_SKL.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURER_SKN.AU_DEVOURER.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURER_SKN.AU_DEVOURER_UPGR01.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURER_SKN.OBBOX.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURER_SKN.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR.AU_DEVOURER.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR_CTR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR_HRC.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR01.R01.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR01_CTR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR01_HRC.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR02.R02.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR02_CTR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR02_HRC.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR03.R03.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR03_CTR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR03_HRC.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR04.R04.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR04_CTR.w3x" />
+		<Include type="all"	source="ART:Units/ScrinAntiVehicleVehicleTech1/AU_DEVOURERR04_HRC.w3x" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseDebris.xml" />
+	</Includes>
+	<!-- AKA Guardian Tank aka The Chieftain -->
+	<GameObject
+		id="ScrinAntiVehicleVehicleTech1"
+		inheritFrom="BaseVehicle"
+		Side="Neutral"
+		SelectPortrait="Portrait_AlienDevourerTank"
+		ButtonImage="Button_AlienDevourerTank"
+		SubGroupPriority="425"
+		EditorSorting="UNIT"
+		UnitCategory="VEHICLE"
+		ProductionQueueType="VEHICLE"
+		BuildTime="10"
+		KindOf="CAN_ATTACK CAN_CAST_REFLECTIONS VEHICLE CAN_BE_FAVORITE_UNIT T2_UNIT SELECTABLE TIBERIUM_BASED"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		EditorName="ScrinAntiVehicleVehicleTech1"
+		CommandSet="ScrinGroundUnitCommandSet"
+		Description="Desc:ScirnUnit"
+		TypeDescription="Type:ScirnUnit">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:ScrinAntiVehicleVehicleTech1</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="800"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="ScrinAntiVehicleVehicleTech1Armor"
+			DamageFX="InfantryAlienDamageFX" />
+		<LocomotorSet
+			Locomotor="TestReactiveLocomotorTANK"
+			Condition="NORMAL"
+			Speed="70.0" />
+		<LocomotorSet
+			Locomotor="JapanAntiVehicleVehicleTech1_WaterLocomotor"
+			Condition="NORMAL"
+			Speed="70" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"/>
+		<Draws>
+			<!-- standard laser -->
+			<LaserDraw
+				id="ModuleTag_LaserDraw1"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".3"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".7"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="50"
+				LaserStateID="1">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlienLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienLaser</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				LeftFrontTireBone="Tire01"
+				RightFrontTireBone="Tire02"
+				LeftRearTireBone="Tire03"
+				RightRearTireBone="Tire04"
+				TireRotationMultiplier="0.2"
+				PowerslideRotationAddition="1.25">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AU_Devourer_SKN" />
+					<ShadowInfo
+						Type="ADDITIVE_DECAL"
+						SizeX="40"
+						SizeY="30"
+						OverrideLODVisibility="true"
+						MaxHeight="200"
+						UseHouseColor="true"
+						Texture="AUDronShipDecalIdle" />
+					<WeaponFireFXBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon_01" />
+					<WeaponLaunchBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon_01" />
+					<Turret
+						TurretNameKey="AU_Devourer"
+						TurretID="1" />
+				</ModelConditionState>			
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AU_Devourer_SKN" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFire01"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AU_Devourer_SKN" />
+					<Texture
+						Original="AU_Devourer"
+						New="AU_Devourer_D" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFire01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFireGlow01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFireGlow02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Model
+						Name="AU_DevourerR" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING"
+					Flags="START_FRAME_FIRST">
+					<Animation
+						AnimationName="AU_DevourerR"
+						AnimationMode="ONCE" />
+				</AnimationState>
+			</TruckDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlienDevourerBeamLaser" />
+					<TurretSettings
+						TurretTurnRate="200"
+						TurretPitchRate="40"
+						AllowsPitch="true"
+						NaturalTurretAngle="0d"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="0.0">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="5s"
+				SinkRate="1.0"
+				DestructionDelay="15s">
+				<OCL
+					Type="INITIAL">
+					<OCL>OCL_ALIENDevourerDebris</OCL>
+				</OCL>
+				<Sound Type="INITIAL" List="ALI_DevourerTank_Die" />
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="TOPPLED EXTRA_7" />
+			</SlowDeath>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7"/>
+				<Event
+					Index="onDeath"
+					FX="FX_ALIENVehicleExplodeScorch" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="TOPPLED EXTRA_7"/>
+			</DestroyDie>
+			<SweepingLaserState
+				id="ModuleTag_SweepingLaserState"
+				Radius="15.0"
+				SweepFXList="FX_AlienLaserSweepHit"
+				SweepFXTimeout="0.25s"
+				LaserId="1" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="700" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="BOX"
+				MajorRadius="20.0"
+				MinorRadius="10.0"
+				Height="20.0"
+				ContactPointGeneration="VEHICLE" />
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry
+				Sound="ALI_DevourerTank_SoundMove"
+				AudioType="voiceMove" />
+			<AudioEntry
+				Sound="ALI_DevourerTank_SoundAttack"
+				AudioType="voiceAttack" />
+			<AudioEntry
+				Sound="ALI_DevourerTank_SoundSelect"
+				AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALI_DevourerTank_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="ALI_DevourerTank_IdleLoop"
+				AudioType="soundAmbient" />
+			<AudioEntry
+				Sound="ALI_DevourerTank_IdleLoop"
+				AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="270"
+			ShroudClearingRange="300" />
+	<CrusherInfo 
+			CrushableLevel="25"
+			CrusherLevel="20"
+			CrushDecelerationPercent="80%" />
+	</GameObject>
+	<GameObject
+		id="ScrinAntiVehicleVehicleTech1Boss"
+		inheritFrom="ScrinAntiVehicleVehicleTech1"
+		KindOf="-TIBERIUM_BASED"
+		EditorName="ScrinAntiVehicleVehicleTech1Boss">
+		<GameDependency
+			ForbiddenModelConditions="STRUCTURE_UNPACKING">
+			<NeededUpgrade>Upgrade_JapanWarFactoryTech2</NeededUpgrade>
+		</GameDependency>
+	</GameObject>
+	<GameObject
+		id="ScrinAntiVehicleVehicleTech1Boss_Naval"
+		inheritFrom="ScrinAntiVehicleVehicleTech1"
+		EditorName="ScrinAntiVehicleVehicleTech1Boss_Naval"
+		ProductionQueueType="WATERCRAFT">
+		<EquivalentTo>ScrinAntiVehicleVehicleTech1Boss</EquivalentTo>
+		<GameDependency
+			ForbiddenModelConditions="STRUCTURE_UNPACKING">
+			<NeededUpgrade>Upgrade_JapanNavalYardTech2</NeededUpgrade>
+		</GameDependency>
+	</GameObject>
+	<GameObject
+		id="ALIENDevourerDebris_01"
+		inheritFrom="BaseDebris" 
+		EditorName="ALIENDevourerDebris_01">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AU_DevourerR01" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFire01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFireGlow01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFireGlow02"
+						FollowBone="true" />												
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+	</GameObject>
+	<GameObject
+		id="ALIENDevourerDebris_02"
+		inheritFrom="BaseDebris" 
+		EditorName="ALIENDevourerDebris_02">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AU_DevourerR02" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFire01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFireGlow01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire"
+						FXParticleSystemTemplate="AlienDamageFireGlow02"
+						FollowBone="true" />							
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+	</GameObject>
+	<GameObject
+		id="ALIENDevourerDebris_03"
+		inheritFrom="BaseDebris" 
+		EditorName="ALIENDevourerDebris_03">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AU_DevourerR03" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+	</GameObject>
+	<GameObject
+		id="ALIENDevourerDebris_04"
+		inheritFrom="BaseDebris" 
+		EditorName="ALIENDevourerDebris_04">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AU_DevourerR04" />
+					<ParticleSysBone
+						BoneName="ROOTTRANSFORM"
+						FXParticleSystemTemplate="GDIDebrisSmallSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+	</GameObject>
+</AssetDeclaration>

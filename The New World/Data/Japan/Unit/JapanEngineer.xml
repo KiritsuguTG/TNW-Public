@@ -1,0 +1,1113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<!-- Base Object -->
+		<Include type="instance"	source="DATA:BaseObjects/BaseInfantry.xml" />
+	</Includes>
+	<GameObject
+		id="JapanEngineer"
+		inheritFrom="BaseInfantry"
+		SelectPortrait="Portrait_JapanEngineer"
+		ButtonImage="Button_JapanEngineer"
+		Side="Japan"
+		SubGroupPriority="325"
+		EditorSorting="UNIT"		
+		BuildTime="5"
+		CommandSet="JapanEngineerCommandSet"
+		IsTrainable="true"
+		KindOf="SELECTABLE CAN_CAST_REFLECTIONS AMPHIBIOUS INFANTRY SCORE CAN_CAPTURE SKIRMISH_AI_DONT_GARRISON ENGINEER CAN_BE_FAVORITE_UNIT IGNORES_SELECT_ALL CYCLE_SELECTION PRELOAD"
+		ThreatLevel="10"
+		BountyValue="50"
+		VoicePriority="68"
+		EditorName="JapanEngineer"
+		Description="Desc:JapanEngineer"
+		TypeDescription="Type:EngineerUnit"
+		UnitTypeIcon="EngineerIcon"
+		HealthBoxHeightOffset="35"
+		UnitIntro="Japan_Engineer_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanEngineer</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="500"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseInfantryArmor"
+			DamageFX="InfantryDamageFX" />
+		<LocomotorSet
+			Locomotor="TestReactiveLocomotorHUMAN"
+			Condition="NORMAL"
+			Speed="40"/>
+		<LocomotorSet
+			Locomotor="HumanWaterLocomotor"
+			Condition="NORMAL"
+			Speed="40"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUEngineerTNW_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+					<Model
+						Name="" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PARACHUTING">
+					<Model
+						Name="JUEngineerTNW_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_FLAILING COLLAPSING">
+					<Model
+						Name="JUEngineerTNW_SKN" />
+				</ModelConditionState>
+				
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER USER_1">
+					<Model
+						Name="JUSegwayTNW_SKN" />     
+					<ParticleSysBone
+						BoneName="RIGHTFOOT"
+						FXParticleSystemTemplate="JapEngineer_Run"
+						FollowBone="True" />
+					<ParticleSysBone
+						BoneName="LEFTFOOT"
+						FXParticleSystemTemplate="JapEngineer_Run"
+						FollowBone="True" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Model
+						Name="JUEngineerTNW_SKN" />
+					<ParticleSysBone
+						BoneName="RIGHTFOOT"
+						FXParticleSystemTemplate="JapEngineer_Run"
+						FollowBone="True" />
+					<ParticleSysBone
+						BoneName="LEFTFOOT"
+						FXParticleSystemTemplate="JapEngineer_Run"
+						FollowBone="True" />
+				</ModelConditionState>
+        
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="JUSegwayTNW_SKN" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AUScoutInfantrySplash"
+						FollowBone="false" />
+				</ModelConditionState>
+				
+					<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1">
+					<Model
+						Name="NPSkeletonTNW_SKN" />
+				</ModelConditionState>
+				
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_5">
+					<Model
+						Name="NPRadiationTNW" />
+						<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="RadiationPuddle"
+						FollowBone="true" />
+          <ParticleSysBone
+            BoneName="None"
+            FXParticleSystemTemplate="RadiationSplash"
+            FollowBone="true" />
+          <ParticleSysBone
+            BoneName="None"
+            FXParticleSystemTemplate="RadiationLightSmall"
+            FollowBone="true" />          
+				</ModelConditionState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+				</AnimationState>
+				<!-- parachuting anims -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="LAUNCHED"
+					StateName="STATE_ParachuteLaunch">
+					<Animation
+						AnimationName="JUEngineerTNW_MCNA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PARACHUTING"
+					StateName="STATE_Parachuting">
+					<Animation
+						AnimationName="JUEngineerTNW_MCNC"
+						AnimationMode="LOOP" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_ParachuteLaunch" then
+						CurDrawableSetTransitionAnimState("TRANS_toParachuting")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toParachuting" >
+					<Animation
+						AnimationName="JUEngineerTNW_MCNB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_fromParachuting" >
+					<Animation
+						AnimationName="JUEngineerTNW_MCND"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_FLAILING COLLAPSING"
+					StateName="STATE_stunned_flailing">
+					<Animation
+						AnimationName="JUEngineerTNW_FLYA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<!-- end of parachuting anims -->
+				
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_FLAILING OVER_WATER"
+					StateName="STATE_stunned_flailing">
+					<Animation
+						AnimationName="JUSegwayTNW_WFLYA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+
+                <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PACKING_TYPE_1 OVER_WATER">
+                    <Animation
+						AnimationName="JUSegwayTNW_PANT"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10" />
+                </AnimationState>
+                
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER USER_1"
+					Flags="RANDOMSTART">  
+				<Animation
+					AnimationName="JUSegwayTNW_SPRNTA"
+					AnimationMode="LOOP"
+					AnimationBlendTime="10"/>
+				<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="StingrayWaterWake"
+						FollowBone="true" />
+				</AnimationState>
+        				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					StateName="STATE_WaterSelected">
+					<Animation
+						AnimationName="JUSegwayTNW_MOVA"
+						AnimationMode="LOOP" />
+						<ParticleSysBone
+							BoneName="FX01"
+							FXParticleSystemTemplate="AUScoutInfantrySplash"
+							FollowBone="true" />
+							<ParticleSysBone
+							BoneName="FX02"
+							FXParticleSystemTemplate="AUScoutInfantrySplash"
+							FollowBone="true" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Moving" then
+						CurDrawableSetTransitionAnimState("TRANS_ToWater")
+						elseif Prev == "STATE_Bored" then
+						CurDrawableSetTransitionAnimState("TRANS_ToWater")
+						end
+					</Script>
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING OVER_WATER">
+					<Animation
+						AnimationName="JUSegwayTNW_DIEA"
+						AnimationMode="ONCE" />
+						<ParticleSysBone
+            BoneName="NONE"
+            FXParticleSystemTemplate="FXDebrisWaterWaveMedium"
+            FollowBone="true" 
+            OnlyIfOnWater="true"/>  
+            <ParticleSysBone
+            BoneName="NONE"
+            FXParticleSystemTemplate="FXDebrisWaterSplashMedium"
+            FollowBone="true" 
+            OnlyIfOnWater="true"/>  
+            <ParticleSysBone
+            BoneName="NONE"
+            FXParticleSystemTemplate="FXDebrisWaterFrothMedium"
+            FollowBone="true" 
+            OnlyIfOnWater="true"/>  
+            <ParticleSysBone
+            BoneName="NONE"
+            FXParticleSystemTemplate="FXDebrisWaterMistMedium"
+            FollowBone="true" 
+            OnlyIfOnWater="true"/>  
+				</AnimationState>
+				
+								<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP OVER_WATER">
+					<Animation
+						AnimationName="JUSegwayTNW_CWRA"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Allied_DogStun01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Allied_DogStunGlows01"
+						FollowBone="true" />
+									<ParticleSysBone
+										BoneName="None"
+										FXParticleSystemTemplate="AUScoutInfantrySplash"
+										FollowBone="false" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED OVER_WATER"
+					StateName="STATE_WaterSelected">
+					<Animation
+						AnimationName="JUSegwayTNW_AIDA"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AUScoutInfantrySplash"
+						FollowBone="false" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_WaterBored" then
+						CurDrawableSetTransitionAnimState("TRANS_WaterBoredToSelected")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER"
+					StateName="STATE_WaterBored">
+					<Animation
+						AnimationName="JUSegwayTNW_BIDA"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AUScoutInfantrySplash"
+						FollowBone="false" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_WaterSelected" then
+						CurDrawableSetTransitionAnimState("TRANS_WaterSelectedToBored")
+						end
+					</Script>
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FRONTCRUSHED">
+					<Animation
+						AnimationName="JUEngineerTNW_CDTA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BACKCRUSHED">
+					<Animation
+						AnimationName="JUEngineerTNW_CDTB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					AllowRepeatInRandomPick="true"
+					StateName="STATE_Bored">
+					<Animation
+						AnimationName="JUEngineerTNW_BIDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="100" />
+					<Animation
+						AnimationName="JUEngineerTNW_BIFA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="JUEngineerTNW_BIFB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="JUEngineerTNW_BIFC"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="JUEngineerTNW_BIFD"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="100" />
+					<Animation
+						AnimationName="JUEngineerTNW_BIFE"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="1" />
+					<Animation
+						AnimationName="JUEngineerTNW_BIFW"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="JUEngineerTNW_BIFX"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="JUEngineerTNW_BIFY"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="JUEngineerTNW_BIFZ"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Suppressed" then
+						CurDrawableSetTransitionAnimState("TRANS_fromSuppressed")
+						elseif Prev == "STATE_Parachuting" then
+						CurDrawableSetTransitionAnimState("TRANS_fromParachuting")
+						elseif Prev == "STATE_Selected" then
+						CurDrawableSetTransitionAnimState("TRANS_attentionToBored")
+						elseif Prev == "STATE_stunned_flailing" then
+						CurDrawableSetTransitionAnimState("STATE_stunned_landing")
+						end
+					</Script>
+				</AnimationState>
+				
+				<!-- meta impact anims -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_FLAILING"
+					StateName="STATE_stunned_flailing">
+					<Animation
+						AnimationName="JUEngineerTNW_FLYA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING SPLATTED">
+					<Animation
+						AnimationName="JUEngineerTNW_LNDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_STANDING_UP">
+					<Animation
+						AnimationName="JUEngineerTNW_GTPA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED"
+					StateName="STATE_stunned_landing">
+					<Animation
+						AnimationName="JUEngineerTNW_LNDA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED DYING"
+					StateName="STATE_Suppressed">
+					<Animation
+						AnimationName="JUEngineerTNW_SDIA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED MOVING"
+					StateName="STATE_Suppressed"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUEngineerTNW_SMVA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_Suppressed">
+					<Animation
+						AnimationName="JUEngineerTNW_SIDA"
+						AnimationMode="ONCE" />					
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_Suppressed" and Prev ~= "TRANS_toSuppressed" then
+						CurDrawableSetTransitionAnimState("TRANS_toSuppressed")
+						end
+					</Script>
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toSuppressed">
+					<Animation
+						AnimationName="JUEngineerTNW_SDVA"
+						AnimationMode="ONCE" />					
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_fromSuppressed">
+					<Animation
+						AnimationName="JUEngineerTNW_SGTA"
+						AnimationMode="ONCE" />
+				</AnimationState>	
+				
+				<!-- radiation death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_5">
+					<Animation
+						AnimationName="NPRadiationTNW_DIEA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<!-- sword death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_4">
+					<Animation
+						AnimationName="JUEngineerTNW_DTKA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- fire death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_3">
+					<Animation
+						AnimationName="JUEngineerTNW_DTFA"
+						AnimationMode="ONCE" />
+					<ParticleSysBone
+						BoneName="HIPS"
+						FXParticleSystemTemplate="InfantryFireDeath"
+						FollowBone="true" />
+				</AnimationState>
+
+				<!-- prism/laser death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_2">
+					<Animation
+						AnimationName="JUEngineerTNW_DTPA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- tesla death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1">
+					<Animation
+						AnimationName="NPSkeletonTNW_DIEA"
+						AnimationMode="ONCE" />
+          <ParticleSysBone
+						BoneName="HIPS"
+						FXParticleSystemTemplate="Soviet_TeslaDeath_Spark"
+						FollowBone="true" />
+				</AnimationState>
+
+				<!-- dying when running -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING_WASMOVING">
+					<Animation
+						AnimationName="JUEngineerTNW_RNDA"
+						AnimationMode="ONCE" />
+						<Animation
+						AnimationName="JUEngineerTNW_RNDB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<!-- normal death -->				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimNickName="DTA"
+						AnimationName="JUEngineerTNW_DTBA"
+						AnimationMode="ONCE"
+						Distance="40" 
+						AnimationBlendTime="10"/>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP">
+					<Animation
+						AnimationName="JUEngineerTNW_CWRZ"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Allied_DogStun01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Allied_DogStunGlows01"
+						FollowBone="true" />
+				</AnimationState>
+
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING USER_1"
+					StateName="STATE_Moving" 
+					Flags="RANDOMSTART">
+          <Animation
+						AnimationName="JUEngineerTNW_RUNZ"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10"/>
+          <ParticleSysBone
+						BoneName="ROOT_TRANSFORM"
+						FXParticleSystemTemplate="JapEngineer_Smoke"
+						FollowBone="false" />
+        </AnimationState>
+                        
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PACKING_TYPE_1">
+					<Animation
+						AnimationName="JUEngineerTNW_SPCA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="CAPTURING">
+					<Animation
+						AnimationName="JUEngineerTNW_AIFZ"
+						AnimationMode="LOOP" />
+				</AnimationState>
+                
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART"
+					StateName="STATE_Moving">
+					<Animation
+						AnimationName="JUEngineerTNW_RUNB"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10"/>
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="EMOTION_CELEBRATING"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="JUEngineerTNW_CHRA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_Selected">
+					<Animation
+						AnimationName="JUEngineerTNW_AIDA"
+						AnimationMode="ONCE"
+						AnimationPriority="100"
+						AnimationBlendTime="15" />
+					<Animation
+						AnimationName="JUEngineerTNW_AIFA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="JUEngineerTNW_AIFB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="JUEngineerTNW_AIFC"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="JUEngineerTNW_AIFX"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="JUEngineerTNW_AIFY"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="JUEngineerTNW_AIFZ"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Suppressed" then
+						CurDrawableSetTransitionAnimState("TRANS_fromSuppressedB")
+						elseif Prev == "STATE_Bored" then
+						CurDrawableSetTransitionAnimState("TRANS_boredToAttention")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_boredToAttention">
+					<Animation
+						AnimationName="JUEngineerTNW_BATA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="10" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_attentionToBored">
+					<Animation
+						AnimationName="JUEngineerTNW_ABTA"
+						AnimationMode="ONCE" 
+						AnimationBlendTime="10"/>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_ToWater">
+					<Animation
+						AnimationName="JUSegwayTNW_MOVA"
+						AnimationMode="ONCE" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AUTanyaWaterSpray"
+						FollowBone="false" />					
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_WaterBoredToSelected">
+					<Animation
+						AnimationName="JUSegwayTNW_BATA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_WaterSelectedToBored">
+					<Animation
+						AnimationName="JUSegwayTNW_ABTA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+			</ScriptedModelDraw>
+			<!-- include parachute draw module. -->
+			<xi:include
+				href="DATA:Includes/ParachuteDrawJapan.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:ParachuteDraws/child::*)" />
+				
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics" />
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EngineerFixCiStructure"
+						ForbiddenObjectStatus="INSIDE_GARRISON SPECIAL_ABILITY_PACKING_UNPACKING_OR_USING NO_SPECIAL_ABILITY DEATH_1 DEATH_2 DEATH_3 DEATH_4 DEATH_5 UNDER_FROZEN UNSELECTABLE USER_PARALYZED"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<BezierProjectile
+				id="ModuleTag_Projectile"
+				Flags="ORIENT_TO_FLIGHT_PATH"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"/>
+			<AttributeModifierUpgrade
+							id="ModuleTag_JapanUnitUpgradeSpecialPower"
+							AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="1.0s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="InEngineerFixCiStructure"
+					OneShot="false" />
+				<ObjectStatusValidation
+					RequiredStatus="INSIDE_GARRISON" />
+			</FireWeaponUpdate>
+			<EmotionTrackerUpdate
+				id="Module_ETU">
+				<TauntAndPointExcluded
+					Rule="NONE" />
+					<AddEmotion>CheerIdle_Base</AddEmotion>
+					<AddEmotion>CheerBusy_Base</AddEmotion>
+			</EmotionTrackerUpdate>			
+			<CreateObjectDie
+				id="ModuleTag_DeathSpawn"
+				CreationList="OCL_JapanEngineer_Death">
+                <DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="PLAYER_POWER_5"/>
+            </CreateObjectDie>
+      <SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="6s"
+				SinkRate="2.4"
+				DestructionDelay="7.5s">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="ELECTROCUTED LASERED BURNED STABBED IRRADIATED MAULED"
+          ExemptStatus="OVER_WATER"/>
+          <Sound Type="INITIAL" List="JAP_Engineer_VoiceDie" />
+      </SlowDeath>
+      
+      <SlowDeath
+				id="ModuleTag_DeathWater"
+				Fade="true"
+				FadeDelay="6s"
+				FadeTime="2s"
+				SinkDelay="0.5s"
+				SinkRate="1.2"
+				DestructionDelay="10.0s">
+		  <DieMuxData
+			  DeathTypes="ALL"
+			  DeathTypesForbidden="ELECTROCUTED IRRADIATED MAULED"
+			  RequiredStatus="OVER_WATER"/>
+		  <Sound Type="INITIAL" List="JAP_Engineer_VoiceDie" />
+	  </SlowDeath>
+
+			<SlowDeath
+				id="ModuleTag_BearDeath"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s"
+				FlingForce="5"
+				FlingForceVariance="2"
+				FlingPitch="20d"
+				FlingPitchVariance="10d">
+				<DieMuxData
+					DeathTypes="MAULED"
+					DeathTypesForbidden="BITTEN ELECTROCUTED LASERED BURNED STABBED IRRADIATED"
+					ExemptStatus="OVER_WATER"/>
+				<Sound
+					Type="INITIAL"
+					List="JAP_Engineer_VoiceDie" />
+			</SlowDeath>
+
+			<SlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="6s"
+				FadeTime="2s"
+				SinkDelay="0.5s"
+				SinkRate="1.2"
+				DestructionDelay="10.0s"
+				FlingForce="5"
+				FlingForceVariance="2"
+				FlingPitch="20d"
+				FlingPitchVariance="10d">
+				<DieMuxData
+					DeathTypes="MAULED"
+					DeathTypesForbidden="BITTEN ELECTROCUTED LASERED BURNED STABBED IRRADIATED"
+			  RequiredStatus="OVER_WATER"/>
+				<Sound
+					Type="INITIAL"
+					List="JAP_Engineer_VoiceDie" />
+			</SlowDeath>
+            <SlowDeath
+				id="ModuleTag_TeslaDeath"
+				DeathFlags="DEATH_1"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+                <DieMuxData
+					DeathTypes="ELECTROCUTED"
+					DeathTypesForbidden="LASERED BURNED STABBED IRRADIATED MAULED"/>
+				<Sound Type="INITIAL" List="JAP_Engineer_VoiceDieShock" />
+			</SlowDeath>
+			<SlowDeath
+				id="ModuleTag_LaserDeath"
+				DeathFlags="DEATH_2"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="LASERED"
+					DeathTypesForbidden="ELECTROCUTED BURNED STABBED IRRADIATED MAULED"
+                    ExemptStatus="OVER_WATER"/>
+				<Sound Type="INITIAL" List="JAP_Engineer_VoiceDie" />
+			</SlowDeath>
+			<SlowDeath
+				id="ModuleTag_FireDeath"
+				DeathFlags="DEATH_3"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="BURNED"
+					DeathTypesForbidden="ELECTROCUTED LASERED STABBED IRRADIATED MAULED"
+                    ExemptStatus="OVER_WATER"/>
+                <Sound Type="INITIAL" List="JAP_Engineer_VoiceDieFire" />
+            </SlowDeath>
+            <SlowDeath
+				id="ModuleTag_SwordDeath"
+				DeathFlags="DEATH_4"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+                <DieMuxData
+					DeathTypes="STABBED"
+					DeathTypesForbidden="ELECTROCUTED LASERED BURNED IRRADIATED MAULED"
+                    ExemptStatus="OVER_WATER"/>
+				<Sound Type="INITIAL" List="JAP_Engineer_VoiceDie" />
+			</SlowDeath>
+			
+			<SlowDeath
+				id="ModuleTag_RadiationDeath"
+				DeathFlags="DEATH_5"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="IRRADIATED"
+					DeathTypesForbidden="ELECTROCUTED LASERED BURNED STABBED MAULED"/>
+				<Sound Type="INITIAL" List="JAP_Engineer_VoiceDie" />
+			</SlowDeath>
+			
+			<xi:include
+				href="DATA:Includes/CaptureBehavior.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:Behaviors/child::*)" />
+
+			<MovementSpecialPower
+				id="ModuleTag_SpecialPower"
+				SpecialPowerTemplate="SpecialPower_JapanEngineerSprint"
+				AttributeModifier="AttributeModifier_JapanEngineerSprint"
+				AttributeModifierAffectsSelf="true"
+				MovementType="NONE"
+				Duration="10s"
+				BusyDurationOnExit="5s"/>
+			<MovementSpecialPower
+				id="ModuleTag_SpecialPowerUpgade"
+				SpecialPowerTemplate="SpecialPower_JapanEngineerSprintUpgade"
+				AttributeModifier="AttributeModifier_JapanEngineerSprint"
+				AttributeModifierAffectsSelf="true"
+				MovementType="NONE"
+				Duration="10s"
+				BusyDurationOnExit="0s"/>
+			<CommandSetUpgrade
+				id="ModuleTag_JapanEngineerSprintUpgade"
+				CommandSet="JapanEngineerUpgadeCommandSet"
+				Permanent="true">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</CommandSetUpgrade>
+			
+			<!-- Allied Parachute Behaviors -->
+			<ModelConditionUpgrade
+				id="ModuleTag_JapanFaction"
+				AddConditionFlags="USER_8">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_SovietFaction"
+				AddConditionFlags="USER_9">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</ModelConditionUpgrade>			
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100.0" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_YurikoVoiceDieFall">
+				<ModelConditionSound Sound="JAP_Engineer_VoiceDieYurikoFall" RequiredFlags="IMPENDING_DOOM" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_YurikoVoiceUp">
+				<ModelConditionSound Sound="JAP_Engineer_VoiceDieYurikoUp" RequiredFlags="STUNNED_FLAILING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_WaterEntrySplash">
+				<ModelConditionSound Sound="Infantry_WaterSplash" RequiredFlags="OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_WaterSounds">
+				<Override RequiredFlags="OVER_WATER">
+					<AudioArrayVoice>
+						<AudioEntry Sound="JAP_Engineer_VoiceSelectWaterMS" AudioType="voiceSelect" />
+						<AudioEntry Sound="JAP_Engineer_VoiceSelectUnderFireWaterMS" AudioType="voiceSelectUnderFire" />
+					</AudioArrayVoice>
+					<AudioArraySound>
+						<AudioEntry Sound="JAP_Engineer_movStartWater" AudioType="soundMoveStart" />
+						<AudioEntry Sound="JAP_Engineer_MoveLoopWater" AudioType="soundMoveLoop" />
+					</AudioArraySound>
+				</Override>
+				<Override RequiredFlags="USER_1">
+					<AudioArrayVoice>
+						<AudioEntry Sound="JAP_Engineer_VoiceMoveSprint" AudioType="voiceMove" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<AnimationSoundClientBehavior
+				id="AnimationSoundCB" >	
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="JUEngineerTNW_CDTA" Frame="10" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="JUEngineerTNW_CDTB" Frame="10" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="JUEngineerTNW_DTBA" Frame="31" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="JUEngineerTNW_DTFA" Frame="114" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="JUEngineerTNW_DTKA" Frame="35" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="JUEngineerTNW_DTPA" Frame="75" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="JUEngineerTNW_DTSA" Frame="12" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="JUEngineerTNW_LNDA" Frame="7" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="JUEngineerTNW_MCND" Frame="5" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="JUEngineerTNW_RNDA" Frame="43" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="JUEngineerTNW_RNDB" Frame="28" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="JUEngineerTNW_SDVA" Frame="29" />
+			</AnimationSoundClientBehavior>	
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.25"
+				MinorRadius="5.25"
+				Height="13.0"
+				ContactPointGeneration="SQUAD_MEMBER" >
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_Engineer_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_Engineer_VoiceGarrison" AudioType="voiceGarrison" />
+			<AudioEntry Sound="JAP_Engineer_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_Engineer_VoiceMoveToLand" AudioType="voiceMoveWaterToLand" />
+			<AudioEntry Sound="JAP_Engineer_VoiceMoveToWater" AudioType="voiceMoveLandToWater" />
+			<AudioEntry Sound="JAP_Engineer_VoiceSelectLandMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="JAP_Engineer_VoiceSelectUnderFireLandMS" AudioType="voiceSelectUnderFire" />
+			<AudioEntry Sound="JAP_Engineer_VoiceRepair" AudioType="voiceAttack" />
+			<NamedEntry Sound="JAP_Engineer_VoiceCapture" Name="VoiceCaptureBuilding" />
+			<NamedEntry Sound="JAP_Engineer_VoiceRepair" Name="VoiceEngineerRepair" />
+		</AudioArrayVoice>
+	<!--
+		<AudioArraySound>
+			<AudioEntry Sound="AudioEvent:TEMP_PredatorMoveStart" AudioType="soundMoveStart" />
+			<AudioEntry Sound="AudioEvent:PredatorAmbientLoop" AudioType="soundAmbient" />
+		</AudioArraySound>
+	-->
+
+		<EvaEventArray>
+			<EvaEntry EvaEvent="EnemyEngineerDetected" EvaType="enemyObjectSighted" />
+		</EvaEventArray>
+		
+		<ShadowInfo
+			Type="DECAL"
+			SizeX="14"
+			SizeY="14"
+			Texture="ShadowI" />
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="=$BASE_INFANTRY_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="10"
+			CrusherLevel="0"
+		/>
+	</GameObject>
+	  <GameObject
+		id="JapanEngineer_Crate"
+		inheritFrom="JapanEngineer"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="JapanEngineer_Crate">
+		<EquivalentTo>JapanEngineer</EquivalentTo>
+	</GameObject>
+	<ObjectCreationList
+		id="OCL_JapanEngineer_Death">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS DO_NOT_COPY_SHADERS DO_NOT_COPY_SCALE REQUIRES_LIVE_PLAYER"
+			Disposition="ON_GROUND_ALIGNED"
+			MinHealth="1"
+			MaxHealth="1">
+			<CreateObject>JapanEngineer_Death</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<GameObject
+		id="JapanEngineer_Death"
+		inheritFrom="JapanEngineer"
+		EditorName="JapanEngineer_Death">
+		<EquivalentTo>JapanEngineer</EquivalentTo>
+		<Behaviors>
+			<AttributeModifierUpgrade
+				id="ModuleTag_CanNotDeathSpawn"
+				AttributeModifier="AttributeMod_CanNotDeathSpawnAttribute">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_DeathSpawnUp"
+				AttributeModifier="AttributeModifier_JapanArcherInfantryDeathSpawn">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</AttributeModifierUpgrade>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include source="art:fxwaterfall.xml" type="instance"/>
+		<Include source="MODTANKNANORING.w3x" type="all"/>
+	</Includes>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzflareHDR01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Type="SWARM" id="AUBuzzer">
+		<Lifetime High="50" Low="50"/>
+		<Size High="2" Low="2"/>
+		<BurstDelay High="1" Low="1"/>
+		<BurstCount High="4" Low="2"/>
+		<Physics/>
+		<Draw>
+			<Swarm AttractStrength="0.008" EnvironmentTexture="FXBuzzerRef" SpeedStretchAmount="5" TransparentSpeed="50"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="true" Radius="50"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="1" Low="-1"/>
+					<y High="1" Low="-1"/>
+					<z High="1" Low="-1"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update/>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXDirt2x2" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="ALPHA_TEST" id="AUBuzzerAttack">
+		<Lifetime High="50" Low="50"/>
+		<Size High="3" Low="3"/>
+		<BurstCount High="10" Low="10"/>
+		<Alphas>
+			<Alpha Frame="2" High="1" Low="1" RelativeAge="9"/>
+			<Alpha Frame="3" High="0.25" Low="0.25" RelativeAge="50"/>
+			<Alpha Frame="4" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="2" RelativeAge="10">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<Color Frame="3" RelativeAge="50">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Wind AngleChangeMax="5" AngleChangeMin="5" FullStrengthDist="200" Motion="CIRCULAR" PingPongEndAngleMin="5.49779" PingPongStartAngleMax="1" Strength="1" TurbulenceAmplitude="0.25" TurbulenceFrequency="1"/>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Default/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="false" Radius="5"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="1" Low="-1"/>
+					<y High="1" Low="-1"/>
+					<z High="1" Low="-1"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="0.95" Low="0.95"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate EmitterSound="ALI_Buzzers_Combine" ParticleTexture="FXLightning03" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SortLevel="1" SystemLifetime="5" Type="GPU_PARTICLE" id="AUBuzzerCombine">
+		<Lifetime High="10" Low="5"/>
+		<Size High="40" Low="40"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="0.701961" r="0.85098"/>
+			</Color>
+			<Color Frame="2" RelativeAge="75">
+				<Color b="0.647059" g="0.552941" r="0.313726"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default ParticlesAttachToBone="true">
+				<VelocityDamping High="0.95" Low="0.8"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder Length="20" Radius="20">
+				<Offset x="0" y="0" z="15"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="3" Low="3"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SortLevel="1" SystemLifetime="5" Type="GPU_PARTICLE" id="AUBuzzerCombineGlow">
+		<Lifetime High="10" Low="5"/>
+		<Size High="40" Low="20"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="0.701961" r="0.85098"/>
+			</Color>
+			<Color Frame="2" RelativeAge="75">
+				<Color b="0.647059" g="0.552941" r="0.313726"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default ParticlesAttachToBone="true">
+				<VelocityDamping High="0.95" Low="0.8"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder Length="20" Radius="20">
+				<Offset x="0" y="0" z="15"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="3" Low="3"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXBuzzer" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SystemLifetime="5" Type="SWARM" id="AUBuzzerDeath">
+		<Lifetime High="50" Low="25"/>
+		<Size High="1" Low="1"/>
+		<BurstCount High="25" Low="15"/>
+		<Physics/>
+		<Draw>
+			<Swarm EnvironmentTexture="FXBuzzerRef" SpeedStretchAmount="2" TransparentSpeed="10"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="true" Radius="8"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="1" Low="-1"/>
+					<y High="1" Low="-1"/>
+					<z High="1" Low="-1"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update/>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXDirt2x2" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="ALPHA_TEST" id="AUBuzzerIdle">
+		<Lifetime High="50" Low="50"/>
+		<Size High="3" Low="3"/>
+		<BurstCount High="5" Low="5"/>
+		<Alphas>
+			<Alpha Frame="2" High="1" Low="1" RelativeAge="9"/>
+			<Alpha Frame="3" High="0.25" Low="0.25" RelativeAge="50"/>
+			<Alpha Frame="4" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="2" RelativeAge="10">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<Color Frame="3" RelativeAge="50">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Default/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="false" Radius="5"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0.5" Low="-0.5"/>
+					<y High="0.5" Low="-0.5"/>
+					<z High="0.5" Low="-0.5"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="0.95" Low="0.95"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzflareHDR01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Type="SWARM" id="FXJapanNanoFly">
+		<Lifetime High="50" Low="50"/>
+		<Size High="1" Low="1"/>
+		<BurstDelay High="1" Low="1"/>
+		<BurstCount High="2" Low="1"/>
+		<Physics/>
+		<Draw>
+			<Swarm AttractStrength="0.008" EnvironmentTexture="FXBuzzerRef" SpeedStretchAmount="2" TransparentSpeed="10"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="true" Radius="8"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0.5" Low="-0.5"/>
+					<y High="0.5" Low="-0.5"/>
+					<z High="0.5" Low="-0.5"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update/>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzflareHDR01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SystemLifetime="5" Type="SWARM" id="FXJapanNanoFlyDeath">
+		<Lifetime High="50" Low="25"/>
+		<Size High="1" Low="1"/>
+		<BurstCount High="25" Low="15"/>
+		<Physics/>
+		<Draw>
+			<Swarm EnvironmentTexture="FXBuzzerRef" SpeedStretchAmount="2" TransparentSpeed="10"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="true" Radius="8"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="1" Low="-1"/>
+					<y High="1" Low="-1"/>
+					<z High="1" Low="-1"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update/>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzflareHDR01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Type="SWARM" id="JapanTsunamiTankNano">
+		<Lifetime High="50" Low="50"/>
+		<Size High="100" Low="100"/>
+		<BurstCount High="2" Low="1"/>
+		<Physics/>
+		<Draw>
+			<Swarm AttractStrength="0.05" EnvironmentTexture="FXBuzzerRef" TransparentSpeed="0"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="true" Radius="15"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="3" Low="-3"/>
+					<y High="3" Low="-3"/>
+					<z High="3" Low="-3"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update/>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzflareHDR01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Type="SWARM" id="FXMODSuperNano">
+		<Lifetime High="50" Low="50"/>
+		<Size High="100" Low="100"/>
+		<BurstCount High="25" Low="15"/>
+		<Physics/>
+		<Draw>
+			<Swarm AttractStrength="0.05" EnvironmentTexture="FXBuzzerRef" TransparentSpeed="0"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="true" Radius="15"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="3" Low="-3"/>
+					<y High="3" Low="-3"/>
+					<z High="3" Low="-3"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update/>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzflareHDR01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SystemLifetime="5" Type="SWARM" id="FXMODNanoFlyMasterDeath">
+		<Lifetime High="50" Low="25"/>
+		<Size High="2" Low="2"/>
+		<BurstCount High="25" Low="15"/>
+		<Physics/>
+		<Draw>
+			<Swarm EnvironmentTexture="FXBuzzerRef" SpeedStretchAmount="2" TransparentSpeed="10"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="true" Radius="50"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="1" Low="-1"/>
+					<y High="1" Low="-1"/>
+					<z High="1" Low="-1"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update/>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzflareHDR01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Type="SWARM" id="MODTankNano">
+		<Lifetime High="50" Low="50"/>
+		<Size High="100" Low="100"/>
+		<BurstCount High="2" Low="1"/>
+		<Physics/>
+		<Draw>
+			<Swarm AttractStrength="0.05" EnvironmentTexture="FXBuzzerRef" TransparentSpeed="0"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="true" Radius="15"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="5" Low="-5"/>
+					<y High="5" Low="-5"/>
+					<z High="5" Low="-5"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update/>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate Drawable="MODTANKNANORING" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="W3D_ALPHA" SortLevel="1" Type="DRAWABLE" id="MODNANAOTankRING">
+		<Lifetime High="25" Low="8"/>
+		<Size High="1" Low="1"/>
+		<BurstDelay High="3" Low="1"/>
+		<BurstCount High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="1" High="1" Low="1" RelativeAge="0"/>
+			<Alpha Frame="2" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<ColorScale High="10" Low="10"/>
+		</Colors>
+		<Physics/>
+		<Draw>
+			<RenderObject>
+				<ObjectSet/>
+				<ObjectSet/>
+				<ObjectSet/>
+			</RenderObject>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="1" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="1" Low="1"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<RenderObject Rotation="ROTATE_AROUND_VELOCITY">
+				<AngleZ High="7" Low="0"/>
+				<AngularDamping High="1" Low="1"/>
+				<StartSize>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="1" Low="0"/>
+				</StartSize>
+				<SizeRate>
+					<x High="1" Low="1"/>
+					<y High="1" Low="1"/>
+					<z High="0" Low="0"/>
+				</SizeRate>
+				<SizeDamping>
+					<x High="0.4" Low="0.4"/>
+					<y High="0.4" Low="0.4"/>
+					<z High="1" Low="1"/>
+				</SizeDamping>
+			</RenderObject>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

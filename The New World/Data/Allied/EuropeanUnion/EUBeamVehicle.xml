@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all"	source="ART:Units/EUBeamVehicle/EULASERTANK_SKN.W3X" />
+		<Include type="all"	source="ART:Units/EUBeamVehicle/EULASERTANK_MOVA.W3X" />
+		<Include type="all"	source="ART:Units/EUBeamVehicle/EUBeamVehicle_HOV_SKN.w3x" />
+		<Include type="all"	source="ART:Units/EUBeamVehicle/EUBeamVehicle_HOV.w3x" />
+		<Include type="all"	source="ART:Units/EUBeamVehicle/EULASERTANK_TRN.w3x" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+<GameObject
+	id="EUBeamVehicle"
+	inheritFrom="BaseVehicle"
+	SelectPortrait="Portrait_EUBeamVehicle"
+	ButtonImage="Button_EUBeamVehicle"
+	KindOf="CAN_CAST_REFLECTIONS SELECTABLE SCORE VEHICLE CAN_ATTACK T2_UNIT SIEGE_WEAPON TRANSFORMER"
+	ThreatLevel="10"
+	SubGroupPriority="280"
+	VoicePriority="100"
+	EditorSorting="UNIT"
+	BuildTime="14"
+	CommandSet="EUBeamVehicleCommandSet"
+	HealthBoxHeightOffset="20"
+	BountyValue="250"
+	WeaponCategory="BLAST"
+	Side="Allies"
+	EditorName="EUBeamVehicle"
+	Description="DESC:EUBeamVehicle"
+	TypeDescription="TYPE:AntiInfantryAndStructure"
+	SelectPortraitTransformed="PortraitEUBeamVehicleB"
+	ButtonImageTransformed="ButtonEUBeamVehicleB"
+	DescriptionTransformed="Desc:EUBeamVehicle"
+	TypeDescriptionTransformed="Type:AntiInfantryAndStructure">
+	<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:EUBeamVehicle</DisplayName>
+	<DisplayNameTransformed xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:EUBeamVehicle</DisplayNameTransformed>
+	<ObjectResourceInfo>
+		<BuildCost Account="0" Amount="1200"/>
+	</ObjectResourceInfo>
+	<GameDependency
+			ForbiddenModelConditions="OVER_WATER">
+		<NeededUpgrade>Upgrade_AlliedTech2</NeededUpgrade>
+	</GameDependency>
+	<ArmorSet
+		Armor="BaseTankArmor"
+		DamageFX="VehicleDamageFX" />
+	<LocomotorSet
+		Locomotor="TestReactiveLocomotorTANK"
+		Condition="NORMAL"
+		Speed="60" />
+	<LocomotorSet
+		Locomotor="TestReactiveLocomotorTANK"
+		Condition="NORMAL_UPGRADED"
+		Speed="60" />
+	<LocomotorSet
+		Locomotor="EUBeamVehicleWaterLocomotor"
+		Condition="NORMAL_UPGRADED"
+		Speed="60" />
+	<SkirmishAIInformation
+		UnitBuilderStandardCombatUnit="true"
+		ConquerMetricsOverrideDPS="25"
+		ConquerMetricsDpsBonusAgainstDefenses="3.0"
+		OutOfRangePenalty="3.0"
+		ConquerMetricsOverrideDamageType="GRENADE"
+		ConquerMetricsOverrideAntiMask="ANTI_STRUCTURE"/>
+	<Draws>
+		<TruckDraw
+			id="ModuleTag_Draw"
+			OkToChangeModelColor="true"
+			LeftFrontTireBone="Bone_Tracks_Left"
+			RightFrontTireBone="Bone_Tracks_Right"
+			TireRotationMultiplier="0.0"
+			InitialRecoilSpeed="0.5"
+			MaxRecoilDistance="5"
+			RecoilDamping="2.0"
+			RecoilSettleSpeed="3.0"
+			ExtraPublicBone="BONE_TREAD_FRONT_LEFT BONE_TREAD_FRONT_RIGHT BONE_TREAD_REAR_LEFT BONE_TREAD_REAR_RIGHT FX_LASER"
+			TrackMarks="EXTnkTrack"
+			TrackMarksLeftBone="FXTRACKSL"
+			TrackMarksRightBone="FXTRACKSR">
+			<TreadTerrainParticles>AmphibiousTankTerrainParticleMapping</TreadTerrainParticles>
+			<TreadScrollingMap
+				LeftTrack="BONE_TREAD_FRONT_LEFT"
+				RightTrack="BONE_TREAD_FRONT_RIGHT"
+				SpeedMultiplier="-0.06"
+				TreadDriveSpeedFraction="10%"/>
+			<TreadScrollingMap
+				LeftTrack="BONE_TREAD_REAR_LEFT"
+				RightTrack="BONE_TREAD_REAR_RIGHT"
+				SpeedMultiplier="-0.06"
+				TreadDriveSpeedFraction="10%"/>
+			<ModelConditionState
+				ParseCondStateType="PARSE_DEFAULT">
+				<Model
+					Name="EULASERTANK_SKN" />
+				<WeaponFireFXBone
+					WeaponSlotID="1"
+					WeaponSlotType="PRIMARY_WEAPON"
+					BoneName="FX_LASER" />
+				<WeaponLaunchBone
+					WeaponSlotID="1"
+					WeaponSlotType="PRIMARY_WEAPON"
+					BoneName="FX_LASER" />
+				<Turret
+					TurretNameKey="BONE_TURRET"
+					TurretPitch="BONE_TURRET_PITCH"
+					TurretID="1" />
+			</ModelConditionState>
+			<ModelConditionState
+				ParseCondStateType="PARSE_NORMAL"
+				RetainSubObjects="true"
+				ConditionsYes="DAMAGED">
+				<Model
+					Name="EULASERTANK_SKN" />
+				<ParticleSysBone
+					BoneName="FX_DAMAGE01"
+					FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+					FollowBone="true"/>
+			</ModelConditionState>
+			<ModelConditionState
+				ParseCondStateType="PARSE_NORMAL"
+				RetainSubObjects="true"
+				ConditionsYes="REALLYDAMAGED">
+				<Model
+					Name="EULASERTANK_SKN" />
+				<Texture
+					Original="AUAntiVehicleVehicleTech3"
+					New="AUAntiVehicleVehicleTech3_D" />
+				<Texture
+					Original="AUAntiVehicleVehicleTech3"
+					New="AUAntiVehicleVehicleTech3_D" />
+				<ParticleSysBone
+					BoneName="FX_DAMAGE01"
+					FXParticleSystemTemplate="AlliedVehicleDamageFire"
+					FollowBone="true"/>
+				<ParticleSysBone
+					BoneName="FX_DAMAGE01"
+					FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+					FollowBone="true"/>
+				<ParticleSysBone
+					BoneName="FX_DAMAGE01"
+					FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+					FollowBone="true"/>
+				<ParticleSysBone
+					BoneName="B_ANTENNAE01"
+					FXParticleSystemTemplate="AlliedVehicleDamageFire"
+					FollowBone="true"/>
+				<ParticleSysBone
+					BoneName="B_ANTENNAE01"
+					FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+					FollowBone="true"/>
+				<ParticleSysBone
+					BoneName="B_ANTENNAE01"
+					FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+					FollowBone="true"/>
+			</ModelConditionState>
+			<AnimationState
+				ParseCondStateType="PARSE_DEFAULT"
+				StateName="STATE_Idle">
+				<Animation
+					AnimationName="EULASERTANK_TRN"
+					AnimationMode="ONCE_BACKWARDS"
+					AnimationAbsoluteTime="2s"/>
+			</AnimationState>
+			<AnimationState
+				ParseCondStateType="PARSE_NORMAL"
+				ConditionsYes="USER_6">
+				<Animation
+					AnimationName="EULASERTANK_TRN"
+					AnimationMode="ONCE"
+					AnimationAbsoluteTime="2s" />
+				<ParticleSysBone
+					BoneName="FX_LASER"
+					FXParticleSystemTemplate="EUBeamShow"
+					FollowBone="True" />
+			</AnimationState>
+		</TruckDraw>
+
+		<xi:include
+			href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+			xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+		<ScriptedModelDraw
+			id="ModuleTag_Draw_Hover">
+			<ModelConditionState
+				ParseCondStateType="PARSE_DEFAULT">
+				<Model
+					Name="EUBeamVehicle_HOV_SKN" />
+			</ModelConditionState>
+			<AnimationState
+				ParseCondStateType="PARSE_DEFAULT"
+				StateName="STATE_Land"
+				Flags="START_FRAME_LAST">
+				<Animation
+					AnimationName="EUBeamVehicle_HOV"
+					AnimationMode="ONCE" />
+				<Script>
+					Prev = CurDrawablePrevAnimationState()
+					if Prev == "STATE_Water" then
+					CurDrawableSetTransitionAnimState("TRANS_Land")
+					end
+				</Script>
+			</AnimationState>
+			<AnimationState
+				ParseCondStateType="PARSE_NORMAL"
+				ConditionsYes="OVER_WATER"
+				StateName="STATE_Water"
+				Flags="START_FRAME_FIRST">
+				<Animation
+					AnimationName="EUBeamVehicle_HOV"
+					AnimationMode="ONCE_BACKWARDS" />
+				<Script>
+					Prev = CurDrawablePrevAnimationState()
+					if Prev == "STATE_Land" then
+					CurDrawableSetTransitionAnimState("TRANS_Water")
+					end
+				</Script>
+				<ParticleSysBone
+				BoneName="None"
+				FXParticleSystemTemplate="StingrayWaterWake"
+				FollowBone="false" />
+			</AnimationState>
+			<AnimationState
+				ParseCondStateType="PARSE_TRANSITION"
+				StateName="TRANS_Water"
+				Flags="START_FRAME_LAST">
+				<Animation
+					AnimationName="EUBeamVehicle_HOV"
+					AnimationMode="ONCE_BACKWARDS">
+				</Animation>
+				<Script>
+					CurDrawablePlaySound("ALL_Prospector_WaterSplashMS")
+				</Script>
+			</AnimationState>
+			<AnimationState
+				ParseCondStateType="PARSE_TRANSITION"
+				StateName="TRANS_Land"
+				Flags="START_FRAME_FIRST">
+				<Animation
+					AnimationName="EUBeamVehicle_HOV"
+					AnimationMode="ONCE">
+				</Animation>
+				<Script>
+					CurDrawablePlaySound("AmphibiousWaterUnitToLand_ScrapeTreadsOut")
+				</Script>
+			</AnimationState>
+		</ScriptedModelDraw>
+		<!-- include Headlight draw module. -->
+		<xi:include
+				  href="DATA:Includes/HeadlightDraw2.xml"
+				  xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:HeadlightDraw2/child::*)" />
+			<LaserDraw
+				id="ModuleTag_LaserDraw1"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".03"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				WeaponSlotID="1"
+				LaserStateID="502">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaserHeroic</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					RequiredStatus="TRANSFORMATION_TOGGLE_STATE"
+					ForbiddenStatus="TEMPORARILY_DEFECTED"/>					
+			</LaserDraw>		
+			<LaserDraw
+				id="ModuleTag_LaserDraw2"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".03"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				WeaponSlotID="1"
+				LaserStateID="502">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaserHeroic</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					RequiredStatus="TRANSFORMATION_TOGGLE_STATE"
+					ForbiddenStatus="TEMPORARILY_DEFECTED"/>					
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDraw1_Once"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="0"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".8"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				LaserStateID="500">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlliedFutureLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienLaser</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+        <ObjectStatusValidation
+					ForbiddenStatus="TRANSFORMATION_TOGGLE_STATE" />
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDraw2_OnceVet"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="0"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				LaserStateID="501">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedFutureLaser</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlienLaserHeroic</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>3.500000</Value>
+              <Value>0.800000</Value>
+              <Value>0.800000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+        <ObjectStatusValidation
+					ForbiddenStatus="TRANSFORMATION_TOGGLE_STATE"/>
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDistort"
+				UseDistortionShader="true"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".01"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="1"
+				LaserWidth="40"
+				WeaponSlotID="1"
+				LaserStateID="503">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXRailGunCoreDistortion</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXRailGunCoreMask</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+	</Draws>
+	<Behaviors>
+		<WeaponSetUpdate
+			id="ModuleTag_WeaponSetUpdate">
+			<WeaponSlotTurret
+				ID="1">
+				<Weapon
+					Ordering="PRIMARY_WEAPON"
+					Template="EUBeamVehicleOnceLaser"
+					ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE WEAPON_UPGRADED_02"/>
+				<Weapon
+					Ordering="PRIMARY_WEAPON"
+					Template="EUBeamVehicleOnceLaserUpgrade"
+					ObjectStatus="WEAPON_UPGRADED_02"
+					ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE"/>
+				<Weapon
+					Ordering="PRIMARY_WEAPON"
+					Template="EUBeamVehicleLaser"
+					ObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+					ForbiddenObjectStatus="SHRUNK"/>
+				<TurretSettings
+					TurretTurnRate="360"
+					MinimumPitch="-30d"
+					AllowsPitch="true"
+					TurretPitchRate="180"
+					MinIdleScanTime="1.0s"
+					MaxIdleScanTime="4.0s"
+					MinIdleScanAngle="30.0"
+					MaxIdleScanAngle="50.0"
+					ComeToHaltJiggle="3d">
+					<TurretAITargetChooserData
+						IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+						CanAcquireDynamicIfAssignedOutOfRange="false"/>
+				</TurretSettings>
+			</WeaponSlotTurret>
+	</WeaponSetUpdate>
+		<LaserState
+			id="ModuleTag_LaserStateOnce"
+			LaserId="500">
+		</LaserState>
+		<LaserState
+			id="ModuleTag_LaserStateOnceVET"
+			LaserId="501">
+		</LaserState>
+		<LaserState
+			id="ModuleTag_LaserState"
+			LaserId="502">
+		</LaserState>
+		<LaserState
+			id="ModuleTag_LaserDistortState"
+			LaserId="503">
+		</LaserState>
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_02">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+		<SpecialPower
+			id="ModuleTag_BeamLaserSpecialPower"
+			SpecialPowerTemplate="EUBeamVehicleLaserSpecialPower"
+			UpdateModuleStartsAttack="true" />
+		<BeamSpecialAbilityUpdate
+			id="ModuleTag_BeamLaserSpecialPowerUpdate"
+			SpecialPowerTemplate="EUBeamVehicleLaserSpecialPower"
+			JoinWithOtherBeams="true"
+			PackTime="0.0s"
+			UnpackTime="0.13s"
+			UnpackSound="NOD_BeamCannon_BeamWeaponPowerUpSwell"
+			PreparationTime="10000s"
+			StartAbilityRange="510"
+			AbilityAbortRange="510"
+			DamagePerSecond="30.0"
+			ClearObjectStatusOnExit="IS_ENGAGED"
+			SetObjectStatusOnTrigger="IS_ENGAGED"
+			Options="CHECK_SPECIALPOWER_REQUIREMENTS_DURING_UPDATE FAIL_WITH_INVALID_APPROACH"
+			DisabledTypesToContinueSoundsFor="SCRIPT_DISABLED INFILTRATED EMP UNMANNED"
+			DisabledTypesToProcess="SCRIPT_DISABLED INFILTRATED EMP UNMANNED"
+			PreferredTargetBone="upgrade_speakers"
+			PrepSoundLoop="NOD_BeamCannon_BeamWeaponLoop"
+			FaceTarget="false"/>
+		
+		<SpecialPower
+			id="ModuleTag_ToggleLaserBeam"
+			SpecialPowerTemplate="SpecialPower_ToggleLaserBeam"
+			UpdateModuleStartsAttack="true" />
+		<ToggleStatusSpecialAbilityUpdate
+			id="ModuleTag_ToggleLaserBeamUpdate"
+			Options="RECONSTITUTE_STORED_COMMAND"
+			SpecialPowerTemplate="SpecialPower_ToggleLaserBeam">
+			<ToggleState
+				EnterStateSound="ALL_MirageField_StopMS">
+				<SkirmishAiInfo
+					ToggleHint="TOGGLE_DEFAULT"
+					NeverUseWhenTargetIsAnyKindOf="INFANTRY">
+					<StateWeapon
+						Weapon="EUBeamVehicleOnceLaser" />
+				</SkirmishAiInfo>
+			</ToggleState>
+			<ToggleState
+				ObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+				ModelConditions="USER_6">
+				<SkirmishAiInfo
+					ToggleHint="TOGGLE_WEAPON"
+					NeverUseInState="RETREAT GATHER"
+					OnlyUseWhenHaveTarget="true">
+				<StateWeapon
+					Weapon="EUBeamVehicleLaser" />
+				</SkirmishAiInfo>
+			</ToggleState>
+		</ToggleStatusSpecialAbilityUpdate>
+			<SpecialPower
+				id="ModuleTag_ReflectorSpecialPower"
+				SpecialPowerTemplate="SpecialPower_ReflectorAttack"
+				UpdateModuleStartsAttack="true" />
+			<BeamSpecialAbilityUpdate
+				id="ModuleTag_ReflectorSpecialPowerUpdate"
+				SpecialPowerTemplate="SpecialPower_ReflectorAttack"
+				JoinWithOtherBeams="true"
+				UnpackSound="NOD_BeamCannon_BeamWeaponPowerUpSwell"
+				PreparationTime="10000s"
+				PrepSoundLoop="NOD_BeamCannon_BeamWeaponLoop"
+				StartAbilityRange="100000"
+				ReflectorExtendDistance="350.0"
+				DamagePerSecond="20.0"
+				PackTime="2.00s"
+				UnpackTime="0.1s"
+				ClearObjectStatusOnExit="IS_ENGAGED"
+				SetObjectStatusOnTrigger="IS_ENGAGED"
+				Options="CHECK_SPECIALPOWER_REQUIREMENTS_DURING_UPDATE FAIL_WITH_INVALID_APPROACH"
+				GoIdleInStartPreparation="false"
+				DisabledTypesToContinueSoundsFor="SCRIPT_DISABLED INFILTRATED EMP UNMANNED"
+				DisabledTypesToProcess="SCRIPT_DISABLED INFILTRATED EMP UNMANNED"
+				FaceTarget="false"/>
+		<Physics
+			id="ModuleTag_Physics" />
+		<DestroyDie
+			id="ModuleTag_Die">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</DestroyDie>
+		<CreateObjectDie
+			id="ModuleTag_CreateObjectDie"
+			CreationList="EUBeamVehicle_Die_OCL">
+			<DieMuxData
+				DeathTypes="ALL"
+				DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+		</CreateObjectDie>
+		<FXListBehavior
+			id="ModuleTag_FXList">
+			<DieMuxData
+				DeathTypes="ALL"
+				DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			<Event
+				Index="onDeath"
+				FX="FX_AlliedChieftanDie" />
+		</FXListBehavior>
+		<LocomotorSetUpgrade
+			id="ModuleTag_LocomotorUpgrade">
+			<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			<TriggeredBy>Upgrade_ConfigTrigger</TriggeredBy>
+		</LocomotorSetUpgrade>
+		<AttributeModifierUpgrade
+			id="ModuleTag_AlliedLaserUpgradeUpgradeFX"
+			AttributeModifier="AttributeMod_AlliesAlliedLaserUpgradeAttribute">
+			<TriggeredBy>Upgrade_AlliedLaserUpgrade</TriggeredBy>
+		</AttributeModifierUpgrade>
+		<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_DeBugDamageMultUnmiliWeapon">
+			<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+		</AttributeModifierUpgrade>
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech2.xml"/>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech2/child::*)" />
+	</Behaviors>
+	<AI>
+		<AIUpdate
+			id="ModuleTag_AI"
+			AutoAcquireEnemiesWhenIdle="YES"
+			StateMachine="UnitAIStateMachine">
+			<UnitAITargetChooserData
+				CanPickDynamicTargets="false"
+				RotateToTargetWhenAiming="false"
+				IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+		</AIUpdate>
+	</AI>
+	<Body>
+		<ActiveBody
+			id="ModuleTag_Body"
+			MaxHealth="450" />
+	</Body>
+	<Geometry
+		IsSmall="true">
+		<Shape
+			Type= "BOX"
+			MajorRadius="19.3"
+			MinorRadius="12"
+			Height="18"
+			ContactPointGeneration="VEHICLE" >
+		</Shape>
+	</Geometry>
+	<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="EUBeamVehicle_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+		<ModelConditionAudioLoopClientBehavior id="ModuleTag_WaterEntrySplash">
+			<ModelConditionSound Sound="ALL_Prospector_WaterSplashMS" RequiredFlags="OVER_WATER" ExcludedFlags="MOVING DYING" />
+		</ModelConditionAudioLoopClientBehavior>
+		<ModelConditionAudioLoopClientBehavior id="ModuleTag_MoveLoopLand">
+			<ModelConditionSound Sound="Tank_Land_MoveLoop" RequiredFlags="MOVING" ExcludedFlags="OVER_WATER DYING" />
+		</ModelConditionAudioLoopClientBehavior>
+		<ModelConditionAudioLoopClientBehavior id="ModuleTag_MoveLoopWater">
+			<ModelConditionSound Sound="Ship_Small_MoveLoopWater" RequiredFlags="MOVING OVER_WATER" ExcludedFlags="DYING" />
+		</ModelConditionAudioLoopClientBehavior>
+		<ModelConditionAudioLoopClientBehavior id="ModuleTag_PreAttackOnceLaser">
+			<ModelConditionSound Sound="NOD_BeamCannon_BeamWeaponPowerUpSwell" RequiredFlags="PREATTACK_A" ExcludedFlags="DYING" />
+		</ModelConditionAudioLoopClientBehavior>
+		<ModelConditionSoundSelectorClientBehavior id="ModuleTag_WaterMoveStart">
+			<Override RequiredFlags="OVER_WATER">
+				<AudioArraySound>
+					<AudioEntry Sound="ALL_OreCollector_MoveStartWater" AudioType="soundMoveStart" />
+				</AudioArraySound>
+			</Override>
+		</ModelConditionSoundSelectorClientBehavior>
+	</ClientBehaviors>
+	<AudioArrayVoice>
+		<AudioEntry Sound="EUBeamVehicle_VoiceCreate" AudioType="voiceCreated" />
+		<AudioEntry Sound="EUBeamVehicle_VoiceAttack" AudioType="voiceAttack" />
+		<AudioEntry Sound="EUBeamVehicle_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+		<AudioEntry Sound="EUBeamVehicle_VoiceMove" AudioType="voiceMove" />
+		<AudioEntry Sound="EUBeamVehicle_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+		<AudioEntry Sound="EUBeamVehicle_VoiceSelect" AudioType="voiceSelect" />
+		<AudioEntry Sound="EUBeamVehicle_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+		<NamedEntry Sound="EUBeamVehicle_VoiceAttackSpecial" Name="VoiceShrinkRay" />
+	</AudioArrayVoice>
+	<AudioArraySound>
+		<AudioEntry Sound="ALL_OreCollector_MoveStart" AudioType="soundMoveStart" />
+		<AudioEntry Sound="VehicleCrush" AudioType="soundCrushing" />
+	</AudioArraySound>
+	<VisionInfo
+		VisionRange="525"
+		ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+	<CrusherInfo
+		CrushWeapon="SovietCrushWeapon"
+		CrusherLevel="20"
+		CrushableLevel="25"
+		CrushDecelerationPercent="80%">
+		<ExtraCrushLevels CrusherLevel="1" CrushableLevel="25" ModelConditionMatch="OVER_WATER"/>
+	</CrusherInfo>
+</GameObject>
+	<GameObject
+	  id="EUBeamVehicle_Water"
+	  inheritFrom="EUBeamVehicle"
+	  KindOf="+AMPHIBIOUS"
+	  EditorName="EUBeamVehicle_Water">
+	<EquivalentTo>EUBeamVehicle</EquivalentTo>
+		<GameDependency
+		xai:joinAction="Replace">
+			<NeededUpgrade>Upgrade_AlliedTech2</NeededUpgrade>
+		</GameDependency>
+	</GameObject>
+	<GameObject
+	  id="EUBeamVehicle_Crate"
+	  inheritFrom="EUBeamVehicle"
+	  KindOf="+TIBERIUM_BASED"
+	  EditorName="EUBeamVehicle_Crate">
+		<EquivalentTo>EUBeamVehicle</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

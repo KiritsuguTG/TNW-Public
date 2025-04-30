@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+  <Tags></Tags>
+  <Includes>
+    <Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+    <Include type="all"	source="ART:FXChronoSpherePlayerPower.w3x" />
+    <Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+  </Includes>
+	<GameObject
+		id="AlliedOutPutSPSpawner"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="IMMOBILE UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE"
+		EditorName="AlliedOutPutSPSpawner"
+		Description="Desc:AlliedOutPutSPSpawner"
+		TypeDescription="Type:AlliedOutPutSPSpawner">
+		<DisplayName>AlliedOutPutSPSpawner</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="BeaconFlare"/> 
+					<ParticleSysBone
+						BoneName="None"
+					FXParticleSystemTemplate="BeaconSmoke"/> 	
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"/>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="6s"
+			  MaxLifetime="6s"
+				CountdownCompleteSound="AlliedOutPost_spawn"/>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_AlliedOutPutSP">
+				<DieMuxData
+					DeathTypes="ALL"/>
+				<UpgradeForbidden>AlliedSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_AlliedOutPutSPUpgrade">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>AlliedSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="ALL_SurgicalStrike_BeaconMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+  <GameObject
+		id="AlliedOutPutSP"
+		Side="Allies"
+		inheritFrom="BaseStructure"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		CommandSet="EmptyCommandSet"
+		KindOf="+CAN_CAST_REFLECTIONS +RESIST_EMP +IGNORE_FOR_VICTORY"
+		EditorName="AlliedOutPutSP">
+    <DisplayName>Name:AlliedOutPutSP</DisplayName>
+	  <ArmorSet
+		  Armor="InvulnerableArmor"/>
+    <Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="" />
+        </ModelConditionState>
+      </ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+    	<Physics
+				id="ModuleTag_Physics" />
+				<SlowDeath
+				id="ModuleTag_DeathFade"
+				SinkRate="0"
+				Fade="true"
+				FadeTime="2s"
+				DestructionDelay="2s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+      <LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				MinLifetime="8s"
+				MaxLifetime="8s"/>
+				<FXListBehavior
+					id="ModuleTag_FXList">
+        <DieMuxData
+					DeathTypes="ALL" />
+        <Event Index="onCreate" FX="FX_OutPutSPChrono" />
+      </FXListBehavior>
+			<ProductionUpdate
+				id="ModuleTag_ProductionUpdate"
+				GiveNoXP="true" />
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				UnpackTime="2s" />
+    </Behaviors>
+    <AI>
+      <AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+    </AI>
+		<Geometry
+			IsSmall="true">
+      <Shape
+				Type="CYLINDER"
+				MajorRadius="1.0"
+				Height="1.0">
+				</Shape>
+    </Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="ALL_TimeBomb_Activate_CreationSequence_Loop" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="" EvaType="enemyObjectSighted"/>
+			<EvaEntry EvaEvent="" EvaType="placementFailed"/>
+			<EvaEntry EvaEvent="" EvaType="cannotBuildDueToFullBuildQueue"/>
+			<EvaEntry EvaEvent="" EvaType="damagedOwner"/>
+			<EvaEntry EvaEvent="" EvaType="damagedAlly"/>
+			<EvaEntry EvaEvent="" EvaType="manuallyPoweredOff"/>
+			<EvaEntry EvaEvent="" EvaType="manuallyPoweredOn"/>
+		</EvaEventArray>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>  
+    <VisionInfo
+			VisionRange="70"
+			ShroudClearingRange="30" />
+		<ProjectedBuildabilityInfo
+			Radius="55.0"
+			RadiusY="55.0"
+			BuildPlacementTypes="MAIN_STRUCTURE OTHER_STRUCTURE" />
+  </GameObject>
+  <GameObject
+		id="AlliedOutPutSPUpgrade"
+		Side="Allies"
+		inheritFrom="BaseStructure"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		CommandSet="EmptyCommandSet"
+		KindOf="+CAN_CAST_REFLECTIONS +RESIST_EMP +IGNORE_FOR_VICTORY"
+		EditorName="AlliedOutPutSPUpgrade">
+    <DisplayName>Name:AlliedOutPutSPUpgrade</DisplayName>
+	  <ArmorSet
+		  Armor="InvulnerableArmor"/>
+    <Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="" />
+        </ModelConditionState>
+      </ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+    	<Physics
+				id="ModuleTag_Physics" />
+				<SlowDeath
+				id="ModuleTag_DeathFade"
+				SinkRate="0"
+				Fade="true"
+				FadeTime="2s"
+				DestructionDelay="2s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+      <LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				MinLifetime="13s"
+				MaxLifetime="13s"/>
+				<FXListBehavior 
+					id="ModuleTag_FXList">
+        <DieMuxData
+					DeathTypes="ALL" />        
+        <Event Index="onCreate" FX="FX_OutPutSPChronoUpgrade" />
+      </FXListBehavior>
+			<ProductionUpdate
+				id="ModuleTag_ProductionUpdate"
+				GiveNoXP="true" />
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				UnpackTime="2s" />
+    </Behaviors>
+    <AI>
+      <AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+    </AI>
+		<Geometry
+			IsSmall="true">
+      <Shape
+				Type="CYLINDER"
+				MajorRadius="1.0"
+				Height="1.0">
+				</Shape>
+    </Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="ALL_TimeBomb_Activate_CreationSequence_Loop" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="" EvaType="enemyObjectSighted"/>
+			<EvaEntry EvaEvent="" EvaType="placementFailed"/>
+			<EvaEntry EvaEvent="" EvaType="cannotBuildDueToFullBuildQueue"/>
+			<EvaEntry EvaEvent="" EvaType="damagedOwner"/>
+			<EvaEntry EvaEvent="" EvaType="damagedAlly"/>
+			<EvaEntry EvaEvent="" EvaType="manuallyPoweredOff"/>
+			<EvaEntry EvaEvent="" EvaType="manuallyPoweredOn"/>
+		</EvaEventArray>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>  
+    <VisionInfo
+			VisionRange="70"
+			ShroudClearingRange="30" />
+		<ProjectedBuildabilityInfo
+			Radius="55.0"
+			RadiusY="55.0"
+			BuildPlacementTypes="MAIN_STRUCTURE OTHER_STRUCTURE" />
+  </GameObject>
+</AssetDeclaration>

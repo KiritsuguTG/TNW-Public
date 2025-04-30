@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+
+		<Include
+			type="all"
+			source="ART:NPCrate01.w3x" />
+	</Includes>
+	<GameObject
+		id="UnitCrate"
+		SelectPortrait="Portrait_Neutral"
+		ButtonImage="Button_Neutral"
+		Side="Neutral"
+		EditorSorting="UNIT"
+		TransportSlotCount="1"
+		BuildTime="0"
+		CommandSet="EmptyCommandSet"
+		KindOf="SELECTABLE IMMOBILE NOT_AUTOACQUIRABLE UNATTACKABLE CAN_CAST_REFLECTIONS CRATE REVEAL_TO_ALL"
+		RadarPriority="COMMANDO"
+		UnitCategory="STRUCTURE"
+		PlacementViewAngle="0d"
+		EditorName="UnitCrate"
+		Description="DESC:UnitCrate">
+		<DisplayName>NAME:UnitCrate</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="99999"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NPCrate01" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<UnitCrateCollide
+				id="ModuleTagCollide"
+				UnitCount="1"
+				UnitType="UnitCrateRandom"/>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="120s"
+				MaxLifetime="120s"
+				DeathType="FADED"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CrateSpawn">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FADED"/>
+			</CreateObjectDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+      <Shape 
+          Type= "CYLINDER"
+          MajorRadius = "9.68515"
+          MinorRadius = "9.68515"
+          Height = "16.0349" >
+        <Offset
+            x = "0.0348139"
+            y = "-0.0732222"
+            z = "0.0" />
+      </Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="1"
+			ShroudClearingRange="50" />
+	</GameObject>
+	<GameObject
+		id="UnitCrateRandom"
+		Side="Neutral"
+		CommandSet="EmptyCommandSet"
+		KindOf="IMMOBILE NOT_AUTOACQUIRABLE UNATTACKABLE"
+		EditorName="UnitCrateRandom">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name=""/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_Lifetime"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_RandomUnitSpawn">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+	</GameObject>
+	<ObjectCreationList
+		id="OCL_RandomUnitSpawn"
+		Flags="CHOOSE_ONE_CREATE_NUGGET_FROM_LIST">
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>SovietScoutInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>SovietAntiInfantryInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>SovietAntiVehicleInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>SovietEngineer</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>SovietHeavyAntiVehicleInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietMiner</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietSurveyor</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietScoutVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietAntiVehicleVehicleTech1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietAntiVehicleVehicleTech2</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietAntiInfantryVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietAntiStructureVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietAntiVehicleVehicleTech3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietAntiAirShip</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietAntiNavyShipTech1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietFighterAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietAntiGroundAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietBomberAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>JapanScoutInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>JapanAntiInfantryInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>JapanAntiVehicleInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>JapanArcherInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>JapanEngineer</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>JapanInfiltrationInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>JapanAntiVehicleInfantryTech3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>JapanMiner</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>JapanLightTransportVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>JapanAntiInfantryVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>JapanAntiVehicleVehicleTech1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>JapanAntiAirVehicleTech1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>JapanSentinelVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>JapanAntiVehicleVehicleTech3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>JapanAntiStructureVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>JapanAntiAirShip</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>AlliedEngineer</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>AlliedScoutInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>AlliedAntiInfantryInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>AlliedAntiVehicleInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>AlliedInfiltrationInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>AlliedLegionnaireInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedMiner</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedAntiAirVehicleTech1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedAntiVehicleVehicleTech1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedAntiVehicleVehicleTech3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedAntiStructureVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedAntiInfantryVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedFighterAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedSupportAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedAntiGroundAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedBomberAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>EUAntiVehicleInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>EUAntiInfantryInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUMiner</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUSupportAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUAntiAirVehicleTech1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUAntiStructureVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUBomberAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUScoutAntiInfantryVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUAntiGroundAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUAntiVehicleVehicleTech1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>EUAntiVehicleInfantryTech2</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EULightTransportVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUScoutVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUAntiAirAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUAntiVehicleVehicleTech3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODFighterAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODAntiGroundAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODAntiAirVehicleTech1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODAntiVehicleVehicleTech1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>MODAntiVehicleInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>MODAntiVehicleInfantryTech3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODAntiVehicleVehicleTech3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODAntiInfantryVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODAntiStructureVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>MODInfiltrationInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODBombVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>MODNanoFly</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODNanoFlyMaster</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODBomberAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyAntiVehicleVehicleTech3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyAntiVehicleVehicleTech1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyMiner</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmySurveyor</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>StrategicArmyAntiInfantryInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyFighterAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>StrategicArmyAntiVehicleInfantry</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyAntiInfantryVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyAntiAirShip</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyBomberAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyAntiStructureVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyAntiVehicleInfantryTech3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyScoutVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyGrinderVehicle</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>TH_Auto04</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>CUAuto01</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>Alliedprismfortress</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>GDIDrone</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>mantikeer</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>kanade</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>msztank</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>NODInfernoBomber</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>PZ6</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietAntiVehicleVehicleTech1Armor</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>VietnamFighterAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>yhtank</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>ScrinAntiAirVehicleTech1Boss</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>ScrinAntiInfantryVehicleBoss</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>ScrinAntiStructureAircraftBoss</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>ScrinAntiVehicleVehicleTech1Boss</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>ScrinAntiVehicleVehicleTech3Boss</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>ScrinFighterAircraftBoss</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="5">
+			<CreateObject>ScrinInvaderFighterAircraftBoss</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>ScrinMotherShipBoss</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS DONT_SET_PRODUCER"
+			Count="1"
+			DestinationPlayer="">
+			<CreateObject>IndianGolfCart</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MordorMumakil</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyMoveBunker</CreateObject>
+		</CreateObject>
+		<!--Nano Core And MCV-->
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODAirfieldEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedAirfieldEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietAirfieldEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyAirfieldEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUAirfieldEgg</CreateObject>
+		</CreateObject>
+
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>JapanNavalYardEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODNavalYardEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedNavalYardEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietNavalYardEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyNavalYardEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUNavalYardEgg</CreateObject>
+		</CreateObject>
+		
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>JapanWarFactoryEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODWarFactoryEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedWarFactoryEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietWarFactoryEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyWarFactoryEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUWarFactoryEgg</CreateObject>
+		</CreateObject>
+		
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>JapanBarracksEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODBarracksEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedBarracksEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietBarracksEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyBarracksEgg</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUBarracksEgg</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+</AssetDeclaration>

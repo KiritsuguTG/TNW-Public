@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="JapanAntiVehicleVehicleTech1Cannon"
+		AttackRange="150.0"
+		WeaponSpeed="1000"
+		MinWeaponSpeed="5000"
+		MaxWeaponSpeed="5000"
+		AcceptableAimDelta="20d"
+		WeaponRecoil="2d"
+		ClipSize="1"
+		AutoReloadsClip="AUTO"
+		CanFireWhileMoving="true"
+		ReAcquireDetailType="PRE_FIRE"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		ForbiddenAntiMask="ANTI_STRUCTURE"
+		FireSound="JAP_Tsunami_CannonFire"
+		FireFX="FX_JapanTankGun"
+		FireVeteranFX="FX_JapanTankGunHeroic"
+ 		>
+		<FiringDuration
+			MinSeconds=".25s"
+			MaxSeconds=".25s" />
+		<ClipReloadTime
+			MinSeconds="0.25s"
+			MaxSeconds="0.25s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="JapanAntiVehicleVehicleTech1Warhead"
+				ProjectileTemplate="JapanAntiVehicleVehicleTech1Projectile">
+				<VeterancyProjectiles
+                    VeterancyLevel="HEROIC"
+                    ProjectileTemplate="JapanAntiVehicleVehicleTech1Projectile_Veteran"/>
+			</ProjectileNugget>
+			<InformTargetNugget />
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="JapanAntiVehicleVehicleTech1Warhead"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+        Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		ForbiddenAntiMask="ANTI_STRUCTURE">
+		<Nuggets>
+			<DamageNugget
+				Damage="30.0"
+				DamageType="CANNON"
+				DamageFXType="JAPAN_CANNON"
+				DeathType="EXPLODED">
+				<DamageScalarDetails Scalar= "200%">
+					<Filter
+						Rule="NONE">
+						<IncludeThing>JapanAntiVehicleVehicleTech1</IncludeThing>
+						<IncludeThing>JapanAntiVehicleVehicleTech1AI</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

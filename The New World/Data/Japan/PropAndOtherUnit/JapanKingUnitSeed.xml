@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Tags></Tags>
+  <Includes>
+	  <Include
+			type="instance"
+			source="DATA:BaseObjects/BaseObject.xml" />
+  </Includes>
+  <GameObject
+		id="KingUnitSpawn"
+		inheritFrom="BaseObject"
+		KindOf="IMMOBILE NO_COLLIDE NOT_AUTOACQUIRABLE IGNORE_FOR_VICTORY CANNOT_BE_DETECTED"
+		EditorSorting="SYSTEM"
+		EditorName="KingUnitSpawn">
+    <DisplayName>KingUnitSpawn</DisplayName>
+    <ArmorSet
+			Armor="BaseUnAttackVehicleArmor" />
+	  <!-- NOTE: this locomotor is used to validate this special power across various terrain.  
+				 It is not meant to have a speed.  Please do not remove. -->
+	  <LocomotorSet
+			Locomotor="SpecialPowerAllTerrainValidLocomotor"
+			Condition="NORMAL"
+			Speed="0.0" />
+    <Draws> 
+    	<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+		<Physics
+			id="ModuleTag_Physics" />
+       <LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="3.0s"
+				MaxLifetime="3.0s"
+				DeathType="NORMAL"
+				IgnoreProjectileState="true" />
+      <FXListBehavior id="ModuleTag_FXList">
+        <DieMuxData
+					DeathTypes="ALL" />        
+        <Event Index="onCreate" FX="FX_JapanNanoFly" />
+      </FXListBehavior>
+      <DestroyDie
+				id="ModuleTag_DestroyDie">
+        <DieMuxData
+					DeathTypes="ALL" />
+      </DestroyDie>
+    </Behaviors>
+	<AI>
+	  <AIUpdate
+		  id="ModuleTag_AI"
+		  AutoAcquireEnemiesWhenIdle="NO"/>
+	</AI>
+	<Body>
+	  <PropBody
+				id="ModuleTag_PropBody" />
+	</Body>
+    <Geometry
+			IsSmall="true">
+      <Shape
+				Type="CYLINDER"
+				MajorRadius="1.0"
+				Height="1.0">
+				</Shape>
+    </Geometry>
+  </GameObject>
+	</AssetDeclaration>
+  

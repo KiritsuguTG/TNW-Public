@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include type="all" source="ART:Units/SovietDesolaterBomber/SUSUPPORTBOMBER.OBBOX01.w3x" />
+		<Include type="all" source="ART:Units/SovietDesolaterBomber/SUSUPPORTBOMBER.OBBOX02.w3x" />
+		<Include type="all" source="ART:Units/SovietDesolaterBomber/SUSUPPORTBOMBER.ROTARS.w3x" />
+		<Include type="all" source="ART:Units/SovietDesolaterBomber/SUSUPPORTBOMBER.SUSUPPORTBOMBER.w3x" />
+		<Include type="all" source="ART:Units/SovietDesolaterBomber/SUSUPPORTBOMBER_COL.NEWSKIN.w3x" />
+		<Include type="all" source="ART:Units/SovietDesolaterBomber/SUSUPPORTBOMBER_COL.OBBOX01.w3x" />
+		<Include type="all" source="ART:Units/SovietDesolaterBomber/SUSUPPORTBOMBER_COL.OBBOX02.w3x" />
+		<Include type="all" source="ART:Units/SovietDesolaterBomber/SUSUPPORTBOMBER_COL_CTR.w3x" />
+		<Include type="all" source="ART:Units/SovietDesolaterBomber/SUSUPPORTBOMBER_COL_HRC.w3x" />
+		<Include type="all" source="ART:Units/SovietDesolaterBomber/SUSUPPORTBOMBER_CTR.w3x" />
+		<Include type="all" source="ART:Units/SovietDesolaterBomber/SUSUPPORTBOMBER_HRC.w3x" />
+		<Include type="all" source="ART:Units/SovietDesolaterBomber/SUSUPPORTBOMBERBOMB.BOMBS.w3x" />
+		<Include type="all" source="ART:Units/SovietDesolaterBomber/SUSUPPORTBOMBERBOMB_CTR.w3x" />
+		<Include type="all" source="ART:Units/SovietDesolaterBomber/SUSUPPORTBOMBERBOMB_HRC.w3x" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseAircraft.xml" />
+	</Includes>
+	<GameObject
+		id="SovietAirAll"
+		inheritFrom="BaseAircraft"
+		SelectPortrait="Portrait_SovietAirAll"
+		ButtonImage="Button_SovietAirAll"
+		Side="Soviet"
+		SubGroupPriority="730" 
+		EditorSorting="UNIT"
+		BuildTime="20"
+		CommandSet="SovietAirAllCommandSet"
+		KindOf="CAN_CAST_REFLECTIONS CAN_ATTACK SELECTABLE SCORE AIRCRAFT VEHICLE BOMBER_AIRCRAFT LINE_OF_SIGHT_IGNORES_BUILDINGS T3_UNIT CAN_BE_FAVORITE_UNIT AIRCRAFT_TRANSPORT_ONLY_GARRISONABLE_WHILE_PARKED LIMITED_PRODUCTION_AIRCRAFT TIBERIUM_BASED"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="AIRCRAFT"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="BLAST"
+		VoicePriority="148"
+		EditorName="SovietAirAll"
+		Description="Desc:SovietAirAll"
+		TypeDescription="Type:EUAntiGroundAircraft"
+		HealthBoxHeightOffset="20"
+		Scale="0.7"
+		BountyValue="350"
+		UnitIntro="Allied_CenturyBomber_UnitIntro">
+		<DisplayName xai:joinAction="Replace">Name:SovietAirAll</DisplayName>
+		<GameDependency>			
+			<RequiredObject>SovietTechStructure</RequiredObject>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="2000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			id="AlliedBomberAircraftLocomotor"
+			Locomotor="AlliedBomberAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="160" />
+		<LocomotorSet
+			id="AlliedBomberAircraftTaxiLocomotor"
+			Locomotor="BasicHelicopterTaxiLocomotor"
+			Condition="TAXIING"
+			Speed="30" />
+		<!-- Need ConquerMetricsOverrideDefendingAntiMask or else the TAXIING locomotor will make the AI try to build anti-ground units against this -->
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			ConquerMetricsOverrideDefendingAntiMask="ANTI_AIRBORNE_VEHICLE" />
+<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				OkToChangeModelColor="true" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUSupportBomber" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_01" />
+				</ModelConditionState>
+
+	<!-- UPGRADED MODEL -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW USER_2">
+					<Model
+						Name="SUSupportBomber" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_2">
+					<Model
+						Name="SUSupportBomber" />					
+					<ParticleSysBone
+						BoneName="FX_ENGINE_R02"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_2">
+					<Model
+						Name="SUSupportBomber" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_ENGINE_R01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_ENGINE_R01"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="SUSupportBomber" />					
+				</ModelConditionState>
+	<!-- UPGRADED MODEL -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="SUSupportBomber" />
+				</ModelConditionState>
+        
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SUSupportBomber" />
+					<ParticleSysBone
+						BoneName="FX_ENGINE_R02"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SUSupportBomber" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_ENGINE_R01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_ENGINE_R01"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="AUBomberAircraft_PRK"
+						AnimationMode="LOOP"
+						AnimationBlendTime="30" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="CLIMBING">
+					<Animation
+						AnimationName="AUBomberAircraft_HVRA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="30" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="RAPPELLING">
+					<Animation
+						AnimationName="AUBomberAircraft_PRK"
+						AnimationMode="LOOP"
+						AnimationBlendTime="30" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FLYING">
+					<Animation
+						AnimationName="AUBomberAircraft_MOVA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="30" />
+				</AnimationState>
+
+			</ScriptedModelDraw>
+	<xi:include
+		href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+		xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+	<ScriptedModelDraw
+				id="ModuleTag_FX">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUBomberAircraft_FX" />
+					<ParticleSysBone
+						BoneName="FXCon_R"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXCon_L"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietDesolatorBombWeapon2"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietDesolatorBombWeapon2_Veteran"
+						ObjectStatus="WEAPON_UPGRADED_01"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>			
+			<Physics
+				id="ModuleTag_Physics"/>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SovietDesolaterBomberDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="PARKED_AT_AIRFIELD"/>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieAtAirfield"
+				CreationList="SovietDesolaterBomberDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="PARKED_AT_AIRFIELD"/>
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_SupportBomberDieExplosion" />
+			</FXListBehavior>
+			<ReturnToProducerSpecialPower
+				id="ModuleTag_ReturnToProducerSpecialPower"
+				SpecialPowerTemplate="SpecialPowerReturnToProducer"
+				AttributeModifier="AttributeModifier_ReturnToBase"
+				AttributeModifierAffectsSelf="true"/>
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<!-- AlliedAirPowerUpgrade -->
+			<xi:include
+				href="DATA:Includes/AlliedAirPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedAirPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<JetAIUpdate
+				id="ModuleTag_JetAIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO"
+				NeedsRunway="false"
+				KeepsParkingSpaceWhenAirborne="true"
+				OutOfAmmoDamagePerSecond="1.5"
+				CirclesForAttack="true"
+				ReturnToBaseWhenVictimDead="true"
+				StateMachine="JetAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					CanPickDynamicTargetType="ATTACK_MOVE AGGRESSIVE_STANCE"
+					CheckVisionRange="true"/>
+			</JetAIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="2000" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="16.0"
+				MinorRadius="30.0"
+				Height="8.0"
+				ContactPointGeneration="VEHICLE">
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="NOD_VertigoBomber_VoiceMoveAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="NOD_VertigoBomber_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="NOD_VertigoBomber_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="NOD_VertigoBomber_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="NOD_VertigoBomber_VoiceMove" AudioType="voiceEnter" />
+			<AudioEntry Sound="NOD_VertigoBomber_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="ALL_CenturyBomber_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="NOD_VertigoBomber_VoiceMove" Name="ReturnToProducer" />
+			<NamedEntry Sound="NOD_VertigoBomber_VoiceRetreat" Name="ReturnToProducerWhileUnderAttack" />
+			<NamedEntry Sound="ALL_CenturyBomber_VoiceEvacuate" Name="VoiceEvacuate" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="NOD_VertigoBomb_MoveStart" AudioType="soundMoveStart" />
+			<AudioEntry Sound="VertigoBomberIdleMoveLoopMS" AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="150"
+			ShroudClearingRange="=$STANDARD_SHROUD_CLEAR" />
+	</GameObject>
+  <FXList id="FX_SuperDesolatorField">
+    <NuggetList>
+
+      <ParticleSystem
+        Particle="RadiationLightRed"/>      
+
+      <DynamicDecal
+				Decal				= "EXToxicDecal"
+				Shader				= "ADDITIVE"
+				Size				= "245"
+				OpacityStart		= "0"
+				OpacityFadeTimeOne	= "1s"
+				OpacityPeak			= "1"
+				OpacityPeakTime		= "0s"
+				OpacityFadeTimeTwo	= "23s"
+				OpacityEnd			= "0"
+				StartingDelay		= "0s"
+				OnlyIfOnLand		="true"
+				Lifetime			= "27s">
+        <Color R="100" G="3" B="70" />
+        <Offset x="0" y="0" />
+      </DynamicDecal>
+
+    </NuggetList>
+  </FXList>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" SystemLifetime="1" id="RadiationLightRed">
+		<Lifetime High="1200" Low="1000"/>
+		<Size High="70" Low="70"/>
+		<BurstDelay High="1" Low="1"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="9.999999">
+				<Color b="0.57451" g="0.07" r="0.645098"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="2" Low="2"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<LightSource MaximumIntensityRadiusRatio="0.8"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="10"/>
+			</Cylinder>
+		</Volume>
+		<Velocity/>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.5" Low="0.5"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngleZ High="3" Low="-3"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

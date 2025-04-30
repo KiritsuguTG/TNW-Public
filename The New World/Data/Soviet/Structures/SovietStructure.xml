@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include type="all"	source="ART:KR_StBasilCathedral.w3x" />
+		<Include type="all"	source="ART:Structures/SovietSuperStructure/KR_STBASILCATHEDRAL_BLD.w3x" />
+		<Include type="all"	source="ART:Structures/SovietSuperStructure/KR_STBASILCATHEDRAL_SKL.w3x" />
+		<Include type="all"	source="ART:Structures/SovietSuperStructure/KR_STBASILCATHEDRAL_SKN.w3x" />
+		<Include type="all"	source="ART:Structures/SovietSuperStructure/KR_STBASILCATHEDRAL_CTR.w3x" />
+		<Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+		<Include type="instance" source="DATA:Civilian/Yucatan_YU/Props/YU_HotelDebris.xml" />
+	</Includes>
+	<GameObject
+		id="SovietStructure"
+		inheritFrom="BaseStructure"
+		ButtonImage="Button_SovietStructure"
+		SelectPortrait="Portrait_SovietStructure"
+		Side="Soviet"
+		EditorSorting="STRUCTURE"
+		TransportSlotCount="1"
+		KindOf="-CAN_BUILD_ON_WATER -CAN_BUILD_ON_DEEP_WATER +RESIST_EMP +NOT_SELLABLE +FS_TECHNOLOGY +TACTICAL_MARKER +UNIQUE_UNIT +IMMUNE_TO_CAPTURE +ACTIVATE_AFTER_UNPACK -CRUSHABLE_BUILDING +PRELOAD"
+		BuildTime="0.0"
+		EnergyProduction="-100"
+		EditorName="SovietStructure"
+		RadarPriority="STRUCTURE"
+		PlacementViewAngle="315d"
+		ProductionQueueType="MAIN_STRUCTURE"
+		BuildPlacementTypeFlag="MAIN_STRUCTURE"
+		Description="Desc:SovietStructure"
+		TypeDescription="Type:SideStructure"
+		MaxSimultaneousOfType="1">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietStructure</DisplayName>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_SovietFaction</NeededUpgrade>
+			<ForbiddenUpgrade>SideStructure</ForbiddenUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="5000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseStructureArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<SkirmishAIInformation
+			BaseBuildingLocation="SPREAD">
+      <ConstructionBaseSelectionCriteria
+        ExcludedBaseTypes="NO_BUILD_RADIUS CAPTURED"
+        PreferredBaseTypes="MAIN_BASE"
+        SortOrder="PREFER_OLDEST" />
+    </SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="false"
+				AffectedByStealth="false"
+				ExtraPublicBone="BoneGarrisonWall01 BoneGarrisonWall02 BoneGarrisonWall03 BoneGarrisonWall04 BONE_CONTACT_POINT_01 BONE_CONTACT_POINT_02 BONE_CONTACT_POINT_03 BONE_CONTACT_POINT_04 BONE_CONTACT_POINT_05 BONE_CONTACT_POINT_06 BONE_CONTACT_POINT_07 BONE_CONTACT_POINT_08 BONE_CONTACT_POINT_09 BONE_CONTACT_POINT_10 BONE_CONTACT_POINT_11 BONE_CONTACT_POINT_12 BONE_CONTACT_POINT_13 BONE_CONTACT_POINT_14 BONE_CONTACT_POINT_15 BONE_CONTACT_POINT_16 BONE_CONTACT_POINT_17 BONE_CONTACT_POINT_18	BONE_CONTACT_POINT_19 BONE_CONTACT_POINT_20 BONEGARRISON01 BONEGARRISON02 BONEGARRISON03 BONEGARRISON04 BONEGARRISON05 BONEGARRISON06 BONEGARRISON07 BONEGARRISON08 BONEGARRISON09 BONEGARRISON10 BONEGARRISON11 BONEGARRISON12">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="KR_StBasilCathedral" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="KR_StBasilCathedral" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING JUST_BUILT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="KR_STBASILCATHEDRAL_SKN" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="KR_STBASILCATHEDRAL_BLD"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+          <ParticleSysBone
+                BoneName="NONE"
+						    FXParticleSystemTemplate="Con_Large"
+ 						    FollowBone="true" />
+          <ParticleSysBone
+                BoneName="NONE"
+ 						    FXParticleSystemTemplate="Con_Lights"
+ 						    FollowBone="true" />
+           <ParticleSysBone
+                BoneName="NONE"
+ 						    FXParticleSystemTemplate="Con_Flash"
+ 						    FollowBone="true" />
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<BuildingDestructionBehavior
+				id="ModuleTag_BuildingDestruction">
+				<DieMuxData
+					DeathTypes="ALL"
+					   DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6"/>
+				<Item
+					BonePrefix="BONE_CONTACT_POINT_"
+					FX="FX_BuildingDebrisExplosion"
+					CreationObject="YU_HotelDebris"
+					FlingVelocity="100.0"/>
+			</BuildingDestructionBehavior>
+			<FXListBehavior
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					   DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_Civ_Explosion_Large" />
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SovietStructure_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					ExemptStatus="UNPACKING"
+					   DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectUnpackDie"
+				CreationList="SovietStructure_UnpackDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					RequiredStatus="UNPACKING"
+					   DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				UnpackTime="50s" />
+			<xi:include
+				href="DATA:Includes/GenericBuildingRepair.xml" />
+			<DestroyDie
+				id="ModuleTag_DestroyDie">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED"/>
+			</DestroyDie>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_EpicSturctureAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="90000.0"
+				RefreshDelay="1s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_EpicSturcture"
+				RequiredObjectStatusFlags="GENERIC_TOGGLE_STATE">
+				<ObjectFilter
+					Rule="ALL"
+					Relationship="SAME_PLAYER">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<StatusBitsUpgrade
+					id="ModuleTag_UpgradeWeapon"
+					StatusToSet="GENERIC_TOGGLE_STATE">
+				<TriggeredBy>JapanStructureAttributeUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="SovietStructureFunctions" />
+		</Behaviors>
+				<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="50">
+		</CrusherInfo>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIForLua"
+				StateMachine="StructureAIStateMachine" />
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="7500.0" />
+		</Body>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="CriticalStructureUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="CriticalStructureLost" EvaType="dieOwner" />
+		</EvaEventArray>
+		<Geometry
+			IsSmall="false">
+			<PlacementShape
+				 Type= "BOX"
+				 MajorRadius = "76.4564"
+				 MinorRadius = "75.1932"
+				 Height = "172.677"
+				 ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "12.9375"
+					y = "12.2003"
+					z = "0.0" />
+			</PlacementShape>
+			<Shape
+     Type= "BOX"
+     MajorRadius = "40.0"
+     MinorRadius = "40.0"
+     Height = "103.0"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "0.0"
+        y = "0.0"
+        z = "0.0" />
+</Shape>
+<Shape
+     Type= "BOX"
+     MajorRadius = "17"
+     MinorRadius = "17"
+     Height = "159.0"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "0.0"
+        y = "0.0"
+        z = "0.0" />
+</Shape>
+<Shape
+     Type= "BOX"
+     MajorRadius = "11.2"
+     MinorRadius = "27.5"
+     Height = "43.0"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "70.8"
+        y = "56.4"
+        z = "0.0" />
+</Shape>
+<Shape
+     Type= "BOX"
+     MajorRadius = "32.0"
+     MinorRadius = "11.7"
+     Height = "43.0"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "52.1"
+        y = "28.0"
+        z = "0.0" />
+</Shape>
+		
+	</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="HumanFaction_MediumBuilding_LightDamageMS" AudioType="soundOnDamaged" />
+			<AudioEntry Sound="HumanFaction_MediumBuilding_HeavyDamageMS" AudioType="soundOnReallyDamaged" />
+		</AudioArraySound>
+		<ProjectedBuildabilityInfo
+			Radius="210"
+			BuildPlacementTypes="MAIN_STRUCTURE OTHER_STRUCTURE" />
+		<VisionInfo
+			VisionRange="150"
+			ShroudClearingRange="400" />
+	</GameObject>
+</AssetDeclaration>

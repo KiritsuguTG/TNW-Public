@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags/>
+	<Includes>
+		<!-- Base Object -->
+    <Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="instance"
+			source="BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="BaseMiner"
+		inheritFrom="BaseVehicle"
+		EditorName="BaseMiner"
+		Description="Desc:BaseMiner"
+		TypeDescription="Type:BaseMiner"
+		BuildTime="12">
+		<DisplayName
+			xai:joinAction="Replace">Name:BaseMiner</DisplayName>
+		<Draws/>
+    <ObjectResourceInfo>
+      <BuildCost Account="=$ACCOUNT_ORE" Amount="1200"/>
+    </ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseMinerArmor"
+			DamageFX="VehicleDamageFX" />
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics" />
+			<OreMinerBehavior
+				id="ModuleTag_OreMinerBehavior"
+				DeliveryCapacity="300"
+				DeliveryTime="2s" />
+			<FireWeaponWhenDead
+				id="ModuleTag_CelebratingWeapon"
+				InitiallyActive="true"
+				DeathWeapon="UnitCelebratingMiner">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED SLAUGHTERED"/>
+			</FireWeaponWhenDead>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech1.xml"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="OreMinerStateMachine"/>
+    </AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="600" />
+		</Body>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="HarvesterUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="AllyUnitUnderAttack" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="HarvesterLost" EvaType="dieOwner" />
+		</EvaEventArray>
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="20"
+			CrushableLevel="25"
+			CrushWeapon="SovietCrushWeapon"
+			CrushDecelerationPercent="80%">
+			<ExtraCrushLevels CrusherLevel="1" CrushableLevel="25" ModelConditionMatch="OVER_WATER"/>
+		</CrusherInfo>
+	</GameObject>
+</AssetDeclaration>

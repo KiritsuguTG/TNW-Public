@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+		id="EUBossSpawn"
+		inheritFrom="BaseObject"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="IGNORE_FOR_VICTORY STRUCTURE IMMOBILE CAN_CAST_REFLECTIONS NOT_AUTOACQUIRABLE AUTO_ACQUIRABLE_BY_AI COVER CAN_BUILD_ON_WATER CAN_BUILD_ON_DEEP_WATER"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		CampnessValue="2000"
+		CampnessValueRadius="300"
+		EditorName="EUBossSpawn"
+		UnitCategory="STRUCTURE">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:GameStarSpawn</DisplayName>
+		<ArmorSet
+			Armor="InvulnerableArmor"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_PlayerInformation">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED" />
+			</DestroyDie>
+			<LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				MinLifetime="2s"
+				MaxLifetime="2s" />
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="EUBossAIFunctions" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<VisionInfo
+			VisionRange="10"
+			ShroudClearingRange="0" />
+	</GameObject>
+</AssetDeclaration>

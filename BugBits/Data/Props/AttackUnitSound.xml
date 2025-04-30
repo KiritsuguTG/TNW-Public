@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<!-- The Soviet Terror Drone -->
+	<!-- All art and draw calls currently in here are CNC3 content - asc 8/30/07 -->
+	<Includes>
+		<Include type="all"	source="DATA:GlobalData/GlobalDefines.xml" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseInfantry.xml" />
+	</Includes>
+	<!-- aka Terror Drone -->
+	<GameObject
+		id="AttackUnitSound"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="CAN_ATTACK NO_COLLIDE SUMMONED VEHICLE NOT_AUTOACQUIRABLE UNATTACKABLE">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietScoutVehicle</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="600"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="SovietScoutVehicleArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<LocomotorSet
+			Locomotor="SovietScoutVehicleLandLocomotor"
+			Condition="NORMAL"
+			Speed="0" />
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietScoutVehicleMeleeWeapon"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+      <DestroyDie
+				id="ModuleTag_Die">
+        <DieMuxData
+					DeathTypes="ALL" />
+      </DestroyDie>		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="0" />
+	</GameObject>
+</AssetDeclaration>

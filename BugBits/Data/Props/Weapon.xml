@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="AlliedPrecisionBomb"
+		ClipSize="1"
+		AttackRange="150.0"
+		WeaponSpeed="500"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		AcceptableAimDelta="180d"
+		CanFireWhileMoving="true"
+		AutoReloadsClip="NONE"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE">
+		<ClipReloadTime
+			MinSeconds="0.1s"
+			MaxSeconds="0.1s" />
+		<Nuggets>
+			<ProjectileNugget
+				ProjectileTemplate="AlliedPrecisionBombProjectile"
+				WarheadTemplate="AlliedPrecisionBombWarhead"/>
+			<InformTargetNugget />
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="AlliedPrecisionBombWarhead"
+        Flags="NOT_ATTRACTED_BY_MAGNETS"
+		ProjectileCollidesWith="ENEMIES NEUTRAL"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE">
+		<Nuggets>
+			<DamageNugget
+				id="ModuleTag_DamageNugget"
+				Damage="1000.0"
+				Radius="50"
+				DamageTaperOff="0"
+				DamageType="EXPLOSIVE"
+				DamageFXType="ALLIED_PRESISIONBOMB"
+				DeathType="NORMAL">
+			</DamageNugget>
+			<WeaponOCLNugget
+					WeaponOCL="OCL_DynamicsImpact"/>
+			<MetaImpactNugget
+					ShockWaveAmount="89.0"
+					ShockWaveRadius="50.0"
+					ShockWaveZMult="1.50" />
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="PlayerPowerPointDefenseDronesWeapon"
+		AttackRange="999999"
+        Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		RadiusDamageAffects="ALLIES">
+		<PreAttackDelay
+			      MinSeconds="0.0s"
+			      MaxSeconds="0.0s" />
+		<Nuggets>
+			<FireOnObjectsNugget
+			   Radius="100.0"
+			   FireOnVictimObject="true"
+			   PartitionFilterTestType="CIRCLE"
+			   Weapon="PlayerPowerPointDefenseDronesWeapon_Individual">
+				<!-- this objfilter must be the same as the one in the SpecialPower_PointDefenseDrones special power template -->
+				<Filter
+					Rule="ANY"
+					Relationship="ALLIES"
+					Include="VEHICLE HUGE_VEHICLE SHIP"
+					Exclude="AIRCRAFT SUBMARINE"
+					StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET IN_NANOHIVE NOT_IN_WORLD POINT_DEFENSE_DRONE_ATTACHED">
+					<ExcludeThing>JapanPointDefenseDrone</ExcludeThing>
+				</Filter>
+			</FireOnObjectsNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="PlayerPowerPointDefenseDronesWeapon_Individual"
+		AttackRange="999999"
+        Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		RadiusDamageAffects="ALLIES">
+		<PreAttackDelay
+			MinSeconds="0.0s"
+			MaxSeconds="0.0s" />
+		<Nuggets>
+			<WeaponOCLNugget
+				WeaponOCL="OCL_PointDefenseDrone"
+				TargetAsPrimaryObject="true">
+				<SpecialObjectFilter
+					  Rule="ANY"
+					  Relationship="ALLIES"
+					  Include="VEHICLE HUGE_VEHICLE SHIP"
+					  Exclude="AIRCRAFT SUBMARINE"
+					  StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET IN_NANOHIVE NOT_IN_WORLD POINT_DEFENSE_DRONE_ATTACHED">
+					<ExcludeThing>JapanPointDefenseDrone</ExcludeThing>
+				</SpecialObjectFilter>
+			</WeaponOCLNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="Weapon_DesolatorBombFieldUpdate"
+        Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS">
+		<Nuggets>
+			<DamageNugget
+					Damage="5"
+				Radius="150"
+				DamageType="RADIATION"
+				DamageFXType="RADIATION"
+				DeathType="IRRADIATED">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="DRONE HARVESTER STRUCTURE"/>
+			</DamageNugget>
+			<TintObjectsNugget
+				Radius="150"
+				PreColorTime="1s"
+				SustainedColorTime="2s"
+				PostColorTime="1s"
+				Frequency="0"
+				Amplitude="0">
+				<Color R="1.58" G="1.98" B="1.19"/>
+			</TintObjectsNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="SovietOrbitalRefuse_Level2_WarHead"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+        Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<Nuggets>
+			<DamageNugget
+					  id="DefaultDamageNugget"
+					  Damage="750.0"
+					  Radius="75"
+					  DamageTaperOff="250"
+					  DamageType="EXPLOSIVE"
+					  DamageFXType="SOVIET_ORBITAL2"
+					  DeathType="NORMAL"
+					  RadiusAffectsBridges="true">
+				<DamageScalarDetails Scalar="50%">
+					<Filter
+					Rule="ANY"
+                    Include="REFINERY">
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="AlliedCryoSatelliteLvl1"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		ReAcquireDetailType="PER_ATTACK"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER ANTI_STRUCTURE ANTI_AIRBORNE_VEHICLE">
+		<FiringDuration
+			MinSeconds="0.25s"
+			MaxSeconds="0.25s" />
+		<Nuggets>
+			<ParalyzeNugget
+				Radius="75.0"
+				DurationSeconds="1.0s"
+				ParalyzeType="EMP"
+				ParalyzeFX="FX_None">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="INFANTRY VEHICLE HUGE_VEHICLE AIRCRAFT TIME_BOMB"
+					Exclude="STRUCTURE HARVESTER"
+					StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET PARACHUTING UNDER_IRON_CURTAIN"/>
+			</ParalyzeNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="JapanBalloonBombDummyWeapon"
+		AttackRange="0.0"
+		AutoReloadsClip="AUTO"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_INFANTRY ANTI_STRUCTURE ANTI_VEHICLE"
+	ForbiddenAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_SUBMERGED"
+		CanFireWhileMoving="true"
+        IgnoresContactPoints="true"
+		UseCenterForRangeCheck="true"
+		AcceptableAimDelta="180d">
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="DummyWeaponWarhead">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES"
+					Include="STRUCTURE VEHICLE INFANTRY"
+					Exclude="BRIDGE PROJECTILE WALL_HUB WALL_PIECE WALL_SEGMENT ORE_NODE PASS_EXPERIENCE_TO_PRODUCER"
+					StatusBitFlagsExclude="AIRBORNE_TARGET UNDER_IRON_CURTAIN IN_NANOHIVE NOT_IN_WORLD">
+				</SpecialObjectFilter>
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="JapanAntiVehicleInfantryPlasmaBazooka"
+		FireSound="JAP_Tankbuster_WeaponFire"
+		FireFX="FX_JapanTankBusterFire"
+		PreAttackFX="FX_JapanTankBusterCharge"
+		FireVeteranFX="FX_JapanTankBusterFire_Vet"
+		AttackRange="175.0"
+		WeaponSpeed="999999.0"
+		ClipSize="1"
+		AcceptableAimDelta="10d"
+		ReAcquireDetailType="POST_FIRE"
+		PreAttackType="PER_TARGET"
+		AutoReloadsClip="AUTO"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RadiusDamageAffects="ENEMIES"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		CanFireWhileMoving="false"
+		FinishAttackOnceStarted="true"  >
+		<PreAttackDelay
+			MinSeconds="0.13s"
+			MaxSeconds="0.13s" />
+		<FiringDuration
+			MinSeconds="0.40s"
+			MaxSeconds="0.40s" />
+		<ClipReloadTime
+			MinSeconds="0.8s"
+			MaxSeconds="0.8s" />
+		<Nuggets>
+			<!-- if you change the lifetime - see casey -->
+			<ActivateLaserNugget
+				Lifetime="0.4s"
+				LaserId="1"/>
+			<DamageNugget
+				id="DefaultDamageNugget"
+				Damage="60.0"
+				DamageType="ROCKET"
+				DamageFXType="JAPAN_PLASMA"
+				DeathType="NORMAL"/>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="JapanFinalSquadronAircraftGun"
+		AttackRange="500.0"
+		WeaponSpeed="999999.0"
+		FireFX="FX_JapanAutoCannonMuzzleFlash"
+		FiringLoopSound="JAP_FinalSquadron_MGFireLP"
+		ClipSize="500"
+		AutoReloadsClip="AUTO"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE"
+		CanFireWhileMoving="true"
+		ReAcquireDetailType="PRE_FIRE"
+		AcceptableAimDelta="90d">
+		<FiringDuration
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<Nuggets>
+			<DamageNugget
+					Damage="5.0"
+					Radius="1.0"
+					DamageTaperOff="0"
+					DamageType="AUTO_CANNON"
+					DeathType="EXPLODED" />
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="JapanFinalSquadronAircraftKamikazeWarhead"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS SELF"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		HitStoredTarget="true">
+		<Nuggets>
+			<DamageNugget
+				Radius="0"
+				OnlyKillOwnerWhenTriggered="true"
+				DamageType="UNRESISTABLE"
+				DamageFXType="JAPAN_KAMIKAZE"
+				DeathType="SUICIDED" />
+			<!-- -->
+			<!-- Enhanced Kamikaze Special power weapon -->
+			<DamageNugget
+				Damage="150.0"
+				DamageTaperOff="50"
+				DamageType="EXPLOSIVE"
+				DamageFXType="JAPAN_KAMIKAZE"
+				Radius="30"
+				DeathType="EXPLODED"
+				RadiusAffectsBridges="true">
+				<SpecialObjectFilter
+					Rule="ALL">
+					<ExcludeThing>JapanFinalSquadronAircraft</ExcludeThing>
+				</SpecialObjectFilter>
+				<DamageScalarDetails Scalar= "50%">
+					<Filter
+					Rule="ANY"
+					Include="HARVESTER STRUCTURE">
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+</AssetDeclaration>

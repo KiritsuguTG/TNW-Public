@@ -1,0 +1,1193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:ABBaseDefense.w3x" />
+		<Include type="all" source="ART:ABBaseDefense_BLD_SKN.w3x" />
+		<Include type="all" source="ART:ABBaseDefense_BLD_BLD.w3x" />
+		<Include type="all" source="ART:ABBaseDefense_BLD_BLDW.w3x" />
+		<Include type="all" source="ART:ABBaseDefense_FX.w3x" />
+		<Include type="all" source="ART:ABBaseDefense_Platform.w3x" />
+		<Include type="all" source="ART:ABBaseDefense_Platform_BLD.w3x" />
+	</Includes>
+	<GameObject
+		id="AlliedBaseDefense"
+		inheritFrom="BaseStructure"
+		SelectPortrait="Portrait_AlliedBaseDefense"
+		ButtonImage="Button_AlliedBaseDefense_on"
+		Side="Allies"
+		HealthBoxHeightOffset="20"
+		EditorSorting="STRUCTURE"
+		BuildTime="8"
+		EnergyProduction="-25"
+		CommandSet="AlliedBaseDefenseCommandSet"
+		KindOf="-NOT_AUTOACQUIRABLE +CAN_ATTACK +FS_BASE_DEFENSE +POWERED +FS_RADAR"
+		RadarPriority="STRUCTURE"
+		PlacementViewAngle="225d"
+		CampnessValue="2000"
+		ProductionQueueType="OTHER_STRUCTURE"
+		BuildPlacementTypeFlag="OTHER_STRUCTURE"
+		EditorName="AlliedBaseDefense"
+		WeaponCategory="MISSILE"
+		TypeDescription="Type:AntiAirAndArmor"
+		Description="Desc:AlliedBaseDefense">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedBaseDefense</DisplayName>
+		<GameDependency>
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="ALLIES"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedPowerPlant</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="0" Amount="800" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseDefenseArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<SkirmishAIInformation
+			BaseBuildingLocation="DEFENSE">
+			<ConstructionBaseSelectionCriteria
+				PreferredBaseTypes="ENEMIES_IN_BASE UNDER_ATTACK"
+				SortOrder="PREFER_MOST_RECENTLY_ATTACKED" />
+		</SkirmishAIInformation>
+		<Draws>
+			<!-- DRAW GUN -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Gun"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="UPGRADE_DEFAULT_MISSILE">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ABBaseDefense" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="UPGRADE_DEFAULT_MISSILE" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="UPGRADE_DEFAULT_MISSILE" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="Turret_Pitch"
+						TurretID="1" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="ABBaseDefense" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FROZEN STRUCTURE_UNPACKING">
+					<Model
+						Name="ABBaseDefense_BLD_SKN" />
+					<ParticleSysBone
+						BoneName=""
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="ABBaseDefense_BLD_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="ABBaseDefense_BLD_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FROZEN">
+					<Model
+						Name="ABBaseDefense" />
+					<ParticleSysBone
+						BoneName=""
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableHideSubObjectPermanently( "Upgrade_Blaster_Rifles" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Engineer" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Flak" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_GoldenGun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_MachineGun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_MissileLauncher" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Natasha_Sniper" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Ninja_Star" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Ninja_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Plasma" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Psyonic" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Psyonic_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Shotgun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Speakers" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tanya_Pistols" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tesla_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tesla" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Turret" )
+						CurDrawableHideSubObjectPermanently( "Tanya" )
+						CurDrawableShowSubObjectPermanently( "UPGRADE_DEFAULT_MISSILE" )
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="WEAPONSET_TOGGLE_1 SOLD"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="ABBaseDefense_BLD_BLD"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="WEAPONSET_TOGGLE_1">
+					<Script>
+						CurDrawableHideSubObjectPermanently("Upgrade_Blaster_Rifles")
+						CurDrawableHideSubObjectPermanently("Upgrade_Engineer")
+						CurDrawableHideSubObjectPermanently("Upgrade_Flak")
+						CurDrawableHideSubObjectPermanently("Upgrade_GoldenGun")
+						CurDrawableHideSubObjectPermanently("Upgrade_MachineGun")
+						CurDrawableHideSubObjectPermanently("Upgrade_MissileLauncher")
+						CurDrawableHideSubObjectPermanently("Upgrade_Natasha_Sniper")
+						CurDrawableHideSubObjectPermanently("Upgrade_Ninja_Star")
+						CurDrawableHideSubObjectPermanently("Upgrade_Plasma")
+						CurDrawableHideSubObjectPermanently("Upgrade_Psyonic")
+						CurDrawableHideSubObjectPermanently("Upgrade_Psyonic_Turret")
+						CurDrawableShowSubObjectPermanently("Upgrade_Shotgun")
+						CurDrawableHideSubObjectPermanently("Upgrade_Speakers")
+						CurDrawableHideSubObjectPermanently("Upgrade_Tesla")
+						CurDrawableHideSubObjectPermanently("Upgrade_Tesla_Turret")
+						CurDrawableHideSubObjectPermanently("Upgrade_Turret")
+						CurDrawableHideSubObjectPermanently( "UPGRADE_DEFAULT_MISSILE" )
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Script>
+						CurDrawableHideSubObjectPermanently( "Upgrade_Blaster_Rifles" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Engineer" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Flak" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_GoldenGun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_MachineGun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_MissileLauncher" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Natasha_Sniper" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Ninja_Star" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Ninja_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Plasma" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Psyonic" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Psyonic_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Shotgun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Speakers" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tanya_Pistols" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tesla_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tesla" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Turret" )
+						CurDrawableHideSubObjectPermanently( "Tanya" )
+						CurDrawableShowSubObjectPermanently( "UPGRADE_DEFAULT_MISSILE" )
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER STRUCTURE_UNPACKING ">
+					<Animation
+						AnimationName="ABBaseDefense_BLD_BLDW"
+						AnimationBlendTime="0"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="2s" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="ABBaseDefense_BLD_BLD"
+						AnimationBlendTime="0"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="2s" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="ABBaseDefense_BLD_BLD"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW PLATFORM -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Platform"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ABBaseDefense_Platform" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="ABBaseDefense_Platform" />
+				</ModelConditionState>
+
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER STRUCTURE_UNPACKING">
+					<Model
+						Name="ABBaseDefense_Platform_BLD" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="ABPowerPlantWakeSplash"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER SOLD">
+					<Model
+						Name="ABBaseDefense_Platform_BLD" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="ABPowerPlantWakeSplash"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableShowSubObjectPermanently("Bib")
+						CurDrawableHideSubObjectPermanently("Platform")
+						CurDrawableHideSubObjectPermanently("Platform_FX")
+					</Script>
+				</AnimationState>
+
+				<!-- BUILDUP ANIMATION -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING OVER_WATER">
+					<Animation
+						AnimationName="ABBaseDefense_Platform_BLD"
+						AnimationMode="ONCE" />
+					<Script>
+						CurDrawableHideSubObjectPermanently("Bib")
+						CurDrawableShowSubObjectPermanently("Platform")
+						CurDrawableShowSubObjectPermanently("Platform_FX")
+					</Script>
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AlliedPowerPlantWaterBuildupFroth"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AlliedPowerPlantWaterBuildupMist"
+						FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD OVER_WATER"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="ABBaseDefense_Platform_BLD"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AlliedPowerPlantWaterBuildupFroth"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AlliedPowerPlantWaterBuildupMist"
+						FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Script>
+						CurDrawableShowSubObjectPermanently("Platform")
+						CurDrawableShowSubObjectPermanently("Platform_FX")
+						CurDrawableHideSubObjectPermanently("Bib")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW PARTICLES -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ABRefinery_FX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="ABBaseDefense_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="GenericDStateSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="ABBaseDefense_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="GenericDStateSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="GenericDStateFire"
+						FollowBone="true" />
+
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<SquishCollide
+				id="DefaultSquishCollide" />
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedBaseDefenseRockets"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE SPECIAL_ABILITY_PACKING_UNPACKING_OR_USING" />
+					<Weapon
+						Template="AlliedBaseDefenseShotgun"
+						Ordering="PRIMARY_WEAPON"
+						ObjectStatus="GENERIC_TOGGLE_STATE"
+						ForbiddenObjectStatus="SPECIAL_ABILITY_PACKING_UNPACKING_OR_USING" />
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="-30d"
+						AllowsPitch="true"
+						TurretPitchRate="180"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="4.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0"
+						ComeToHaltJiggle="3d"
+						InvalidIdleScanObjectStatus="UNPACKING">
+						<TurretAITargetChooserData
+							TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true">
+						</TurretAITargetChooserData>
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<SpecialPower
+				id="ModuleTag_ReplaceSelfEggPackSpecialPowerTrigger"
+				SpecialPowerTemplate="SpecialPower_PackReplaceSelfEgg"
+				UpdateModuleStartsAttack="true" />
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelfEgg"
+				SpecialPowerTemplate="SpecialPower_PackReplaceSelfEgg"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				NewObjectUnpackTime="1s"
+				ReplaceOptions="COPY_UPGRADES DISABLE_DURING_REPLACE DISABLE_NEW_OBJECT_DURING_UNPACK">
+				<ReplacementTemplate>AlliedBaseDefenseEgg</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+			<SpecialPower
+				id="ModuleTag_ToggleAirGroundDefense"
+				SpecialPowerTemplate="SpecialPower_AlliedBaseDefenseTransform"
+				UpdateModuleStartsAttack="true" />
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ToggleAirGroundDefenseUpdate"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				SpecialPowerTemplate="SpecialPower_AlliedBaseDefenseTransform"
+				PackTime="0.6s">
+				<ToggleState
+					EnterStateSound="GenericBuilding_Garrison">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT">
+						<StateWeapon
+							Weapon="AlliedBaseDefenseRockets" />
+					</SkirmishAiInfo>
+				</ToggleState>
+				<ToggleState
+					ObjectStatus="GENERIC_TOGGLE_STATE"
+					ModelConditions="WEAPONSET_TOGGLE_1"
+					EnterStateSound="GenericBuilding_Ungarrison">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_WEAPON"
+						OnlyUseWhenHaveTarget="true"
+						NeverUseWhenTargetIsAnyKindOf="VEHICLE STRUCTURE">
+						<StateWeapon
+							Weapon="AlliedBaseDefenseShotgun" />
+					</SkirmishAiInfo>
+				</ToggleState>
+			</ToggleStatusSpecialAbilityUpdate>
+			<StancesBehavior
+				id="ModuleTag_Stance"
+				StanceTemplate="OffensiveStructures" />
+			<BuildingDestructionBehavior
+				id="ModuleTag_BuildingDestruction">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Item
+					BonePrefix="BONE_CONTACT_POINT_"
+					FX="SovietRefineryHit"
+					FlingVelocity="100.0" />
+			</BuildingDestructionBehavior>
+			<FXListBehavior
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance"
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_None" />
+			</FXListBehavior>
+			<FXListBehavior xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance"
+				id="ModuleTag_DieSound">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6" />
+				<Event Index="onDeath" FX="FX_SmallBuildingDieExplosion" />
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="ABBaseDefense_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6" />
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED" />
+			</DestroyDie>
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpack"
+				UnpackTime="1s" />
+			<!-- Temp -->
+			<xi:include
+				href="DATA:Includes/GenericBuildingRepair.xml" />
+			<xi:include
+				href="DATA:SageXml/Includes/GenericAlliedBuildingSuicideNoSpawn.xml" />
+			<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_UnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="AlliedBaseDefenseFunctions" />
+			<!-- Anti Sub Invisibility-->
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AntiSubInvisibilityAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="350.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_AntiSubInvisibility">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="SUBMARINE">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+		</Behaviors>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="40">
+		</CrusherInfo>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="OffensiveStructureAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					IdleScanDelay="0.0s">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="650" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="15.0"
+				MinorRadius="15.0"
+				Height="20.0"
+				ContactPointGeneration="STRUCTURE">
+				<Offset
+					x="0.0"
+					y="0.0"
+					z="0.0" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry
+				Sound="AudioEvent:ALL_TurretSelect"
+				AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<!--
+			<AudioEntry Sound="HumanFaction_SmallBuilding_LightDamageMS" AudioType="soundOnDamaged" />
+			<AudioEntry Sound="HumanFaction_SmallBuilding_HeavyDamageMS" AudioType="soundOnReallyDamaged" />
+-->
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="365"
+			ShroudClearingRange="=$SMALL_STRUCTURE_SHROUD_CLEAR" />
+	</GameObject>
+	<GameObject
+		id="AlliedBaseDefenseNano"
+		inheritFrom="AlliedBaseDefense"
+		EditorName="AlliedBaseDefenseNano">
+		<EquivalentTo>AlliedBaseDefense</EquivalentTo>
+		<Draws
+			xai:joinAction="Replace">
+			<!-- DRAW GUN -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Gun"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="UPGRADE_DEFAULT_MISSILE">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ABBaseDefense" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="UPGRADE_DEFAULT_MISSILE" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="UPGRADE_DEFAULT_MISSILE" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="Turret_Pitch"
+						TurretID="1" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="ABBaseDefense" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="ABBaseDefense_BLD_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FROZEN">
+					<Model
+						Name="ABBaseDefense" />
+					<ParticleSysBone
+						BoneName=""
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableHideSubObjectPermanently( "Upgrade_Blaster_Rifles" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Engineer" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Flak" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_GoldenGun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_MachineGun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_MissileLauncher" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Natasha_Sniper" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Ninja_Star" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Ninja_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Plasma" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Psyonic" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Psyonic_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Shotgun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Speakers" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tanya_Pistols" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tesla_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tesla" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Turret" )
+						CurDrawableHideSubObjectPermanently( "Tanya" )
+						CurDrawableShowSubObjectPermanently( "UPGRADE_DEFAULT_MISSILE" )
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="WEAPONSET_TOGGLE_1">
+					<Script>
+						CurDrawableHideSubObjectPermanently("Upgrade_Blaster_Rifles")
+						CurDrawableHideSubObjectPermanently("Upgrade_Engineer")
+						CurDrawableHideSubObjectPermanently("Upgrade_Flak")
+						CurDrawableHideSubObjectPermanently("Upgrade_GoldenGun")
+						CurDrawableHideSubObjectPermanently("Upgrade_MachineGun")
+						CurDrawableHideSubObjectPermanently("Upgrade_MissileLauncher")
+						CurDrawableHideSubObjectPermanently("Upgrade_Natasha_Sniper")
+						CurDrawableHideSubObjectPermanently("Upgrade_Ninja_Star")
+						CurDrawableHideSubObjectPermanently("Upgrade_Plasma")
+						CurDrawableHideSubObjectPermanently("Upgrade_Psyonic")
+						CurDrawableHideSubObjectPermanently("Upgrade_Psyonic_Turret")
+						CurDrawableShowSubObjectPermanently("Upgrade_Shotgun")
+						CurDrawableHideSubObjectPermanently("Upgrade_Speakers")
+						CurDrawableHideSubObjectPermanently("Upgrade_Tesla")
+						CurDrawableHideSubObjectPermanently("Upgrade_Tesla_Turret")
+						CurDrawableHideSubObjectPermanently("Upgrade_Turret")
+						CurDrawableHideSubObjectPermanently( "UPGRADE_DEFAULT_MISSILE" )
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Script>
+						CurDrawableHideSubObjectPermanently( "Upgrade_Blaster_Rifles" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Engineer" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Flak" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_GoldenGun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_MachineGun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_MissileLauncher" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Natasha_Sniper" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Ninja_Star" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Ninja_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Plasma" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Psyonic" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Psyonic_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Shotgun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Speakers" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tanya_Pistols" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tesla_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tesla" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Turret" )
+						CurDrawableHideSubObjectPermanently( "Tanya" )
+						CurDrawableShowSubObjectPermanently( "UPGRADE_DEFAULT_MISSILE" )
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="ABBaseDefense_BLD_BLD"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW PLATFORM -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Platform"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ABBaseDefense_Platform" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="ABBaseDefense_Platform" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER SOLD">
+					<Model
+						Name="ABBaseDefense_Platform_BLD" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="ABPowerPlantWakeSplash"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableShowSubObjectPermanently("Bib")
+						CurDrawableHideSubObjectPermanently("Platform")
+						CurDrawableHideSubObjectPermanently("Platform_FX")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD OVER_WATER"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="ABBaseDefense_Platform_BLD"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AlliedPowerPlantWaterBuildupFroth"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AlliedPowerPlantWaterBuildupMist"
+						FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Script>
+						CurDrawableShowSubObjectPermanently("Platform")
+						CurDrawableShowSubObjectPermanently("Platform_FX")
+						CurDrawableHideSubObjectPermanently("Bib")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW PARTICLES -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ABRefinery_FX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="ABBaseDefense_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="GenericDStateSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="ABBaseDefense_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="GenericDStateSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="GenericDStateFire"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_EggPack"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="ABBaseDefense" />
+					<Material ShaderName="BasicW3DHolographic.fx" TechniqueName="Default">
+						<Constants>
+							<Float Name="ColorAmbient">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorDiffuse">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorSpecular">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="Shininess">
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorEmissive">
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+							</Float>
+							<Texture Name="Texture_0">
+								<Value>FXJapanBuildMask</Value>
+							</Texture>
+							<Bool Name="DepthWriteEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="AlphaTestEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="CullingEnable">
+								<Value>true</Value>
+							</Bool>
+							<Int Name="BlendMode">
+								<Value>1</Value>
+							</Int>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="ABBASEDEFENSE_BLDN2"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+					<Script>
+						CurDrawableHideSubObjectPermanently( "Upgrade_Blaster_Rifles" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Engineer" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Flak" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_GoldenGun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_MachineGun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_MissileLauncher" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Natasha_Sniper" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Ninja_Star" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Ninja_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Plasma" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Psyonic" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Psyonic_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Shotgun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Speakers" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tanya_Pistols" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tesla_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tesla" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Turret" )
+						CurDrawableHideSubObjectPermanently( "Tanya" )
+						CurDrawableShowSubObjectPermanently( "UPGRADE_DEFAULT_MISSILE" )
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- DRAW BUILD UP -->
+			<ScriptedModelDraw
+				id="ModuleTag_DrawEggPack_Buildup"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="ABBaseDefense" />
+					<Material ShaderName="BuildingsJapanBuildup.fx" TechniqueName="Default">
+						<Constants>
+							<Texture Name="DiffuseTexture">
+								<Value>ABBaseDefense01</Value>
+							</Texture>
+							<Texture Name="NormalMap">
+								<Value>ABBaseDefense01_NRM</Value>
+							</Texture>
+							<Texture Name="SpecMap">
+								<Value>ABBaseDefense01_SPM</Value>
+							</Texture>
+							<Float Name="EnvMult">
+								<Value>1.000000</Value>
+							</Float>
+							<Bool Name="AlphaTestEnable">
+								<Value>true</Value>
+							</Bool>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="ABBASEDEFENSE_BLDN"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+					<Script>
+						CurDrawableHideSubObjectPermanently( "Upgrade_Blaster_Rifles" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Engineer" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Flak" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_GoldenGun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_MachineGun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_MissileLauncher" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Natasha_Sniper" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Ninja_Star" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Ninja_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Plasma" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Psyonic" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Psyonic_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Shotgun" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Speakers" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tanya_Pistols" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tesla_Turret" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Tesla" )
+						CurDrawableHideSubObjectPermanently( "Upgrade_Turret" )
+						CurDrawableHideSubObjectPermanently( "Tanya" )
+						CurDrawableShowSubObjectPermanently( "UPGRADE_DEFAULT_MISSILE" )
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_EggPack_Platform"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER STRUCTURE_UNPACKING">
+					<Model
+						Name="ABBaseDefense_Platform" />
+					<Material ShaderName="BasicW3DHolographic.fx" TechniqueName="Default">
+						<Constants>
+							<Float Name="ColorAmbient">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorDiffuse">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorSpecular">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="Shininess">
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorEmissive">
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+							</Float>
+							<Texture Name="Texture_0">
+								<Value>FXJapanBuildMask</Value>
+							</Texture>
+							<Bool Name="DepthWriteEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="AlphaTestEnable">
+								<Value>false</Value>
+							</Bool>
+							<Bool Name="CullingEnable">
+								<Value>true</Value>
+							</Bool>
+							<Int Name="BlendMode">
+								<Value>1</Value>
+							</Int>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="ABBASEDEFENSE_PLATFORMEGGBLD2"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_DrawEggPack_Buildup_Platform"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER STRUCTURE_UNPACKING">
+					<Model
+						Name="ABBaseDefense_Platform" />
+					<Material ShaderName="BuildingsJapanBuildup.fx" TechniqueName="Default">
+						<Constants>
+							<Texture Name="DiffuseTexture">
+								<Value>ABPlatform</Value>
+							</Texture>
+							<Texture Name="NormalMap">
+								<Value>ABPlatform_NRM</Value>
+							</Texture>
+							<Texture Name="SpecMap">
+								<Value>ABPlatform_SPM</Value>
+							</Texture>
+							<Float Name="EnvMult">
+								<Value>1.000000</Value>
+							</Float>
+							<Bool Name="AlphaTestEnable">
+								<Value>true</Value>
+							</Bool>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="ABBASEDEFENSE_PLATFORMEGGBLD"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Egg"
+				OkToChangeModelColor="true"
+				StaticModelLODMode="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="JUEgg_Unpack" />
+					<Texture
+						Original="JUEgg"
+						New="AUEgg" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="EMOTION_DOOM STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="JUEGG_FLYUNPACK"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="2s" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="EMOTION_PANIC STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="JUEgg_Unpack"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="2s" />
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior xai:joinAction="Replace"
+				xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_StructureConstructionAudio">
+				<ModelConditionSound
+					Sound="JAP_Nanocore_DeployStructureLand"
+					RequiredFlags="STRUCTURE_UNPACKING"
+					ExcludedFlags="OVER_WATER" />
+				<ModelConditionSound
+					Sound="JAP_Nanocore_DeployStructureWaterMS"
+					RequiredFlags="STRUCTURE_UNPACKING OVER_WATER" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_Nanocore_DeployLoop" AudioType="soundUnderConstruction" />
+		</AudioArraySound>
+	</GameObject>
+</AssetDeclaration>

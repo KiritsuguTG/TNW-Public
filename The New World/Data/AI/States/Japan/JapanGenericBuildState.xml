@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<AIBuildStateDefinition
+		id="JapanAntiAirOnlyBuildState_TNW">
+		<Heuristic>
+			<EnemyNearbyHeuristic Distance="700.0" EnemyNearby="true" MinEnemyValue="1200">
+				<EnemyFilter
+						Relationship="ENEMIES"
+						Rule="ANY"
+						Include="AIRCRAFT MONSTER">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="JapanAntiAirShip" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="JapanAntiInfantryVehicle" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="JapanAntiAirVehicleTech1" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="JapanAmphibiousUnitBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Land Water">
+				<ObjectFilter
+				  Relationship="ENEMIES"
+				  Rule="ANY"
+				  Include="CAN_ATTACK STRUCTURE"
+				  Exclude="IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+				  StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic Weight="0.5"/>
+			<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+			<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="JapanAntiVehicleInfantryTech3" Heuristic="FEWEST_UNIT" BlockIfThingNearFactoryDistance="300">
+			<BlockIfThingNearFactory
+				Rule="ANY"
+				Relationship="ENEMIES"
+				Include="FIGHTER_AIRCRAFT COMMANDO">
+				<IncludeThing>SovietAntiAirShip</IncludeThing>
+				<IncludeThing>JapanAntiAirVehicleTech1</IncludeThing>
+				<IncludeThing>AlliedAntiAirShip</IncludeThing>
+				<IncludeThing>AlliedAntiAirVehicleTech1</IncludeThing>
+				<IncludeThing>EUAntiAirVehicleTech1</IncludeThing>
+				<IncludeThing>StrategicArmyAntiStructureVehicle</IncludeThing>
+				<IncludeThing>MODAntiAirVehicleTech1</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="JapanAntiInfantryVehicle" Heuristic="FEWEST_UNIT" BlockIfThingNearFactoryDistance="200">
+			<BlockIfThingNearFactory
+				Rule="ANY"
+				Relationship="ENEMIES"
+				Include="COMMANDO T3_UNIT T2_UNIT">
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="JapanAntiAirShip" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="JapanAntiAirVehicleTech1" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="JapanAntiVehicleVehicleTech1" Heuristic="BEST_UNIT_WEIGHTED" />
+	</AIBuildStateDefinition>
+    
+	<AIBuildStateDefinition
+	  id="JapanGenericUnitBuildState">
+		<Heuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="JapanCommandoTech1" Heuristic="FEWEST_UNIT" ExpectedEfficiencyWeight="1.0">
+			<BlockIfThingNearFactory Rule="NONE" Relationship="ENEMIES">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+				<IncludeThing>AlliedAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanSentinelVehicle</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="JapanStructureTNWBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+		</Heuristic>
+		<BuildEntry Build="JapanPowerPlant" Heuristic="POWER"/>
+		<BuildEntry Build="JapanRefinery" Heuristic="REFINERY"/>
+		<BuildEntry Build="JapanMiner" Heuristic="HARVESTER"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="JapanStructureTNWBuildState_BRUTAL">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+		</Heuristic>
+		<BuildEntry Build="JapanPowerPlant" Heuristic="POWER"/>
+		<BuildEntry Build="JapanRefinery" Heuristic="REFINERY"/>
+		<BuildEntry Build="JapanBarracksAI" Heuristic="FACTORY"/>
+		<BuildEntry Build="JapanNavalYard" Heuristic="FACTORY"/>
+		<BuildEntry Build="JapanWarFactoryAI" Heuristic="FACTORY"/>
+		<BuildEntry Build="JapanMiner" Heuristic="HARVESTER"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="JapanFortressShipEggBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>JapanFortressShipEgg</IncludeThing>
+					<IncludeThing>JapanFortressDummy</IncludeThing>
+					<IncludeThing>JapanFortressShip</IncludeThing>
+					<IncludeThing>JapanFortressShip_WorldBuilder</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="JapanFortressShipEgg" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	
+	<AIBuildStateDefinition
+        id="JapanPowerPlantBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER"
+				  Rule="ANY"
+				  Include="FS_POWER">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+		</Heuristic>
+		<BuildEntry Upgrade="Upgrade_JapanPowerPlant" Heuristic="UPGRADE_TECH"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="JapanAntiBaseDefenceBuildUnit">
+		<Heuristic>
+			<EnemyNearbyHeuristic Distance="1500.0" EnemyNearby="false" MinEnemyValue="5000">
+				<EnemyFilter
+					Rule="ANY"
+					Relationship="ENEMIES"
+					Include="FS_BASE_DEFENSE"
+					Exclude="SUPER_WEAPON">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="JapanAntiStructureShip" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="JapanAntiStructureVehicle" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="JapanSentinelVehicle" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	
+	<AIBuildStateDefinition
+		id="JapanDefenseBuildState001">
+		<Heuristic>
+			<EnemyNearbyHeuristic Distance="1200.0" EnemyNearby="true" MinEnemyValue="4000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Water Land">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>JapanConstructionYard</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="JapanBaseDefense" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="JapanDefenseBuildState002">
+		<Heuristic>
+			<EnemyNearbyHeuristic Distance="1200.0" EnemyNearby="true" MinEnemyValue="5000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Water Land">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>JapanConstructionYard</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="JapanBaseDefenseAdvanced" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	
+	<AIBuildStateDefinition
+	  id="JapanWarFactoryBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>JapanWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="JapanWarFactory" Heuristic="FACTORY" Score="100"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="JapanNavalYardBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>JapanNavalYard</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+			<CanBuildBuildingsOnSurfaceHeuristic
+				Surfaces="WATER DEEP_WATER"
+				MinPlacementGridCells="0"
+				MaxPlacementGridCells="0" />
+		</Heuristic>
+		<BuildEntry Build="JapanNavalYard" Heuristic="FACTORY" Score="100"/>
+	</AIBuildStateDefinition>
+</AssetDeclaration>

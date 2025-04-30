@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="all"
+			source="ART:Units/EUAntiNavyShipTech2/AUANTINAVYSUB_SKN.w3x" />
+		<Include
+			type="all"
+			source="ART:Units/EUAntiNavyShipTech2/AUANTINAVYSUBSTLTH_SKN.w3x" />
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="EUAntiNavyShipTech2"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="PortraitEUAntiNavyShipTech2"
+		ButtonImage="ButtonEUAntiNavyShipTech2"
+		Side="Allies"
+		SubGroupPriority="485"
+		EditorSorting="UNIT"
+		BuildTime="18"
+		JustBuiltTime="2.6s"
+		TransportSlotCount="10"
+		CommandSet="EUAntiNavyShipTech2CommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE SUBMARINE CAN_BE_FAVORITE_UNIT T2_UNIT"
+		RadarPriority="UNIT"
+		ProductionQueueType="WATERCRAFT"
+		UnitCategory="VEHICLE"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		BountyValue="250"
+		EditorName="EUAntiNavyShipTech2"
+		Description="Desc:AlliedAntiNavySub"
+		TypeDescription="Type:AntiNavy"
+		HealthBoxHeightOffset="30">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedAntiNavySub</DisplayName>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_AlliedTech2</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1800" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="AdvanceShipArmor"
+			DamageFX="SubmarineDamageFX" />
+		<LocomotorSet
+			id="DefaultSubmarineLocomotor"
+			Locomotor="SovietAntiNavyShipTech2Locomotor"
+			Condition="NORMAL"
+			Speed="75" />
+		<LocomotorSet
+			id="Attacking_SubmarineLocomotor"
+			Locomotor="SovietAntiNavyShipTech2Locomotor_Attacking"
+			Condition="ATTACKING"
+			Speed="75" />
+		<LocomotorSet
+			Locomotor="SovietAntiNavyShipTech2Locomotor_LeavingFactory"
+			Condition="EXITING_PRODUCTION_STRUCTURE"
+			Speed="75.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="4.0"
+			ConquerMetricsOverrideDamageType="CONCUSSIVE"
+			ConquerMetricsOverrideAntiMask="ANTI_WATER"
+			ConquerMetricsOverrideForbiddenAntiMask="ANTI_GROUND">
+		</SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="FXWEAPON01 FXWEAPON02 FXSPWEAPON FXDAMAGE01 FXDAMAGE02">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="AUANTINAVYSUB_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXWEAPON" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXWEAPON" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXSPWEAPON" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXSPWEAPON" />
+					<ParticleSysBone
+						BoneName="WATERFORTH"
+						FXParticleSystemTemplate="SUKrakenBubblesIdle"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="AUANTINAVYSUB_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_2">
+					<Model
+						Name="AUANTINAVYSUB_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech12"
+						New="AUAntiNavyShipTech1_D" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="AUAntiNavyShipTech12_D" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireBubbles"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireOil"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_2">
+					<Model
+						Name="AUANTINAVYSUB_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech12"
+						New="AUAntiNavyShipTech1_D" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="AUAntiNavyShipTech12_D" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireBubbles"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireOil"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE02"
+						FXParticleSystemTemplate="Underwater_FireBubbles"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE02"
+						FXParticleSystemTemplate="Underwater_FireFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE02"
+						FXParticleSystemTemplate="Underwater_FireSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE02"
+						FXParticleSystemTemplate="Underwater_FireOil"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="AUANTINAVYSUB_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="AUAntiNavyShipTech12" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AUANTINAVYSUB_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="AUAntiNavyShipTech1_D" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireBubbles"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireOil"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUANTINAVYSUB_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="AUAntiNavyShipTech1_D" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireBubbles"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE01"
+						FXParticleSystemTemplate="Underwater_FireOil"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE02"
+						FXParticleSystemTemplate="Underwater_FireBubbles"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE02"
+						FXParticleSystemTemplate="Underwater_FireFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE02"
+						FXParticleSystemTemplate="Underwater_FireSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXDAMAGE02"
+						FXParticleSystemTemplate="Underwater_FireOil"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<ParticleSysBone
+						BoneName="WATERFORTH"
+						FXParticleSystemTemplate="SUKrakenBubblesMoving"
+						FollowBone="true" />
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUAntiNavyShipTech2DummyWeapon"
+						ObjectStatus="SUBMERGED"
+						ForbiddenObjectStatus="SURFACED" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="EUAntiNavyShipTech2DummyWeaponForBridges"
+						ObjectStatus="SUBMERGED"
+						ForbiddenObjectStatus="SURFACED" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUAntiNavyShipTech2Torpedo"
+						ObjectStatus="SURFACED"
+						ForbiddenObjectStatus="SUBMERGED"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="EUAntiNavyShipTech2TorpedoForBridges"
+						ObjectStatus="SURFACED"
+						ForbiddenObjectStatus="SUBMERGED"
+						ConquerMetricsAlwaysCount="true" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AUAntiNavySub_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_AkulaDie" />
+				<Event
+					Index="onSurfacing"
+					FX="FX_JAP_YariSubSurface" />
+			</FXListBehavior>
+			<SpecialPower
+				id="ModuleTag_SuperTorpedos"
+				SpecialPowerTemplate="SpecialPower_EMPSuperTorpedo"
+				UpdateModuleStartsAttack="true" />
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_SuperTorpedosUpdate"
+				SpecialPowerTemplate="SpecialPower_EMPSuperTorpedo"
+				SpecialWeapon="EUAntiNavyShipTech2EMPSuperTorpedo"
+				UnpackTime="0s"
+				PackTime="0s"
+				BusyForDuration="1.0s"
+				StartAbilityRange="0.0"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="2" />
+			<AttributeModifierUpgrade
+				id="ModuleTag_AlliedUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeModifer_JapanBaseUpgradeTengGu">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<!--Sub Invisibility-->
+			<xi:include
+				href="DATA:Includes/SubFirstInvisibility.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:SubFirstInvisibility/child::*)" />
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech2/child::*)" />
+			<!-- Japan NavalPower -->
+			<xi:include
+				href="DATA:Includes/JapanNavalPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanNavalPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="true"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1100" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="AOV_Sub_VoiceShrunkenMS" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="38"
+				MinorRadius="12.7"
+				Height="20"
+				ContactPointGeneration="VEHICLE">
+				<Offset x="-1.56" z="1.5" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="AOV_Sub_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="AOV_Sub_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="AOV_Sub_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="AOV_Sub_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="AOV_Sub_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="AOV_Sub_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="AOV_Sub_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="AOV_Sub_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="SOV_AkulaSub_MoveStart"
+				AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="325"
+			ShroudClearingRange="=$ADVANCE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			CrusherLevel="1"
+			CrushEqualLevelProps="true"
+			CrushableLevel="31" />
+	</GameObject>
+	<GameObject
+		id="EUAntiNavyShipTech2_Crate"
+		inheritFrom="EUAntiNavyShipTech2"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="EUAntiNavyShipTech2_Crate">
+		<EquivalentTo>EUAntiNavyShipTech2</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

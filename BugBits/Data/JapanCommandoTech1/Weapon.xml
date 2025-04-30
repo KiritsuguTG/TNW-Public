@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="JapanCommandoTech1PsyonicCrush"
+		AttackRange="150.0"
+		AcceptableAimDelta="15d"
+		ClipSize="1"
+		FiringLoopSound="JAP_YurikoOmega_PsyonicLoopMS"
+		AutoReloadsClip="AUTO"
+		PreAttackType="PER_TARGET"
+		CanFireWhileMoving="false"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		RadiusDamageAffects="ENEMIES"
+        Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<FiringDuration
+			MinSeconds="1s"
+			MaxSeconds="1s" />
+		<WeaponAiHintInfo
+			UseLongLockOnTimeCode="true" />
+		<Nuggets>
+			<AttributeModifierNugget
+				AttributeModifierName="AttributeMod_JapanCommandoTech1PsyonicCrush">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Exclude="INFANTRY HARVESTER"
+					Include="VEHICLE SHIP AIRCRAFT FS_BASE_DEFENSE"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN">
+					<ExcludeThing>JapanRisingBalloon</ExcludeThing>
+					<ExcludeThing>JapanFallingBalloonBomb</ExcludeThing>
+					<ExcludeThing>JapanBalloonBomb</ExcludeThing>
+				</SpecialObjectFilter>
+			</AttributeModifierNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

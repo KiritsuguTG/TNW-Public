@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<!-- The default tank projectile -->
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="ART:FXNodTankShell.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiVehicleVehicleTech1/AlliedAntiVehicleVehicleTech1TankProjectile.w3x"/>
+	</Includes>
+	
+	<GameObject
+		id="AlliedAntiAllTankProjectile"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE NO_COLLIDE SMALL_MISSILE"
+		EditorName="AlliedAntiAllTankProjectile">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AlliedAntiVehicleVehicleTech1TankProjectile" />
+					<ParticleSysBone
+						BoneName="FX_Trail01"
+						FXParticleSystemTemplate="MediumCaliberGunTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Trail01"
+						FXParticleSystemTemplate="MediumAPFSDSTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Trail02"
+						FXParticleSystemTemplate="MediumCaliberGunTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Trail02"
+						FXParticleSystemTemplate="MediumAPFSDSTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_DreadnoughtV4Explosion" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="DETONATE_CALLS_KILL ORIENT_TO_FLIGHT_PATH"
+				SidewaysDrift="0"
+				Acceleration="10"
+				FlightPathAdjustDistPerSecond="0"
+				MaxDistanceToTravel="2000.0"/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	<GameObject
+		id="AlliedAntiAllTankProjectileVeteran"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE NO_COLLIDE SMALL_MISSILE"
+		EditorName="AlliedAntiAllTankProjectileVeteran">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AlliedAntiVehicleVehicleTech1TankProjectile" />
+					<ParticleSysBone
+						BoneName="FX_Trail01"
+						FXParticleSystemTemplate="MediumCaliberGunTrailVeteran"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Trail01"
+						FXParticleSystemTemplate="MediumAPFSDSTrailVeteran"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Trail02"
+						FXParticleSystemTemplate="MediumCaliberGunTrailVeteran"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Trail02"
+						FXParticleSystemTemplate="MediumAPFSDSTrailVeteran"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_DreadnoughtV4Explosion_Vet" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="DETONATE_CALLS_KILL ORIENT_TO_FLIGHT_PATH"
+				SidewaysDrift="0"
+				Acceleration="10"
+				FlightPathAdjustDistPerSecond="0"
+				MaxDistanceToTravel="2000.0"/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8">
+			</Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+</AssetDeclaration>

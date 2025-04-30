@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags />
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+<WeaponTemplate
+		id="JapanEmperorMechaOni_SweepingWeapon"
+		ProjectileCollidesWith="ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		RequiredAntiMask="ANTI_STRUCTURE ANTI_WATER ANTI_GROUND"
+		Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<Nuggets>
+			<DamageNugget
+				Damage="10"
+				Radius="10.0"
+				RadiusAffectsBridges="true"
+				DelayTimeSeconds="0.1s"
+				DamageType="EXPLOSIVE"
+				DeathType="LASERED">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="AIRCRAFT ORE_NODE BRIDGE_SEGMENT BRIDGE_ENDCAP"
+					StatusBitFlagsExclude="AIRBORNE_TARGET SUBMERGED" />
+				<DamageScalarDetails Scalar= "20%">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</DamageScalarDetails>
+			</DamageNugget>
+			<LineDamageNugget
+				id="DefaultDamageNugget"
+				Damage="10"
+				LineWidth="10.0"
+				DamageType="EXPLOSIVE"
+				DamageFXType="JAPAN_FORCE"
+				DeathType="EXPLODED"
+				UseDynamicLineLength="true"
+				RadiusAffectsBridges="true"
+				OverShootDistance="0.0">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="AIRCRAFT ORE_NODE BRIDGE_SEGMENT BRIDGE_ENDCAP"
+					StatusBitFlagsExclude="AIRBORNE_TARGET SUBMERGED" />
+				<DamageScalarDetails Scalar= "20%">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</DamageScalarDetails>
+			</LineDamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="JapanEmperorMechaOni_SweepingWeapon_Veteran"
+		ProjectileCollidesWith="ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		RequiredAntiMask="ANTI_STRUCTURE ANTI_WATER ANTI_GROUND"
+		Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<Nuggets>
+			<DamageNugget
+				Damage="10"
+				Radius="10.0"
+				RadiusAffectsBridges="true"
+				DelayTimeSeconds="0.1s"
+				DamageType="EXPLOSIVE"
+				DeathType="LASERED">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="AIRCRAFT ORE_NODE BRIDGE_SEGMENT BRIDGE_ENDCAP"
+					StatusBitFlagsExclude="AIRBORNE_TARGET SUBMERGED" />
+				<DamageScalarDetails Scalar= "20%">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</DamageScalarDetails>
+			</DamageNugget>
+			<LineDamageNugget
+				id="DefaultDamageNugget"
+				Damage="10"
+				LineWidth="10.0"
+				DamageType="EXPLOSIVE"
+				DamageFXType="JAPAN_FORCE"
+				DeathType="EXPLODED"
+				UseDynamicLineLength="true"
+				RadiusAffectsBridges="true"
+				OverShootDistance="0.0">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="AIRCRAFT ORE_NODE BRIDGE_SEGMENT BRIDGE_ENDCAP"
+					StatusBitFlagsExclude="AIRBORNE_TARGET SUBMERGED" />
+				<DamageScalarDetails Scalar= "20%">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</DamageScalarDetails>
+			</LineDamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="JapanEmperorOniPreAttackWeapon"
+		AttackRange="185"
+		CanFireWhileMoving="true"
+		WeaponSpeed="999999.0"
+                Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RadiusDamageAffects="ENEMIES"
+		AcceptableAimDelta="90d">
+        <Nuggets>
+			<AttributeModifierNugget
+				AttributeModifierName="AttributeModifier_BeamAttackSlowSpeed">
+			</AttributeModifierNugget>
+        </Nuggets>
+    </WeaponTemplate>
+		
+
+  <WeaponTemplate
+		id="JapanHeavyAntiVehicleVehicleTech3BeamWeapon"
+		AttackRange="250.0"
+		MinimumAttackRange="25"
+		CanFireWhileMoving="true"
+		WeaponSpeed="999999.0"
+		PreAttackFX="FX_JAP_KingOni_LaserChargeUp"
+		FireFX="FX_JapanOniEyes_Vet"
+    FireVeteranFX="FX_JapanOniEyes_Vet"
+		FireSound="JAP_KingOni_LaserFire"
+		RadiusDamageAffects="ENEMIES"
+		AcceptableAimDelta="10d"
+		PreAttackType="PER_TARGET"
+		ReAcquireDetailType="PRE_FIRE"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		ClipSize="1"
+		AutoReloadsClip="AUTO"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		PreAttackWeapon="JapanEmperorOniPreAttackWeapon">
+    <PreAttackDelay
+			MinSeconds="0.75s"
+			MaxSeconds="0.75s" />
+    <FiringDuration
+			MinSeconds="0.75s"
+			MaxSeconds="0.75s" />
+    <ClipReloadTime
+			MinSeconds="1.25s"
+			MaxSeconds="1.25s" />
+    <Nuggets>
+      <ActivateLaserNugget
+				Lifetime="0.65s"
+				LaserId="101"/>
+      <ActivateLaserNugget
+				Lifetime="0.65s"
+				LaserId="102"/>
+    </Nuggets>
+  </WeaponTemplate>
+
+  <WeaponTemplate
+		id="JapanHeavyAntiVehicleVehicleTech3BeamWeapon_Veteran"
+		AttackRange="250.0"
+		MinimumAttackRange="25"
+		CanFireWhileMoving="true"
+		WeaponSpeed="999999.0"
+		PreAttackFX="FX_JAP_KingOni_LaserChargeUp"
+		FireFX="FX_JapanOniEyes_Vet"
+    FireVeteranFX="FX_JapanOniEyes_Vet"
+		FireSound="JAP_KingOni_LaserFire"
+		RadiusDamageAffects="ENEMIES"
+		AcceptableAimDelta="10d"
+		PreAttackType="PER_TARGET"
+		ReAcquireDetailType="PRE_FIRE"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		ClipSize="1"
+		AutoReloadsClip="AUTO"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		PreAttackWeapon="JapanEmperorOniPreAttackWeapon">
+    <PreAttackDelay
+			MinSeconds="0.75s"
+			MaxSeconds="0.75s" />
+    <FiringDuration
+			MinSeconds="0.75s"
+			MaxSeconds="0.75s" />
+    <ClipReloadTime
+			MinSeconds="1.25s"
+			MaxSeconds="1.25s" />
+    <Nuggets>
+      <ActivateLaserNugget
+				Lifetime="0.65s"
+				LaserId="103"/>
+      <ActivateLaserNugget
+				Lifetime="0.65s"
+				LaserId="104"/>
+    </Nuggets>
+  </WeaponTemplate>
+
+
+
+	<WeaponTemplate
+		id="JapanHeavyAntiVehicleVehicleTech3MissileLauncher"
+		AttackRange="300.0"
+		WeaponSpeed="200"
+		FireSound="S07_JAP_EmperorKingOni_MissileFire"
+		FireFX="FX_Japan_ChopperVX_Fire2"
+		FireVeteranFX="FX_Japan_ChopperVX_Fire2Vet"
+		AcceptableAimDelta="20d"
+		ClipSize="6"
+		VirtualDamage="SHARE"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		PreAttackType="PER_TARGET"
+		ReAcquireDetailType="PRE_FIRE"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+		CanFireWhileMoving="true">
+		<PreAttackDelay
+			MinSeconds="0.75s"
+			MaxSeconds="0.75s" />
+		<FiringDuration
+			MinSeconds="0.1s"
+			MaxSeconds="0.1s" />
+		<ClipReloadTime
+			MinSeconds="2.3s"
+			MaxSeconds="2.7s" />
+		<Nuggets>
+
+			<ProjectileNugget
+				ProjectileTemplate="JapanEmperorMechaMissileProjectile"
+				WarheadTemplate="JapanHeavyAntiVehicleVehicleTech3MissileLauncherWarhead">
+				<VeterancyProjectiles
+					VeterancyLevel="HEROIC"
+					ProjectileTemplate="JapanGreatOniMissileProjectile_Veteran"/>
+			</ProjectileNugget>
+			<SuppressionNugget
+				Radius="10.0"
+				Suppression="10"
+				DurationSeconds="1.0s"/>
+			<InformTargetNugget
+					 MaxTimeToImpactFudgeFactor="1.6" />
+		</Nuggets>
+		<ScatterRadiusVsType
+			Radius="70.0"
+			RequiredModelConditions="SHRINK_EFFECT">
+			<Filter
+				Rule="ANY"
+				Include="INFANTRY AIRCRAFT VEHICLE" />
+		</ScatterRadiusVsType>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="JapanHeavyAntiVehicleVehicleTech3MissileLauncherWarhead"
+		ProjectileCollidesWith="ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY" >
+		<Nuggets>
+			<DamageNugget
+				Damage="40"
+				Radius="0.0"
+				DamageType="ROCKET"
+				DamageFXType="JAPAN_MISSILE"
+				DeathType="EXPLODED"/>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="JapanHeavyAntiVehicleVehicleTech3MissileLauncher_JapanAdvancedMissilePacks"
+		inheritFrom="JapanHeavyAntiVehicleVehicleTech3MissileLauncher"
+		ClipSize="8">
+		<FiringDuration
+			MinSeconds="0.1s"
+			MaxSeconds="0.1s" />
+		<ClipReloadTime
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="GreatOniMeleeAttackWeapon_Land"
+		AttackRange="25.0"
+		CanFireWhileMoving="false"
+		WeaponSpeed="999999.0"
+		AcceptableAimDelta="10d"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		ClipSize="1"
+		AutoReloadsClip="AUTO"
+		FinishAttackOnceStarted="true"
+		PreAttackWeapon="JapanEmperorOniPreAttackWeapon">
+		<PreAttackDelay
+			MinSeconds="0.75s"
+			MaxSeconds="0.75s" />
+		<FiringDuration
+			MinSeconds="1.5s"
+			MaxSeconds="1.5s" />
+		<ClipReloadTime
+			MinSeconds="0.5s"
+			MaxSeconds="0.5s" />
+        <Nuggets>
+            <DamageNugget
+				DelayTimeSeconds="0.25s"
+				Damage="400.0"
+				Radius="40.0"
+				DamageType="EXPLOSIVE"
+				DamageFXType="JAPAN_RUSH"
+				DeathType="CRUSHED">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="VEHICLE STRUCTURE">
+					<IncludeThing>JapanEmperorMechaOni</IncludeThing>
+				</SpecialObjectFilter>
+            </DamageNugget>
+            <DamageNugget
+				DelayTimeSeconds="0.55s"
+				Damage="40000.0"
+				Radius="100.0"
+				DamageType="SNIPER"
+				DamageFXType="JAPAN_MECHARUSH"
+				DeathType="CRUSHED">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="INFANTRY"
+					StatusBitFlagsExclude="NO_COLLISIONS">
+				</SpecialObjectFilter>
+            </DamageNugget>
+
+        </Nuggets>
+    </WeaponTemplate>
+
+
+	<WeaponTemplate
+		id="JapanHeavyAntiVehicleVehicleTech3JumpWeapon"
+		IdleAfterFiringDelaySeconds="0s"
+		AttackRange="300.0"
+		MinimumAttackRange="20"
+		WeaponSpeed="500"
+		ProjectileSelf="true"
+		ClipSize="=$UNLIMITED_CLIP_SIZE"
+		AutoReloadsClip="AUTO"
+		PreAttackType="PER_SHOT"
+		FireFX="FX_None"
+    FireVeteranFX="FX_None"
+Flags="NOT_ATTRACTED_BY_MAGNETS" 
+		HitPercentage="0%" >
+		<FiringDuration
+			MinSeconds="0.1s"
+			MaxSeconds="0.1s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="DummyWeaponWarhead" />
+			<InformTargetNugget />
+		</Nuggets>
+	</WeaponTemplate>
+
+
+ <FXList id="FX_JumpBombExplosionLvl1">
+    <NuggetList>
+      <ParticleSystem
+          Particle="EmperorOni_BlastRays">
+          <Offset
+            x="0"
+            y="0"
+            z="35.0"/>
+      </ParticleSystem>
+      <ParticleSystem	Particle="TimeBombLvl1ExplosionShockwave"/>
+      <ParticleSystem	Particle="TimeBombLvl1ExplosionSmoke"/>
+      <ParticleSystem	Particle="TimeBombLvl1ExplosionSmokeGround"/>
+      <ParticleSystem	Particle="TimeBombLvl1ExplosionSmokeMushroom"/>
+      <TerrainScorch
+				Type		= "TERRAIN_MAPPED"
+				Radius		= "60" >
+      </TerrainScorch>
+	<CameraShakerVolume
+			Radius="700"
+			Duration="0.5s"
+			Amplitude="90d"/>
+    </NuggetList>
+  </FXList>
+
+  <FXList id="FX_JumpBombExplosionLvl2">
+    <NuggetList>
+      <ParticleSystem
+          Particle="EmperorOni_BlastRays">
+          <Offset
+            x="0"
+            y="0"
+            z="35.0"/>
+      </ParticleSystem>
+     
+      <ParticleSystem	Particle="TimeBombLvl2ExplosionShockwave"/>
+      <ParticleSystem	Particle="TimeBombLvl2ExplosionSmoke"/>
+      <ParticleSystem	Particle="TimeBombLvl2ExplosionSmokeGround"/>
+      <ParticleSystem	Particle="TimeBombLvl2ExplosionSmokeMushroom"/>
+      <TerrainScorch
+				Type		= "TERRAIN_MAPPED"
+				Radius		= "70" >
+      </TerrainScorch>
+	<CameraShakerVolume
+			Radius="700"
+			Duration="0.5s"
+			Amplitude="90d"/>
+    </NuggetList>
+  </FXList>
+
+	<WeaponTemplate
+		id="DamageSelfWeapon"
+		FireFX="FX_JumpBombExplosionLvl1"
+     FireVeteranFX="FX_JumpBombExplosionLvl2"
+		RadiusDamageAffects="SELF ALLIES"		
+		Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<Nuggets>
+          <AttributeModifierNugget
+				AttributeModifierOwnerName="AttributeModifier_JapanHeavyAntiVehicleVehicleTech3Landed2" />
+			<DamageNugget
+				Damage="675"
+				DamageType="ROCKET"
+        DamageFXType="JAPAN_RUSH"
+				DeathType="NORMAL">
+			</DamageNugget>
+			<WeaponOCLNugget
+				id="defaultOCLNugget" 
+				WeaponOCL="OCL_LandWeaheadDummy">
+			</WeaponOCLNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+
+	<ObjectCreationList
+		id="OCL_LandWeaheadDummy">
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>LandWeaheadDummy</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+
+	<WeaponTemplate
+		id="JapanHeavyAntiVehicleVehicleTech3LandWeapon"
+     RadiusDamageAffects="ENEMIES NEUTRALS"
+     Flags="NOT_ATTRACTED_BY_MAGNETS"
+			RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_SUBMERGED"> 
+		<Nuggets>
+
+			<DamageNugget
+      id="ModuleTag_DamageNugget"
+      Damage="250.0"
+      DamageTaperOff="80"
+      Radius="120"
+      DamageType="EXPLOSIVE"
+      DamageFXType="ALLIED_BOMBLVL1"
+      DeathType="NORMAL"
+				RadiusAffectsBridges="true">
+			<DamageScalarDetails Scalar= "50%">
+					<Filter
+					Rule="NONE">
+						<IncludeThing>SovietMiner</IncludeThing>
+						<IncludeThing>AlliedMiner</IncludeThing>
+						<IncludeThing>JapanMiner</IncludeThing>
+					</Filter>		
+					</DamageScalarDetails>
+					<DamageScalarDetails
+          Scalar= "200%">
+					<Filter 
+						Rule="NONE"
+						Include="INFANTRY" />
+				</DamageScalarDetails>
+				</DamageNugget>
+    <MetaImpactNugget
+     ShockWaveAmount="80.0"
+     ShockWaveRadius="125.0"
+     ShockWaveZMult="1.50" />
+		</Nuggets>
+	</WeaponTemplate>
+
+	<AttributeModifier
+		id="AttributeModifier_JapanHeavyAntiVehicleVehicleTech3RushAttack"
+		Duration="4s"
+                ObjectStatusToSet="SPECIALABILITY_ACTIVE"
+		ModelConditionsSet="USER_6">
+		<Modifier Type="SPEED" Value="200%" />
+		<Modifier Type="SUPPRESSABILITY" Value="99999"/>
+	</AttributeModifier>
+	<AttributeModifier
+		id="AttributeModifier_JapanHeavyAntiVehicleVehicleTech3Landed2"
+		Duration="1.5s"
+                ObjectStatusToSet="NO_ATTACK SCRAMBLED NON_AUTOACQUIRABLE IGNORE_AI_COMMAND"
+                ModelConditionsClear="USER_6"
+                ModelConditionsSet="USER_9">
+	</AttributeModifier>
+
+	<AttributeModifier
+		id="AttributeModifier_BeamAttackSlowSpeed"
+		Duration="1s">
+                <Modifier Type="SPEED" Value="0%" />
+	</AttributeModifier>
+</AssetDeclaration>

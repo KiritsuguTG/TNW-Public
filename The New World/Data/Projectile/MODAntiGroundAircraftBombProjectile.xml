@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="ART:Units/MODAntiGroundAircraft/MODAntiGroundAircraft_ROCKET.w3x"/>
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseProjectile.xml"/>
+	</Includes>
+	<GameObject
+		id="MODAntiGroundAircraftBombProjectile"
+		inheritFrom="BaseProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		EditorName="MODAntiGroundAircraftBombProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="MODAntiGroundAircraft_ROCKET" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="-5"
+				FirstHeightMax="-5"
+				SecondHeightMin="1"
+				SecondHeightMax="1"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				FlightPathAdjustDistPerSecond="5.0"
+				MaxDistanceToTravel="600.0"/>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_JapanBomber_BombExplosion" />
+				<Event
+					Index="onTerrainCollision"
+					FX=""/>
+			</FXListBehavior>
+		</Behaviors>
+	</GameObject>
+  <GameObject
+		inheritFrom="MODAntiGroundAircraftBombProjectile"
+		id="MODAntiGroundAircraftBombProjectile_Vet"
+		EditorName="MODAntiGroundAircraftBombProjectile_Vet">
+    <Draws>
+    </Draws>
+    <Behaviors>
+      <FXListBehavior
+				id="ModuleTag_FXList">
+        <DieMuxData
+					DeathTypes="ALL" />
+        <Event
+					Index="onDeath"
+					FX="FX_ALL_JapanBomber_BombExplosion_Vet" />
+      </FXListBehavior>
+    </Behaviors>
+  </GameObject>
+
+	<GameObject
+		id="MODAntiGroundAircraftUpgradeBombProjectile"
+		inheritFrom="BaseProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		EditorName="MODAntiGroundAircraftUpgradeBombProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="MODAntiGroundAircraft_ROCKET" />
+					<ParticleSysBone
+								  BoneName="NONE"
+								  FXParticleSystemTemplate="JapanFortRocketTrail"
+								  FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="5"
+				FirstHeightMax="5"
+				SecondHeightMin="5"
+				SecondHeightMax="5"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				FlightPathAdjustDistPerSecond="5"
+				MaxDistanceToTravel="800"
+				GroundHitFX="FX_SOV_Mig_MissileImpactGround" />
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_JapanBomber_BombExplosion" />
+				<Event
+					Index="onTerrainCollision"
+					FX=""/>
+			</FXListBehavior>
+		</Behaviors>
+	</GameObject>
+
+
+	<GameObject
+		id="MODAntiGroundAircraftUpgradeBombProjectile_Vet"
+		inheritFrom="BaseProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		EditorName="MODAntiGroundAircraftUpgradeBombProjectile_Vet">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="MODAntiGroundAircraft_ROCKET" />
+					<ParticleSysBone
+								  BoneName="NONE"
+								  FXParticleSystemTemplate="JapanFortRocketTrailVet"
+								  FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="5"
+				FirstHeightMax="5"
+				SecondHeightMin="5"
+				SecondHeightMax="5"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				FlightPathAdjustDistPerSecond="5"
+				MaxDistanceToTravel="800"/>
+			<FXListBehavior
+					  id="ModuleTag_FXList">
+				<DieMuxData
+							DeathTypes="ALL" />
+				<Event
+							Index="onDeath"
+							FX="FX_ALL_JapanBomber_BombExplosion_Vet" />
+			</FXListBehavior>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

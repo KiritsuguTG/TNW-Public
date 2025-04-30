@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<AIBuildStateDefinition
+    id="SiegeattackSpawnBuild">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>SiegeattackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="SovietAntiStructureVehicle" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="SovietAntiStructureShip" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="JapanAntiStructureVehicle" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="JapanAntiStructureShip" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="AlliedAntiStructureVehicle" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="AlliedAntiStructureShip" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="EUBeamVehicle" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="EUAntiStructureVehicle" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="EUAntiStructureShip" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="MODAntiStructureVehicle" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="StrategicArmyBomberAircraft" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="StrategicArmyAntiStructureVehicle" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="StrategicArmyAntiStructureShip" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+    id="RushSpawnBuild">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>RushattackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="SovietAntiVehicleVehicleTech1" Heuristic="FEWEST_UNIT" CountModifier="3.0"/>
+		<BuildEntry Build="SovietAntiVehicleVehicleTech3" Heuristic="FEWEST_UNIT" CountModifier="3.0"/>
+		<BuildEntry Build="JapanAntiVehicleVehicleTech1" Heuristic="FEWEST_UNIT" CountModifier="3.0"/>
+		<BuildEntry Build="JapanAntiVehicleVehicleTech3" Heuristic="FEWEST_UNIT" CountModifier="3.0"/>
+		<BuildEntry Build="AlliedAntiVehicleVehicleTech1" Heuristic="FEWEST_UNIT" CountModifier="3.0"/>
+		<BuildEntry Build="AlliedAntiVehicleVehicleTech3" Heuristic="FEWEST_UNIT" CountModifier="3.0"/>
+		<BuildEntry Build="EUAntiVehicleVehicleTech1" Heuristic="FEWEST_UNIT" CountModifier="3.0"/>
+		<BuildEntry Build="EUAntiVehicleVehicleTech3" Heuristic="FEWEST_UNIT" CountModifier="3.0"/>
+		<BuildEntry Build="MODAntiVehicleVehicleTech1" Heuristic="FEWEST_UNIT" CountModifier="3.0"/>
+		<BuildEntry Build="MODAntiVehicleVehicleTech3" Heuristic="FEWEST_UNIT" CountModifier="3.0"/>
+		<BuildEntry Build="StrategicArmyAntiVehicleVehicleTech1" Heuristic="FEWEST_UNIT" CountModifier="3.0"/>
+		<BuildEntry Build="StrategicArmyAntiVehicleVehicleTech3" Heuristic="FEWEST_UNIT" CountModifier="3.0"/>
+	</AIBuildStateDefinition>
+	
+	<AIBuildStateDefinition
+    id="EUKodiakDefence">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<EnemyNearbyHeuristic Distance="999999.0" EnemyNearby="true" MinEnemyValue="800">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>EUEpicUnit</IncludeThing>
+					<IncludeThing>EUKodiakSpwan</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>EUTechStructure</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="EUKodiakSpwan" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+    id="KodiakDefence">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<EnemyNearbyHeuristic Distance="999999.0" EnemyNearby="true" MinEnemyValue="800">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>AlliedEpicUnit</IncludeThing>
+					<IncludeThing>KodiakSpwan</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>AlliedTechStructure</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="KodiakSpwan" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	id="AIUseUnmiliWeaponBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="false"/>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="ENEMIES ALLIES"
+					Rule="NONE">
+					<IncludeThing>AIUseUnmiliWeapon</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic Weight="10.0"/>
+		</Heuristic>
+		<BuildEntry Upgrade="Upgrade_UnmiliWeapon" Heuristic="UPGRADE_TECH" MinTime="1s"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	id="AIUseUnmiliWeaponBuildStateA">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="ENEMIES ALLIES"
+					Rule="NONE">
+					<IncludeThing>AIUseUnmiliWeapon</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic Weight="10.0"/>
+		</Heuristic>
+		<BuildEntry Upgrade="Upgrade_UnmiliWeapon" Heuristic="UPGRADE_TECH" MinTime="1s"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="ShipYardTechStructureBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER"
+				  Rule="ANY"
+				  Include="TIBERIUM_BASED">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER"
+				  Rule="ANY"
+				  Include="VEHICLE"
+				  StatusBitFlags="WATER_LOCOMOTOR_ACTIVE OVER_WATER"
+				  StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<PathToTargetHeuristic Surface="Water" PathExists="true" ObjectTypeToUseForTest="TechStructureSalvageShip" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="TechStructureSalvageShip" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="GarageTechStructureBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER"
+				  Rule="ANY"
+				  Include="TIBERIUM_BASED">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER"
+				  Rule="ANY"
+				  Include="VEHICLE"
+				  StatusBitFlagsExclude="AIRBORNE_TARGET WATER_LOCOMOTOR_ACTIVE OVER_WATER">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<PathToTargetHeuristic Surface="Land" PathExists="true" ObjectTypeToUseForTest="CUAuto01" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="CUAuto01" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="HospitalTechStructureBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER"
+				  Rule="ANY"
+				  Include="TIBERIUM_BASED">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER"
+				  Rule="ANY"
+				  Include="INFANTRY">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<PathToTargetHeuristic Surface="Land" PathExists="true" ObjectTypeToUseForTest="TH_Auto04" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="TH_Auto04" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="GenericUpgradeAllPlayerTechBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER"
+				  Rule="ANY"
+				  Include="TIBERIUM_BASED">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+		</Heuristic>
+		<BuildEntry Build="GenericUpgradeAllSpeedUP" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="GenericUpgradeAllAttackUP" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="GenericUpgradeAllArmorUP" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+
+
+	<AIBuildStateDefinition
+	  id="AlliedDefenseBuildState001">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="500.0" EnemyNearby="true" MinEnemyValue="4000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="AlliedBaseDefense" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="AlliedDefenseBuildState002">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="750.0" EnemyNearby="true" MinEnemyValue="5000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="AlliedBaseDefenseAdvanced" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	
+	<AIBuildStateDefinition
+	  id="EUDefenseBuildState001">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="500.0" EnemyNearby="true" MinEnemyValue="4000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="EUBaseDefenseGround" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="AlliedDronePlant" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="EUDefenseBuildState002">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="750.0" EnemyNearby="true" MinEnemyValue="4000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlags="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="EUBaseDefenseAir" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+		id="SovietDefenseBuildState001">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="500.0" EnemyNearby="true" MinEnemyValue="4000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="SovietBaseDefenseGround" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="SovietDefenseBuildState002">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="500.0" EnemyNearby="true" MinEnemyValue="4000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlags="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="SovietBaseDefenseAir" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="SovietDefenseBuildState003">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="750.0" EnemyNearby="true" MinEnemyValue="5000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="SovietBaseDefenseAdvanced" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="StrategicArmyDefenseBuildState001">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="500.0" EnemyNearby="true" MinEnemyValue="5000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="SovietBaseDefenseAntiAll" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="StrategicArmyDefenseBuildState002">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE" >
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="750.0" EnemyNearby="true" MinEnemyValue="5000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="StrategicArmyBaseDefenseAdvanced" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="EnemyOnlyHaveAircraftBuildState_TNW">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false"
+			  Location="Land Water">
+				<ObjectFilter
+				  Relationship="ENEMIES"
+				  Rule="ANY"
+				  Include="CAN_ATTACK"
+				  Exclude="IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+				  StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Land Water">
+				<ObjectFilter
+				  Relationship="ENEMIES"
+				  Rule="ANY"
+				  Include="CAN_ATTACK"
+				  Exclude="IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+				  StatusBitFlags="AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="StrategicArmyFighterAircraft_AI" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="StrategicArmyAntiVehicleInfantry" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="StrategicArmyAntiAirShip" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="SovietAntiAirShip" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="SovietFighterAircraft" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="MODAntiVehicleInfantry" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="MODAntiAirVehicleTech1" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="MODFighterAircraft" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="JapanAntiAirShip" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="JapanAntiInfantryVehicle" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="JapanAntiAirVehicleTech1" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="EUAntiVehicleInfantry" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="EUAntiAirAircraft" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="EUAntiAirVehicleTech1" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="AlliedFighterAircraft" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="AlliedAntiAirShip" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="AlliedAntiAirVehicleTech1" Heuristic="FEWEST_UNIT" Score="100"/>
+		<BuildEntry Build="AlliedAntiVehicleInfantry" Heuristic="FEWEST_UNIT" Score="100"/>
+	</AIBuildStateDefinition>
+</AssetDeclaration>

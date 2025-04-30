@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="instance"
+			source="BaseVehicle.xml" />
+	</Includes>
+	<Defines>
+		<Define name="EGG_KINDOFS" value="EGG UNPACKS_INTO_BUILDING SELECTABLE CAN_CAST_REFLECTIONS VEHICLE FS_FACTORY EXPANSION_UNIT CAN_BE_FAVORITE_UNIT IGNORES_SELECT_ALL CYCLE_SELECTION AMPHIBIOUS SCORE" />
+    <Define name="BASE_DEFENSE_EGG_KINDOFS" value="EGG UNPACKS_INTO_BUILDING SELECTABLE CAN_CAST_REFLECTIONS VEHICLE EXPANSION_UNIT CAN_BE_FAVORITE_UNIT FS_BASE_DEFENSE EGG IGNORES_SELECT_ALL CYCLE_SELECTION AMPHIBIOUS" />
+  </Defines>
+	<GameObject
+		id="BaseEgg"
+		inheritFrom="BaseVehicle"
+		BountyValue="350"
+		EditorSorting="UNIT"
+		BuildTime="4"
+		ProductionQueueType="OTHER_STRUCTURE"
+		HealthBoxHeightOffset="60"
+		UnitIntro="Japan_Nanocore_UnitIntro">
+		<ArmorSet
+			Armor="BaseUnAttackVehicleArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="JapanEggLocomotor"
+			Condition="NORMAL"
+			Speed="65.0" />
+		<LocomotorSet
+			Locomotor="JapanEggWaterLocomotor"
+			Condition="NORMAL"
+			Speed="65.0" />
+		<LocomotorSet
+			id="JapanAntiAirVehicleTech1_AirLocomotor"
+			Locomotor="JapanAntiAirVehicleTech1_AirLocomotor"
+			Condition="SUPERSONIC"
+			Speed="65.0" />
+		<Draws>
+			<!--<ScriptedModelDraw
+				id="ModuleTagStlth_EggDraw"
+				OkToChangeModelColor="true"
+				InvertStealthOpacity="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUEGGSTLTH" />
+				</ModelConditionState>
+			</ScriptedModelDraw>-->
+			<ScriptedModelDraw
+				id="ModuleTag_Water_FX"
+				ExtraPublicBone="ROOTTRANSFORM">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER AIR_POWER_EFFECT">
+					<Model
+						Name="FXInvisBone" />
+					<ParticleSysBone
+						BoneName="InvisBone01"
+						FXParticleSystemTemplate="HelicopterMovingWaterWake"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="FXInvisBone" />
+					<ParticleSysBone
+						BoneName="InvisBone01"
+						FXParticleSystemTemplate="SVAntiAirShipWaterWake"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Fly_FX"
+				AttachToBoneInAnotherModule="GLOWHOVER">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AIR_POWER_EFFECT">
+					<Model
+						Name="FXInvisBone" />
+					<ParticleSysBone
+								  BoneName="InvisBone01"
+								  FXParticleSystemTemplate="JapanNanoGlow"
+								  FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics" />
+            <SpecialPower
+				id="ModuleTag_ToggleTransform"
+				SpecialPowerTemplate="SpecialPower_Egg_Transform"
+				UpdateModuleStartsAttack="true"/>
+            <ToggleStatusSpecialAbilityUpdate
+                      id="ModuleTag_ToggleTransformUpdate"
+                      Options="RECONSTITUTE_STORED_COMMAND"
+                      SpecialPowerTemplate="SpecialPower_Egg_Transform"
+					  TriggerAttributeModifier="AttributeModifier_JapanEggTransformation"
+					  AttributeModifierDuration="1.5s">
+                <ToggleState
+					LocomotorSet="NORMAL"
+					Upgrade="Upgrade_EggWater">
+                    <SkirmishAiInfo
+					ToggleHint="TOGGLE_DEFAULT"
+					NeverUseWhenClear="true">
+						<StateWeapon
+							Weapon="JapanAntiAirVehicleTech1_LandMissileLauncher"/>
+                    </SkirmishAiInfo>
+                </ToggleState>
+                <ToggleState
+					LocomotorSet="SUPERSONIC"
+					ModelConditions="AIR_POWER_EFFECT"
+					Upgrade="Upgrade_EggAir">
+                    <SkirmishAiInfo
+					ToggleHint="TOGGLE_TRANSFORM"
+                    NeverUseWhenClear="true">
+						<StateWeapon
+							Weapon="JapanAntiAirVehicleTech1_AirMissileLauncher" />
+                    </SkirmishAiInfo>
+                </ToggleState>
+            </ToggleStatusSpecialAbilityUpdate>
+			<AttributeModifierUpgrade
+					id="ModuleTag_JapanSpellBookUpgrade"
+					AttributeModifier="AttributeModifier_JapanSpellBookUpgradeNanoCore">
+				<TriggeredBy>JapanSpellBookUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgradeAir">
+				<TriggeredBy>Upgrade_EggWater</TriggeredBy>
+				<UpgradeToRemove>Upgrade_EggAir</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgradeWater">
+				<TriggeredBy>Upgrade_EggAir</TriggeredBy>
+				<UpgradeToRemove>Upgrade_EggWater</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<StancesBehavior
+				id="ModuleTag_Stance"
+				xai:joinAction="Remove" />
+			<FireWeaponUpdate
+				id="ModuleTag_DeBugFireWeaponUpdate"
+				FireInterval="1s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="DebugForzenShortCircuit"
+					OneShot="true" />
+				<ObjectStatusValidation
+					RequiredStatus="UNPACKING"/>
+			</FireWeaponUpdate>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<GrantUpgradeCreate
+				id="ModuleTag_ShowEggUnpack"
+				UpgradeToGrant="Upgrade_ShowEggUnpack"/>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech1.xml"/>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="JapanNanoCoreFunctions"/>
+		</Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="BOX"
+				MajorRadius="20.0"
+				MinorRadius="10.0"
+				Height="25.0"
+				ContactPointGeneration="VEHICLE" />
+		</Geometry>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine">
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="500.0" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_WaterEntrySplash">
+				<ModelConditionSound Sound="JAP_OreCollector_WaterSplashMS" RequiredFlags="OVER_WATER" ExcludedFlags="AIR_POWER_EFFECT DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_Unpack">
+				<ModelConditionSound Sound="JAP_Nanocore_DeployLoop" RequiredFlags="UNPACKING" ExcludedFlags="AIR_POWER_EFFECT DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="JAP_Nanocore_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="20.0"
+				MinorRadius="10.0"
+				Height="25.0"
+				ContactPointGeneration="VEHICLE" />
+		</Geometry>
+		<CrusherInfo
+				id="id_CrusherInfo"
+				CrusherLevel="20"
+				CrushableLevel="25"
+				CrushDecelerationPercent="80%"
+				CrushEqualLevelProps="true">
+				<ExtraCrushLevels CrusherLevel="0" CrushableLevel="25" ModelConditionMatch="OVER_WATER"/>		
+		</CrusherInfo>		
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_Nanocore_IdleLoop" AudioType="soundAmbient" />
+			<AudioEntry Sound="JAP_Nanocore_MoveByLoop" AudioType="soundMoveLoop" />
+			<AudioEntry Sound="JAP_Nanocore_MoveStart" AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="NanocoreLost" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="NanocoreUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="StructurePlacementFailed" EvaType="placementFailed" />
+		</EvaEventArray>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="300" />
+	</GameObject>			
+</AssetDeclaration>

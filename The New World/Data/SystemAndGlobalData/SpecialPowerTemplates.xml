@@ -1,0 +1,3531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<SpecialPowerTemplate
+		id="SpecialPowerIronCurtain"
+		TimerImage="Button_PlayerPower_IronCurtain"
+		DisplayName="NAME:SuperweaponTimerIronCurtain"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="SOV_IronCurtain_Cast"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		EvaEventToPlayOnInitiateEnemy="WarnIronCurtainActivated"
+		RadiusCursorRadius="100"
+		RestrictionType="1"
+		Flags="NO_FORBIDDEN_OBJECTS HAS_PUBLIC_TIMER IS_PLAYER_POWER WATER_OK">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Exclude="STRUCTURE INFANTRY VEHICLE">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerNanoSwarmHive"
+		ReloadTime="180s"
+		DisplayName="NAME:SuperweaponTimerNanoswarm"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="JAP_NanoSwarm_Fire"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		EvaEventToPlayOnInitiateEnemy="WarnNanoswarmActivated"
+		RadiusCursorRadius="200"
+		TimerImage="Button_PlayerPower_Nanoswarm"
+		ForbiddenObjectRange="200"
+		RestrictionType="1"
+		Flags="NO_FORBIDDEN_OBJECTS HAS_PUBLIC_TIMER IS_PLAYER_POWER FOGGED_SHROUDED_CELLS_OK WATER_OK IGNORE_MAP_EXTENTS">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Exclude="STRUCTURE INFANTRY VEHICLE">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerSovietGTWave"
+		TargetType="LOCATION"
+		ReloadTime="180s"
+		RadiusCursorRadius="200"
+		DisplayName="NAME:SovietGTWave"
+		InitiateAtLocationSound="SovietGTWaveEffectSound"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		RequiredPlayerTech="PlayerTech_Soviet_GTWaveEffect"
+		ForbiddenObjectRange="200"
+		RestrictionType="1"
+		Flags="NO_FORBIDDEN_OBJECTS IS_PLAYER_POWER IGNORE_MAP_EXTENTS WATER_OK">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Exclude="STRUCTURE INFANTRY VEHICLE MACHINE">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Soviet_SovietGTWave_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_IrradiateTarget"
+		TargetType="OBJECT"
+		ReloadTime="120s"
+		Flags="NEEDS_OBJECT_FILTER IS_PLAYER_POWER TARGET_NEEDS_OBJECT_STATUS"
+		DisallowedTargetObjectStatus="IN_NANOHIVE NOT_IN_WORLD SOLD RIFT_OCCUPIED IRRADIATED AIRBORNE_TARGET DOES_CONTAIN_TIBERIUM"
+		RequiredPlayerTech="PlayerTech_Soviet_IrradiateTarget"
+		EvaEventToPlayWhenSelectingTarget="SelectUnit"
+		WaypointModeTerminal="false">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE SHIP"
+			Exclude="AIRCRAFT MACHINE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET IN_NANOHIVE NOT_IN_WORLD IRRADIATED DOES_CONTAIN_TIBERIUM RIFT_OCCUPIED">
+			<ExcludeThing>MODNanoFlyMaster</ExcludeThing>
+		</ObjectFilter>
+		<GameDependency
+			id="Soviet_IrradiateTarget_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_SovietPower"
+		TargetType="OBJECT"
+		ReloadTime="60s"
+		Flags="NEEDS_OBJECT_FILTER IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM TARGET_NEEDS_OBJECT_STATUS"
+		DisallowedTargetObjectStatus="IN_NANOHIVE NOT_IN_WORLD SOLD DOES_CONTAIN_TIBERIUM RIFT_OCCUPIED IRRADIATED AIRBORNE_TARGET"
+		RequiredPlayerTech="PlayerTech_Soviet_SovietPower"
+		EvaEventToPlayWhenSelectingTarget="SelectUnit"
+		WaypointModeTerminal="false">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE SHIP"
+			Exclude="AIRCRAFT MACHINE MONSTER"
+			StatusBitFlagsExclude="IN_NANOHIVE NOT_IN_WORLD SOLD DOES_CONTAIN_TIBERIUM RIFT_OCCUPIED IRRADIATED AIRBORNE_TARGET">
+			<ExcludeThing>StrategicArmyScoutVehicle</ExcludeThing>
+			<ExcludeThing>MODNanoFlyMaster</ExcludeThing>
+		</ObjectFilter>
+		<GameDependency
+			id="Soviet_SovietPower_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_SovietPowerAI"
+		TargetType="LOCATION"
+		ReloadTime="60s"
+		Flags="NEEDS_OBJECT_FILTER IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM"
+		RadiusCursorRadius="1"
+		RequiredPlayerTech="PlayerTech_Soviet_SovietPower"
+		WaypointModeTerminal="false">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE SHIP"
+			Exclude="AIRCRAFT MONSTER MACHINE"
+			StatusBitFlagsExclude="IN_NANOHIVE NOT_IN_WORLD SOLD DOES_CONTAIN_TIBERIUM RIFT_OCCUPIED IRRADIATED AIRBORNE_TARGET">
+			<ExcludeThing>StrategicArmyScoutVehicle</ExcludeThing>
+			<ExcludeThing>MODNanoFlyMaster</ExcludeThing>
+		</ObjectFilter>
+		<GameDependency
+			id="Soviet_SovietPowerAI_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_SpaceStron"
+		TargetType="OBJECT"
+		ReloadTime="120s"
+		Flags="NEEDS_OBJECT_FILTER IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM TARGET_NEEDS_OBJECT_STATUS NO_FORBIDDEN_MODEL_STATES"
+		DisallowedTargetModelStates="SOLD STRUCTURE_UNPACKING UNPACKING AFFECTED_BY_EMP PARALYZED UNDERPOWERED FROZEN IRONCURTAIN CHRONORIFT"
+		DisallowedTargetObjectStatus="IN_NANOHIVE NOT_IN_WORLD SOLD UNPACKING UNDER_IRON_CURTAIN HAS_TIBERIUM_UPGRADE UNDER_CONSTRUCTION RIFT_OCCUPIED"
+		RequiredPlayerTech="PlayerTech_Soviet_SpaceStron"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		WaypointModeTerminal="false">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="STRUCTURE"
+			StatusBitFlagsExclude="IN_NANOHIVE NOT_IN_WORLD SOLD UNPACKING UNDER_IRON_CURTAIN HAS_TIBERIUM_UPGRADE UNDER_CONSTRUCTION RIFT_OCCUPIED">
+		</ObjectFilter>
+		<GameDependency
+			id="Soviet_SpaceStron_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_SpaceStronAI"
+		TargetType="LOCATION"
+		ReloadTime="120s"
+		Flags="NEEDS_OBJECT_FILTER IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM TARGET_NEEDS_OBJECT_STATUS NO_FORBIDDEN_MODEL_STATES"
+		DisallowedTargetModelStates="SOLD STRUCTURE_UNPACKING UNPACKING AFFECTED_BY_EMP PARALYZED UNDERPOWERED FROZEN IRONCURTAIN CHRONORIFT"
+		DisallowedTargetObjectStatus="IN_NANOHIVE NOT_IN_WORLD SOLD UNPACKING UNDER_IRON_CURTAIN HAS_TIBERIUM_UPGRADE UNDER_CONSTRUCTION RIFT_OCCUPIED"
+		RequiredPlayerTech="PlayerTech_Soviet_SpaceStron"
+		WaypointModeTerminal="false">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="STRUCTURE"
+			StatusBitFlagsExclude="IN_NANOHIVE NOT_IN_WORLD SOLD UNPACKING UNDER_IRON_CURTAIN HAS_TIBERIUM_UPGRADE UNDER_CONSTRUCTION RIFT_OCCUPIED">
+		</ObjectFilter>
+		<GameDependency
+			id="Soviet_SpaceStron_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_TriggerEMPCruiseMissle"
+		ReloadTime="60s"
+		TargetType="LOCATION"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceEMP"
+		InitiateSound="ALL_AircraftCarrier_BlackoutMissileLaunch"
+		RadiusCursorRadius="150"
+		Flags="CANNOT_LEAVE_ENCLOSURE WATER_OK TARGET_NEEDS_OBJECT_STATUS NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		DisallowedTargetObjectStatus="SUBMERGED"
+		WaypointModeTerminal="false"
+		MaxCastRange="1250">
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerSuppression"
+		TargetType="OBJECT"
+		ReloadTime="2s"
+		DisplayName="NAME:Suppression"
+		EvaEventToPlayWhenSelectingTarget="SelectUnit"
+		RequiredPlayerTech="PlayerTech_Japan_Suppression"
+		Flags="NEEDS_OBJECT_FILTER IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM TARGET_NEEDS_OBJECT_STATUS NO_FORBIDDEN_MODEL_STATES"
+		DisallowedTargetModelStates="EMOTION_PANIC SOLD STRUCTURE_UNPACKING UNPACKING AFFECTED_BY_EMP PARALYZED UNDERPOWERED FROZEN CHRONORIFT"
+		DisallowedTargetObjectStatus="POWERED_DOWN_EMP NOT_IN_WORLD SOLD UNPACKING HAS_TIBERIUM_UPGRADE DOES_CONTAIN_TIBERIUM UNDER_IRON_CURTAIN MARCH_OF_DEATH UNDER_CONSTRUCTION RIFT_OCCUPIED UNDER_FROZEN">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="EGG STRUCTURE"
+			Exclude="TACTICAL_MARKER ORE_NODE NEUTRAL_TECH CIVILIAN_BUILDING">
+			<ExcludeThing>AlliedConstructionYard</ExcludeThing>
+			<ExcludeThing>EUConstructionYard</ExcludeThing>
+			<ExcludeThing>JapanConstructionYard</ExcludeThing>
+			<ExcludeThing>MODConstructionYard</ExcludeThing>
+			<ExcludeThing>SovietConstructionYard</ExcludeThing>
+			<ExcludeThing>StrategicArmyConstructionYard</ExcludeThing>
+		</ObjectFilter>
+		<GameDependency
+			id="Japan_Suppression_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerDeathSpawn"
+		TargetType="LOCATION"
+		ReloadTime="60s"
+		RadiusCursorRadius="200"
+		ForbiddenObjectRange="0"
+		DisplayName="NAME:DeathSpawn"
+		RestrictionType="1"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		Flags="IS_PLAYER_POWER IGNORE_MAP_EXTENTS SHARED_SYNC WATER_OK NOT_IN_NANOSWARM"
+		RequiredPlayerTech="PlayerTech_Japan">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Exclude="STRUCTURE INFANTRY VEHICLE MACHINE">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Japan_DeathSpawn_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP UNPACKING">
+				<IncludeThing>MODVIPStructure</IncludeThing>
+				<IncludeThing>JapanVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerJapanNanoFly"
+		ReloadTime="150s"
+		TargetType="LOCATION"
+		DisplayName="NAME:NanoFly"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		RadiusCursorRadius="50"
+		RestrictionType="1"
+		Flags="PATHABLE_ONLY IS_PLAYER_POWER NOT_IN_NANOSWARM WATER_OK IGNORE_MAP_EXTENTS NOT_ON_BRIDGE"
+		RequiredPlayerTech="PlayerTech_Japan_NanoFly">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Exclude="STRUCTURE INFANTRY VEHICLE MACHINE">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Japan_NanoFly_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerEVAAttack"
+		TargetType="OBJECT"
+		DisplayName="NAME:EVAAttack"
+		ReloadTime="150s"
+		Flags="NEEDS_OBJECT_FILTER IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM TARGET_NEEDS_OBJECT_STATUS NO_FORBIDDEN_MODEL_STATES"
+		DisallowedTargetModelStates="SOLD STRUCTURE_UNPACKING UNPACKING UNDERPOWERED FROZEN CHRONORIFT"
+		DisallowedTargetObjectStatus="NOT_IN_WORLD SOLD UNPACKING HAS_TIBERIUM_UPGRADE MARCH_OF_DEATH UNDER_CONSTRUCTION RIFT_OCCUPIED UNDER_FROZEN PLAYER_POWER_4 IN_NANOHIVE"
+		RequiredPlayerTech="PlayerTech_Japan_EVAAttack"
+		InitiateAtLocationSound="JUEVAAttack_Start"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		WaypointModeTerminal="false">
+		<ObjectFilter
+			Rule="NONE"
+			Relationship="ALLIES"
+			Include="FS_FACTORY"
+			Exclude="FS_POWER FS_TECHNOLOGY"
+			StatusBitFlagsExclude="NOT_IN_WORLD SOLD UNPACKING MARCH_OF_DEATH RIFT_OCCUPIED UNDER_FROZEN PLAYER_POWER_4 IN_NANOHIVE">
+		</ObjectFilter>
+		<GameDependency
+			id="Japan_EVAAttack_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoTheWorld"
+		TargetType="LOCATION"
+		ReloadTime="150s"
+		RadiusCursorRadius="100"
+		DisplayName="NAME:TheWorld"
+		RestrictionType="1"
+		InitiateAtLocationSound="AUMothe_weaPowerupa"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		RequiredPlayerTech="PlayerTech_Allied_TheWorld"
+		Flags="IS_PLAYER_POWER WATER_OK IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM">
+		<GameDependency
+			id="Allied_ChronoTheWorld_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerOutPutSP"
+		TargetType="LOCATION"
+		ReloadTime="180s"
+		RadiusCursorRadius="30"
+		DisplayName="NAME:OutPutSP"
+		RestrictionType="1"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		RequiredPlayerTech="PlayerTech_Allied_OutPutSP"
+		Flags="IS_PLAYER_POWER WATER_OK IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM NO_FORBIDDEN_OBJECTS">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE" />
+		<GameDependency
+			id="Allied_OutPutSP_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPlayerPowerParadropAllied"
+		ReloadTime="135s"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="120"
+		RestrictionType="1"
+		Flags="IS_PLAYER_POWER PATHABLE_ONLY NO_FORBIDDEN_OBJECTS"
+		RequiredPlayerTech="PlayerTech_Allied_Paradrop"
+		WaypointModeTerminal="false"
+		ForbiddenObjectRange="70">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Allied_Paradrop_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_ProductionKickbacks"
+		TargetType="LOCATION"
+		ReloadTime="120s"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS NEEDS_OBJECT_FILTER"
+		RadiusCursorRadius="100"
+		RestrictionType="1"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		RequiredPlayerTech="PlayerTech_Soviet_ProductionKickbacks">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES ENEMIES NEUTRAL"
+			Include="VEHICLE STRUCTURE COMMANDO INFANTRY"
+			Exclude="MACHINE UNATTACKABLE NO_COLLIDE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET NOT_IN_WORLD SOLD">
+		</ObjectFilter>
+		<GameDependency
+			id="Soviet_ProductionKickbacks_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerJapanAmbush"
+		ReloadTime="90s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="JAP_Powers_SleeperAmbush_Initiate"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		RadiusCursorRadius="50"
+		RestrictionType="1"
+		Flags="PATHABLE_ONLY NOT_CLIFF_CELL IS_PLAYER_POWER NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		RequiredPlayerTech="PlayerTech_Japan_Ambush">
+		<GameDependency
+			id="Japan_Ambush_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerJapanEmperorsResolve_L1"
+		ReloadTime="150s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="JAP_EmperorsRage"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="=$JAPAN_EMPERORS_RAGE_RADIUS_LEVEL_1"
+		Flags="IS_PLAYER_POWER WATER_OK IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM NEEDS_OBJECT_FILTER"
+		RequiredPlayerTech="PlayerTech_Japan_EmperorsRage_Rank1"
+		RestrictionType="1">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES ENEMIES NEUTRAL"
+			Include="INFANTRY VEHICLE SHIP"
+			Exclude="STRUCTURE MACHINE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET NOT_IN_WORLD NO_COLLISIONS" />
+		<GameDependency
+			id="Japan_EmperorsResolveL1_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Japan_EmperorsRage_Rank2</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Japan_EmperorsRage_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerJapanEmperorsResolve_L2"
+		ReloadTime="150s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="JAP_EmperorsResolve"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="=$JAPAN_EMPERORS_RAGE_RADIUS_LEVEL_2"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS NEEDS_OBJECT_FILTER"
+		RequiredPlayerTech="PlayerTech_Japan_EmperorsRage_Rank2"
+		RestrictionType="1">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES ENEMIES NEUTRAL"
+			Include="INFANTRY VEHICLE SHIP"
+			Exclude="STRUCTURE MACHINE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET NOT_IN_WORLD NO_COLLISIONS" />
+		<GameDependency
+			id="Japan_EmperorsResolveL2_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Japan_EmperorsRage_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerJapanEmperorsResolve_L3"
+		ReloadTime="150s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="JAP_EmperorsRetribution"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="=$JAPAN_EMPERORS_RAGE_RADIUS_LEVEL_3"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS NEEDS_OBJECT_FILTER"
+		RequiredPlayerTech="PlayerTech_Japan_EmperorsRage_Rank3"
+		RestrictionType="1">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES ENEMIES NEUTRAL"
+			Include="INFANTRY VEHICLE SHIP"
+			Exclude="STRUCTURE MACHINE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET NOT_IN_WORLD NO_COLLISIONS" />
+		<GameDependency
+			id="Japan_EmperorsResolveL3_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerJapanBalloonAttack_L1"
+		ReloadTime="150s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="JAP_BalloonBomb_CastMono"
+		RadiusCursorRadius="100"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		RequiredPlayerTech="PlayerTech_Japan_BalloonAttack_Rank1"
+		RestrictionType="1">
+		<GameDependency
+			id="Japan_BalloonAttackL1_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Japan_BalloonAttack_Rank2</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Japan_BalloonAttack_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerJapanBalloonAttack_L2"
+		ReloadTime="150s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="JAP_BalloonBomb_CastMono"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		RadiusCursorRadius="150"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		RequiredPlayerTech="PlayerTech_Japan_BalloonAttack_Rank2"
+		RestrictionType="1">
+		<GameDependency
+			id="Japan_BalloonAttackL2_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Japan_BalloonAttack_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerJapanBalloonAttack_L3"
+		ReloadTime="150s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="JAP_BalloonBomb_CastStereo"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		RadiusCursorRadius="200"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		RequiredPlayerTech="PlayerTech_Japan_BalloonAttack_Rank3"
+		RestrictionType="1">
+		<GameDependency
+			id="Japan_BalloonAttackL3_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerFinalSquadron_L1"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		InitiateSound="JAP_FinalSquadron1_SirenMS"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		RadiusCursorRadius="45"
+		Flags="IS_PLAYER_POWER WATER_OK IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM"
+		RequiredPlayerTech="PlayerTech_Japan_FinalSquadron_Rank1"
+		RestrictionType="1">
+		<GameDependency
+			id="Japan_FinalSquadronRank1_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Japan_FinalSquadron_Rank2</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Japan_FinalSquadron_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerFinalSquadron_L2"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		InitiateSound="JAP_FinalSquadron2_SirenMS"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		RadiusCursorRadius="60"
+		Flags="IS_PLAYER_POWER WATER_OK IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM"
+		RequiredPlayerTech="PlayerTech_Japan_FinalSquadron_Rank2"
+		RestrictionType="1">
+		<GameDependency
+			id="Japan_FinalSquadronRank2_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Japan_FinalSquadron_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerFinalSquadron_L3"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		InitiateSound="JAP_FinalSquadron3_SirenStereoMS"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		RadiusCursorRadius="75"
+		Flags="IS_PLAYER_POWER WATER_OK IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM"
+		RequiredPlayerTech="PlayerTech_Japan_FinalSquadron_Rank3"
+		RestrictionType="1">
+		<GameDependency
+			id="Japan_FinalSquadronRank3_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerMagneticSatelliteLvl1"
+		ReloadTime="150s"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		InitiateAtLocationSound="SOV_MagneticSatellite3_StartMS"
+		RadiusCursorRadius="30"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		RequiredPlayerTech="PlayerTech_Soviet_MagneticSatellite_Rank_1"
+		RestrictionType="1">
+		<GameDependency
+			id="Soviet_MagneticSatelliteLvl1_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Soviet_MagneticSatellite_Rank_2</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Soviet_MagneticSatellite_Rank_3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerMagneticSatelliteLvl2"
+		ReloadTime="150s"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		InitiateAtLocationSound="SOV_MagneticSatellite3_StartMS"
+		RadiusCursorRadius="40"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		RequiredPlayerTech="PlayerTech_Soviet_MagneticSatellite_Rank_2"
+		RestrictionType="1">
+		<GameDependency
+			id="Soviet_MagneticSatelliteLvl2_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Soviet_MagneticSatellite_Rank_3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerMagneticSatelliteLvl3"
+		ReloadTime="150s"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		InitiateAtLocationSound="SOV_MagneticSatellite3_StartMS"
+		RadiusCursorRadius="50"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		RequiredPlayerTech="PlayerTech_Soviet_MagneticSatellite_Rank_3"
+		RestrictionType="1">
+		<GameDependency
+			id="Soviet_MagneticSatelliteLvl3_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerOrbitalRefuse_Rank1"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="75"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		RequiredPlayerTech="PlayerTech_Soviet_OrbitalRefuse_Rank1"
+		RestrictionType="1">
+		<GameDependency
+			id="Soviet_OrbitalRefuseRank1_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Soviet_OrbitalRefuse_Rank2</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Soviet_OrbitalRefuse_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerOrbitalRefuse_Rank2"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="125"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		RequiredPlayerTech="PlayerTech_Soviet_OrbitalRefuse_Rank2"
+		RestrictionType="1">
+		<GameDependency
+			id="Soviet_OrbitalRefuseRank2_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Soviet_OrbitalRefuse_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerOrbitalRefuse_Rank3"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="175"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		RequiredPlayerTech="PlayerTech_Soviet_OrbitalRefuse_Rank3"
+		RestrictionType="1">
+		<GameDependency
+			id="Soviet_OrbitalRefuseRank3_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerTimeBombLvl1"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="20"
+		Flags="IS_PLAYER_POWER WATER_OK PATHABLE_ONLY NOT_IN_NANOSWARM NO_FORBIDDEN_OBJECTS IGNORE_MAP_EXTENTS"
+		ForbiddenObjectRange="20"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RequiredPlayerTech="PlayerTech_Allied_TimeBomb_Rank1"
+		RestrictionType="1">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE" />
+		<GameDependency
+			id="Allied_TimeBombLvl1_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Allied_TimeBomb_Rank2</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Allied_TimeBomb_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerTimeBombLvl2"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="25"
+		Flags="IS_PLAYER_POWER WATER_OK PATHABLE_ONLY NOT_IN_NANOSWARM NO_FORBIDDEN_OBJECTS IGNORE_MAP_EXTENTS"
+		ForbiddenObjectRange="25"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RequiredPlayerTech="PlayerTech_Allied_TimeBomb_Rank2"
+		RestrictionType="1">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE" />
+		<GameDependency
+			id="Allied_TimeBombLvl2_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Allied_TimeBomb_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerTimeBombLvl3"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="30"
+		Flags="IS_PLAYER_POWER WATER_OK PATHABLE_ONLY NOT_IN_NANOSWARM NO_FORBIDDEN_OBJECTS IGNORE_MAP_EXTENTS"
+		ForbiddenObjectRange="30"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RequiredPlayerTech="PlayerTech_Allied_TimeBomb_Rank3"
+		RestrictionType="1">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE" />
+		<GameDependency
+			id="Allied_TimeBombLvl3_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+
+	<!-- aka Cryoblest -->
+	<SpecialPowerTemplate
+		id="SpecialPowerCryoSatelliteLvl1"
+		ReloadTime="150s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="75"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		RequiredPlayerTech="PlayerTech_Allied_CryoSatellite_Rank1"
+		RestrictionType="1">
+		<GameDependency
+			id="Allied_CryoSatelliteLvl1_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Allied_CryoSatellite_Rank2</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Allied_CryoSatellite_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<!-- aka Cryoblast -->
+	<SpecialPowerTemplate
+		id="SpecialPowerCryoSatelliteLvl2"
+		ReloadTime="150s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="100"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		RequiredPlayerTech="PlayerTech_Allied_CryoSatellite_Rank2"
+		RestrictionType="1">
+		<GameDependency
+			id="Allied_CryoSatelliteLvl2_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Allied_CryoSatellite_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<!-- aka Cryogeddon -->
+	<SpecialPowerTemplate
+		id="SpecialPowerCryoSatelliteLvl3"
+		ReloadTime="150s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="200"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		RequiredPlayerTech="PlayerTech_Allied_CryoSatellite_Rank3"
+		RestrictionType="1">
+		<GameDependency
+			id="Allied_CryoSatelliteLvl3_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_ShrinkRay"
+		ReloadTime="25s"
+		TargetType="OBJECT"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceShrinkRay"
+		Flags="NEEDS_OBJECT_FILTER CANNOT_LEAVE_ENCLOSURE"
+		WaypointModeTerminal="false">
+		<ObjectFilter
+			Rule="ANY"
+			Include="VEHICLE"
+			Exclude="AIRCRAFT MACHINE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET NOT_IN_WORLD UNDER_IRON_CURTAIN">
+			<ExcludeThing>JapanMechaKing</ExcludeThing>
+			<ExcludeThing>StrategicArmyScoutVehicle</ExcludeThing>
+			<ExcludeThing>StrategicArmyMoveBunker</ExcludeThing>
+			<ExcludeThing>MODNanoFlyMaster</ExcludeThing>
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_PilotSnipe"
+		ReloadTime="60s"
+		TargetType="OBJECT"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceInitiatePilotSnipe"
+		Flags="NEEDS_OBJECT_FILTER CANNOT_LEAVE_ENCLOSURE"
+		WaypointModeTerminal="false">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ENEMIES"
+			Include="VEHICLE"
+			Exclude="AIRCRAFT INFANTRY EGG COMMANDO MACHINE"
+			StatusBitFlagsExclude="UNDER_IRON_CURTAIN TRANSFORMATION_TOGGLE_STATE">
+			<ExcludeThing>JapanMechaKing</ExcludeThing>
+			<ExcludeThing>JapanFortressShip</ExcludeThing>
+			<ExcludeThing>StrategicArmyScoutVehicle</ExcludeThing>
+			<ExcludeThing>GDIMARVBase</ExcludeThing>
+			<ExcludeThing>SovietEpicUnit</ExcludeThing>
+			<ExcludeThing>JapanEmperorMecha</ExcludeThing>
+			<ExcludeThing>EUScoutAntiInfantryVehicle</ExcludeThing>
+			<ExcludeThing>MODNanoFlyMaster</ExcludeThing>
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_FarPrismCannon"
+		ReloadTime="30s"
+		TargetType="OBJECT"
+		Flags="NEEDS_OBJECT_FILTER CANNOT_LEAVE_ENCLOSURE LIMIT_DISTANCE"
+		WaypointModeTerminal="false"
+		MaxCastRange="475">
+		<ObjectFilter
+			Rule="ALL"
+			Relationship="ENEMIES"
+			StatusBitFlagsExclude="UNDER_IRON_CURTAIN AIRBORNE_TARGET">
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_DesolatorBomb_Base"
+		TargetType="LOCATION"
+		ReloadTime="180s"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		Flags="IS_PLAYER_POWER WATER_OK CANNOT_LEAVE_ENCLOSURE IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM"
+		RadiusCursorRadius="150"
+		RestrictionType="1" />
+	<SpecialPowerTemplate
+		id="SpecialPower_DesolatorBomb_Level1"
+		inheritFrom="SpecialPower_DesolatorBomb_Base"
+		RequiredPlayerTech="PlayerTech_Soviet_DesolatorBomb_Rank1">
+		<GameDependency
+			id="Soviet_DesolatorBombLevel1_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Soviet_DesolatorBomb_Rank2</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Soviet_DesolatorBomb_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_DesolatorBomb_Level2"
+		inheritFrom="SpecialPower_DesolatorBomb_Base"
+		RequiredPlayerTech="PlayerTech_Soviet_DesolatorBomb_Rank2">
+		<GameDependency
+			id="Soviet_DesolatorBombLevel2_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Soviet_DesolatorBomb_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_DesolatorBomb_Level3"
+		inheritFrom="SpecialPower_DesolatorBomb_Base"
+		RequiredPlayerTech="PlayerTech_Soviet_DesolatorBomb_Rank3">
+		<GameDependency
+			id="Soviet_DesolatorBombLevel3_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_StrategicArmyIronStorm"
+		TargetType="LOCATION"
+		ReloadTime="180s"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		RequiredPlayerTech="PlayerTech_Soviet"
+		Flags="IS_PLAYER_POWER WATER_OK CANNOT_LEAVE_ENCLOSURE IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM"
+		RadiusCursorRadius="150"
+		RestrictionType="1" />
+
+	<SpecialPowerTemplate
+		id="SpecialPowerPrecisionStrike"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="50"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		RequiredPlayerTech="PlayerTech_Allied_PrecisionStrike"
+		RestrictionType="1">
+		<GameDependency
+			id="Allied_PrecisionStrike_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_Bribe"
+		ReloadTime="10s"
+		Money="-1000"
+		TargetType="NONE"
+		InitiateSound="ALL_Spy_Bribe"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceBribe"
+		Flags="NEEDS_OBJECT_FILTER"
+		WaypointModeTerminal="false">
+		<!-- Heroic units are excluded from bribes by setting the NO_BRIBE flag on them when they
+		turn heroic -->
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ENEMIES"
+			Include="INFANTRY AIRCRAFT VEHICLE SHIP"
+			Exclude="EGG MCV STRUCTURE HARVESTER COMMANDO INFILTRATOR MACHINE"
+			StatusBitFlagsExclude="AIRBORNE_TARGET SUBMERGED NO_BRIBE">
+			<ExcludeThing>AlliedCommandoTech1</ExcludeThing>
+			<ExcludeThing>AlliedInfiltrationInfantry</ExcludeThing>
+			<ExcludeThing>AlliedScoutInfantry</ExcludeThing>
+			<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+			<ExcludeThing>AlliedEpicUnit</ExcludeThing>
+			<ExcludeThing>SovietCommandoTech1</ExcludeThing>
+			<ExcludeThing>SovietSurveyor</ExcludeThing>
+			<ExcludeThing>SovietScoutInfantry</ExcludeThing>
+			<ExcludeThing>SovietScoutVehicle</ExcludeThing>
+			<ExcludeThing>EUScoutVehicle</ExcludeThing>
+			<ExcludeThing>GDIMARVBase</ExcludeThing>
+			<ExcludeThing>JapanCommandoTech1</ExcludeThing>
+			<ExcludeThing>JapanInfiltrationInfantry</ExcludeThing>
+			<ExcludeThing>JapanScoutInfantry</ExcludeThing>
+			<ExcludeThing>JapanFortressShip</ExcludeThing>
+			<ExcludeThing>SovietEpicUnit</ExcludeThing>
+			<ExcludeThing>JapanEmperorYoshiro</ExcludeThing>
+			<ExcludeThing>EUScoutAntiInfantryVehicle</ExcludeThing>
+			<ExcludeThing>MODNanoFlyMaster</ExcludeThing>
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_PointDefenseDrones"
+		TargetType="LOCATION"
+		ReloadTime="120s"
+		Flags="IS_PLAYER_POWER WATER_OK NEEDS_OBJECT_FILTER NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		RadiusCursorRadius="100"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		RequiredPlayerTech="PlayerTech_Japan_PointDefenseDrones"
+		RestrictionType="1">
+		<!-- this objfilter must be the same as the one in the PlayerPowerPointDefenseDronesWeapon
+		Weapon -->
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE SHIP INFANTRY"
+			Exclude="AIRCRAFT MACHINE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET IN_NANOHIVE NOT_IN_WORLD POINT_DEFENSE_DRONE_ATTACHED">
+			<ExcludeThing>JapanPointDefenseDrone</ExcludeThing>
+			<ExcludeThing>JapanUpgradePointDefenseDrone</ExcludeThing>
+			<ExcludeThing>MODPointDefenseDrone</ExcludeThing>
+			<ExcludeThing>MODUpgradePointDefenseDrone</ExcludeThing>
+		</ObjectFilter>
+		<GameDependency
+			id="Japan_PointDefenseDrones_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<!--<SpecialPowerTemplate
+	id="SpecialPower_InfantryPointDefenseDrones"
+	TargetType="LOCATION"
+	ReloadTime="60s"
+	Flags="IS_PLAYER_POWER WATER_OK NEEDS_OBJECT_FILTER NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+	RadiusCursorRadius="100"
+	EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+	RequiredPlayerTech="PlayerTech_Japan_PointDefenseDrones"
+	RestrictionType="1">
+		<ObjectFilter
+					 Rule="ANY"
+					 Relationship="ALLIES"
+					 Include="INFANTRY"
+					 Exclude="VEHICLE AIRCRAFT SUBMARINE MACHINE"
+					 StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET IN_NANOHIVE NOT_IN_WORLD
+	POINT_DEFENSE_DRONE_ATTACHED CLONED">
+			<IncludeThing>StrategicArmyScoutVehicle</IncludeThing>
+			<ExcludeThing>MODPointDefenseDrone</ExcludeThing>
+			<ExcludeThing>MODUpgradePointDefenseDrone</ExcludeThing>
+		</ObjectFilter>
+		<GameDependency
+			id="MOD_PointDefenseDrones_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP CLONED">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_JapanPlayerPower</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>-->
+	<SpecialPowerTemplate
+		id="SpecialPowerMagneticSingularity"
+		ReloadTime="160s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="200"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		InitiateAtLocationSound="SOV_MagneticSatellite4_StartMS"
+		RequiredPlayerTech="PlayerTech_Soviet_MagneticSingularity"
+		RestrictionType="1">
+		<GameDependency
+			id="Soviet_MagneticSingularity_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerSatelliteSweep"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="ALL_SurveillanceSweep_CursorIn"
+		NumTargets="2"
+		RadiusCursorRadius="150"
+		Flags="IS_PLAYER_POWER WATER_OK FOGGED_SHROUDED_CELLS_OK"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		RequiredPlayerTech="PlayerTech_Allied_SatelliteSweep"
+		RestrictionType="1">
+		<GameDependency
+			id="Allied_SatelliteSweep_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerChrono_Base"
+		TargetType="LOCATION"
+		Flags="IS_PLAYER_POWER WATER_OK NEEDS_OBJECT_FILTER NOT_IN_NANOSWARM"
+		RestrictionType="1">
+		<ObjectFilter
+			Rule="ANY"
+			Include="INFANTRY VEHICLE TIME_BOMB"
+			StatusBitFlagsExclude="AIRBORNE_TARGET NOT_IN_WORLD">
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl2</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl3</IncludeThing>
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoRift_Base"
+		inheritFrom="SpecialPowerChrono_Base"
+		ReloadTime="120s"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		Flags="-NEEDS_OBJECT_FILTER">
+		<GameDependency
+			id="Allied_ChronoRift_GameDependencyLvl1">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ObjectFilter
+			Rule="ANY"
+			Include="INFANTRY VEHICLE STRUCTURE PROJECTILE TIME_BOMB"
+			Exclude="ORE_NODE"
+			StatusBitFlagsExclude="AIRBORNE_TARGET UNDER_IRON_CURTAIN IN_NANOHIVE NOT_IN_WORLD CLONED">
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl2</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl3</IncludeThing>
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoRiftSelectLvl1"
+		RadiusCursorRadius="100"
+		inheritFrom="SpecialPowerChronoRift_Base"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoRift_Rank1">
+		<ForbiddenPlayerTech>PlayerTech_Allied_ChronoRift_Rank2</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Allied_ChronoRift_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoRiftTeleportLvl1"
+		RadiusCursorRadius="100"
+		inheritFrom="SpecialPowerChronoRift_Base"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoRift_Rank1">
+		<ForbiddenPlayerTech>PlayerTech_Allied_ChronoRift_Rank2</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Allied_ChronoRift_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoRiftSelectLvl2"
+		RadiusCursorRadius="150"
+		inheritFrom="SpecialPowerChronoRift_Base"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoRift_Rank2">
+		<ForbiddenPlayerTech>PlayerTech_Allied_ChronoRift_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoRiftTeleportLvl2"
+		RadiusCursorRadius="150"
+		inheritFrom="SpecialPowerChronoRift_Base"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoRift_Rank2">
+		<ForbiddenPlayerTech>PlayerTech_Allied_ChronoRift_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoRiftSelectLvl3"
+		RadiusCursorRadius="250"
+		inheritFrom="SpecialPowerChronoRift_Base"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoRift_Rank3">
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoRiftTeleportLvl3"
+		RadiusCursorRadius="250"
+		inheritFrom="SpecialPowerChronoRift_Base"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoRift_Rank3">
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_MechaKingShockwave"
+		ReloadTime="60s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+
+	<SpecialPowerTemplate
+		id="SpecialPowerChronosphereObjectSelect"
+		TargetType="LOCATION"
+		ReloadTime="180s"
+		RadiusCursorRadius="100"
+		TimerImage="Button_PlayerPower_Chronosphere"
+		DisplayName="NAME:SuperweaponTimerChronosphere"
+		InitiateAtLocationSound="ALL_Chronosphere_Select"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		EvaEventToPlayOnInitiateEnemy="WarnChronosphereActivated"
+		Flags="HAS_PUBLIC_TIMER IS_PLAYER_POWER WATER_OK IGNORE_MAP_EXTENTS"
+		RestrictionType="1">
+		<ObjectFilter
+			Rule="ANY"
+			Include="INFANTRY VEHICLE TIME_BOMB"
+			Exclude="AIRCRAFT"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET NOT_IN_WORLD">
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl2</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl3</IncludeThing>
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+			<ExcludeThing>JapanBossMechaKing</ExcludeThing>
+			<ExcludeThing>JapanMechaKing</ExcludeThing>
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerChronosphereObjectSpawn"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="ALL_Chronosphere_Die"
+		RadiusCursorRadius="100"
+		Flags="IS_PLAYER_POWER WATER_OK"
+		EvaEventToPlayOnInitiateOwner="SelectDestination"
+		RestrictionType="1">
+		<ObjectFilter
+			Rule="ANY"
+			Include="INFANTRY VEHICLE TIME_BOMB"
+			Exclude="AIRCRAFT"
+			StatusBitFlagsExclude="AIRBORNE_TARGET">
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl2</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl3</IncludeThing>
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+			<ExcludeThing>JapanBossMechaKing</ExcludeThing>
+			<ExcludeThing>JapanMechaKing</ExcludeThing>
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+
+
+	<SpecialPowerTemplate
+		id="SpecialPower_JapanAntiInfantryInfantryBonzai"
+		ReloadTime="30s"
+		TargetType="NONE"
+		PreventConditions="AIRBORNE_TARGET OVER_WATER UNDER_FROZEN"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceBonzaiCharge"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_ToggleRiotShield"
+		TargetType="NONE"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false"
+		PreventConditions="AIRBORNE_TARGET OVER_WATER" />
+	<SpecialPowerTemplate
+		id="SpecialPower_RadarLock"
+		TargetType="NONE"
+		PreventConditions="AIRBORNE_TARGET OVER_WATER" />
+	<SpecialPowerTemplate
+		id="SpecialPower_ToggleSpiderHole"
+		TargetType="NONE"
+		ReloadTime="0.4s"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false"
+		PreventConditions="AIRBORNE_TARGET OVER_WATER" />
+	<SpecialPowerTemplate
+		id="SpecialPower_MolotovCocktail"
+		TargetType="NONE"
+		WaypointModeTerminal="false"
+		PreventConditions="AIRBORNE_TARGET OVER_WATER" />
+	<SpecialPowerTemplate
+		id="SpecialPower_MagneticBomb"
+		TargetType="NONE"
+		WaypointModeTerminal="false"
+		PreventConditions="AIRBORNE_TARGET OVER_WATER" />
+	<SpecialPowerTemplate
+		id="SpecialPower_ToggleShortCircuit"
+		TargetType="NONE"
+		ReloadTime="1s"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false"
+		PreventConditions="AIRBORNE_TARGET OVER_WATER" />
+	<SpecialPowerTemplate
+		id="SpecialPower_ArcherArrowBarrage"
+		ReloadTime="15s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="60"
+		Flags="WATER_OK NOT_IN_NANOSWARM CANNOT_LEAVE_ENCLOSURE"
+		PreventConditions="INSIDE_GARRISON UNDER_FROZEN AIRBORNE_TARGET OVER_WATER"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="voiceArrowBarrage">
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_TriggerCryoLeap"
+		ReloadTime="15s"
+		TargetType="LOCATION"
+		Flags="NOT_CLIFF_CELL WATER_OK NO_FORBIDDEN_OBJECTS FOGGED_SHROUDED_CELLS_OK CANNOT_LEAVE_ENCLOSURE CAN_NOT_BE_SCRAMBLED"
+		ForbiddenObjectRange="15"
+		WaypointModeTerminal="false"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="voiceCryoLeap">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="CRUSHABLE_OBSTACLE AIRCRAFT"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT"
+			StatusBitFlagsExclude="UNDER_FROZEN">
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+		</ForbiddenObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_DesolatorWeaponMode"
+		ReloadTime="1.4s"
+		TargetType="NONE"
+		WaypointModeTerminal="false"
+		PreventConditions="AIRBORNE_TARGET OVER_WATER" />
+	<SpecialPowerTemplate
+		id="SpecialPower_AlliedFutureTankLaserWeapon"
+		TargetType="LOCATION"
+		RadiusCursorRadius="100"
+		Flags="WATER_OK CANNOT_LEAVE_ENCLOSURE NOT_IN_NANOSWARM"
+		ReloadTime="60s"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="voiceAttackRiotBeam"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_Armordate"
+		ReloadTime="75s"
+		TargetType="NONE"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="ALL_Chronorift_On"
+		PreventConditions="NO_SPECIAL_ABILITY UNDER_FROZEN INSIDE_GARRISON" />
+	<SpecialPowerTemplate
+		id="SpecialPower_Firedate"
+		ReloadTime="10s"
+		TargetType="NONE"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="SOV_MagneticSatellite4_StartMS"
+		PreventConditions="NO_SPECIAL_ABILITY UNDER_FROZEN INSIDE_GARRISON" />
+	<SpecialPowerTemplate
+		id="SpecialPower_JapanFortressShipTransformMode"
+		Flags="NOT_IN_NANOSWARM CAN_NOT_BE_SCRAMBLED NOT_WHILE_BENEATH_BRIDGE"
+		ReloadTime="15s"
+		TargetType="NONE"
+		WaypointModeTerminal="false"
+		PreventConditions="BOOBY_TRAPPED IMMOBILE_ALLOW_ROTATE MARCH_OF_DEATH">
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_TriggerNitrousBoost"
+		ReloadTime="10s"
+		TargetType="NONE"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="voiceNitroBoost"
+		PreventConditions="NO_SPECIAL_ABILITY UNDER_FROZEN INSIDE_GARRISON" />
+	<SpecialPowerTemplate
+		id="SpecialPower_ToggleAlliedGunshipAircraft"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_ToggleSovietMortarcycle"
+		TargetType="NONE"
+		ReloadTime="1s"
+		PreventConditions="UNDER_FROZEN"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_ToggleSiegeArtillery"
+		TargetType="NONE"
+		ReloadTime="6s"
+		PreventConditions="OVER_WATER IMMOBILE_ALLOW_ROTATE BOOBY_TRAPPED UNDER_FROZEN AIRBORNE_TARGET"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_TriggerLeapDeploy"
+		TargetType="LOCATION"
+		ReloadTime="15s"
+		Flags="PATHABLE_ONLY NOT_CLIFF_CELL NO_FORBIDDEN_OBJECTS FOGGED_SHROUDED_CELLS_OK CANNOT_LEAVE_ENCLOSURE CAN_NOT_BE_SCRAMBLED NOT_ON_BRIDGE"
+		PreventConditions="IGNORE_AI_COMMAND"
+		ForbiddenObjectRange="15"
+		WaypointModeTerminal="false"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="voiceLeapDeploy">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE CRUSHABLE_OBSTACLE AIRCRAFT"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+		</ForbiddenObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_TriggerReplaceDummy"
+		TargetType="OBJECT_OR_LOCATION"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_TriggerLaserGlaiveBlast"
+		ReloadTime="30s"
+		TargetType="LOCATION"
+		PreventConditions="UNDER_FROZEN"
+		Flags="WATER_OK"
+		ForbiddenObjectRange="15"
+		WaypointModeTerminal="false"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="voiceGlaiveBlast" />
+	<SpecialPowerTemplate
+		id="SpecialPower_HealthWake"
+		ReloadTime="60s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_HealthWakeShip"
+		ReloadTime="75s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_SmallBombMissile"
+		ReloadTime="150s"
+		Money="-2000"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_SmallTelekineticProjectorDevice"
+		ReloadTime="150s"
+		Money="-2000"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_SmallParticleCannon"
+		ReloadTime="150s"
+		Money="-2000"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+
+	<SpecialPowerTemplate
+		id="SpecialPower_TriggerLeapPistons"
+		ReloadTime="15s"
+		TargetType="LOCATION"
+		Flags="WATER_OK NOT_CLIFF_CELL NO_FORBIDDEN_OBJECTS FOGGED_SHROUDED_CELLS_OK CANNOT_LEAVE_ENCLOSURE CAN_NOT_BE_SCRAMBLED"
+		ForbiddenObjectRange="15"
+		WaypointModeTerminal="false"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="voiceLeap"
+		PreventConditions="OVER_WATER">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE CRUSHABLE_OBSTACLE AIRCRAFT"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+		</ForbiddenObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerUnmiliWeapon"
+		Flags="IS_PLAYER_POWER"
+		TargetType="NONE"
+		ReloadTime="60s">
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerAINoSuperWeapon"
+		Flags="IS_PLAYER_POWER"
+		TargetType="NONE"
+		ReloadTime="60s">
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoSwapSelect"
+		TargetType="OBJECT"
+		ReloadTime="120s"
+		EvaEventToPlayWhenSelectingTarget="SelectUnit"
+		EvaEventToPlayOnInitiateOwner="SelectUnit"
+		inheritFrom="SpecialPowerChrono_Base"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoSwap"
+		DisallowedTargetModelStates="DEPLOYED"
+		Flags="+NO_FORBIDDEN_MODEL_STATES"
+		RestrictionType="1">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="INFANTRY VEHICLE TIME_BOMB"
+			Exclude="AIRCRAFT MACHINE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET NOT_IN_WORLD">
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl2</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl3</IncludeThing>
+		</ObjectFilter>
+		<GameDependency
+			id="Allied_ChronoSwapSelect_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoSwapTeleport"
+		ReloadTime="120s"
+		TargetType="OBJECT"
+		EvaEventToPlayWhenSelectingTarget="SelectUnit"
+		inheritFrom="SpecialPowerChrono_Base"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoSwap"
+		DisallowedTargetModelStates="DEPLOYED"
+		Flags="+NO_FORBIDDEN_MODEL_STATES"
+		RestrictionType="1">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="INFANTRY VEHICLE TIME_BOMB"
+			Exclude="AIRCRAFT MACHINE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET NOT_IN_WORLD">
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl2</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl3</IncludeThing>
+		</ObjectFilter>
+		<GameDependency
+			id="Allied_ChronoSwapTeleport_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_TriggerLeap"
+		ReloadTime="15s"
+		TargetType="LOCATION"
+		Flags="PATHABLE_ONLY NOT_CLIFF_CELL NO_FORBIDDEN_OBJECTS FOGGED_SHROUDED_CELLS_OK CANNOT_LEAVE_ENCLOSURE CAN_NOT_BE_SCRAMBLED"
+		ForbiddenObjectRange="15"
+		WaypointModeTerminal="false"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="voiceLeap">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE CRUSHABLE_OBSTACLE AIRCRAFT"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+		</ForbiddenObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_TriggerJump"
+		ReloadTime="20s"
+		TargetType="LOCATION"
+		Flags="PATHABLE_ONLY NOT_CLIFF_CELL NO_FORBIDDEN_OBJECTS WATER_OK FOGGED_SHROUDED_CELLS_OK CANNOT_LEAVE_ENCLOSURE CAN_NOT_BE_SCRAMBLED"
+		ForbiddenObjectRange="15"
+		WaypointModeTerminal="false"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="voiceJump">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE CRUSHABLE_OBSTACLE AIRCRAFT" />
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_JapanScoutInfantryAttachWeapon"
+		ReloadTime="0s"
+		TargetType="OBJECT"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceAttach"
+		DisallowedTargetObjectStatus="VEHICLE_ATTACHED"
+		WaypointModeTerminal="false">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ENEMIES NEUTRAL"
+			Include="VEHICLE"
+			Exclude="AIRCRAFT"
+			StatusBitFlagsExclude="AIRBORNE_TARGET OVER_WATER WATER_LOCOMOTOR_ACTIVE" />
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_JapanEngineerSprintUpgade"
+		ReloadTime="60s"
+		InitiateSound="JAP_Engineer_SprintMS"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_Roar"
+		ReloadTime="10s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_Roar2"
+		ReloadTime="10s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_TriggerTeleport"
+		ReloadTime="30s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="25"
+		Flags="LIMIT_DISTANCE PATHABLE_ONLY NOT_CLIFF_CELL NO_FORBIDDEN_OBJECTS CANNOT_LEAVE_ENCLOSURE TREAT_BRIDGES_AS_LOCATIONS FOGGED_SHROUDED_CELLS_OK"
+		MaxCastRange="400"
+		WaypointModeTerminal="false"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="voiceJump">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE AIRCRAFT"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+		</ForbiddenObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_OilDerrickBomb"
+		ReloadTime="3s"
+		TargetType="NONE"
+		Money="-600"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceSelfDestruct"
+		RequiredPlayerTech="PlayerTech_Generic_Rank_2"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_Observation"
+		ReloadTime="150s"
+		Money="-1500"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceRadar"
+		RequiredPlayerTech="PlayerTech_Generic_Rank_2"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPowerSuperStromBomb"
+		ReloadTime="360s"
+		TargetType="LOCATION"
+		DisplayName="NAME:SpecialPowerSuperStromBomb"
+		TimerImage="Button_PlayerPower_VacuumBomb"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		EvaEventToPlayOnInitiateEnemy="WarnVacuumImploderLaunched"
+		RadiusCursorRadius="200"
+		Flags="HAS_PUBLIC_TIMER IS_PLAYER_POWER WATER_OK FOGGED_SHROUDED_CELLS_OK IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM"
+		RestrictionType="1">
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerVacuumBomb"
+		ReloadTime="360s"
+		TargetType="LOCATION"
+		DisplayName="NAME:SuperweaponTimerVacuumBomb"
+		TimerImage="Button_PlayerPower_VacuumBomb"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		EvaEventToPlayOnInitiateEnemy="WarnVacuumImploderLaunched"
+		RadiusCursorRadius="200"
+		Flags="HAS_PUBLIC_TIMER IS_PLAYER_POWER WATER_OK FOGGED_SHROUDED_CELLS_OK IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM"
+		RestrictionType="1">
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerTelekineticProjectorDevice"
+		DisplayName="NAME:SuperweaponTimerTelekinetic"
+		Flags="HAS_PUBLIC_TIMER IS_PLAYER_POWER FOGGED_SHROUDED_CELLS_OK WATER_OK IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM"
+		ReloadTime="360s"
+		TimerImage="Button_PlayerPower_Telekenetic"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		EvaEventToPlayOnInitiateEnemy="WarnPsionicDecimatorLaunched"
+		RadiusCursorRadius="350"
+		RestrictionType="1">
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerParticleCannon"
+		ReloadTime="360s"
+		DisplayName="NAME:SuperweaponTimerParticleCannon"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="ALL_ProtonCollider_Flare"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		EvaEventToPlayOnInitiateEnemy="WarnProtonColliderLaunched"
+		TimerImage="Button_PlayerPower_ParticleCannon"
+		RadiusCursorRadius="350"
+		Flags="HAS_PUBLIC_TIMER IS_PLAYER_POWER WATER_OK FOGGED_SHROUDED_CELLS_OK IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM"
+		RestrictionType="1">
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_AlliedSuperStructure"
+		DisplayName="NAME:SuperStructureSpecialPower"
+		Flags="HAS_PUBLIC_TIMER IS_PLAYER_POWER CANNOT_LEAVE_ENCLOSURE IS_PLAYER_POWER"
+		TimerImage="AlliedSuperStructureSpecialPower"
+		ReloadTime="600s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_SovietSuperStructure"
+		DisplayName="NAME:SuperStructureSpecialPower"
+		Flags="HAS_PUBLIC_TIMER IS_PLAYER_POWER CANNOT_LEAVE_ENCLOSURE IS_PLAYER_POWER"
+		TimerImage="SovietSuperStructureSpecialPower"
+		ReloadTime="600s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_JapanSuperStructure"
+		DisplayName="NAME:SuperStructureSpecialPower"
+		Flags="HAS_PUBLIC_TIMER IS_PLAYER_POWER CANNOT_LEAVE_ENCLOSURE IS_PLAYER_POWER"
+		TimerImage="JapanSuperStructureSpecialPower"
+		ReloadTime="600s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_SuperStructure300"
+		ReloadTime="300s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_SuperStructure420"
+		ReloadTime="420s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_SuperStructure540"
+		ReloadTime="540s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_SuperStructure570"
+		ReloadTime="570s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_SuperStructure590"
+		ReloadTime="590s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPowerBombingRunAntiAir"
+		TargetType="OBJECT"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPowerRepireDoneFile"
+		DisplayName="NAME:SpecialPowerRepireDoneFile"
+		Flags="WATER_OK IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM IS_PLAYER_POWER SHARED_SYNC"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		RequiredPlayerTech="PlayerTech_Allied"
+		RadiusCursorRadius="200"
+		RestrictionType="1">
+		<GameDependency
+			id="Allied_RepireDoneFile_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerShieldSphereObject"
+		DisplayName="NAME:SpecialPowerShieldSphereObject"
+		Flags="WATER_OK IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM IS_PLAYER_POWER SHARED_SYNC"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		ReloadTime="60s"
+		TargetType="LOCATION"
+		RequiredPlayerTech="PlayerTech_Allied"
+		RadiusCursorRadius="200"
+		RestrictionType="1">
+		<GameDependency
+			id="Allied_RepireDoneFile_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_PowerLost"
+		ReloadTime="210s"
+		TargetType="NONE"
+		WaypointModeTerminal="false"
+		RequiredPlayerTech="PlayerTech_Allied"
+		Flags="IS_PLAYER_POWER SHARED_SYNC">
+		<GameDependency
+			id="Allied_PowerLost_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_ManipulateObject"
+		TargetType="OBJECT"
+		ReloadTime="0.4s"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="InitiateManipulateObject"
+		WaypointModeTerminal="false"
+		Flags="NEEDS_OBJECT_FILTER CANNOT_LEAVE_ENCLOSURE LIMIT_DISTANCE NO_FORBIDDEN_MODEL_STATES TARGET_NEEDS_OBJECT_STATUS"
+		DisallowedTargetModelStates="SOLD CHRONORIFT"
+		DisallowedTargetObjectStatus="NOT_IN_WORLD SOLD UNDER_IRON_CURTAIN RIFT_OCCUPIED UNATTACKABLE AIRBORNE_TARGET SUBMERGED DOES_CONTAIN_TIBERIUM NO_BRIBE"
+		MaxCastRange="350">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ENEMIES"
+			Include="VEHICLE INFANTRY"
+			Exclude="STRUCTURE CAN_TOPPLE COMMANDO UNIQUE_UNIT TIME_BOMB EGG MACHINE HARVESTER INFILTRATOR CANNOT_HIJACK"
+			StatusBitFlagsExclude="NOT_IN_WORLD SOLD UNDER_IRON_CURTAIN RIFT_OCCUPIED UNATTACKABLE AIRBORNE_TARGET SUBMERGED DOES_CONTAIN_TIBERIUM NO_BRIBE">
+			<ExcludeThing>AlliedBossBomberAircraft</ExcludeThing>
+			<ExcludeThing>SovietBomberAircraft_TwoBoss</ExcludeThing>
+			<ExcludeThing>JapanBossMechaKing</ExcludeThing>
+			<ExcludeThing>JapanEmperorYoshiro</ExcludeThing>
+			<ExcludeThing>EUScoutAntiInfantryVehicle</ExcludeThing>
+			<ExcludeThing>MODNanoFlyMaster</ExcludeThing>
+			<ExcludeThing>AlliedMinerAI</ExcludeThing>
+			<ExcludeThing>EUMinerAI</ExcludeThing>
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_ManipulateObjectBoss"
+		TargetType="OBJECT"
+		ReloadTime="0.4s"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="InitiateManipulateObject"
+		WaypointModeTerminal="false"
+		Flags="NEEDS_OBJECT_FILTER CANNOT_LEAVE_ENCLOSURE LIMIT_DISTANCE NO_FORBIDDEN_MODEL_STATES TARGET_NEEDS_OBJECT_STATUS"
+		DisallowedTargetModelStates="SOLD CHRONORIFT"
+		DisallowedTargetObjectStatus="NOT_IN_WORLD SOLD UNDER_IRON_CURTAIN RIFT_OCCUPIED UNATTACKABLE DOES_CONTAIN_TIBERIUM NO_BRIBE"
+		MaxCastRange="350">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ENEMIES"
+			Include="VEHICLE INFANTRY STRUCTURE"
+			Exclude="CAN_TOPPLE TIME_BOMB MACHINE IGNORE_IN_AI_HUNT_TACTIC NO_COLLIDE COMMANDO CIVILIAN_BUILDING NEUTRAL_TECH"
+			StatusBitFlagsExclude="NOT_IN_WORLD SOLD UNDER_IRON_CURTAIN RIFT_OCCUPIED UNATTACKABLE DOES_CONTAIN_TIBERIUM NO_BRIBE">
+			<ExcludeThing>AlliedBossBomberAircraft</ExcludeThing>
+			<ExcludeThing>SovietBomberAircraft_TwoBoss</ExcludeThing>
+			<ExcludeThing>JapanBossMechaKing</ExcludeThing>
+			<ExcludeThing>JapanEmperorYoshiro</ExcludeThing>
+			<ExcludeThing>JapanScoutInfantry</ExcludeThing>
+			<ExcludeThing>AlliedCommandoTech1</ExcludeThing>
+			<ExcludeThing>SovietCommandoTech1</ExcludeThing>
+			<ExcludeThing>JapanCommandoTech1</ExcludeThing>
+			<ExcludeThing>AlliedScoutInfantry</ExcludeThing>
+			<ExcludeThing>SovietScoutInfantry</ExcludeThing>
+			<ExcludeThing>AlliedInfiltrationInfantry</ExcludeThing>
+			<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+			<ExcludeThing>JapanInfiltrationInfantry</ExcludeThing>
+			<ExcludeThing>JapanEmperorYoshiro</ExcludeThing>
+			<ExcludeThing>SovietScoutVehicle</ExcludeThing>
+			<ExcludeThing>EUScoutAntiInfantryVehicle</ExcludeThing>
+			<ExcludeThing>EUScoutVehicle</ExcludeThing>
+			<ExcludeThing>MODNanoFlyMaster</ExcludeThing>
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerKingUnit"
+		DisplayName="NAME:SpecialPowerKingUnit"
+		Flags="IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM IS_PLAYER_POWER SHARED_SYNC"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="20"
+		RequiredPlayerTech="PlayerTech_Japan"
+		RestrictionType="1">
+		<GameDependency
+			id="Japan_KingUnit_GameDependency">
+			<ForbiddenUpgrade>Upgrade_YoshiroBuilt</ForbiddenUpgrade>
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP UNPACKING">
+				<IncludeThing>JapanVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerJapanMisslePlant"
+		TargetType="LOCATION"
+		ReloadTime="150s"
+		RadiusCursorRadius="300"
+		DisplayName="NAME:SpecialPowerJapanMisslePlant"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		ForbiddenObjectRange="100"
+		RequiredPlayerTech="PlayerTech_Japan"
+		Flags="NO_FORBIDDEN_OBJECTS IS_PLAYER_POWER IGNORE_MAP_EXTENTS SHARED_SYNC WATER_OK NOT_IN_NANOSWARM"
+		RestrictionType="1">
+		<ForbiddenObjectFilter
+			Rule="NONE">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Japan_MisslePlant_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP UNPACKING">
+				<IncludeThing>MODVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerSovietPhaseField"
+		TargetType="LOCATION"
+		DisplayName="NAME:SovietPhaseField"
+		ReloadTime="150s"
+		RadiusCursorRadius="50"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS NO_FORBIDDEN_OBJECTS NEEDS_OBJECT_FILTER SHARED_SYNC"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		WaypointModeTerminal="false"
+		RequiredPlayerTech="PlayerTech_Soviet"
+		RestrictionType="1">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE"
+			Exclude="STRUCTURE AIRCRAFT INFANTRY TIME_BOMB MACHINE"
+			StatusBitFlagsExclude="SUBMERGED IN_NANOHIVE NOT_IN_WORLD UNDER_IRON_CURTAIN HAS_TIBERIUM_UPGRADE">
+		</ObjectFilter>
+		<ForbiddenObjectFilter
+			Rule="NONE">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Soviet_SovietPhaseField_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP UNPACKING">
+				<IncludeThing>SovietVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerSovietParadrop"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="120"
+		Flags="IS_PLAYER_POWER PATHABLE_ONLY NO_FORBIDDEN_OBJECTS SHARED_SYNC"
+		WaypointModeTerminal="false"
+		ForbiddenObjectRange="50"
+		RequiredPlayerTech="PlayerTech_Soviet"
+		RestrictionType="1">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Soviet_SovietParadrop_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP UNPACKING">
+				<IncludeThing>SovietVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_TeslaDefenceNova"
+		ReloadTime="60s"
+		TargetType="NONE"
+		InitiateSound="SOV_Stingray_TeslaSurge"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPowerParadropLvl1"
+		ReloadTime="60s"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="100"
+		Flags="IS_PLAYER_POWER PATHABLE_ONLY NOT_CLIFF_CELL NO_FORBIDDEN_OBJECTS"
+		RequiredPlayerTech="PlayerTech_Allied_Paradrop_Rank1"
+		WaypointModeTerminal="false"
+		RestrictionType="1">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE CRUSHABLE_OBSTACLE AIRCRAFT"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Allied_Paradrop_Rank1_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Allied_Paradrop_Rank2</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Allied_Paradrop_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerParadropLvl2"
+		ReloadTime="150s"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="120"
+		Flags="IS_PLAYER_POWER PATHABLE_ONLY NOT_CLIFF_CELL NO_FORBIDDEN_OBJECTS"
+		RequiredPlayerTech="PlayerTech_Allied_Paradrop_Rank2"
+		WaypointModeTerminal="false"
+		RestrictionType="1">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE CRUSHABLE_OBSTACLE AIRCRAFT"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Allied_Paradrop_Rank2_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ForbiddenPlayerTech>PlayerTech_Allied_Paradrop_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerParadropLvl3"
+		ReloadTime="225s"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="140"
+		Flags="IS_PLAYER_POWER NOT_CLIFF_CELL NO_FORBIDDEN_OBJECTS"
+		RequiredPlayerTech="PlayerTech_Allied_Paradrop_Rank3"
+		WaypointModeTerminal="false"
+		RestrictionType="1">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE CRUSHABLE_OBSTACLE AIRCRAFT"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Allied_Paradrop_Rank3_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_Egg_Transform"
+		Flags="NOT_IN_NANOSWARM CAN_NOT_BE_SCRAMBLED NOT_WHILE_BENEATH_BRIDGE"
+		ReloadTime="0s"
+		TargetType="NONE"
+		WaypointModeTerminal="false"
+		PreventConditions="BOOBY_TRAPPED IMMOBILE_ALLOW_ROTATE MARCH_OF_DEATH" />
+	<SpecialPowerTemplate
+		id="SpecialPower_EMPSuperTorpedo"
+		ReloadTime="60s"
+		TargetType="NONE"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceSuperTorpedos"
+		InitiateSound="SOV_AkulaSub_WeaponFire_UltraTorpedoMS"
+		WaypointModeTerminal="false"
+		Flags="CAN_NOT_BE_SCRAMBLED" />
+	<SpecialPowerTemplate
+		id="SpecialPower_ShrinkRayAI"
+		ReloadTime="35s"
+		TargetType="OBJECT"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceShrinkRay"
+		DisallowedTargetObjectStatus="SUBMERGED AIRBORNE_TARGET NOT_IN_WORLD UNDER_IRON_CURTAIN SHRUNK UNDER_FROZEN REALLYDAMAGED"
+		Flags="NEEDS_OBJECT_FILTER CANNOT_LEAVE_ENCLOSURE TARGET_NEEDS_OBJECT_STATUS"
+		WaypointModeTerminal="false">
+		<!-- must have same object filter as AlliedSupportAircraftShrinkRay -->
+		<ObjectFilter
+			Rule="ANY"
+			Include="VEHICLE"
+			Exclude="AIRCRAFT MACHINE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET NOT_IN_WORLD UNDER_IRON_CURTAIN SHRUNK UNDER_FROZEN REALLYDAMAGED">
+			<ExcludeThing>JapanMechaKing</ExcludeThing>
+			<ExcludeThing>StrategicArmyScoutVehicle</ExcludeThing>
+			<ExcludeThing>StrategicArmyMoveBunker</ExcludeThing>
+			<ExcludeThing>MODNanoFlyMaster</ExcludeThing>
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_UnpackReplaceSelfJapanAI"
+		TargetType="LOCATION_AND_ANGLE"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceDeploy"
+		RadiusCursorRadius="1"
+		PreventConditions="BOOBY_TRAPPED IS_BEING_DRAGGED SOLD"
+		Flags="WATER_OK FOGGED_SHROUDED_CELLS_OK CANNOT_LEAVE_ENCLOSURE CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false">
+		<GameDependency
+			id="SpecialPower_UnpackReplaceSelf_GameDependency"
+			ForbiddenModelConditions="UNPACKING" />
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerSovietDetectedAircraft"
+		TargetType="LOCATION"
+		ReloadTime="120s"
+		Flags="WATER_OK NOT_IN_NANOSWARM IS_PLAYER_POWER FOGGED_SHROUDED_CELLS_OK IGNORE_MAP_EXTENTS SHARED_SYNC"
+		RadiusCursorRadius="150"
+		RequiredPlayerTech="PlayerTech_Soviet"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		WaypointModeTerminal="false"
+		RestrictionType="1">
+		<GameDependency
+			id="Soviet_DetectedAircraft_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP UNPACKING">
+				<IncludeThing>StrategicArmyVIPStructure</IncludeThing>
+				<IncludeThing>SovietVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerSmokePrecisionStrike"
+		TargetType="LOCATION"
+		ReloadTime="180s"
+		Flags="WATER_OK NOT_IN_NANOSWARM IS_PLAYER_POWER IGNORE_MAP_EXTENTS SHARED_SYNC"
+		RadiusCursorRadius="150"
+		RequiredPlayerTech="PlayerTech_Allied"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		WaypointModeTerminal="false"
+		RestrictionType="1">
+		<GameDependency
+			id="Soviet_DetectedAircraft_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerJapanInfantrySuppression"
+		TargetType="LOCATION"
+		ReloadTime="150s"
+		Flags="WATER_OK NOT_IN_NANOSWARM IS_PLAYER_POWER IGNORE_MAP_EXTENTS"
+		RadiusCursorRadius="100"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		WaypointModeTerminal="false"
+		RequiredPlayerTech="PlayerTech_Japan_DeathSpawn"
+		RestrictionType="1">
+		<GameDependency
+			id="Japan_JapanSuppression_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>JapanConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_AlliedBaseDefenseTransform"
+		TargetType="NONE"
+		ReloadTime="10s"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_EjectPassengers"
+		ReloadTime="10s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="60"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceEject"
+		Flags="LIMIT_DISTANCE FOGGED_SHROUDED_CELLS_OK CANNOT_LEAVE_ENCLOSURE NOT_ON_OBSTACLES CAN_NOT_BE_SCRAMBLED WATER_OK"
+		MinCastRange="15"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_JapanAntiAirVehicleTech1Transformation"
+		TargetType="NONE"
+		ReloadTime="0s"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_UpgradeMagneticBomb"
+		ReloadTime="45s"
+		TargetType="OBJECT"
+		Flags="NEEDS_OBJECT_FILTER CANNOT_LEAVE_ENCLOSURE WATER_OK"
+		WaypointModeTerminal="false">
+		<ObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE"
+			StatusBitFlagsExclude="NOT_IN_WORLD AIRBORNE_TARGET UNDER_IRON_CURTAIN">
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_AlliedGunshipAircraftStrato"
+		TargetType="LOCATION"
+		ReloadTime="90s"
+		Flags="CANNOT_LEAVE_ENCLOSURE WATER_OK NOT_IN_NANOSWARM NO_FORBIDDEN_OBJECTS"
+		WaypointModeTerminal="false"
+		ForbiddenObjectRange="200"
+		RadiusCursorRadius="5">
+		<ForbiddenObjectFilter
+			Rule="NONE">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_SovietAntiNavyShipFlash"
+		ReloadTime="5s"
+		TargetType="NONE"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		PreventConditions="UNDER_FROZEN" />
+	<SpecialPowerTemplate
+		id="SpecialPower_MODAntiNavyShipTech2Short"
+		ReloadTime="60s"
+		TargetType="NONE"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		PreventConditions="UNDER_FROZEN" />
+	<SpecialPowerTemplate
+		id="SpecialPower_AlliedMachaDogEMPShort"
+		ReloadTime="20s"
+		TargetType="NONE"
+		WaypointModeTerminal="false"
+		Flags="CAN_NOT_BE_SCRAMBLED" />
+	<SpecialPowerTemplate
+		id="SpecialPower_UnpackJapanHeavyVehicleReplace"
+		TargetType="NONE"
+		Flags="CAN_NOT_BE_SCRAMBLED">
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_TriggerScientistLeap"
+		ReloadTime="15s"
+		TargetType="LOCATION"
+		Flags="NOT_CLIFF_CELL WATER_OK NO_FORBIDDEN_OBJECTS FOGGED_SHROUDED_CELLS_OK CANNOT_LEAVE_ENCLOSURE CAN_NOT_BE_SCRAMBLED"
+		ForbiddenObjectRange="15"
+		WaypointModeTerminal="false">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="CRUSHABLE_OBSTACLE AIRCRAFT"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+		</ForbiddenObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_ToggleJapanAdvanceLeechBeam"
+		TargetType="NONE"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPowerEMPMolotovCocktail"
+		ReloadTime="30s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="30"
+		Flags="WATER_OK NOT_IN_NANOSWARM CANNOT_LEAVE_ENCLOSURE"
+		PreventConditions="INSIDE_GARRISON UNDER_FROZEN AIRBORNE_TARGET OVER_WATER"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="voiceEMPMolotatov">
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerAfterburners"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		TargetType="NONE"
+		ReloadTime="60s">
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_EUGDIKodiakStrato"
+		TargetType="LOCATION"
+		ReloadTime="90s"
+		Flags="CANNOT_LEAVE_ENCLOSURE WATER_OK NOT_IN_NANOSWARM NO_FORBIDDEN_OBJECTS CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false"
+		ForbiddenObjectRange="200"
+		RadiusCursorRadius="5">
+		<ForbiddenObjectFilter
+			Rule="NONE">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_TankLongRocket"
+		ReloadTime="30s"
+		TargetType="OBJECT"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="voiceAttack"
+		Flags="NEEDS_OBJECT_FILTER CANNOT_LEAVE_ENCLOSURE CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ENEMIES NEUTRAL"
+			Include="VEHICLE TIME_BOMB STRUCTURE"
+			Exclude="AIRCRAFT COMMANDO MACHINE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET NOT_IN_WORLD UNDER_IRON_CURTAIN">
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_SteamFastBeam"
+		ReloadTime="45s"
+		TargetType="NONE"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		PreventConditions="UNDER_FROZEN" />
+	<SpecialPowerTemplate
+		id="SpecialPowerMissileSalvo_UnTargeted"
+		ReloadTime="60s"
+		TargetType="OBJECT"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice=""
+		Flags="WATER_OK CANNOT_LEAVE_ENCLOSURE FOGGED_SHROUDED_CELLS_OK" />
+	<SpecialPowerTemplate
+		id="SpecialPowerStrategicArmyParadrop"
+		ReloadTime="210s"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="120"
+		Flags="IS_PLAYER_POWER PATHABLE_ONLY NO_FORBIDDEN_OBJECTS SHARED_SYNC"
+		WaypointModeTerminal="false"
+		ForbiddenObjectRange="50"
+		RequiredPlayerTech="PlayerTech_Soviet"
+		RestrictionType="1">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Soviet_StrategicArmyParadrop_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP UNPACKING">
+				<IncludeThing>StrategicArmyVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="NeutralSpecialPowerParadrop"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="140"
+		Flags="IS_PLAYER_POWER NOT_CLIFF_CELL NO_FORBIDDEN_OBJECTS"
+		WaypointModeTerminal="false"
+		RestrictionType="1"
+		RequiredPlayerTech="PlayerTech_Generic_Rank_2">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE CRUSHABLE_OBSTACLE AIRCRAFT"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_JASV_FireKiCannon"
+		ReloadTime="1s"
+		InitiateSound="JAP_Waveforce_DischargeWeaponFire"
+		TargetType="NONE"
+		WaypointModeTerminal="false"
+		RequiredConditions="IS_FIRING_WEAPON"
+		PreventConditions="AIRBORNE_TARGET OVER_WATER UNDER_FROZEN" />
+	<SpecialPowerTemplate
+		id="SpecialPower_TriggerJumpAttack"
+		ReloadTime="60s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="60"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceBullRush"
+		Flags="LIMIT_DISTANCE NOT_IN_NANOSWARM CANNOT_LEAVE_ENCLOSURE NOT_CLIFF_CELL NO_FORBIDDEN_OBJECTS FOGGED_SHROUDED_CELLS_OK IGNORE_MAP_EXTENTS NOT_ON_BRIDGE"
+		MaxCastRange="350"
+		MinCastRange="50"
+		WaypointModeTerminal="false">
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerReturnToProducerSuperSonic"
+		TargetType="NONE"
+		ReloadTime="20s"
+		Flags="CANNOT_LEAVE_ENCLOSURE CAN_NOT_BE_SCRAMBLED WATER_OK"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="ReturnToProducer"
+		NameOfVoiceNameToUseAsInitiateIntendToDoWhileUnderAttackVoice="ReturnToProducerWhileUnderAttack"
+		WaypointModeTerminal="false">
+		<GameDependency
+			id="SpecialPowerReturnToProducerSuperSonic_GameDependency"
+			ForbiddenModelConditions="WALKING" />
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerReturnToProducer"
+		TargetType="NONE"
+		Flags="CANNOT_LEAVE_ENCLOSURE CAN_NOT_BE_SCRAMBLED WATER_OK"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="ReturnToProducer"
+		NameOfVoiceNameToUseAsInitiateIntendToDoWhileUnderAttackVoice="ReturnToProducerWhileUnderAttack"
+		WaypointModeTerminal="false">
+		<GameDependency
+			id="SpecialPowerReturnToProducerSuperSonic_GameDependency"
+			ForbiddenModelConditions="WALKING" />
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_EUAntiVehicleVehicleTech1Invisibility"
+		ReloadTime="20s"
+		TargetType="NONE"
+		Flags="CAN_NOT_BE_SCRAMBLED WATER_OK"
+		PreventConditions="AIRBORNE_TARGET UNDER_FROZEN"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceBonzaiCharge"
+		WaypointModeTerminal="false">
+		<GameDependency
+			id="SpecialPower_EUAntiVehicleVehicleTech1Invisibility_GameDependency">
+			<ForbiddenUpgrade>Upgrade_CloakingFieldInvisibility</ForbiddenUpgrade>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_ToggleNanoSheld"
+		TargetType="NONE"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false"
+		ReloadTime="2s" />
+
+	<SpecialPowerTemplate
+		id="SpecialPower_SmokeBomb"
+		ReloadTime="45s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_DummyUnit"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+
+	<SpecialPowerTemplate
+		id="SpecialPower_SmokeBombSpawnDummy"
+		ReloadTime="60s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+
+	<SpecialPowerTemplate
+		id="SpecialPower_SpotBeaconBombard"
+		Flags="LIMIT_DISTANCE NEEDS_OBJECT_FILTER FIND_REACHABLE_TARGETS WATER_OK TARGET_NEEDS_OBJECT_STATUS"
+		RequiredTargetObjectStatus="SWITCHED_WEAPONS"
+		ReloadTime="11s"
+		RadiusCursorRadius="50"
+		TargetType="LOCATION"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="InitiateSpotTargetBombard"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		MinCastRange="600"
+		MaxCastRange="50000"
+		ReachableTargetsCircleDisplayRadius="400" />
+	<SpecialPowerTemplate
+		id="SpecialPowerCombineWithUnit"
+		TargetType="OBJECT"
+		Flags="NEEDS_OBJECT_FILTER">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE SHIP"
+			Exclude="AIRCRAFT MACHINE"
+			StatusBitFlagsExclude="AIRBORNE_TARGET IN_NANOHIVE NOT_IN_WORLD">
+			<ExcludeThing>SovietMCV</ExcludeThing>
+			<ExcludeThing>AlliedMCV</ExcludeThing>
+			<ExcludeThing>JapanMCV</ExcludeThing>
+			<ExcludeThing>JapanMechaKing</ExcludeThing>
+			<ExcludeThing>JapanFortressShip</ExcludeThing>
+			<ExcludeThing>StrategicArmyScoutVehicle</ExcludeThing>
+			<ExcludeThing>GDIMARVBase</ExcludeThing>
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_EUPrimageDisguise"
+		TargetType="NONE"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		PreventConditions="INVISIBLE_DETECTED"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_EggFlyUnpackReplaceSelf"
+		TargetType="LOCATION_AND_ANGLE"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceDeploy"
+		RadiusCursorRadius="1"
+		PreventConditions="BOOBY_TRAPPED IS_BEING_DRAGGED SOLD"
+		Flags="WATER_OK FOGGED_SHROUDED_CELLS_OK CANNOT_LEAVE_ENCLOSURE CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false">
+		<GameDependency
+			id="SpecialPower_UnpackReplaceSelf_GameDependency"
+			ForbiddenModelConditions="UNPACKING" />
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_NanoFlyPackReplaceSelf"
+		TargetType="NONE"
+		PreventConditions="BOOBY_TRAPPED IS_BEING_DRAGGED SOLD"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false">
+		<GameDependency
+			id="SpecialPower_PackReplaceSelf_GameDependency" />
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_NanoFlyUnpackReplaceSelf"
+		TargetType="LOCATION_AND_ANGLE"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceDeploy"
+		RadiusCursorRadius="1"
+		PreventConditions="BOOBY_TRAPPED IS_BEING_DRAGGED SOLD"
+		Flags="WATER_OK FOGGED_SHROUDED_CELLS_OK CANNOT_LEAVE_ENCLOSURE CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false">
+		<GameDependency
+			id="SpecialPower_UnpackReplaceSelf_GameDependency" />
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_GigaFortressSpawn"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_ToggleEUScoutVehicleHole"
+		TargetType="NONE"
+		ReloadTime="0.4s"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false" />
+
+	<SpecialPowerTemplate
+		id="SpecialPowerCloneObjectSelect"
+		TargetType="LOCATION"
+		RadiusCursorRadius="125"
+		ReloadTime="60s"
+		RequiredPlayerTech="PlayerTech_Japan"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RestrictionType="1"
+		Flags="NEEDS_OBJECT_FILTER IS_PLAYER_POWER SHARED_SYNC TARGET_NEEDS_OBJECT_STATUS WATER_OK"
+		DisallowedTargetObjectStatus="CLONED">
+		<ObjectFilter
+			Relationship="ALLIES"
+			Rule="ANY"
+			Include="INFANTRY"
+			Exclude="NO_GARRISON RESIST_EMP VEHICLE"
+			StatusBitFlagsExclude="SUBMERGED UNDER_IRON_CURTAIN IN_NANOHIVE CLONED">
+			<IncludeThing>JapanAntiVehicleInfantryTech3</IncludeThing>
+			<IncludeThing>MODAntiVehicleInfantryTech3</IncludeThing>
+			<IncludeThing>SovietScoutInfantry</IncludeThing>
+			<IncludeThing>AlliedScoutInfantry</IncludeThing>
+			<IncludeThing>AlliedAntiNavalScout</IncludeThing>
+			<ExcludeThing>MODNanoFly</ExcludeThing>
+			<ExcludeThing>MODNanoFlyMaster</ExcludeThing>
+		</ObjectFilter>
+		<GameDependency
+			id="Japan_CloneObjectSelect_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP UNPACKING">
+				<IncludeThing>JapanVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerCloneObjectSpawn"
+		TargetType="LOCATION"
+		RadiusCursorRadius="125"
+		ReloadTime="60s"
+		RequiredPlayerTech="PlayerTech_Japan"
+		RestrictionType="1"
+		Flags="IS_PLAYER_POWER NO_FORBIDDEN_OBJECTS SHARED_SYNC WATER_OK">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Japan_CloneObjectSelect_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP UNPACKING">
+				<IncludeThing>JapanVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_MODNanoFlyBlast"
+		ReloadTime="30s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_MODNanoFlyMasterCrazy"
+		ReloadTime="30s"
+		TargetType="NONE"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false" />
+
+	<SpecialPowerTemplate
+		id="SpecialPower_JAAVT1_Transform"
+		Flags="NOT_IN_NANOSWARM CAN_NOT_BE_SCRAMBLED NOT_WHILE_BENEATH_BRIDGE"
+		ReloadTime="15s"
+		TargetType="NONE"
+		WaypointModeTerminal="false"
+		PreventConditions="BOOBY_TRAPPED IMMOBILE_ALLOW_ROTATE MARCH_OF_DEATH" />
+	<SpecialPowerTemplate
+		id="SpecialPower_JAIV_Transform"
+		Flags="NOT_IN_NANOSWARM CAN_NOT_BE_SCRAMBLED NOT_WHILE_BENEATH_BRIDGE"
+		ReloadTime="15s"
+		TargetType="NONE"
+		WaypointModeTerminal="false"
+		PreventConditions="BOOBY_TRAPPED IMMOBILE_ALLOW_ROTATE MARCH_OF_DEATH" />
+
+	<SpecialPowerTemplate
+		id="SpecialPlayerPowerParadropAlliedOneBoss"
+		ReloadTime="30s"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="120"
+		RestrictionType="1"
+		Flags="IS_PLAYER_POWER PATHABLE_ONLY NO_FORBIDDEN_OBJECTS"
+		WaypointModeTerminal="false"
+		ForbiddenObjectRange="70"
+		RequiredPlayerTech="PlayerTech_AlliedPlayerPower">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Allied_Paradrop_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoGiftUnitOneBoss"
+		ReloadTime="60s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="100"
+		Flags="IS_PLAYER_POWER WATER_OK PATHABLE_ONLY NOT_IN_NANOSWARM NO_FORBIDDEN_OBJECTS IGNORE_MAP_EXTENTS"
+		ForbiddenObjectRange="100"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RestrictionType="1"
+		RequiredPlayerTech="PlayerTech_AlliedPlayerPower">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE" />
+		<GameDependency
+			id="Allied_TimeBombLvl1_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerCryoSatelliteTwoBoss"
+		ReloadTime="30s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="200"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		RequiredPlayerTech="PlayerTech_AlliedPlayerPower"
+		RestrictionType="1">
+		<GameDependency
+			id="Allied_CryoSatelliteLvl3_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPlayerPowerSovietThreeBossParadrop"
+		ReloadTime="60s"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="120"
+		RestrictionType="1"
+		Flags="IS_PLAYER_POWER PATHABLE_ONLY NO_FORBIDDEN_OBJECTS"
+		WaypointModeTerminal="false"
+		RequiredPlayerTech="PlayerTech_SovietPlayerPower"
+		ForbiddenObjectRange="70">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="ThreeBoss_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_DesolatorBomb_ThreeBoss"
+		ReloadTime="30s"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="75"
+		RestrictionType="1"
+		Flags="IS_PLAYER_POWER NOT_IN_NANOSWARM WATER_OK IGNORE_MAP_EXTENTS"
+		RequiredPlayerTech="PlayerTech_SovietPlayerPower"
+		WaypointModeTerminal="false">
+		<GameDependency
+			id="Soviet_DesolatorBombThreeBoss_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerJapanNanoFlyOneBoss"
+		ReloadTime="30s"
+		TargetType="LOCATION"
+		DisplayName="NAME:NanoFly"
+		EvaEventToPlayWhenSelectingTarget="SelectDestination"
+		RadiusCursorRadius="50"
+		RestrictionType="1"
+		Flags="PATHABLE_ONLY IS_PLAYER_POWER NOT_IN_NANOSWARM WATER_OK IGNORE_MAP_EXTENTS">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Exclude="STRUCTURE INFANTRY VEHICLE MACHINE">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_JapanInterceptorKamikazeAttack"
+		TargetType="OBJECT_OR_LOCATION"
+		ReloadTime="3s"
+		Flags="WATER_OK"
+		WaypointModeTerminal="true">
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_KamikazeNuke"
+		ReloadTime="3s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="EUBaseDefenseGroundLaserSpecialPower"
+		TargetType="OBJECT"
+		Flags="NEEDS_OBJECT_FILTER NO_FORBIDDEN_MODEL_STATES TARGET_NEEDS_OBJECT_STATUS LIMIT_DISTANCE WATER_OK FOGGED_SHROUDED_CELLS_OK"
+		PreventConditions="NOT_IN_WORLD RIFT_OCCUPIED UNATTACKABLE AIRBORNE_TARGET TEMPORARILY_DEFECTED UNDER_FROZEN"
+		DisallowedTargetModelStates="SOLD CHRONORIFT"
+		DisallowedTargetObjectStatus="NOT_IN_WORLD SOLD UNDER_IRON_CURTAIN RIFT_OCCUPIED UNATTACKABLE AIRBORNE_TARGET SUBMERGED"
+		MaxCastRange="350">
+		<ObjectFilter
+			Rule="ANY"
+			Include="INFANTRY VEHICLE STRUCTURE"
+			StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED UNATTACKABLE AIRBORNE_TARGET SUBMERGED">
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="EUBeamVehicleLaserSpecialPower"
+		TargetType="OBJECT"
+		Flags="NEEDS_OBJECT_FILTER NO_FORBIDDEN_MODEL_STATES TARGET_NEEDS_OBJECT_STATUS WATER_OK FOGGED_SHROUDED_CELLS_OK"
+		PreventConditions="NOT_IN_WORLD RIFT_OCCUPIED UNATTACKABLE AIRBORNE_TARGET TEMPORARILY_DEFECTED UNDER_FROZEN SHRUNK"
+		DisallowedTargetModelStates="CHRONORIFT"
+		DisallowedTargetObjectStatus="NOT_IN_WORLD RIFT_OCCUPIED UNATTACKABLE AIRBORNE_TARGET SUBMERGED">
+		<ObjectFilter
+			Rule="ANY"
+			Include="INFANTRY VEHICLE STRUCTURE"
+			StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED UNATTACKABLE AIRBORNE_TARGET SUBMERGED">
+		</ObjectFilter>
+		<GameDependency
+			ForbiddenModelConditions="MOVING AFFECTED_BY_EMP SHRINK_EFFECT FROZEN CHRONORIFT SUCKED_UP_HIGH" />
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_StrategicArmyIronStorm_TwoBoss"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="75"
+		RestrictionType="1"
+		Flags="IS_PLAYER_POWER NOT_IN_NANOSWARM WATER_OK IGNORE_MAP_EXTENTS"
+		WaypointModeTerminal="false"
+		ReloadTime="30s">
+		<GameDependency
+			id="Soviet_DesolatorBombTwoBoss_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_EUWormHole"
+		DisplayName="NAME:SuperweaponTimerEUWormHole"
+		Flags="IS_PLAYER_POWER PATHABLE_ONLY WATER_OK NOT_ON_BRIDGE NOT_IN_NANOSWARM NO_FORBIDDEN_OBJECTS"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="75"
+		InitiateAtLocationSound="ALL_Chronosphere_Select"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		EvaEventToPlayOnInitiateEnemy="WarnChronosphereActivated"
+		RestrictionType="1">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE" />
+	</SpecialPowerTemplate>
+	<!--TimerImage="Button_PlayerPower_EUWormHole"-->
+
+	<SpecialPowerTemplate
+		id="SpecialPowerStrategicArmyParadropAutoShip"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTargetArea"
+		RadiusCursorRadius="100"
+		Flags="IS_PLAYER_POWER PATHABLE_ONLY WATER_OK NO_FORBIDDEN_OBJECTS NOT_ON_BRIDGE SHARED_SYNC"
+		WaypointModeTerminal="false"
+		ForbiddenObjectRange="100"
+		RequiredPlayerTech="PlayerTech_Soviet"
+		RestrictionType="1">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Exclude="BRIDGE_ENDCAP BRIDGE_SEGMENT">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Soviet_StrategicArmyParadropAutoShip_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP UNPACKING">
+				<IncludeThing>StrategicArmyVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoSelectBase"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		Flags="NO_FORBIDDEN_MODEL_STATES TARGET_NEEDS_OBJECT_STATUS WATER_OK IS_PLAYER_POWER IGNORE_MAP_EXTENTS NEEDS_OBJECT_FILTER"
+		DisallowedTargetModelStates="SOLD STRUCTURE_UNPACKING UNPACKING UNDERPOWERED FROZEN IRONCURTAIN CHRONORIFT DEPLOYED"
+		DisallowedTargetObjectStatus="IN_NANOHIVE NOT_IN_WORLD SOLD UNPACKING UNDER_CONSTRUCTION RIFT_OCCUPIED CONTAINER_OCCUPIED"
+		RestrictionType="1">
+		<GameDependency
+			id="Allied_ChronoSwapSelect_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedConstructionYard</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoTeleportBase"
+		TargetType="LOCATION"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		ForbiddenObjectRange="50"
+		Flags="NO_FORBIDDEN_MODEL_STATES TARGET_NEEDS_OBJECT_STATUS NOT_CLIFF_CELL CANNOT_TARGET_SELF NOT_ON_BRIDGE WATER_OK"
+		DisallowedTargetModelStates="SOLD STRUCTURE_UNPACKING UNPACKING UNDERPOWERED FROZEN IRONCURTAIN CHRONORIFT DEPLOYED"
+		DisallowedTargetObjectStatus="IN_NANOHIVE NOT_IN_WORLD SOLD UNPACKING UNDER_CONSTRUCTION RIFT_OCCUPIED CONTAINER_OCCUPIED"
+		RestrictionType="1">
+		<GameDependency
+			id="Allied_ChronoSwapSelect_GameDependency">
+			<ObjectFilter
+				Rule="ANY"
+				Relationship="SAME_PLAYER"
+				Include="VEHICLE INFANTRY"
+				StatusBitFlags="DO_NOT_PICK_ME">
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoSelectLv1"
+		ReloadTime="120s"
+		inheritFrom="SpecialPowerChronoSelectBase"
+		RadiusCursorRadius="20"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoRift_Rank1">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE"
+			Exclude="T2_UNIT T3_UNIT COMMANDO INFANTRY"
+			StatusBitFlagsExclude="IN_NANOHIVE NOT_IN_WORLD SOLD UNPACKING UNDER_CONSTRUCTION RIFT_OCCUPIED CONTAINER_OCCUPIED">
+			<IncludeThing>SovietScoutVehicle</IncludeThing>
+			<IncludeThing>JapanEmperorYoshiro</IncludeThing>
+			<IncludeThing>EUScoutVehicle</IncludeThing>
+			<IncludeThing>MODNanoFly</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<ExcludeThing>JapanBalloonBomb</ExcludeThing>
+			<ExcludeThing>JapanFallingBalloonBomb</ExcludeThing>
+			<ExcludeThing>JapanEmperorMecha</ExcludeThing>
+			<ExcludeThing>GDIMARVBase</ExcludeThing>
+			<ExcludeThing>AlliedEpicUnit</ExcludeThing>
+			<ExcludeThing>JapanFortressShip</ExcludeThing>
+			<ExcludeThing>JapanMechaKing</ExcludeThing>
+			<ExcludeThing>EUAntiAirDrone</ExcludeThing>
+			<ExcludeThing>AlliedBossBomberAircraft</ExcludeThing>
+			<ExcludeThing>StrategicArmyScoutVehicle</ExcludeThing>
+			<ExcludeThing>JapanNanoFly</ExcludeThing>
+			<ExcludeThing>AlliedTimeBombLvl2</ExcludeThing>
+			<ExcludeThing>AlliedTimeBombLvl3</ExcludeThing>
+		</ObjectFilter>
+		<ForbiddenPlayerTech>PlayerTech_AlliedPlayerPower</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Allied_ChronoRift_Rank2</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Allied_ChronoRift_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoTeleportLv1"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="ALL_Chronosphere_Die"
+		RadiusCursorRadius="20"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoRift_Rank1"
+		RestrictionType="1">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE"
+			Exclude="T2_UNIT T3_UNIT COMMANDO INFANTRY"
+			StatusBitFlagsExclude="IN_NANOHIVE NOT_IN_WORLD SOLD UNPACKING UNDER_CONSTRUCTION RIFT_OCCUPIED CONTAINER_OCCUPIED">
+			<IncludeThing>SovietScoutVehicle</IncludeThing>
+			<IncludeThing>JapanEmperorYoshiro</IncludeThing>
+			<IncludeThing>EUScoutVehicle</IncludeThing>
+			<IncludeThing>MODNanoFly</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<ExcludeThing>JapanBalloonBomb</ExcludeThing>
+			<ExcludeThing>JapanFallingBalloonBomb</ExcludeThing>
+			<ExcludeThing>JapanEmperorMecha</ExcludeThing>
+			<ExcludeThing>GDIMARVBase</ExcludeThing>
+			<ExcludeThing>AlliedEpicUnit</ExcludeThing>
+			<ExcludeThing>JapanFortressShip</ExcludeThing>
+			<ExcludeThing>JapanMechaKing</ExcludeThing>
+			<ExcludeThing>EUAntiAirDrone</ExcludeThing>
+			<ExcludeThing>AlliedBossBomberAircraft</ExcludeThing>
+			<ExcludeThing>StrategicArmyScoutVehicle</ExcludeThing>
+			<ExcludeThing>JapanNanoFly</ExcludeThing>
+			<ExcludeThing>AlliedTimeBombLvl2</ExcludeThing>
+			<ExcludeThing>AlliedTimeBombLvl3</ExcludeThing>
+		</ObjectFilter>
+		<ForbiddenPlayerTech>PlayerTech_AlliedPlayerPower</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Allied_ChronoRift_Rank2</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Allied_ChronoRift_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoSelectLv2"
+		ReloadTime="180s"
+		inheritFrom="SpecialPowerChronoSelectBase"
+		RadiusCursorRadius="20"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoRift_Rank2">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE"
+			Exclude="T3_UNIT COMMANDO INFANTRY"
+			StatusBitFlagsExclude="IN_NANOHIVE NOT_IN_WORLD SOLD UNPACKING UNDER_CONSTRUCTION RIFT_OCCUPIED CONTAINER_OCCUPIED">
+			<IncludeThing>SovietScoutVehicle</IncludeThing>
+			<IncludeThing>JapanEmperorYoshiro</IncludeThing>
+			<IncludeThing>EUScoutVehicle</IncludeThing>
+			<IncludeThing>MODNanoFly</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl2</IncludeThing>
+			<ExcludeThing>JapanBalloonBomb</ExcludeThing>
+			<ExcludeThing>JapanFallingBalloonBomb</ExcludeThing>
+			<ExcludeThing>JapanEmperorMecha</ExcludeThing>
+			<ExcludeThing>GDIMARVBase</ExcludeThing>
+			<ExcludeThing>AlliedEpicUnit</ExcludeThing>
+			<ExcludeThing>JapanFortressShip</ExcludeThing>
+			<ExcludeThing>JapanMechaKing</ExcludeThing>
+			<ExcludeThing>EUAntiAirDrone</ExcludeThing>
+			<ExcludeThing>AlliedBossBomberAircraft</ExcludeThing>
+			<ExcludeThing>StrategicArmyScoutVehicle</ExcludeThing>
+			<ExcludeThing>JapanNanoFly</ExcludeThing>
+			<ExcludeThing>AlliedTimeBombLvl3</ExcludeThing>
+		</ObjectFilter>
+		<ForbiddenPlayerTech>PlayerTech_AlliedPlayerPower</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Allied_ChronoRift_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoTeleportLv2"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="ALL_Chronosphere_Die"
+		RadiusCursorRadius="20"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoRift_Rank2"
+		RestrictionType="1">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE"
+			Exclude="T3_UNIT COMMANDO INFANTRY"
+			StatusBitFlagsExclude="IN_NANOHIVE NOT_IN_WORLD SOLD UNPACKING UNDER_CONSTRUCTION RIFT_OCCUPIED CONTAINER_OCCUPIED">
+			<IncludeThing>SovietScoutVehicle</IncludeThing>
+			<IncludeThing>JapanEmperorYoshiro</IncludeThing>
+			<IncludeThing>EUScoutVehicle</IncludeThing>
+			<IncludeThing>MODNanoFly</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl2</IncludeThing>
+			<ExcludeThing>JapanBalloonBomb</ExcludeThing>
+			<ExcludeThing>JapanFallingBalloonBomb</ExcludeThing>
+			<ExcludeThing>JapanEmperorMecha</ExcludeThing>
+			<ExcludeThing>GDIMARVBase</ExcludeThing>
+			<ExcludeThing>AlliedEpicUnit</ExcludeThing>
+			<ExcludeThing>JapanFortressShip</ExcludeThing>
+			<ExcludeThing>JapanMechaKing</ExcludeThing>
+			<ExcludeThing>EUAntiAirDrone</ExcludeThing>
+			<ExcludeThing>AlliedBossBomberAircraft</ExcludeThing>
+			<ExcludeThing>StrategicArmyScoutVehicle</ExcludeThing>
+			<ExcludeThing>JapanNanoFly</ExcludeThing>
+			<ExcludeThing>AlliedTimeBombLvl3</ExcludeThing>
+		</ObjectFilter>
+		<ForbiddenPlayerTech>PlayerTech_AlliedPlayerPower</ForbiddenPlayerTech>
+		<ForbiddenPlayerTech>PlayerTech_Allied_ChronoRift_Rank3</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoSelectLv3"
+		ReloadTime="210s"
+		inheritFrom="SpecialPowerChronoSelectBase"
+		RadiusCursorRadius="20"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoRift_Rank3">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE"
+			Exclude="COMMANDO INFANTRY"
+			StatusBitFlagsExclude="IN_NANOHIVE NOT_IN_WORLD SOLD UNPACKING UNDER_CONSTRUCTION RIFT_OCCUPIED CONTAINER_OCCUPIED">
+			<IncludeThing>SovietScoutVehicle</IncludeThing>
+			<IncludeThing>JapanEmperorYoshiro</IncludeThing>
+			<IncludeThing>EUScoutVehicle</IncludeThing>
+			<IncludeThing>MODNanoFly</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl2</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl3</IncludeThing>
+			<ExcludeThing>JapanBalloonBomb</ExcludeThing>
+			<ExcludeThing>JapanFallingBalloonBomb</ExcludeThing>
+			<ExcludeThing>JapanEmperorMecha</ExcludeThing>
+			<ExcludeThing>GDIMARVBase</ExcludeThing>
+			<ExcludeThing>AlliedEpicUnit</ExcludeThing>
+			<ExcludeThing>JapanFortressShip</ExcludeThing>
+			<ExcludeThing>JapanMechaKing</ExcludeThing>
+			<ExcludeThing>EUAntiAirDrone</ExcludeThing>
+			<ExcludeThing>AlliedBossBomberAircraft</ExcludeThing>
+			<ExcludeThing>StrategicArmyScoutVehicle</ExcludeThing>
+			<ExcludeThing>JapanNanoFly</ExcludeThing>
+		</ObjectFilter>
+		<ForbiddenPlayerTech>PlayerTech_AlliedPlayerPower</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoTeleportLv3"
+		ReloadTime="210s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="ALL_Chronosphere_Die"
+		RadiusCursorRadius="20"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoRift_Rank3"
+		RestrictionType="1">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE"
+			Exclude="COMMANDO INFANTRY"
+			StatusBitFlagsExclude="IN_NANOHIVE NOT_IN_WORLD SOLD UNPACKING UNDER_CONSTRUCTION RIFT_OCCUPIED CONTAINER_OCCUPIED">
+			<IncludeThing>SovietScoutVehicle</IncludeThing>
+			<IncludeThing>JapanEmperorYoshiro</IncludeThing>
+			<IncludeThing>EUScoutVehicle</IncludeThing>
+			<IncludeThing>MODNanoFly</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl2</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl3</IncludeThing>
+			<ExcludeThing>JapanBalloonBomb</ExcludeThing>
+			<ExcludeThing>JapanFallingBalloonBomb</ExcludeThing>
+			<ExcludeThing>JapanEmperorMecha</ExcludeThing>
+			<ExcludeThing>GDIMARVBase</ExcludeThing>
+			<ExcludeThing>AlliedEpicUnit</ExcludeThing>
+			<ExcludeThing>JapanFortressShip</ExcludeThing>
+			<ExcludeThing>JapanMechaKing</ExcludeThing>
+			<ExcludeThing>EUAntiAirDrone</ExcludeThing>
+			<ExcludeThing>AlliedBossBomberAircraft</ExcludeThing>
+			<ExcludeThing>StrategicArmyScoutVehicle</ExcludeThing>
+			<ExcludeThing>JapanNanoFly</ExcludeThing>
+		</ObjectFilter>
+		<ForbiddenPlayerTech>PlayerTech_AlliedPlayerPower</ForbiddenPlayerTech>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="ObjectNanoDefenceDroneSpawn"
+		TargetType="OBJECT"
+		Flags="IS_PLAYER_POWER NEEDS_OBJECT_FILTER TARGET_NEEDS_OBJECT_STATUS NO_FORBIDDEN_MODEL_STATES NOT_IN_NANOSWARM WATER_OK SHARED_SYNC"
+		DisallowedTargetModelStates="SOLD STRUCTURE_UNPACKING UNPACKING IRONCURTAIN CHRONORIFT"
+		DisallowedTargetObjectStatus="IN_NANOHIVE NOT_IN_WORLD SOLD UNPACKING UNDER_IRON_CURTAIN RIFT_OCCUPIED"
+		ReloadTime="120s"
+		RequiredPlayerTech="PlayerTech_Japan"
+		WaypointModeTerminal="false">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES ENEMIES NEUTRAL"
+			Include="VEHICLE SHIP"
+			Exclude="AIRCRAFT MACHINE">
+			<ExcludeThing>StrategicArmyScoutVehicle</ExcludeThing>
+			<ExcludeThing>MODNanoFlyMaster</ExcludeThing>
+		</ObjectFilter>
+		<GameDependency
+			id="Japan_CloneObjectSelect_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP UNPACKING">
+				<IncludeThing>MODVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_ConstructSovietBunker"
+		ReloadTime="30s"
+		RadiusCursorRadius="1"
+		ForbiddenObjectRange="32"
+		TargetType="LOCATION_AND_ANGLE"
+		Money="-500"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceConstructBattleBunker"
+		Flags="PATHABLE_ONLY FOGGED_SHROUDED_CELLS_OK"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPowerAlliedFreeTrade"
+		Flags="IS_PLAYER_POWER"
+		TargetType="NONE"
+		ReloadTime="0s"
+		RequiredPlayerTech="PlayerTech_Generic_Rank_7">
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerCloakingField"
+		Flags="IS_PLAYER_POWER WATER_OK SHARED_SYNC NO_FORBIDDEN_OBJECTS"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		RequiredPlayerTech="PlayerTech_Allied"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		WaypointModeTerminal="false"
+		RestrictionType="1"
+		RadiusCursorRadius="100"
+		ForbiddenObjectRange="100">
+		<ForbiddenObjectFilter
+			Rule="NONE">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Soviet_DetectedAircraft_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerAlliedStrongInfantry"
+		Flags="IS_PLAYER_POWER WATER_OK SHARED_SYNC NO_FORBIDDEN_OBJECTS"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		RequiredPlayerTech="PlayerTech_Allied"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		WaypointModeTerminal="false"
+		RestrictionType="1"
+		RadiusCursorRadius="150">
+		<ForbiddenObjectFilter
+			Rule="NONE">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Soviet_DetectedAircraft_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="SAME_PLAYER"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedVIPStructure</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_ReflectorAttack"
+		Flags="LIMIT_DISTANCE FIND_REACHABLE_TARGETS NEEDS_OBJECT_FILTER WATER_OK NOT_IN_NANOSWARM TARGET_NEEDS_OBJECT_STATUS NO_FORBIDDEN_MODEL_STATES FOGGED_SHROUDED_CELLS_OK"
+		TargetType="OBJECT"
+		PreventConditions="NOT_IN_WORLD RIFT_OCCUPIED UNATTACKABLE AIRBORNE_TARGET TEMPORARILY_DEFECTED UNDER_FROZEN SHRUNK"
+		DisallowedTargetModelStates="SOLD IRONCURTAIN CHRONORIFT"
+		DisallowedTargetObjectStatus="IN_NANOHIVE NOT_IN_WORLD SOLD UNDER_IRON_CURTAIN RIFT_OCCUPIED"
+		MinCastRange="510"
+		MaxCastRange="50000"
+		WaypointModeTerminal="false"
+		ReachableTargetsCircleDisplayRadius="350">
+		<ObjectFilter
+			Relationship="ENEMIES NEUTRAL"
+			Rule="ALL"
+			Exclude="ORE_NODE MACHINE INERT DRONE DONT_DESTROY_IF_ON_BRIDGE SPELL_BOOK UNATTACKABLE"
+			StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED IN_NANOHIVE UNDER_IRON_CURTAIN" />
+		<GameDependency>
+			<ObjectFilter
+				Rule="ANY"
+				Relationship="ALLIES"
+				Include="BEAM_TARGET_REFLECTOR">
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_MODBombVehicleBomb"
+		ReloadTime="3s"
+		TargetType="NONE"
+		PreventConditions="AIRBORNE_TARGET IS_LEAVING_FACTORY"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_MODAntiStructureTargetPainter"
+		ReloadTime="20s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="50"
+		Flags="WATER_OK NOT_IN_NANOSWARM CANNOT_LEAVE_ENCLOSURE"
+		PreventConditions="INSIDE_GARRISON UNDER_FROZEN AIRBORNE_TARGET"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="voiceArrowBarrage">
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_PackReplaceSelfEgg"
+		TargetType="NONE"
+		PreventConditions="BOOBY_TRAPPED IS_BEING_DRAGGED SOLD"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false">
+		<GameDependency
+			id="SpecialPower_PackReplaceSelf_GameDependency"
+			ForbiddenModelConditions="UNPACKING" />
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_UnpackReplaceSelfEgg"
+		TargetType="LOCATION_AND_ANGLE"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceDeploy"
+		RadiusCursorRadius="1"
+		PreventConditions="BOOBY_TRAPPED IS_BEING_DRAGGED SOLD"
+		Flags="WATER_OK FOGGED_SHROUDED_CELLS_OK CANNOT_LEAVE_ENCLOSURE CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false">
+		<GameDependency
+			id="SpecialPower_UnpackReplaceSelf_GameDependency"
+			ForbiddenModelConditions="UNPACKING" />
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_GenericGroundEjectPassengers"
+		ReloadTime="1s"
+		TargetType="NONE"
+		PreventConditions="BOOBY_TRAPPED"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false" />
+
+	<SpecialPowerTemplate
+		id="SpecialPower_ToggleEUAntiVehicleInfantryShield"
+		ReloadTime="1s"
+		TargetType="NONE"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false"
+		PreventConditions="AIRBORNE_TARGET OVER_WATER" />
+
+	<SpecialPowerTemplate
+		id="SpecialPower_JapanBaseDefenseToGun"
+		ReloadTime="2s"
+		TargetType="NONE"
+		PreventConditions="NOT_IN_WORLD SOLD USER_POWERED_DOWN POWERED_DOWN_EMP USER_PARALYZED RIFT_OCCUPIED UNPACKING UNDER_FROZEN SCRAMBLED UNSELECTABLE"
+		WaypointModeTerminal="false">
+		<GameDependency
+			id="SpecialPower_JapanBaseDefenseToGun_GameDependency"
+			ForbiddenModelConditions="PACKING UNPACKING SOLD STRUCTURE_UNPACKING FROZEN CHRONORIFT AFFECTED_BY_EMP PARALYZED">
+			<ObjectFilter
+				Rule="ANY"
+				Relationship="SAME_PLAYER"
+				Include="TRANSFORMER"
+				Exclude="VEHICLE INFANTRY"
+				StatusBitFlags="GENERIC_TOGGLE_STATE"
+				StatusBitFlagsExclude="NOT_IN_WORLD SOLD USER_POWERED_DOWN POWERED_DOWN_EMP USER_PARALYZED RIFT_OCCUPIED UNPACKING UNDER_FROZEN SCRAMBLED UNSELECTABLE">
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_JapanBaseDefenseToRocket"
+		ReloadTime="2s"
+		TargetType="NONE"
+		PreventConditions="NOT_IN_WORLD SOLD USER_POWERED_DOWN POWERED_DOWN_EMP USER_PARALYZED RIFT_OCCUPIED UNPACKING UNDER_FROZEN SCRAMBLED UNSELECTABLE"
+		WaypointModeTerminal="false">
+		<GameDependency
+			id="SpecialPower_JapanBaseDefenseToRocket_GameDependency"
+			ForbiddenModelConditions="PACKING UNPACKING SOLD STRUCTURE_UNPACKING FROZEN CHRONORIFT AFFECTED_BY_EMP PARALYZED">
+			<ObjectFilter
+				Rule="ANY"
+				Relationship="SAME_PLAYER"
+				Include="TRANSFORMER"
+				Exclude="VEHICLE INFANTRY"
+				StatusBitFlagsExclude="NOT_IN_WORLD GENERIC_TOGGLE_STATE SOLD USER_POWERED_DOWN POWERED_DOWN_EMP USER_PARALYZED RIFT_OCCUPIED UNPACKING UNDER_FROZEN SCRAMBLED UNSELECTABLE">
+			</ObjectFilter>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_ToggleEUSupportAircraftScrambler"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_ToggleLaserBeam"
+		ReloadTime="2s"
+		TargetType="NONE" />
+	<SpecialPowerTemplate
+		id="SpecialPower_ActiveRedAlert"
+		Money="10000"
+		TargetType="NONE"
+		RequiredConditions="HEALTH_PERCENT_100"
+		EvaEventToPlayOnInitiateOwner="OwnerRedAlertActivated"
+		EvaEventToPlayOnInitiateAlly="AllyRedAlertActivated"
+		EvaEventToPlayOnInitiateEnemy="EnemyRedAlertActivated">
+		<GameDependency
+			RequiredObjectStatusAny="HEALTH_PERCENT_100">
+			<ForbiddenUpgrade>UpgradeUprising</ForbiddenUpgrade>
+			<ForbiddenUpgrade>UpgradeUprisingCantUse</ForbiddenUpgrade>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_AlliedSupportAircraftLevelGrantSpecialPower"
+		TargetType="OBJECT"
+		WaypointModeTerminal="false"
+		Flags="NEEDS_OBJECT_FILTER">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ENEMIES"
+			Include="VEHICLE INFANTRY STRUCTURE"
+			Exclude="UNATTACKABLE INERT CIVILIAN_UNIT CIVILIAN_BUILDING NEUTRAL_TECH"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET PARACHUTING UNDER_IRON_CURTAIN DESTROYED SOLD UNATTACKABLE UNDER_FROZEN HAS_TIBERIUM_UPGRADE">
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_AlliedSupportAircraftLaserUpgradeLevelGrantSpecialPower"
+		TargetType="OBJECT"
+		WaypointModeTerminal="false"
+		Flags="NEEDS_OBJECT_FILTER">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ENEMIES"
+			Include="VEHICLE INFANTRY STRUCTURE"
+			Exclude="UNATTACKABLE INERT CIVILIAN_UNIT CIVILIAN_BUILDING NEUTRAL_TECH"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET PARACHUTING UNDER_IRON_CURTAIN DESTROYED SOLD UNATTACKABLE UNDER_FROZEN HAS_TIBERIUM_UPGRADE">
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_EUSupportAircraftLevelGrantSpecialPower"
+		TargetType="OBJECT"
+		WaypointModeTerminal="false"
+		Flags="NEEDS_OBJECT_FILTER">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE"
+			StatusBitFlags="DAMAGED REALLYDAMAGED"
+			StatusBitFlagsExclude="NOT_IN_WORLD">
+			<IncludeThing>SovietScoutVehicle</IncludeThing>
+			<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+			<IncludeThing>StrategicArmyAntiVehicleInfantryTech3</IncludeThing>
+			<IncludeThing>AlliedLegionnaireInfantry</IncludeThing>
+			<IncludeThing>EUAntiVehicleInfantryTech2</IncludeThing>
+			<IncludeThing>StrategicArmyInfiltrationInfantry</IncludeThing>
+			<IncludeThing>EUScoutVehicle</IncludeThing>
+			<IncludeThing>MODNanoFlyMaster</IncludeThing>
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_EUSupportAircraftLaserUpgradeLevelGrantSpecialPower"
+		TargetType="OBJECT"
+		WaypointModeTerminal="false"
+		Flags="NEEDS_OBJECT_FILTER">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE"
+			StatusBitFlags="DAMAGED REALLYDAMAGED"
+			StatusBitFlagsExclude="NOT_IN_WORLD">
+			<IncludeThing>SovietScoutVehicle</IncludeThing>
+			<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+			<IncludeThing>StrategicArmyAntiVehicleInfantryTech3</IncludeThing>
+			<IncludeThing>AlliedLegionnaireInfantry</IncludeThing>
+			<IncludeThing>EUAntiVehicleInfantryTech2</IncludeThing>
+			<IncludeThing>StrategicArmyInfiltrationInfantry</IncludeThing>
+			<IncludeThing>EUScoutVehicle</IncludeThing>
+			<IncludeThing>MODNanoFlyMaster</IncludeThing>
+		</ObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_EUDummyEVA1"
+		ReloadTime="3s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_EUDummyEVA2"
+		ReloadTime="6s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_EUDummyEVA3"
+		ReloadTime="9s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_EUDummyEVA4"
+		ReloadTime="12s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_EUDummyEVA5"
+		ReloadTime="15s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_SuperWeaponDraw"
+		ReloadTime="177s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+	<SpecialPowerTemplate
+		id="SpecialPower_SuperWeaponAdvanceDraw"
+		ReloadTime="357s"
+		TargetType="NONE"
+		WaypointModeTerminal="false" />
+
+	<SpecialPowerTemplate
+		id="SpecialPower_GenericLoseInvisibility"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		TargetType="NONE" />
+	<SpecialPowerTemplate
+		id="SpecialPower_GenericOtherLoseInvisibility"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		TargetType="NONE" />
+	<SpecialPowerTemplate
+		id="SpecialPower_GenericInvisibility"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		TargetType="NONE" />
+	<SpecialPowerTemplate
+		id="SpecialPower_GenericSubFirstInvisibility"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		TargetType="NONE" />
+	<SpecialPowerTemplate
+		id="SpecialPower_PrimageDisguise"
+		TargetType="NONE"
+		Flags="CAN_NOT_BE_SCRAMBLED"
+		PreventConditions="GENERIC_TOGGLE_STATE REALLYDAMAGED INVISIBLE_DETECTED"
+		WaypointModeTerminal="false">
+		<GameDependency
+			id="SpecialPower_PrimageDisguise_GameDependency"
+			ForbiddenModelConditions="USER_10">
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_JapanLightTransportVehicleDisguise"
+		TargetType="OBJECT"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceDisguise"
+		Flags="NEEDS_OBJECT_FILTER DO_NOT_REACQUIRE_TARGET CAN_NOT_BE_SCRAMBLED"
+		WaypointModeTerminal="false">
+		<ObjectFilter
+			Rule="ANY"
+			Include="VEHICLE">
+			<ExcludeThing>JapanMechaKing</ExcludeThing>
+			<ExcludeThing>ScrinInvaderFighterAircraft</ExcludeThing>
+			<ExcludeThing>JapanBossMechaKing</ExcludeThing>
+			<ExcludeThing>ScrinAntiInfantryVehicle</ExcludeThing>
+			<ExcludeThing>ScrinFighterAircraft</ExcludeThing>
+			<ExcludeThing>ScrinAntiAirVehicleTech1</ExcludeThing>
+			<ExcludeThing>ScrinAntiVehicleVehicleTech3</ExcludeThing>
+			<ExcludeThing>ScrinConquerShip</ExcludeThing>
+			<ExcludeThing>ScrinAntiVehicleVehicleTech1</ExcludeThing>
+			<ExcludeThing>ScrinAntiStructureAircraft</ExcludeThing>
+			<ExcludeThing>ScrinAntiInfantryVehicle</ExcludeThing>
+			<ExcludeThing>MODNanoFlyMaster</ExcludeThing>
+		</ObjectFilter>
+		<GameDependency
+			id="SpecialPower_JapanBaseDefenseToRocket_GameDependency"
+			ForbiddenModelConditions="USER_10">
+		</GameDependency>
+	</SpecialPowerTemplate>
+</AssetDeclaration>

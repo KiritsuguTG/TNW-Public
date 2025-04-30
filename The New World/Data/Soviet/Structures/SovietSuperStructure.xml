@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+		<Include type="all"	source="ART:KR_HeartBuilding.W3X" />
+		<Include type="all"	source="ART:Structures/SovietSuperStructure/KR_HEARTBUILDING_SKL.w3x" />
+		<Include type="all"	source="ART:Structures/SovietSuperStructure/KR_HEARTBUILDING_SKN.w3x" />
+		<Include type="all"	source="ART:Structures/SovietSuperStructure/KR_HEARTBUILDING_BLD.w3x" />
+		<Include type="instance" source="DATA:Civilian/Yucatan_YU/Props/YU_HotelDebris.xml" />
+	</Includes>
+	<GameObject
+		id="SovietSuperStructure"
+		inheritFrom="BaseStructure"
+		CommandSet="SovietSuperStructureCommandSet"
+		ButtonImage="Button_TheHeartBuilding"
+		SelectPortrait="Portrait_TheHeartBuilding"
+		Side="Soviet"
+		EditorName="SovietSuperStructure"
+		EditorSorting="STRUCTURE"
+		KindOf="+RESIST_EMP +NOT_SELLABLE +CAN_ATTACK +TACTICAL_MARKER +REVEAL_TO_ALL +UNIQUE_UNIT +SUPER_WEAPON +PRELOAD -CAN_BUILD_ON_WATER -CRUSHABLE_BUILDING -CAN_BUILD_ON_DEEP_WATER"
+		BuildTime="250.0"
+		HealthBoxHeightOffset="-150"
+		EnergyProduction="-150"
+		PlacementViewAngle="315d"
+		RadarPriority="STRUCTURE"
+		ProductionQueueType="OTHER_STRUCTURE"
+		BuildPlacementTypeFlag="OTHER_STRUCTURE"
+		TypeDescription="Type:EpicBuild"
+		Description="Desc:SovietSuperStructure"
+		MaxSimultaneousOfType="1"
+		ThreatLevel="50">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietSuperStructure</DisplayName>
+		<GameDependency>
+			<RequiredObject>SovietTechStructure</RequiredObject>
+			<NeededUpgrade>Upgrade_SovietFaction</NeededUpgrade>
+			<ForbiddenUpgrade>SideSuperStructure</ForbiddenUpgrade>
+			<ForbiddenUpgrade>AINoSuperWeaponEffect</ForbiddenUpgrade>
+			<ForbiddenUpgrade>UpgradeUprising</ForbiddenUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="25000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseStructureArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<SkirmishAIInformation
+			BaseBuildingLocation="SPREAD">
+      <ConstructionBaseSelectionCriteria
+        ExcludedBaseTypes="NO_BUILD_RADIUS CAPTURED"
+        PreferredBaseTypes="MAIN_BASE"
+        SortOrder="PREFER_OLDEST" />
+    </SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="FX_WEAPON01 BONE_CONTACT_POINT_01 BONE_CONTACT_POINT_02 BONE_CONTACT_POINT_03 BONE_CONTACT_POINT_04 BONE_CONTACT_POINT_05 BONE_CONTACT_POINT_06 BONE_CONTACT_POINT_07 BONE_CONTACT_POINT_08 BONE_CONTACT_POINT_09 BONE_CONTACT_POINT_10 BONE_CONTACT_POINT_11 BONE_CONTACT_POINT_12 BONE_CONTACT_POINT_13 BONE_CONTACT_POINT_14 BONE_CONTACT_POINT_15 BONE_CONTACT_POINT_16 BONE_CONTACT_POINT_17 BONE_CONTACT_POINT_18 BONE_CONTACT_POINT_19 BONE_CONTACT_POINT_20">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="KR_HEARTBUILDING_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON"/>
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="KR_HEARTBUILDING_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING JUST_BUILT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="KR_HEARTBUILDING_SKN" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="KR_HEARTBUILDING_BLD"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+          <ParticleSysBone
+                BoneName="NONE"
+						    FXParticleSystemTemplate="Con_Large"
+ 						    FollowBone="true" />
+          <ParticleSysBone
+                BoneName="NONE"
+ 						    FXParticleSystemTemplate="Con_Lights"
+ 						    FollowBone="true" />
+           <ParticleSysBone
+                BoneName="NONE"
+ 						    FXParticleSystemTemplate="Con_Flash"
+ 						    FollowBone="true" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="0"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".03"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="0"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="4"
+				LaserStateID="5">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>5.000000</Value>
+							<Value>1.000000</Value>
+							<Value>1.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<!-- Player-->
+			<xi:include
+					  href="DATA:Includes/PlayerInformationDraw.xml"
+					  xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:PlayerInformationDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietSuperStructureWeapon"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_02"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<LaserState
+			  id="ModuleTag_LaserState"
+			  LaserId="5" >
+				<LaserEndParticleSystem>Allied_Target_LaserEnd</LaserEndParticleSystem>
+				<LaserEndParticleSystem>SovietNatashaLaserEnd_VetSparks</LaserEndParticleSystem>
+			</LaserState>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<BuildingDestructionBehavior
+				id="ModuleTag_BuildingDestruction">
+				<DieMuxData
+					DeathTypes="ALL"
+					   DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6"/>
+				<Item
+					BonePrefix="BONE_CONTACT_POINT_"
+					FX="FX_BuildingDebrisExplosion"
+					CreationObject="YU_HotelDebris"
+					FlingVelocity="100.0"/>
+			</BuildingDestructionBehavior>
+			<FXListBehavior
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					   DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_Civ_Explosion_Large" />
+				<Event Index="onDeath" FX="FX_Audio_RA3ExtraLargeBuildingDie" />
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SovietSuperStructure_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSuperStructure"
+				CreationList="OCL_SuperStructureDieUpgrade">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				UnpackTime="2s" />
+			<!-- civ buildings should have a CreateObjectDie to make a collapse version. -->
+			<DestroyDie
+				id="ModuleTag_DestroyDie">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED" />
+			</DestroyDie>
+			<xi:include
+				href="DATA:Includes/GenericBuildingRepair.xml" />
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="SovietSuperStructureTextureFunctions" />
+			<SpecialPower
+				id="ModuleTag_SuperStructure"
+				SpecialPowerTemplate="SpecialPower_SovietSuperStructure"
+				UpdateModuleStartsAttack="true"
+				AvailableAtStart="false"/>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_ModuleTag_SuperStructureUpdate"
+				SpecialPowerTemplate="SpecialPower_SovietSuperStructure"
+				SpecialWeapon="SuperStructureWeaponNova"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure300"
+				SpecialPowerTemplate="SpecialPower_SuperStructure300"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure420"
+				SpecialPowerTemplate="SpecialPower_SuperStructure420"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure540"
+				SpecialPowerTemplate="SpecialPower_SuperStructure540"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure570"
+				SpecialPowerTemplate="SpecialPower_SuperStructure570"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure590"
+				SpecialPowerTemplate="SpecialPower_SuperStructure590"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+			<SubObjectsUpgrade
+				id="ModuleTag_SubObjectsPlayerInformationUpgrade">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_SovietFaction"
+					ShowSubObjects="Upgrade_01"/>
+				<CustomAnimAndDuration	AnimState="SPECIAL_WEAPON_FIVE"/>
+			</SubObjectsUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_SuperStructureCanNotUseWeapon"
+				AttributeModifier="AttributeModifier_SuperStructureCanNotUseWeapon">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<FireWeaponWhenDead
+				id="ModuleTag_CelebratingWeapon"
+				InitiallyActive="true"
+				DeathWeapon="UnitCelebratingSuperStructure">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED PRODUCTION_CANCELLED"
+					ExemptStatus="SOLD"/>
+			</FireWeaponWhenDead>
+			<GrantUpgradeCreate
+				id="ModuleTag_SideSuperStructure"
+			  UpgradeToGrant="SideSuperStructure"/>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="SovietSuperStructureFunctions" />
+			<StancesBehavior
+				id="ModuleTag_Stance"
+				StanceTemplate="OffensiveStructures" />
+		</Behaviors>
+				<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">
+		</CrusherInfo>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="OffensiveStructureAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="true"
+					IdleScanDelay="0.0s">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="25000.0" />
+		</Body>
+    <ClientUpdates>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady300"
+			AnnouncementEventEnemy="Countdown5MinsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure300"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady420"
+			AnnouncementEventEnemy="Countdown3MinsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure420"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady540"
+			AnnouncementEventEnemy="Countdown1MinsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure540"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady570"
+			AnnouncementEventEnemy="Countdown30SecsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure570"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady590"
+			AnnouncementEventEnemy="Countdown10SecsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure590"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady"
+			AnnouncementEventEnemy="EnemySuperStructureAccomplished"
+			AnnouncementEventOwner="OurSuperStructureAccomplished"
+			SpecialPowerTemplate="SpecialPower_AlliedSuperStructure"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceClientCreate
+          id="SuperWeaponDetected"
+          AnnouncementEventEnemy="NewBonusObjective"
+          UseObjectsPosition="true" />
+	</ClientUpdates>
+	<EvaEventArray>
+		<EvaEntry EvaEvent="CriticalStructureUnderAttack" EvaType="damagedOwner" />
+		<EvaEntry EvaEvent="SuperStructureDieForPlayer" EvaType="dieOwner" />
+		<EvaEntry EvaEvent="SuperStructureDieForEnemy" EvaType="dieEnemy" />
+	</EvaEventArray>
+		<Geometry
+			IsSmall="false">
+<Shape 
+     Type= "BOX"
+     MajorRadius = "70.07"
+     MinorRadius = "53.36"
+     Height = "19.4"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "0.0"
+        y = "58"
+        z = "0.0" />
+</Shape>
+<Shape
+     Type= "BOX"
+     MajorRadius = "70.07"
+     MinorRadius = "57.54"
+     Height = "52.177"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "0.886"
+        y = "-52.081"
+        z = "0.0" />
+</Shape>
+<Shape
+     Type= "BOX"
+     MajorRadius = "45.01"
+     MinorRadius = "39.90"
+     Height = "160"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "0.0"
+        y = "42.872"
+        z = "0.0" />
+</Shape>
+<Shape
+     Type= "BOX"
+     MajorRadius = "14.85"
+     MinorRadius = "15.31"
+     Height = "322"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "-0.4"
+        y = "39.448"
+        z = "0.0" />
+</Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="HumanFaction_MediumBuilding_LightDamageMS" AudioType="soundOnDamaged" />
+			<AudioEntry Sound="HumanFaction_MediumBuilding_HeavyDamageMS" AudioType="soundOnReallyDamaged" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="3050"
+			ShroudClearingRange="=$SUPER_STRUCTURE_SHROUD_CLEAR"
+			ShroudClearingHeight="500"/>
+	</GameObject>
+	<GameObject
+		id="SovietSuperStructureSandbox"
+		inheritFrom="SovietSuperStructure"
+		EditorName="SovietSuperStructureSandbox">
+		<EquivalentTo>SovietSuperStructure</EquivalentTo>
+		<Behaviors>
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				xai:joinAction="Replace"
+				UnpackTime="2s" />
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

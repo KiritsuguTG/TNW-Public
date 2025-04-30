@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<!-- aka Riptide ACV -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml"/> 
+
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseBoat.xml"/>
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseCollapsingObject.xml"/>
+	</Includes>
+	<!-- aka PT Boat -->
+	<GameObject
+		id="AM_Boat01"
+		inheritFrom="BaseAutoSpawn"
+		BuildTime="100.0"
+		EditorName="AM_Boat01">
+		<DisplayName>Name:BaseAutoSpawn</DisplayName>
+		<Behaviors>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AM_Boat01Spawn_OCL">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<ObjectCreationList
+	id="AM_Boat01Spawn_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE"
+			Count="1"
+			DispositionAngle="-180d">
+			<CreateObject>AM_Boat01Spawn</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<GameObject
+		id="AM_Boat01Spawn"
+		inheritFrom="BaseBoat"
+		VoicePriority="188"
+		EditorName="AM_Boat01Spawn">
+		<LocomotorSet
+			Locomotor="AlliedAntiInfantryWaterLocomotor"
+			Condition="NORMAL_UPGRADED"
+			Speed="65"/>
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"/>
+		<Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw"
+				  ExtraPublicBone="BONE_D_01 BONE_D_02 BONE_D_03 BONE_D_04 BONE_D_05">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="AM_BOAT01N"/>
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="AM_BOAT01N"/>
+					<Material
+						ShaderName="FX_FormPreview.fx"
+						TechniqueName="Default">
+						<Constants>
+							<Texture Name="SpecMap">
+								<Value>FXGradient01</Value>
+							</Texture>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AM_BOAT01N" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AM_BOAT01N" />
+					<Texture
+						Original="AM_Boat01"
+						New="AM_Boat01_D" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/> 
+				</ModelConditionState>
+		  <AnimationState
+			  ParseCondStateType="PARSE_DEFAULT">
+		  </AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					StateName="STATE_OnWater">					
+					<ParticleSysBone
+						BoneName="FX_Wake"
+						FXParticleSystemTemplate="SVAntiAirShipWaterWake"
+						FollowBone="true"/>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes=" OVER_WATER"
+					StateName="STATE_OnWater">					
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="SmallShipWakeIdle"
+						FollowBone="true"/>
+				</AnimationState>
+      </ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<ContestableGarrisonContain
+				id="ModuleTag_Garrison"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED CAN_ATTACK"
+				ContainMax="4"
+				EnterSound="VehicleEnter"
+				ExitSound="VehicleExit"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="false"
+				AllowNeutralInside="true"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				KillPassengersOnDeath="true"
+				RequiredClearingObjectStatus="CAN_CONTEST_GARRISON"
+				IgnoreDisabledBitsForRiders="HELD UNDERPOWERED TEMPORARILY_BUSY INFILTRATED PARALYZED"
+				EjectSpeed="3">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY">
+					<ExcludeThing>AlliedScoutInfantry</ExcludeThing>
+					<ExcludeThing>SovietScoutInfantry</ExcludeThing>
+					<ExcludeThing>EUScoutVehicle</ExcludeThing>
+					<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+				</PassengerFilter>
+				<PassengerData
+					BonePrefix="BONE_D_01 BONE_D_02 BONE_D_03 BONE_D_04 BONE_D_05">
+					<Filter
+						Rule="ANY"
+						Include="INFANTRY"/>					
+				</PassengerData>
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ContestableGarrisonContain>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AM_Boat01_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="250"
+				MaxHealthReallyDamagedPercentage="20">
+				</ActiveBody>
+		</Body>
+    <Geometry>
+		<Shape
+			 Type= "BOX"
+			 MajorRadius = "32.9448"
+			 MinorRadius = "9.84022"
+			 Height = "17.6277"
+			 ContactPointGeneration = "VEHICLE" >
+			<Offset
+				x = "-0.152267"
+				y = "0.0122719"
+				z = "0.0" />
+		</Shape>
+    </Geometry>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushEqualLevelProps="true"
+			CrusherLevel="1"
+			CrushableLevel="20"/>
+	</GameObject>
+	<GameObject
+		id="AM_Boat01_Collapse"
+		inheritFrom="BaseCollapsingObject"
+		EditorName="AM_Boat01_Collapse">
+		<Draws>
+			<DynamicsDraw
+				id="ModuleTag_Draw"
+				Collision="NONINTERCOLLIDING"
+				Explodiness="4"
+				FlingPerturbation="15">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AM_BOAT01N" />
+				</ModelConditionState>
+				<BoneVolumes>
+<BoneVolume BoneName="Bone_D_01" Mass="6755" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="8.307" HalfSizeY="7.151" HalfSizeZ="5.686" >
+		<Translation x="-22.877" y="0.0" z="8.994" />
+		<Rotation x="0.0" y="0.0" z="-0.00218808" w="0.999998" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_02" Mass="3094" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="6.135" HalfSizeY="4.09" HalfSizeZ="6.167" >
+		<Translation x="24.879" y="-2.756" z="6.376" />
+		<Rotation x="-0.709217" y="0.00886174" z="-0.01274" w="0.70482" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_03" Mass="1459" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="6.431" HalfSizeY="4.057" HalfSizeZ="2.797" >
+		<Translation x="5.882" y="-0.107" z="11.854" />
+		<Rotation x="0.0" y="0.0411962" z="0.0" w="0.999151" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_04" Mass="3549" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="6.781" HalfSizeY="7.499" HalfSizeZ="3.49" >
+		<Translation x="11.262" y="0.0" z="4.938" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_05" Mass="3809" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="7.094" HalfSizeY="7.238" HalfSizeZ="3.71" >
+		<Translation x="-5.6" y="0.0" z="6.5" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+				</BoneVolumes>
+				<Lifetime
+					Delay="10s"
+					FadeTime="10s" />
+			</DynamicsDraw>
+		</Draws>
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="15s"
+			MaxLifetime="15s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1"
+			DestructionDelay="20s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+	</GameObject>
+	<ObjectCreationList
+		id="AM_Boat01_Die_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="LIKE_EXISTING INHERIT_VELOCITY"
+			Count="1"
+			VelocityScale="20.0"
+			MinForceMagnitude="1.0"
+			MaxForceMagnitude="2.0"
+			MinForcePitch="90d"
+			MaxForcePitch="75d">
+			<CreateObject>AM_Boat01_Collapse</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>	
+</AssetDeclaration>

@@ -1,0 +1,1296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:Units/EUAntiAirAircraft/EUAntiAirAircraft_SKN.W3X" />
+		<Include type="all" source="ART:Units/EUAntiAirAircraft/EUAntiAirAircraft_IDLE.W3X" />
+		<Include type="all" source="ART:Units/EUAntiAirAircraft/EUAntiAirAircraft_FP.W3X" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseAircraft.xml" />
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<GameObject
+		id="EUAntiAirAircraft"
+		inheritFrom="BaseAircraft"
+		SelectPortrait="PortraitEUAntiAirAircraft"
+		ButtonImage="ButtonEUAntiAirAircraft"
+		Side="Allies"
+		EditorSorting="UNIT"
+		BuildTime="12"
+		CommandSet="AlliedAntiAirAircraftCommandSet"
+		KindOf="CAN_CAST_REFLECTIONS CAN_ATTACK SELECTABLE SCORE AIRCRAFT VEHICLE ASSAULT_AIRCRAFT LINE_OF_SIGHT_IGNORES_BUILDINGS CAN_BE_FAVORITE_UNIT LEAVE_PARKING_ON_BUILD_COMPLETE PRODUCED_AT_HELIPAD BEAM_TARGET_REFLECTOR"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="AIRCRAFT"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="GUN"
+		VoicePriority="148"
+		BountyValue="150"
+		EditorName="EUAntiAirAircraft"
+		Description="Desc:EUAntiAirAircraft"
+		TypeDescription="Type:EUAntiAirAircraft"
+		HealthBoxHeightOffset="30">
+		<DisplayName xai:joinAction="Replace">Name:EUAntiAirAircraft</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1200" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="BasicHelicopterTaxiLocomotor"
+			Condition="TAXIING"
+			Speed="10" />
+		<LocomotorSet
+			Locomotor="EUAntiAirAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="130.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ContainedMembersProvideWeapon="true"
+			ConquerMetricsOverrideDPS="50"
+			ConquerMetricsDpsBonusAgainstDefenses="4.0"
+			ConquerMetricsOverrideDamageType="AUTO_CANNON"
+			ConquerMetricsOverrideAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_INFANTRY" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="FX_GUN_01 FX_WEAPON_MISSILE_01 FX_WEAPON_MISSILE_02 BONE_TURRET BONE_TURRET_PITCH BONEGARRISON01 BONEGARRISON02 BONEGARRISON03">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EUAntiAirAircraft_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_MISSILE_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_MISSILE_" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_GUN_" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_GUN_" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_GUN_" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_GUN_" />
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="TERTIARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="TERTIARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="QUATERNARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="QUATERNARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="QUINARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="QUINARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponFireFXBone
+						WeaponSlotID="4"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponLaunchBone
+						WeaponSlotID="4"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponFireFXBone
+						WeaponSlotID="4"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponLaunchBone
+						WeaponSlotID="4"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponFireFXBone
+						WeaponSlotID="4"
+						WeaponSlotType="TERTIARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponLaunchBone
+						WeaponSlotID="4"
+						WeaponSlotType="TERTIARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponFireFXBone
+						WeaponSlotID="4"
+						WeaponSlotType="QUATERNARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponLaunchBone
+						WeaponSlotID="4"
+						WeaponSlotType="QUATERNARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponFireFXBone
+						WeaponSlotID="4"
+						WeaponSlotType="QUINARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<WeaponLaunchBone
+						WeaponSlotID="4"
+						WeaponSlotType="QUINARY_WEAPON"
+						BoneName="BONEGARRISON" />
+					<Turret
+						TurretNameKey="BONE_TURRET"
+						TurretPitch="BONE_TURRET_PITCH"
+						TurretID="2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="EUANTIAIRAIRCRAFT_FP" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 REALLYDAMAGED">
+					<Model
+						Name="EUAntiAirAircraft_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="EUAntiAirAircraft2_D" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="ChopperDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="ChopperDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 DAMAGED">
+					<Model
+						Name="EUAntiAirAircraft_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="EUAntiAirAircraft2" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="ChopperDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 DYING">
+					<Model
+						Name="EUAntiAirAircraft_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="EUAntiAirAircraft2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="EUAntiAirAircraft_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="EUAntiAirAircraft2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="EUAntiAirAircraft_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="EUAntiAirAircraft_D" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="ChopperDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="ChopperDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="EUAntiAirAircraft_SKN" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="ChopperDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Model
+						Name="EUAntiAirAircraft_SKN" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="EUAntiAirAircraft_IDLE"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+				id="ModuleTag_Water_FX"
+				ExtraPublicBone="InvisBone01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="FXInvisBone" />
+					<ParticleSysBone
+						BoneName="InvisBone01"
+						FXParticleSystemTemplate="HelicopterMovingWaterWake"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw"
+				MinLength="15.0"
+				MaxLength="15.0"
+				Width="7.0"
+				MinSpeed="20"
+				MaxSpeed="20"
+				SweepSpeed="3.0"
+				SpreadAngle="4.0"
+				MinTracersPerFrame=".2"
+				MaxTracersPerFrame=".35"
+				FrameLifeTime="30"
+				WeaponSlotID="2"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracer"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="0.5"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="0.5"
+					a="0.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawVeterancy"
+				MinLength="15.0"
+				MaxLength="18.0"
+				Width="7.0"
+				MinSpeed="20"
+				MaxSpeed="20"
+				SweepSpeed="1.0"
+				SpreadAngle="1.0"
+				MinTracersPerFrame="0.2"
+				MaxTracersPerFrame="0.35"
+				FrameLifeTime="30"
+				WeaponSlotID="2"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracerHeroic"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="0.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+
+			<LaserDraw
+				id="ModuleTag_LaserPrismDraw"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="3"
+				WeaponSlotID="2"
+				LaserStateID="77">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlliedPrismBeam</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlliedPrismBeam</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>4.000000</Value>
+							<Value>4.000000</Value>
+							<Value>4.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<!-- VETERAN -->
+			<LaserDraw
+				id="ModuleTag_LaserDraw_Vet"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="3"
+				WeaponSlotID="2"
+				LaserStateID="78">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlliedPrismBeam</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlliedPrismBeam_Vet</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>4.000000</Value>
+							<Value>4.000000</Value>
+							<Value>4.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDistort"
+				UseDistortionShader="true"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".01"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="1"
+				LaserWidth="50"
+				WeaponSlotID="1"
+				LaserStateID="503">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXRailGunCoreDistortion</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXRailGunCoreMask</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+
+
+			<LaserDraw
+				id="SovietCommandoTech1ModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="0"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".03"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="0"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="4"
+				LaserStateID="5">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>5.000000</Value>
+							<Value>1.000000</Value>
+							<Value>1.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="EUAntiVehicleInfantryTech2ModuleTag_LaserDistort"
+				Texture1_UTile="1"
+				Texture1_VTile="1.5"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".9"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".4"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="1"
+				FadeInTime="0.3s"
+				FadeOutTime="1.0s"
+				LaserWidth="5"
+				LaserStateID="601">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXRailGunCore</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXRailGunCore</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>5.000000</Value>
+							<Value>5.000000</Value>
+							<Value>5.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="JapanAntiVehicleInfantryModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".3"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1.4"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="10"
+				LaserStateID="100">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>5.000000</Value>
+							<Value>5.000000</Value>
+							<Value>2.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="StrategicArmyInfiltrationInfantryModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="0"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				LaserStateID="165">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXGrid_3</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXInterlacedMask2</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>6.00000</Value>
+							<Value>6.00000</Value>
+							<Value>6.00000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<TracerModelDraw
+				id="SovietCommandoTech1ModuleTag_TracerModelDraw"
+				MinLength="360.0"
+				MaxLength="360.0"
+				Width="15.0"
+				MinSpeed="30"
+				MaxSpeed="30"
+				SweepSpeed="0.0"
+				SpreadAngle="0.0"
+				MinTracersPerFrame="0.01"
+				MaxTracersPerFrame="0.01"
+				FrameLifeTime="30"
+				WeaponSlotType="SECONDARY_WEAPON"
+				Texture="FXTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="3">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="SovietCommandoTech1ModuleTag_TracerModelDrawT"
+				MinLength="360.0"
+				MaxLength="360.0"
+				Width="15.0"
+				MinSpeed="30"
+				MaxSpeed="30"
+				SweepSpeed="0.0"
+				SpreadAngle="0.0"
+				MinTracersPerFrame="0.01"
+				MaxTracersPerFrame="0.01"
+				FrameLifeTime="30"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="4">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="AlliedCommandoTech1ModuleTag_TracerModelDraw"
+				MinLength="55.0"
+				MaxLength="60.0"
+				Width="15.0"
+				MinSpeed="22"
+				MaxSpeed="32"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.2"
+				MaxTracersPerFrame="0.3"
+				FrameLifeTime="25"
+				WeaponSlotType="SECONDARY_WEAPON"
+				Texture="FXTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="4">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="0.0"
+					g="0.0"
+					b="0.0"
+					a="0.0" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="EUAntiInfantryInfantryModuleTag_TracerModelDraw"
+				MinLength="150.0"
+				MaxLength="150.0"
+				Width="5.0"
+				MinSpeed="30"
+				MaxSpeed="30"
+				SweepSpeed="0.0"
+				SpreadAngle="0.0"
+				MinTracersPerFrame="0.01"
+				MaxTracersPerFrame="0.01"
+				FrameLifeTime="30"
+				WeaponSlotType="TERTIARY_WEAPON"
+				Texture="FXTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="3">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="JapanAntiInfantryInfantryModuleTag_TracerModelDraw"
+				MinLength="15.0"
+				MaxLength="15.0"
+				Width="5.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.2"
+				MaxTracersPerFrame="0.3"
+				FrameLifeTime="35"
+				WeaponSlotType="QUATERNARY_WEAPON"
+				Texture="FXJapanTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="3">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a=".0" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="MODAntiVehicleInfantryModuleTag_TracerModelDraw"
+				MinLength="10.0"
+				MaxLength="10.0"
+				Width="15.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.6"
+				MaxTracersPerFrame="0.9"
+				FrameLifeTime="35"
+				WeaponSlotType="QUINARY_WEAPON"
+				Texture="FXJapanArmorTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="3">
+				<HeadColor
+					r="5.0"
+					g="5.0"
+					b="2.0"
+					a="2.0" />
+				<TailColor
+					r="5.0"
+					g="5.0"
+					b="2.0"
+					a="2.0" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="SovietAntiInfantryInfantryModuleTag_TracerModelDraw"
+				MinLength="12.0"
+				MaxLength="18.0"
+				Width="6.0"
+				MinSpeed="25"
+				MaxSpeed="35"
+				SweepSpeed="2.0"
+				SpreadAngle="5.0"
+				MinTracersPerFrame=".1"
+				MaxTracersPerFrame=".1"
+				FrameLifeTime="25"
+				WeaponSlotType="TERTIARY_WEAPON"
+				Texture="FXTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="4">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="StrategicArmyAntiInfantryInfantryModuleTag_TracerModelDraw"
+				xai:joinAction="Replace"
+				MinLength="20.0"
+				MaxLength="26.0"
+				Width="3.0"
+				MinSpeed="25"
+				MaxSpeed="35"
+				SweepSpeed="2.0"
+				SpreadAngle="5.0"
+				MinTracersPerFrame=".1"
+				MaxTracersPerFrame=".1"
+				FrameLifeTime="25"
+				WeaponSlotType="QUATERNARY_WEAPON"
+				Texture="FXTeslaTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="4">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+			</TracerModelDraw>
+
+			<StreamDraw
+				id="ModuleTag_StreamDraw"
+				UseDistortionShader="false"
+				Velocity="300.0"
+				ArcHeightFactor="0.0625"
+				UVWorldSize="100.0"
+				NumTubeSides="4"
+				TubeRadius="1.5"
+				WeaponSlotID="1"
+				StreamStateID="0">
+				<FXShader
+					ShaderName="Stream.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXCorrupterStream</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXCorrupterStream</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+				<ParticleSystems>
+					<ParticleSys>SovietToxicStreamDrip</ParticleSys>
+					<ParticleSys>SovietToxicStreamCloud</ParticleSys>
+					<ParticleSys>SovietToxicStreamDistortion</ParticleSys>
+				</ParticleSystems>
+			</StreamDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					AllowInterleavedFiring="false"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUAntiAirAircraftAntiAirRocket"
+						ForbiddenObjectStatus="ADVANCED_MISSILE_PACKS" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUAntiAirAircraftAntiAirRocket_AdvanceMissile"
+						ObjectStatus="ADVANCED_MISSILE_PACKS" />
+				</WeaponSlotHardpoint>
+				<WeaponSlotTurret
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUAntiAirAircraftAutoCannon"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_02" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="EUAntiAirAircraftPrismBeamAntiGround"
+						ObjectStatus="WEAPON_UPGRADED_02" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="EUAntiAirAircraftPrismBeamAntiAir"
+						ObjectStatus="WEAPON_UPGRADED_02" />
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="-60d"
+						AllowsPitch="true"
+						PitchHeight="10%"
+						TurretPitchRate="180"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="4.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0">
+						<TurretAITargetChooserData
+							TargetingCompareList="CommandoTargetingCompareList"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotHardpoint
+					ID="3">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_Shotgun"
+						Template="AlliedAntiInfantryInfantryShotgunInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_MissleTrooper"
+						Template="AlliedAntiVehicleInfantryMissileLauncherInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_FreezeSpray"
+						Template="AlliedLegionnaireInfantryFreezeSprayInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_EUMissleTrooper"
+						Template="EUAntiVehicleInfantryMissileLauncherInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_EnergyBow"
+						Template="JapanArcherInfantryEnergyBowInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_PsyonicCrush"
+						Template="JapanCommandoTech1AirborneKillerInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_Shuriken"
+						Template="JapanInfiltrationShirukenInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_VXRocket"
+						Template="MODInfiltrationInfantryWeaponInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_FlakTrooper"
+						Template="SovietAntiVehicleFlakLauncherInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_DesolatorSpray"
+						Template="SovietDesolatorSprayInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_SAMissleTrooper"
+						Template="StrategicArmyAntiVehicleInfantryLauncherInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_SovietCommando"
+						Template="SovietCommandoCallBombingRun" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_SovietCommando"
+						Template="SovietCommandoCallBombingRunAntiAirInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_LaserGun"
+						Template="EUAntiVehicleInfantryTech2LaserGunInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_PlasmaBazooka"
+						Template="JapanAntiVehicleInfantryPlasmaBazookaInHeli" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Upgrade="Uprade_IFV_SovietCommando"
+						Template="SovietCommandoSniperRifleInHeli" />
+					<Weapon
+						Ordering="TERTIARY_WEAPON"
+						Upgrade="Uprade_IFV_RiftGun"
+						Template="EUAntiInfantryInfantrygunInHeli" />
+					<Weapon
+						Ordering="QUATERNARY_WEAPON"
+						Upgrade="Uprade_IFV_JapanMachineGun"
+						Template="JapanAntiInfantryInfantryWeaponInHeli" />
+					<Weapon
+						Ordering="QUINARY_WEAPON"
+						Upgrade="Uprade_IFV_PlasmaLaser"
+						Template="MODAntiVehicleInfantryPlasmaLaserGunInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_Scrambler"
+						Template="StrategicArmyInfiltrationInfantryWeaponScramblerInHeli" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_IFV_TeslaTrooper"
+						Template="SovietHeavyAntiVehicleInfantryTeslaGunInHeli" />
+				</WeaponSlotHardpoint>
+				<WeaponSlotHardpoint
+					ID="4">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Upgrade="Uprade_SovietEngineer"
+						Template="SovietEngineerPistolInHeli" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Upgrade="Uprade_IFV_Pistol"
+						Template="AlliedCommandoDesertEaglesInHeli" />
+					<Weapon
+						Ordering="TERTIARY_WEAPON"
+						Upgrade="Uprade_IFV_MachineGun"
+						Template="SovietAntiInfantryInfantryAK47InHeli" />
+					<Weapon
+						Ordering="QUATERNARY_WEAPON"
+						Upgrade="Uprade_IFV_TeslaGun"
+						Template="StrategicArmyAntiInfantryInfantryTeslaGunInHeli" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<TransportContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED NO_ATTACK"
+				ObjectStatusWhileContaining="CONTAINER_OCCUPIED CANNOT_LAND_AT_AIRFIELD"
+				ContainMax="1"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="VehicleExit"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY">
+					<ExcludeThing>AlliedScoutInfantry</ExcludeThing>
+					<ExcludeThing>SovietScoutInfantry</ExcludeThing>
+				</PassengerFilter>
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="NONE">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</PassengerData>
+			</TransportContain>
+			<FireWeaponUpdate
+				id="Upgrade_TransportRepairHeal"
+				FireInterval="1.0s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="TransportRepairHealShortCircuit"
+					OneShot="false" />
+				<ObjectStatusValidation
+					RequiredStatus="PLAYER_POWER_5" />
+			</FireWeaponUpdate>
+			<StatusBitsUpgrade
+				id="ModuleTag_TransportRepairObjectStatus"
+				StatusToSet="PLAYER_POWER_5">
+				<TriggeredBy>Uprade_IFV_Repair</TriggeredBy>
+				<TriggeredBy>Uprade_SovietEngineer</TriggeredBy>
+			</StatusBitsUpgrade>
+			<Physics
+				id="ModuleTag_Physics"
+				GravityMultiplier="30" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="EUAntiAirAircraft_Dying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<UpgradeForbidden>Upgrade_AlliedAirPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_UpgradeCreateObjectDie"
+				CreationList="EUAntiAirAircraft_UpgradeDying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<UpgradeRequired>Upgrade_AlliedAirPower</UpgradeRequired>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_EU_HeliDie" />
+			</FXListBehavior>
+			<AttributeModifierUpgrade
+				id="ModuleTag_AlliedUnitUpgrade"
+				AttributeModifier="AttributeMod_EUAntiAirAircraftUpgradeAttribute">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_SovietUnitUpgradeUpgradeFX"
+				AttributeModifier="AttributeMod_PlayerPowerUpgradeAttributeFX">
+				<TriggeredBy>Upgrade_SovietAntiPlus</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_JapanAdvancedMissilePacks"
+				AttributeModifier="AttributeModifer_JapanAdvancedMissilePacks">
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_AlliedLaserUpgradeUpgradeFX"
+				AttributeModifier="AttributeMod_PlayerPowerUpgradeAttributeFX">
+				<TriggeredBy>Upgrade_AlliedLaserUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_AddRateOfFireAndDamageUnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<LaserState
+				id="ModuleTag_PrismLaserState"
+				LaserId="77">
+				<LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+				<LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+				<LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+			</LaserState>
+			<!-- VETERAN -->
+			<LaserState
+				id="ModuleTag_PrismLaserState_Vet"
+				LaserId="78">
+				<LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+				<LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+				<LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+			</LaserState>
+			<LaserState
+				id="ModuleTag_LaserDistortStateA"
+				LaserId="503">
+			</LaserState>
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_02">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<xi:include
+				href="DATA:Includes/EUAntiAirAircraftObjectListener.xml" />
+			<!-- SovietCommandoTech1 -->
+			<LaserState
+				id="SovietCommandoTech1ModuleTag_LaserState"
+				LaserId="5">
+				<LaserEndParticleSystem>Allied_Target_LaserEnd</LaserEndParticleSystem>
+				<LaserEndParticleSystem>SovietNatashaLaserEnd_VetSparks</LaserEndParticleSystem>
+			</LaserState>
+			<OCLSpecialPower
+				id="SovietCommandoTech1ModuleTag_BombingRun"
+				SpecialPowerTemplate="SpecialPowerBombingRun"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="true"
+				OCL="OCL_SovietBombingRun"
+				CreateLocation="USE_SECONDARY_OBJECT_LOCATION">
+				<NearestSecondaryObjectFilter
+					Relationship="SAME_PLAYER">
+					<IncludeThing>SovietCommandoTech1</IncludeThing>
+				</NearestSecondaryObjectFilter>
+			</OCLSpecialPower>
+			<OCLSpecialPower
+				id="SovietCommandoTech1ModuleTag_BombingRunAntiAir"
+				SpecialPowerTemplate="SpecialPowerBombingRunAntiAir"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="true"
+				OCL="OCL_SovietBombingRunAntiAir"
+				CreateLocation="USE_SECONDARY_OBJECT_LOCATION">
+				<NearestSecondaryObjectFilter
+					Relationship="SAME_PLAYER">
+					<IncludeThing>SovietCommandoTech1</IncludeThing>
+				</NearestSecondaryObjectFilter>
+			</OCLSpecialPower>
+			<OCLMonitorUpdate
+				id="SovietCommandoTech1ModuleTag_BombingRunMonitor"
+				Options="MASTER RELEASE_WHEN_MASTER_CHANGES_TARGET" />
+			<!-- JapanCommandoTech1 -->
+			<LiftObjectUpdate
+				id="JapanCommandoTech1ModuleTag_PsyonicCrushLiftUpdate"
+				CrusherModifiesVelocity="false"
+				LiftVelocity="4.0"
+				MaxElevationFromGround="200.0"
+				TimeIncrement="0.5s"
+				MaxTimeLifted="8.0s"
+				MaxStructureShakeVelocity="0.25"
+				AirplaneCrashWeapon="JapanCommandoTech1AirplaneCrashWeapon"
+				SoftLandingWeapon="JapanCommandoSoftLanding" />
+			<!-- EUAntiVehicleInfantryTech2 -->
+			<LaserState
+				id="EUAntiVehicleInfantryTech2ModuleTag_LaserState"
+				LaserId="601">
+				<LaserEndParticleSystem>JapanOniLaserHitFlash</LaserEndParticleSystem>
+				<LaserEndParticleSystem>JapanOniLaserHitLight</LaserEndParticleSystem>
+				<LaserEndParticleSystem>JapanOniLaserHitMolt</LaserEndParticleSystem>
+				<LaserEndParticleSystem>JapanOniLaserHitSpark</LaserEndParticleSystem>
+			</LaserState>
+			<!-- JapanAntiVehicleInfantry -->
+			<LaserState id="JapanAntiVehicleInfantryModuleTag_LaserState" LaserId="100" />
+			<!-- StrategicArmyInfiltrationInfantry -->
+			<LaserState
+				id="StrategicArmyInfiltrationInfantryModuleTag_LaserState"
+				LaserId="165">
+				<LaserEndParticleSystem>StrategicArmyInfiltrationInfantryLaser_Sparks</LaserEndParticleSystem>
+			</LaserState>
+			<!-- StrategicArmyAntiVehicleInfantryTech3 -->
+			<StreamState
+				id="ModuleTag_StreamState"
+				StreamId="0" />
+			<AttributeModifierUpgrade
+				id="ModuleTag_SovietCommando"
+				AttributeModifier="AttributeModifier_SovietCommandoVisionBonus">
+				<TriggeredBy>Uprade_IFV_SovietCommando</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_SovietUnitUpgradeUpgradeFX"
+				AttributeModifier="AttributeMod_PlayerPowerUpgradeAttributeFX">
+				<TriggeredBy>Upgrade_SovietAntiPlus</TriggeredBy>
+			</AttributeModifierUpgrade>
+
+			<!-- AlliedAirPowerUpgrade -->
+			<xi:include
+				href="DATA:Includes/AlliedAirPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedAirPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<JetAIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="TransportHelicopterAIStateMachine">
+				<UnitAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+					RotateToTargetWhenAiming="true"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+				</UnitAITargetChooserData>
+			</JetAIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="500" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="24.6"
+				MinorRadius="2.9"
+				Height="9"
+				ContactPointGeneration="VEHICLE">
+				<Offset x="-2" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="4.2"
+				MinorRadius="13"
+				Height="5.3"
+				ContactPointGeneration="VEHICLE">
+				<Offset x="8" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="EU_AntiAirAircraft_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="EU_AntiAirAircraft_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="EU_AntiAirAircraft_VoiceMoveAttack"
+				AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="EU_AntiAirAircraft_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="EU_AntiAirAircraft_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="EU_AntiAirAircraft_VoiceSelectUnderFire"
+				AudioType="voiceSelectUnderFire" />
+			<AudioEntry Sound="EU_AntiAirAircraft_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="EU_AntiAirAircraft_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="A06_PresidentialHelicopter_MoveLoop" AudioType="soundAmbient" />
+			<AudioEntry Sound="A06_PresidentialHelicopter_MoveStart" AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="=$BASE_AIRCRAFT_SHROUD_CLEAR" />
+	</GameObject>
+	<GameObject
+		id="EUAntiAirAircraft_Crate"
+		inheritFrom="EUAntiAirAircraft"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="EUAntiAirAircraft_Crate">
+		<EquivalentTo>EUAntiAirAircraft</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

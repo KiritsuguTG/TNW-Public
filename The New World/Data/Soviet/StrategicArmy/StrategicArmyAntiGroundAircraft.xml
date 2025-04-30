@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:xai="uri:ea.com:eala:asset:instance"  xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include type="instance" source="DATA:Soviet/Unit/SovietAntiGroundAircraft.xml" />
+	</Includes>
+	<!-- aka Hind aka Twinblade -->
+	<GameObject
+		id="StrategicArmyAntiGroundAircraft"
+		inheritFrom="SovietAntiGroundAircraft"
+		WeaponCategory="GUN"
+		EditorName="StrategicArmyAntiGroundAircraft"
+		Description="Desc:StrategicArmyAntiGroundAircraft">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:StrategicArmyAntiGroundAircraft</DisplayName>
+		<ObjectResourceInfo
+			xai:joinAction="Replace">
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1400"/>
+		</ObjectResourceInfo>
+		<LocomotorSet
+			id="ModuleTag_FlyLocomotor"
+			Locomotor="SovietAntiGroundAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="145.0" />
+		<Draws>
+		<TracerModelDraw
+			id="ModuleTag_TracerModelDraw"
+			xai:joinAction="Replace"
+			MinLength="25.0"
+			MaxLength="50.0"
+			Width="2.5"
+			MinSpeed="30"
+			MaxSpeed="35"
+			SweepSpeed="1.0"
+			SpreadAngle="1.0"
+			MinTracersPerFrame=".2"
+			MaxTracersPerFrame=".2"
+			FrameLifeTime="35"
+			Texture="FXTracer"
+			UseAdditiveBlending="true"
+			WeaponSlotType="PRIMARY_WEAPON"
+			WeaponSlotID="2">
+			<HeadColor
+				r="1.0"
+				g="1.0"
+				b="1.0"
+				a="1.0" />
+			<TailColor
+				r="1.0"
+				g="1.0"
+				b="1.0"
+				a="1.0" />
+			<ObjectStatusValidation
+				ForbiddenStatus="WEAPON_UPGRADED_01" />
+		</TracerModelDraw>
+		<TracerModelDraw
+			id="ModuleTag_TracerModelDrawVeterancy"
+			xai:joinAction="Replace"
+			MinLength="25.0"
+			MaxLength="50.0"
+			Width="2.5"
+			MinSpeed="30"
+			MaxSpeed="35"
+			SweepSpeed="1.0"
+			SpreadAngle="1.0"
+			MinTracersPerFrame=".2"
+			MaxTracersPerFrame=".2"
+			FrameLifeTime="35"
+			Texture="FXTracerHeroic"
+			UseAdditiveBlending="true"
+			WeaponSlotType="PRIMARY_WEAPON"
+			WeaponSlotID="2">
+			<HeadColor
+				r="1.0"
+				g="1.0"
+				b="1.0"
+				a="1.0" />
+			<TailColor
+				r="1.0"
+				g="1.0"
+				b="1.0"
+				a="1.0" />
+			<ObjectStatusValidation
+				RequiredStatus="WEAPON_UPGRADED_01" />
+		</TracerModelDraw>
+
+			<TracerModelDraw
+				id="ModuleTag_TeslaTracerModelDraw"
+				MinLength="20.0"
+				MaxLength="26.0"
+				Width="3.0"
+				MinSpeed="25"
+				MaxSpeed="35"
+				SweepSpeed="2.0"
+				SpreadAngle="5.0"
+				MinTracersPerFrame=".1"
+				MaxTracersPerFrame=".1"
+				FrameLifeTime="25"
+				Texture="FXTeslaTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotType="SECONDARY_WEAPON"
+				WeaponSlotID="2">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01"/>
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TeslaTracerModelDrawVeterancy"
+				MinLength="20.0"
+				MaxLength="26.0"
+				Width="3.0"
+				MinSpeed="25"
+				MaxSpeed="35"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.5"
+				MaxTracersPerFrame="0.5"
+				FrameLifeTime="35"
+				Texture="FXTeslaTracerHeroic"
+				UseAdditiveBlending="true"
+				WeaponSlotType="SECONDARY_WEAPON"
+				WeaponSlotID="2">
+				<HeadColor
+					r="1.0"
+					g="0.0"
+					b="0.0"
+					a="1.0" />
+				<TailColor
+					r="0.0"
+					g="0.0"
+					b="0.0"
+					a="0.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01"/>
+			</TracerModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate"
+				xai:joinAction="Replace">
+				<WeaponSlotTurret
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyAntiGroundAircraftAutoCannon"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_02"/>
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="StrategicArmyAntiGroundAircraftAutoTeslaCannon"
+						ObjectStatus="WEAPON_UPGRADED_02" />
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="-60d"
+						AllowsPitch="true"
+						PitchHeight="10%"
+						TurretPitchRate="180"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="4.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<SpawnBehavior
+				id="ModuleTag_SpawnRepairDronesJapan"
+				SpawnNumberData="1"
+				InitialBurst="1"
+				SpawnReplaceDelayData="10s"
+				SpawnedRequireSpawner="true"
+				KillSpawnsOnCaptured="true"
+				SpawnInsideBuilding="true"
+				KillSpawnsOnDisabled="true"
+				SpawnOnUnpack="true">
+				<Die
+					DeathTypes="ALL" />
+				<SpawnTemplate>SovietUnitRepairDrone</SpawnTemplate>
+			</SpawnBehavior>
+			<AttributeModifierUpgrade
+			id="ModuleTag_JapanAdvancedMissilePacks"
+			xai:joinAction="Remove"/>
+			<AttributeModifierUpgrade
+				id="ModuleTag_SovietAntiPlusUpgradeFX"
+				AttributeModifier="AttributeMod_AlliesSovietAntiPlusAttribute">
+				<TriggeredBy>Upgrade_SovietAntiPlus</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<FXListBehavior
+				id="ModuleTag_FXList"
+				xai:joinAction="Replace">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_SAOV_TwinbladeDie" />
+			</FXListBehavior>
+		</Behaviors>
+		<AudioArrayVoice
+				xai:joinAction="Replace">
+			<AudioEntry Sound="SAOV_Twinblade_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SAOV_Twinblade_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="SAOV_Twinblade_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="SAOV_Twinblade_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="SAOV_Twinblade_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="SAOV_Twinblade_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="SAOV_Twinblade_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="SAOV_Twinblade_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AI>
+			<JetAIUpdate
+				id="ModuleTag_AIUpdate"
+				xai:joinAction="Replace"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="TransportHelicopterAIStateMachine">
+				<UnitAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</JetAIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				xai:joinAction="Replace"
+				MaxHealth="600" />
+		</Body>
+</GameObject>
+		  <GameObject
+		id="StrategicArmyAntiGroundAircraft_Crate"
+		inheritFrom="StrategicArmyAntiGroundAircraft"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="StrategicArmyAntiGroundAircraft_Crate">
+		<EquivalentTo>StrategicArmyAntiGroundAircraft</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+<Include
+		type="all"
+		source="ART:JULightTransportVehicle_COL.w3x" />
+    <Include
+		type="all"
+		source="ART:JULightTransportVehicle_02_D.xml" />		
+    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+		<Include
+			type="all"
+			source="ART:JUTransportVehicle2.w3x" />
+<!--		<Include
+			type="all"
+			source="ART:JUTransportVehicle2_02_D.xml" />	-->					
+		<Include
+			type="all"
+			source="ART:FXTracerHeroic.xml" />
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:SageXml/BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="JapanOdessaSpecialTransportVehicle"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_JapanTransportVehicle2"
+		ButtonImage="Button_JapanTransportVehicle2"
+		Side="Japan"
+		EditorSorting="UNIT"
+		BuildTime="5"
+		CommandSet="JapanTransportVehicle2CommandSet"
+		KindOf="SELECTABLE DISGUISER CAN_ATTACK AMPHIBIOUS CAN_CAST_REFLECTIONS SCORE TRANSPORT VEHICLE CAN_BE_FAVORITE_UNIT"
+		ThreatLevel="10"
+		WeaponCategory="GUN"
+		VoicePriority="176"
+		EditorName="JapanTransportVehicle2"
+		Description="Desc:JapanTransportVehicle2"
+		TypeDescription="Type:JapanTransportVehicle2"
+		HealthBoxHeightOffset="35">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanTransportVehicle2</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="500"/>
+		</ObjectResourceInfo>
+    
+   <!-- Armor and Locomoter referencing the JU Light Transport -->
+    
+		<ArmorSet
+			Armor="BaseUnAttackVehicleArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="JapanLightTransportVehicleLocomotor"
+			Condition="NORMAL"
+			Speed="50.0" />
+		<LocomotorSet
+			Locomotor="JapanLightTransportVehicle_WaterLocomotor"
+			Condition="NORMAL"
+			Speed="50.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="false" />
+		<Draws>
+<!-- build error	TrackMarks="EXTireTrack2" -->
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				TrackMarksOnlyWhenCorneringQuickly="true"
+				TrackMarksLeftBone="Bone_TireLR"
+				TrackMarksRightBone="Bone_TireRR"				
+				LeftFrontTireBone="Bone_TireLF"
+				RightFrontTireBone="Bone_TireRF"
+				MidLeftRearTireBone="Bone_TireLR"
+				MidRightRearTireBone="Bone_TireRR"
+				LeftRearTireBone="Bone_TireLR1"
+				RightRearTireBone="Bone_TireRR1"
+				TireRotationMultiplier="0.2"
+				PowerslideRotationAddition="1.25"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="FXWeapon Bone_Turret BoneGarrison01 BoneGarrison02 BoneGarrison03 BoneGarrison04 BoneGarrison05 BoneGarrison06 BoneGarrison07 BoneGarrison08 BoneGarrison09 BoneGarrison10">
+				
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+				
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUTransportVehicle2" />
+          
+
+          <WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROOTTRANSFORM" />
+					<WeaponRecoilBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROOTTRANSFORM" />
+					<WeaponMuzzleFlash
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROOTTRANSFORM" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROOTTRANSFORM" />
+					<Turret
+						TurretNameKey="Bone_Turret"
+						TurretID="1" />
+				</ModelConditionState>	
+
+        
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="JUTransportVehicle2" />
+				</ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+          <Model
+						Name="JUTransportVehicle2" />
+          <ParticleSysBone
+						BoneName="FX_Smoke01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+        </ModelConditionState>
+	<!--			<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUTransportVehicle2" />
+					<Texture
+						Original="JUTransportVehicle2_02"
+						New="JUTransportVehicle2_02_D" />
+          <ParticleSysBone
+						BoneName="JapanTransportVehicle202"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="JapanTransportVehicle202"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="JapanTransportVehicle202"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+      </ModelConditionState>  -->
+      
+      <AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="JUTransportVehicle2"
+						AnimationMode="LOOP" />
+					</AnimationState>
+			</TruckDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_DisguiseDraw"
+				InvertStealthOpacity="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="JUHeavyTransportVehicle_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_AlliedChieftanDie" />
+			</FXListBehavior>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="false"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1800" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_WaterSounds">
+				<Override RequiredFlags="OVER_WATER">
+					<AudioArrayVoice>
+					</AudioArrayVoice>
+					<AudioArraySound>
+						<AudioEntry Sound="JAP_SuddenTransport_MoveStartWater" AudioType="soundMoveStart" />
+					</AudioArraySound>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_WaterEntrySplash">
+				<ModelConditionSound Sound="JAP_OreCollector_WaterSplashMS" RequiredFlags="OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="20.0"
+				MinorRadius="10.0"
+				Height="18"
+				ContactPointGeneration="VEHICLE" />
+		</Geometry>
+		<AudioArrayVoice>
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_SuddenTransport_MoveStartLand" AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="200"
+			ShroudClearingRange="=$STANDARD_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushEqualLevelProps="true"
+			CrushableLevel="25" />
+	</GameObject>
+	 <ObjectCreationList
+  id="JUTransportVehicle2_Die_OCL">
+    <CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="LIKE_EXISTING INHERIT_VELOCITY"
+			Count="1"
+			VelocityScale="20.0"
+			MinForceMagnitude="1.0"
+			MaxForceMagnitude="2.0"
+			MinForcePitch="90d"
+			MaxForcePitch="75d">
+      <CreateObject>JapanTransportVehicle2_Collapse</CreateObject>
+    </CreateObject>
+  </ObjectCreationList>
+	<GameObject
+		id="JapanLightTransportVehicle_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="JapanLightTransportVehicle_Collapse">
+		<Draws>
+			<DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="15"
+			Explodiness="8" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JULightTransportVehicle_COL" />
+					<Texture
+						Original="JULightTransportVehicle_02"
+						New="JULightTransportVehicle_02_D" />
+					<ParticleSysBone
+						BoneName="Bone_D_09"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<BoneVolumes>
+
+<BoneVolume BoneName="Bone_D_01" Mass="750" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="7.594" HalfSizeY="2.184" HalfSizeZ="2.264" >
+		<Translation x="-11.748" y="-11.023" z="11.71" />
+		<Rotation x="0.258819" y="0.0" z="0.0" w="0.965926" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_02" Mass="750" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="7.594" HalfSizeY="2.184" HalfSizeZ="2.264" >
+		<Translation x="-11.748" y="11.023" z="11.71" />
+		<Rotation x="-0.21644" y="0.0" z="0.0" w="0.976296" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_03" Mass="236" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3.609" HalfSizeY="3.621" HalfSizeZ="0.905" >
+		<Translation x="-9.226" y="0.0" z="13.031" />
+		<Rotation x="0.0" y="-0.173648" z="0.0" w="0.984808" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_04" Mass="120" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3.258" HalfSizeY="1.389" HalfSizeZ="1.334" >
+		<Translation x="-12.064" y="-9.996" z="5.559" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_05" Mass="248" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="5.099" HalfSizeY="1.186" HalfSizeZ="2.058" >
+		<Translation x="-3.297" y="-9.144" z="6.315" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_06" Mass="20" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="2.128" HalfSizeY="0.51" HalfSizeZ="0.929" >
+		<Translation x="-10.599" y="7.956" z="9.386" />
+		<Rotation x="-0.461749" y="0.0" z="0.0" w="0.887011" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_07" Mass="152" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3.259" HalfSizeY="3.621" HalfSizeZ="0.647" >
+		<Translation x="0.497" y="0.0" z="14.5" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_08" Mass="8811" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="16.824" HalfSizeY="6.431" HalfSizeZ="4.072" >
+		<Translation x="1.021" y="0.049" z="6.446" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+
+			</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="4s"
+			MaxLifetime="5s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1.5"
+			DestructionDelay="8s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+	
+</GameObject>
+</AssetDeclaration>

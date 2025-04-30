@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+
+	<Includes>
+		<Include type="instance" source="SRandomCoopBaseSkirmishPersonality.xml" />
+	</Includes>
+
+	<AIPersonalityDefinition
+		id="03SR"
+		PersonalityType="03SR"
+		inheritFrom="SRandomCoopBaseSkirmishPersonality"
+		SkirmishPersonality="true"
+		PersonalityUIName="Personality:Zhana"
+		CommanderPortrait="Zhana"
+		BaseCompactness="10.0">
+		<StrategicState id="AirMarshall_TwinbladeAttack" State="AirMarshall_TwinbladeAttack" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SovietcreateFighter01" State="SovietcreateFighter01" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietUpgradeTechBuildState_AirMarshall" State="SovietUpgradeTechBuildState_AirMarshall" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAntiAirOnlyBuildState_AirMarshall" State="SovietAntiAirOnlyBuildState_AirMarshall" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietTechBuildState_AirMarshall" State="SovietTechBuildState_AirMarshall" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietFavouriteLandUnitBuildState_AirMarshall" State="SovietFavouriteLandUnitBuildState_AirMarshall" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietFavouriteWaterUnitBuildState_AirMarshall" State="SovietFavouriteWaterUnitBuildState_AirMarshall" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<!-- Main Offensive States - EASY -->
+		<BuildState id="StrategicArmyExtraAirBuildState_AirMarshall" State="StrategicArmyExtraAirBuildState_AirMarshall" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="StrategicArmyTechBuildState_AirMarshall" State="StrategicArmyTechBuildState_AirMarshall" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="StrategicArmyFavouriteLandUnitBuildState_AirMarshall" State="StrategicArmyFavouriteLandUnitBuildState_AirMarshall" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="StrategicArmyFavouriteWaterUnitBuildState_AirMarshall" State="StrategicArmyFavouriteWaterUnitBuildState_AirMarshall" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		
+		<BuildState id="SovietAntiAirOnlyBuildState_TNW" xai:joinAction="Remove" xmlns:xai="uri:ea.com:eala:asset:instance"/>
+		<!-- Removed Strategic States-->
+		<UnitModifier Unit="SovietScoutInfantry" OffensiveModifier="1" DefensiveModifier="1"/>
+		<UnitModifier Unit="SovietAntiInfantryInfantry" OffensiveModifier="1.0" DefensiveModifier="0.5"/>
+		<UnitModifier Unit="SovietAntiVehicleInfantry" OffensiveModifier="5" DefensiveModifier="0.5"/>
+		<UnitModifier Unit="SovietHeavyAntiVehicleInfantry" OffensiveModifier="3" DefensiveModifier="0.5"/>
+		<UnitModifier Unit="SovietCommandoTech1" OffensiveModifier="50" DefensiveModifier="5.0"/>
+
+		<UnitModifier Unit="SovietAntiInfantryVehicle" OffensiveModifier="1.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="SovietAntiAirShip_Ground" OffensiveModifier="6" DefensiveModifier="6"/>
+		<UnitModifier Unit="SovietScoutVehicle" OffensiveModifier="2" DefensiveModifier="0.75"/>
+		<UnitModifier Unit="SovietAntiVehicleVehicleTech1" OffensiveModifier="2.0" DefensiveModifier="2.0"/>
+		<UnitModifier Unit="SovietAntiVehicleVehicleTech2" OffensiveModifier="2" DefensiveModifier="2.0"/>
+		<UnitModifier Unit="SovietAntiVehicleVehicleTech3" OffensiveModifier="2.0" DefensiveModifier="2.0"/>
+		<UnitModifier Unit="SovietAntiGroundAircraft" OffensiveModifier="7.0" DefensiveModifier="7.0"/>
+		<UnitModifier Unit="SovietBomberAircraft" OffensiveModifier="5.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="SovietFighterAircraft" OffensiveModifier="8.0" DefensiveModifier="8.0"/>
+		<UnitModifier Unit="SovietAntiStructureVehicle" OffensiveModifier="7.0" DefensiveModifier="1.0"/>
+
+		<UnitModifier Unit="SovietAntiNavyShipTech1" OffensiveModifier="1.5" DefensiveModifier="0.5"/>
+		<UnitModifier Unit="SovietAntiAirShip" OffensiveModifier="5.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="SovietAntiNavyShipTech2" OffensiveModifier="7" DefensiveModifier="7.0"/>
+		<UnitModifier Unit="SovietAntiStructureShip" OffensiveModifier="3.0" DefensiveModifier="3"/>
+
+		<SpecificUnitCap Unit="SovietSurveyor" Cap="2" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<!-- Caps for difficulty -->
+		<SpecificUnitCap Unit="SovietAntiInfantryInfantry" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietFighterAircraft" Cap="2" Difficulty="EASY MEDIUM"/>
+
+		<SpecificUnitCap Unit="SovietScoutInfantry" Cap="25" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- At a certain point, we just don't need any more of these since they can't double-up on targets-->
+		<SpecificUnitCap Unit="SovietScoutVehicle" Cap="7" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<!-- Although amphibious, these are anti-air only so they can never actually defeat an opponent -->
+		<SpecificUnitCap Unit="SovietAntiAirShip" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiAirShip_Ground" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<!-- We need caps for all land-only and water-only units to protect against situations where those units can no longer path to the enemy.
+We try to protect against that as much as possible but this is the safety-net. At a certain point, the AI should just spam amphibious
+or air units which are always a safe bet. -->
+		<SpecificUnitCap Unit="SovietAntiInfantryInfantry" Cap="50" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiVehicleInfantry" Cap="30" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietHeavyAntiVehicleInfantry" Cap="20" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<SpecificUnitCap Unit="SovietAntiInfantryVehicle" Cap="20" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiVehicleVehicleTech1" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiVehicleVehicleTech2" Cap="8" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiVehicleVehicleTech3" Cap="5" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="SovietAntiVehicleVehicleTech3" Cap="8" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiStructureVehicle" Cap="20" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiNavyShipTech2" Cap="15" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiGroundAircraft" Cap="50" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietFighterAircraft" Cap="12" Difficulty="MEDIUM HARD BRUTAL"/>
+
+		<SpecificUnitCap Unit="SovietAntiNavyShipTech2" Cap="17" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiStructureShip" Cap="6" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAirfield" Cap="3" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="SovietAirfield" Cap="4" Difficulty="MEDIUM HARD BRUTAL"/>
+
+		<UnitModifier Unit="StrategicArmyAntiInfantryInfantry" OffensiveModifier="1.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="StrategicArmyAntiVehicleInfantry" OffensiveModifier="2" DefensiveModifier="0.5"/>
+		<UnitModifier Unit="StrategicArmyInfiltrationInfantry" OffensiveModifier="4" DefensiveModifier="0.5"/>
+		<UnitModifier Unit="StrategicArmyScoutVehicle" OffensiveModifier="2" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="StrategicArmyAntiVehicleInfantryTech3" OffensiveModifier="4" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="StrategicArmyAntiInfantryVehicle" OffensiveModifier="1.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="StrategicArmyAntiVehicleVehicleTech1" OffensiveModifier="6.0" DefensiveModifier="6.0"/>
+		<UnitModifier Unit="StrategicArmyAntiStructureVehicle" OffensiveModifier="2" DefensiveModifier="2.0"/>
+		<UnitModifier Unit="StrategicArmyAntiVehicleVehicleTech3" OffensiveModifier="7.0" DefensiveModifier="7.0"/>
+		<UnitModifier Unit="StrategicArmyGrinderVehicle" OffensiveModifier="3.0" DefensiveModifier="3.0"/>
+		<UnitModifier Unit="StrategicArmyAntiAirShip" OffensiveModifier="1.5" DefensiveModifier="0.5"/>
+		<UnitModifier Unit="StrategicArmyAntiNavyShipTech2" OffensiveModifier="7" DefensiveModifier="7.0"/>
+		<UnitModifier Unit="StrategicArmyFighterAircraft_AI" OffensiveModifier="7.0" DefensiveModifier="7.0"/>
+		<UnitModifier Unit="StrategicArmyAntiGroundAircraft" OffensiveModifier="1.5" DefensiveModifier="0.5"/>
+		<UnitModifier Unit="StrategicArmyBomberAircraft" OffensiveModifier="7.0" DefensiveModifier="7.0"/>
+		<UnitModifier Unit="StrategicArmyAntiAirShip" OffensiveModifier="2" DefensiveModifier="0.5"/>
+		<SpecificUnitCap Unit="StrategicArmyAntiInfantryInfantry" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="StrategicArmySurveyor" Cap="2" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="StrategicArmyAirfield" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="StrategicArmyFighterAircraft_AI" Cap="2" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="StrategicArmyAntiInfantryInfantry" Cap="40" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="StrategicArmyAntiVehicleInfantry" Cap="50" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="StrategicArmyInfiltrationInfantry" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="StrategicArmyAntiAirShip" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="StrategicArmyAntiInfantryVehicle" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="StrategicArmyAntiVehicleVehicleTech1" Cap="15" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="StrategicArmyAntiStructureVehicle" Cap="3" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="StrategicArmyAntiVehicleVehicleTech3" Cap="5" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="StrategicArmyAntiVehicleVehicleTech3" Cap="20" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="StrategicArmyGrinderVehicle" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="StrategicArmyAntiNavyShipTech2" Cap="17" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="StrategicArmyAntiVehicleInfantryTech3" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="StrategicArmyBomberAircraft" Cap="2" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="StrategicArmyBomberAircraft" Cap="6" Difficulty="MEDIUM HARD BRUTAL"/>
+		<!-- Player Tech -->
+
+		<PowerChoice PlayerPower="PlayerTech_Soviet_SovietPower" Weight="0%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_OrbitalRefuse_Rank1" Weight="50%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_OrbitalRefuse_Rank2" Weight="80%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_OrbitalRefuse_Rank3" Weight="85%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_SpaceStron" Weight="33%"/>
+
+		<PowerChoice PlayerPower="PlayerTech_Soviet_GTWaveEffect" Weight="85%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_IrradiateTarget" Weight="0%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_MagneticSatellite_Rank_1" Weight="20%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_MagneticSatellite_Rank_2" Weight="20%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_MagneticSatellite_Rank_3" Weight="20%"/>
+
+		<PowerChoice PlayerPower="PlayerTech_Soviet_ProductionKickbacks" Weight="33%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_DesolatorBomb_Rank1" Weight="0%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_DesolatorBomb_Rank2" Weight="0%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_DesolatorBomb_Rank3" Weight="5%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_MagneticSingularity" Weight="85%"/>
+		<!-- Voice Responses-->
+		<FeedbackEntry FeedbackKey="PlanAttackBeaconPlaced" EvaEvent="SovietCoopZhanaPlanAttack" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="PlanAttackOrderComplete" EvaEvent="SovietCoopZhanaPlanAttackDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionBeaconPlaced" EvaEvent="SovietCoopZhanaTakePos" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionOrderComplete" EvaEvent="SovietCoopZhanaTakePosDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetBeaconPlaced" EvaEvent="SovietCoopZhanaStrikeThis" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetOrderComplete" EvaEvent="SovietCoopZhanaStrikeThisDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="OrderCanceled" EvaEvent="SovietCoopZhanaAutoPilot" FeedbackTo="ALLIES"/>
+
+		<!-- Skirmish feedback -->
+
+		<!-- Greet ally at beginning of game -->
+		<FeedbackEntry
+		FeedbackKey="StartGame"
+		Video="SZHGR1"
+		FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+		FeedbackKey="StartGame"
+		Video="SZHGR2"
+		FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+		FeedbackKey="StartGame"
+		Video="SZHGR3"
+		FeedbackTo="ALLIES"/>
+
+		<!-- Tell ally I'm in trouble -->
+		<!-- N.B.: If you wanted to add FeedbackTo="ENEMIES" or "NEUTRAL", you would also need to
+adjust the InTroubleSkirmishFeedbackControl block's OnlyIfLocalPlayerIs list -->
+		<FeedbackEntry
+		FeedbackKey="InTrouble"
+		Video="SZHND1"
+		FeedbackTo="ALLIES"
+		Timeout="600s"/>
+		<FeedbackEntry
+		FeedbackKey="InTrouble"
+		Video="SZHND2"
+		FeedbackTo="ALLIES"
+		Timeout="600s"/>
+		<FeedbackEntry
+		FeedbackKey="InTrouble"
+		Video="SZHND3"
+		FeedbackTo="ALLIES"
+		Timeout="600s"/>
+
+		<!-- Tell ally I'm dead -->
+		<FeedbackEntry
+		FeedbackKey="Lost"
+		Video="SZHDE1"
+		FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+		FeedbackKey="Lost"
+		Video="SZHDE2"
+		FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+		FeedbackKey="Lost"
+		Video="SZHDE3"
+		FeedbackTo="ALLIES"/>
+
+		<!-- Tell enemy I'm going to defeat them! (when I first meet them) -->
+		<FeedbackEntry
+		FeedbackKey="FirstSeen"
+		Video="SZHTG1"
+		FeedbackTo="ENEMIES"
+		Timeout="9999999s"/>
+		<FeedbackEntry
+		FeedbackKey="FirstSeen"
+		Video="SZHTG2"
+		FeedbackTo="ENEMIES"
+		Timeout="9999999s"/>
+		<FeedbackEntry
+		FeedbackKey="FirstSeen"
+		Video="SZHTG3"
+		FeedbackTo="ENEMIES"
+		Timeout="9999999s"/>
+
+		<!-- Curse enemy who defeated me -->
+		<FeedbackEntry
+		FeedbackKey="DefeatedByLocalPlayer"
+		Video="SZHTD1"
+		FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+		FeedbackKey="DefeatedByLocalPlayer"
+		Video="SZHTD2"
+		FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+		FeedbackKey="DefeatedByLocalPlayer"
+		Video="SZHTD3"
+		FeedbackTo="ENEMIES"/>
+
+		<!-- Laugh at enemy whom I defeated -->
+		<FeedbackEntry
+		FeedbackKey="DefeatedLocalPlayer"
+		Video="SZHTV1"
+		FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+		FeedbackKey="DefeatedLocalPlayer"
+		Video="SZHTV2"
+		FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+		FeedbackKey="DefeatedLocalPlayer"
+		Video="SZHTV3"
+		FeedbackTo="ENEMIES"/>
+
+	</AIPersonalityDefinition>
+
+</AssetDeclaration>
+

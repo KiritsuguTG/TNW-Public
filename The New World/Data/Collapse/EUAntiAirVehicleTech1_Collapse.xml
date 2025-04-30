@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="ART:Units/EUAntiAirVehicleTech1/EUAntiAirVehicleTech1_COL.w3x" />
+    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<GameObject
+		id="EUAntiAirVehicleTech1_Collapse"
+		inheritFrom="BaseCollapsingObject"
+		EditorName="EUAntiAirVehicleTech1_Collapse">
+		<Draws>
+			<DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="7"
+			Explodiness="4" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ALLIEDANTIAIRVEHICLEPLAT_COL" />
+					<Texture
+						Original="UAVcarrier"
+						New="UAVcarrier_D" />
+					<ParticleSysBone
+					  BoneName="Bone_D_01"
+					  FXParticleSystemTemplate="VehicleDamageFire"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="Bone_D_01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="Bone_D_01"
+					  FXParticleSystemTemplate="AlliesVehicleDamageSmoke"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="Bone_D_01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="Bone_D_03"
+					  FXParticleSystemTemplate="VehicleDamageFire"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="Bone_D_03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="Bone_D_03"
+					  FXParticleSystemTemplate="AlliesVehicleDamageSmoke"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="Bone_D_03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+				</ModelConditionState>
+				<BoneVolumes>
+					<BoneVolume BoneName="Bone_D_01" Mass="8996" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="22.3917" HalfSizeY="11.7115" HalfSizeZ="3.38822" >
+							<Translation x="0.534614" y="-0.0117025" z="3.5488" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_02" Mass="8996" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="22.3917" HalfSizeY="11.7115" HalfSizeZ="3.38822" >
+							<Translation x="3.88981" y="-0.011692" z="11.946" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_03" Mass="8996" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="22.3917" HalfSizeY="11.7115" HalfSizeZ="3.38822" >
+							<Translation x="16.3678" y="-0.00620961" z="7.97641" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_04" Mass="8996" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="22.3917" HalfSizeY="11.7115" HalfSizeZ="3.38822" >
+							<Translation x="-12.1065" y="-1.43051e-006" z="9.39937" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+			</BoneVolumes>
+			<Lifetime
+				Delay="8s"
+				FadeTime="8s" />
+		</DynamicsDraw>
+	</Draws>
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="6s"
+			MaxLifetime="6s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1.5"
+			DestructionDelay="8s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+</GameObject>
+</AssetDeclaration>

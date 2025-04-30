@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseProjectile.xml" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/AUGUNSHIPPROJECTILE.PROJECTILE01.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/AUGUNSHIPPROJECTILE_CTR.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/AUGUNSHIPPROJECTILE_HRC.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/AUGUNSHIPPROJECTILE_VET.PROJECTILE01.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/AUGUNSHIPPROJECTILE_VET_CTR.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/AUGUNSHIPPROJECTILE_VET_HRC.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT01V.FXALLIEDPROTONCOLLIDERHIT01.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT01V_CTR.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT01V_HRC.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT02V.FXALLIEDPROTONCOLLIDERHIT02.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT02V_CTR.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT02V_HRC.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT03V.FXALLIEDPROTONCOLLIDERHIT03.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT03V_CTR.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT03V_HRC.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT04V.FXALLIEDPROTONCOLLIDERHIT04.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT04V_CTR.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT04V_HRC.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT05V.FXALLIEDPROTONCOLLIDERHIT05.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT05V_CTR.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT05V_HRC.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT06V.FXALLIEDPROTONCOLLIDERHIT06.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT06V_CTR.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHIT06V_HRC.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHITCOREV.GEOSPHERE01.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHITCOREV_CTR.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHITCOREV_HRC.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHITSHOCKWAVEV.SPHERE01.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHITSHOCKWAVEV_CTR.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/FXALLIEDPROTONCOLLIDERHITSHOCKWAVEV_HRC.w3x" />
+	</Includes>
+		<GameObject
+		id="AlliedAntiNavyShipTech1CannonProjectile"
+		inheritFrom="BaseProjectile"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE NO_COLLIDE SMALL_MISSILE"
+		EditorName="AlliedAntiNavyShipTech1CannonProjectile">
+	  <Draws>
+		<ScriptedModelDraw
+			id="ModuleTag_ScriptedModelDraw">
+		  <ModelConditionState
+			  ParseCondStateType="PARSE_DEFAULT">
+			<Model
+				Name="AUGunshipProjectile" />
+			  <ParticleSysBone
+				  BoneName=""
+				  FXParticleSystemTemplate="FXAlliedProtonTail"
+				  FollowBone="true"/>
+			  <ParticleSysBone
+				  BoneName=""
+				  FXParticleSystemTemplate="FXAlliedProtonTail02"
+				  FollowBone="true"/>
+			  <ParticleSysBone
+				  BoneName=""
+				  FXParticleSystemTemplate="FXAlliedProtonTail03"
+				  FollowBone="true"/>
+		  </ModelConditionState>
+		</ScriptedModelDraw>
+	  </Draws>
+	  <Behaviors>
+      <FXListBehavior
+        id="ModuleTag_FXList">
+        <DieMuxData
+          DeathTypes="ALL" />
+        <Event
+          Index="onDeath"
+          FX="FX_AlliedGunshipProtonHit" />
+      </FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="10"
+				FirstHeightMax="10"
+				SecondHeightMin="10"
+				SecondHeightMax="10"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"/>
+	  </Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	<!-- VETERAN -->
+	<GameObject
+		id="AlliedAntiNavyShipTech1CannonProjectile_Veteran"
+		inheritFrom="BaseProjectile"  
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE NO_COLLIDE HIDE_IF_FOGGED SMALL_MISSILE"	
+		EditorName="AlliedAntiNavyShipTech1CannonProjectile_Veteran">
+	  <Draws>
+		<ScriptedModelDraw
+			id="ModuleTag_ScriptedModelDraw">
+		  <ModelConditionState
+			  ParseCondStateType="PARSE_DEFAULT">
+			<Model
+				Name="AUGunshipProjectile_Vet" />
+			  <ParticleSysBone
+				  BoneName=""
+				  FXParticleSystemTemplate="FXAlliedProtonTailVet"
+				  FollowBone="true"/>
+			  <ParticleSysBone
+				  BoneName=""
+				  FXParticleSystemTemplate="FXAlliedProtonTail02Vet"
+				  FollowBone="true"/>
+			  <ParticleSysBone
+				  BoneName=""
+				  FXParticleSystemTemplate="FXAlliedProtonTail03Vet"
+				  FollowBone="true"/>
+		  </ModelConditionState>
+		</ScriptedModelDraw>
+	  </Draws>
+	  <Behaviors>
+      <FXListBehavior
+        id="ModuleTag_FXList">
+        <DieMuxData
+          DeathTypes="ALL" />
+        <Event
+          Index="onDeath"
+          FX="FX_AlliedGunshipProtonHitVet" />
+      </FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="10"
+				FirstHeightMax="10"
+				SecondHeightMin="10"
+				SecondHeightMax="10"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"/>
+	  </Behaviors>
+	  		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+		<GameObject
+		id="AlliedAntiNavyShipTech1TorpedoProjectile"
+		Side="Allied"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE SMALL_MISSILE DEFLECT_BY_SPECIAL_POWER"
+		EditorName="AlliedAntiNavyShipTech1TorpedoProjectile">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUTORPEDO" />
+					<ParticleSysBone
+						BoneName="FX_Tail"
+						FXParticleSystemTemplate="SPTorpedoMoveBubbles"
+						OnlyIfOnWater="true"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Tail"
+						FXParticleSystemTemplate="TorpedoWaterWake"
+						OnlyIfOnWater="true"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="1.0s"
+			  MaxLifetime="1.0s" />
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SovWaterTorpedoExplosion" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				Type="TORPEDO" 
+				FirstHeightMin="100"
+				FirstHeightMax="15"
+				SecondHeightMin="-30"
+				SecondHeightMax="0"
+				FirstPercentIndent="0"
+				SecondPercentIndent="30"
+				FlightPathAdjustDistPerSecond="50.0"
+				/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"/>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+		<GameObject
+		id="AlliedAntiNavyShipTech1TorpedoProjectile_Vet"
+		Side="Allied"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE SMALL_MISSILE DEFLECT_BY_SPECIAL_POWER NO_COLLIDE"
+		EditorName="AlliedAntiNavyShipTech1TorpedoProjectile_Vet">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUTORPEDO" />
+					<ParticleSysBone
+						BoneName="FX_Tail"
+						FXParticleSystemTemplate="SPTorpedoMoveBubbles"
+						OnlyIfOnWater="true"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="JapanTorpedoTrail_Vet"
+						FollowBone="false" />
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="JapanTorpedoTrailGlow_Vet"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="FX_Tail"
+						FXParticleSystemTemplate="TorpedoWaterWake"
+						OnlyIfOnWater="true"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="1.0s"
+			  MaxLifetime="1.0s" />
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SovWaterTorpedoExplosion" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				Type="TORPEDO" 
+				FirstHeightMin="100"
+				FirstHeightMax="15"
+				SecondHeightMin="-30"
+				SecondHeightMax="0"
+				FirstPercentIndent="0"
+				SecondPercentIndent="30"
+				FlightPathAdjustDistPerSecond="50.0"
+				/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"/>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+</AssetDeclaration>

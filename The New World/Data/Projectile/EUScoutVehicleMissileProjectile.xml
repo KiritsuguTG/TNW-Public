@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="ART:EXRocket.w3x" />
+    <Include
+			type="all"
+			source="ART:exhellmis.xml" />
+	</Includes>
+	<GameObject
+		id="EUScoutVehicleMissileProjectile"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE SMALL_MISSILE DEFLECT_BY_SPECIAL_POWER NO_COLLIDE HIDE_IF_FOGGED"
+		EditorName="EUScoutVehicleMissileProjectile">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EXRocket" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AlliedMissleHitFire"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AlliedMissleHitSmoke"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AlliedMissleLight"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FX_Tail"
+						FXParticleSystemTemplate="AlliedAntiAirMissileProjectileTrailSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_JavelinSoldier_MissileExplosion" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL PING_PONG_SIDEWAYS_DRIFT"
+				FirstHeightMin="200"
+				FirstHeightMax="200"
+				SecondHeightMin="200"
+				SecondHeightMax="200"
+				FirstPercentIndent="5"
+				SecondPercentIndent="50"
+				CurveFlattenMinDist="300"
+				FlightPathAdjustDistPerSecond="100"
+				MaxDistanceToTravel="600.0"
+				SidewaysDrift="50"/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	<GameObject
+		inheritFrom="EUScoutVehicleMissileProjectile"
+		id="EUScoutVehicleMissileProjectile_Veteran"
+		EditorName="EUScoutVehicleMissileProjectile_Veteran">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				xai:joinAction="Replace">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EXRocket" />
+          <ParticleSysBone
+              BoneName="NONE"
+              FXParticleSystemTemplate="AlliedMissleHitFire_Vet"
+              FollowBone="true" />
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AlliedMissleHitSmoke"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AlliedMissleLight"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FX_Tail"
+						FXParticleSystemTemplate="AlliedAntiAirMissileProjectileTrailSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL PING_PONG_SIDEWAYS_DRIFT"
+				FirstHeightMin="200"
+				FirstHeightMax="200"
+				SecondHeightMin="200"
+				SecondHeightMax="200"
+				FirstPercentIndent="5"
+				SecondPercentIndent="50"
+				CurveFlattenMinDist="300"
+				FlightPathAdjustDistPerSecond="100"
+				MaxDistanceToTravel="600.0"
+				SidewaysDrift="50"/>
+		</Behaviors>
+	</GameObject>	
+</AssetDeclaration>

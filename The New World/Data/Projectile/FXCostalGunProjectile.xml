@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+  <GameObject
+		id="FXCostalGunProjectile"
+		Side="Allies"
+		EditorName="FXCostalGunProjectile">
+    <ArmorSet
+			Armor="NoArmor" />
+    <Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="EXSovietShell" />
+        </ModelConditionState>
+      </ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+      <DestroyDie
+				id="ModuleTag_Die">
+        <DieMuxData
+					DeathTypes="ALL" />
+      </DestroyDie>
+      <FXListBehavior
+				id="ModuleTag_FXLists">
+        <DieMuxData
+					DeathTypes="ALL" />
+        <Event
+					Index="onDeath"
+					FX="FX_CostalGunImpact" />
+        <Event
+          Index="onTerrainCollision"
+          FX="FX_CostalGunImpact"/>
+      </FXListBehavior>
+      			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="5"
+				FirstHeightMax="5"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				CurveFlattenMinDist="300"
+				FlightPathAdjustDistPerSecond="1"
+				GroundHitFX="FX_CostalGunImpact"
+        Acceleration="1" />
+    </Behaviors>
+    <Body>
+      <PropBody
+				id="ModuleTag_Body" />
+    </Body>
+    <VisionInfo
+			VisionRange="0" />
+  </GameObject>
+</AssetDeclaration>

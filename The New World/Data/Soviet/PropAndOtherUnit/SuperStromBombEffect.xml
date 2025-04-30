@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+		id="SuperStromBombEffect"
+		inheritFrom="BaseObject"
+		ButtonImage="JUA_TBuster_LeaveBurrow"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		IsTrainable="false"
+		KindOf="UNATTACKABLE NO_COLLIDE NOT_AUTOACQUIRABLE CAN_CAST_REFLECTIONS SHOW_BEHIND_OCCLUDERS INERT IMMOBILE ALWAYS_COLLIDE_WITH_OWN_SHIELD_SPHERES"
+		EditorName="SuperStromBombEffect">
+		<DisplayName>SuperStromBombEffect</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />		
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<ParticleSysBone
+					  BoneName="INVISBONE01"
+					  FXParticleSystemTemplate="FXSuperStromBombEffectMist"/>
+					<ParticleSysBone
+					  BoneName="INVISBONE01"
+					  FXParticleSystemTemplate="FXSuperStromBombEffectDust"/>
+					<ParticleSysBone
+          				BoneName="INVISBONE01"
+          				FXParticleSystemTemplate="VacuumBombExplosionShockwave"/>
+					<ParticleSysBone
+          				BoneName="INVISBONE01"
+          				FXParticleSystemTemplate="VacuumBombExplosionSmoke"/>
+					<ParticleSysBone
+          				BoneName="INVISBONE01"
+          				FXParticleSystemTemplate="VacuumBombExplosionSmokeMushroom"/>
+					<ParticleSysBone
+          				BoneName="INVISBONE01"
+          				FXParticleSystemTemplate="VacuumBombExplosionFire"/>
+					<ParticleSysBone
+          				BoneName="INVISBONE01"
+          				FXParticleSystemTemplate="VacuumBombExplosionFireMushroom"/>
+					<ParticleSysBone
+          				BoneName="INVISBONE01"
+          				FXParticleSystemTemplate="VacuumBombExplosionSmokeGround"
+          				OnlyIfOnLand ="true"
+						FollowBone="true"/>
+
+					<!-- Play these if on water -->
+					<ParticleSysBone
+          				BoneName="INVISBONE01"
+          				FXParticleSystemTemplate="VacuumBombExplosionWake"
+          				OnlyIfOnWater ="true"
+						FollowBone="true"/>
+					<ParticleSysBone
+          				BoneName="INVISBONE01"
+          				FXParticleSystemTemplate="VacuumBombExplosionWaterMist"
+          				OnlyIfOnWater ="true"
+						FollowBone="true"/>
+					<ParticleSysBone
+          				BoneName="INVISBONE01"
+          				FXParticleSystemTemplate="VacuumBombExplosionSmoke"
+          				OnlyIfOnWater ="true"
+						FollowBone="true"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="8.2s"
+				MaxLifetime="8.2s" />
+			
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+					FireInterval="0.2s">
+				<FireWeaponNugget
+					WeaponName="SuperStromBombEffectDamageWeapon"
+					FireDelay="0s">
+				</FireWeaponNugget>
+			</FireWeaponUpdate>
+			<FireWeaponUpdate
+				id="ModuleTag_MetaImpactWeaponUpdate"
+					FireInterval="0.06s">
+				<FireWeaponNugget
+					WeaponName="SuperStromBombEffectMetaImpactWeapon"
+					FireDelay="0s">
+				</FireWeaponNugget>
+			</FireWeaponUpdate>
+			
+			<DestroyObjectsUpdate
+				id="ModuleTag_DestroyObjectsUpdate"
+				Radius="500">
+				<ObjectFilter Rule="NONE" Include="CIVILIAN_UNIT"/>
+			</DestroyObjectsUpdate>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>		
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+			</AIUpdate>
+		</AI>				
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="9999999.0" />
+		</Body>
+		<Geometry>
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="50.0"
+				Height="300.0"/>
+		</Geometry>
+		<ShadowInfo
+			Type="NONE" />		
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_SuperStromBombEffectLoop" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="50"
+			ShroudClearingRange="250" />						
+	</GameObject>	
+</AssetDeclaration>				

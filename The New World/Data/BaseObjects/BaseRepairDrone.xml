@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="instance"
+			source="BaseObject.xml" />
+	</Includes>
+	<GameObject
+		id="BaseRepairDrone"
+		inheritFrom="BaseObject" 
+		EditorSorting="SYSTEM"
+		ShockwaveResistance="120.0"
+		KindOf="DRONE AIRCRAFT NO_COLLIDE NOT_AUTOACQUIRABLE SUMMONED NO_HEAL_ICON"
+		VoicePriority="5">
+		<DisplayName>NAME:RepairDrone</DisplayName>
+		<LocomotorSet
+			Locomotor="BaseRepairDroneLocomotor"
+			Condition="NORMAL"
+			Speed="150.0" />
+		<ArmorSet
+			Armor="InvulnerableArmor" />
+		<Draws>
+		</Draws>
+		<Behaviors>
+			<SlavedUpdate
+				id="ModuleTag_SlavedUpdate"
+				LeashRange="=$REPAIR_DRONE_LEASH_DISTANCE"
+				GuardMaxRange="=$REPAIR_DRONE_LEASH_DISTANCE"
+				GuardWanderRange="50"
+				AttackRange="0"
+				UseSlaverAsControlForEvaObjectSightedEvents="false" />
+			<PassiveAreaEffectBehavior
+				id="ModuleTag_PassiveAreaEffect"
+				EffectRadius="0"
+				HealingPointsPerSecond="25"
+				AffectAttached="true"
+				AffectUnderAttack="true"
+				NonStackable="false"
+				HealFX="FX_Repair" >
+				<AllowFilter
+					Rule="ANY"
+					Include="VEHICLE AIRCRAFT"
+					Exclude="DRONE"
+					StatusBitFlagsExclude="NOT_IN_WORLD IRRADIATED UNATTACKABLE" 
+					Relationship="ALLIES">
+					<IncludeThing>JapanEmperorYoshiro</IncludeThing>
+					<IncludeThing>SovietScoutVehicle</IncludeThing>
+					<IncludeThing>AlliedLegionnaireInfantry</IncludeThing>
+					<IncludeThing>JapanScoutInfantry</IncludeThing>
+					<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+					<IncludeThing>StrategicArmyAntiVehicleInfantryTech3</IncludeThing>
+					<IncludeThing>StrategicArmyInfiltrationInfantry</IncludeThing>
+					<IncludeThing>EUAntiVehicleInfantryTech2</IncludeThing>
+					<IncludeThing>EUScoutVehicle</IncludeThing>
+					<IncludeThing>MODNanoFly</IncludeThing>
+					</AllowFilter>
+			</PassiveAreaEffectBehavior>
+			<DestroyDie
+				id="ModuleTag_FrozenDie">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<AttachUpdate
+				id="ModuleTag_Attach"
+				Range="=$REPAIR_DRONE_LEASH_DISTANCE"
+				CloseEnoughRange="20.0"
+				InitialAttachDelay="0.25s"
+				ParentStatusToPrefer="BOOBY_TRAPPED"
+				ParentStatus="TARGETED_FOR_REPAIR"
+				ParentStatusAttached="UNDERGOING_REPAIR"
+				ForbiddenParentStatus="NOT_IN_WORLD UNATTACKABLE IRRADIATED"
+				Flags="STICK_TO_PARENT DETACH_WHEN_PARENT_OUT_OF_SLAVE_RANGE PARENT_MUST_BE_FULL_HEALTH_TO_DETACH SCAN_FOR_NEW_PARENT_WHEN_DETACHED UNCONTAINED_ONLY ONE_ATTACH_PER_PARENT USE_GEOMETRY DETACH_WHEN_PARENT_HEALED"
+				>
+				<ObjectFilter
+					Rule="ANY"
+					Include="VEHICLE AIRCRAFT"
+					Exclude="DRONE"
+					StatusBitFlagsExclude="NOT_IN_WORLD IRRADIATED UNATTACKABLE"
+					Relationship="ALLIES">
+					<IncludeThing>JapanEmperorYoshiro</IncludeThing>
+					<IncludeThing>SovietScoutVehicle</IncludeThing>
+					<IncludeThing>AlliedLegionnaireInfantry</IncludeThing>
+					<IncludeThing>JapanScoutInfantry</IncludeThing>
+					<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+					<IncludeThing>StrategicArmyAntiVehicleInfantryTech3</IncludeThing>
+					<IncludeThing>StrategicArmyInfiltrationInfantry</IncludeThing>
+					<IncludeThing>EUAntiVehicleInfantryTech2</IncludeThing>
+					<IncludeThing>EUScoutVehicle</IncludeThing>
+					<IncludeThing>MODNanoFly</IncludeThing>
+			</ObjectFilter>
+			</AttachUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<SubObjectsUpgrade
+				id="ModuleTag_Allied_subobject">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_AlliesFaction">
+				</Nugget>
+				<CustomAnimAndDuration	AnimState="USER_1"/>	
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_Japan_subobject">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_JapanFaction">
+				</Nugget>
+				<CustomAnimAndDuration	AnimState="USER_2"/>	
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_Soviet_subobject">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_SovietFaction">
+				</Nugget>
+				<CustomAnimAndDuration	AnimState="USER_3"/>	
+			</SubObjectsUpgrade>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_JetAIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine"	/>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="900000.0"/>
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.0"
+				Height="5.0"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="150"
+			ShroudClearingRange="20" />
+	</GameObject>
+</AssetDeclaration>

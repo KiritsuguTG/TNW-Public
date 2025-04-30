@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="AlliedAntiAirShipWeaponScrambler"
+		AttackRange="250.0"
+		CanFireWhileMoving="true"
+		WeaponSpeed="999999.0"
+		ClipSize="1"
+	 	FiringLoopSound="ALL_HydroFoil_ScramblerWeaponLoop"
+		FireFX="FX_Hydro2ndFire"
+		FireVeteranFX="FX_Hydro2ndFire"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		AcceptableAimDelta="10d"
+		ReAcquireDetailType="PER_CLIP"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_AIRBORNE_VEHICLE"
+		ForbiddenAntiMask="ANTI_STRUCTURE"
+		IgnoresContactPoints="true">
+		<FiringDuration
+			MinSeconds="0.8s"
+			MaxSeconds="1s" />
+		<Nuggets>
+			<!-- for visual display only -->
+			<ActivateLaserNugget
+				Lifetime="1.1s"
+				LaserId="1">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Exclude="HARVESTER"
+					Include="VEHICLE SHIP AIRCRAFT FS_BASE_DEFENSE"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN">
+					<ExcludeThing>JapanRisingBalloon</ExcludeThing>
+					<ExcludeThing>JapanFallingBalloonBomb</ExcludeThing>
+					<ExcludeThing>JapanBalloonBomb</ExcludeThing>
+				</SpecialObjectFilter>
+			</ActivateLaserNugget>
+
+			<AttributeModifierNugget
+				DamageFXType="ALLIED_SCRAMBLER"
+				AttributeModifierName="AttributeMod_WeaponScrambler">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Exclude="HARVESTER"
+					Include="VEHICLE SHIP AIRCRAFT FS_BASE_DEFENSE"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN">
+					<ExcludeThing>JapanRisingBalloon</ExcludeThing>
+					<ExcludeThing>JapanFallingBalloonBomb</ExcludeThing>
+					<ExcludeThing>JapanBalloonBomb</ExcludeThing>
+				</SpecialObjectFilter>
+			</AttributeModifierNugget>
+
+			<SpecialPowerNugget
+				SpecialPowerTemplate="SpecialPower_WeaponScrambler">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Exclude="HARVESTER"
+					Include="VEHICLE SHIP AIRCRAFT FS_BASE_DEFENSE"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN">
+					<ExcludeThing>JapanRisingBalloon</ExcludeThing>
+					<ExcludeThing>JapanFallingBalloonBomb</ExcludeThing>
+					<ExcludeThing>JapanBalloonBomb</ExcludeThing>
+				</SpecialObjectFilter>
+			</SpecialPowerNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<AIBuildStateDefinition
+		id="EUAntiAirOnlyBuildState_TNW">
+		<Heuristic>
+			<EnemyNearbyHeuristic Distance="700.0" EnemyNearby="true" MinEnemyValue="1200">
+				<EnemyFilter
+						Relationship="ENEMIES"
+						Rule="ANY"
+						Include="AIRCRAFT MONSTER">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="EUAntiVehicleInfantry" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="EUAntiAirVehicleTech1_Water" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="EUAntiAirAircraft" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="EUAntiAirVehicleTech1" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="EUAmphibiousUnitBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Land Water">
+				<ObjectFilter
+				  Relationship="ENEMIES"
+				  Rule="ANY"
+				  Include="CAN_ATTACK STRUCTURE"
+				  Exclude="IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+				  StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Land Water">
+				<ObjectFilter
+				  Relationship="ENEMIES"
+				  Rule="ANY"
+				  Include="VEHICLE STRUCTURE COMMANDO"
+				  Exclude="IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+				  StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic Weight="0.5"/>
+			<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+			<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="EUAntiVehicleInfantryTech2" Heuristic="FEWEST_UNIT">
+			<BlockIfThingNearFactory
+				Rule="ANY"
+				Relationship="ENEMIES"
+				StatusBitFlagsExclude="AIRBORNE_TARGET">
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+				<IncludeThing>AlliedAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>SovietAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>AlliedAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>JapanSentinelVehicle</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="EUAntiAirVehicleTech1" Heuristic="BEST_UNIT_WEIGHTED"/>
+		<BuildEntry Build="EUAntiVehicleVehicleTech1" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="EUBeamVehicle" Heuristic="BEST_UNIT_WEIGHTED"/>
+		<BuildEntry Build="EUAntiStructureVehicle" Heuristic="BEST_UNIT_WEIGHTED" BlockIfThingNearFactoryDistance="300"/>
+	</AIBuildStateDefinition>
+    
+	<AIBuildStateDefinition
+	  id="EUGenericUnitBuildState">
+		<Heuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="AlliedScoutInfantry" Heuristic="BEST_UNIT_WEIGHTED">
+			<BlockIfThingNearFactory
+				Rule="ANY"
+				Relationship="ENEMIES"
+				StatusBitFlagsExclude="AIRBORNE_TARGET">
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+				<IncludeThing>AlliedAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>SovietAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>AlliedAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>JapanSentinelVehicle</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="EUScoutAntiInfantryVehicle" Heuristic="BEST_UNIT_WEIGHTED"/>
+		<BuildEntry Build="AlliedCommandoTech1" Heuristic="FEWEST_UNIT" ExpectedEfficiencyWeight="1.0" BlockIfThingNearFactoryDistance="100">
+			<BlockIfThingNearFactory Rule="ANY" Relationship="ENEMIES">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+				<IncludeThing>AlliedAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>SovietAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>AlliedAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>JapanSentinelVehicle</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="EUScoutVehicle" Heuristic="BEST_UNIT_WEIGHTED"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="EUWarFactoryBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>EUWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="EUWarFactory" Heuristic="FACTORY" Score="100"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="EUNavalYardBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>EUNavalYard</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+			<CanBuildBuildingsOnSurfaceHeuristic
+				Surfaces="WATER DEEP_WATER"
+				MinPlacementGridCells="0"
+				MaxPlacementGridCells="0" />
+		</Heuristic>
+		<BuildEntry Build="EUNavalYard" Heuristic="FACTORY" Score="100"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="EUAirfieldBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="false">
+				<ObjectFilter
+				  Relationship="SAME_PLAYER">
+					<IncludeThing>EUAirfield</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="EUAirfield" Heuristic="FACTORY" Score="100"/>
+	</AIBuildStateDefinition>
+	
+	<AIBuildStateDefinition
+	  id="EUStructureTNWBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+		</Heuristic>
+		<BuildEntry Build="EUPowerPlant" Heuristic="POWER"/>
+		<BuildEntry Build="EURefinery" Heuristic="REFINERY"/>
+		<BuildEntry Build="EUBarracks" Heuristic="FACTORY"/>
+		<BuildEntry Build="EUMiner" Heuristic="HARVESTER"/>
+		<BuildEntry Build="EUKodiakSpwan" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="EUStructureTNWBuildState_BRUTAL">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+		</Heuristic>
+		<BuildEntry Build="EUPowerPlant" Heuristic="POWER"/>
+		<BuildEntry Build="EURefinery" Heuristic="REFINERY"/>
+		<BuildEntry Build="EUBarracksAI" Heuristic="FACTORY"/>
+		<BuildEntry Build="EUWarFactoryAI" Heuristic="FACTORY"/>
+		<BuildEntry Build="EUAirfield" Heuristic="FACTORY"/>
+		<BuildEntry Build="EUNavalYard" Heuristic="FACTORY"/>
+		<BuildEntry Build="EUMiner" Heuristic="HARVESTER"/>
+		<BuildEntry Build="EUKodiakSpwan" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+	
+	<AIBuildStateDefinition
+	  id="EUAntiBaseDefenceBuildUnit">
+		<Heuristic>
+			<EnemyNearbyHeuristic Distance="1500.0" EnemyNearby="false" MinEnemyValue="5000">
+				<EnemyFilter
+					Rule="ANY"
+					Relationship="ENEMIES"
+					Include="FS_BASE_DEFENSE"
+					Exclude="SUPER_WEAPON">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="EUAntiStructureShip" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="EUAntiStructureVehicle" Heuristic="FEWEST_UNIT"/>
+		<BuildEntry Build="EUBeamVehicle" Heuristic="FEWEST_UNIT"/>
+	</AIBuildStateDefinition>
+</AssetDeclaration>

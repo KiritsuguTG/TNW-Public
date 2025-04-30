@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="instance"
+			source="BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="BaseSuperEgg"
+		inheritFrom="BaseVehicle"
+		EditorSorting="UNIT"
+		BuildTime="8"
+		TypeDescription="Type:JapanStructureEgg"
+		ProductionQueueType="OTHER_STRUCTURE">
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics" />
+			<FireWeaponCollide
+				id="ModuleTag_FireBaseAutoAndShipWeaponCollide"
+				xai:joinAction="Remove"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine">
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="2000.0" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_WaterEntrySplash">
+				<ModelConditionSound Sound="JAP_OreCollector_WaterSplashMS" RequiredFlags="OVER_WATER AIR_POWER_EFFECT" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<CrusherInfo
+				id="id_CrusherInfo"
+				CrusherLevel="20"
+			CrushableLevel="25"
+				CrushDecelerationPercent="80%"
+				CrushEqualLevelProps="true">
+				<ExtraCrushLevels CrusherLevel="0" CrushableLevel="25" ModelConditionMatch="OVER_WATER"/>		
+		</CrusherInfo>		
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_Nanocore_IdleLoop" AudioType="soundAmbient" />
+			<AudioEntry Sound="JAP_Nanocore_MoveByLoop" AudioType="soundMoveLoop" />
+			<AudioEntry Sound="JAP_Nanocore_MoveStart" AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="NanocoreLost" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="NanocoreUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="StructurePlacementFailed" EvaType="placementFailed" />
+		</EvaEventArray>
+
+	</GameObject>
+</AssetDeclaration>

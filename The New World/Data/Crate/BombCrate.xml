@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+
+		<Include
+			type="all"
+			source="ART:NPCrate01.w3x" />
+	</Includes>
+	<GameObject
+		id="BaseBombCrate"
+		SelectPortrait="Portrait_Neutral"
+		ButtonImage="Button_Neutral"
+		Side="Neutral"
+		EditorSorting="UNIT"
+		TransportSlotCount="1"
+		BuildTime="0"
+		CommandSet="EmptyCommandSet"
+		KindOf="SELECTABLE IMMOBILE NOT_AUTOACQUIRABLE UNATTACKABLE CAN_CAST_REFLECTIONS CRATE REVEAL_TO_ALL"
+		RadarPriority="COMMANDO"
+		UnitCategory="STRUCTURE"
+		PlacementViewAngle="0d"
+		EditorName="BaseBombCrate"
+		Description="DESC:UnitCrate">
+		<DisplayName>NAME:UnitCrate</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="99999"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NPCrate01" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CrateSpawn">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FADED"/>
+			</CreateObjectDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="120s"
+				MaxLifetime="120s"
+				DeathType="FADED"/>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type= "CYLINDER"
+				MajorRadius = "9.68515"
+				MinorRadius = "9.68515"
+				Height = "16.0349" >
+				<Offset
+					x = "0.0348139"
+					y = "-0.0732222"
+					z = "0.0" />
+			</Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="1"
+			ShroudClearingRange="50" />
+	</GameObject>
+	
+	<GameObject
+		id="NormalBombCrate"
+		inheritFrom="BaseBombCrate"
+		EditorName="NormalBombCrate">
+		<Behaviors>
+			<FireWeaponWhenDead
+				id="ModuleTag_FireWeaponWhenDead"
+				InitiallyActive="true"
+				DeathWeapon="BombCrateWarhead">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FADED"/>
+			</FireWeaponWhenDead>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="SuperMetaImpactCrate"
+		inheritFrom="BaseBombCrate"
+		EditorName="SuperMetaImpactCrate">
+		<Behaviors>
+			<FireWeaponWhenDead
+				id="ModuleTag_FireWeaponWhenDead"
+				InitiallyActive="true"
+				DeathWeapon="SuperMetaImpactCrateWarhead">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FADED"/>
+			</FireWeaponWhenDead>
+		</Behaviors>
+	</GameObject>
+	<WeaponTemplate
+		id="SuperMetaImpactCrateWarhead"
+		ProjectileCollidesWith ="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+    Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE">
+		<Nuggets>
+			<MetaImpactNugget
+				ShockWaveAmount="500"
+				ShockWaveRadius="50.0"
+				ShockWaveTaperOff="50.0"
+				ShockWaveZMult="20.0"
+				ForbiddenTargetModelCondition="STUNNED STUNNED_STANDING_UP STUNNED_FLAILING"/>
+		</Nuggets>
+	</WeaponTemplate>
+	<GameObject
+		id="SuperBombCrate"
+		inheritFrom="BaseBombCrate"
+		EditorName="SuperBombCrate">
+		<Behaviors>
+			<FireWeaponWhenDead
+				id="ModuleTag_FireWeaponWhenDead"
+				InitiallyActive="true"
+				DeathWeapon="SuperBombCrateWarhead">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FADED"/>
+			</FireWeaponWhenDead>
+		</Behaviors>
+	</GameObject>
+	<WeaponTemplate
+		id="SuperBombCrateWarhead"
+		ProjectileCollidesWith ="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+    Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE">
+		<Nuggets>
+			<DamageContainedNugget
+				MaxUnitsToDamage="10"
+				WindowBlastFX="FX_None"
+				Damage="999999"
+				DamageType="UNRESISTABLE"
+				DeathType="DETONATED">
+				<DamageObjectFilter
+					Rule="NONE"
+					Include="INFANTRY" />
+			</DamageContainedNugget>
+			<DamageNugget
+				Damage="999999.0"
+				Radius="50"
+				DamageType="UNRESISTABLE"
+				DeathType="DETONATED"
+				InvalidTargetStatus="INSIDE_GARRISON"/>
+		</Nuggets>
+	</WeaponTemplate>
+	<GameObject
+		id="RadarCloseBombCrate"
+		inheritFrom="BaseBombCrate"
+		EditorName="RadarCloseBombCrate">
+		<Behaviors>
+			<FireWeaponWhenDead
+				id="ModuleTag_FireWeaponWhenDead"
+				InitiallyActive="true"
+				DeathWeapon="RadarCloseBombCrateWarhead">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FADED"/>
+			</FireWeaponWhenDead>
+		</Behaviors>
+	</GameObject>
+	<WeaponTemplate
+				id="RadarCloseBombCrateWarhead"
+			ProjectileCollidesWith ="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+			RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+				Flags="NOT_ATTRACTED_BY_MAGNETS"
+				RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER">
+		<Nuggets>
+			<InformationWarfareNugget
+				InfoWarType="RADAR_JAM"
+				RadarJamRadius="9000.0"
+				RadarJamDuration="20s">
+			</InformationWarfareNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<GameObject
+		id="CryoBeamAttributeCrate"
+		inheritFrom="BaseBombCrate"
+		EditorName="CryoBeamAttributeCrate">
+		<Behaviors>
+			<FireWeaponWhenDead
+				id="ModuleTag_FireWeaponWhenDead"
+				InitiallyActive="true"
+				DeathWeapon="CryoBeamAttributeCrateWarhead">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FADED"/>
+			</FireWeaponWhenDead>
+		</Behaviors>
+	</GameObject>
+	<WeaponTemplate
+		id="CryoBeamAttributeCrateWarhead"
+		AttackRange="100.0"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_STRUCTURE ANTI_GROUND ANTI_WATER">
+		<Nuggets>
+			<SecondaryDamageNugget
+				Amount="99999"
+				Radius="100.0">
+			</SecondaryDamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

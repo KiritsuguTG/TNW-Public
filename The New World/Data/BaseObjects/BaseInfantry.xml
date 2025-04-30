@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="instance"
+			source="ART:ShadowI.xml" />
+		<Include
+			type="instance"
+			source="BaseObject.xml" />
+		<Include
+			type="all"
+			source="ART:NPParachute_SKN.w3x" />
+		<Include
+			type="all"
+			source="ART:NPParachuteAllied_SKN.w3x" />
+		<Include
+			type="all"
+			source="ART:NPParachuteSoviet_SKN.w3x" />
+		<Include
+			type="all"
+			source="ART:NPParachuteJapan_SKN.w3x" />
+		<Include
+			type="all"
+			source="ART:NPParachute_FALL.w3x" />
+		<Include
+			type="all"
+			source="ART:NPParachute_LAND.w3x" />
+		<Include
+			type="all"
+			source="ART:NPParachute_OPEN.w3x" />
+	</Includes>
+	<GameObject
+		id="BaseInfantry"
+		inheritFrom="BaseObject"
+		RadarPriority="UNIT"
+		TransportSlotCount="1"
+		ProductionQueueType="INFANTRY"
+		HealthBoxHeightOffset="20"
+		UnitCategory="INFANTRY"
+		CommandPoints="1"
+		EvaEventSecondDamageFarFromFirstScanRange="600"
+		VoiceSelectUnderFireTimeout="10s"
+		VoiceSelectUnderFireDamageTime="3s"
+		PathfindDiameter="5"
+		MaxDistanceForEngaged="200">
+        <ArmorSet
+			Armor="CryoBeamFrozenInfantryArmor"
+			DamageFX="VehicleDamageFX"
+			Conditions="SECONDARY_DAMAGE"/>
+		<ArmorSet
+			Armor="InfantryShrinkRayEffectArmor"
+			DamageFX="VehicleDamageFX"
+			Conditions="SHRINK_EFFECT"/>
+		<Behaviors>
+			
+			<AttributeModifierPoolUpdate 
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<StealthDetectorUpdate
+				id="ModuleTag_StealthDetect"
+				DetectionRange="30"
+				ExtraForbiddenKindOf="DISGUISER SUBMARINE"/>
+			<SquishCollide
+				id ="DefaultSquishCollide"/>
+			<CrushDie
+				id="ModuleTAg_CrushDie">
+				<DieMuxData
+					DeathTypes="CRUSHED" />
+			</CrushDie>
+			<StancesBehavior
+				id="ModuleTag_Stance"
+				StanceTemplate="Generic" />
+			<DestroyDie
+				id="ModuleTag_FrozenDie">
+				<DieMuxData
+					DeathTypes="ALL"
+					RequiredStatus="UNDER_FROZEN"/>
+			</DestroyDie>
+			<DestroyDie
+				id="ModuleTag_ChronoDie">
+				<DieMuxData
+					DeathTypes="EXTRA_7 SHATTERED"/>
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXPsycicDeath">
+				<DieMuxData
+					DeathTypes="SHATTERED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="LIFTED_INTO_AIR"/>
+				<Event
+					Index="onDeath"
+					FX="FX_JapanInfantryPsyonicDeath" />
+			</FXListBehavior>
+			<FXListBehavior
+				id="ModuleTag_FXPsycicBlastDeath">
+				<DieMuxData
+					DeathTypes="SHATTERED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="LIFTED_INTO_AIR"/>
+				<Event
+	 				Index="onDeath"
+					FX="FX_JapanInfantryPsyonicBlastDeath" />
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateFrozenObjectDie"
+				CreationList="InfantryShatter_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="UNDER_FROZEN"/>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateInfantryBombObjectDie"
+				CreationList="InfantryBombShatter_OCL">
+				<DieMuxData
+					DeathTypes="SHATTERED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN"/>
+			</CreateObjectDie>
+      <!-- end of frozen death modules -->
+			<FXListBehavior
+				id="SquishedFXPlayer">
+				<DieMuxData
+					DeathTypes="CRUSHED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_InfantrySquished" />
+			</FXListBehavior>
+			<FireWeaponUpdate
+				id="Upgrade_HeroicHeal"
+				FireInterval="1s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="Upgrade_HeroicHealShortCircuit"
+					OneShot="false" />
+				<ObjectStatusValidation
+					RequiredStatus="IMMUNE_TO_BARK" />
+			</FireWeaponUpdate>
+			
+			<SecondaryDamageTracker
+				id="ModuleTag_SecondaryDamageTracker"
+				UpdateDuration="1s"
+				DissipateAmount="25"
+				MaxDamageClampScaler="200%">
+				<Color R="1.0" G="1.0" B="1.75"/>
+				<EffectInfo
+					Fraction="0.2"
+					AttributeModifier="AttributeModifer_CryoBeam_02"
+				/>
+				<EffectInfo
+					Fraction="0.4"
+					AttributeModifier="AttributeModifer_CryoBeam_04"
+				/>
+				<EffectInfo
+					Fraction="0.6"
+					AttributeModifier="AttributeModifer_CryoBeam_06"
+				/>
+				<EffectInfo
+					Fraction="0.8"
+					AttributeModifier="AttributeModifer_CryoBeam_08"
+				/>
+				<EffectInfo
+					Fraction="1.0"
+					SetUpgradedArmor="true"
+					OnEnterDisable="true"
+					OnEnterCancelSpecialAbilities="true"
+					AttributeModifier="AttributeModifer_CryoBeam_10"
+				/>
+			</SecondaryDamageTracker>
+
+			<RunOffMapBehavior
+				id="ModuleTag_RunOffMapBehavior"
+				RequiresSpecificTrigger="true" 
+				RunOffMapWaypointName="RunOffMap"
+			/>
+
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Veteran"
+				LevelCap="4"
+				LevelsToGain="1">
+				<TriggeredBy>Upgrade_CreationVeterancy_VETERAN</TriggeredBy>
+			</LevelUpUpgrade>
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Elite"
+				LevelCap="4"
+				LevelsToGain="1">
+				<TriggeredBy>Upgrade_CreationVeterancy_ELITE</TriggeredBy>
+			</LevelUpUpgrade>
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Heroic"
+				LevelCap="4"
+				LevelsToGain="1">
+				<TriggeredBy>Upgrade_CreationVeterancy_HEROIC</TriggeredBy>
+			</LevelUpUpgrade>
+			<LevelUpUpgrade
+				id="ModuleTag_ActiveRedAlertExperience"
+				LevelCap="4"
+				LevelsToGain="4">
+				<TriggeredBy>PlayerUnitUpgradeToHeroic</TriggeredBy>
+			</LevelUpUpgrade>
+			
+			<SuppressionUpdate
+				id="ModuleTag_SuppressionUpdate"
+				UpdateDelay="1s"
+				Suppressability="50"
+				SuppressionDuration="5s"
+				AttributeModifierSuppressed="Modifier_Test_Suppression"
+				AttributeModifierForceMove="Modifier_Test_Suppression_ForceMove"
+				IgnoreSuppressionObjectStatus="OVER_WATER AIRBORNE_TARGET PARACHUTING INSIDE_GARRISON RIOT_SHIELDED UNDER_IRON_CURTAIN PLAYER_POWER_4 IN_SPIDER_HOLE"/>
+			<FreefallUpdate
+				id="ModuleTag_FreefallUpdate"
+				ModelConditionsToSet="STUNNED_FLAILING"
+				InitialVelocity="5"
+				Acceleration="1"
+				TerminalVelocity="15"/>
+			<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_UnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_LostUpgradeUprising_AttributeModifier"
+				AttributeModifier="AttributeModifier_UnitLostUpgradeUprising">
+				<TriggeredBy>UprisingOver</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_SandBox_AttributeModifier"
+				AttributeModifier="AttributeModifier_SandBoxEffect">
+				<TriggeredBy>Upgrade_SandBox</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_SuperStructureDie_AttributeModifier"
+				AttributeModifier="AttributeModifier_SuperStructureDie">
+				<TriggeredBy>Upgrade_SuperStructureDie</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<FireWeaponUpdate
+				id="ModuleTag_DeBugFireWeaponUpdate"
+				FireInterval="1s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="DebugClonedShortCircuit"
+					OneShot="true" />
+				<ObjectStatusValidation
+					RequiredStatus="CLONED"/>
+			</FireWeaponUpdate>
+			<FireWeaponWhenDead
+				id="ModuleTag_CatalystDeathWeapon"
+				InitiallyActive="true"
+				DeathWeapon="CatalystInfantryDeathWeapon"
+				ContinueToBezierDestination="false"
+				UseMyKillerAsWeaponSource="true">
+				<DieMuxData DeathTypes="CATALYST" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_SmallCatalystDeathWeapon"
+				InitiallyActive="true"
+				DeathWeapon="SmallCatalystInfantryDeathWeapon"
+				ContinueToBezierDestination="false"
+				UseMyKillerAsWeaponSource="true">
+				<DieMuxData DeathTypes="EXTRA_4" />
+			</FireWeaponWhenDead>
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_UnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_UnmiliWeapon">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_SandBox">
+				<TriggeredBy>Upgrade_SandBox</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_SandBox">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_AlliedUnitUpgrade_subobject">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+				<Nugget
+					Upgrade="AlliedUnitUpgrade">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_SovietUnitUpgrade_subobject">
+				<TriggeredBy>SovietUnitUpgrade</TriggeredBy>
+				<Nugget
+					Upgrade="SovietUnitUpgrade">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_JapanUnitUpgrade_subobject">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+				<Nugget
+					Upgrade="JapanUnitUpgrade">
+				</Nugget>
+			</SubObjectsUpgrade>
+			
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_SovietCrushPuppiesPower">
+				<TriggeredBy>Upgrade_SovietCrushPuppiesPower</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_SovietCrushPuppiesPower">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_SovietAntiPlus">
+				<TriggeredBy>Upgrade_SovietAntiPlus</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_SovietAntiPlus">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_SovietTerrorDroneEggs">
+				<TriggeredBy>Upgrade_SovietTerrorDroneEggs</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_SovietTerrorDroneEggs">
+				</Nugget>
+			</SubObjectsUpgrade>
+
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_AlliedHighTechnology">
+				<TriggeredBy>Upgrade_AlliedHighTechnology</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_AlliedHighTechnology">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+					id="ModuleTag_Upgrade_AlliedAirPower">
+				<TriggeredBy>Upgrade_AlliedAirPower</TriggeredBy>
+				<Nugget
+						Upgrade="Upgrade_AlliedAirPower">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_AlliedLaserUpgrade">
+				<TriggeredBy>Upgrade_AlliedLaserUpgrade</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_AlliedLaserUpgrade">
+				</Nugget>
+			</SubObjectsUpgrade>
+
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_JapanNavalPower">
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_JapanNavalPower">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_JapanEnhancedKamikaze">
+				<TriggeredBy>Upgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_JapanEnhancedKamikaze">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_JapanAdvancedMissilePacks">
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_JapanAdvancedMissilePacks">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="UnitStopFunctions" />
+		</Behaviors>
+
+		<Body>
+			<ActiveBody
+				id="DefaultBody"/>
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShockDeathOverLand">
+				<ModelConditionSound Sound="Electro_BoneRattle_Death" RequiredFlags="DYING DEATH_1" ExcludedFlags="OVER_WATER" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="Frozen">
+				<Override RequiredFlags="PARALYZED">
+					<AudioArrayVoice>
+						<AudioEntry Sound="" AudioType="voiceAttack" />
+						<AudioEntry Sound="" AudioType="voiceAttackAir" />
+						<AudioEntry Sound="" AudioType="voiceAttackAfterMoving" />
+						<AudioEntry Sound="" AudioType="voiceAttackGarrisonedStructure" />
+						<AudioEntry Sound="" AudioType="voiceAttackStructure" />
+						<AudioEntry Sound="" AudioType="voiceCreated" />
+						<AudioEntry Sound="" AudioType="voiceDock" />
+						<AudioEntry Sound="" AudioType="voiceFear" />
+						<AudioEntry Sound="" AudioType="voiceGarrison" />
+						<AudioEntry Sound="" AudioType="voiceMove" />
+						<AudioEntry Sound="" AudioType="voiceAttackAfterMoving" />
+						<AudioEntry Sound="" AudioType="voiceMoveWaterToLand" />
+						<AudioEntry Sound="" AudioType="voiceMoveLandToWater" />
+						<AudioEntry Sound="" AudioType="voiceRepair" />
+						<AudioEntry Sound="" AudioType="voiceRetreatToCastle" />
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSelect" />
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSelectBattle" />
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSelectUnderFire" /> 
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSupply" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+<!--
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_TurnIntoIceSound">
+				<ModelConditionSound Sound="UnitFreeze" RequiredFlags="PARALYZED" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+-->
+		<EvaEventArray>
+			<EvaEntry EvaEvent="UnitLost" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="UnitConstructionStarted" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="UnitUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="UnitUnderAttackFromShroudedUnit" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="GenericUnitBeingBurned" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="AllyUnitUnderAttack" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="UnitAmbushed" EvaType="ambushed" />
+			<EvaEntry EvaEvent="GenericEnemyUnitSighted" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="EnemyStealthUnitDiscovered" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="NewConstructionOptions" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="BuildOnHold" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="BuildCancelled" EvaType="buildCancelled" />
+		</EvaEventArray>
+		
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="10">
+			<ExtraCrushLevels CrushableLevel="127" ModelConditionMatch="IRONCURTAIN"/>
+			<ExtraCrushLevels CrushableLevel="10" ModelConditionMatch="OVER_WATER" />
+			</CrusherInfo>
+	</GameObject>
+
+</AssetDeclaration>

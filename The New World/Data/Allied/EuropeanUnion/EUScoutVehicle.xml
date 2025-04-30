@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseInfantry.xml" />
+		<Include type="all" source="ART:Units/EUScoutVehicle/EUScoutVehicle_DIG.W3X" />
+		<Include type="all" source="ART:Units/EUScoutVehicle/EUScoutVehicle_SKN.W3X" />
+		<Include type="all" source="ART:Units/EUScoutVehicle/EUScoutVehicle_IDLA.W3X" />
+	</Includes>	
+	<GameObject
+		id="EUScoutVehicle"
+		inheritFrom="BaseInfantry"
+		SelectPortrait="PortraitEUScoutVehicle"
+		ButtonImage="ButtonEUScoutVehicle"
+		ShockwaveResistance="90"
+		Side="Allies"
+		SubGroupPriority="430"
+		EditorSorting="UNIT"
+		BuildTime="5"
+		CommandSet="EUScoutVehicleCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK AMPHIBIOUS CAN_CAST_REFLECTIONS INFANTRY SCORE SKIRMISH_AI_DONT_GARRISON CANNOT_HIJACK NO_GARRISON LINE_OF_SIGHT_IGNORES_BUILDINGS DISGUISER T1_UNIT TRANSFORMER FS_RADAR"
+		RadarPriority="UNIT"
+		WeaponCategory="MISSILE"
+		VoicePriority="188"
+		BountyValue="150"
+		EditorName="EUScoutVehicle"
+		Description="Desc:EUScoutVehicle"
+		TypeDescription="Type:AntiAirAndArmor"
+		UnitTypeIcon="EUScoutVehicleIcon"
+		SelectPortraitTransformed="PortraitEUScoutVehicle"
+		ButtonImageTransformed="ButtonEUScoutVehicleB"
+		DescriptionTransformed="Desc:EUScoutVehicle"
+		TypeDescriptionTransformed="Type:AntiAirAndArmor">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:EUScoutVehicle</DisplayName>
+		<DisplayNameTransformed xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:EUScoutVehicle</DisplayNameTransformed>
+		<ObjectResourceInfo>
+			<BuildCost Account="0" Amount="500"/>
+		</ObjectResourceInfo>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_AlliedTech2</NeededUpgrade>
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="ALLIES"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>AlliedWarFactory</IncludeThing>
+				<IncludeThing>EUWarFactory</IncludeThing>
+				<IncludeThing>AlliedWarFactoryAI</IncludeThing>
+				<IncludeThing>EUWarFactoryAI</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ArmorSet
+			Armor="SovietScoutVehicleArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<LocomotorSet
+			Locomotor="SovietScoutVehicleLandLocomotor"
+			Condition="NORMAL"
+			Speed="100" />
+		<LocomotorSet
+			Locomotor="SovietScoutVehicleWaterLocomotor"
+			Condition="NORMAL"
+			Speed="100" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="2.0"
+			OutOfRangePenalty="3.0"
+			ConquerMetricsOverrideDamageType="ROCKET"
+			ConquerMetricsOverrideAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+			ConquerMetricsOverrideForbiddenAntiMask="ANTI_INFANTRY"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="5.0"
+				MaxRecoilDistance="5"
+				RecoilDamping="5.0"
+				RecoilSettleSpeed="5.0"
+				ExtraPublicBone="FX_WEAPON_01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EUANTIAIRROBOT_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_01" />
+				</ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="EUANTIAIRROBOT_SKN" />
+          <ParticleSysBone
+            				BoneName="NONE"
+             				FXParticleSystemTemplate="VehicleDamageSmoke"
+             				FollowBone="true" />
+				</ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="EUANTIAIRROBOT_SKN" />
+			<Texture
+				Original="AUArtilleryVehicle"
+				New="AUArtilleryVehicle_D" />
+			<ParticleSysBone
+            				BoneName="NONE"
+             				FXParticleSystemTemplate="VehicleDamageSmoke"
+             				FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="EUANTIAIRROBOT_IDLA"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.3"
+						AnimationSpeedFactorMax="0.8"
+						AnimationBlendTime="8"/>
+					<Script>
+						CurDrawableShowSubObjectPermanently("FX_JETGLOW01")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="WEAPONSTATE_ONE UNPACKING">
+					<Animation
+						AnimationName="EUSCOUTVEHICLE_DIG"
+						AnimationMode="ONCE_BACKWARDS"/>
+					<Script>
+						CurDrawableShowSubObjectPermanently("FX_JETGLOW01")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Animation
+						AnimationName="EUSCOUTVEHICLE_DIG"
+						AnimationMode="ONCE"/>
+					<Script>
+						CurDrawableHideSubObjectPermanently("FX_JETGLOW01")
+					</Script>
+					<FXEvent
+						Frame="30"
+						FireWhenSkipped="true"
+						Effect="FX_AlliedArtilleryFootprint"
+						Bone="NONE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="WEAPONSTATE_ONE"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="EUSCOUTVEHICLE_DIG"
+						AnimationMode="MANUAL" />
+				</AnimationState>
+				</ScriptedModelDraw>
+			<xi:include
+				href="DATA:Includes/ParachuteDrawAllied.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:ParachuteDraws/child::*)" />
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUScoutVehicleMissileLauncher"
+						ObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+						ForbiddenObjectStatus="SPECIAL_ABILITY_PACKING_UNPACKING_OR_USING INSIDE_GARRISON"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<SquishCollide
+				id ="DefaultSquishCollide"
+			xai:joinAction="Replace"
+				CrushKillDelay="1.4s" />
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				Motion="TRACKED"
+				Collision="OMNICOLLIDING"
+				ContactTag="VEHICLE">
+			</DynamicsUpdate>
+			<CrushDie
+				id="ModuleTAg_CrushDie"
+			xai:joinAction="Remove"/>
+			<SuppressionUpdate
+				id="ModuleTag_SuppressionUpdate"
+			xai:joinAction="Remove"/>
+			<SpecialPower
+					id="ModuleTag_ToggleSpiderHoleTigger"
+					SpecialPowerTemplate="SpecialPower_ToggleEUScoutVehicleHole"
+					UpdateModuleStartsAttack="true" />
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ToggleSpiderHole"
+				Options="BUSY_DURING_UNPACK"
+				SpecialPowerTemplate="SpecialPower_ToggleEUScoutVehicleHole"
+				UnpackTime="1s">
+				<ToggleState
+					Upgrade="Upgrade_FortressGeoWater">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT">
+					</SkirmishAiInfo>
+				</ToggleState>
+				<ToggleState
+					ObjectStatus="IMMOBILE TRANSFORMATION_TOGGLE_STATE DEPLOYED"
+					ModelConditions="WEAPONSTATE_ONE"
+					AttributeModifier="AttributeModifier_EUScoutVehicleSpiderHole"
+					EnterStateSound="JAP_Tankbuster_BurrowInMS"
+					Upgrade="Upgrade_FortressGeoAir">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_WEAPON"
+						OnlyUseWhenHaveTarget="true"
+						NeverUseWhenClear="true">
+						<StateWeapon
+							Weapon="EUScoutVehicleMissileLauncher"/>
+					</SkirmishAiInfo>
+				</ToggleState>
+			</ToggleStatusSpecialAbilityUpdate>
+			<GeometryUpgrade
+				id="ModuleTag_GeometryUpgradeAir"
+				ShowGeometry="air_geom"
+				HideGeometry="ship_geom">
+				<TriggeredBy>Upgrade_FortressGeoAir</TriggeredBy>
+			</GeometryUpgrade>
+			<GeometryUpgrade
+				id="ModuleTag_GeometryUpgradeWater"
+				ShowGeometry="ship_geom"
+				HideGeometry="air_geom">
+				<TriggeredBy>Upgrade_FortressGeoWater</TriggeredBy>
+			</GeometryUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgradeAir">
+				<TriggeredBy>Upgrade_FortressGeoWater</TriggeredBy>
+				<UpgradeToRemove>Upgrade_FortressGeoAir</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgradeWater">
+				<TriggeredBy>Upgrade_FortressGeoAir</TriggeredBy>
+				<UpgradeToRemove>Upgrade_FortressGeoWater</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<AttributeModifierUpgrade
+							id="ModuleTag_InfantrBaseUpgrade"
+							AttributeModifier="AttributeEUScoutVehicleUnitUpgradeSpecialPower">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SUScoutVehicle_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+      <DestroyDie
+				id="ModuleTag_Die">
+        <DieMuxData
+					DeathTypes="ALL"/>
+      </DestroyDie>
+      <!-- end of frozen death modules -->
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_TerrorDroneDie" />
+			</FXListBehavior>
+<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_DeBugUnmiliWeapon">
+		<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+</AttributeModifierUpgrade>
+			<InvisibilityBroadcastUpdate
+	id="ModuleTag_BroadcastInvisibility"
+	BroadcastRange="10"
+	UpdatePeriod="0.1s"
+	AffectsSelf="true"
+	InvisibilityTemplate="EUSVInvisibilityBroadcastTemplate">
+				<BroadcastObjectFilter
+					Rule="NONE"
+					Relationship="ALLIES"
+					StatusBitFlags="TRANSFORMATION_TOGGLE_STATE">
+					<IncludeThing>EUScoutVehicle</IncludeThing>
+				</BroadcastObjectFilter>
+			</InvisibilityBroadcastUpdate>
+			<ModelConditionUpgrade
+				id="ModuleTag_JapanFaction"
+				AddConditionFlags="USER_8">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_SovietFaction"
+				AddConditionFlags="USER_9">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<!-- remove base infantry frozen death modules -->
+			<CreateObjectDie
+				id="ModuleTag_CreateFrozenObjectDie"
+			  xai:joinAction="Remove"/>
+			<CreateObjectDie
+				id="ModuleTag_CreateInfantryBombObjectDie"
+			  xai:joinAction="Remove"/>
+			<FXListBehavior
+				id="ModuleTag_FXPsycicDeath"
+			  xai:joinAction="Remove"/>
+			<FXListBehavior
+				id="ModuleTag_FXPsycicBlastDeath"
+			  xai:joinAction="Remove"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+                    RotateToTargetWhenAiming="true">
+				</UnitAITargetChooserData>	
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="125" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="SOV_TerrorDrone_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShipMoveLoopWater">
+				<ModelConditionSound Sound="ALL_PacifierFAV_WaterLoopGeneric" RequiredFlags="MOVING OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Name="ship_geom"
+				Type="CYLINDER"
+				MajorRadius="2.5"
+				Height="13.0"
+				ContactPointGeneration="SQUAD_MEMBER"/>
+			<Shape
+				Name="air_geom"
+				Type="CYLINDER"
+				MajorRadius="1"
+				Height="13.0"
+				ContactPointGeneration="SQUAD_MEMBER"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="EUR_EUScoutVehicle_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="EUR_EUScoutVehicle_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="EUR_EUScoutVehicle_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="EUR_EUScoutVehicle_VoiceSelect" AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="ALL_Pacifier_MoveStart" AudioType="soundMoveStart" />
+			<AudioEntry Sound="ALL_PacifierFAV_MoveByLoop" AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<ShadowInfo
+			Type="DECAL"
+			SizeX="14"
+			SizeY="14"
+			Texture="ShadowI" />
+		<VisionInfo
+			VisionRange="500"
+			ShroudClearingRange="=$ADVANCE_INFANTRY_SHROUD_CLEAR"/>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="10">
+			<ExtraCrushLevels CrusherLevel="0" CrushableLevel="55" ModelConditionMatch="WEAPONSTATE_ONE" />
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="EUScoutVehicle_LevelUpUpgrade"
+		inheritFrom="EUScoutVehicle"
+		EditorName="EUScoutVehicle_LevelUpUpgrade">
+		<EquivalentTo>EUScoutVehicle</EquivalentTo>
+		<Behaviors>
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade"
+				LevelCap="4"
+				DoFlash="false"
+				LevelsToGain="4">
+				<TriggeredBy>AlliedSpellBookUpgrade</TriggeredBy>
+			</LevelUpUpgrade>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+  id="EUScoutVehicle_Crate"
+  inheritFrom="EUScoutVehicle"
+  KindOf="+TIBERIUM_BASED"
+  EditorName="EUScoutVehicle_Crate">
+		<EquivalentTo>EUScoutVehicle</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

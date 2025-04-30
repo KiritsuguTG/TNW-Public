@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags />
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+id="ScatterableWeapon">
+		<ScatterRadiusVsType
+			Radius="70.0"
+			RequiredModelConditions="SHRINK_EFFECT">
+			<Filter
+				Rule="ANY"
+				Include="INFANTRY AIRCRAFT VEHICLE"/>
+		</ScatterRadiusVsType>
+	</WeaponTemplate>
+<WeaponTemplate
+		id="SovietAntiStructureVehicleV4RocketWarhead"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS SELF"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE">
+	<Nuggets>
+		<DamageNugget
+			Damage="500.0"
+			DamageType="EXPLOSIVE"
+			DeathType="EXPLODED"
+			Radius="40"
+			DamageTaperOff="0">
+			<DamageScalarDetails Scalar= "50%">
+				<Filter
+					Rule="ALL"
+					Relationship="ALLIES" />
+			</DamageScalarDetails>
+		</DamageNugget>
+		<MetaImpactNugget
+			ShockWaveAmount="50.0"
+			ShockWaveRadius="50.0"
+			ShockWaveTaperOff="1.0"/>
+		<!--Use the module to set trees on fire-->
+		<AttributeModifierNugget
+		Radius="40.0"
+		AttributeModifierName="AttributeFireTree">
+			<SpecialObjectFilter
+				Rule="ANY"
+				Relationship="ALLIES ENEMIES NEUTRAL"
+				Include="MACHINE">
+			</SpecialObjectFilter>
+		</AttributeModifierNugget>
+	</Nuggets>
+</WeaponTemplate>
+<AttributeModifier
+	id="AttributeFireTree"
+	Duration="5s"
+	ModelConditionsSet="USER_1"
+	ObjectStatusToSet="PLAYER_POWER_5">
+</AttributeModifier>
+
+<!--Fire Other Tree-->
+<WeaponTemplate
+	id="BaseTreeFire"
+	AttackRange="25.0"
+	RequiredAntiMask="ANTI_GROUND"
+	AcceptableAimDelta="180d"
+	CanFireWhileMoving="true"
+	Flags="NOT_ATTRACTED_BY_MAGNETS"
+	RadiusDamageAffects="ALLIES ENEMIES NEUTRALS SELF">
+	<FiringDuration
+		MinSeconds="0.2s"
+		MaxSeconds="0.2s" />
+	<Nuggets>
+		<DamageNugget
+			Damage="1.0"
+			Radius="25.0"
+			DamageType="GUN"
+			DeathType="BURNED">
+			<SpecialObjectFilter
+				Rule="ANY"
+				Relationship="ALLIES ENEMIES NEUTRAL"
+				Include="INFANTRY"
+				Exclude="MACHINE"
+				StatusBitFlagsExclude="AIRBORNE_TARGET ENCLOSED INSIDE_GARRISON OVER_WATER">
+			</SpecialObjectFilter>
+		</DamageNugget>
+		<DamageNugget
+			Damage="20.0"
+			Radius="25.0"
+			DamageType="GUN"
+			DeathType="BURNED">
+			<SpecialObjectFilter
+				Rule="ANY"
+				Relationship="ALLIES ENEMIES NEUTRAL"
+				Include="MACHINE"
+				Exclude="INFANTRY"
+				StatusBitFlagsExclude="AIRBORNE_TARGET ENCLOSED INSIDE_GARRISON OVER_WATER">
+			</SpecialObjectFilter>
+		</DamageNugget>
+		<AttributeModifierNugget
+		Radius="25.0"
+		AttributeModifierName="AttributeFireTree">
+			<SpecialObjectFilter
+				Rule="ANY"
+				Relationship="ALLIES ENEMIES NEUTRAL"
+				Include="MACHINE"
+				StatusBitFlags="DAMAGED">
+			</SpecialObjectFilter>
+		</AttributeModifierNugget>
+	</Nuggets>
+</WeaponTemplate>
+
+<WeaponTemplate
+		id="AlliedCryoSatelliteLvl1"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		ReAcquireDetailType="PER_ATTACK"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER ANTI_STRUCTURE ANTI_AIRBORNE_VEHICLE">
+	<FiringDuration
+		MinSeconds="0.2s"
+		MaxSeconds="0.2s" />
+	<Nuggets>
+		<SecondaryDamageNugget
+			Amount="75"
+			Radius="60"
+			DamageTaperOff="25">
+			<SpecialObjectFilter
+				Rule="ANY"
+				Include="INFANTRY VEHICLE HUGE_VEHICLE AIRCRAFT STRUCTURE TIME_BOMB"
+				StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET PARACHUTING UNDER_IRON_CURTAIN"/>
+		</SecondaryDamageNugget>
+		<!--Forzen Tree-->
+		<AttributeModifierNugget
+		Radius="60"
+		AttributeModifierName="AttributeSecondaryDamageTree">
+			<SpecialObjectFilter
+				Rule="ANY"
+				Relationship="ALLIES ENEMIES NEUTRAL"
+				Include="MACHINE">
+			</SpecialObjectFilter>
+		</AttributeModifierNugget>
+		<!--Damage Tree-->
+		<DamageNugget
+		  id="ModuleTag_DamageNugget"
+		  Damage="200.0"
+		  Radius="60"
+		  DamageType="EXPLOSIVE"
+		  DeathType="NORMAL">
+			<SpecialObjectFilter
+				Rule="ANY"
+				Relationship="ALLIES ENEMIES NEUTRAL"
+				Include="MACHINE">
+			</SpecialObjectFilter>
+		</DamageNugget>
+	</Nuggets>
+</WeaponTemplate>
+<!--Forzen Tree-->
+<AttributeModifier
+	id="AttributeSecondaryDamageTree"
+	Duration="10s"
+	ModelConditionsSet="USER_1 USER_2"
+	StartFX="FX_Freeze"
+	Shader="ShaderOverride_ObjectsTreeFrozen"
+	ObjectStatusToSet="UNDER_FROZEN">
+</AttributeModifier>
+</AssetDeclaration>
+

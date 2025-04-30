@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="AlliedBalanced.xml"/>
+		<Include type="all" source="AlliedSquadronLeader.xml"/>
+		<Include type="all" source="AlliedSpecialForces.xml"/>
+
+		<Include type="all" source="EUBalanced.xml"/>
+		<Include type="all" source="EUSpecialForces.xml"/>
+		<Include type="all" source="EUSquadronLeader.xml"/>
+
+		<Include type="all" source="SovietBalanced.xml"/>
+		<Include type="all" source="SovietShockSpecialist.xml"/>
+		<Include type="all" source="SovietAirMarshall.xml"/>
+		
+		<Include type="all" source="StrategicArmyBalanced.xml"/>
+		<Include type="all" source="StrategicArmyShockSpecialist.xml"/>
+		<Include type="all" source="StrategicArmyAirMarshall.xml"/>
+		
+		<Include type="all" source="JapanBalanced.xml"/>
+		<Include type="all" source="JapanMechaWarfare.xml"/>
+		<Include type="all" source="JapanFleetCommand.xml"/>
+
+		<Include type="all" source="MODBalanced.xml"/>
+		<Include type="all" source="MODMechaWarfare.xml"/>
+		<Include type="all" source="MODFleetCommand.xml"/>
+	</Includes>
+	<AIBuildStateDefinition
+		id="NormalAIUpgradeAll">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="false"/>
+		</Heuristic>
+		<BuildEntry Upgrade="NormalAIUpgrade" Heuristic="UPGRADE_TEST"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="AIUseMoneySpend">
+		<Heuristic>
+			<MoneyHeuristic Money="9999998" Above="true" />
+		</Heuristic>
+		<BuildEntry Build="AIUseMoney" Heuristic="BUILD_TEST"/>
+	</AIBuildStateDefinition>
+</AssetDeclaration>

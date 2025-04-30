@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+
+	
+	<Includes>
+		<Include type="instance" source="DATA:SageXml/BaseObjects/BaseProjectile.xml"/>
+		<Include type="all" source="ART:Units/SovietAntiVehicleVehicleTech1/SovietAntiVehicleVehicleTech1TankTankShell.w3x"/>
+	</Includes>
+	
+	<GameObject
+		id="SovietAntiVehicleVehicleTech1TankProjectile"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE NO_COLLIDE HIDE_IF_FOGGED"
+		EditorName="SovietAntiVehicleVehicleTech1TankProjectile">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SovietAntiVehicleVehicleTech1TankTankShell" />
+					<ParticleSysBone
+						BoneName="FX_Trail01"
+						FXParticleSystemTemplate="MediumCaliberGunTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Trail02"
+						FXParticleSystemTemplate="MediumCaliberGunTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_TankImpactMed" />
+				<Event
+					Index="onTerrainCollision"
+					FX="FX_TankImpactMed"/>
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="0"
+				SecondPercentIndent="0"
+				CurveFlattenMinDist="300"
+				FlightPathAdjustDistPerSecond="50">
+			</BezierProjectile>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8">
+			</Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	
+	<GameObject
+		id="SovietAntiVehicleVehicleTech1TankProjectile_Veteran"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE NO_COLLIDE HIDE_IF_FOGGED"
+		EditorName="SovietAntiVehicleVehicleTech1TankProjectile_Veteran">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SovietAntiVehicleVehicleTech1TankTankShell" />
+					<ParticleSysBone
+						BoneName="FX_Trail01"
+						FXParticleSystemTemplate="MediumCaliberGunTrailVeteran"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Trail02"
+						FXParticleSystemTemplate="MediumCaliberGunTrailVeteran"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_TankImpactMed" />
+				<Event
+					Index="onTerrainCollision"
+					FX="FX_TankImpactMed"/>
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="0"
+				SecondPercentIndent="0"
+				CurveFlattenMinDist="300"
+				FlightPathAdjustDistPerSecond="50">
+			</BezierProjectile>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8">
+			</Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXMissileStreak" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" SortLevel="1" SystemLifetime="50" Type="TRAIL" id="MediumCaliberGunTrail">
+		<Lifetime High="50" Low="10"/>
+		<Size High="7" Low="7"/>
+		<StartSizeRate High="-3.5" Low="-3.5"/>
+		<BurstDelay High="200" Low="200"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.207843" g="0.207843" r="0.207843"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Wind AngleChangeMax="0.1" AngleChangeMin="0.05" FullStrengthDist="5" PingPongEndAngleMin="5.49779" PingPongStartAngleMax="0.1" Strength="1" TurbulenceAmplitude="0.01" TurbulenceFrequency="5"/>
+		<Physics>
+			<Default ParticlesAttachToBone="true">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Trail TrailLife="40"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXMissileStreak" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" SortLevel="1" SystemLifetime="50" Type="TRAIL" id="MediumCaliberGunTrailVeteran">
+		<Lifetime High="50" Low="10"/>
+		<Size High="7" Low="7"/>
+		<StartSizeRate High="-3.5" Low="-3.5"/>
+		<BurstDelay High="200" Low="200"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.207843" g="0.207843" r="0.407843"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0" g="0" r="0.2"/>
+			</Color>
+		</Colors>
+		<Wind AngleChangeMax="0.1" AngleChangeMin="0.05" FullStrengthDist="5" PingPongEndAngleMin="5.49779" PingPongStartAngleMax="0.1" Strength="1" TurbulenceAmplitude="0.01" TurbulenceFrequency="5"/>
+		<Physics>
+			<Default ParticlesAttachToBone="true">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Trail TrailLife="40"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

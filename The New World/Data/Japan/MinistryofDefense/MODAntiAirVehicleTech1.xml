@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<!-- Footprint decal -->
+		<Include type="all" source="art:FXSovietSickleFP.xml" />
+		<Include source="art:fxmissilestreak.xml" type="instance" />
+		<Include type="instance" source="ART:EX_Headlights.w3x" />
+		<Include type="all" source="ART:FXTracer.xml" />
+		<Include type="all" source="ART:FXTracerHeroic.xml" />
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:Units/MODAntiAirVehicleTech1/JUScoutVehicle_SKN.W3X" />
+		<Include type="all" source="ART:Units/MODAntiAirVehicleTech1/JUScoutVehicle_COL.W3X" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include type="instance" source="DATA:GlobalData/ExperienceLevels.xml" />
+	</Includes>
+	<!-- Auto Go -->
+	<GameObject
+		id="MODAntiAirVehicleTech1"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="PortraitMODAntiAirVehicleTech1"
+		ButtonImage="ButtonMODAntiAirVehicleTech1"
+		Side="Japan"
+		SubGroupPriority="305"
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="20"
+		BuildTime="6"
+		CommandSet="MODAntiAirVehicleTech1CommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE AMPHIBIOUS VEHICLE CAN_BE_FAVORITE_UNIT FS_RADAR"
+		ThreatLevel="10"
+		WeaponCategory="MISSILE"
+		VoicePriority="176"
+		BountyValue="150"
+		EditorName="MODAntiAirVehicleTech1"
+		Description="Desc:MODAntiAirVehicleTech1"
+		TypeDescription="Type:AntiAirAndArmor">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODAntiAirVehicleTech1</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="600" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAntiAirVehicleArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="DefaultLandLocomotor"
+			Locomotor="MODAntiAirVehicleTech1Locomotor"
+			Condition="NORMAL"
+			Speed="150.0" />
+		<LocomotorSet
+			id="DefaultWaterLocomotor"
+			Locomotor="MODAntiAirVehicleTech1WaterLocomotor"
+			Condition="NORMAL"
+			Speed="150.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="2.0"
+			ConquerMetricsOverrideDamageType="ROCKET"
+			ConquerMetricsOverrideAntiMask="ANTI_AIRBORNE_INFANTRY ANTI_AIRBORNE_VEHICLE"
+			ConquerMetricsOverrideForbiddenAntiMask="ANTI_INFANTRY ANTI_SUBMERGED" />
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="6"
+				MaxRecoilDistance="8"
+				RecoilDamping="0.9"
+				RecoilSettleSpeed="0.22"
+				ExtraPublicBone="FX_WEAPON_01 FX_WEAPON_02 BONE_TURRET"
+				TrackMarks="EXTireTrack2">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUSCOUTVEHICLE_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponRecoilBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						WeaponSlotID="1"
+						BoneName="BONE_MISSILE_L BONE_MISSILE_R" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<Turret
+						TurretNameKey="BONE_TURRET"
+						TurretPitch="TURRET_PITCH"
+						TurretID="1" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="JUSCOUTVEHICLE_SKN" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="JUSCOUTVEHICLE_SKN" />
+					<ParticleSysBone
+						BoneName="PLANE"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUSCOUTVEHICLE_SKN" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech1_D" />
+					<ParticleSysBone
+						BoneName="PLANE"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="PLANE"
+						FXParticleSystemTemplate="JapanVehicleDamagedLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="PLANE"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="PLANE"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+				</ModelConditionState>
+			</TruckDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+
+			<!-- include Headlight draw module. -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_HeadLightL"
+				AttachToBoneInAnotherModule="FX_HEADLIGHT_L"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="NIGHT">
+					<Model
+						Name="EX_Headlights" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_HeadLightR"
+				AttachToBoneInAnotherModule="FX_HEADLIGHT_R"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="NIGHT">
+					<Model
+						Name="EX_Headlights" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODAntiAirVehicleTech1MisslePods"
+						ForbiddenObjectStatus="ADVANCED_MISSILE_PACKS" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODAntiAirVehicleTech1MisslePods_JapanAdvancedMissilePacks"
+						ObjectStatus="ADVANCED_MISSILE_PACKS" />
+					<TurretSettings
+						TurretTurnRate="360"
+						TurretPitchRate="360"
+						AllowsPitch="true"
+						MinimumPitch="15d"
+						MaxDeflectionClockwise="90d"
+						MaxDeflectionAntiClockwise="90d"
+						PitchHeight="75%"
+						ComeToHaltJiggle="2d">
+						<TurretAITargetChooserData
+							TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+							<ObjectVisionRange
+								id="ObjectVisionRange_Aircraft"
+								Range="125">
+								<Filter
+									Rule="ANY"
+									Include="AIRCRAFT INFANTRY VEHICLE"
+									StatusBitFlags="AIRBORNE_TARGET" />
+							</ObjectVisionRange>
+						</TurretAITargetChooserData>
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<FireWeaponCollide
+				id="ModuleTag_FireBaseAutoAndShipWeaponCollide"
+				xai:joinAction="Remove" />
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="MODAntiAirVehicleTech1_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+			</FXListBehavior>
+
+			<SpecialPower
+				id="ModuleTag_Leap"
+				SpecialPowerTemplate="SpecialPower_TriggerLeapPistons"
+				UpdateModuleStartsAttack="true" />
+			<!-- UnpackTime should match leap animation length -->
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_LeapUpdate"
+				SpecialWeapon="MODAntiAirVehicleTech1LeapWeapon"
+				SpecialPowerTemplate="SpecialPower_TriggerLeapPistons"
+				Options="FAIL_WITH_INVALID_APPROACH"
+				UnpackTime="0s"
+				PackTime="0s"
+				TriggerSound="SOV_Sickle_MoveLeapMS"
+				SetObjectStatusOnTrigger="IGNORE_AI_COMMAND"
+				ClearObjectStatusOnExit="IGNORE_AI_COMMAND"
+				StartAbilityRange="200.0"
+				WhichSpecialWeapon="1">
+			</WeaponFireSpecialAbilityUpdate>
+			<BezierProjectile
+				id="ModuleTag_Projectile"
+				Flags="CRUSH_STYLE NO_DETONATE DETONATE_CALLS_KILL"
+				FirstHeightMin="150"
+				FirstHeightMax="160"
+				SecondHeightMin="100"
+				SecondHeightMax="110"
+				FirstPercentIndent="40%"
+				SecondPercentIndent="60%"
+				BounceCount="0"
+				FinalStuckTime="0s"
+				GroundHitWeapon="SmallLeapToLandWeapon"/>
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_BaseUpgradeAttributeModifier"
+				AttributeModifier="AttributeModifer_MODAntiAirVehicleTech1Upgrade">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<xi:include
+				href="DATA:Includes/JapanAdvancedMissilePacksUpgrade.xml" />
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+			<AttributeModifierUpgrade
+				id="ModuleTag_JapanUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="false">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="200" />
+		</Body>
+		<ClientBehaviors>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="16"
+				MinorRadius="6"
+				Height="17"
+				ContactPointGeneration="VEHICLE">
+				<Offset x="3" z="-1" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_AutoGo_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="JAP_AutoGo_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_AutoGo_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_AutoGo_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="JAP_AutoGo_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="JAP_AutoGo_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="JAP_AutoGo_VoiceSelectDamage" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="JAP_AutoGo_VoiceSelectDamage" AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="JAP_AutoGo_VoiceMove" Name="voiceLeap" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="ALL_MultiGunnerIFV_MovStart" AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="325"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="25">
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="MODAntiAirVehicleTech1_Naval"
+		inheritFrom="MODAntiAirVehicleTech1"
+		EditorName="MODAntiAirVehicleTech1_Naval"
+		ProductionQueueType="WATERCRAFT">
+		<EquivalentTo>MODAntiAirVehicleTech1</EquivalentTo>
+	</GameObject>
+	<GameObject
+		id="MODAntiAirVehicleTech1_Crate"
+		inheritFrom="MODAntiAirVehicleTech1"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="MODAntiAirVehicleTech1_Crate">
+		<EquivalentTo>MODAntiAirVehicleTech1</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

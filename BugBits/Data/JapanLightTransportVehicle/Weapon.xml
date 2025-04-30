@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="JapanLightTransportVehicleDisguiser"
+		AttackRange="20.0"
+		AutoReloadsClip="AUTO"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RadiusDamageAffects="ENEMIES NEUTRALS ALLIES SELF"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+		CanFireWhileMoving="true"
+		DamageDealtAtSelfPosition="true"
+		PreAttackType="PER_CLIP"
+		AcceptableAimDelta="180d">
+		<Nuggets>
+			<DamageNugget
+				Damage="1.0"
+				Radius="1"
+				DamageType="EXPLOSIVE"
+				DeathType="SUICIDED">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="HARVESTER">
+					<ExcludeThing>JapanRisingBalloon</ExcludeThing>
+					<ExcludeThing>JapanFallingBalloonBomb</ExcludeThing>
+					<ExcludeThing>JapanBalloonBomb</ExcludeThing>
+				</SpecialObjectFilter>
+			</DamageNugget>
+			<DamageNugget
+				Radius="0"
+				OnlyKillOwnerWhenTriggered="true"
+				DamageType="EXPLOSIVE"
+				DeathType="SUICIDED">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+	id="JapanLightTransportVehicleDeathWeapon"
+	RadiusDamageAffects="ENEMIES NEUTRALS"
+	Flags="NOT_ATTRACTED_BY_MAGNETS"
+	RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+	FireFX="FX_SovPPXP">
+		<Nuggets>
+			<DamageNugget
+				Radius="0"
+				OnlyKillOwnerWhenTriggered="true"
+				DamageType="EXPLOSIVE"
+				DeathType="NORMAL">
+			</DamageNugget>
+			<DamageNugget
+				Damage="2000.0"
+				DamageTaperOff="0"
+				Radius="150.0"
+				DamageType="EXPLOSIVE"
+				DeathType="DETONATED"
+			  PartitionFilterTestType="CIRCLE">
+				<DamageScalarDetails Scalar="200%">
+					<Filter
+					Rule="ANY"
+                    Include="REFINERY">
+					</Filter>
+				</DamageScalarDetails>
+				<DamageScalarDetails Scalar= "0%">
+					<Filter
+						Rule="ALL"
+						Relationship="ALLIES" />
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+	id="JapanLightTransportVehicleDeathWeaponAntiAllied"
+	RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+	Flags="NOT_ATTRACTED_BY_MAGNETS"
+	RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+	FireFX="FX_SovPPXP">
+		<Nuggets>
+			<DamageNugget
+				Radius="0"
+				OnlyKillOwnerWhenTriggered="true"
+				DamageType="EXPLOSIVE"
+				DeathType="NORMAL">
+			</DamageNugget>
+			<DamageNugget
+				Damage="2000.0"
+				DamageTaperOff="0"
+				Radius="150.0"
+				DamageType="EXPLOSIVE"
+				DeathType="DETONATED"
+			  PartitionFilterTestType="CIRCLE">
+				<DamageScalarDetails Scalar="200%">
+					<Filter
+					Rule="ANY"
+                    Include="REFINERY">
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

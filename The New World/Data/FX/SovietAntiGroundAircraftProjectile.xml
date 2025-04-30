@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+
+
+
+	<!-- HESHµ¯±¬Õ¨ Ð§¹û -->
+	<FXList id="FX_HESH_ExplosionGround">
+		<NuggetList>
+			<Sound Value="SOV_Hind_MissileExplosion" />
+			<ParticleSystem 
+				Particle="SovietBuildingHitSmoke01">
+				<Offset x="0.0" y="0.0" z="0.0"/>
+			</ParticleSystem>
+			<ParticleSystem 
+				Particle="HE_HitFlash">
+				<Offset x="0.0" y="0.0" z="0.0"/>
+			</ParticleSystem>
+			<ParticleSystem 
+				Particle="HE_HitLight">
+				<Offset x="0.0" y="0.0" z="0.0"/>
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="Soviet_Hind_Light"/>
+			<TerrainScorch
+				Type		= "TERRAIN_MAPPED"
+				Weather		= "NORMAL"
+				Radius		= "25" >
+				<RandomRange Low="SCORCH_9"
+					High="SCORCH_16" />
+			</TerrainScorch>
+		</NuggetList>
+	</FXList>
+
+	<FXParticleSystemTemplate ParticleTexture="FXSmokeAnim" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="ALPHA" SortLevel="2" Type="GPU_PARTICLE" id="MissileTrailSmoke">
+		<Lifetime High="20" Low="15"/>
+		<Size High="5" Low="5"/>
+		<BurstCount High="15" Low="10"/>
+		<Alphas>
+			<Alpha Frame="1" High="0" Low="0" RelativeAge="0"/>
+			<Alpha Frame="2" High="0.5" Low="0.5" RelativeAge="14"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.8" g="0.8" r="0.8"/>
+			</Color>
+			<Color Frame="2" RelativeAge="14">
+				<Color b="0.6" g="0.6" r="0.6"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0.5" g="0.5" r="0.5"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.01" Swirly="true">
+				<VelocityDamping High="0.98" Low="0.98"/>
+				<DriftVelocity x="-0.1" y="0.2" z="0"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXAbaloneEnv" FramesPerRow="4" MiscValue1="0.1" MiscValue2="0.1" MiscValue3="45" MiscValue4="0.015" RandTex="36" Shader="GpuParticleDistort.fx" SpeedMultiplier="1" TotalFrames="16"/>
+		</Draw>
+		<Volume>
+			<Point/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="-1" Low="-1"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default Rotation="ROTATE_AROUND_VELOCITY">
+				<SizeRate High="0.1" Low="-0.1"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="-7" Low="-7"/>
+				<AngularRateZ High="0.1" Low="-0.1"/>
+				<AngularDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+
+	<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" SortLevel="1" Type="GPU_PARTICLE" id="MissileTrailFlare">
+		<Lifetime High="5" Low="5"/>
+		<Size High="5" Low="5"/>
+		<BurstCount High="20" Low="20"/>
+		<Alphas>
+			<Alpha Frame="1" High="1" Low="1" RelativeAge="0"/>
+			<Alpha Frame="2" High="0.5" Low="0.5" RelativeAge="50"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.2" g="0.8" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="30">
+				<Color b="0.133333" g="0.568628" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.01" Swirly="true">
+				<VelocityDamping High="0.98" Low="0.98"/>
+				<DriftVelocity x="-0.1" y="0.2" z="0"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXFracTileNRM" MiscValue1="0.1" MiscValue2="0.1" MiscValue3="45" MiscValue4="0.6" Shader="GpuParticleDistort.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Point/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="-0.2" Low="-0.2"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="0" Low="0"/>
+				<AngularRateZ High="1" Low="1"/>
+				<AngularDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

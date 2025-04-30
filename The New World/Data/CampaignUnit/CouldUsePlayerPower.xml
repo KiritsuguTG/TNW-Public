@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+		id="CouldUsePlayerPower"
+		inheritFrom="BaseObject"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		KindOf="NO_COLLIDE IGNORE_FOR_VICTORY IMMOBILE UNATTACKABLE NOT_AUTOACQUIRABLE AUTO_ACQUIRABLE_BY_AI CAN_CAST_REFLECTIONS RESIST_EMP STRUCTURE SKIRMISH_AI_DONT_CONSIDER_THREAT IGNORE_IN_AI_HUNT_TACTIC DONT_DESTROY_IF_ON_BRIDGE UNATTACKABLE"
+		EditorName="CouldUsePlayerPower"
+		MaxSimultaneousOfType="1">
+		<EquivalentTo>AlliedConstructionYard</EquivalentTo>
+		<EquivalentTo>SovietConstructionYard</EquivalentTo>
+		<EquivalentTo>JapanConstructionYard</EquivalentTo>
+		<ArmorSet
+			Armor="InvulnerableArmor"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+		</Behaviors>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">
+		</CrusherInfo>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="0" />
+	</GameObject>
+
+</AssetDeclaration>

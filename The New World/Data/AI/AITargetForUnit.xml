@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+	</Includes>
+	<AITargetingHeuristic
+		id="AntiGroundBomberClosestUnitHeuristic"
+		HeuristicType="EnemyUnit"
+		SortType="ThreatToAir"
+		VitalKindOf="CAN_ATTACK"
+		ForbiddenKindOf="INERT IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED UNATTACKABLE"
+		ForbiddenObjectStatus="IN_NANOHIVE UNDER_IRON_CURTAIN EXPLOSIVES_ATTACHED NOT_IN_WORLD UNATTACKABLE AIRBORNE_TARGET"
+		RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+		id="AntiGroundBomberClosestStructureHeuristic"
+		HeuristicType="EnemyStructure"
+		SortType="ThreatToAir"
+		VitalKindOf="FS_BASE_DEFENSE FS_BARRACKS"
+		ForbiddenKindOf="INERT IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED UNATTACKABLE"
+		ForbiddenObjectStatus="IN_NANOHIVE UNDER_IRON_CURTAIN EXPLOSIVES_ATTACHED NOT_IN_WORLD UNATTACKABLE AIRBORNE_TARGET"
+		RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="SafestToAirVindicatorAntiUnArmyHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="ThreatToAir"
+	  VitalKindOf="ENGINEER INFILTRATOR"
+	  ForbiddenObjectStatus="AIRBORNE_TARGET IN_NANOHIVE"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="SafestToAirVindicatorAttackAntiAirUnitHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="ThreatToAir"
+	  VitalKindOf="FS_RADAR"
+	  ForbiddenKindOf="STRUCTURE INERT IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED UNATTACKABLE"
+	  ForbiddenObjectStatus="AIRBORNE_TARGET IN_NANOHIVE"
+	  RequireUniqueTarget="true"/>
+	
+	<AITargetingHeuristic
+	  id="ThreatFighterAircraftTargetHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="ThreatToAir"
+	  VitalKindOf="FIGHTER_AIRCRAFT MONSTER"
+	  ForbiddenKindOf="INERT T2_UNIT T3_UNIT COMMANDO IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+	  VitalObjectStatus="AIRBORNE_TARGET"
+	  ForbiddenObjectStatus="IN_NANOHIVE UNDER_IRON_CURTAIN EXPLOSIVES_ATTACHED NOT_IN_WORLD UNATTACKABLE"
+	  RequireUniqueTarget="false"/>
+	<AITargetingHeuristic
+	  id="ThreatAntiGroundAircraftTargetHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="ThreatToAir"
+	  VitalKindOf="PRODUCED_AT_HELIPAD MONSTER BEAM_TARGET_REFLECTOR COMMANDO"
+	  ForbiddenKindOf="INERT T1_UNIT FIGHTER_AIRCRAFT IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+	  VitalObjectStatus="AIRBORNE_TARGET"
+	  ForbiddenObjectStatus="IN_NANOHIVE UNDER_IRON_CURTAIN EXPLOSIVES_ATTACHED NOT_IN_WORLD UNATTACKABLE"
+	  RequireUniqueTarget="false"/>
+	<AITargetingHeuristic
+	  id="ClosestFighterAircraftTargetHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="Distance"
+	  VitalKindOf="PRODUCED_AT_HELIPAD MONSTER BEAM_TARGET_REFLECTOR COMMANDO"
+	  ForbiddenKindOf="INERT T1_UNIT FIGHTER_AIRCRAFT IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+	  VitalObjectStatus="AIRBORNE_TARGET"
+	  ForbiddenObjectStatus="IN_NANOHIVE UNDER_IRON_CURTAIN EXPLOSIVES_ATTACHED NOT_IN_WORLD UNATTACKABLE"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="ClosestAntiGroundAircraftTargetHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="Distance"
+	  VitalKindOf="PRODUCED_AT_HELIPAD MONSTER BEAM_TARGET_REFLECTOR COMMANDO"
+	  ForbiddenKindOf="INERT T1_UNIT FIGHTER_AIRCRAFT IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+	  VitalObjectStatus="AIRBORNE_TARGET"
+	  ForbiddenObjectStatus="IN_NANOHIVE UNDER_IRON_CURTAIN EXPLOSIVES_ATTACHED NOT_IN_WORLD UNATTACKABLE"
+	  HighestPriorityEnemyPlayersOnly="false"
+	  RequireUniqueTarget="false"/>
+
+	<AITargetingHeuristic
+	  id="SafestToGroundHarvesterHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="ThreatToGround"
+	  VitalKindOf="HARVESTER"
+	  ForbiddenObjectStatus="OVER_WATER HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  Location="Land"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="RandomToGroundHarvesterHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="ClosestToEnemy"
+	  VitalKindOf="HARVESTER"
+	  ForbiddenObjectStatus="OVER_WATER HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  Location="Land"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="RandomToWaterHarvesterHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="ClosestToEnemy"
+	  VitalKindOf="HARVESTER"
+	  ForbiddenObjectStatus="OVER_WATER HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  Location="Water"
+	  RequireUniqueTarget="true"/>
+	
+	<AITargetingHeuristic
+	  id="SafestToWaterHarvesterHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="ThreatToWater"
+	  VitalKindOf="HARVESTER"
+	  VitalObjectStatus="OVER_WATER"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  Location="Water"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="SafestToAirHarvesterHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="ThreatToAir"
+	  VitalKindOf="HARVESTER"
+	  ForbiddenKindOf="INERT UNATTACKABLE SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="SafestToAirSiegeWeaponHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="ThreatToAir"
+	  VitalKindOf="SIEGE_WEAPON"
+	  ForbiddenKindOf="INERT UNATTACKABLE SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="SafestToAirStructureHeuristic"
+	  HeuristicType="EnemyStructure"
+	  SortType="ThreatToAir"
+	  VitalKindOf="FS_MONEY_STORAGE NEUTRAL_TECH"
+	  ForbiddenKindOf="INERT UNATTACKABLE SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  RequireUniqueTarget="true"/>
+	
+	<AITargetingHeuristic
+	  id="ClosestToEnemyAllStructureHeuristic"
+	  HeuristicType="EnemyStructure"
+	  SortType="Distance"
+	  VitalKindOf="STRUCTURE"
+	  ForbiddenKindOf="INERT UNATTACKABLE SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  RequireUniqueTarget="false"/>
+	<AITargetingHeuristic
+	  id="ThreatToWaterAllAttackUnitHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="Distance"
+	  VitalKindOf="INFANTRY VEHICLE FS_BASE_DEFENSE"
+	  ForbiddenKindOf="INERT STRUCTURE UNATTACKABLE SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  RequireUniqueTarget="false"/>
+	<AITargetingHeuristic
+	  id="ClosestToEnemyAllAttackUnitHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="Distance"
+	  VitalKindOf="INFANTRY VEHICLE FS_BASE_DEFENSE"
+	  ForbiddenKindOf="INERT STRUCTURE UNATTACKABLE SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="ClosestToEnemyAllLandAttackUnitHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="Distance"
+	  VitalKindOf="INFANTRY VEHICLE FS_BASE_DEFENSE"
+	  ForbiddenKindOf="INERT STRUCTURE UNATTACKABLE SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  Location="Land"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="ClosestToEnemyAllWaterAttackUnitHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="Distance"
+	  VitalKindOf="INFANTRY VEHICLE FS_BASE_DEFENSE"
+	  ForbiddenKindOf="INERT STRUCTURE UNATTACKABLE SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  Location="Water"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="RandomToEnemyAllLandAttackStructureHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="Distance"
+	  VitalKindOf="STRUCTURE"
+	  ForbiddenKindOf="INERT CIVILIAN_BUILDING UNATTACKABLE SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  Location="Land"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="RandomToEnemyAllWaterAttackStructureHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="Distance"
+	  VitalKindOf="STRUCTURE"
+	  ForbiddenKindOf="INERT CIVILIAN_BUILDING UNATTACKABLE SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  Location="Water"
+	  RequireUniqueTarget="true"/>
+
+	<AITargetingHeuristic
+	  id="ClosestToAllAntiAirUnitHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="Distance"
+	  VitalKindOf="FS_RADAR"
+	  ForbiddenKindOf="INERT IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED UNATTACKABLE"
+	  ForbiddenObjectStatus="AIRBORNE_TARGET IN_NANOHIVE"
+	  RequireUniqueTarget="false"/>
+	<AITargetingHeuristic
+	  id="SafestToAirAircraftAttackAllAntiAirUnitHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="Distance"
+	  VitalKindOf="FS_RADAR"
+	  ForbiddenKindOf="INERT IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED UNATTACKABLE"
+	  ForbiddenObjectStatus="AIRBORNE_TARGET IN_NANOHIVE"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="SafestToGroundAircraftAttackAllAntiAirUnitHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="Distance"
+	  VitalKindOf="FS_RADAR"
+	  ForbiddenKindOf="INERT IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED UNATTACKABLE"
+	  ForbiddenObjectStatus="AIRBORNE_TARGET IN_NANOHIVE"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="SafestToWaterAircraftAttackAllAntiAirUnitHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="Distance"
+	  VitalKindOf="FS_RADAR"
+	  ForbiddenKindOf="INERT IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT SUMMONED UNATTACKABLE"
+	  ForbiddenObjectStatus="AIRBORNE_TARGET IN_NANOHIVE"
+	  RequireUniqueTarget="true"/>
+	<!--保底-->
+	<AITargetingHeuristic
+	  id="TargetToEnemyAllLandUnitHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="ClosestToEnemy"
+	  VitalKindOf="INFANTRY VEHICLE"
+	  ForbiddenKindOf="INERT CIVILIAN_BUILDING UNATTACKABLE SUMMONED"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  Location="Land"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="TargetToEnemyAllLandBaseStructureHeuristic"
+	  HeuristicType="EnemyStructure"
+	  SortType="ClosestToEnemy"
+	  VitalKindOf="INFANTRY VEHICLE"
+	  ForbiddenKindOf="INERT CIVILIAN_BUILDING UNATTACKABLE SUMMONED GARRISON CAN_ATTACK"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  Location="Land"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="TargetToEnemyAllLandStructureHeuristic"
+	  HeuristicType="EnemyStructure"
+	  SortType="ClosestToEnemy"
+	  VitalKindOf="GARRISON CAN_ATTACK"
+	  ForbiddenKindOf="INERT CIVILIAN_BUILDING UNATTACKABLE SUMMONED"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  Location="Land"
+	  RequireUniqueTarget="true"/>
+
+	<AITargetingHeuristic
+	  id="TargetToEnemyAllWaterUnitHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="ClosestToEnemy"
+	  VitalKindOf="INFANTRY VEHICLE"
+	  ForbiddenKindOf="INERT CIVILIAN_BUILDING UNATTACKABLE SUMMONED"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  Location="Water"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="TargetToEnemyAllWaterBaseStructureHeuristic"
+	  HeuristicType="EnemyStructure"
+	  SortType="ClosestToEnemy"
+	  VitalKindOf="INFANTRY VEHICLE"
+	  ForbiddenKindOf="INERT CIVILIAN_BUILDING UNATTACKABLE SUMMONED GARRISON CAN_ATTACK"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  Location="Water"
+	  RequireUniqueTarget="true"/>
+	<AITargetingHeuristic
+	  id="TargetToEnemyAllWaterStructureHeuristic"
+	  HeuristicType="EnemyStructure"
+	  SortType="ClosestToEnemy"
+	  VitalKindOf="STRUCTURE"
+	  ForbiddenKindOf="INERT CIVILIAN_BUILDING UNATTACKABLE SUMMONED GARRISON CAN_ATTACK"
+	  ForbiddenObjectStatus="HAS_TIBERIUM_UPGRADE IN_NANOHIVE UNDER_IRON_CURTAIN NOT_IN_WORLD UNATTACKABLE"
+	  Location="Water"
+	  RequireUniqueTarget="true"/>
+
+	<AITargetingHeuristic
+	  id="TargetToEnemyAllAirborneUnitHeuristic"
+	  HeuristicType="EnemyUnit"
+	  SortType="ClosestToEnemy"
+	  VitalKindOf="INFANTRY VEHICLE"
+	  VitalObjectStatus="AIRBORNE_TARGET"
+	  Location="Land Water"
+	  RequireUniqueTarget="true"/>
+</AssetDeclaration>

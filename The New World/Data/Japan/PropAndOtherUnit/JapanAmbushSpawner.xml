@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+<GameObject
+	id="JapanAmbushSpawner"
+	Side="Japan"
+	EditorSorting="SYSTEM"
+	TransportSlotCount="0"
+	IsTrainable="false"
+	KindOf="IMMOBILE UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE"
+	EditorName="JapanAmbushSpawner"
+	Description="Desc:JapanAmbushSpawner"
+	TypeDescription="Type:JapanAmbushSpawner">
+	<DisplayName>JapanAmbushSpawner</DisplayName>
+	<ArmorSet
+		Armor="NoArmor" />
+	<Draws>
+		<ScriptedModelDraw
+			id="ModuleTag_Draw">
+			<ModelConditionState
+				ParseCondStateType="PARSE_DEFAULT">
+				<Model
+					Name="" />
+			</ModelConditionState>
+		</ScriptedModelDraw>
+	</Draws>
+	<Behaviors>
+		<LifetimeUpdate
+		  id="ModuleTag_LifetimeUpdate"
+		  MinLifetime="0.13s"
+		  MaxLifetime="0.13s" />
+		<CreateObjectDie
+			id="ModuleTag_JapanCreateObjectDie"
+			CreationList="OCL_Japan_Abmbush">
+			<DieMuxData
+				DeathTypes="ALL" />
+			<UpgradeForbidden>JapanSpellBookUpgrade</UpgradeForbidden>
+			<UpgradeForbidden>Upgrade_MinistryofDefenseFaction</UpgradeForbidden>
+		</CreateObjectDie>
+		<CreateObjectDie
+			id="ModuleTag_JapanCreateObjectDieUpgrade"
+			CreationList="OCL_Japan_AbmbushUpgrade">
+			<DieMuxData
+				DeathTypes="ALL" />
+			<UpgradeRequired>JapanSpellBookUpgrade</UpgradeRequired>
+			<UpgradeForbidden>Upgrade_MinistryofDefenseFaction</UpgradeForbidden>
+		</CreateObjectDie>
+		<CreateObjectDie
+			id="ModuleTag_MODCreateObjectDie"
+			CreationList="OCL_MOD_Abmbush">
+			<DieMuxData
+				DeathTypes="ALL" />
+			<UpgradeRequired>Upgrade_MinistryofDefenseFaction</UpgradeRequired>
+			<UpgradeForbidden>JapanSpellBookUpgrade</UpgradeForbidden>
+		</CreateObjectDie>
+		<CreateObjectDie
+			id="ModuleTag_MODCreateObjectDieUpgrade"
+			CreationList="OCL_MOD_AbmbushUpgrade">
+			<DieMuxData
+				DeathTypes="ALL" />
+			<UpgradeRequired>Upgrade_MinistryofDefenseFaction</UpgradeRequired>
+			<UpgradeRequired>JapanSpellBookUpgrade</UpgradeRequired>
+		</CreateObjectDie>
+		<DestroyDie
+			id="ModuleTag_Die">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</DestroyDie>
+	</Behaviors>
+	<Body>
+		<PropBody
+			id="ModuleTag_Body"/>
+	</Body>
+</GameObject>
+	<GameObject
+		id="MODAmbushSpawner"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="IMMOBILE UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE"
+		EditorName="MODAmbushSpawner"
+		Description="Desc:JapanAmbushSpawner"
+		TypeDescription="Type:JapanAmbushSpawner">
+		<DisplayName>MODAmbushSpawner</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="0.13s"
+			  MaxLifetime="0.13s" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_MOD_Abmbush">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>JapanSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_MOD_AbmbushUpgrade">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>JapanSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+	</GameObject>
+</AssetDeclaration>

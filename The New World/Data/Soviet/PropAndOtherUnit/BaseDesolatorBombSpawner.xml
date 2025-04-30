@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseObject.xml" />
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+
+	<GameObject
+		id="BaseDesolatorBombSpawner"
+		EditorName="BaseDesolatorBombSpawner"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		KindOf="IMMOBILE UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE LINE_OF_SIGHT_IGNORES_BUILDINGS">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+	</GameObject>
+	<!-- Desolator Bomb Spawner Effect Level 1 -->
+	<GameObject
+		id="DesolatorBombSpawnerLV1"
+		inheritFrom="BaseDesolatorBombSpawner"
+		EditorName="DesolatorBombSpawnerLV1">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="0.2s"
+			  MaxLifetime="0.2s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_SpecialPower_DesolatorBomb_Level1">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>SovietSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_SpecialPower_DesolatorBombUpgrade_Level1">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>SovietSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<!-- Desolator Bomb Spawner Effect Level 2 -->
+	<GameObject
+		id="DesolatorBombSpawnerLV2"
+		inheritFrom="BaseDesolatorBombSpawner"
+		EditorName="DesolatorBombSpawnerLV2">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="0.2s"
+			  MaxLifetime="0.2s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_SpecialPower_DesolatorBomb_Level2">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>SovietSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_SpecialPower_DesolatorBombUpgrade_Level2">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>SovietSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<!-- Desolator Bomb Spawner Effect Level 3 -->
+	<GameObject
+		id="DesolatorBombSpawnerLV3"
+		inheritFrom="BaseDesolatorBombSpawner"
+		EditorName="DesolatorBombSpawnerLV3">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="0.2s"
+			  MaxLifetime="0.2s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_SpecialPower_DesolatorBomb_Level3">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>SovietSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_SpecialPower_DesolatorBombUpgrade_Level3">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>SovietSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

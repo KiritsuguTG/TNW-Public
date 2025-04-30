@@ -1,0 +1,937 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseInfantry.xml" />
+	</Includes>
+	<GameObject
+		id="AlliedScoutInfantry"
+		inheritFrom="BaseInfantry"
+		SelectPortrait="Portrait_AlliedScoutInfantry"
+		ButtonImage="Button_AlliedScoutInfantry_on"
+		Side="Allies"
+		SubGroupPriority="315"
+		EditorSorting="UNIT"
+		BuildTime="2"
+		JustBuiltTime="2.6s"
+		CommandSet="AlliedScoutInfantryCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK AMPHIBIOUS CAN_CAST_REFLECTIONS INFANTRY SCORE CANNOT_HIJACK PATH_THROUGH_INFANTRY PRELOAD"
+		ThreatLevel="10"
+		WeaponCategory="GUN"
+		VoicePriority="1"
+		BountyValue="25"
+		EditorName="AlliedScoutInfantry"
+		Description="Desc:AlliedScoutInfantry"
+		TypeDescription="Type:ScoutUnit"
+		UnitTypeIcon="AttackDogIcon"
+		HealthBoxHeightOffset="20"
+		UnitIntro="Allied_AttackDog_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedScoutInfantry</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="0" Amount="100"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			id="DefaultArmorSet"
+			Armor="BaseInfantryArmor"
+			DamageFX="InfantryDamageFX" />
+		<LocomotorSet
+			Locomotor="AlliedScoutInfantryLocomotor"
+			Condition="NORMAL"
+			Speed="100" />
+		<LocomotorSet
+			Locomotor="AlliedScoutInfantryLocomotorWater"
+			Condition="NORMAL"
+			Speed="80" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUScoutInfantryTNW_SKN" />
+				</ModelConditionState>
+								<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_5">
+					<Model
+						Name="NPRadiationTNWDog" />
+						<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="RadiationPuddle"
+						FollowBone="true" />
+          <ParticleSysBone
+            BoneName="None"
+            FXParticleSystemTemplate="RadiationSplash"
+            FollowBone="true" />
+          <ParticleSysBone
+            BoneName="None"
+            FXParticleSystemTemplate="RadiationLightSmall"
+            FollowBone="true" />          
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1">
+					<Model
+						Name="AUScoutInfantryTNW_Elec_SKN" />
+				</ModelConditionState>
+				
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="AUScoutInfantryTNW_SKN" />
+					<Texture
+						Original="AUScoutInfantry"
+						New="AUScoutInfantryUpgrade" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FRONTCRUSHED">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_CDTA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BACKCRUSHED">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_CDTA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					AllowRepeatInRandomPick="true"
+					StateName="STATE_bored">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_BIDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="100"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="AUScoutInfantryTNW_BIDB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="60"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="AUScoutInfantryTNW_BIFA"
+						AnimationMode="ONCE"
+						AnimationPriority="20"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="AUScoutInfantryTNW_BIFB"
+						AnimationMode="ONCE"
+						AnimationPriority="20"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()						
+						if Prev == "STATE_SelectedPose" then CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle") end;
+						if Prev == "STATE_Parachuting" then CurDrawableSetTransitionAnimState("TRANS_fromParachuting") end;
+					</Script>
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING SPLATTED OVER_WATER">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_WLNDA"
+						AnimationMode="ONCE"/>
+				<ParticleSysBone
+            BoneName="NONE"
+            FXParticleSystemTemplate="FXDebrisWaterWaveMedium"
+            FollowBone="true" 
+            OnlyIfOnWater="true"/>  
+            <ParticleSysBone
+            BoneName="NONE"
+            FXParticleSystemTemplate="FXDebrisWaterSplashMedium"
+            FollowBone="true" 
+            OnlyIfOnWater="true"/>  
+            <ParticleSysBone
+            BoneName="NONE"
+            FXParticleSystemTemplate="FXDebrisWaterFrothMedium"
+            FollowBone="true" 
+            OnlyIfOnWater="true"/>  
+            <ParticleSysBone
+            BoneName="NONE"
+            FXParticleSystemTemplate="FXDebrisWaterMistMedium"
+            FollowBone="true" 
+            OnlyIfOnWater="true"/>  
+				</AnimationState>
+				
+				<!-- meta impact anims -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_FLAILING"
+					StateName="STATE_stunned_flailing">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_FLYA"
+						AnimationMode="LOOP" />
+					<Animation
+						AnimationName="AUScoutInfantryTNW_FLYB"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING SPLATTED">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_LNDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_STANDING_UP">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_GTPA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_LNDA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PACKING OVER_WATER">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_WBRKA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				
+				<!-- radiation death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_5 OVER_WATER">
+					<Animation
+						AnimationName="NPRadiationTNWDog_WDIEA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<!-- tesla death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1 OVER_WATER">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_Elec_WDIEA"
+						AnimationMode="ONCE" />
+          <ParticleSysBone
+						BoneName="HIPS"
+						FXParticleSystemTemplate="Soviet_TeslaDeath_Spark"
+						FollowBone="true" />
+				</AnimationState>
+								
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING OVER_WATER"
+					StateName="STATE_OverWater">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_WDIA"
+						AnimationMode="ONCE" />					
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP OVER_WATER">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_WCWRA"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+							BoneName="HIPS"
+							FXParticleSystemTemplate="Allied_DogStun01"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="HIPS"
+							FXParticleSystemTemplate="Allied_DogStunGlows01"
+							FollowBone="true" />
+				</AnimationState>	
+				
+				<!-- radiation death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_5">
+					<Animation
+						AnimationName="NPRadiationTNWDog_DIEA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<!-- sword death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_4">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_DTHA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- fire death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_3">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_DTFA"
+						AnimationMode="ONCE" />
+					<ParticleSysBone
+						BoneName="HIPS"
+						FXParticleSystemTemplate="InfantryFireDeath"
+						FollowBone="true" />
+				</AnimationState>
+
+				<!-- prism/laser death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_2">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_DTPA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- tesla death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_Elec_DIE"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- dying when running -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING_WASMOVING">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_RNDA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_DTHA"
+						AnimationMode="ONCE" />					
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PACKING">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_BRKA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_CWRA"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="Allied_DogStun01"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="Allied_DogStunGlows01"
+							FollowBone="true" />
+				</AnimationState>
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_A OVER_WATER" >
+					<Animation
+					AnimationName="AUScoutInfantryTNW_WATKA"
+					AnimationMode="ONCE" />
+					<ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="AUScoutInfantrySplash"
+							FollowBone="false" />
+				</AnimationState>
+				
+                
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ENGAGED OVER_WATER">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_WAIDA"
+						AnimationMode="LOOP" />
+						<ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="AUScoutInfantrySplash"
+							FollowBone="false" />
+				</AnimationState>
+				
+				<!-- parachuting anims -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="LAUNCHED"
+					StateName="STATE_ParachuteLaunch">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_MCNA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PARACHUTING"
+					StateName="STATE_Parachuting">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_MCNC"
+						AnimationMode="LOOP" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_ParachuteLaunch" then
+						CurDrawableSetTransitionAnimState("TRANS_toParachuting")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toParachuting" >
+					<Animation
+						AnimationName="AUScoutInfantryTNW_MCNB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_fromParachuting" >
+					<Animation
+						AnimationName="AUScoutInfantryTNW_MCND"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- the leap attack -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_A" >
+					<Animation
+					AnimationName="AUScoutInfantryTNW_ATKB"
+					AnimationMode="ONCE" />
+					
+				</AnimationState>
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					StateName="STATE_OverWater">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_SWMB"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_OverWater" and Prev ~= "TRANS_ToWater" then
+						CurDrawableSetTransitionAnimState("TRANS_ToWater")
+						end
+					</Script>
+					<ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="AUScoutInfantrySplash"
+							FollowBone="false" />
+				</AnimationState>
+
+				<!-- idle in water -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER"
+					StateName="STATE_OverWater">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_WAIDA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+						<ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="AUScoutInfantrySplash"
+							FollowBone="false" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_RUNA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15"
+						Distance="40" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_OverWater" or Prev == "TRANS_ToWater" then
+						CurDrawableSetTransitionAnimState("TRANS_FromWater")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_ToWater">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_SWMA"
+						AnimationMode="ONCE" />
+					<Script>
+						CurDrawablePlaySound("Infantry_WaterSplash")
+					</Script>
+					<ParticleSysBone
+            BoneName="NONE"
+            FXParticleSystemTemplate="AUDogWaterSpray"
+            FollowBone="true" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_FromWater">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_SWMC"
+						AnimationMode="ONCE" />
+				</AnimationState>				
+				        
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ENGAGED">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_AIDA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					StateName="STATE_SelectedPose"
+					Flags="RESTART_ANIM_WHEN_COMPLETE" >
+					<Animation
+						AnimationName="AUScoutInfantryTNW_AIDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" 
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_bored" then CurDrawableSetTransitionAnimState("TRANS_IdleToSelected") end;
+						if Prev == "STATE_Parachuting" then CurDrawableSetTransitionAnimState("TRANS_fromParachuting") end;
+					</Script>
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_IdleToSelected">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_BATA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="5"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SelectedToIdle">
+					<Animation
+						AnimationName="AUScoutInfantryTNW_ABTA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+				
+			</ScriptedModelDraw>
+			<!-- include parachute draw module. -->
+			<xi:include
+				href="DATA:Includes/ParachuteDrawAllied.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:ParachuteDraws/child::*)" />
+			
+		</Draws>
+		<Behaviors>
+			<StealthDetectorUpdate
+				id="ModuleTag_StealthDetect"
+				xai:joinAction="Replace"
+				DetectionRange="350"
+				ExtraForbiddenKindOf="SUBMARINE"/>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedScoutInfantryMaul"
+						ForbiddenObjectStatus="INSIDE_GARRISON WEAPON_UPGRADED_02" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedScoutInfantryMaulUpgrade"
+						ObjectStatus="WEAPON_UPGRADED_02"
+						ForbiddenObjectStatus="INSIDE_GARRISON" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<AttributeModifierUpgrade
+				id="ModuleTag_AlliedUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_ToStealth"
+				AttributeModifier="AttributeModifier_SubFirstInvisibility">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_AlliedUnitUpgrade"
+				AddConditionFlags="USER_2">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</ModelConditionUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_02">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<BezierProjectile
+				id="ModuleTag_Projectile"				
+				Flags="DONT_DIE_ON_DETONATE DONT_SET_NO_ATTACK_STATUS TARGET_OFFSET_ALONG_TARGET_VECTOR" 
+				FirstHeightMin="0"
+				FirstHeightMax="10"
+				SecondHeightMin="20"
+				SecondHeightMax="20"
+				FirstPercentIndent="40%"
+				SecondPercentIndent="90%"
+				TargetVectorOffset="8"/>
+			<Physics
+				id="ModuleTag_Physics" />
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="3s"
+				SinkRate="2.4"
+				DestructionDelay="4s">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED ELECTROCUTED LASERED BURNED STABBED IRRADIATED"
+                    ExemptStatus="OVER_WATER"/>
+				<Sound
+					Type="INITIAL"
+					List="TEMP_RA2_AlliedDog_VoiceDie" />
+			</SlowDeath>
+			
+            <SlowDeath
+                id="ModuleTag_DeathWater"
+                Fade="true"
+                FadeDelay="6s"
+                FadeTime="2s"
+                SinkDelay="0.5s"
+                SinkRate="1.2"
+                DestructionDelay="10.0s">
+                <DieMuxData
+                    DeathTypes="ALL"
+					DeathTypesForbidden="MAULED ELECTROCUTED IRRADIATED"
+                    RequiredStatus="OVER_WATER"/>
+                <Sound
+                    Type="INITIAL"
+                    List="TEMP_RA2_AlliedDog_VoiceDie" />
+            </SlowDeath>
+
+			<SlowDeath
+				id="ModuleTag_BearDeath"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s"
+				FlingForce="6"
+				FlingForceVariance="3"
+				FlingPitch="30d"
+				FlingPitchVariance="20d">
+				<DieMuxData
+					DeathTypes="MAULED"
+					DeathTypesForbidden="BITTEN ELECTROCUTED LASERED BURNED STABBED IRRADIATED"
+					ExemptStatus="OVER_WATER"/>
+				<Sound
+					Type="INITIAL"
+					List="TEMP_RA2_AlliedDog_VoiceDie" />
+			</SlowDeath>
+			<SlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="6s"
+				FadeTime="2s"
+				SinkDelay="0.5s"
+				SinkRate="1.2"
+				DestructionDelay="10.0s"
+				FlingForce="6"
+				FlingForceVariance="3"
+				FlingPitch="30d"
+				FlingPitchVariance="20d">
+				<DieMuxData
+					DeathTypes="MAULED"
+					DeathTypesForbidden="BITTEN ELECTROCUTED LASERED BURNED STABBED IRRADIATED"
+			  RequiredStatus="OVER_WATER"/>
+				<Sound
+					Type="INITIAL"
+					List="TEMP_RA2_AlliedDog_VoiceDie" />
+			</SlowDeath>
+             <SlowDeath
+				id="ModuleTag_TeslaDeath"
+				DeathFlags="DEATH_1"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+                <DieMuxData
+					DeathTypes="ELECTROCUTED"
+					DeathTypesForbidden="MAULED LASERED BURNED STABBED IRRADIATED"/>
+				<Sound Type="INITIAL" List="TEMP_RA2_AlliedDog_VoiceDie" />
+			</SlowDeath>
+			
+			<SlowDeath
+				id="ModuleTag_LaserDeath"
+				DeathFlags="DEATH_2"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="LASERED"
+					DeathTypesForbidden="MAULED ELECTROCUTED BURNED STABBED IRRADIATED"
+                    ExemptStatus="OVER_WATER"/>
+				<Sound Type="INITIAL" List="TEMP_RA2_AlliedDog_VoiceDie" />
+			</SlowDeath>
+			
+			<SlowDeath
+				id="ModuleTag_FireDeath"
+				DeathFlags="DEATH_3"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="BURNED"
+					DeathTypesForbidden="MAULED ELECTROCUTED LASERED STABBED IRRADIATED"
+                   ExemptStatus="OVER_WATER" />
+                <Sound Type="INITIAL" List="TEMP_RA2_AlliedDog_VoiceDie" />
+            </SlowDeath>
+            
+            <SlowDeath
+				id="ModuleTag_SwordDeath"
+				DeathFlags="DEATH_4"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+                <DieMuxData
+					DeathTypes="STABBED"
+					DeathTypesForbidden="MAULED ELECTROCUTED LASERED BURNED IRRADIATED"
+                    ExemptStatus="OVER_WATER"/>
+				<Sound Type="INITIAL" List="TEMP_RA2_AlliedDog_VoiceDie" />
+			</SlowDeath>
+			
+			<SlowDeath
+				id="ModuleTag_RadiationDeath"
+				DeathFlags="DEATH_5"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="IRRADIATED"
+					DeathTypesForbidden="MAULED ELECTROCUTED LASERED BURNED STABBED"/>
+				<Sound Type="INITIAL" List="TEMP_RA2_AlliedDog_VoiceDie" />
+			</SlowDeath>
+
+			<SpecialPower
+				id="ModuleTag_Bark"
+				SpecialPowerTemplate="SpecialPower_Bark"
+				UpdateModuleStartsAttack="true" 
+				TriggerFX="FX_DogSonicBoom"/>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_BarkUpdate"
+				SpecialPowerTemplate="SpecialPower_Bark"
+				SpecialWeapon="AlliedScoutInfantryBark"
+				UnpackTime="0s"
+				PackTime="2s"
+				FreezeAfterTriggerDuration="2s"
+				StartAbilityRange="0.0"/>
+
+			<!-- Allied Parachute Behaviors -->
+			<ModelConditionUpgrade
+				id="ModuleTag_JapanFaction"
+				AddConditionFlags="USER_8">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_SovietFaction"
+				AddConditionFlags="USER_9">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<!--Sub Invisibility-->
+			<InvisibilityBroadcastUpdate
+				id="ModuleTag_BroadcastInvisibility"
+				BroadcastRange="5"
+				UpdatePeriod="0.13s"
+				AffectsSelf="true"
+				InvisibilityTemplate="GenericSubInvisibilityBroadcastTemplate">
+				<BroadcastObjectFilter
+					Rule="ANY"
+					Relationship="SAME_PLAYER"
+					StatusBitFlags="IS_MOVING_TO_RALLY_POINT">
+					<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				</BroadcastObjectFilter>
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_02" />
+			</InvisibilityBroadcastUpdate>
+			<SpecialPower
+				id="ModuleTag_GenericSubFirstSpecialPower"
+				SpecialPowerTemplate="SpecialPower_GenericSubFirstInvisibility"
+				UpdateModuleStartsAttack="true"
+				AttributeModifier="AttributeModifier_SubFirstInvisibility"
+				AttributeModifierAffectsSelf="true"/>
+			<SpecialAbilityUpdate
+				id="ModuleTag_GenericSubFirstSpecialAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_GenericSubFirstInvisibility"
+				UnpackTime="0s"
+				Options="RECONSTITUTE_STORED_COMMAND"/>
+			<SpecialPower
+				id="ModuleTag_GenericInvisibility"
+				SpecialPowerTemplate="SpecialPower_GenericInvisibility"
+				AttributeModifierAffectsSelf="true"/>
+			<SpecialDisguiseUpdate
+				id="ModuleTag_DisguiseUpdate"
+				SpecialPowerTemplate="SpecialPower_GenericInvisibility"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				OpacityTarget="1"
+				ScanRadiusForPropDisguise="0.1"
+				DisguiseFX="FX_PrimageDisguise">
+				<TerrainData
+				 TerrainClass="Misc"
+				 ObjectTemplate="PrimageDisguise_Invisible"/>
+				<TerrainData
+				 TerrainClass="Grass"
+				 ObjectTemplate="PrimageDisguise_Invisible"/>
+				<TerrainData
+				 TerrainClass="Snow"
+				 ObjectTemplate="PrimageDisguise_Invisible"/>
+				<TerrainData
+				 TerrainClass="Mud"
+				 ObjectTemplate="PrimageDisguise_Invisible"/>
+				<TerrainData
+				 TerrainClass="Dirt"
+				 ObjectTemplate="PrimageDisguise_Invisible"/>
+				<TerrainData
+				 TerrainClass="Cliff"
+				 ObjectTemplate="PrimageDisguise_Invisible"/>
+				<TerrainData
+				 TerrainClass="Sand"
+				 ObjectTemplate="PrimageDisguise_Invisible"/>
+				<TerrainData
+				 TerrainClass="Rock"
+				 ObjectTemplate="PrimageDisguise_Invisible"/>
+				<TerrainData
+				 TerrainClass="Road"
+				 ObjectTemplate="PrimageDisguise_Invisible"/>
+			</SpecialDisguiseUpdate>
+
+			<SpecialPower
+				id="ModuleTag_GenericNoInvisibility"
+				SpecialPowerTemplate="SpecialPower_GenericLoseInvisibility"
+				AttributeModifierAffectsSelf="true"/>
+			<SpecialAbilityUpdate
+				id="ModuleTag_GenericNoInvisibilitySpecialAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_GenericLoseInvisibility"
+				UnpackTime="0s"
+				Options="RECONSTITUTE_STORED_COMMAND LOSE_STEALTH_ON_TRIGGER"/>
+			<StatusBitsUpgrade
+				id="ModuleTag_ObjectStealthAttack"
+				StatusToSet="CAN_ATTACK_WHILE_STEALTHED">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_ObjectStealth"
+				StatusToSet="IGNORING_STEALTH">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				xai:joinAction="Replace"
+				EventListName="AlliedScoutInfantryInvisibilityFunctions" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CheckVisionRange="true" 
+					IdleScanDelay="0.0s"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="20.0" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_YurikoVoiceDieFall">
+				<ModelConditionSound Sound="ALL_Dog_VoiceDieYurikoFall" RequiredFlags="IMPENDING_DOOM" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_YurikoVoiceUp">
+				<ModelConditionSound Sound="ALL_Dog_VoiceDieYurikoUp" RequiredFlags="STUNNED_FLAILING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ParachuteOpen">
+				<ModelConditionSound Sound="ParachuteOpen" RequiredFlags="PARACHUTING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_WaterSounds">
+				<Override RequiredFlags="OVER_WATER">
+					<AudioArrayVoice>
+						<AudioEntry Sound="ALL_Dog_VoiceSelectWaterMS" AudioType="voiceSelect" />
+					</AudioArrayVoice>
+					<AudioArraySound>
+						<AudioEntry Sound="ALL_Dog_MoveStartWater" AudioType="soundMoveStart" />
+						<AudioEntry Sound="Scout_MoveLoopWater" AudioType="soundMoveLoop" />
+					</AudioArraySound>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<AnimationSoundClientBehavior id="ModuleTag_ASCB">
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="AUScoutInfantryTNW_CDTA" Frame="6" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="AUScoutInfantryTNW_DTFA" Frame="8" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="AUScoutInfantryTNW_DTHA" Frame="34" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="AUScoutInfantryTNW_DTPA" Frame="37" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="AUScoutInfantryTNW_LNDA" Frame="4" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="AUScoutInfantryTNW_RNDA" Frame="7" />
+			</AnimationSoundClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.25"
+				Height="13.0"
+				ContactPointGeneration="SQUAD_MEMBER"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="TEMP_RA2_AlliedDog_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="TEMP_RA2_AlliedDog_VoiceHelp" AudioType="voiceFear" />
+			<AudioEntry Sound="TEMP_RA2_AlliedDog_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="TEMP_RA2_AlliedDog_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="ALL_Dog_VoiceSelectLandMS" AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="ALL_Dog_AmbientDelayedLoop" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<ShadowInfo
+			Type="DECAL"
+			SizeX="14"
+			SizeY="14"
+			Texture="ShadowI" />
+		<VisionInfo
+			VisionRange="200"
+			ShroudClearingRange="=$DOG_BEAR_SHROUD_CLEAR" />
+	</GameObject>
+	  <GameObject
+		id="AlliedScoutInfantry_Crate"
+		inheritFrom="AlliedScoutInfantry"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="AlliedScoutInfantry_Crate">
+		<EquivalentTo>AlliedScoutInfantry</EquivalentTo>	
+	</GameObject>
+</AssetDeclaration>

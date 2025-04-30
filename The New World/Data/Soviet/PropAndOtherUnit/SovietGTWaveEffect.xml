@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+    <Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+	</Includes>
+	<GameObject
+		id="SovietGTWaveEffect"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		CommandSet="EmptyCommandSet"
+		KindOf="NOT_AUTOACQUIRABLE RESIST_EMP"
+		EditorName="SovietGTWaveEffect">
+		<DisplayName>Name:SovietGTWaveEffect</DisplayName>
+		<ArmorSet
+			Armor="StructureArmor"
+			DamageFX="GenericStructureDamageFX" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<SlowDeath
+				id="ModuleTag_DeathFade"
+				SinkRate="0"
+				Fade="true"
+				FadeTime="2s"
+				DestructionDelay="2s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+			<FXListBehavior
+					id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SovietGTWave" />
+			</FXListBehavior>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdateA"
+				FireInterval="2s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="SovietGTWaveEffectWeaponArt"
+					OneShot="false"/>
+				<ObjectStatusValidation
+					ForbiddenStatus="GENERIC_TOGGLE_STATE" />
+			</FireWeaponUpdate>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdateB"
+				FireInterval="2s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="SovietGTWaveEffectWeaponArtUpgrade"
+					OneShot="false"/>
+				<ObjectStatusValidation
+					RequiredStatus="GENERIC_TOGGLE_STATE" />
+			</FireWeaponUpdate>
+
+			<!--<DamageFieldUpdate
+					id="ModuleTag_DamageFieldUpdate1"
+					FireInterval="2s"
+					Radius="350">
+				<FireWeaponNugget
+						WeaponName="StormColumnMissileJammerWeapon"
+						OneShot="false"/>
+				<ObjectFilter
+						Rule="ANY"
+						Relationship="ALLIES ENEMIES NEUTRAL"
+						Include="SMALL_MISSILE"/>
+			</DamageFieldUpdate>
+			<DamageFieldUpdate
+					id="ModuleTag_DamageFieldUpdate2"
+					FireInterval="2s"
+					Radius="350">
+				<FireWeaponNugget
+						WeaponName="StormColumnMissileJammerWeapon"
+						OneShot="false"/>
+				<ObjectFilter
+						Rule="ANY"
+						Relationship="ALLIES ENEMIES NEUTRAL"
+						Include="SMALL_MISSILE"/>
+			</DamageFieldUpdate>
+			<DamageFieldUpdate
+					id="ModuleTag_DamageFieldUpdate3"
+					FireInterval="2s"
+					Radius="350">
+				<FireWeaponNugget
+						WeaponName="StormColumnMissileJammerWeapon"
+						OneShot="false"/>
+				<ObjectFilter
+						Rule="ANY"
+						Relationship="ALLIES ENEMIES NEUTRAL"
+						Include="SMALL_MISSILE"/>
+			</DamageFieldUpdate>
+			<DamageFieldUpdate
+					id="ModuleTag_DamageFieldUpdate4"
+					FireInterval="2s"
+					Radius="350">
+				<FireWeaponNugget
+						WeaponName="StormColumnMissileJammerWeapon"
+						OneShot="false"/>
+				<ObjectFilter
+						Rule="ANY"
+						Relationship="ALLIES ENEMIES NEUTRAL"
+						Include="SMALL_MISSILE"/>
+			</DamageFieldUpdate>
+			<DamageFieldUpdate
+					id="ModuleTag_DamageFieldUpdate5"
+					FireInterval="2s"
+					Radius="350">
+				<FireWeaponNugget
+						WeaponName="StormColumnMissileJammerWeapon"
+						OneShot="false"/>
+				<ObjectFilter
+						Rule="ANY"
+						Relationship="ALLIES ENEMIES NEUTRAL"
+						Include="SMALL_MISSILE"/>
+			</DamageFieldUpdate>
+			<ModelConditionUpgrade
+					id="ModuleTag_EMOTION_DISSIDENT_Allies"
+					AddConditionFlags="EMOTION_DISSIDENT">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+					id="ModuleTag_EMOTION_DISSIDENT_Japan"
+					AddConditionFlags="EMOTION_DISSIDENT">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+					id="ModuleTag_EMOTION_DISSIDENT_Soviet"
+					AddConditionFlags="EMOTION_DISSIDENT">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</ModelConditionUpgrade>-->
+
+			<CircularDamageUpdate
+				id="ModuleTag_CircularDamage"
+				MaxRadius="600"
+				SweepFXList="FX_SovietGTWave_Shake"
+				ArcDistance="90">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="VEHICLE INFANTRY STRUCTURE"/>
+			</CircularDamageUpdate>
+			<StatusBitsUpgrade
+				id="ModuleTag_SovietSpellBookUpgradeUpgrade"
+				StatusToSet="GENERIC_TOGGLE_STATE">
+				<TriggeredBy>SovietSpellBookUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				MinLifetime="16s"
+				MaxLifetime="16s" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<VisionInfo
+			VisionRange="125"
+			ShroudClearingRange="0" />
+	</GameObject>
+</AssetDeclaration>

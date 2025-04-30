@@ -1,0 +1,991 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:Units/JapanAntiStructureShip/JUANTISTRUCTURESHIP_SHLD.w3x" />
+		<Include type="all" source="ART:Units/JapanAntiStructureShip/JUANTISTRUCTURESHIP_SKLN.w3x" />
+		<Include type="all" source="ART:Units/JapanAntiStructureShip/JUANTISTRUCTURESHIP_FXSKLN.w3x" />
+		<Include type="all" source="ART:Units/JapanAntiStructureShip/JUANTISTRUCTURESHIP_SKN.FX_SHIELD.w3x" />
+		<Include type="all" source="ART:Units/JapanAntiStructureShip/JUANTISTRUCTURESHIP_SKN.JAPANANTISTRUCTURESHIP.w3x" />
+		<Include type="all" source="ART:Units/JapanAntiStructureShip/JUANTISTRUCTURESHIP_SKN.OBBOX01.w3x" />
+		<Include type="all" source="ART:Units/JapanAntiStructureShip/JUANTISTRUCTURESHIP_SKN.OBBOX02.w3x" />
+		<Include type="all" source="ART:Units/JapanAntiStructureShip/JUANTISTRUCTURESHIP_SKN.OBBOX03.w3x" />
+		<Include type="all" source="ART:Units/JapanAntiStructureShip/JUANTISTRUCTURESHIP_SKN.UPGRADE_01.w3x" />
+		<Include type="all" source="ART:Units/JapanAntiStructureShip/JUANTISTRUCTURESHIP_SKN.w3x" />
+		<Include type="all"	source="ART:JUAntiStructureShip01_D.xml" />
+		<Include type="all"	source="ART:JUAntiStructureShip02.xml" />
+		<Include type="all"	source="ART:JUAntiStructureShip02_D.xml" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- A.k.a. Shogun Battleship -->
+	<GameObject
+		id="JapanAntiStructureShip"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_JapanAntiStructureShip"
+		ButtonImage="Button_JapanAntiStructureShip"
+		EnergyBonus="100"
+		Side="Japan"
+		SubGroupPriority="520"
+		EditorSorting="UNIT"
+		TransportSlotCount="10"
+		BuildTime="25"
+		CommandSet="JapanAntiStructureShipCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT SHIP SIEGE_WEAPON T3_UNIT"
+		RadarPriority="UNIT"
+		ProductionQueueType="WATERCRAFT"
+		UnitCategory="VEHICLE"
+		WeaponCategory="BLAST"
+		VoicePriority="188"
+		BountyValue="350"
+		EditorName="JapanAntiStructureShip"
+		Description="Desc:JapanAntiStructureShip"
+		TypeDescription="Type:AntiStructure"
+		HealthBoxHeightOffset="30"
+		UnitIntro="Japan_ShogunBattleship_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanAntiStructureShip</DisplayName>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_JapanNavalYardTech3</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="2500"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="AntiStructureShipArmor"
+			DamageFX="VehicleDamageFX" />
+    <LocomotorSet
+      id="Locomotor_Water"
+			Locomotor="JapanAntiStructureShipWaterLocomotor"
+			Condition="NORMAL"
+			Speed="60.0" />
+    <LocomotorSet
+      id="Locomotor_Ramming"
+			Locomotor="JapanAntiStructureShipWaterLocomotor_Ramming"
+			Condition="NORMAL_UPGRADED"
+			Speed="60.0" />
+    <LocomotorSet
+      id="Locomotor_LeavingFactory"
+			Locomotor="JapanAntiStructureShipWaterLocomotor_LeavingFactory"
+			Condition="EXITING_PRODUCTION_STRUCTURE"
+			Speed="60.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="5.0"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			ConquerMetricsOverrideAntiMask="ANTI_VEHICLE ANTI_STRUCTURE"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.5"
+				MaxRecoilDistance="6.0"
+				RecoilDamping="5.0"
+				RecoilSettleSpeed="3.0">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="JUAntiStructureShip_SKNN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="TurretA_Barrel_" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="TurretA_Barrel_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="TurretA_Barrel_" />
+					<Turret
+						TurretNameKey="TurretA"
+						TurretPitch="TurretAPitch"
+						TurretID="1" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="TurretB_Barrel_" />
+					<WeaponRecoilBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="TurretB_Barrel_" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="TurretB_Barrel_" />          
+					<Turret
+						TurretNameKey="TurretB"
+						TurretPitch="TurretBPitch"
+						TurretID="2" />
+				</ModelConditionState>
+<!-- UPGRADED MODEL -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED USER_2">
+					<Model
+						Name="JUAntiStructureShip_SKNN" />
+					<Texture
+						Original="JUAntiStructureShip01"
+						New="JUAntiStructureShip02_D" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="JUAntiStructureShip_SKNN" />
+					<Texture
+						Original="JUAntiStructureShip01"
+						New="JUAntiStructureShip02" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUAntiStructureShip_SKNN" />
+					<Texture
+						Original="JUAntiStructureShip01"
+						New="JUAntiStructureShip01_D" />
+				</ModelConditionState>
+        <AnimationState
+          ParseCondStateType="PARSE_DEFAULT">
+          <Animation
+            AnimationName="JUAntiStructureShip_SHLDN"
+            AnimationMode="MANUAL"/>
+        </AnimationState>
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW"
+          Flags="START_FRAME_LAST">
+          <Animation
+            AnimationName="JUAntiStructureShip_SHLDN"
+            AnimationMode="MANUAL"/>
+          <Script>
+            CurDrawableHideSubObjectPermanently( "Upgrade_01" )
+          </Script>
+        </AnimationState>
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+          <Animation
+            AnimationName="JUAntiStructureShip_SHLDN"
+            AnimationMode="ONCE"/>
+        </AnimationState>
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1"
+          Flags="START_FRAME_LAST"
+          StateName="STATE_Ramming">
+          <Animation
+            AnimationName="JUAntiStructureShip_SHLDN"
+            AnimationMode="ONCE"/>
+        </AnimationState>
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+			<Script>
+						Prev = CurDrawablePrevAnimationState();
+						if Prev == "STATE_Ramming" then
+						CurDrawableSetTransitionAnimState("TRANS_RammingToMoving")
+						end
+					</Script>
+        </AnimationState>
+        <AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_RammingToMoving" >
+					<Animation
+						AnimationName="JUAntiStructureShip_SHLDN"
+						AnimationMode="ONCE_BACKWARDS" />
+				</AnimationState>
+      </ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUANTISTRUCTURESHIP_FX" />
+					<ParticleSysBone
+						BoneName="FXExhaust01"
+						FXParticleSystemTemplate="SPTorpedoMoveBubbles"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="JapanCapitalShipWake"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="JUANTISTRUCTURESHIP_FX" />
+					<ParticleSysBone
+						BoneName="FX_Damaged01"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged01"
+ 						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged05"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged08"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged08"
+ 						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged10"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXExhaust01"
+						FXParticleSystemTemplate="SPTorpedoMoveBubbles"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="JapanCapitalShipWake"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUANTISTRUCTURESHIP_FX" />
+					<ParticleSysBone
+						BoneName="FX_Damaged01"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged01"
+ 						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged01"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged01"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged02"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged02"
+ 						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged02"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged02"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged03"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged03"
+ 						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged03"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged03"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged04"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged04"
+ 						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged04"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged04"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged05"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged05"
+ 						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged05"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged05"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged06"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged06"
+ 						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged06"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged06"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged07"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged07"
+ 						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged07"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged07"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged08"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged08"
+ 						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged08"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged08"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged09"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged09"
+ 						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged09"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged09"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged10"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged10"
+ 						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged10"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damaged10"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXExhaust01"
+						FXParticleSystemTemplate="SPTorpedoMoveBubbles"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="JapanCapitalShipWake"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="false" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<ParticleSysBone
+								  BoneName="Fx_WaterFroth01"
+								  FXParticleSystemTemplate="JapanCapitalShipFroth"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="Fx_WaterFroth02"
+								  FXParticleSystemTemplate="JapanCapitalShipFroth_Body"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="Fx_WaterMist01"
+								  FXParticleSystemTemplate="JapanCapitalShipWaterMist01"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="Fx_WaterMist01"
+								  FXParticleSystemTemplate="JapanCapitalShipWaterMist01"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="Fx_WaterMist02"
+								  FXParticleSystemTemplate="JapanCapitalShipWaterMist02"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="Fx_WaterMist02"
+								  FXParticleSystemTemplate="JapanCapitalShipWaterMist02"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Wake_01"
+								  FXParticleSystemTemplate="JapanCapitalShipWake"
+								  FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<ParticleSysBone
+								  BoneName="Fx_WaterFroth01"
+								  FXParticleSystemTemplate="JapanCapitalShipFroth"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="Fx_WaterFroth02"
+								  FXParticleSystemTemplate="JapanCapitalShipFroth_Body"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="Fx_WaterMist01"
+								  FXParticleSystemTemplate="JapanCapitalShipWaterMist01"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="Fx_WaterMist01"
+								  FXParticleSystemTemplate="JapanCapitalShipWaterMist01"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="Fx_WaterMist02"
+								  FXParticleSystemTemplate="JapanCapitalShipWaterMist02"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="Fx_WaterMist02"
+								  FXParticleSystemTemplate="JapanCapitalShipWaterMist02"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Wake_01"
+								  FXParticleSystemTemplate="JapanCapitalShipWake"
+								  FollowBone="true" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDrawSlot1"
+				Texture1_UTile="2"
+				Texture1_VTile="2"
+				Texture1_UScrollRate="1"
+				Texture1_VScrollRate="-1"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0.5"
+				Texture2_VScrollRate="-0.5"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				WeaponSlotID="1" 
+				LaserStateID="1">
+					<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXBeam</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>5.000000</Value>
+              <Value>10.000000</Value>
+              <Value>10.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDrawSlot2"
+				Texture1_UTile="2"
+				Texture1_VTile="2"
+				Texture1_UScrollRate="1"
+				Texture1_VScrollRate="-1"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0.5"
+				Texture2_VScrollRate="-0.5"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				WeaponSlotID="2" 
+				LaserStateID="2">
+					<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXBeam</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>5.000000</Value>
+              <Value>10.000000</Value>
+              <Value>10.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDrawSlot1_Vet"
+				Texture1_UTile="2"
+				Texture1_VTile="2"
+				Texture1_UScrollRate="1"
+				Texture1_VScrollRate="-1"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0.5"
+				Texture2_VScrollRate="-0.5"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				WeaponSlotID="1" 
+				LaserStateID="3">
+					<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXBeam_Vet</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXBeam_Vet</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>5.000000</Value>
+              <Value>10.000000</Value>
+              <Value>10.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDrawSlot2_Vet"
+				Texture1_UTile="2"
+				Texture1_VTile="2"
+				Texture1_UScrollRate="1"
+				Texture1_VScrollRate="-1"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0.5"
+				Texture2_VScrollRate="-0.5"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				WeaponSlotID="2" 
+				LaserStateID="4">
+					<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXBeam_Vet</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXBeam_Vet</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>5.000000</Value>
+              <Value>10.000000</Value>
+              <Value>10.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiStructureShipWeapon" 
+						ForbiddenObjectStatus="SPECIALABILITY_ACTIVE WEAPON_UPGRADED_02"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiStructureShipBeamWeapon1" 
+						ObjectStatus="WEAPON_UPGRADED_02"
+						ForbiddenObjectStatus="SPECIALABILITY_ACTIVE"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiStructureShipWeaponRushAttackWeapon"
+						ObjectStatus="SPECIALABILITY_ACTIVE"/>						
+					<TurretSettings
+						MaxDeflectionClockwise="120d"
+						MaxDeflectionAntiClockwise="120d"
+						TurretTurnRate="120"
+						MinIdleScanTime="0.0s"
+						MaxIdleScanTime="0.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0">
+						<TurretAITargetChooserData
+							CanPickDynamicTargets="true"
+							CanAcquireDynamicIfAssignedOutOfRange="true" 
+							IdleScanDelay="=$MEDIUM_IDLE_SCAN_DELAY"/>
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiStructureShipWeapon" 
+						ForbiddenObjectStatus="SPECIALABILITY_ACTIVE WEAPON_UPGRADED_02"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiStructureShipBeamWeapon2" 
+						ObjectStatus="WEAPON_UPGRADED_02"
+						ForbiddenObjectStatus="SPECIALABILITY_ACTIVE"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiStructureShipWeaponRushAttackWeapon"
+						ObjectStatus="SPECIALABILITY_ACTIVE"/>							
+					<TurretSettings
+						NaturalTurretAngle="180d"
+						MaxDeflectionClockwise="120d"
+						MaxDeflectionAntiClockwise="120d"
+						TurretTurnRate="240"
+						MinIdleScanTime="0.0s"
+						MaxIdleScanTime="0.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0">
+						<TurretAITargetChooserData
+							CanPickDynamicTargets="true"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<AttributeModifierUpgrade
+							id="ModuleTag_JapanUnitUpgradeSpecialPower"
+							AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+    <StatusBitsUpgrade
+			id="ModuleTag_UpgradeWeapon"
+			StatusToSet="WEAPON_UPGRADED_02">
+	 <TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+    </StatusBitsUpgrade>
+    <StatusBitsUpgrade
+     id="ModuleTag_VeterancyUpgrade"
+     StatusToSet="WEAPON_UPGRADED_01">
+     <TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+     </StatusBitsUpgrade>
+
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="JUAntiStructureShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieByTorpedo"
+				CreationList="JUAntiStructureShip_TorpedoDie_OCL">
+				<DieMuxData
+					DeathTypes="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieNavy"
+				CreationList="JUAntiStructureShip_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieByTorpedoNavy"
+				CreationList="JUAntiStructureShip_UpgradeTorpedoDie_OCL">
+				<DieMuxData
+					DeathTypes="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieFreeze"
+				CreationList="JUAntiStructureShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="UNDER_FROZEN"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieFreezeNavy"
+				CreationList="JUAntiStructureShip_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="UNDER_FROZEN"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSky"
+				CreationList="JUAntiStructureShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSkyNavy"
+				CreationList="JUAntiStructureShip_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_JapanCapitalShipDie" />
+				<Event
+					Index="onDeath"
+					FX="FX_LargeBuildingDieExplosionRumble" />
+			</FXListBehavior>
+			<LaserState
+				id="ModuleTag_LaserState1"
+				LaserId="1">
+        <LaserEndParticleSystem>JapanOniLaserHitMolt</LaserEndParticleSystem>
+        <LaserEndParticleSystem>JapanOniLaserHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>JapanOniLaserHitSpark</LaserEndParticleSystem>
+			</LaserState>
+			<LaserState
+				id="ModuleTag_LaserState2"
+				LaserId="2">
+        <LaserEndParticleSystem>JapanOniLaserHitMolt</LaserEndParticleSystem>
+        <LaserEndParticleSystem>JapanOniLaserHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>JapanOniLaserHitSpark</LaserEndParticleSystem>
+			</LaserState>
+			<LaserState
+				id="ModuleTag_LaserState1_Vet"
+				LaserId="3">
+        <LaserEndParticleSystem>JapanOniLaserHitMolt_Vet</LaserEndParticleSystem>
+        <LaserEndParticleSystem>JapanOniLaserHitLight_Vet</LaserEndParticleSystem>
+        <LaserEndParticleSystem>JapanOniLaserHitSpark</LaserEndParticleSystem>
+			</LaserState>
+			<LaserState
+				id="ModuleTag_LaserState2_Vet"
+				LaserId="4">
+        <LaserEndParticleSystem>JapanOniLaserHitMolt_Vet</LaserEndParticleSystem>
+        <LaserEndParticleSystem>JapanOniLaserHitLight_Vet</LaserEndParticleSystem>
+        <LaserEndParticleSystem>JapanOniLaserHitSpark</LaserEndParticleSystem>
+			</LaserState>
+			
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			
+			<MovementSpecialPower
+				id="ModuleTag_RammingSpeedspecialPower"
+				SpecialPowerTemplate="SpecialPower_RammingSpeed"
+				AttributeModifier="AttributeModifier_JapanAntiStructureShipRammingSpeed"
+				AttributeModifierAffectsSelf="true"
+				MovementType="TARGETED"
+				Duration="5s"
+				BusyDurationOnExit="0s"
+				CollisionBounceHeight="0.0"
+				CollisionBounceDistance="25.0"
+				ObjectStatus="SPECIALABILITY_ACTIVE NO_SQUISHCOLLIDE_DELAY"
+				LocomotorSet="NORMAL_UPGRADED"/>
+			
+			<AttributeModifierUpgrade
+				id="ModuleTag_JapanNavalPower"
+				AttributeModifier="AttributeModifer_JapanNavalPower">
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_JapanNavalPower_subobject">
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+				<Nugget
+					ShowSubObjects="Upgrade_01"
+					Upgrade="Upgrade_JapanNavalPower">
+				</Nugget>
+				<CustomAnimAndDuration	AnimState="USER_2"/>	
+			</SubObjectsUpgrade>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech3.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech3/child::*)" />
+			<!-- -->
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="JapanAntiStructureShipFunctions"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="false"
+					CanChaseAttack="false"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="2000" />
+		</Body>
+		<Geometry>
+			<Shape 
+				Type= "BOX"
+				MajorRadius = "69.46"
+				MinorRadius = "17.47"
+				Height = "19.31"
+				ContactPointGeneration = "VEHICLE" />
+			<Shape 
+				Type= "BOX"
+				MajorRadius = "15.16"
+				MinorRadius = "4.89"
+				Height = "27.03"
+				ContactPointGeneration = "VEHICLE" >
+				<Offset
+					x = "-16.0"
+					z = "6.05739" />
+			</Shape>
+		</Geometry>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="JAP_Shogun_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior
+				id="ModuleTag_ShieldOnOff">
+				<ModelConditionSound Sound="JAP_ShogunBattleship_RammingSpeedShieldOn" RequiredFlags="UNPACKING"/> 
+<!-- moved to attribute moddifer
+				<ModelConditionSound Sound="JAP_ShogunBattleship_RammingSpeedShieldOff" RequiredFlags="PACKING" />
+-->
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_Shogun_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="JAP_Shogun_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_Shogun_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_Shogun_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="JAP_Shogun_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="JAP_Shogun_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="JAP_Shogun_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="JAP_Shogun_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="JAP_Shogun_VoiceAttackSpecial" Name="VoiceRammingSpeed" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_ShogunBattleship_MoveStart" AudioType="soundMoveStart"/>
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+			<AudioEntry
+				Sound="Ship_Large_MoveLoopWater"
+				AudioType="soundMoveLoop" />	
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="1250"
+			ShroudClearingRange="=$SIEGE_SHIP_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="30"
+			CrushableLevel="31"
+			CrushWeapon="SovietCrushWeapon"
+      CrushDecelerationPercent="50%"
+			CrushEqualLevelProps="true">
+			<ExtraCrushLevels CrusherLevel="40" CrushableLevel="30" ModelConditionMatch="USER_1"/>
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+	  id="JapanAntiStructureShip_Crate"
+	  inheritFrom="JapanAntiStructureShip"
+	  KindOf="+TIBERIUM_BASED"
+	  EditorName="JapanAntiStructureShip_Crate">
+		<EquivalentTo>JapanAntiStructureShip</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

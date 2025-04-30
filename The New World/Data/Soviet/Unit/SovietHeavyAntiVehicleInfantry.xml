@@ -1,0 +1,904 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include type="all"	source="ART:FXInvisBone.w3x" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseInfantry.xml" />
+	</Includes>
+	<!-- aka Tesla Trooper TeslaTrooper -->
+	<GameObject
+		id="SovietHeavyAntiVehicleInfantry"
+		inheritFrom="BaseInfantry"
+		SelectPortrait="Portrait_SovietHeavyAntiVehicleInfantry_big"
+		ButtonImage="Button_SovietHeavyAntiVehicleInfantry_small"
+		Side="Soviet"
+		SubGroupPriority="445"
+		EditorSorting="UNIT"
+		BuildTime="5"
+		CommandSet="SovietHeavyAntiVehicleInfantryCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS INFANTRY SCORE T1_UNIT TRANSFORMER PATH_THROUGH_INFANTRY PRELOAD"
+		ThreatLevel="10"
+		WeaponCategory="BLAST"
+		VoicePriority="110"
+		EditorName="SovietHeavyAntiVehicleInfantry"
+		Description="Desc:SovietHeavyAntiVehicleInfantry"
+		TypeDescription="Type:AntiArmor"
+		UnitTypeIcon="TeslaTrooperIcon"
+		HealthBoxHeightOffset="40"
+		BountyValue="50"
+		UnitIntro="Soviet_TeslaTrooper_UnitIntro"
+		SelectPortraitTransformed="PortraitSovietHeavyAntiVehicleInfantryB"
+		ButtonImageTransformed="ButtonSovietHeavyAntiVehicleInfantryB"
+		DescriptionTransformed="Desc:SovietHeavyAntiVehicleInfantry"
+		TypeDescriptionTransformed="Type:AntiArmor">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietHeavyAntiVehicleInfantry</DisplayName>
+		<DisplayNameTransformed
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietHeavyAntiVehicleInfantry</DisplayNameTransformed>
+		<GameDependency
+			ForbiddenModelConditions="OVER_WATER">
+				<ObjectFilter
+					Rule="NONE"
+					Relationship="ALLIES"
+					StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+					<IncludeThing>SovietPowerPlantAdvanced</IncludeThing>
+					<IncludeThing>StrategicArmyRadar</IncludeThing>
+				</ObjectFilter>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="500"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseHeavyInfantryArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="TestReactiveLocomotorHUMAN"
+			Condition="NORMAL"
+			Speed="40" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDamageType="TESLA"
+			OutOfRangePenalty="2.0"
+			ConquerMetricsOverrideDPS="150"
+			ConquerMetricsOverrideAntiMask="ANTI_VEHICLE ANTI_STRUCTURE ANTI_INFANTRY"
+			ConquerMetricsOverrideForbiddenAntiMask="ANTI_WATER"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="FXBONE_02">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUHeavyAntiVehicleInfantryTNW_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBONE_02" />
+					<WeaponFireFXBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FXBONE_02" />
+					<WeaponLaunchBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBONE_02" />
+					<WeaponLaunchBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FXBONE_02" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+					<Model
+						Name="FXInvisBone" />
+					<WeaponFireFXBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="INVISBONE01" />
+				</ModelConditionState>
+     
+				<!-- short circuit -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="WEAPONSTATE_ONE">
+					<Model
+						Name="SUHeavyAntiVehicleInfantryTNW_SKN" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="SovietTesla_EMP" />
+				</ModelConditionState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+					<!-- no anim -->
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FRONTCRUSHED">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_CDTA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BACKCRUSHED">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_CDTB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_FLAILING"
+					StateName="STATE_stunned_flailing">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_FLYA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING SPLATTED">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_LNDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_STANDING_UP">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_GTPA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_LNDA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- parachuting anims -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="LAUNCHED"
+					StateName="STATE_ParachuteLaunch">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_MCNA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PARACHUTING"
+					StateName="STATE_Parachuting">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_MCNC"
+						AnimationMode="LOOP" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_ParachuteLaunch" then
+						CurDrawableSetTransitionAnimState("TRANS_toParachuting")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toParachuting" >
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_MCNB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_fromParachuting" >
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_MCND"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimNickName="DTA"
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_DIEE"
+						AnimationMode="ONCE" />
+					<Animation
+						AnimNickName="DTB"
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_DIEF"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_CWRA"
+						AnimationMode="LOOP" />
+						<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="Allied_DogStun01"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="Allied_DogStunGlows01"
+							FollowBone="true" />
+				</AnimationState>
+
+				<!-- saluting -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2"
+					StateName="STATE_Saluting">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_SLTB"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2"/>
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_Saluting" and Prev ~= "TRANS_ToSaluting" then
+						CurDrawableSetTransitionAnimState("TRANS_ToSaluting")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_ToSaluting" >
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_SLTA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2"/>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_FromSaluting" >
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_SLTC"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2"/>
+				</AnimationState>
+				<!-- end saluting -->
+
+
+
+				<!-- EMP toggled mode anims -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING WEAPONSTATE_ONE"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_TWLKA"
+						AnimationMode="LOOP"
+						Distance="35" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED WEAPONSTATE_ONE"
+					StateName="ToggleSTATE_Selected"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+					   AnimationName="SUHeavyAntiVehicleInfantryTNW_TAIDA"
+					   AnimationMode="ONCE"
+					   AnimationPriority="80"
+					   AnimationBlendTime="15"/>
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "ToggleSTATE_Idle" then
+						CurDrawableSetTransitionAnimState("TRANS_ToggleIdleToSelected")
+						elseif Prev == "STATE_Parachuting" then
+						CurDrawableSetTransitionAnimState("TRANS_fromParachuting")
+						elseif Prev == "STATE_Selected" then
+						CurDrawableSetTransitionAnimState("TRANS_SelectedToToggleSelected")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_ToggleIdleToSelected">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_TBATA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.3" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_ToggleSelectedToIdle">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_TABTA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SelectedToToggleSelected">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_TGLA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="WEAPONSTATE_ONE"
+					StateName="ToggleSTATE_Idle"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_TBIDA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1"
+						AnimationPriority="80"
+						AnimationBlendTime="15"/>
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "ToggleSTATE_Selected" then
+						CurDrawableSetTransitionAnimState("TRANS_ToggleSelectedToIdle")
+						elseif Prev == "STATE_Parachuting" then
+						CurDrawableSetTransitionAnimState("TRANS_fromParachuting")
+						end
+					</Script>
+				</AnimationState>
+				<!-- end of EMP toggled mode anims -->
+
+
+				<!-- normal mode -->
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					StateName="STATE_Idle"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_BIDA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1"
+						AnimationPriority="100"
+						AnimationBlendTime="15"/>
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_BIFA"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"/>
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_BIFB"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"/>
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_BIFC"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"/>
+
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Saluting" then
+						CurDrawableSetTransitionAnimState("TRANS_FromSaluting")
+						elseif Prev == "STATE_Selected" then
+						CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle")
+						elseif Prev == "STATE_Parachuting" then
+						CurDrawableSetTransitionAnimState("TRANS_fromParachuting")
+						end
+					</Script>
+					<ParticleSysBone
+						BoneName="FXBone_01"
+						FXParticleSystemTemplate="TeslaIdleLightning01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXBone_02"
+						FXParticleSystemTemplate="TeslaIdleLightning01"
+						FollowBone="true" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					StateName="STATE_OverWater">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_SWMB"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AUScoutInfantrySplash"
+						FollowBone="false" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_OverWater" and Prev ~= "TRANS_ToWater" then
+						CurDrawableSetTransitionAnimState("TRANS_ToWater")
+						end
+					</Script>
+				</AnimationState>
+				
+				<!-- idle in water -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_OverWater">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_WADA"
+						AnimationMode="ONCE" 
+						AnimationBlendTime="15" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AUScoutInfantrySplash"
+						FollowBone="false" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ACCELERATE MOVING">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_ACCL"
+						AnimationMode="LOOP"
+						Distance="28" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DECELERATE MOVING" >
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_DECL"
+						AnimationMode="LOOP"
+						Distance="28" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_WLKA"
+						AnimationMode="LOOP"
+						Distance="35" />
+						<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_OverWater" or Prev == "TRANS_ToWater" then
+						CurDrawableSetTransitionAnimState("TRANS_FromWater")
+						end
+					</Script>					
+				</AnimationState>
+
+				<!-- tesla preattack -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PREATTACK_A">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_ATKB1"
+						AnimationMode="ONCE"
+						UseWeaponTiming="true" />
+          <ParticleSysBone
+            BoneName="FXBONE_02"
+            FXParticleSystemTemplate="TeslaCharge"
+            FollowBone="true" />
+				</AnimationState>
+				<!-- attacking -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_A">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_ATKB2"
+						AnimationMode="ONCE" />	
+				</AnimationState>				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="RELOADING_A">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_ATKB3"
+						AnimationMode="ONCE"
+						UseWeaponTiming="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ENGAGED">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_AIDA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+
+				<!-- SELECTED -->
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					StateName="STATE_Selected"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+					   AnimationName="SUHeavyAntiVehicleInfantryTNW_AIDA"
+					   AnimationMode="ONCE"
+					   AnimationPriority="100"
+					   AnimationBlendTime="15"/>
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_AIFA"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationMustCompleteBlend="true" />		
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_AIFC"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationMustCompleteBlend="true" />
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_AIFD"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationMustCompleteBlend="true" />
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_AIFE"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationMustCompleteBlend="true" />										   
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Idle" then
+						CurDrawableSetTransitionAnimState("TRANS_IdleToSelected")
+						elseif Prev == "STATE_Parachuting" then
+						CurDrawableSetTransitionAnimState("TRANS_fromParachuting")
+						elseif Prev == "ToggleSTATE_Selected" then
+						CurDrawableSetTransitionAnimState("TRANS_ToggleSelectedToSelected")
+						end
+					</Script>
+					
+					<ParticleSysBone
+						BoneName="FXBone_01"
+						FXParticleSystemTemplate="TeslaIdleLightning01"
+						FollowBone="true" />	
+					<ParticleSysBone
+						BoneName="FXBone_02"
+						FXParticleSystemTemplate="TeslaIdleLightning01"
+						FollowBone="true" />
+						
+				</AnimationState>
+
+				<!-- TRANSITIONS -->
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_IdleToSelected">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_BATA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.3" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SelectedToIdle">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_ABTA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_ToggleSelectedToSelected">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_TGLA"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_ToWater">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_SWMA"
+						AnimationMode="ONCE" />
+					<Script>
+						CurDrawablePlaySound("SOV_Commando_WaterSplash")
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_FromWater">
+					<Animation
+						AnimationName="SUHeavyAntiVehicleInfantryTNW_SWMC"
+						AnimationMode="ONCE" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- include parachute draw module. -->
+			<xi:include
+				href="DATA:Includes/ParachuteDrawSoviet.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:ParachuteDraws/child::*)" />		
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietHeavyAntiVehicleInfantryTeslaGun"	
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE CHARGING_BASE_DEFENSES OVER_WATER INSIDE_GARRISON WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="SovietHeavyAntiVehicleInfantryTeslaLinkGun"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE OVER_WATER INSIDE_GARRISON"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietHeavyAntiVehicleInfantryTeslaGunStr"
+						ObjectStatus="INSIDE_GARRISON"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE CHARGING_BASE_DEFENSES WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietHeavyAntiVehicleInfantryTeslaGunUpgrade"
+						ObjectStatus="WEAPON_UPGRADED_01"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE CHARGING_BASE_DEFENSES OVER_WATER INSIDE_GARRISON"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietHeavyAntiVehicleInfantryTeslaGunUpgradeStr"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE CHARGING_BASE_DEFENSES"
+						ObjectStatus="INSIDE_GARRISON WEAPON_UPGRADED_01"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<AttributeModifierUpgrade
+							id="ModuleTag_LaserUpgrade"
+							AttributeModifier="AttributeMod_AlliesAlliedLaserUpgradeAttribute">
+				<TriggeredBy>Upgrade_AlliedLaserUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<SuppressionUpdate
+				id="ModuleTag_SuppressionUpdate"
+			xai:joinAction="Remove"/>
+				<CreateObjectDie
+				id="ModuleTag_DeathSpawn"
+				CreationList="OCL_SovietHeavyAntiVehicleInfantry_Death">
+                <DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="PLAYER_POWER_5"/>
+            </CreateObjectDie>
+			<Physics
+				id="ModuleTag_Physics" />
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="6s"
+				SinkRate="2.4"
+				DestructionDelay="10s">
+				<DieMuxData
+					DeathTypes="ALL" 
+					DeathTypesForbidden="MAULED"/>
+				<Sound
+					Type="INITIAL"
+					List="SOV_TeslaTrooper_VoiceDie" />
+			</SlowDeath>
+			<SlowDeath
+				id="ModuleTag_BearDeath"
+				SinkDelay="6s"
+				SinkRate="2.4"
+				DestructionDelay="10s"
+				FlingForce="2"
+				FlingForceVariance="1"
+				FlingPitch="30d"
+				FlingPitchVariance="10d">
+				<DieMuxData
+					DeathTypes="MAULED"/>
+				<Sound
+					Type="INITIAL"
+					List="SOV_TeslaTrooper_VoiceDie" />
+			</SlowDeath>
+			<SpecialPower
+				id="ModuleTag_ToggleShortCircuit"
+				SpecialPowerTemplate="SpecialPower_ToggleShortCircuit"
+				UpdateModuleStartsAttack="true"/>
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ToggleShortCircuitUpdate"
+				SpecialPowerTemplate="SpecialPower_ToggleShortCircuit"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				ReloadAllWeaponsOnToggle="false" >
+				<ToggleState>
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT"/>
+				</ToggleState>
+				<ToggleState
+					ObjectStatus="TRANSFORMATION_TOGGLE_STATE IMMOBILE IGNORING_STEALTH"
+					AttributeModifier="AttributeModifer_ShortCircut" 
+					ModelConditions="WEAPONSTATE_ONE"
+					DisabledType="HELD">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_AOE_ATTACK">
+						<StateWeapon
+							Weapon="SovietHeavyAntiVehicleInfantryShortCircuit"
+							AoeAttackEmanationLocation="EMANATE_FROM_SELF"
+							IsDisablingAttack="true"
+							AffectsFriendlies="false"
+							AffectsSelf="false"/>
+					</SkirmishAiInfo>
+				</ToggleState>
+			</ToggleStatusSpecialAbilityUpdate>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_ShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="50.0"
+				RefreshDelay=".2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeMod_SovietShortCircuitRangeBoost"
+				RequiredObjectStatusFlags="TRANSFORMATION_TOGGLE_STATE">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ALLIES">
+					<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+
+			<AttackAssistResponseBehavior
+				id="ModuleTag_AttackAssistResponse"
+				ObjectStatus="CHARGING_BASE_DEFENSES"
+				WeaponSlotID="1"
+				WeaponSlotType="SECONDARY_WEAPON"/>
+			
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.13s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="SovietHeavyAntiVehicleInfantryShortCircuitA"
+					OneShot="false" />
+				<ObjectStatusValidation
+					RequiredStatus="TRANSFORMATION_TOGGLE_STATE" />
+			</FireWeaponUpdate>
+
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_03">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<StatusBitsUpgrade
+					id="ModuleTag_SovietBaseUpgradeObjectStatus"
+					StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>SovietUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_InfantrBaseUpgrade"
+				AttributeModifier="AttributeModiferSovietBaseAntiVehicleInfantrBaseUpgrade">
+				<TriggeredBy>SovietUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+
+			<!-- Soviet Parachute Behaviors -->
+			<ModelConditionUpgrade
+				id="ModuleTag_JapanFaction"
+				AddConditionFlags="USER_8">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_AlliesFaction"
+				AddConditionFlags="USER_9">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+					RotateToTargetWhenAiming="true"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="300" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_YurikoVoiceDieFall">
+				<ModelConditionSound Sound="SOV_TeslaTrooper_VoiceDieYurikoFall" RequiredFlags="IMPENDING_DOOM" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_YurikoVoiceUp">
+				<ModelConditionSound Sound="SOV_TeslaTrooper_VoiceDieYurikoUp" RequiredFlags="STUNNED_FLAILING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<AnimationSoundClientBehavior id="ModuleTag_ASCB">
+				<Sound Sound="SOV_Bear_ParachuteOpen" Animation="SUHeavyAntiVehicleInfantryTNW_MCNB" Frame="3" />
+				<Sound Sound="SOV_TeslaTrooper_Footstep" Animation="SUHeavyAntiVehicleInfantryTNW_WLKA" Frame="30" />
+				<Sound Sound="SOV_TeslaTrooper_Footstep" Animation="SUHeavyAntiVehicleInfantryTNW_WLKA" Frame="59" />
+				
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER" Animation="SUHeavyAntiVehicleInfantryTNW_CDTA" Frame="8" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER" Animation="SUHeavyAntiVehicleInfantryTNW_CDTB" Frame="8" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER" Animation="SUHeavyAntiVehicleInfantryTNW_DIEE" Frame="19" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER" Animation="SUHeavyAntiVehicleInfantryTNW_DIEF" Frame="105" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER" Animation="SUHeavyAntiVehicleInfantryTNW_LNDA" Frame="5" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER" Animation="SUHeavyAntiVehicleInfantryTNW_MCND" Frame="3" />
+			</AnimationSoundClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_EMDisruptors">
+				<ModelConditionSound Sound="SOV_TeslaTrooper_EMDisruptorsLoopMS" RequiredFlags="WEAPONSTATE_ONE" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_EMdisruptorsOn">
+				<Override RequiredFlags="WEAPONSTATE_ONE">
+					<AudioArrayVoice>
+						<AudioEntry Sound="SOV_TeslaTrooper_VoiceMoveSpecial" AudioType="voiceMove" />
+						<AudioEntry Sound="SOV_TeslaTrooper_VoiceAttackSpecial" AudioType="voiceAttack" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.25"
+				Height="13.0"
+				ContactPointGeneration="SQUAD_MEMBER"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="SOV_TeslaTrooper_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SOV_TeslaTrooper_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="SOV_TeslaTrooper_VoiceGarrison" AudioType="voiceGarrison" />
+			<AudioEntry Sound="SOV_TeslaTrooper_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="SOV_TeslaTrooper_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="SOV_TeslaTrooper_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="SOV_TeslaTrooper_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="SOV_TeslaTrooper_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+			<ObjectSpecificEntry Sound="SOV_TeslaTrooper_VoiceMoveChargeTower" AudioType="voiceAttackUnit" TargetObject="SovietBaseDefenseAdvanced" />
+		</AudioArrayVoice>
+		<ShadowInfo
+			Type="DECAL"
+			SizeX="14"
+			SizeY="14"
+			Texture="ShadowI" />
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$ADVANCE_INFANTRY_SHROUD_CLEAR" />
+		<CrusherInfo
+			CrushableLevel="20" />
+	</GameObject>
+	<GameObject
+		id="SovietHeavyAntiVehicleInfantry_Crate"
+		inheritFrom="SovietHeavyAntiVehicleInfantry"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="SovietHeavyAntiVehicleInfantry_Crate">
+		<EquivalentTo>SovietHeavyAntiVehicleInfantry</EquivalentTo>
+	</GameObject>
+	<ObjectCreationList
+	id="OCL_SovietHeavyAntiVehicleInfantry_Death">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS DO_NOT_COPY_SHADERS DO_NOT_COPY_SCALE REQUIRES_LIVE_PLAYER"
+			Disposition="ON_GROUND_ALIGNED"
+			MinHealth="1"
+			MaxHealth="1">
+			<CreateObject>SovietHeavyAntiVehicleInfantry_Death</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<GameObject
+		id="SovietHeavyAntiVehicleInfantry_Death"
+		inheritFrom="SovietHeavyAntiVehicleInfantry"
+		EditorName="SovietHeavyAntiVehicleInfantry_Death">
+		<EquivalentTo>SovietHeavyAntiVehicleInfantry</EquivalentTo>
+		<Behaviors>
+			<AttributeModifierUpgrade
+				id="ModuleTag_CanNotDeathSpawn"
+				AttributeModifier="AttributeMod_CanNotDeathSpawnAttribute">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_DeathSpawnUp"
+				AttributeModifier="AttributeModifier_JapanArcherInfantryDeathSpawn">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</AttributeModifierUpgrade>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

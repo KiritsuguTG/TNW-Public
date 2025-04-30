@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include source="art:fxdustanim.xml" type="instance"/>
+		<Include source="art:fxdistortionfractal01.xml" type="instance"/>
+		<Include source="art:fxspherenrm.xml" type="instance"/>
+		<Include source="art:fxspherenrm.xml" type="instance"/>
+		<Include source="art:fxlenzflare01.xml" type="instance"/>
+		<Include source="art:fxlenzflare01.xml" type="instance"/>
+	</Includes>
+ <FXList id="FX_JumpBombExplosionLvl1">
+    <NuggetList>
+      <ParticleSystem
+          Particle="EmperorOni_BlastRays">
+          <Offset
+            x="0"
+            y="0"
+            z="35.0"/>
+      </ParticleSystem>
+      <ParticleSystem	Particle="TimeBombLvl1ExplosionShockwave"/>
+      <ParticleSystem	Particle="TimeBombLvl1ExplosionSmoke"/>
+      <ParticleSystem	Particle="TimeBombLvl1ExplosionSmokeGround"/>
+      <ParticleSystem	Particle="TimeBombLvl1ExplosionSmokeMushroom"/>
+      <TerrainScorch
+				Type		= "TERRAIN_MAPPED"
+				Radius		= "60" >
+      </TerrainScorch>
+	<CameraShakerVolume
+			Radius="700"
+			Duration="0.5s"
+			Amplitude="90d"/>
+    </NuggetList>
+  </FXList>
+
+  <FXList id="FX_JumpBombExplosionLvl2">
+    <NuggetList>
+      <ParticleSystem
+          Particle="EmperorOni_BlastRays">
+          <Offset
+            x="0"
+            y="0"
+            z="35.0"/>
+      </ParticleSystem>
+     
+      <ParticleSystem	Particle="TimeBombLvl2ExplosionShockwave"/>
+      <ParticleSystem	Particle="TimeBombLvl2ExplosionSmoke"/>
+      <ParticleSystem	Particle="TimeBombLvl2ExplosionSmokeGround"/>
+      <ParticleSystem	Particle="TimeBombLvl2ExplosionSmokeMushroom"/>
+      <TerrainScorch
+				Type		= "TERRAIN_MAPPED"
+				Radius		= "70" >
+      </TerrainScorch>
+	<CameraShakerVolume
+			Radius="700"
+			Duration="0.5s"
+			Amplitude="90d"/>
+    </NuggetList>
+  </FXList>
+	<FXList id="FX_GreatOniJump">
+		<NuggetList>
+			<Sound Value="JAP_KingOni_Select" />
+			<ParticleSystem
+					  Particle="Japan_SPC_Mecha_StepDust"
+					  OrientToObject = "false"
+			  OnlyIfOnLand ="true">
+			</ParticleSystem>
+		</NuggetList>
+	</FXList>
+	<FXList id="FX_GreatOniLand">
+		<NuggetList>
+			<Sound Value="JAP_ShogunExecutioner_Footstep" />
+			<DynamicDecal
+					  Decal				= "EX_MechaFootprint"
+					  Size				= "100"
+					  OpacityStart		= "0"
+					  OpacityFadeTimeOne	= "0s"
+					  OpacityPeak			= "1"
+					  OpacityPeakTime		= "5s"
+					  OpacityFadeTimeTwo	= "15s"
+					  OpacityEnd			= "0"
+					  StartingDelay		= "0s"
+					  OnlyIfOnLand		="true"
+					  Lifetime			= "20s">
+				<Color R="1" G="1" B="1" />
+				<Offset x="0" y="0" />
+			</DynamicDecal>
+			<ParticleSystem
+					  Particle="Japan_SPC_Mecha_StepDust"
+					  OrientToObject = "false"
+			  OnlyIfOnLand ="true">
+			</ParticleSystem>
+		</NuggetList>
+	</FXList>
+	<FXParticleSystemTemplate ParticleTexture="FXSphereNRM" PerParticleAttachedSystem="" Priority="HIGH_OR_ABOVE" Shader="ALPHA" SystemLifetime="1" Type="GPU_PARTICLE" id="GreatOniDist">
+		<Lifetime High="25" Low="25"/>
+		<Size High="20" Low="20"/>
+		<BurstDelay High="50" Low="50"/>
+		<BurstCount High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="2" High="1" Low="1" RelativeAge="50"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+			<Alpha Frame="4" High="0" Low="0" RelativeAge="200"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="14.999999">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="4" RelativeAge="200">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXSphereNRM" Shader="gpuparticledistortion.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="15"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="3" Low="3"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularRateZ High="0.02" Low="-0.02"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXDustAnim" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="ALPHA" Type="GPU_PARTICLE" id="ChopperMissileSmoke_vet">
+		<Lifetime High="15" Low="5"/>
+		<Size High="20" Low="10"/>
+		<BurstDelay High="1" Low="0"/>
+		<BurstCount High="2" Low="1"/>
+		<Alphas>
+			<Alpha Frame="2" High="0.5" Low="0.5" RelativeAge="9"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.333333" g="0.333333" r="1.333333"/>
+			</Color>
+			<Color Frame="2" RelativeAge="9.999999">
+				<Color b="0.25098" g="0.25098" r="0.75098"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0.25098" g="0.25098" r="0.75098"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.65" Low="0.6"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXDistortionFractal01" FramesPerRow="3" MiscValue1="0.1" MiscValue2="0.1" MiscValue3="90" MiscValue4="0.025" RandTex="1" SpeedMultiplier="0.001" TotalFrames="9"/>
+		</Draw>
+		<Volume>
+			<Point/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularRateZ High="0.1" Low="-0.1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SystemLifetime="1" Type="GPU_PARTICLE" id="GreatOniSphereGlow">
+		<Lifetime High="4" Low="4"/>
+		<Size High="40" Low="40"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="0.717647" r="0.333333"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="2" Low="2"/>
+		</Colors>
+		<Physics>
+			<Default ParticlesAttachToBone="true">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu RandTex="1" SingleRow="1" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.5" Low="0.5"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngleZ High="3" Low="-3"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SystemLifetime="1" Type="GPU_PARTICLE" id="GreatOniSphereGlow_Vet">
+		<Lifetime High="4" Low="4"/>
+		<Size High="40" Low="40"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.223529" g="0.223529" r="0.992157"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="2" Low="2"/>
+		</Colors>
+		<Physics>
+			<Default ParticlesAttachToBone="true">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu RandTex="1" SingleRow="1" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.5" Low="0.5"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngleZ High="3" Low="-3"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXJapanSun" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SortLevel="1" SystemLifetime="1" Type="GPU_PARTICLE" id="EmperorOni_BlastRays">
+		<Lifetime High="50" Low="30"/>
+		<Size High="15" Low="10"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors HouseColorSaturation="0">
+			<Color Frame="2" RelativeAge="9.999999">
+				<Color b="0.207843" g="0.207843" r="0.207843"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="10" Low="10"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu Shader="GpuParticlePerpendicularCenter.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="-15"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<RenderObject>
+				<AngularDamping High="1" Low="1"/>
+				<StartSize>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</StartSize>
+				<SizeRate>
+					<x High="35" Low="35"/>
+					<y High="35" Low="35"/>
+					<z High="35" Low="35"/>
+				</SizeRate>
+				<SizeDamping>
+					<x High="0.9" Low="0.9"/>
+					<y High="0.9" Low="0.9"/>
+					<z High="0.9" Low="0.9"/>
+				</SizeDamping>
+			</RenderObject>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

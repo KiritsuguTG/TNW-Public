@@ -1,0 +1,1571 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:JUAntiAirVehicleTech1_SKN.w3x" />
+		<Include type="all" source="ART:JUAntiAirVehicleTech1_FP.w3x" />
+		<Include type="all" source="ART:JUAntiAirVehicleTech1_AIDA.w3x" />
+		<Include type="all" source="ART:JUAntiAirVehicleTech1_ABTA.w3x" />
+		<Include type="all" source="ART:JUAntiAirVehicleTech1_ATKA.w3x" />
+		<Include type="all" source="ART:JUAntiAirVehicleTech1_BATA.w3x" />
+		<Include type="all" source="ART:JUAntiAirVehicleTech1_BIDA.w3x" />
+		<Include type="all" source="ART:JUAntiAirVehicleTech1_DIEA.w3x" />
+		<Include type="all" source="ART:JUAntiAirVehicleTech1_WLKA.w3x" />
+		<Include type="all" source="ART:JUAntiAirVehicleTech1_TRANS.w3x" />
+		<Include type="all" source="ART:JUANTIAIRVEHICLETECH1_TRANS2.w3x" />
+		<Include type="all" source="ART:JUAntiAirVehicleTech1_AIR_TRANS.w3x" />
+		<Include type="all" source="ART:JUANTIAIRVEHICLETECH1_AIR_SKN.w3x" />
+		<Include type="all" source="ART:JUAntiAirVehicleTech1_AIR_AIDA.w3x" />
+		<Include type="all" source="ART:JUAntiAirVehicleTech1_AIR_MOVA.w3x" />
+		<Include type="all"
+			source="ART:Units/JapanAntiAirVehicleTech1/JUANTIAIRVEHICLETECH1_AIR_SKL.w3x" />
+		<Include type="all" source="ART:JUAntiAirVehicleTech1_D.xml" />
+		<Include type="all" source="ART:FXJapVXFP.xml" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- aka Chopper-VX -->
+	<GameObject
+		id="JapanAntiAirVehicleTech1"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_JapanAntiAirVehicleTech1_walker"
+		SelectPortraitTransformed="Portrait_JapanAntiAirVehicleTech1_heli"
+		ButtonImage="Button_JapanAntiAirVehicleTech1_walker"
+		ButtonImageTransformed="Button_JapanAntiAirVehicleTech1_heli"
+		Side="Japan"
+		SubGroupPriority="330"
+		EditorSorting="UNIT"
+		BuildTime="12"
+		CommandSet="JapanAntiAirVehicleTech1CommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE TRANSFORMER CAN_BE_FAVORITE_UNIT T2_UNIT CAN_SEE_THROUGH_STRUCTURE MONSTER BEAM_TARGET_REFLECTOR FS_RADAR"
+		WeaponCategory="MISSILE"
+		VoicePriority="188"
+		BountyValue="250"
+		EditorName="JapanAntiAirVehicleTech1"
+		Description="Desc:JapanAntiAirVehicleTech1"
+		DescriptionTransformed="Desc:JapanAntiAirVehicle_air"
+		TypeDescription="Type:AntiAirAndArmor"
+		TypeDescriptionTransformed="Type:AntiAirAndArmor"
+		HealthBoxHeightOffset="40"
+		UnitIntro="Japan_StrikerVFX_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanAntiAirVehicle_ground</DisplayName>
+		<DisplayNameTransformed
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanAntiAirVehicle_air</DisplayNameTransformed>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_JapanWarFactoryTech2</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1200" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAntiAirVehicleArmor"
+			DamageFX="VehicleDamageFX" />
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="VehicleDamageFX"
+			Conditions="AIRBORNE" />
+		<LocomotorSet
+			id="JapanAntiAirVehicleTech1_LandLocomotor"
+			Locomotor="JapanAntiAirVehicleTech1_LandLocomotor"
+			Condition="NORMAL"
+			Speed="90" />
+		<LocomotorSet
+			id="JapanAntiAirVehicleTech1_AirLocomotor"
+			Locomotor="JapanAntiAirVehicleTech1_AirLocomotor"
+			Condition="SUPERSONIC"
+			Speed="150.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="2.0"
+			ConquerMetricsOverrideDamageType="ROCKET"
+			ConquerMetricsOverrideAntiMask="ANTI_VEHICLE ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="FX_Missile01 FX_Missile02 FX_Missile B_Missile01 B_Missile02 B_Missile03">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="JUAntiAirVehicleTech1_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_Missile" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_Missile" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_Missile" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_Missile" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="B_Missile" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="B_Missile" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="B_Missile" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="B_Missile" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW USER_1">
+					<Model
+						Name="JUAntiAirVehicleTech1_FP" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="JUAntiAirVehicleTech1_SKN" />
+				</ModelConditionState>
+
+				<!-- changing from ground to air -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_3 USER_2 USER_1">
+					<Model
+						Name="JUANTIAIRVEHICLETECH1_TRANS2" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech12_D" />
+					<Texture
+						Original="JUAntiAirVehicleTech12"
+						New="JUAntiAirVehicleTech12_D" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_3 USER_2 USER_1">
+					<Model
+						Name="JUANTIAIRVEHICLETECH1_TRANS2" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech12" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="Turret"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_3 USER_2 USER_1">
+					<Model
+						Name="JUANTIAIRVEHICLETECH1_TRANS2" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech12" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_3 USER_1">
+					<Model
+						Name="JUANTIAIRVEHICLETECH1_TRANS2" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech1_D" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_3 USER_1">
+					<Model
+						Name="JUANTIAIRVEHICLETECH1_TRANS2" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="Turret"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_3 USER_1">
+					<Model
+						Name="JUANTIAIRVEHICLETECH1_TRANS2" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+				</ModelConditionState>
+
+				<!-- changing from air to ground -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 REALLYDAMAGED USER_3">
+					<Model
+						Name="JUAntiAirVehicleTech1_TRANS" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech12_D" />
+					<Texture
+						Original="JUAntiAirVehicleTech12"
+						New="JUAntiAirVehicleTech12_D" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 DAMAGED USER_3">
+					<Model
+						Name="JUAntiAirVehicleTech1_TRANS" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech12" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 USER_3">
+					<Model
+						Name="JUAntiAirVehicleTech1_TRANS" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech12" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_3">
+					<Model
+						Name="JUAntiAirVehicleTech1_TRANS" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech1_D" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_3">
+					<Model
+						Name="JUAntiAirVehicleTech1_TRANS" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_3">
+					<Model
+						Name="JUAntiAirVehicleTech1_TRANS" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+				</ModelConditionState>
+
+				<!-- idle flying -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_1 USER_2">
+					<Model
+						Name="JUANTIAIRVEHICLETECH1_AIR_SKN" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech12_D" />
+					<Texture
+						Original="JUAntiAirVehicleTech12"
+						New="JUAntiAirVehicleTech12_D" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_1 USER_2">
+					<Model
+						Name="JUANTIAIRVEHICLETECH1_AIR_SKN" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech12" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1 USER_2">
+					<Model
+						Name="JUANTIAIRVEHICLETECH1_AIR_SKN" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech12" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_1">
+					<Model
+						Name="JUANTIAIRVEHICLETECH1_AIR_SKN" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech1_D" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_1">
+					<Model
+						Name="JUANTIAIRVEHICLETECH1_AIR_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Model
+						Name="JUANTIAIRVEHICLETECH1_AIR_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 REALLYDAMAGED">
+					<Model
+						Name="JUAntiAirVehicleTech1_SKN" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech12_D" />
+					<Texture
+						Original="JUAntiAirVehicleTech12"
+						New="JUAntiAirVehicleTech12_D" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 DAMAGED">
+					<Model
+						Name="JUAntiAirVehicleTech1_SKN" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech12" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="JUAntiAirVehicleTech1_SKN" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech12" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUAntiAirVehicleTech1_SKN" />
+					<Texture
+						Original="JUAntiAirVehicleTech1"
+						New="JUAntiAirVehicleTech1_D" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="JUAntiAirVehicleTech1_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Missile01" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretPitch="TURRET_PITCH"
+						TurretID="2" />
+					<ParticleSysBone
+						BoneName="b_gun"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<!-- idle on ground -->
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					StateName="STATE_Idle">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_BIDA"
+						AnimationMode="LOOP" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState();
+						if Prev == "STATE_Selected" then
+						CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle")
+						end
+					</Script>
+				</AnimationState>
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP"
+					StateName="STATE_EMP">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_BIDA"
+						AnimationMode="LOOP" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState();
+						if Prev == "STATE_Selected" then
+						CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle")
+						end
+					</Script>
+				</AnimationState>
+
+				<!-- changing from ground to air -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_3 USER_1"
+					StateName="STATE_GroundToAir">
+					<Animation
+						AnimationName="JUANTIAIRVEHICLETECH1_TRANS2"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="1.0s" />
+				</AnimationState>
+
+				<!-- changing from air to ground -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_3">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_TRANS"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="1.1s" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1 OVER_WATER">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_AIR_AIDA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="HelicopterMovingWaterWake"
+						FollowBone="false" />
+				</AnimationState>
+
+				<!-- moving flying over water-->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING USER_1 OVER_WATER">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_AIR_MOVA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState();
+						if Prev == "STATE_GroundToAir" then
+						CurDrawableSetTransitionAnimState("TRANS_GroundToAir")
+						end
+					</Script>
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="HelicopterMovingWaterWake"
+						FollowBone="false" />
+				</AnimationState>
+
+				<!-- moving flying -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING USER_1"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_AIR_MOVA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState();
+						if Prev == "STATE_GroundToAir" then
+						CurDrawableSetTransitionAnimState("TRANS_GroundToAir")
+						end
+					</Script>
+				</AnimationState>
+
+				<!-- attacking flying -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ATTACKING USER_1">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_AIR_AIDA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+
+				<!-- idle flying -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_AIR_AIDA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+				</AnimationState>
+
+				<!-- ground dying -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_DIEA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- ground moving -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SHRINK_EFFECT MOVING"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_WLKA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15"
+						Distance="60" />
+					<FXEvent
+						Frame="1"
+						FireWhenSkipped="true"
+						Effect="FX_JapanShrinkVXFP"
+						Bone="B_FootL" />
+					<FXEvent
+						Frame="15"
+						FireWhenSkipped="true"
+						Effect="FX_JapanShrinkVXFP"
+						Bone="B_FootR" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_WLKA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15"
+						Distance="60" />
+					<FXEvent
+						Frame="1"
+						FireWhenSkipped="true"
+						Effect="FX_JapanVXFP"
+						Bone="B_FootL" />
+					<FXEvent
+						Frame="15"
+						FireWhenSkipped="true"
+						Effect="FX_JapanVXFP"
+						Bone="B_FootR" />
+				</AnimationState>
+
+				<!-- ground attacking -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ATTACKING">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_ATKA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+
+				<!-- ground selected -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					StateName="STATE_Selected">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_AIDA"
+						AnimationMode="LOOP" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState();
+						if Prev == "STATE_Idle" or Prev == "State_EMP then
+						CurDrawableSetTransitionAnimState("TRANS_IdleToSelected")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_IdleToSelected">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_BATA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SelectedToIdle">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_ABTA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_GroundToAir">
+					<Animation
+						AnimationName="JUAntiAirVehicleTech1_AIR_TRANS"
+						AnimationMode="ONCE" />
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					WeaponChoiceCriteria="PREFER_GRAB_OVER_DAMAGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_LandMissileLauncherUnmiliWeapon"
+						ObjectStatus="WEAPON_UPGRADED_02"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE ADVANCED_MISSILE_PACKS WEAPON_UPGRADED_03"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_LandMissileLauncher_JapanAdvancedMissilePacksUnmiliWeapon"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE WEAPON_UPGRADED_03"
+						ObjectStatus="ADVANCED_MISSILE_PACKS WEAPON_UPGRADED_02"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_AirMissileLauncherUnmiliWeapon"
+						ObjectStatus="TRANSFORMATION_TOGGLE_STATE WEAPON_UPGRADED_02"
+						ForbiddenObjectStatus="ADVANCED_MISSILE_PACKS WEAPON_UPGRADED_03"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_AirMissileLauncher_JapanAdvancedMissilePacksUnmiliWeapon"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_03"
+						ObjectStatus="TRANSFORMATION_TOGGLE_STATE ADVANCED_MISSILE_PACKS WEAPON_UPGRADED_02"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_LandMissileLauncher"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE ADVANCED_MISSILE_PACKS WEAPON_UPGRADED_03 WEAPON_UPGRADED_02"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_LandMissileLauncher_JapanAdvancedMissilePacks"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE WEAPON_UPGRADED_03 WEAPON_UPGRADED_02"
+						ObjectStatus="ADVANCED_MISSILE_PACKS"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_AirMissileLauncher"
+						ObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+						ForbiddenObjectStatus="ADVANCED_MISSILE_PACKS WEAPON_UPGRADED_03 WEAPON_UPGRADED_02"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_AirMissileLauncher_JapanAdvancedMissilePacks"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_03 WEAPON_UPGRADED_02"
+						ObjectStatus="TRANSFORMATION_TOGGLE_STATE ADVANCED_MISSILE_PACKS"
+						ConquerMetricsAlwaysCount="true" />
+				</WeaponSlotHardpoint>
+				<WeaponSlotTurret
+					ID="2"
+					WeaponChoiceCriteria="PREFER_GRAB_OVER_DAMAGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_LandMissileLauncherUnmiliWeapon"
+						ObjectStatus="WEAPON_UPGRADED_02 WEAPON_UPGRADED_03"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE ADVANCED_MISSILE_PACKS"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_LandMissileLauncher_JapanAdvancedMissilePacksUnmiliWeapon"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+						ObjectStatus="ADVANCED_MISSILE_PACKS WEAPON_UPGRADED_02 WEAPON_UPGRADED_03"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_AirMissileLauncherUnmiliWeapon"
+						ObjectStatus="TRANSFORMATION_TOGGLE_STATE WEAPON_UPGRADED_02 WEAPON_UPGRADED_03"
+						ForbiddenObjectStatus="ADVANCED_MISSILE_PACKS"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_AirMissileLauncher_JapanAdvancedMissilePacksUnmiliWeapon"
+						ObjectStatus="TRANSFORMATION_TOGGLE_STATE ADVANCED_MISSILE_PACKS WEAPON_UPGRADED_03 WEAPON_UPGRADED_02"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_LandMissileLauncher"
+						Upgrade="JapanUnitUpgrade"
+						ObjectStatus="WEAPON_UPGRADED_03"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE ADVANCED_MISSILE_PACKS WEAPON_UPGRADED_02"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_LandMissileLauncher_JapanAdvancedMissilePacks"
+						Upgrade="JapanUnitUpgrade"
+						ObjectStatus="ADVANCED_MISSILE_PACKS WEAPON_UPGRADED_03"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE WEAPON_UPGRADED_02"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_AirMissileLauncher"
+						Upgrade="JapanUnitUpgrade"
+						ObjectStatus="TRANSFORMATION_TOGGLE_STATE WEAPON_UPGRADED_03"
+						ForbiddenObjectStatus="ADVANCED_MISSILE_PACKS WEAPON_UPGRADED_02"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="JapanAntiAirVehicleTech1_AirMissileLauncher_JapanAdvancedMissilePacks"
+						Upgrade="JapanUnitUpgrade"
+						ObjectStatus="TRANSFORMATION_TOGGLE_STATE ADVANCED_MISSILE_PACKS WEAPON_UPGRADED_03"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_02"
+						ConquerMetricsAlwaysCount="true" />
+					<TurretSettings
+						TurretTurnRate="200"
+						TurretPitchRate="180"
+						AllowsPitch="true"
+						MinimumPitch="0d"
+						PitchHeight="0%"
+						ControlledWeaponSlots="SECONDARY_WEAPON">
+						<TurretAITargetChooserData
+							TargetingCompareList="CommandoTargetingCompareList"
+							CanPickDynamicTargets="true"
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+						</TurretAITargetChooserData>
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="VXUseSPLuaFunctions" />
+			<Physics
+				id="ModuleTag_Physics" />
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_03">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_UnmiliWeapon"
+				StatusToSet="WEAPON_UPGRADED_02">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</StatusBitsUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_DeBugUnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_BaseUpgradeAttributeModifier"
+				AttributeModifier="AttributeModifer_JapanBaseUpgradeTengGu">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<!-- Different deaths based on whether it is airborne or not -->
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_LandDeath"
+				CreationList="JUAntiAirVehicleTech1_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="TOPPLED EXTRA_7 EXTRA_6"
+					ExemptStatus="AIRBORNE_TARGET" />
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_AirDeath"
+				CreationList="JUAntiAirVehicleTech1Airborne_Dying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="TOPPLED EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET" />
+				<UpgradeForbidden>Upgrade_JapanEnhancedKamikaze</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_AirKamikazeDeath"
+				CreationList="JUAntiAirVehicleTech1Airborne_EnhancedKamikaze_Dying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="TOPPLED EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET" />
+				<UpgradeRequired>Upgrade_JapanEnhancedKamikaze</UpgradeRequired>
+			</CreateObjectDie>
+			<AttributeModifierUpgrade
+				id="ModuleTag_JapanUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<!--  -->
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_JAP_ChopperVxDie" />
+			</FXListBehavior>
+			<SpecialPower
+				id="ModuleTag_ToggleMechTransformTrigger"
+				SpecialPowerTemplate="SpecialPower_JAAVT1_Transform"
+				UpdateModuleStartsAttack="true" />
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ToggleMechTransform"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				SpecialPowerTemplate="SpecialPower_JAAVT1_Transform"
+				TriggerAttributeModifier="AttributeModifier_JapanAntiAirVehicleTransformation"
+				AttributeModifierDuration="1.6s">
+				<!-- NOTE: Use the ModelConditions attibute in the following Toggle states to put
+				some animation on the Transformation -->
+				<ToggleState
+					LocomotorSet="NORMAL"
+					AttributeModifier="AttributeModifier_JapanTransformNotSky">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_TRANSFORM"
+						NeverUseWhenClear="true"
+						Location="Land">
+						<StateWeapon
+							Weapon="JapanAntiAirVehicleTech1_LandMissileLauncher" />
+					</SkirmishAiInfo>
+				</ToggleState>
+				<ToggleState
+					ObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+					LocomotorSet="SUPERSONIC"
+					ArmorSet="AIRBORNE"
+					ModelConditions="USER_1"
+					AttributeModifier="AttributeModifier_JapanTransformInSky">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT"
+						OnlyUseWhenHaveTarget="true"
+						NeverUseWhenTargetIsAnyKindOf="AIRCRAFT INFANTRY"
+						Location="Land">
+						<StateWeapon
+							Weapon="JapanAntiAirVehicleTech1_AirMissileLauncher" />
+					</SkirmishAiInfo>
+				</ToggleState>
+			</ToggleStatusSpecialAbilityUpdate>
+			<!-- Anti Sub Invisibility-->
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AntiSubInvisibilityAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="350.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_AntiSubInvisibility"
+				RequiredObjectStatusFlags="TRANSFORMATION_TOGGLE_STATE">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="SUBMARINE">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<!-- AlliedAirPowerUpgrade -->
+			<xi:include
+				href="DATA:Includes/AlliedAirPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedAirPowerUpgrade/child::*)" />
+			<xi:include
+				href="DATA:Includes/JapanAdvancedMissilePacksUpgrade.xml" />
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech2/child::*)" />
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech1.xml" />
+			<!-- -->
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="400" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="JAP_StrikerVX_VoiceShrunken"
+					RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior
+				id="Tag_PreventVoiceSelectFromPlayingWhenTransforming">
+				<Override RequiredFlags="USER_3">
+					<AudioArrayVoice>
+						<AudioEntry Sound="" AudioType="voiceSelect" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_ChopperVX">
+				<Override RequiredFlags="USER_1">
+					<AudioArrayVoice>
+						<AudioEntry Sound="JAP_ChopperVX_VoiceMoveAttackWhenFlying"
+							AudioType="voiceAttackAfterMoving" />
+						<AudioEntry Sound="JAP_ChopperVX_VoiceSelectMS" AudioType="voiceSelect" />
+						<AudioEntry Sound="JAP_ChopperVX_VoiceSelectBattleMS"
+							AudioType="voiceSelectBattle" />
+						<AudioEntry Sound="JAP_ChopperVX_VoiceSelectUnderFireMS"
+							AudioType="voiceSelectUnderFire" />
+					</AudioArrayVoice>
+					<AudioArraySound>
+						<AudioEntry Sound="JAP_ChopperVX_MoveLoop" AudioType="soundMoveLoop" />
+						<AudioEntry Sound="JAP_ChopperVX_MoveLoopDamaged"
+							AudioType="soundMoveLoopDamaged" />
+						<AudioEntry Sound="JAP_ChopperVX_MoveStart" AudioType="soundMoveStart" />
+						<AudioEntry Sound="JAP_ChopperVX_MoveStartDamaged"
+							AudioType="soundMoveStartDamaged" />
+					</AudioArraySound>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="FlyingAndTransformations">
+				<ModelConditionSound Sound="JAP_ChopperVX_TransToStrikerVX" RequiredFlags="USER_3"
+					ExcludedFlags="USER_1" />
+				<ModelConditionSound Sound="JAP_StrikerVX_TransToChopperVX"
+					RequiredFlags="USER_3 USER_1" />
+				<ModelConditionSound Sound="JAP_ChopperVX_IdleLoop" RequiredFlags="USER_1"
+					ExcludedFlags="DAMAGED REALLYDAMAGED MOVING" />
+				<ModelConditionSound Sound="JAP_ChopperVX_IdleDamagedLoop"
+					RequiredFlags="USER_1 DAMAGED" ExcludedFlags="REALLYDAMAGED MOVING" />
+				<ModelConditionSound Sound="JAP_ChopperVX_IdleReallyDamagedLoop"
+					RequiredFlags="USER_1 REALLYDAMAGED" ExcludedFlags="DAMAGED MOVING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<AnimationSoundClientBehavior id="AnimationSounds">
+				<Sound Sound="JAP_StrikerVX_Footstep" Animation="JUAntiAirVehicleTech1_WLKA"
+					Frame="15 30" />
+				<Sound Sound="JAP_StrikerVX_Footstep" Animation="JUAntiAirVehicleTech1_DIEA"
+					Frame="7 34" />
+				<Sound Sound="JAP_StrikerVX_Footstep" Animation="JUAntiAirVehicleTech1_BATA"
+					Frame="21 30" />
+				<Sound Sound="JAP_StrikerVX_Footstep" Animation="JUAntiAirVehicleTech1_ABTA"
+					Frame="12 26" />
+				<Sound Sound="JAP_StrikerVX_Footstep" Animation="JUAntiAirVehicleTech1_TRANS"
+					Frame="8" />
+			</AnimationSoundClientBehavior>
+			<ModelConditionEvaEventSelectorClientBehavior id="ModuleTag_TransformModeEVA">
+				<Override RequiredFlags="USER_1">
+					<EvaEventArray>
+						<EvaEntry EvaEvent="EnemyAircraftDetected" EvaType="enemyObjectSighted" />
+					</EvaEventArray>
+				</Override>
+			</ModelConditionEvaEventSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="20.0"
+				MinorRadius="12.0"
+				Height="12.0"
+				ContactPointGeneration="VEHICLE">
+				<Offset
+					x="3.0"
+					y="0.0"
+					z="0.0" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_ChopperVX_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="JAP_ChopperVX_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_ChopperVX_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_ChopperVX_VoiceMoveAttackWhenWalking"
+				AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="JAP_ChopperVX_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="JAP_StrikerVX_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="JAP_StrikerVX_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="JAP_StrikerVX_VoiceSelectUnderFireMS"
+				AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_StrikerVX_MoveStart" AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+	</GameObject>
+	<GameObject
+		id="JapanAntiAirVehicleTech1_Crate"
+		inheritFrom="JapanAntiAirVehicleTech1"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="JapanAntiAirVehicleTech1_Crate">
+		<EquivalentTo>JapanAntiAirVehicleTech1</EquivalentTo>
+	</GameObject>
+	<GameObject
+		id="JapanAntiAirVehicleTech1_Water"
+		inheritFrom="JapanAntiAirVehicleTech1"
+		EditorName="JapanAntiAirVehicleTech1_Water">
+		<EquivalentTo>JapanAntiAirVehicleTech1</EquivalentTo>
+		<GameDependency
+			xai:joinAction="Replace">
+			<NeededUpgrade>Upgrade_JapanWarFactoryWaterTech2</NeededUpgrade>
+		</GameDependency>
+		<Behaviors>
+			<ActivateSpecialPowerOnCreate
+				id="ModuleTag_ActivateSpecialPowerOnCreate">
+				<SpecialPowerTemplate>SpecialPower_JAAVT1_Transform</SpecialPowerTemplate>
+			</ActivateSpecialPowerOnCreate>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

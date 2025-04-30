@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<!-- The default tank projectile -->
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="ART:FXNodTankShell.w3x" />
+	</Includes>
+	
+	<GameObject
+		id="JapanAntiVehicleVehicleTech1Projectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE NO_COLLIDE SMALL_MISSILE"
+		EditorName="JapanAntiVehicleVehicleTech1Projectile">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+					<ParticleSysBone
+						BoneName="FX_Trail01"
+						FXParticleSystemTemplate="JapanMediumCaliberGunTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Trail01"
+						FXParticleSystemTemplate="JapanMediumAPFSDSTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Trail02"
+						FXParticleSystemTemplate="JapanMediumCaliberGunTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Trail02"
+						FXParticleSystemTemplate="JapanMediumAPFSDSTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_None" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="0"
+				SecondPercentIndent="0"
+				CurveFlattenMinDist="300"
+				FlightPathAdjustDistPerSecond="50"/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	<GameObject
+		id="JapanAntiVehicleVehicleTech1Projectile_Veteran"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE NO_COLLIDE SMALL_MISSILE"
+		EditorName="JapanAntiVehicleVehicleTech1Projectile_Veteran">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+					<ParticleSysBone
+						BoneName="FX_Trail01"
+						FXParticleSystemTemplate="JapanMediumCaliberGunTrailVeteran"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Trail01"
+						FXParticleSystemTemplate="JapanMediumAPFSDSTrailVeteran"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Trail02"
+						FXParticleSystemTemplate="JapanMediumCaliberGunTrailVeteran"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Trail02"
+						FXParticleSystemTemplate="JapanMediumAPFSDSTrailVeteran"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_None" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				CurveFlattenMinDist="300"
+				FlightPathAdjustDistPerSecond="50"/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	<FXParticleSystemTemplate ParticleTexture="FXMissileStreak" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" SortLevel="1" SystemLifetime="25" Type="TRAIL" id="JapanMediumCaliberGunTrail">
+		<Lifetime High="25" Low="5"/>
+		<Size High="7" Low="7"/>
+		<StartSizeRate High="-3.5" Low="-3.5"/>
+		<BurstDelay High="200" Low="200"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="0"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Wind AngleChangeMax="0.1" AngleChangeMin="0.05" FullStrengthDist="5" PingPongEndAngleMin="5.49779" PingPongStartAngleMax="0.1" Strength="1" TurbulenceAmplitude="0.01" TurbulenceFrequency="5"/>
+		<Physics>
+			<Default ParticlesAttachToBone="true">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Trail TrailLife="40"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXMissileStreak" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" SortLevel="1" SystemLifetime="25" Type="TRAIL" id="JapanMediumCaliberGunTrailVeteran">
+		<Lifetime High="25" Low="5"/>
+		<Size High="7" Low="7"/>
+		<StartSizeRate High="-3.5" Low="-3.5"/>
+		<BurstDelay High="200" Low="200"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.2" g="0.2" r="0.5"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Wind AngleChangeMax="0.1" AngleChangeMin="0.05" FullStrengthDist="5" PingPongEndAngleMin="5.49779" PingPongStartAngleMax="0.1" Strength="1" TurbulenceAmplitude="0.01" TurbulenceFrequency="5"/>
+		<Physics>
+			<Default ParticlesAttachToBone="true">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Trail TrailLife="40"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXMissileStreak" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" SortLevel="1" Type="TRAIL" id="JapanMediumAPFSDSTrail">
+		<Lifetime High="12" Low="25"/>
+		<Size High="1" Low="1"/>
+		<BurstDelay High="200" Low="200"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="0"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default ParticlesAttachToBone="true">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Trail TrailLife="50"/>
+		</Draw>
+		<Volume>
+			<Line>
+				<StartPoint x="0" y="0" z="0"/>
+				<EndPoint x="0" y="0" z="0"/>
+			</Line>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXMissileStreak" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" SortLevel="1" Type="TRAIL" id="JapanMediumAPFSDSTrailVeteran">
+		<Lifetime High="12" Low="25"/>
+		<Size High="1" Low="1"/>
+		<BurstDelay High="200" Low="200"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.2" g="0.2" r="0.5"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default ParticlesAttachToBone="true">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Trail TrailLife="50"/>
+		</Draw>
+		<Volume>
+			<Line>
+				<StartPoint x="0" y="0" z="0"/>
+				<EndPoint x="0" y="0" z="0"/>
+			</Line>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

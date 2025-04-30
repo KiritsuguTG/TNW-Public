@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Tags></Tags>
+  <Includes>
+    <Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+    <Include type="all"	source="ART:Structures/AlliedTheWorld/FXTHEWORLD.w3x" />
+    <Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+  </Includes>
+  <GameObject
+		id="OilDerrickSpawnNeutral"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="PRELOAD STRUCTURE IMMOBILE UNATTACKABLE NOT_AUTOACQUIRABLE AUTO_ACQUIRABLE_BY_AI CAN_CAST_REFLECTIONS RESIST_EMP CANNOT_HIJACK NO_GARRISON NO_COLLIDE IGNORE_IN_AI_HUNT_TACTIC COVER CAN_BUILD_ON_WATER CAN_BUILD_ON_DEEP_WATER"
+		EditorName="OilDerrickSpawnNeutral">
+    <DisplayName>Name:OilDerrickSpawnNeutral</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+    <Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="false">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="" />
+        </ModelConditionState>
+      </ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="298s"
+				MaxLifetime="298s" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="NBOilDerrick_Spawn_OCL">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+		<AssistedPlacementInfoBehavior
+			id="AssistedOilDerrickBehavior_ModuleData">
+			<HintObject
+				HintDisplayObject="OilDerrick"
+					PlayerTemplate="Allies"
+					HintOpacity="0.6"
+					HintUsesShaders="true"/>
+			<HintObject
+				HintDisplayObject="OilDerrick"
+					PlayerTemplate="Soviet"
+					HintOpacity="0.6"
+				HintUsesShaders="true"/>
+			<HintObject
+				HintDisplayObject="OilDerrick"
+					PlayerTemplate="Japan"
+					HintOpacity="0.6"
+				HintUsesShaders="true"/>
+			<HintObject
+				HintDisplayObject="OilDerrick"
+					PlayerTemplate="AlliesG"
+					HintOpacity="0.6"
+				HintUsesShaders="true"/>
+			<HintObject
+				HintDisplayObject="OilDerrick"
+					PlayerTemplate="SovietB"
+					HintOpacity="0.6"
+				HintUsesShaders="true"/>
+			<HintObject
+				HintDisplayObject="OilDerrick"
+					PlayerTemplate="JapanA"
+					HintOpacity="0.6"
+				HintUsesShaders="true"/>
+			<HintObject
+				HintDisplayObject="OilDerrick"
+					PlayerTemplate="AlliesE"
+					HintOpacity="0.6"
+				HintUsesShaders="true"/>
+			<HintObject
+				HintDisplayObject="OilDerrick"
+					PlayerTemplate="SovietL"
+					HintOpacity="0.6"
+				HintUsesShaders="true"/>
+			<HintObject
+				HintDisplayObject="OilDerrick"
+				PlayerTemplate="JapanG"
+				HintOpacity="0.6"
+				HintUsesShaders="true"/>
+			<SuggestedOffset
+				x = "0.0"
+				y = "0.0"
+				z = "0.0" />
+		</AssistedPlacementInfoBehavior>
+    </Behaviors>
+    <AI>
+      <AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+    </AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+	  <Geometry
+		  IsSmall="false">
+		  <PlacementShape
+			   Type= "BOX"
+			   MajorRadius = "45.8023"
+			   MinorRadius = "40.8427"
+			   Height = "38"
+			   ContactPointGeneration="STRUCTURE">
+			  <Offset
+				  x = "0.0"
+				  y = "0.0"
+				  z = "0.0" />
+		  </PlacementShape>
+		  <Shape
+			  Type= "BOX"
+			  MajorRadius = "1"
+			  MinorRadius = "1"
+			  Height = "1"
+			  ContactPointGeneration = "STRUCTURE" >
+			  <Offset
+				  x = "0.0"
+				  y = "0.0"
+				  z = "0.0" />
+		  </Shape>
+	  </Geometry>
+    <VisionInfo
+			VisionRange="1"
+			ShroudClearingRange="0" />
+  </GameObject>
+  <GameObject
+		id="ScienceLabSpawnNeutral"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="PRELOAD VEHICLE IMMOBILE UNATTACKABLE NOT_AUTOACQUIRABLE CAN_CAST_REFLECTIONS RESIST_EMP CANNOT_HIJACK NO_GARRISON"
+		EditorName="ScienceLabSpawnNeutral">
+    <DisplayName>Name:ScienceLabSpawnNeutral</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+    <Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="false">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="" />
+        </ModelConditionState>
+      </ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+			<GrantUpgradeCreate
+				id="ModuleTag_ObjectCreation"
+			  UpgradeToGrant="Upgrade_ObjectDefault"/>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="0.2s"
+				MaxLifetime="0.2s" />
+			<ObjectCreationUpgrade
+				id="ModuleTag_ObjectCreationUpgrade"
+				UpgradeObject="ScienceLabSpawn_OCL">
+				<TriggeredBy>Upgrade_ObjectDefault</TriggeredBy>
+			</ObjectCreationUpgrade>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+    </Behaviors>
+    <AI>
+      <AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+    </AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+    <VisionInfo
+			VisionRange="1"
+			ShroudClearingRange="0" />
+  </GameObject>
+</AssetDeclaration>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="SovietAntiGroundAircraftWeapon"
+		AttackRange="200.0"
+		WeaponSpeed="250"
+		MinWeaponSpeed="50"
+		MaxWeaponSpeed="250"
+		FireFX="FX_SOV_Hind_MissleFire"
+		FireVeteranFX="FX_SOV_Hind_MissleFire"
+		AcceptableAimDelta="10d"
+		ClipSize="8"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER">
+		<FiringDuration
+				MinSeconds=".1s"
+				MaxSeconds=".1s" />
+		<ClipReloadTime
+				MinSeconds="5s"
+				MaxSeconds="5s" />
+		<Nuggets>
+			<ProjectileNugget
+				ProjectileTemplate="SovietAntiGroundAircraftWeaponProjectile"
+				WarheadTemplate="SovietAntiGroundAircraftWeaponWarhead">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+				<VeterancyProjectiles
+					VeterancyLevel="HEROIC"
+					ProjectileTemplate="SovietAntiGroundAircraftWeaponProjectile_Vet"/>
+			</ProjectileNugget>
+			<InformTargetNugget>
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+			</InformTargetNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="SovietAntiGroundAircraftWeaponWarhead"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER" >
+		<Nuggets>
+			<DamageNugget
+				Damage="50.0"
+				Radius="20.0"
+				DamageTaperOff="0"
+				DamageType="ROCKET"
+				DeathType="EXPLODED">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE"/>
+				<DamageScalarDetails Scalar= "0%">
+					<Filter
+						Rule="ALL"
+					      Relationship="ALLIES"
+					      StatusBitFlagsExclude="HEALTH_PERCENT_100"/>
+				</DamageScalarDetails>
+				<DamageScalarDetails Scalar= "100%">
+					<Filter
+						Rule="ALL"
+					      Relationship="ALLIES"
+					      StatusBitFlags="HEALTH_PERCENT_100"/>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="SovietAntiGroundAircraftAutoCannon"
+		FireFX="FX_MuzzleSovietAir"
+		FireVeteranFX="FX_MuzzleSovietAir_Vet"
+		FireSoundPerClip="SOV_Twinblade_MachineGunFire"
+		AttackRange="200.0"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		CanFireWhileMoving="true"
+		ClipSize="6"
+		ReAcquireDetailType="PER_CLIP">
+		<FiringDuration
+			MinSeconds="0.1s"
+			MaxSeconds="0.1s" />
+		<ClipReloadTime
+			MinSeconds="0.5s"
+			MaxSeconds="0.5s" />
+		<Nuggets>
+			<DamageNugget
+				Damage="5.0"
+				Radius="0.0"
+				DamageType="AUTO_CANNON"
+				DamageFXType="SOVIET_MACHINEGUN"
+				DeathType="NORMAL">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

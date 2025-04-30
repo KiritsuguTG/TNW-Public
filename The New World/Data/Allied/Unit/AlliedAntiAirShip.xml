@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="all"
+			source="ART:AUAntiAirShip_D.xml" />
+		<Include
+			type="all"
+			source="ART:AUAntiAirShip_FX.w3x" />
+		<Include
+			type="all"
+			source="ART:AUAntiAirShip_FPZ.w3x" />
+		<Include
+			type="all"
+			source="ART:AUAntiAirShip_SKN.w3x" />
+		<Include
+			type="all"
+			source="ART:FXGradient01.xml" />
+		<Include
+			type="all"
+			source="ART:FXTracer.xml" />
+		<Include
+			type="all"
+			source="ART:FXTracerHeroic.xml" />
+		<!-- needed for temp laserEndParticleSystemFX? -->
+		<Include
+			type="all"
+			source="ART:SUAntiVehicleVehicleTech3_FX.w3x" />
+		<Include
+			type="all"
+			source="ART:Units/AlliedAntiAirShip/AlliedAntiAirPrime.w3x" />
+		<Include
+			type="instance"
+			source="ART:FXGrid_3.xml" />
+		<Include
+			type="instance"
+			source="ART:FXHarpoonBeam.xml" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- aka The Hydrofoil -->
+	<GameObject
+		id="AlliedAntiAirShip"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_AlliedAntiAirShip"
+		ButtonImage="Button_AlliedAntiAirShip_on"
+		Side="Allies"
+		SubGroupPriority="440"
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="30"
+		TransportSlotCount="10"
+		BuildTime="9"
+		CommandSet="AlliedAntiAirShipCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE SHIP CAN_BE_FAVORITE_UNIT TRANSFORMER FS_RADAR"
+		RadarPriority="UNIT"
+		ProductionQueueType="WATERCRAFT"
+		UnitCategory="VEHICLE"
+		WeaponCategory="GUN"
+		VoicePriority="188"
+		BountyValue="150"
+		EditorName="AlliedAntiAirShip"
+		Description="Desc:AlliedAntiAirShip"
+		TypeDescription="Type:AlliedAntiAirShip"
+		UnitIntro="Allied_Hydrofoil_UnitIntro"
+		SelectPortraitTransformed="Portrait_AlliedAntiAirShip"
+		ButtonImageTransformed="ButtonAlliedAntiAirShipB"
+		DescriptionTransformed="Desc:AlliedAntiAirShip"
+		TypeDescriptionTransformed="Type:AntiAir">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedAntiAirShip</DisplayName>
+		<DisplayNameTransformed
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedAntiAirShip</DisplayNameTransformed>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="900" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAntiAirVehicleArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="DefaultWaterLocomotorSet"
+			Locomotor="AlliedAntiAirShipWaterLocomotor"
+			Condition="NORMAL"
+			Speed="125" />
+		<LocomotorSet
+			Locomotor="AlliedAntiAirShipWaterLocomotor_LeavingFactory"
+			Condition="EXITING_PRODUCTION_STRUCTURE"
+			Speed="125.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsOverrideDamageType="AUTO_CANNON"
+			ConquerMetricsDpsBonusAgainstDefenses="3.0"
+			ConquerMetricsOverrideAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="FX_Weapon_01 FX_Weapon_02">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="AUANTIAIRSHIPTNW_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon_01" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon_01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon_01" />
+
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Weapon_02" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Weapon_02" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_Weapon_02" />
+					<Turret
+						TurretNameKey="turret"
+						TurretPitch="Turret_Pitch"
+						TurretID="1" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW USER_2">
+					<Model
+						Name="AUANTIAIRSHIPTNW_SKN" />
+					<Material
+						ShaderName="FX_FormPreview.fx"
+						TechniqueName="Default">
+						<Constants>
+							<Texture Name="SpecMap">
+								<Value>FXGradient01</Value>
+							</Texture>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="AUANTIAIRSHIPTNW_SKN" />
+					<Material
+						ShaderName="FX_FormPreview.fx"
+						TechniqueName="Default">
+						<Constants>
+							<Texture Name="SpecMap">
+								<Value>FXGradient01</Value>
+							</Texture>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED USER_2">
+					<Model
+						Name="AUANTIAIRSHIPTNW_SKN" />
+					<Texture
+						Original="AUAntiAirShip"
+						New="AUAntiAirShip1_D" />
+					<Texture
+						Original="AUAntiVehicleVehicleTech3"
+						New="AUAntiVehicleVehicleTech3_D" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUANTIAIRSHIPTNW_SKN" />
+					<Texture
+						Original="AUAntiAirShip1"
+						New="AUAntiAirShip1_D" />
+					<Texture
+						Original="AUAntiAirShip"
+						New="AUAntiAirShip_D" />
+					<Texture
+						Original="AUAntiVehicleVehicleTech3"
+						New="AUAntiVehicleVehicleTech3_D" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="AUANTIAIRSHIPTNW_SKN" />
+					<Texture
+						Original="AUAntiAirShip"
+						New="AUAntiAirShip1" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableShowSubObjectPermanently("GUN")
+						CurDrawableHideSubObjectPermanently("BEAM")
+						CurDrawableHideSubObjectPermanently("PRIME")
+					</Script>
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="SmallShipWakeIdle"
+						FollowBone="false" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AUHydrofoilWaterWake"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="SovietAntiNavyShipFroth"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="SovietAntiNavyShipWaterMist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="SovietAntiNavyShipWaterMist"
+						FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1 WEAPONSTATE_TWO">
+					<Script>
+						CurDrawableHideSubObjectPermanently("GUN")
+						CurDrawableShowSubObjectPermanently("BEAM")
+						CurDrawableHideSubObjectPermanently("PRIME")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Script>
+						CurDrawableHideSubObjectPermanently("GUN")
+						CurDrawableHideSubObjectPermanently("BEAM")
+						CurDrawableShowSubObjectPermanently("PRIME")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="WEAPONSTATE_TWO">
+					<Script>
+						CurDrawableHideSubObjectPermanently("GUN")
+						CurDrawableShowSubObjectPermanently("BEAM")
+						CurDrawableHideSubObjectPermanently("PRIME")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+
+			<ScriptedModelDraw
+				id="ModuleTag_DrawZ"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="FX_Weapon_01 FX_Weapon_02">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="AUAntiAirShip_FPZ" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableShowSubObjectPermanently("GUN")
+						CurDrawableHideSubObjectPermanently("BEAM")
+						CurDrawableHideSubObjectPermanently("PRIME")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Script>
+						CurDrawableHideSubObjectPermanently("GUN")
+						CurDrawableHideSubObjectPermanently("BEAM")
+						CurDrawableShowSubObjectPermanently("PRIME")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<!-- Used in the Weapon Scramble Beam -->
+			<LaserDraw
+				id="ModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="0"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="40"
+				LaserStateID="1">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXGrid_3</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXInterlacedMask2</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>0.00000</Value>
+							<Value>2.00000</Value>
+							<Value>1.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<!-- Used for the Prism -->
+			<LaserDraw
+				id="ModuleTag_LaserPrismDraw"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="15"
+				WeaponSlotID="1"
+				LaserStateID="2">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlliedPrismBeam</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlliedPrismBeam</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>4.000000</Value>
+							<Value>4.000000</Value>
+							<Value>4.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<!-- VETERAN -->
+			<LaserDraw
+				id="ModuleTag_LaserDraw_Vet"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="15"
+				WeaponSlotID="1"
+				LaserStateID="3">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlliedPrismBeam</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlliedPrismBeam_Vet</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>4.000000</Value>
+							<Value>4.000000</Value>
+							<Value>4.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+
+			<LaserDraw
+				id="ModuleTag_LaserDistort"
+				UseDistortionShader="true"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".01"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="1"
+				LaserWidth="50"
+				LaserStateID="503">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXRailGunCoreDistortion</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXRailGunCoreMask</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<!-- Used for the Phalanx Gun-->
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw"
+				MinLength="10.0"
+				MaxLength="25.0"
+				Width="15.0"
+				MinSpeed="22"
+				MaxSpeed="32"
+				SweepSpeed="3.0"
+				SpreadAngle="5.0"
+				MinTracersPerFrame="0.4"
+				MaxTracersPerFrame="0.4"
+				FrameLifeTime="25"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracer"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="0.75"
+					b="0.65"
+					a="0.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_03 TRANSFORMATION_TOGGLE_STATE WEAPON_UPGRADED_02" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawVeterancy"
+				MinLength="10.0"
+				MaxLength="25.0"
+				Width="15.0"
+				MinSpeed="30"
+				MaxSpeed="30"
+				SweepSpeed="0.5"
+				SpreadAngle="0.5"
+				MinTracersPerFrame="0.4"
+				MaxTracersPerFrame="0.4"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracerHeroic"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="0.0"
+					b="0.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="0.75"
+					b="0.65"
+					a="0.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_02"
+					ForbiddenStatus="TRANSFORMATION_TOGGLE_STATE WEAPON_UPGRADED_03" />
+			</TracerModelDraw>
+			<!-- DRAW PARTICLES -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUAntiAirShip_FX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AUAntiAirShip_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUAntiAirShip_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1"
+					WeaponChoiceCriteria="PREFER_GRAB_OVER_DAMAGE">
+					<!-- This weapon is always around, but the weapon template itself prevents it
+							 from being able to be fired once it's upgraded. -->
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedAntiAirShipPhalanxGun"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE WEAPON_UPGRADED_03" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedAntiAirShipAntiAirPrism"
+						ObjectStatus="WEAPON_UPGRADED_03"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="AlliedAntiAirShipWeaponScrambler"
+						ObjectStatus="TRANSFORMATION_TOGGLE_STATE" />
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="0d"
+						AllowsPitch="true"
+						TurretPitchRate="180"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="10.0"
+						MaxIdleScanAngle="90.0"
+						ComeToHaltJiggle="3d">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<FireWeaponCollide
+				id="ModuleTag_FireBaseAutoAndShipWeaponCollide"
+				xai:joinAction="Remove" />
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_03">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_02">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<LaserState
+				id="ModuleTag_LaserState"
+				LaserId="1">
+				<LaserEndParticleSystem>AlliedHydroScrambler_Sparks</LaserEndParticleSystem>
+				<LaserStartParticleSystem>AlliedHydroScrambler_Start</LaserStartParticleSystem>
+			</LaserState>
+			<LaserState
+				id="ModuleTag_PrismLaserState"
+				LaserId="2">
+				<LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+				<LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+				<LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+			</LaserState>
+			<!-- VETERAN -->
+			<LaserState
+				id="ModuleTag_PrismLaserState_Vet"
+				LaserId="3">
+				<LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+				<LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+				<LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+			</LaserState>
+			<LaserState
+				id="ModuleTag_LaserDistortStateA"
+				LaserId="503">
+			</LaserState>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AUAntiAirShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FLOODED EXTRA_7 EXTRA_6" />
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieWhole"
+				CreationList="AUAntiAirShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="FLOODED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_HydrofoilDie" />
+			</FXListBehavior>
+
+			<!-- The toggle for the Weapon Scrambler -->
+			<SpecialPower
+				id="ModuleTag_ActivateWeaponScrambler"
+				SpecialPowerTemplate="SpecialPower_ToggleWeaponScrambler"
+				UpdateModuleStartsAttack="true" />
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ActivateWeaponScramblerUpdate"
+				SpecialPowerTemplate="SpecialPower_ToggleWeaponScrambler"
+				Options="RECONSTITUTE_STORED_COMMAND">
+
+				<ToggleState
+					EnterStateSound="ALL_HydroFoil_ScramblerToggleOffMS">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT">
+						<StateWeapon
+							Weapon="AlliedAntiAirShipPhalanxGun" />
+					</SkirmishAiInfo>
+				</ToggleState>
+
+				<ToggleState
+					ObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+					ModelConditions="WEAPONSTATE_TWO"
+					EnterStateSound="ALL_HydroFoil_ScramblerToggleOnMS">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_LOCKDOWN"
+						NeverUseInState="RETREAT"
+						NeverUseWhenTargetIsAnyKindOf="INFANTRY COMMANDO FIGHTER_AIRCRAFT HARVESTER UNATTACKABLE">
+						<StateWeapon
+							Weapon="AlliedAntiAirShipWeaponScrambler" />
+					</SkirmishAiInfo>
+				</ToggleState>
+
+			</ToggleStatusSpecialAbilityUpdate>
+
+			<!-- The special power that is used by the weapon -->
+			<SpecialPower
+				id="ModuleTag_WeaponScrambler"
+				SpecialPowerTemplate="SpecialPower_WeaponScrambler"
+				TriggerFX="FX_None"
+				UpdateModuleStartsAttack="false" />
+
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			
+			<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_DeBugDamageMultUnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_LaserUpgradelPower"
+				AttributeModifier="AttributeMod_PlayerPowerUpgradeAttributeFX">
+				<TriggeredBy>Upgrade_AlliedLaserUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_AlliedUnitUpgrade"
+				AddConditionFlags="USER_1">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</ModelConditionUpgrade>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech1.xml"/>
+			<!-- Japan NavalPower -->
+			<xi:include
+				href="DATA:Includes/JapanNavalPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanNavalPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					IdleScanDelay="0.0s">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_02"
+				MaxHealth="400" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="ALL_Hydrofoil_VoiceShrunken"
+					RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_VoiceAttackWeaponJammer">
+				<Override RequiredFlags="WEAPONSTATE_TWO">
+					<AudioArrayVoice>
+						<AudioEntry Sound="ALL_Hydrofoil_VoiceAttackSpecial" AudioType="voiceAttack" />
+						<AudioEntry Sound="ALL_Hydrofoil_VoiceSelectMS"
+							AudioType="voiceSelectBattle" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="30.0"
+				MinorRadius="18.0"
+				Height="20.0"
+				ContactPointGeneration="VEHICLE" />
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="ALL_Hydrofoil_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="ALL_Hydrofoil_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="ALL_Hydrofoil_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="ALL_Hydrofoil_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="ALL_Hydrofoil_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="ALL_Hydrofoil_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="ALL_Hydrofoil_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="ALL_Hydrofoil_VoiceSelectUnderFireMS"
+				AudioType="voiceSelectUnderFire" />
+			<!-- <NamedEntry Sound="ALL_Hydrofoil_VoiceAttackSpecial" Name="VoiceWeaponScrambler" />
+			oops plays on toggle -->
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALL_Hydrofoil_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+			<AudioEntry
+				Sound="Ship_Small_MoveLoopWater"
+				AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="375"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="1"
+			CrushableLevel="25" />
+	</GameObject>
+	<GameObject
+		id="AlliedAntiAirShip_Crate"
+		inheritFrom="AlliedAntiAirShip"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="AlliedAntiAirShip_Crate">
+		<EquivalentTo>AlliedAntiAirShip</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+    <Tags></Tags>
+	<!-- aka Jet Tengu / Mecha Tengu -->
+  <Includes>
+    <Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all"	source="ART:Units/MODAntiInfantryVehicle/JUTransportVehicle_SKN.w3x" />
+		<Include type="all"	source="ART:Units/MODAntiInfantryVehicle/SMALLNANOSHELD_SKN.w3x" />
+		<!-- Base Object -->
+		<Include type="instance"	source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="MODAntiInfantryVehicle"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_MODAntiInfantryVehicle"
+		ButtonImage="Button_MODAntiInfantryVehicle"
+		Side="Japan"
+		SubGroupPriority="310"
+		EditorSorting="UNIT"
+		BuildTime="6"
+		CommandSet="MODAntiInfantryVehicleCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT TRANSFORMER AMPHIBIOUS FS_RADAR"
+		ThreatLevel="10"
+		WeaponCategory="GUN"
+		VoicePriority="176"
+		BountyValue="150"
+		EditorName="MODAntiInfantryVehicle"
+		Description="Desc:MODAntiInfantryVehicle"
+		TypeDescription="Type:AntiAirAndInfantry"
+		HealthBoxHeightOffset="30"
+		SelectPortraitTransformed="Portrait_MODAntiInfantryVehicle"
+		ButtonImageTransformed="ButtonMODAntiInfantryVehicleB"
+		DescriptionTransformed="Desc:MODAntiInfantryVehicle"
+		TypeDescriptionTransformed="Type:AntiAirAndInfantry">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODAntiInfantryVehicle</DisplayName>
+		<DisplayNameTransformed
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODAntiInfantryVehicle</DisplayNameTransformed>
+		<GameDependency
+			ForbiddenModelConditions="OVER_WATER"/>
+		<ObjectResourceInfo>
+            <BuildCost Account="=$ACCOUNT_ORE" Amount="600"/>
+        </ObjectResourceInfo>
+        <SkirmishAIInformation
+			    UnitBuilderStandardCombatUnit="true"
+				OverrideInnerDistanceToTarget="5"/>
+        <ArmorSet
+			Armor="BaseHarassmentVehicleArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="DefaultLandLocomotor"
+			Locomotor="TestReactiveLocomotorWHEELS"
+			Condition="NORMAL"
+			Speed="100.0" />
+		<LocomotorSet
+			id="DefaultWaterLocomotor"
+			Locomotor="TestReactiveLocomotorSHIPWATER"
+			Condition="NORMAL"
+			Speed="80.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="2.0"
+			ConquerMetricsOverrideDamageType="AUTO_CANNON"
+			ConquerMetricsOverrideAntiMask="ANTI_INFANTRY"
+			ConquerMetricsOverrideDefendingAntiMask="ANTI_VEHICLE"/>
+        <Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="BONE_TIRE_FRONT_LEFT BONE_TIRE_FRONT_RIGHT BONE_TIRE_BACK_LEFT01 BONE_TIRE_BACK_RIGHT01 BONE_TIRE_BACK_LEFT02 BONE_TIRE_BACK_RIGHT02 FX_GUN01 FX_GUN02 BONE_TIRE_LEFT_REAR BONE_TIRE_RIGHT_REAR"
+				TrackMarks="EXTireTrack2"
+				LeftFrontTireBone="BONE_TIRE_FRONT_LEFT"
+				RightFrontTireBone="BONE_TIRE_FRONT_RIGHT"
+				MidLeftFrontTireBone="BONE_TIRE_BACK_LEFT01"
+				MidRightFrontTireBone="BONE_TIRE_BACK_RIGHT01"
+				LeftRearTireBone="BONE_TIRE_BACK_LEFT02"
+				RightRearTireBone="BONE_TIRE_BACK_RIGHT02"
+				TrackMarksLeftBone="BONE_TIRE_LEFT_REAR"
+				TrackMarksRightBone="BONE_TIRE_RIGHT_REAR">
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="JUTRANSPORTVEHICLE_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_GUN" />
+					<WeaponLaunchBone
+						  WeaponSlotID="1"
+						  WeaponSlotType="PRIMARY_WEAPON"
+						  BoneName="FX_GUN" />
+					<Turret
+						TurretNameKey="BONE_TURRET"
+						TurretPitch="TURRET_PITCH"
+						TurretID="1" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="JUTRANSPORTVEHICLE_SKN" />
+					<ParticleSysBone
+						BoneName="DAMAGE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUTRANSPORTVEHICLE_SKN" />
+					<Texture
+						Original="JUMCV"
+						New="JUMCV_D" />
+					<ParticleSysBone
+						BoneName="DAMAGE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER MOVING">
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="JapanTenguMovingWaterMist"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="JapanTenguMovingWaterWake"
+						FollowBone="true"/>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="JapanTenguMovingWaterWake"
+						FollowBone="true"/>
+				</AnimationState>
+			</TruckDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+				id="ModuleTag_FX"
+				OkToChangeModelColor="true"
+				Selectable="false">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Model
+						Name="SMALLNANOSHELD_SKN" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<xi:include
+					  href="DATA:Includes/HeadlightDraw2.xml"
+					  xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:HeadlightDraw2/child::*)" />
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw"
+				MinLength="30.0"
+				MaxLength="30.0"
+				Width="10.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.2"
+				MaxTracersPerFrame="0.3"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXJapanTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="1">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawVeterancy"
+				MinLength="20.0"
+				MaxLength="20.0"
+				Width="10.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.5"
+				MaxTracersPerFrame="0.5"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXJapanTankProjectile_Veteran"
+				UseAdditiveBlending="true"
+				WeaponSlotID="1">
+				<HeadColor
+						  r="1.0"
+						  g="0.0"
+						  b="0.0"
+						  a="1.0" />
+				<TailColor
+						   r="1.0"
+						   g="0.0"
+						   b="0.0"
+						   a="1.0" />
+				<ObjectStatusValidation
+						   RequiredStatus="WEAPON_UPGRADED_01"/>
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawVeterancyUpgrade"
+				MinLength="20.0"
+				MaxLength="20.0"
+				Width="10.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.5"
+				MaxTracersPerFrame="0.5"
+				FrameLifeTime="35"
+				WeaponSlotType="SECONDARY_WEAPON"
+				Texture="FXJapanTankProjectile_Veteran"
+				UseAdditiveBlending="true"
+				WeaponSlotID="1">
+				<HeadColor
+						  r="1.0"
+						  g="0.0"
+						  b="0.0"
+						  a="1.0" />
+				<TailColor
+						   r="1.0"
+						   g="0.0"
+						   b="0.0"
+						   a="1.0" />
+				<ObjectStatusValidation
+						   RequiredStatus="WEAPON_UPGRADED_01"/>
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawUpgrade"
+				MinLength="30.0"
+				MaxLength="30.0"
+				Width="10.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.2"
+				MaxTracersPerFrame="0.3"
+				FrameLifeTime="35"
+				WeaponSlotType="SECONDARY_WEAPON"
+				Texture="FXJapanTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="1">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01"/>
+			</TracerModelDraw>
+        </Draws>
+        <Behaviors>
+          <WeaponSetUpdate
+				    id="ModuleTag_WeaponSetUpdate">
+			  <WeaponSlotTurret
+				  ID="1">
+              <Weapon
+				  Ordering="PRIMARY_WEAPON"
+				  Template="MODAntiInfantryVehicleGun"
+				  ForbiddenObjectStatus="WEAPON_UPGRADED_03 TRANSFORMATION_TOGGLE_STATE"/>
+              <Weapon
+				  Ordering="SECONDARY_WEAPON"
+				  Template="MODAntiInfantryVehicleGunUpgradeGun"
+				  ObjectStatus="WEAPON_UPGRADED_03"
+				  ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE"/>
+				  <TurretSettings
+					  TurretTurnRate="360"
+					  MinimumPitch="-30d"
+					  AllowsPitch="true"
+					  TurretPitchRate="180"
+					  MinIdleScanTime="1.0s"
+					  MaxIdleScanTime="5.0s"
+					  MinIdleScanAngle="0.0"
+					  MaxIdleScanAngle="90.0"
+					  ComeToHaltJiggle="3d"
+					  InvalidIdleScanObjectStatus="TRANSFORMATION_TOGGLE_STATE">
+					  <TurretAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+						  CanAcquireDynamicIfAssignedOutOfRange="true"
+						  IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+				  </TurretSettings>
+          </WeaponSlotTurret>
+            </WeaponSetUpdate>
+			<FireWeaponCollide
+				id="ModuleTag_FireBaseAutoAndShipWeaponCollide"
+				xai:joinAction="Remove"/>
+			<SpecialPower
+				id="ModuleTag_ActivateTargetPainterTrigger"
+				SpecialPowerTemplate="SpecialPower_ToggleNanoSheld"
+				UpdateModuleStartsAttack="true" />
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ActivateNanoSheldUpdate"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				SpecialPowerTemplate="SpecialPower_ToggleNanoSheld">
+				<ToggleState EnterStateSound="ALL_Guardian_PainterOff">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT"
+						NeverUseInState="RETREAT GATHER"
+						NeverUseDuringTask="DODGING"/>
+				</ToggleState>
+				<ToggleState
+					ObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+					ModelConditions="USER_1"
+					EnterStateSound="ALL_Guardian_PainterOn"
+					AttributeModifier="AttributeModifier_NanoSheldBonus">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFENSE_SELF_ONLY"
+						NeverUseWhenClear="true"
+						EnemyMustBeInVisionRange="true">
+					</SkirmishAiInfo>
+				</ToggleState>
+			</ToggleStatusSpecialAbilityUpdate>
+          <StatusBitsUpgrade
+              id="ModuleTag_VeterancyUpgrade"
+              StatusToSet="WEAPON_UPGRADED_01">
+            <TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+          </StatusBitsUpgrade>
+    <StatusBitsUpgrade
+			id="ModuleTag_UpgradeWeapon"
+			StatusToSet="WEAPON_UPGRADED_03">
+	 <TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+    </StatusBitsUpgrade>
+            <Physics
+				id="ModuleTag_Physics" />
+            <!-- Different deaths based on whether it is airborne or not -->
+            <DestroyDie
+				id="ModuleTag_Die">
+                <DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+            </DestroyDie>
+            <CreateObjectDie
+				id="ModuleTag_LandDeath"
+				CreationList="MODUAntiInfantryVehicle_Die_OCL">
+                <DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+            </CreateObjectDie>
+            <!--  -->
+            <FXListBehavior
+				id="ModuleTag_FXList">
+                <DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+                <Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+            </FXListBehavior>
+			<AttributeModifierUpgrade
+				id="ModuleTag_BaseUpgradeAttributeModifier"
+				AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_AntiPlusUpgrade"
+				AttributeModifier="AttributeMod_AlliesSovietAntiPlusAttribute">
+				<TriggeredBy>Upgrade_SovietAntiPlus</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnSmall.xml"/>
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+			<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_DeBugDamageMultUnmiliWeapon">
+		<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+        </Behaviors>
+        <AI>
+            <!--These are used by the ToggleStatusSpecialAbilityUpdate to allow switching between these two AIUpdates.  The first
+				update is the default used by the object.-->
+            <AIUpdate
+				id="ModuleTag_UnitAI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+                <UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+            </AIUpdate>
+        </AI>
+        <Body>
+            <ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="400" />
+        </Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="JAP_MechaTengu_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+        <Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="16.6"
+				MinorRadius="11.4"
+				Height="15.7"
+				ContactPointGeneration="VEHICLE" />
+        </Geometry>
+        <AudioArrayVoice>
+			<AudioEntry Sound="MOD_InfVehicle_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="MOD_InfVehicle_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="MOD_InfVehicle_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="MOD_InfVehicle_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="MOD_InfVehicle_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="MOD_InfVehicle_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="MOD_InfVehicle_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+        </AudioArrayVoice>
+        <AudioArraySound>
+			<AudioEntry Sound="ALL_MultiGunnerIFV_MovStart" AudioType="soundMoveStart" />
+        </AudioArraySound>
+        <VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+        <CrusherInfo
+			id="id_CrusherInfo"
+			CrushEqualLevelProps="true"
+			CrusherLevel="1"
+			CrushableLevel="25" />
+    </GameObject>
+	  <GameObject
+		id="MODAntiInfantryVehicle_Crate"
+		inheritFrom="MODAntiInfantryVehicle"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="MODAntiInfantryVehicle_Crate">
+		<EquivalentTo>MODAntiInfantryVehicle</EquivalentTo>	
+	</GameObject>
+	<GameObject
+		id="MODAntiInfantryVehicle_Water"
+		inheritFrom="MODAntiInfantryVehicle"
+		EditorName="MODAntiInfantryVehicle_Water"
+		ProductionQueueType="WATERCRAFT">
+		<EquivalentTo>MODAntiInfantryVehicle</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

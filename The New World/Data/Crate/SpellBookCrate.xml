@@ -1,0 +1,416 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+
+		<Include
+			type="all"
+			source="ART:NPCrate01.w3x" />
+	</Includes>
+	<GameObject
+		id="SpellBookCrate"
+		SelectPortrait="Portrait_Neutral_Crate"
+		ButtonImage="Button_Neutral_Crate"
+		Side="Neutral"
+		EditorSorting="UNIT"
+		TransportSlotCount="1"
+		BuildTime="0"
+		KindOf="SELECTABLE IMMOBILE NOT_AUTOACQUIRABLE UNATTACKABLE CAN_CAST_REFLECTIONS CRATE CANNOT_BE_DETECTED"
+		RadarPriority="COMMANDO"
+		EditorName="SpellBookCrate"
+		UnitCategory="STRUCTURE"
+		Description="DESC:UnitCrate">
+		<DisplayName>NAME:UnitCrate</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="99999"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NPCrate01" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<CrateCollide
+				id="ModuleTag_CrateCollide" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<UnitCrateCollide
+				id="ModuleTagCollide"
+				UnitCount="1"
+				UnitType="SpellBookCrateRandom"/>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CrateSpawn">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="120s"
+				MaxLifetime="120s"
+				DeathType="FADED"/>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type= "CYLINDER"
+				MajorRadius = "9.68515"
+				MinorRadius = "9.68515"
+				Height = "16.0349" >
+				<Offset
+					x = "0.0348139"
+					y = "-0.0732222"
+					z = "0.0" />
+			</Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="1"
+			ShroudClearingRange="1" />
+	</GameObject>
+	<GameObject
+		id="SpellBookCrateRandom"
+		Side="Neutral"
+		CommandSet="EmptyCommandSet"
+		KindOf="IMMOBILE NOT_AUTOACQUIRABLE UNATTACKABLE"
+		EditorName="SpellBookCrateRandom">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name=""/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_Lifetime"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_RandomSpellSpawn">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="9.68515"
+				MinorRadius="9.68515"
+				Height="16.0349">
+				<Offset
+					x="0.0348139"
+					y="-0.0732222"
+					z="0.0"/>
+			</Shape>
+		</Geometry>
+	</GameObject>
+	<ObjectCreationList
+		id="OCL_RandomSpellSpawn"
+		Flags="CHOOSE_ONE_CREATE_NUGGET_FROM_LIST">
+		<CreateObject
+			Options="CREATE_AT_TARGET"
+			Disposition="ON_GROUND_ALIGNED USE_WATER_SURFACE">
+			<CreateObject>AlliedSupersonicSmoke</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>AlliedTheWorld</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>AlliedTheWorldUpgrade</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DO_NOT_TREAT_AS_STRUCTURE CREATE_AT_TARGET"
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE">
+			<CreateObject>SovietGTWaveEffect</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DO_NOT_TREAT_AS_STRUCTURE CREATE_AT_TARGET"
+			Disposition="ON_GROUND_ALIGNED USE_WATER_SURFACE">
+			<CreateObject>JapanSuppression</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DO_NOT_TREAT_AS_STRUCTURE CREATE_AT_TARGET"
+			Disposition="ON_GROUND_ALIGNED USE_WATER_SURFACE">
+			<CreateObject>JapanSuppressionUpgrade</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>JapanDeathSpawn</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>AlliedOutPutSP</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>AlliedOutPutSPUpgrade</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>JapanNanoFlySeedSpawner</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>JapanAmbushSpawner</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>MODAmbushSpawner</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>AlliedOutPutSPUpgrade</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET FADE_IN"
+			Disposition="ON_GROUND_ALIGNED"
+			StartingBusyTime="3s"
+			FadeTime="3s"
+			DisabledWhileBusy="true"
+			Count="1">
+			<CreateObject>JapanEmperorYoshiro</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS ISSUE_MOVE_AFTER_CREATION DONT_SET_PRODUCER CREATE_AT_TARGET"
+			Disposition="RELATIVE_ANGLE"
+			Count="1">
+			<CreateObject>BalloonBombEffectLvl1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS ISSUE_MOVE_AFTER_CREATION DONT_SET_PRODUCER CREATE_AT_TARGET"
+			Disposition="RELATIVE_ANGLE"
+			Count="1">
+			<CreateObject>BalloonBombEffectUpgradeLvl1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS ISSUE_MOVE_AFTER_CREATION DONT_SET_PRODUCER CREATE_AT_TARGET"
+			Disposition="RELATIVE_ANGLE"
+			Count="1">
+			<CreateObject>BalloonBombEffectLvl2</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS ISSUE_MOVE_AFTER_CREATION DONT_SET_PRODUCER CREATE_AT_TARGET"
+			Disposition="RELATIVE_ANGLE"
+			Count="1">
+			<CreateObject>BalloonBombEffectUpgradeLvl2</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS ISSUE_MOVE_AFTER_CREATION DONT_SET_PRODUCER CREATE_AT_TARGET"
+			Disposition="RELATIVE_ANGLE"
+			Count="1">
+			<CreateObject>BalloonBombEffectLvl3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS ISSUE_MOVE_AFTER_CREATION DONT_SET_PRODUCER CREATE_AT_TARGET"
+			Disposition="RELATIVE_ANGLE"
+			Count="1">
+			<CreateObject>BalloonBombEffectUpgradeLvl3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>MagneticSatelliteEffectUpgradeLvl1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>MagneticSatelliteEffectUpgradeLvl2</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>MagneticSatelliteEffectUpgradeLvl3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>MagneticSatelliteEffectLvl1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>MagneticSatelliteEffectLvl2</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>MagneticSatelliteEffectLvl3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET"
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			DispositionIntensity="50"
+			DispositionAngle="72d"
+			Count="1">
+			<CreateObject>AlliedCryoSatelliteEffectSpawnerLvl1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET"
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			DispositionIntensity="50"
+			DispositionAngle="72d"
+			Count="1">
+			<CreateObject>AlliedCryoSatelliteEffectSpawnerLvl2</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET"
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			DispositionIntensity="50"
+			DispositionAngle="72d"
+			Count="1">
+			<CreateObject>AlliedCryoSatelliteEffectSpawnerLvl3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET"
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			DispositionIntensity="50"
+			DispositionAngle="72d"
+			Count="1">
+			<CreateObject>AlliedCryoSatelliteEffectSpawnerUpgradeLvl1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET"
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			DispositionIntensity="50"
+			DispositionAngle="72d"
+			Count="1">
+			<CreateObject>AlliedCryoSatelliteEffectSpawnerUpgradeLvl2</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET"
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			DispositionIntensity="50"
+			DispositionAngle="72d"
+			Count="1">
+			<CreateObject>AlliedCryoSatelliteEffectSpawnerUpgradeLvl3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>MagneticSingularityEffect</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>MagneticSingularityEffectUpgrade</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>OrbitalRefuseSpawnerLvl1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>OrbitalRefuseSpawnerLvl1Upgrade</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>OrbitalRefuseSpawnerLvl2</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>OrbitalRefuseSpawnerLvl2Upgrade</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>OrbitalRefuseSpawnerLvl3</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="CREATE_AT_TARGET">
+			<CreateObject>OrbitalRefuseSpawnerLvl3Upgrade</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS DONT_SET_PRODUCER CREATE_AT_TARGET DO_NOT_COPY_SHADERS DO_NOT_COPY_SCALE"
+			Count="1">
+			<Offset
+				x="0"
+				y="0"
+				z="590" />
+			<CreateObject>SovietDetectedAircraft</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SCALE"
+			Disposition="ON_GROUND_ALIGNED USE_WATER_SURFACE"
+			Count="1">
+			<CreateObject>MODSuperNanoFly</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SCALE"
+			Disposition="ON_GROUND_ALIGNED USE_WATER_SURFACE"
+			Count="1">
+			<CreateObject>MODSuperNanoFlyUpgrade</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET"
+			Count="1">
+			<Offset
+				x="80"
+				y="0"
+				z="300" />
+			<CreateObject>IronStormCloudLv1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET"
+			Count="1">
+			<Offset
+				x="80"
+				y="0"
+				z="300" />
+			<CreateObject>IronStormCloudLv2</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET"
+			Count="1">
+			<Offset
+				x="80"
+				y="0"
+				z="300" />
+			<CreateObject>IronStormCloudLv3</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+</AssetDeclaration>

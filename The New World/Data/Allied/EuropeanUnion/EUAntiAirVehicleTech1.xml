@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<!-- aka Riptide ACV -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:Units/EUAntiAirVehicleTech1/AUAntiInfantryVehicle_SKL.w3x" />
+		<Include type="all"
+			source="ART:Units/EUAntiAirVehicleTech1/AUANTIINFANTRYVEHICLE_SKN.OBBOX01.w3x" />
+		<Include type="all" source="ART:Units/EUAntiAirVehicleTech1/UACV8.w3x" />
+		<Include type="all" source="ART:FXTracer.xml" />
+		<Include type="all" source="ART:FXTracerHeroic.xml" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- aka PT Boat -->
+	<GameObject
+		id="EUAntiAirVehicleTech1"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_EUAntiAirVehicleTech1"
+		ButtonImage="Button_EUAntiAirVehicleTech1"
+		Side="Allies"
+		SubGroupPriority="710"
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="30"
+		BuildTime="9"
+		CommandSet="EUAntiAirVehicleTech1CommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE AMPHIBIOUS CAN_BE_FAVORITE_UNIT CAN_SEE_THROUGH_STRUCTURE LINE_OF_SIGHT_IGNORES_BUILDINGS FS_RADAR"
+		RadarPriority="UNIT"
+		ProductionQueueType="VEHICLE"
+		UnitCategory="VEHICLE"
+		WeaponCategory="GUN"
+		VoicePriority="188"
+		BountyValue="150"
+		EditorName="EUAntiAirVehicleTech1"
+		Description="Desc:AlliedAntiAirVehiclePlat"
+		TypeDescription="Type:AntiAirAndInfantry"
+		UnitIntro="Allied_Riptide_UnitIntro">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedAntiAirVehiclePlat</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="900" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAntiAirVehicleArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="DefaultLandLocomotor"
+			Locomotor="AlliedAntiInfantryVehicleLocomotor"
+			Condition="NORMAL"
+			Speed="85.0" />
+		<LocomotorSet
+			id="DefaultWaterLocomotor"
+			Locomotor="AlliedAntiInfantryWaterLocomotor"
+			Condition="NORMAL"
+			Speed="95.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="2.0"
+			OutOfRangePenalty="3.0"
+			ConquerMetricsOverrideDamageType="AUTO_CANNON"
+			ConquerMetricsOverrideAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_INFANTRY"
+			ConquerMetricsOverrideForbiddenAntiMask="ANTI_VEHICLE ANTI_STRUCTURE" />
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				TireRotationMultiplier="0.0"
+				TireRotationMultiplierFront="0.2"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="fx_weapon01 UACV_Center">
+				<TreadTerrainParticles>SovietTankTerrainParticleMapping</TreadTerrainParticles>
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="UACV8" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="fx_weapon01" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="fx_weapon01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="fx_weapon01" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="fx_weapon01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="UACV_Center" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="UACV_Center" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="UACV8" />
+					<ParticleSysBone
+						BoneName="fx_fire001"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="UACV8" />
+					<Texture
+						Original="UAVcarrier"
+						New="UAVcarrier_D" />
+					<Texture
+						Original="UAVcarrier_NRM"
+						New="UAVcarrier_NRM_D" />
+					<ParticleSysBone
+						BoneName="fx_fire001"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="fx_fire001"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="fx_fire001"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					StateName="STATE_OnLAND">
+					<ParticleSysBone
+						BoneName="wave"
+						FXParticleSystemTemplate="RiptideDust"
+						FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					StateName="MOVE_OnWater">
+					<ParticleSysBone
+						BoneName="UACV_EngineR"
+						FXParticleSystemTemplate="JapanTenguJetGlow"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="UACV_EngineL"
+						FXParticleSystemTemplate="JapanTenguJetGlow"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="wave"
+						FXParticleSystemTemplate="SVAntiAirShipWaterWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="SovietAntiNavyShipFroth"
+						FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER"
+					StateName="STATE_OnWater">
+					<ParticleSysBone
+						BoneName="wave"
+						FXParticleSystemTemplate="SmallShipWakeIdle"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Wake"
+						FXParticleSystemTemplate="SmallShipWakeIdle"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="HelicopterMovingWaterWake"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="HoverTransportWaterMist"
+						FollowBone="false" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					StateName="Move_OnLand">
+					<ParticleSysBone
+						BoneName="UACV_EngineR"
+						FXParticleSystemTemplate="JapanTenguJetGlow"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="UACV_EngineL"
+						FXParticleSystemTemplate="JapanTenguJetGlow"
+						FollowBone="true" />
+				</AnimationState>
+			</TruckDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					AllowInterleavedFiring="true"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUAntiAirDroneWeaponDummy"
+						ForbiddenObjectStatus="WATER_LOCOMOTOR_ACTIVE" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUAntiAirDroneWeaponAntiAirDummy"
+						ObjectStatus="WATER_LOCOMOTOR_ACTIVE" />
+				</WeaponSlotHardpoint>
+				<WeaponSlotHardpoint
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUAntiAirVehicleTech1TorpedoLauncher"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_01"
+						ObjectStatus="WATER_LOCOMOTOR_ACTIVE" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUAntiAirVehicleTech1TorpedoUnitUpgradeLauncher"
+						ObjectStatus="WEAPON_UPGRADED_01 WATER_LOCOMOTOR_ACTIVE" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<FireWeaponCollide
+				id="ModuleTag_FireBaseAutoAndShipWeaponCollide"
+				xai:joinAction="Remove" />
+			<StatusBitsUpgrade
+				id="ModuleTag_AlliedUnitUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_AntiPlusUpgrade"
+				AttributeModifier="AttributeMod_PlayerPowerUpgradeAttributeFX">
+				<TriggeredBy>Upgrade_SovietAntiPlus</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_AlliedUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeEUAntiAirVehicleTech1UnitUpgrade">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AUAntiAirVehiclePlat_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_RiptideDie" />
+			</FXListBehavior>
+			<SpawnBehavior
+				id="ModuleTag_SpawnAttackDrones"
+				SpawnNumberData="3"
+				InitialBurst="3"
+				SpawnReplaceDelayData="2s"
+				SpawnedRequireSpawner="true"
+				KillSpawnsOnCaptured="true"
+				KillSpawnsOnDisabled="true"
+				ShareUpgrades="true">
+				<Die
+					DeathTypes="ALL" />
+				<SpawnTemplate>EUAntiAirDrone</SpawnTemplate>
+			</SpawnBehavior>
+			<AutoHealBehavior
+				id="ModuleTag_ActiveHeal"
+				InitiallyActive="true"
+				HealOnlyIfNotInCombat="false"
+				HealOnlyIfNotUnderAttack="false"
+				StartHealingDelay="0s"
+				HealingAmount="4"
+				HealingDelay="0.2s">
+				<ObjectStatusValidation
+					RequiredStatus="GENERIC_TOGGLE_STATE" />
+			</AutoHealBehavior>
+			<ActivateModuleSpecialPower
+				id="ModuleTag_SpecialPower"
+				SpecialPowerTemplate="SpecialPower_HealthWake"
+				UpdateModuleStartsAttack="true"
+				AttributeModifier="AttributeModifier_HealthWake"
+				AttributeModifierAffectsSelf="true">
+				<Modules
+					ModuleId="ModuleTag_ActiveHeal"
+					TriggerAtTargetPosition="false"
+					TriggerType="SELF_POSITION" />
+			</ActivateModuleSpecialPower>
+			<SpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_HealthWake"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				TriggerSound="ALL_PlatRepairSelf_VoiceRepair" />
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_ShortCircuitDroneAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="350.0"
+				RefreshDelay="1s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeMod_EUAntiAirDroneCircuitRangeBoost">
+				<ObjectFilter
+					Rule="NONE"
+					Relationship="ALLIES">
+					<IncludeThing>EUAntiAirDrone</IncludeThing>
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<!-- Anti Sub Invisibility-->
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AntiSubInvisibilityAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="300.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_AntiSubInvisibility">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="SUBMARINE">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech1.xml"/>
+			<!-- Japan NavalPower -->
+			<xi:include
+				href="DATA:Includes/JapanNavalPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanNavalPowerUpgrade/child::*)" />
+			<!-- High Technology  -->
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+					RotateToTargetWhenAiming="true"
+					IdleScanDelay="0.0s">
+					<ObjectVisionRange
+						id="ObjectVisionRange_Aircraft"
+						Range="125">
+						<Filter
+							Rule="ANY"
+							Include="AIRCRAFT INFANTRY VEHICLE"
+							StatusBitFlags="AIRBORNE_TARGET" />
+					</ObjectVisionRange>
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="400" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_MoveLoop">
+				<ModelConditionSound Sound="" RequiredFlags="MOVING"
+					ExcludedFlags="OVER_WATER DYING" />
+				<ModelConditionSound Sound="Ship_Small_MoveLoopWater"
+					RequiredFlags="MOVING OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="ALL_DronePlat_VoiceShrunken"
+					RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_WaterEntrySplash">
+				<ModelConditionSound Sound="ALL_Prospector_WaterSplashMS" RequiredFlags="OVER_WATER"
+					ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_WaterSounds">
+				<Override RequiredFlags="OVER_WATER">
+					<AudioArraySound>
+						<AudioEntry Sound="ALL_ACVRiptide_MoveStartWater" AudioType="soundMoveStart" />
+					</AudioArraySound>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="22.0234"
+				MinorRadius="11.4905"
+				Height="11.1959"
+				ContactPointGeneration="VEHICLE">
+				<Offset x="1" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="ALL_DronePlat_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="ALL_DronePlat_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="ALL_DronePlat_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="ALL_DronePlat_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="ALL_DronePlat_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="ALL_DronePlat_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="ALL_DronePlat_VoiceSelect" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="ALL_DronePlat_VoiceSelect" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALL_ACVRiptide_MoveStartLand"
+				AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushEqualLevelProps="true"
+			CrusherLevel="1"
+			CrushableLevel="25" />
+	</GameObject>
+	<GameObject
+		id="EUAntiAirVehicleTech1_Water"
+		inheritFrom="EUAntiAirVehicleTech1"
+		EditorName="EUAntiAirVehicleTech1_Water"
+		ProductionQueueType="WATERCRAFT">
+		<EquivalentTo>EUAntiAirVehicleTech1</EquivalentTo>
+	</GameObject>
+	<GameObject
+		id="EUAntiAirVehicleTech1_Crate"
+		inheritFrom="EUAntiAirVehicleTech1"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="EUAntiAirVehicleTech1_Crate">
+		<EquivalentTo>EUAntiAirVehicleTech1</EquivalentTo>
+	</GameObject>
+	<GameObject
+		id="EUAntiAirVehicleTech1Boss"
+		inheritFrom="EUAntiAirVehicleTech1"
+		EditorName="EUAntiAirVehicleTech1Boss">
+		<Behaviors>
+			<BombardAreaUpdate
+				id="ModuleTag_NanoflyBombs"
+				WeaponName="AlliedCryoSatelliteBossWeapon"
+				MaxShots="90">
+				<TimeDelayRange
+					Low="10s"
+					High="10s" />
+				<RadiusSpreadRange
+					Low="100"
+					High="800" />
+			</BombardAreaUpdate>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

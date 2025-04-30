@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="all"
+			source="ART:FXJapanNanoShield.w3x" />
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+		id="NanoSwarmHiveEffect"
+		inheritFrom="BaseObject"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE STRUCTURE IMMOBILE AIRCRAFT_PATH_AROUND ENCLOSURE CAN_BUILD_ON_WATER CAN_BUILD_ON_DEEP_WATER IGNORED_IN_FINDPOSITIONAROUND"
+		EditorName="NanoSwarmHiveEffect"
+		CampnessValue="2000"
+		CampnessValueRadius="300"
+		UnitCategory="STRUCTURE">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:NanoSwarmHiveEffect</DisplayName>
+		<ArmorSet
+			Armor="StructureArmor"
+			DamageFX="GenericStructureDamageFX" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXJapanNanoShield" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<!-- the slow death is for being blown up -->
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="0.5s"
+				SinkRate="2.4"
+				DestructionDelay="5s">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FADED" />
+			</SlowDeath>
+			<!-- fading version is for timed out -->
+			<SlowDeath
+				id="ModuleTag_DeathFade"
+				SinkRate="0"
+				Fade="true"
+				FadeTime="2s"
+				DestructionDelay="2s">
+				<DieMuxData
+					DeathTypes="FADED" />
+			</SlowDeath>
+			<FXListBehavior xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_DieSound">
+				<DieMuxData DeathTypes="ALL" />
+				<Event Index="onDeath" FX="" />
+			</FXListBehavior>
+			<FXListBehavior
+					id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_None" />
+			</FXListBehavior>
+			<!-- fire a weapon that adds an attribute mod and paralyze which lasts for a short time. -->
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate">
+				<FireWeaponNugget
+					WeaponName="NanoHiveSwarmEffectTrigger"
+					OneShot="true"
+				/>
+			</FireWeaponUpdate>
+			<FireWeaponCollide
+				id="ModuleTag_FireWeaponCollide"
+				CollideWeapon="NanoHiveSwarmEffectTriggerStop"
+				FireOnce="false"
+				Flags="DO_NOT_COLLIDE_WITH_PRODUCER"
+				WhereToFire="TARGET_OBJECT"/>
+			<LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				DeathType="FADED"
+				MinLifetime="10s"
+				MaxLifetime="10s" />
+			<EncloseBehavior
+				id="ModuleTag_EncloseBehavior"
+				EnclosureHitFX="FX_JAP_Tsunami_DeflectorOff">
+				<Filter
+					Rule="ANY"
+					Include="PROJECTILE INFANTRY VEHICLE STRUCTURE TIME_BOMB"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</Filter>
+			</EncloseBehavior>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="RING"
+				MajorRadius="200.0"
+				MinorRadius="180.0" 
+				Height="200.0"></Shape>
+			
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_NanoSwarm_ShieldLoop" AudioType="soundAmbient"/>
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="125"
+			ShroudClearingRange="150" />
+	</GameObject>
+	<WeaponTemplate
+	id="NanoHiveSwarmEffectTriggerStop"
+	Flags="NOT_ATTRACTED_BY_MAGNETS"
+	AttackRange="999999.0"
+	RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+	RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		>
+		<Nuggets>
+			<AttributeModifierNugget
+				Radius="1"
+				AttributeModifierName="AttributeModifier_MakeUnitStop">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Relationship="ALLIES ENEMIES NEUTRAL"
+					Include="VEHICLE INFANTRY FS_BASE_DEFENSE AIRCRAFT"
+					Exclude="HARVESTER"
+					StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET">
+				</SpecialObjectFilter>
+			</AttributeModifierNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

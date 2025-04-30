@@ -1,0 +1,1869 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="ART:Units/SovietAntiStructureShip/SUANTISTRUCTURESHIP_COL.NEWSKIN.w3x" />
+		<Include
+			type="all"
+			source="ART:Units/SovietAntiStructureShip/SUANTISTRUCTURESHIP_COL.OBBOX01.w3x" />
+		<Include
+			type="all"
+			source="ART:Units/SovietAntiStructureShip/SUANTISTRUCTURESHIP_COL_HRC.w3x" />
+		<Include
+			type="all"
+			source="ART:Units/SovietAntiStructureShip/SUANTISTRUCTURESHIP_COL_CTR.w3x" />
+	<Include
+		type="all"
+		source="ART:SUAntiStructureShip_D.xml" />		
+    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<GameObject
+		id="SovietAntiStructureShip_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="SovietAntiStructureShip_Collapse">
+		<Draws>
+			<DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="30"
+			Explodiness="8">
+			<ModelConditionState
+				ParseCondStateType="PARSE_DEFAULT">
+				<Model
+					Name="SUANTISTRUCTURESHIPTNW_COL" />
+				<Texture
+					Original="SUAntiStructureShip"
+					New="SUAntiStructureShip_D" />
+				<xi:include
+					href="DATA:Includes/VehicleCollapseParticles/SovietShipCollapseParticles.xml"
+					xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:SovietShipCollapseParticles/child::*)" />
+        <!-- Main Hull -->
+        <ParticleSysBone
+          BoneName="Bone_D_hull"
+          FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterFlash"
+          FollowBone="true" />
+        <ParticleSysBone
+          BoneName="Bone_D_hull"
+          FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterFlashLight"
+          FollowBone="true" />
+        <ParticleSysBone
+          BoneName="Bone_D_hull"
+          FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterBubbles"
+          FollowBone="true"
+          OnlyIfOnWater="true"/>
+			</ModelConditionState>
+				<BoneVolumes>
+					<!-- LinearDrag added to null bone below -->
+<BoneVolume BoneName="Bone_D_01" Mass="506" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="2.801" HalfSizeY="3.882" HalfSizeZ="2.331" >
+		<Translation x="-23.511" y="0.03" z="19.281" />
+		<Rotation x="-0.70383" y="-0.11225" z="-0.114932" w="0.691963" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_02" Mass="660" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="1.926" HalfSizeY="7.766" HalfSizeZ="2.207" >
+		<Translation x="14.486" y="0.031" z="21.543" />
+		<Rotation x="-0.585109" y="0.541562" z="-0.421864" w="0.431726" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_03" Mass="438" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="1.764" HalfSizeY="6.77" HalfSizeZ="1.835" >
+		<Translation x="-10.807" y="10.407" z="15.299" />
+		<Rotation x="0.565202" y="-0.569704" z="0.407982" w="-0.435355" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_04" Mass="452" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="2.3" HalfSizeY="6.308" HalfSizeZ="1.56" >
+		<Translation x="-11.127" y="-9.899" z="15.489" />
+		<Rotation x="-0.587808" y="0.577638" z="-0.396999" w="0.40399" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_05" Mass="1168" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="5.245" HalfSizeY="4.513" HalfSizeZ="2.469" >
+		<Translation x="-0.598" y="0.015" z="24.748" />
+		<Rotation x="-0.713067" y="0.0133055" z="-0.0113749" w="0.700877" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_06" Mass="418" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="2.543" HalfSizeY="4.101" HalfSizeZ="2.008" >
+		<Translation x="32.567" y="0.0" z="10.779" />
+		<Rotation x="0.0" y="-0.00866141" z="0.00106354" w="0.999962" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_07" Mass="625" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="2.311" HalfSizeY="5.569" HalfSizeZ="2.432" >
+		<Translation x="13.307" y="0.0" z="10.636" />
+		<Rotation x="-0.00872626" y="-0.00872629" z="7.61512e-005" w="0.999924" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_08" Mass="902" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="7.992" HalfSizeY="2.376" HalfSizeZ="2.376" >
+		<Translation x="43.564" y="0.0" z="8.461" />
+		<Rotation x="-0.707107" y="0.0" z="0.0" w="0.707107" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_09" Mass="487" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3.015" HalfSizeY="3.911" HalfSizeZ="2.066" >
+		<Translation x="-14.064" y="0.025" z="19.842" />
+		<Rotation x="-0.703423" y="-0.0948765" z="-0.0994829" w="0.69735" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_Hull" Mass="62269" Spinniness="0.35" ContactTag="DEBRIS" LinearDrag="0.35">
+	<Box  HalfSizeX="39.972" HalfSizeY="9.995" HalfSizeZ="7.793" >
+		<Translation x="0.0" y="0.0" z="-0.85" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+	<Box  HalfSizeX="23.184" HalfSizeY="4.697" HalfSizeZ="4.359" >
+		<Translation x="-17.412" y="0.0" z="15.205" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+
+
+			</BoneVolumes>
+				<Lifetime
+					Delay="18s"
+					FadeTime="7s" />
+		</DynamicsDraw>
+	</Draws>
+
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="25s"
+			MaxLifetime="25s" />
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="18s"
+			SinkRate="1"
+			DestructionDelay="25s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+	
+</GameObject>
+	<GameObject
+		  id="SovietAntiStructureShip_Dying12s"
+		  KindOf="HIDE_IF_FOGGED INERT NO_COLLIDE"
+		  EditorName="SovietAntiStructureShip_Dying12s">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUAntiStructureShip_SKNN" />
+					<Texture
+						Original="SUAntiStructureShip"
+						New="SUAntiStructureShip_D" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_05"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_06"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_07"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_08"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_09"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_10"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="SUAntiStructureShipWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ShipSlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="18s"
+				FadeTime="2s"
+				SinkDelay="12s"
+				SinkRate="6"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ShipSlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100" />
+		</Body>
+	</GameObject>
+	<GameObject
+		  id="SovietAntiStructureShip_Dying10s"
+		  KindOf="HIDE_IF_FOGGED INERT NO_COLLIDE"
+		  EditorName="SovietAntiStructureShip_Dying10s">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUAntiStructureShip_SKNN" />
+					<Texture
+						Original="SUAntiStructureShip"
+						New="SUAntiStructureShip_D" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_05"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_06"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_07"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_08"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_09"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_10"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="SUAntiStructureShipWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ShipSlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="18s"
+				FadeTime="2s"
+				SinkDelay="10s"
+				SinkRate="4.5"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ShipSlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100" />
+		</Body>
+	</GameObject>
+	<GameObject
+		  id="SovietAntiStructureShip_Dying8s"
+		  KindOf="HIDE_IF_FOGGED INERT NO_COLLIDE"
+		  EditorName="SovietAntiStructureShip_Dying8s">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUAntiStructureShip_SKNN" />
+					<Texture
+						Original="SUAntiStructureShip"
+						New="SUAntiStructureShip_D" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_05"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_06"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_07"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_08"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_09"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_10"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="SUAntiStructureShipWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ShipSlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="18s"
+				FadeTime="2s"
+				SinkDelay="8s"
+				SinkRate="3"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ShipSlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100" />
+		</Body>
+	</GameObject>
+	<GameObject
+		  id="SovietAntiStructureShip_Dying6s"
+		  KindOf="HIDE_IF_FOGGED INERT NO_COLLIDE"
+		  EditorName="SovietAntiStructureShip_Dying6s">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUAntiStructureShip_SKNN" />
+					<Texture
+						Original="SUAntiStructureShip"
+						New="SUAntiStructureShip_D" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_05"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_06"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_07"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_08"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_09"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_10"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="SUAntiStructureShipWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ShipSlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="18s"
+				FadeTime="2s"
+				SinkDelay="6s"
+				SinkRate="1.5"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ShipSlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100" />
+		</Body>
+	</GameObject>
+
+	<GameObject
+		id="SovietAntiStructureShip_CollapseNavy"
+		inheritFrom="BaseCollapsingObject"
+		EditorName="SovietAntiStructureShip_CollapseNavy">
+		<Draws>
+			<DynamicsDraw
+			id="ModuleTag_Draw"
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="30"
+			Explodiness="8">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUANTISTRUCTURESHIPTNW_COL" />
+					<Texture
+						Original="SUAntiStructureShip"
+						New="SUAntiStructureShip2_D" />
+					<xi:include
+						href="DATA:Includes/VehicleCollapseParticles/SovietShipCollapseParticles.xml"
+						xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:SovietShipCollapseParticles/child::*)" />
+					<!-- Main Hull -->
+					<ParticleSysBone
+					  BoneName="Bone_D_hull"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterFlash"
+					  FollowBone="true" />
+					<ParticleSysBone
+					  BoneName="Bone_D_hull"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterFlashLight"
+					  FollowBone="true" />
+					<ParticleSysBone
+					  BoneName="Bone_D_hull"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+				</ModelConditionState>
+				<BoneVolumes>
+					<!-- LinearDrag added to null bone below -->
+					<BoneVolume BoneName="Bone_D_01" Mass="506" Spinniness="5.0" ContactTag="DEBRIS" >
+						<Box  HalfSizeX="2.801" HalfSizeY="3.882" HalfSizeZ="2.331" >
+							<Translation x="-23.511" y="0.03" z="19.281" />
+							<Rotation x="-0.70383" y="-0.11225" z="-0.114932" w="0.691963" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_02" Mass="660" Spinniness="5.0" ContactTag="DEBRIS" >
+						<Box  HalfSizeX="1.926" HalfSizeY="7.766" HalfSizeZ="2.207" >
+							<Translation x="14.486" y="0.031" z="21.543" />
+							<Rotation x="-0.585109" y="0.541562" z="-0.421864" w="0.431726" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_03" Mass="438" Spinniness="5.0" ContactTag="DEBRIS" >
+						<Box  HalfSizeX="1.764" HalfSizeY="6.77" HalfSizeZ="1.835" >
+							<Translation x="-10.807" y="10.407" z="15.299" />
+							<Rotation x="0.565202" y="-0.569704" z="0.407982" w="-0.435355" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_04" Mass="452" Spinniness="5.0" ContactTag="DEBRIS" >
+						<Box  HalfSizeX="2.3" HalfSizeY="6.308" HalfSizeZ="1.56" >
+							<Translation x="-11.127" y="-9.899" z="15.489" />
+							<Rotation x="-0.587808" y="0.577638" z="-0.396999" w="0.40399" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_05" Mass="1168" Spinniness="5.0" ContactTag="DEBRIS" >
+						<Box  HalfSizeX="5.245" HalfSizeY="4.513" HalfSizeZ="2.469" >
+							<Translation x="-0.598" y="0.015" z="24.748" />
+							<Rotation x="-0.713067" y="0.0133055" z="-0.0113749" w="0.700877" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_06" Mass="418" Spinniness="5.0" ContactTag="DEBRIS" >
+						<Box  HalfSizeX="2.543" HalfSizeY="4.101" HalfSizeZ="2.008" >
+							<Translation x="32.567" y="0.0" z="10.779" />
+							<Rotation x="0.0" y="-0.00866141" z="0.00106354" w="0.999962" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_07" Mass="625" Spinniness="5.0" ContactTag="DEBRIS" >
+						<Box  HalfSizeX="2.311" HalfSizeY="5.569" HalfSizeZ="2.432" >
+							<Translation x="13.307" y="0.0" z="10.636" />
+							<Rotation x="-0.00872626" y="-0.00872629" z="7.61512e-005" w="0.999924" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_08" Mass="902" Spinniness="5.0" ContactTag="DEBRIS" >
+						<Box  HalfSizeX="7.992" HalfSizeY="2.376" HalfSizeZ="2.376" >
+							<Translation x="43.564" y="0.0" z="8.461" />
+							<Rotation x="-0.707107" y="0.0" z="0.0" w="0.707107" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_09" Mass="487" Spinniness="5.0" ContactTag="DEBRIS" >
+						<Box  HalfSizeX="3.015" HalfSizeY="3.911" HalfSizeZ="2.066" >
+							<Translation x="-14.064" y="0.025" z="19.842" />
+							<Rotation x="-0.703423" y="-0.0948765" z="-0.0994829" w="0.69735" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_Hull" Mass="62269" Spinniness="0.35" ContactTag="DEBRIS" LinearDrag="0.35">
+						<Box  HalfSizeX="39.972" HalfSizeY="9.995" HalfSizeZ="7.793" >
+							<Translation x="0.0" y="0.0" z="-0.85" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+						<Box  HalfSizeX="23.184" HalfSizeY="4.697" HalfSizeZ="4.359" >
+							<Translation x="-17.412" y="0.0" z="15.205" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+
+
+				</BoneVolumes>
+				<Lifetime
+					Delay="18s"
+					FadeTime="7s" />
+			</DynamicsDraw>
+		</Draws>
+
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="25s"
+				MaxLifetime="25s" />
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="18s"
+				SinkRate="1"
+				DestructionDelay="25s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+		</Behaviors>
+
+	</GameObject>
+	<GameObject
+		  id="SovietAntiStructureShip_Dying12sNavy"
+		  KindOf="HIDE_IF_FOGGED INERT NO_COLLIDE"
+		  EditorName="SovietAntiStructureShip_Dying12sNavy">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUAntiStructureShip_SKNN" />
+					<Texture
+						Original="SUAntiStructureShip"
+						New="SUAntiStructureShip2_D" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_05"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_06"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_07"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_08"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_09"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_10"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="SUAntiStructureShipWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ShipSlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="18s"
+				FadeTime="2s"
+				SinkDelay="12s"
+				SinkRate="6"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ShipSlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100" />
+		</Body>
+	</GameObject>
+	<GameObject
+		  id="SovietAntiStructureShip_Dying10sNavy"
+		  KindOf="HIDE_IF_FOGGED INERT NO_COLLIDE"
+		  EditorName="SovietAntiStructureShip_Dying10sNavy">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUAntiStructureShip_SKNN" />
+					<Texture
+						Original="SUAntiStructureShip"
+						New="SUAntiStructureShip2_D" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_05"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_06"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_07"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_08"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_09"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_10"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="SUAntiStructureShipWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ShipSlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="18s"
+				FadeTime="2s"
+				SinkDelay="10s"
+				SinkRate="4.5"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ShipSlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100" />
+		</Body>
+	</GameObject>
+	<GameObject
+		  id="SovietAntiStructureShip_Dying8sNavy"
+		  KindOf="HIDE_IF_FOGGED INERT NO_COLLIDE"
+		  EditorName="SovietAntiStructureShip_Dying8sNavy">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUAntiStructureShip_SKNN" />
+					<Texture
+						Original="SUAntiStructureShip"
+						New="SUAntiStructureShip2_D" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_05"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_06"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_07"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_08"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_09"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_10"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="SUAntiStructureShipWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ShipSlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="18s"
+				FadeTime="2s"
+				SinkDelay="8s"
+				SinkRate="3"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ShipSlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100" />
+		</Body>
+	</GameObject>
+	<GameObject
+		  id="SovietAntiStructureShip_Dying6sNavy"
+		  KindOf="HIDE_IF_FOGGED INERT NO_COLLIDE"
+		  EditorName="SovietAntiStructureShip_Dying6sNavy">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUAntiStructureShip_SKNN" />
+					<Texture
+						Original="SUAntiStructureShip"
+						New="SUAntiStructureShip2_D" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_02"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_04"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_05"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_06"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_06"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_07"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_07"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_08"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_08"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_09"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_09"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage_10"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Damage_10"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="SUAntiStructureShipWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ShipSlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="18s"
+				FadeTime="2s"
+				SinkDelay="6s"
+				SinkRate="1.5"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ShipSlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100" />
+		</Body>
+	</GameObject>
+</AssetDeclaration>

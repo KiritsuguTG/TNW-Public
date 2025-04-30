@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<WeaponTemplate
+		id="SovietDesolatorSpray"
+		AttackRange="225.0"
+		MinTargetPitch="-15d"
+		MaxTargetPitch="15d"
+		WeaponSpeed="200"
+		FireFX="FX_SovietDesolatorPrimaryFire"
+		FireVeteranFX="FX_SovietDesolatorPrimaryFireVet"
+		FiringLoopSound="SOV_DesolatorTrooper_SprayGunFire"
+		FiringLoopSoundContinuesDuringReload="true"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		ForbiddenAntiMask="ANTI_STRUCTURE"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		AcceptableAimDelta="20d"
+		CanFireWhileMoving="false"
+		ReAcquireDetailType="PER_CLIP"
+		IgnoresContactPoints="true">
+		<FiringDuration
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<ClipReloadTime
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<WeaponAiHintInfo
+			IsAntiGarrisonWeapon="true" />
+		<Nuggets>
+			<ActivateStreamNugget
+				id="ActivateStream"
+				Lifetime="1s"
+				StreamId="0" />
+			<ProjectileNugget
+				ProjectileTemplate="SovietDesolatorSprayProjectile"
+				WarheadTemplate="SovietDesolatorSprayWarhead" />
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="SovietDesolatorSprayWarhead"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		ForbiddenAntiMask="ANTI_STRUCTURE">
+		<Nuggets>
+			<!--  
+			<TintObjectsNugget
+				PreColorTime="1.0s"
+				SustainedColorTime="1.0s"
+				PostColorTime="1.0s"
+				Frequency="0.0"
+				Amplitude="0.0"
+				Radius="10.0">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="BRIDGE_GATEHOUSE BRIDGE_SEGMENT BRIDGE_ENDCAP BRIDGE ORE_NODE" />
+				<Color R="0" G="2" B="0"/>
+			</TintObjectsNugget>
+			 -->
+			<DamageContainedNugget
+				MaxUnitsToDamage="1"
+				WindowBlastFX="FX_None"
+				Damage="35.0"
+				DamageType="RADIATION"
+				DeathType="IRRADIATED">
+				<DamageObjectFilter
+					Rule="NONE"
+					Include="INFANTRY">
+					<ExcludeThing>AlliedLegionnaireInfantry</ExcludeThing>
+					<ExcludeThing>SovietHeavyAntiVehicleInfantry</ExcludeThing>
+				</DamageObjectFilter>
+			</DamageContainedNugget>
+			
+			<LineDamageNugget
+				id="VehicleSprayDamage"
+				Damage="5.0"
+				LineWidth="10.0"
+				Radius="10.0"
+				UseDynamicLineLength="true"
+				OverShootDistance="0.0"
+				DamageType="RADIATION"
+				DeathType="IRRADIATED"
+				DamageFXType="RADIATION">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE STRUCTURE" />
+			</LineDamageNugget>
+			
+			<LineDamageNugget
+				id="InfantrySprayDamage"
+				Damage="35.0"
+				LineWidth="10.0"
+				Radius="10.0"
+				UseDynamicLineLength="true"
+				OverShootDistance="0.0"
+				DamageType="RADIATION"
+				DeathType="IRRADIATED"
+				DamageFXType="RADIATION">
+				<SpecialObjectFilter
+					Rule="NONE"
+					Include="INFANTRY">
+					<ExcludeThing>AlliedLegionnaireInfantry</ExcludeThing>
+					<ExcludeThing>SovietHeavyAntiVehicleInfantry</ExcludeThing>
+				</SpecialObjectFilter>
+			</LineDamageNugget>
+			
+			<DamageNugget
+				Damage="10.0"
+				Radius="10.0"
+				DamageType="EXPLOSIVE"
+				DeathType="IRRADIATED"
+				DamageFXType="RADIATION">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE STRUCTURE"
+					StatusBitFlags="IRRADIATED" />
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="SovietBlatGun"
+		AttackRange="225.0"
+		WeaponSpeed="350"
+		FireSound="SOV_DesolatorTrooper_BlatGunFire"
+		FireFX=""
+		FireVeteranFX=""
+		AcceptableAimDelta="10d"
+		ClipSize="1"
+		CanFireWhileMoving="true"
+		ProjectileCollidesWith="ENEMIES NEUTRAL"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		ForbiddenAntiMask="ANTI_STRUCTURE">
+		<FiringDuration
+				MinSeconds="0.5s"
+				MaxSeconds="0.5s" />
+		<ClipReloadTime
+				MinSeconds="0.5s"
+				MaxSeconds="0.5s" />
+		<Nuggets>
+			<ProjectileNugget
+				ProjectileTemplate="SovietBlatGunProjectile"
+				WarheadTemplate="SovietBlatGunWarhead1">
+				<VeterancyProjectiles
+					VeterancyLevel="HEROIC"
+					ProjectileTemplate="SovietBlatGunProjectile_Vet"/>
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="SovietBlatGunWarhead1"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+		ForbiddenAntiMask="ANTI_STRUCTURE">
+		<Nuggets>
+			<TintObjectsNugget
+				PreColorTime="1s"
+				SustainedColorTime="10s"
+				PostColorTime="1s"
+				Frequency="0"
+				Amplitude="0"
+				Radius="1">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="BRIDGE_GATEHOUSE BRIDGE_SEGMENT BRIDGE_ENDCAP BRIDGE ORE_NODE"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN" />
+				<Color R="0" G="2" B="0"/>
+			</TintObjectsNugget>
+			
+			<AttributeModifierNugget
+				AttributeModifierName="AttributeModifier_SovietDesolatorInfantryBlatSlowdown">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="BRIDGE_GATEHOUSE BRIDGE_SEGMENT BRIDGE_ENDCAP BRIDGE ORE_NODE" 
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN"/>
+			</AttributeModifierNugget>
+			<DOTNugget
+				DamageInterval="0.5s"
+				DamageDuration="10.0s"
+				RemoveIfHealed="false"
+				Damage="25.0"
+				DamageType="RADIATION"
+				DeathType="IRRADIATED">
+				<DamageScalarDetails Scalar= "200%">
+					<Filter
+						Rule="NONE">
+						<IncludeThing>SovietDesolatorInfantry</IncludeThing>
+						<IncludeThing>SovietDesolatorInfantryAI</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+			</DOTNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="DesolatorDeathWeapon"
+		FireFX="FX_SovietDesolatorBlatHit"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RadiusDamageAffects="ENEMIES NEUTRALS">
+		<Nuggets>
+			<DamageNugget
+				Damage="100"
+				Radius="20"
+				DamageType="RADIATION"
+				DamageFXType="RADIATION"
+				DeathType="IRRADIATED">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="BRIDGE_GATEHOUSE BRIDGE_SEGMENT BRIDGE_ENDCAP BRIDGE ORE_NODE STRUCTURE"
+					StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET PARACHUTING">
+				</SpecialObjectFilter>
+			</DamageNugget>
+
+			<TintObjectsNugget
+				PreColorTime="1s"
+				SustainedColorTime="1s"
+				PostColorTime="1s"
+				Frequency="0"
+				Amplitude="0"
+				Radius="20">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="BRIDGE_GATEHOUSE BRIDGE_SEGMENT BRIDGE_ENDCAP BRIDGE ORE_NODE" />
+				<Color R="0" G="2" B="0"/>
+			</TintObjectsNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

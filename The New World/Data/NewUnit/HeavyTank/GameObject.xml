@@ -1,0 +1,807 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+
+		<Include
+			type="all"
+			source="ART/mantikeerB.w3x" />
+		<Include
+			type="all"
+			source="ART/mantikeer_COL.w3x" />	
+		<Include
+			type="all"
+			source="ART:AUAntiVehicleVehicleTech1_MOVA.w3x" />
+		<Include
+			type="all"
+			source="ART:AUAntiVehicleVehicleTech1_D.xml" />
+		<Include
+			type="instance"
+			source="ART:EX_Headlights.w3x" />
+		<Include
+			type="instance"
+			source="ART:EXTnkTrack.xml" />
+		<Include
+			type="all"
+			source="ART:FXObeliskLaser.xml" />
+		<Include
+			type="all"
+			source="ART:FXRailGunCoreDistortion.xml" />
+		<Include
+			type="all"
+			source="ART:FXRailGunCoreMask.xml" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include
+		type="instance"
+		source="DATA:BaseObjects/BaseCollapsingObject.xml" />	
+		<Include
+			type="all"
+			source="ART:FXInvisBone.w3x" />
+	</Includes>
+	<!-- AKA Guardian Tank aka The Chieftain -->
+	<GameObject
+		id="mantikeer"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Mantikeer_Portrait"
+		ButtonImage="Mantikeer_Button"
+		Side="Neutral"
+		SubGroupPriority="425" 
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="25"
+		BuildTime="20"
+		CommandSet="mantikeerCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT T3_UNIT GARRISONABLE_UNTIL_DESTROYED"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		EditorName="mantikeer"
+		Description="Desc:mantikeer"
+		TypeDescription="Type:mantikeer"
+		UnitIntro="Allied_GuardianTank_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:mantikeer</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="2000"/>
+		</ObjectResourceInfo>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_AlliedTech2</NeededUpgrade>
+			<RequiredObject>AlliedTechStructure</RequiredObject>
+		</GameDependency>
+		<ArmorSet
+			Armor="mantikeerArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="mantikeerLocomotor"
+			Condition="NORMAL"
+			Speed="65.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true" />
+		<Draws>
+
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				LeftFrontTireBone="Bone_Track_L"
+				RightFrontTireBone="Bone_Track_R"
+				TireRotationMultiplier="0.0"		
+				InitialRecoilSpeed="0.75"
+				MaxRecoilDistance="5"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="1.5"
+				TrackMarks="EXTnkTrack"
+				TrackMarksLeftBone="HENJI01"
+				TrackMarksRightBone="HENJI02"
+				ExtraPublicBone="Bone_Track_L Bone_Track_R Bone_Tread_L Bone_Tread_R Bone_Turret FX_WeaponA FXHEADLIGHT_L FXHEADLIGHT_R HENJI01 HENJI02 FX_WEAPONC">
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+				<TreadScrollingMap
+					LeftTrack="Bone_Tread_L"
+					RightTrack="Bone_Tread_R"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%"/>										
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="mantikeerB" />	
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPONA_"/>
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPONA_" />				
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_WEAPONA_"/>
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_WEAPONA_" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPONB_"/>
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPONB_" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_WEAPONB_"/>
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_WEAPONB_" />	
+
+					<Turret
+						TurretNameKey="BONE_TURRET01"
+						TurretPitch="BONE_BARREL01"
+						TurretID="1" />
+					<Turret
+						TurretNameKey="BONE_TURRET01"
+						TurretPitch="BONE_BARREL01"
+						TurretID="2" />	
+					
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPONC"/>
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPONC" />	
+
+				</ModelConditionState>
+
+				
+        <!-- User_1 Laser -->
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1 DAMAGED">
+          <Model
+              Name="mantikeerB" />
+          <ParticleSysBone
+              BoneName="FX_Laser"
+              FXParticleSystemTemplate="Allied_Target_Laser"
+              FollowBone="true"/>
+          <ParticleSysBone
+              BoneName="FX_Damage01"
+              FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+              FollowBone="true"/>
+        </ModelConditionState>
+
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1 REALLYDAMAGED">
+          <Model
+						Name="mantikeerB" />
+          <Texture
+						Original="AUMCV"
+						New="AUMCV_D" />
+	<Texture
+						Original="AUAntiStructureVehicle"
+						New="AUAntiStructureVehicle_D" />					
+          <ParticleSysBone
+              BoneName="FX_Laser"
+              FXParticleSystemTemplate="Allied_Target_Laser"
+              FollowBone="true"/>
+          <ParticleSysBone
+						BoneName="FX_Damage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+          <ParticleSysBone
+						BoneName="FX_Damage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+          <ParticleSysBone
+						BoneName="FX_Damage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+		<ParticleSysBone
+						BoneName="FX_Damage02"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+          <ParticleSysBone
+						BoneName="FX_Damage02"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+          <ParticleSysBone
+						BoneName="FX_Damage02"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>				
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+          <Model
+              Name="AUAntiVehicleVehicleTech1_SKN" />
+          <ParticleSysBone
+              BoneName="FX_Laser"
+              FXParticleSystemTemplate="Allied_Target_Laser"
+              FollowBone="true"/>
+
+        </ModelConditionState>
+
+        <!-- Damage States -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+				<Model
+						Name="mantikeerB" />
+				<ParticleSysBone
+						BoneName="FX_Damage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+        
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="mantikeerB" />
+					<Texture
+						Original="AUMCV"
+						New="AUMCV_D" />
+	<Texture
+						Original="AUAntiStructureVehicle"
+						New="AUAntiStructureVehicle_D" />	
+					<ParticleSysBone
+						BoneName="FX_Damage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>  
+<ParticleSysBone
+						BoneName="FX_Damage02"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage02"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Damage02"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>  						
+				</ModelConditionState> 
+
+
+				
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="AUAntiVehicleVehicleTech1_MOVA"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					StateName="STATE_OnWater">					
+					<ParticleSysBone
+						BoneName="FX_Wake"
+						FXParticleSystemTemplate="JapanCapitalShipWake"
+						FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER"
+					StateName="STATE_OnWater">					
+					<ParticleSysBone
+						BoneName="FX_Wake"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="true" />
+				</AnimationState>
+			</TruckDraw>
+			
+			
+			<ScriptedModelDraw
+				id="ModuleTag_FX667"
+        AttachToBoneInAnotherModule="FX_WEAPONC">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="FXInvisBone" />
+					<ParticleSysBone
+              BoneName="invisbone01"
+              FXParticleSystemTemplate="Allied_Chrono_WeaponFire"
+              FollowBone="true"/>
+          <ParticleSysBone
+              BoneName="invisbone01"
+              FXParticleSystemTemplate="ChronoFireDist"
+              FollowBone="true"/>
+
+          <ParticleSysBone
+              BoneName="invisbone01"
+              FXParticleSystemTemplate="FXMiniChrono"
+              FollowBone="true"/>
+          <ParticleSysBone
+              BoneName="invisbone01"
+              FXParticleSystemTemplate="FXMiniChronoLightning"
+              FollowBone="true"/>	
+				</ModelConditionState>
+			</ScriptedModelDraw>
+        
+
+<LaserDraw
+				id="ModuleTag_LaserDraw_ShrinkRay"
+				Texture1_UTile="1"
+				Texture1_VTile="5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="1"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				FadeInTime="0.2s"
+				FadeOutTime="0.2s"
+				LaserWidth="25"
+				WeaponSlotID="3"
+				LaserStateID="1">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXObeliskLaser</Value>
+						</Texture>
+            <Float Name="ColorEmissive">
+              <Value>0.000000</Value>
+              <Value>3.000000</Value>
+              <Value>5.000000</Value>
+            </Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+
+      
+       <TracerModelDraw
+				id="ModuleTag_TracerModelDrawFront"
+				MinLength="30.0"
+				MaxLength="40.0"
+				Width="12.0"
+				MinSpeed="30"
+				MaxSpeed="40"
+				SweepSpeed="5.0"
+				SpreadAngle="3.0"
+				MinTracersPerFrame="0.4"
+				MaxTracersPerFrame="0.4"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="2"
+				Texture="FXTracer"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_02" />
+			</TracerModelDraw>
+
+			<!-- front weapon -->
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawFrontVet"
+				MinLength="30.0"
+				MaxLength="40.0"
+				Width="12.0"
+				MinSpeed="30"
+				MaxSpeed="40"
+				SweepSpeed="5.0"
+				SpreadAngle="3.0"
+				MinTracersPerFrame="0.4"
+				MaxTracersPerFrame="0.4"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="2"
+				Texture="FXTracerHeroic"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="4.0"
+					g="1.5"
+					b="1.5"
+					a="1.0" />
+				<TailColor
+					r="4.0"
+					g="1.5"
+					b="1.5"
+					a="0.0" />
+				<ObjectStatusValidation
+					  RequiredStatus="WEAPON_UPGRADED_02"/>
+			</TracerModelDraw>
+      
+      
+      <TracerModelDraw
+				id="ModuleTag_TracerModelDrawFront2"
+				MinLength="30.0"
+				MaxLength="40.0"
+				Width="12.0"
+				MinSpeed="30"
+				MaxSpeed="40"
+				SweepSpeed="5.0"
+				SpreadAngle="3.0"
+				MinTracersPerFrame="0.4"
+				MaxTracersPerFrame="0.4"
+				FrameLifeTime="35"
+				WeaponSlotType="SECONDARY_WEAPON"
+				WeaponSlotID="2"
+				Texture="FXTracer"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_02" />
+			</TracerModelDraw>
+
+			<!-- front weapon -->
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawFrontVet2"
+				MinLength="30.0"
+				MaxLength="40.0"
+				Width="12.0"
+				MinSpeed="30"
+				MaxSpeed="40"
+				SweepSpeed="5.0"
+				SpreadAngle="3.0"
+				MinTracersPerFrame="0.4"
+				MaxTracersPerFrame="0.4"
+				FrameLifeTime="35"
+				WeaponSlotType="SECONDARY_WEAPON"
+				WeaponSlotID="2"
+				Texture="FXTracerHeroic"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="4.0"
+					g="1.5"
+					b="1.5"
+					a="1.0" />
+				<TailColor
+					r="4.0"
+					g="1.5"
+					b="1.5"
+					a="0.0" />
+				<ObjectStatusValidation
+					  RequiredStatus="WEAPON_UPGRADED_02"/>
+			</TracerModelDraw>
+      <!-- include Headlight draw module. -->
+      <xi:include
+				href="DATA:Includes/HeadlightDraw2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:HeadlightDraw2/child::*)" />
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				
+				<WeaponSlotTurret
+					ID="1"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_MOST_DAMAGE"
+					AllowInterleavedFiring="true">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="mantikeerRocket_Air"/>
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="mantikeerRocket"/>	
+					<TurretSettings
+						TurretTurnRate="250"
+						MinimumPitch="-20d"
+						AllowsPitch="true"
+						PitchHeight="85%"
+						TurretPitchRate="225"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="4.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0"
+						ComeToHaltJiggle="1d">
+						<TurretAITargetChooserData
+							IdleScanDelay="0s"
+							CanAcquireDynamicIfAssignedOutOfRange="true" >
+							<ObjectVisionRange
+						        id="ObjectVisionRange_Aircraft"
+						        Range="255">
+						        <Filter
+							        Rule="NONE"
+						            Include="AIRCRAFT" />
+					        </ObjectVisionRange>
+				        </TurretAITargetChooserData>	
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="2"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_MOST_DAMAGE"
+					AllowInterleavedFiring="true">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="mantikeerAutoGun_Air"/>	
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="mantikeerAutoGun"/>		
+					<TurretSettings
+						TurretTurnRate="250"
+						MinimumPitch="-20d"
+						AllowsPitch="true"
+						PitchHeight="85%"
+						TurretPitchRate="225"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="4.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0"
+						ComeToHaltJiggle="1d">
+						<TurretAITargetChooserData
+							IdleScanDelay="0s"
+							CanAcquireDynamicIfAssignedOutOfRange="true" >
+							<ObjectVisionRange
+						id="ObjectVisionRange_Aircraft"
+						Range="255">
+						<Filter
+							Rule="NONE"
+							Include="AIRCRAFT" />
+						
+					</ObjectVisionRange>
+				</TurretAITargetChooserData>		
+					</TurretSettings>
+				</WeaponSlotTurret>
+      </WeaponSetUpdate>
+			<LaserState
+				id="ModuleTag_LaserStateShrinkRay"
+				LaserId="1"
+				OriginBoneName="FX_WEAPONC"
+			/>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="mantikeer_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_FutureTankDie" />
+			</FXListBehavior>
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_02">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false" >
+				</UnitAITargetChooserData>		
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1500" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="ALL_GuardianTank_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_PaintTargetVoice">
+				<Override RequiredFlags="USER_1">
+					<AudioArrayVoice>
+						<AudioEntry Sound="ALL_Guardian_VoiceAttackPaintTarget" AudioType="voiceAttack" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="25.0"
+				MinorRadius="18.0"
+				Height="24.0"
+				ContactPointGeneration="VEHICLE"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="ALL_Guardian_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="ALL_Guardian_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="ALL_Guardian_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="ALL_Guardian_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="ALL_Guardian_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="ALL_Guardian_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="ALL_Guardian_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="ALL_Guardian_VoiceSelectBattleMS" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALL_Guardian_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+			<AudioEntry
+				Sound="Tank_Land_MoveLoop"
+				AudioType="soundMoveLoop" />	
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="160"
+			ShroudClearingRange="500" />
+	<CrusherInfo 
+			CrushableLevel="31" 
+			CrusherLevel="30" 
+			CrushDecelerationPercent="80%" />
+	</GameObject>
+	<ObjectCreationList
+		id="mantikeer_Die_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="LIKE_EXISTING INHERIT_VELOCITY"
+			Count="1"
+			VelocityScale="5.0"
+			MinForceMagnitude="1.0"
+			MaxForceMagnitude="2.0"
+			MinForcePitch="90d"
+			MaxForcePitch="75d">
+			<CreateObject>mantikeer_Collapse</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<GameObject
+		id="mantikeer_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="SovietAntiVehicleVehicleTech3_Collapse">
+		<Draws>
+			<DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="15"
+			Explodiness="4">
+			<ModelConditionState
+				ParseCondStateType="PARSE_DEFAULT">
+				<Model
+					Name="mantikeer_COL" />
+					<Texture
+						Original="AUMCV"
+						New="AUMCV_D" />
+	        <Texture
+						Original="AUAntiStructureVehicle"
+						New="AUAntiStructureVehicle_D" />					
+
+				<xi:include
+					href="DATA:Includes/VehicleCollapseParticles/SovietVehicleCollapseParticles.xml"
+					xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:SovietVehicleCollapseParticles/child::*)" />
+									
+			</ModelConditionState>
+				<BoneVolumes>
+				
+<BoneVolume BoneName="Bone_D_01" Mass="20000" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="25.589048" HalfSizeY="17.037794" HalfSizeZ="6.269911" >
+		<Translation x="-3.439119" y="0" z="9.240683" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_02" Mass="6000" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="27.365442" HalfSizeY="3.961921" HalfSizeZ="6.187994" >
+		<Translation x="-1.450537" y="16.230755" z="6.174179" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_03" Mass="4639" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="27.365442" HalfSizeY="3.961921" HalfSizeZ="6.187994" >
+		<Translation x="-1.450537" y="-16.230755" z="6.174179" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_04" Mass="10000" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="18.044428" HalfSizeY="17.063684" HalfSizeZ="4.206234" >
+		<Translation x="-4.637144" y="-0.000004" z="22.584000" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_05" Mass="300" Spinniness="5.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="0.993447" HalfSizeY="0.939452" HalfSizeZ="9.207516" >
+		<Translation x="-11.373277" y="6.607771" z="33.517246" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+
+			</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="4s"
+			MaxLifetime="5s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1.5"
+			DestructionDelay="8s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+	
+</GameObject>
+<LocomotorTemplate
+		id="mantikeerLocomotor"
+		Surfaces="GROUND CRUSHABLE_OBSTACLE CRUSHABLE_WALL"
+		TurnTimeSeconds="2s"
+		TurnTimeDamagedSeconds="2.3s"
+		MaxSpeedDamaged="75%"
+		AccelerationSeconds="0.2s"
+		BrakingSeconds="0.0s"
+		SlowTurnRadius="0.0"
+		FastTurnRadius="20.0"
+		BehaviorZ="NO_MOTIVE_FORCE"
+		TurnThresholdHS="90d"
+		Appearance="FOUR_WHEELS"
+		UseTerrainSmoothing="true"
+		AccelPitchLimit="0.04r"
+		PitchStiffness="0.25"
+		PitchDamping="0.2"
+		RollStiffness="0.4"
+		RollDamping="0.3"
+		ForwardAccelerationPitchFactor="0.025"
+		LateralAccelerationRollFactor="0.0"
+		CanReverseMove="true"
+		HasSuspension="true"
+		WheelTurnAngle="18d"
+		ClampOrientationToPathTangent="true"
+		ReorientIfTurnTooSharp="true">
+		<BounceKickTerrainMap>TankBounceKickTerrainMapping</BounceKickTerrainMap>
+	</LocomotorTemplate>
+</AssetDeclaration>

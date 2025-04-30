@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="instance"
+			source="BaseObject.xml" />
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<!-- base interface object for all ore nodes, should not be created directly. -->
+	<GameObject
+		id="BaseOreNode"
+		inheritFrom="BaseObject"
+		SelectPortrait="Portrait_Neutral_OreNode"
+		ButtonImage="Button_Neutral_OreNode"
+		Side="Neutral"
+		BuildTime="15"
+		EditorSorting="STRUCTURE"
+		CommandSet="EmptyCommandSet"
+		KindOf="STRUCTURE SELECTABLE IMMOBILE UNATTACKABLE CAN_CAST_REFLECTIONS FS_TECHNOLOGY NOT_AUTOACQUIRABLE NOT_SELLABLE ORE_NODE CAN_BUILD_ON_WATER CAN_BUILD_ON_DEEP_WATER ALWAYS_VISIBLE_IN_RADAR IMMUNE_TO_CAPTURE WB_DISPLAY_SCRIPT_NAME"
+		RadarPriority="STRUCTURE"
+		ProductionQueueType="MAIN_STRUCTURE"
+		EditorName="BaseOreNode"
+		Description="Desc:TechBuildingOreNode">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:TechBuildingOreNode</DisplayName>
+		<ArmorSet
+			Armor="InvulnerableArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<Draws/>
+		<Behaviors>
+			<QueueDockBehavior
+				id="ModuleTag_QueueDockBehavior"
+				DockStartBoneName="DockStart"
+				DockActionBoneName="DockAction"
+				DockEndBoneName="DockEnd"
+				QueueBonePrefix="Que"
+				TurnTableBoneName="BONE_TABLE"/>
+			<!-- Added to allow the Ore Nodes to be placed on water and function correctly -->
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				UnpackTime="0.0s" />
+			<AssistedPlacementInfoBehavior
+				id="AssistedPlacementInfoBehavior_ModuleData">
+				<HintObject
+					HintDisplayObject="NeutralRefineryPlacementHint"
+					HintOpacity="1.0">
+					<ObjectFilter
+						Rule="ANY"
+						Include="REFINERY" />
+				</HintObject>
+				<HintObject
+					HintDisplayObject="AlliedRefinery"
+					PlayerTemplate="Allies"
+					HintOpacity="0.45"
+					HintUsesShaders="true" />
+				<HintObject
+					HintDisplayObject="SovietRefinery"
+					PlayerTemplate="Soviet"
+					HintOpacity="0.45"
+					HintUsesShaders="true" />
+				<HintObject
+					HintDisplayObject="JapanRefinery"
+					PlayerTemplate="Japan"
+					HintOpacity="0.45"
+					HintUsesShaders="true" />
+				<HintObject
+					HintDisplayObject="AlliedRefinery"
+					PlayerTemplate="AlliesG"
+					HintOpacity="0.45"
+					HintUsesShaders="true" />
+				<HintObject
+					HintDisplayObject="SovietRefinery"
+					PlayerTemplate="SovietB"
+					HintOpacity="0.45"
+					HintUsesShaders="true" />
+				<HintObject
+					HintDisplayObject="JapanRefinery"
+					PlayerTemplate="JapanA"
+					HintOpacity="0.45"
+					HintUsesShaders="true" />
+				<HintObject
+					HintDisplayObject="AlliedRefinery"
+					PlayerTemplate="AlliesE"
+					HintOpacity="0.45"
+					HintUsesShaders="true" />
+				<HintObject
+					HintDisplayObject="SovietRefinery"
+					PlayerTemplate="SovietL"
+					HintOpacity="0.45"
+					HintUsesShaders="true" />
+				<HintObject
+					HintDisplayObject="JapanRefinery"
+					PlayerTemplate="JapanG"
+					HintOpacity="0.45"
+					HintUsesShaders="true" />
+				<PlacementRestriction
+					FilterRadius="5.0">
+					<RestrictedObjectFilter
+						Rule="ANY"
+						Include="REFINERY"
+						Relationship="ALLIES" />
+				</PlacementRestriction>
+				<SuggestedOffset
+					x="180.0"
+					y="0.0"
+					z="0.0" />
+			</AssistedPlacementInfoBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="SUICIDED" />
+			</DestroyDie>
+		</Behaviors>
+		<ClientBehaviors>
+			<AnimationSoundClientBehavior id="ModuleTag_AnimationSound">
+				<Sound Sound="NEU_OreNode_CraneMoveCCW" Animation="NBOreNode1_GAG_RETURN"
+					RequiredMC="DOCKING_MOVEBACK" Frame="22" />
+				<Sound Sound="NEU_OreNode_CraneMoveCW" Animation="NBOreNode1_GAG_RETURN"
+					RequiredMC="DOCKING_RETURN" Frame="51" />
+			</AnimationSoundClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_OreLoad">
+				<ModelConditionSound Sound="NEU_OreNode_Load" RequiredFlags="DOCKING_ACTIVE"
+					ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_PlatformTurn">
+				<ModelConditionSound Sound="ALL_Refinery_Platform_Rotate"
+					RequiredFlags="DOCKING_ACTIVE" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="33.3968"
+				MinorRadius="40.6488"
+				Height="29.2901"
+				ContactPointGeneration="STRUCTURE">
+				<Offset
+					x="-25.491"
+					y="0.0"
+					z="0.0" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="27.4506"
+				MinorRadius="28.2412"
+				Height="8.77385"
+				ContactPointGeneration="STRUCTURE">
+				<Offset
+					x="32.2561"
+					y="0.907684"
+					z="-0.285889" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="6.5"
+				MinorRadius="6.5"
+				Height="40.2274"
+				ContactPointGeneration="STRUCTURE">
+				<Offset
+					x="-46.7472"
+					y="32.337"
+					z="0.0" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="6.5"
+				MinorRadius="6.5"
+				Height="40.2274"
+				ContactPointGeneration="STRUCTURE">
+				<Offset
+					x="1.18436"
+					y="32.337"
+					z="0.0" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="6.5"
+				MinorRadius="6.5"
+				Height="40.2274"
+				ContactPointGeneration="STRUCTURE">
+				<Offset
+					x="1.40023"
+					y="-31.4948"
+					z="0.0" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="6.5"
+				MinorRadius="6.5"
+				Height="40.2274"
+				ContactPointGeneration="STRUCTURE">
+				<Offset
+					x="-46.7472"
+					y="-31.4948"
+					z="0.0" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="60.0"
+				MinorRadius="45.0"
+				Height="5.0"
+				ContactPointGeneration="STRUCTURE">
+				<Offset
+					x="0.0"
+					y="0.0"
+					z="0.0" />
+			</Shape>
+		</Geometry>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="99999999.0" />
+		</Body>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="OreNodeStateMachine"/>
+		</AI>
+		<AudioArraySound>
+			<AudioEntry Sound="HumanFaction_MediumBuilding_LightDamageMS" AudioType="soundOnDamaged" />
+			<AudioEntry Sound="HumanFaction_MediumBuilding_HeavyDamageMS" AudioType="soundOnReallyDamaged" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="200" />
+		<ProjectedBuildabilityInfo
+			Radius="120.0"
+			RadiusY="105.0"
+			BuildPlacementTypes="BLOCKED">
+			<AllowedObjectFilter
+				Rule="ALL">
+				<ExcludeThing>AlliedRefinery</ExcludeThing>
+				<ExcludeThing>SovietRefinery</ExcludeThing>
+				<ExcludeThing>JapanRefinery</ExcludeThing>
+			</AllowedObjectFilter>
+		</ProjectedBuildabilityInfo>
+	</GameObject>
+</AssetDeclaration>

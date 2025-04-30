@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Tags></Tags>
+  <Includes>
+    <Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+    <Include type="all"	source="ART:Structures/AlliedTheWorld/FXTHEWORLD.w3x" />
+    <Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+  </Includes>
+	<GameObject
+		id="AlliedTheWorldSpawner"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="IMMOBILE UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE"
+		EditorName="AlliedTheWorldSpawner"
+		Description="Desc:AlliedTheWorldSpawner"
+		TypeDescription="Type:AlliedTheWorldSpawner">
+		<DisplayName>AlliedTheWorldSpawner</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="0.2s"
+			  MaxLifetime="0.2s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_AlliedTheWorld">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>AlliedSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_AlliedTheWorldUpgrade">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>AlliedSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+	</GameObject>
+  <GameObject
+		id="AlliedTheWorld"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		CommandSet="EmptyCommandSet"
+		KindOf="NOT_AUTOACQUIRABLE RESIST_EMP INERT_SHROUD_REVEALER NO_COLLIDE UNATTACKABLE"
+		EditorName="AlliedTheWorld">
+    <DisplayName>Name:AlliedTheWorld</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+    <SkirmishAIInformation
+      DodgeSafetyDistance="100.0">
+      <DodgeWithUnits Rule="ALL"
+        StatusBitFlagsExclude="AIRBORNE_TARGET">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+    <Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="false">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="MODELFXTHEWORLD" />
+        </ModelConditionState>
+        <AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+        </AnimationState>
+      </ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.13s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="AlliedTheWorldShortCircuit"
+					OneShot="false" />
+			</FireWeaponUpdate>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+      <LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				MinLifetime="10s"
+				MaxLifetime="10s"/>
+    </Behaviors>
+    <AI>
+      <AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+    </AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>  
+    <VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="75" />
+  </GameObject>
+  <GameObject
+		id="AlliedTheWorldUpgrade"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		CommandSet="EmptyCommandSet"
+		KindOf="NOT_AUTOACQUIRABLE RESIST_EMP INERT_SHROUD_REVEALER NO_COLLIDE UNATTACKABLE"
+		EditorName="AlliedTheWorldUpgrade">
+    <DisplayName>Name:AlliedTheWorldUpgrade</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+    <SkirmishAIInformation
+      DodgeSafetyDistance="100.0">
+      <DodgeWithUnits Rule="ALL"
+        StatusBitFlagsExclude="AIRBORNE_TARGET">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+    <Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="false">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="MODELFXTHEWORLDUPGRADE" />
+        </ModelConditionState>
+        <AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+        </AnimationState>
+      </ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.1s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="AlliedTheWorldShortCircuitUpgrade"
+					OneShot="false" />
+			</FireWeaponUpdate>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+      <LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				MinLifetime="12s"
+				MaxLifetime="12s"/>
+    </Behaviors>
+    <AI>
+      <AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+    </AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>  
+    <VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="75" />
+  </GameObject>
+</AssetDeclaration>

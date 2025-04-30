@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="JapanAntiAirVehicleTech1_LandMissileLauncher"
+		AttackRange="350.0"
+		WeaponSpeed="300"
+		FireSound="JAP_ChopperVX_MissileFire"
+		FireFX="FX_Japan_ChopperVX_Fire2"
+		FireVeteranFX="FX_Japan_ChopperVX_Fire2Vet"
+		AcceptableAimDelta="60d"
+		PreAttackType="PER_SHOT"
+		ReAcquireDetailType="PRE_FIRE"
+		ClipSize="6"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+		CanFireWhileMoving="true">
+		<FiringDuration
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<ClipReloadTime
+			MinSeconds="0.5s"
+			MaxSeconds="0.5s" />
+		<Nuggets>
+			<ProjectileNugget
+				ProjectileTemplate="JapanAntiAirVehicleTech1MissileProjectile"
+				WarheadTemplate="JapanAntiAirVehicleTech1_MissileLauncherWarhead">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+				<VeterancyProjectiles
+					VeterancyLevel="HEROIC"
+					ProjectileTemplate="JapanAntiAirVehicleTech1MissileProjectile_Veteran"/>
+			</ProjectileNugget>
+			<InformTargetNugget
+					 MaxTimeToImpactFudgeFactor="1.6">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+				</InformTargetNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="JapanAntiAirVehicleTech1_AirMissileLauncher"
+		AttackRange="200.0"
+		WeaponSpeed="200"
+		FireSound="JAP_ChopperVX_MissileFire"
+		FireFX="FX_Japan_ChopperVX_Fire"
+		FireVeteranFX="FX_Japan_ChopperVX_FireVet"
+		AcceptableAimDelta="20d"
+		PreAttackType="PER_SHOT"
+		ReAcquireDetailType="PRE_FIRE"
+		ClipSize="6"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		ForbiddenAntiMask="ANTI_STRUCTURE"
+		FinishAttackOnceStarted="true"
+		CanFireWhileMoving="true">
+		<FiringDuration
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<ClipReloadTime
+			MinSeconds="0.5s"
+			MaxSeconds="0.5s" />
+		<Nuggets>
+			<ProjectileNugget
+				ProjectileTemplate="JapanAntiAirVehicleTech1MissileProjectile"
+				WarheadTemplate="JapanAntiAirVehicleTech1_MissileLauncherWarhead">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+				<VeterancyProjectiles
+					VeterancyLevel="HEROIC"
+					ProjectileTemplate="JapanAntiAirVehicleTech1MissileProjectile_Veteran"/>
+			</ProjectileNugget>
+			<InformTargetNugget
+					 MaxTimeToImpactFudgeFactor="1.6">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+			</InformTargetNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="JapanAntiAirVehicleTech1_MissileLauncherWarhead"
+		ProjectileCollidesWith="ENEMIES NEUTRAL"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_GROUND ANTI_WATER"
+		ForbiddenAntiMask="ANTI_STRUCTURE">
+		<Nuggets>
+			<DamageNugget
+				Damage="30"
+				Radius="20.0"
+				DamageType="ROCKET"
+				DamageFXType="JAPAN_MISSILE"
+				DeathType="EXPLODED">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+				<DamageScalarDetails Scalar= "200%">
+					<Filter
+						Rule="NONE">
+					<IncludeThing>JapanAntiAirVehicleTech1</IncludeThing>
+					<IncludeThing>JapanAntiAirVehicleTech1AI</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="JapanAntiAirVehicleTech1_GroundSP"
+		AttackRange="350.0"
+		WeaponSpeed="999999.0"
+		RadiusDamageAffects="ENEMIES"
+		ClipSize="1"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		CanFireWhileMoving="true"
+        ReAcquireDetailType="PER_CLIP"
+        PreAttackType="PER_TARGET"
+		AcceptableAimDelta="180d"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+		ForbiddenAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		InstantLoadClipOnActivate="true" >
+		<ClipReloadTime
+			MinSeconds="15s"
+			MaxSeconds="15s" />
+		<Nuggets>
+			<AttributeModifierNugget
+				AttributeModifierOwnerName="AttributeModifier_JapanAntiAirVehicleTech1_SP">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+			</AttributeModifierNugget>
+			<AttributeModifierNugget
+				AttributeModifierOwnerName="AttributeModifier_JapanAntiAirVehicleTech1CanNotUseWeapon">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+			</AttributeModifierNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="JapanAntiAirVehicleTech1_AirSP"
+		AttackRange="200.0"
+		WeaponSpeed="999999.0"
+		RadiusDamageAffects="ENEMIES"
+		ClipSize="1"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		CanFireWhileMoving="true"
+        ReAcquireDetailType="PER_CLIP"
+        PreAttackType="PER_TARGET"
+		AcceptableAimDelta="180d"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		ForbiddenAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_STRUCTURE"
+		InstantLoadClipOnActivate="true" >
+		<ClipReloadTime
+			MinSeconds="3s"
+			MaxSeconds="3s" />
+		<Nuggets>
+			<AttributeModifierNugget
+				AttributeModifierOwnerName="AttributeModifier_JapanAntiAirVehicleTech1_SP">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+			</AttributeModifierNugget>
+			<AttributeModifierNugget
+				AttributeModifierOwnerName="AttributeModifier_JapanAntiAirVehicleTech1CanNotUseWeapon">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+			</AttributeModifierNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_JAAVT1_Transform"
+        Flags="NOT_IN_NANOSWARM CAN_NOT_BE_SCRAMBLED NOT_WHILE_BENEATH_BRIDGE"
+		ReloadTime="3s"
+		TargetType="NONE"
+		WaypointModeTerminal="false"
+		PreventConditions="BOOBY_TRAPPED IMMOBILE_ALLOW_ROTATE MARCH_OF_DEATH" />
+</AssetDeclaration>

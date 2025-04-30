@@ -1,0 +1,580 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+
+		<Include
+			type="all"
+			source="ART:Units/ChronoTank/AUChrono.w3x" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="EUChronoVehicle"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_ChronoTank"
+		ButtonImage="Button_ChronoTank"
+		Side="Allies"
+		SubGroupPriority="425"
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="25"
+		BuildTime="16"
+		ThreatLevel="10"
+		CommandSet="EUChronoVehicleCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT T2_UNIT SKIRMISH_AI_DONT_MULTI_TARGET"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		BountyValue="250"
+		EditorName="EUChronoVehicle"
+		Description="Desc:AlliedChronoVehicle"
+		TypeDescription="Type:AntiAllWitoutAir">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedChronoVehicle</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1600" />
+		</ObjectResourceInfo>
+		<GameDependency
+			ForbiddenModelConditions="OVER_WATER">
+			<NeededUpgrade>Upgrade_AlliedTech2</NeededUpgrade>
+		</GameDependency>
+		<ArmorSet
+			Armor="BaseTankArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="TestReactiveLocomotorTANK"
+			Condition="NORMAL"
+			Speed="70.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			OutOfRangePenalty="1.5"
+			ConquerMetricsOverrideDamageType="KI"
+			ConquerMetricsOverrideAntiMask="ANTI_GROUND ANTI_STRUCTURE"
+			ConquerMetricsOverrideDefendingAntiMask="ANTI_VEHICLE" />
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				LeftFrontTireBone="Bone_Tracks_Front_Left"
+				RightFrontTireBone="Bone_Tracks_Front_Right"
+				LeftRearTireBone="Bone_Tracks_Rear_Right"
+				RightRearTireBone="Bone_Tracks_Rear_Left"
+				TireRotationMultiplier="0.0"
+				InitialRecoilSpeed="0.5"
+				MaxRecoilDistance="5"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="Bone_Tread_Front_Left Bone_Tread_Front_Right Bone_Tread_Rear_Left Bone_Tread_Rear_Right FXTracksL FXTracksR Bone_Turret Bone_Turret_Pitch FX_Laser FXBone_Muzzle BONE_GUN_MUZZLE"
+				TrackMarksLeftBone="FXTracksL"
+				TrackMarksRightBone="FXTracksR">
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+
+				<TreadScrollingMap
+					LeftTrack="Bone_Tread_Front_Left"
+					RightTrack="Bone_Tread_Front_Right"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%" />
+				<TreadScrollingMap
+					LeftTrack="Bone_Tread_Rear_Left"
+					RightTrack="Bone_Tread_Rear_Right"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%" />
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="AUChrono" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBone_Muzzle" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXBone_Muzzle" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_GUN_MUZZLE" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="Chronosphere" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="Chronosphere" />
+					<Turret
+						TurretNameKey="Bone_Turret"
+						TurretPitch="Bone_turret_pitch"
+						TurretID="1" />
+
+					<ParticleSysBone
+						BoneName="Chronosphere"
+						FXParticleSystemTemplate="FXMiniChrono"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Chronosphere"
+						FXParticleSystemTemplate="FXMiniChronoLightning"
+						FollowBone="true" />
+
+					<ParticleSysBone
+						BoneName="Chronosphere"
+						FXParticleSystemTemplate="FXMiniChrono"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Chronosphere"
+						FXParticleSystemTemplate="FXMiniChronoLightning"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<!-- Damage States -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AUChrono" />
+					<ParticleSysBone
+						BoneName="FX_Damage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Chronosphere"
+						FXParticleSystemTemplate="FXMiniChronoLightning"
+						FollowBone="true" />
+
+
+					<ParticleSysBone
+						BoneName="Chronosphere"
+						FXParticleSystemTemplate="FXMiniChrono"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Chronosphere"
+						FXParticleSystemTemplate="FXMiniChronoLightning"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUChrono" />
+					<Texture
+						Original="AUPrism"
+						New="AUPrism_D" />
+					<Texture
+						Original="AUchrono"
+						New="AUchrono_D" />
+					<ParticleSysBone
+						BoneName="FX_Damage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Damage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Damage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Chronosphere"
+						FXParticleSystemTemplate="FXMiniChronoLightning"
+						FollowBone="true" />
+
+
+					<ParticleSysBone
+						BoneName="Chronosphere"
+						FXParticleSystemTemplate="FXMiniChrono"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Chronosphere"
+						FXParticleSystemTemplate="FXMiniChronoLightning"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="CHRONORIFT">
+					<Model
+						Name="AUChrono" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="AUAntiVehicleVehicleTech1_MOVA"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+
+			</TruckDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<LaserDraw
+				id="ModuleTag_Laser1Draw"
+				Texture1_UTile="1"
+				Texture1_VTile=".2"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="-1"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="-1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="10"
+				LaserStateID="401">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXJapanLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXJapanOverlay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>5.0000000</Value>
+							<Value>5.0000000</Value>
+							<Value>5.0000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDistort01"
+				UseDistortionShader="true"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="2"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".7"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="10"
+				LaserStateID="401">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+
+
+			<LaserDraw
+				id="ModuleTag_Laser1Draw_Vet"
+				Texture1_UTile="1"
+				Texture1_VTile=".2"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="-2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="-2"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="10"
+				LaserStateID="402">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXJapanLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXJapanOverlay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>3.0000000</Value>
+							<Value>3.0000000</Value>
+							<Value>10.0000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDistort01_Vet"
+				UseDistortionShader="true"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="2"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".7"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="10"
+				LaserStateID="402">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDistort"
+				UseDistortionShader="true"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".01"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="1"
+				LaserWidth="50"
+				LaserStateID="503">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXRailGunCoreDistortion</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXRailGunCoreMask</Value>
+						</Texture>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+
+			<!-- include Headlight draw module. -->
+			<xi:include
+				href="DATA:Includes/HeadlightDraw2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:HeadlightDraw2/child::*)" />
+
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUChronoVehicleTemporalWeapon"
+						ForbiddenObjectStatus="SPECIALABILITY_ACTIVE SHRUNK" />
+					<TurretSettings
+						TurretTurnRate="180"
+						MinimumPitch="-30d"
+						AllowsPitch="false"
+						TurretPitchRate="180"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="4.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0"
+						ComeToHaltJiggle="3d">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<AttributeModifierUpgrade
+				id="ModuleTag_AlliedUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<LaserState
+				id="ModuleTag_LaserState"
+				LaserId="401"
+				OriginBoneName="FXBone_Muzzle">
+				<LaserStartParticleSystem>Allied_Chrono_WeaponFire</LaserStartParticleSystem>
+				<LaserStartParticleSystem>ChronoFireDist</LaserStartParticleSystem>
+				<LaserEndParticleSystem>ChronoFire</LaserEndParticleSystem>
+				<LaserEndParticleSystem>ChronoFireDist</LaserEndParticleSystem>
+			</LaserState>
+			<LaserState
+				id="ModuleTag_LaserState_Vet"
+				LaserId="402"
+				OriginBoneName="FXBone_Muzzle">
+				<LaserStartParticleSystem>Allied_Chrono_WeaponFire_Vet</LaserStartParticleSystem>
+				<LaserStartParticleSystem>ChronoFireDist</LaserStartParticleSystem>
+				<LaserEndParticleSystem>ChronoFire</LaserEndParticleSystem>
+				<LaserEndParticleSystem>ChronoFireDist</LaserEndParticleSystem>
+			</LaserState>
+			<LaserState
+				id="ModuleTag_LaserDistortStateA"
+				LaserId="503">
+			</LaserState>
+
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AUAntiVehicleVehicleTech1_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_AlliedChieftanDie" />
+			</FXListBehavior>
+			<SpecialPower
+				id="ModuleTag_ToggleBarrageAutoCannon"
+				SpecialPowerTemplate="SpecialPower_TriggerTeleport"
+				UpdateModuleStartsAttack="true"
+				AttributeModifier="AttributeModifier_TemporalDisplacementMove"
+				AttributeModifierAffectsSelf="true" />
+			<TeleportSpecialAbilityUpdate
+				id="ModuleTag_TeleportSpecialAbility"
+				SpecialPowerTemplate="SpecialPower_TriggerTeleport"
+				TriggerSound="ALL_Chronosphere_Die"
+				UnpackTime="0.5s"
+				PackTime="0s"
+				MaxDistance="10000"
+				HeightToTeleportTo="0"
+				FleeRangeAfterCompletion="30"
+				Options="IGNORE_FACING_CHECK"
+				DestinationWeapon="EUChronoVehicleTeleportEndWeapon"
+				StartAbilityRange="400" />
+			<AttributeModifierUpgrade
+				id="ModuleTag_AlliedUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeModifer_JapanBaseUpgradeTengGu">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech2.xml" />
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech2/child::*)" />
+			<!-- High Technology  -->
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="true"
+					SympathyRange="205.0" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="550" />
+		</Body>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="20.0"
+				MinorRadius="12.0"
+				Height="17.0"
+				ContactPointGeneration="VEHICLE" />
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="ALL_ChronoTank_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="ALL_ChronoTank_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="ALL_ChronoTank_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="ALL_ChronoTank_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="ALL_ChronoTank_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="ALL_ChronoTank_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="ALL_ChronoTank_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="ALL_ChronoTank_VoiceSelectBattle" AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="ALL_ChronoTank_VoiceSpecialPower" Name="voiceJump" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALL_Guardian_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+			<AudioEntry
+				Sound="Tank_Land_MoveLoop"
+				AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="260"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			CrushableLevel="25"
+			CrusherLevel="20"
+			CrushWeapon="SovietCrushWeapon"
+			CrushDecelerationPercent="80%">
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="EUChronoVehicle_Crate"
+		inheritFrom="EUChronoVehicle"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="EUChronoVehicle_Crate">
+		<EquivalentTo>EUChronoVehicle</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

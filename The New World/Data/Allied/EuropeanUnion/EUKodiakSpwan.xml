@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:Allied/Structures/KodiakSpwan.xml" />
+	</Includes>
+	<GameObject
+		id="EUKodiakSpwan"
+		inheritFrom="KodiakSpwan"
+		EditorName="EUKodiakSpwan">
+		<EquivalentTo>EUEpicUnit</EquivalentTo>
+		<Behaviors>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				xai:joinAction="Replace"
+				CreationList="EUGDIKodiakSpwanSet">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>Upgrade_SandBox</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSandbox"
+				xai:joinAction="Replace"
+				CreationList="EUGDIKodiakSpwanSetSandBox">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>Upgrade_SandBox</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

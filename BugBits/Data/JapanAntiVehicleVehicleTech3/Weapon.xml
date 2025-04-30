@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="JapanAntiVehicleVehicleTech3BeamWeapon"
+		AttackRange="150.0"
+		CanFireWhileMoving="true"
+		WeaponSpeed="999999.0"
+		PreAttackFX="FX_JAP_KingOni_LaserChargeUp"
+		FireFX="FX_JapanOniEyes"
+    FireVeteranFX="FX_JapanOniEyes"
+		FireSound="JAP_KingOni_LaserFire"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		AcceptableAimDelta="10d"
+		PreAttackType="PER_TARGET"
+		ReAcquireDetailType="PRE_FIRE"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		ForbiddenAntiMask="ANTI_STRUCTURE"
+		ClipSize="1"
+		AutoReloadsClip="AUTO"
+		Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<PreAttackDelay
+			MinSeconds="1s"
+			MaxSeconds="1s" />
+		<FiringDuration
+			MinSeconds="0.75s"
+			MaxSeconds="0.75s" />
+		<ClipReloadTime
+			MinSeconds="5.0s"
+			MaxSeconds="5.0s" />
+		<Nuggets>
+			<DamageNugget
+				Damage="650.0"
+				Radius="0.0"
+				DamageType="CANNON"
+				DeathType="EXPLODED"/>
+			<ActivateLaserNugget
+				Lifetime="0.75s"
+				LaserId="101"/>
+			<ActivateLaserNugget
+				Lifetime="0.75s"
+				LaserId="102"/>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		  id="JapanAntiVehicleVehicleTech3BeamWeapon_Veteran"
+		  AttackRange="150.0"
+		  CanFireWhileMoving="true"
+		  WeaponSpeed="999999.0"
+		  PreAttackFX="FX_JAP_KingOni_LaserChargeUp"
+		  FireFX="FX_JapanOniEyes_Vet"
+	  FireVeteranFX="FX_JapanOniEyes_Vet"
+		  FireSound="JAP_KingOni_LaserFire"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		  AcceptableAimDelta="10d"
+		  PreAttackType="PER_TARGET"
+		  ReAcquireDetailType="PRE_FIRE"
+		  RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		  ForbiddenAntiMask="ANTI_STRUCTURE"
+		  ClipSize="1"
+		  AutoReloadsClip="AUTO"
+		  Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<PreAttackDelay
+				MinSeconds="1s"
+				MaxSeconds="1s" />
+		<FiringDuration
+				MinSeconds="0.75s"
+				MaxSeconds="0.75s" />
+		<ClipReloadTime
+				MinSeconds="5.0s"
+				MaxSeconds="5.0s" />
+		<Nuggets>
+			<DamageNugget
+					  Damage="650.0"
+					  Radius="0.0"
+					  DamageType="CANNON"
+					  DeathType="EXPLODED"/>
+			<ActivateLaserNugget
+					  Lifetime="0.75s"
+					  LaserId="103"/>
+			<ActivateLaserNugget
+					  Lifetime="0.75s"
+					  LaserId="104"/>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="JapanAntiVehicleVehicleTech3RushAttackTriggerWeapon"
+		AttackRange="150.0"
+		MinimumAttackRange="50"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND"
+		ForbiddenAntiMask="ANTI_STRUCTURE"
+		ClipSize="1"
+		AutoReloadsClip="AUTO"
+		PreAttackType="PER_SHOT"
+		CanFireWhileMoving="false"
+		AcceptableAimDelta="20d"
+		InstantLoadClipOnActivate="true"
+		FireFX="FX_None"
+		VirtualDamage="SHARE"
+		FireVeteranFX="FX_None">
+		<FiringDuration
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<ClipReloadTime
+			MinSeconds="10.0s"
+			MaxSeconds="10.0s" />
+		<WeaponAiHintInfo
+				UseAsWarheadForDamageCalculations="JapanAntiVehicleVehicleTech3RushAttackWeapon" />
+		<Nuggets>
+			<SpecialPowerNugget
+				SpecialPowerTemplate="SpecialPower_TriggerRushAttack">
+					<SpecialObjectFilter
+						Rule="ANY"
+						Relationship="ENEMIES NEUTRAL"
+						Include="INFANTRY VEHICLE HUGE_VEHICLE STRUCTURE"
+						Exclude="AIRCRAFT ORE_NODE BRIDGE BRIDGE_SEGMENT BRIDGE_ENDCAP BRIDGE_GATEHOUSE"
+						StatusBitFlagsExclude="AIRBORNE_TARGET OVER_WATER WATER_LOCOMOTOR_ACTIVE NOT_IN_WORLD UNDER_IRON_CURTAIN"/>
+				</SpecialPowerNugget>
+				<AttributeModifierNugget
+				AttributeModifierOwnerName="AttributeModifer_JapanAntiVehicleVehicleTech3RushReloading">
+					<SpecialObjectFilter
+						Rule="ANY"
+						Relationship="ENEMIES NEUTRAL"
+						Include="INFANTRY VEHICLE HUGE_VEHICLE STRUCTURE"
+						Exclude="AIRCRAFT ORE_NODE BRIDGE BRIDGE_SEGMENT BRIDGE_ENDCAP BRIDGE_GATEHOUSE"
+						StatusBitFlagsExclude="AIRBORNE_TARGET OVER_WATER WATER_LOCOMOTOR_ACTIVE NOT_IN_WORLD UNDER_IRON_CURTAIN"/>
+					</AttributeModifierNugget>
+			<InformTargetNugget >
+				<SpecialObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="INFANTRY VEHICLE HUGE_VEHICLE STRUCTURE"
+					Exclude="AIRCRAFT ORE_NODE BRIDGE BRIDGE_SEGMENT BRIDGE_ENDCAP BRIDGE_GATEHOUSE"
+					StatusBitFlagsExclude="AIRBORNE_TARGET OVER_WATER WATER_LOCOMOTOR_ACTIVE NOT_IN_WORLD UNDER_IRON_CURTAIN"/>
+				</InformTargetNugget>	
+		</Nuggets>
+	</WeaponTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_TriggerRushAttack"
+		ReloadTime="10s"
+		TargetType="OBJECT_OR_LOCATION"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceBullRush"
+		Flags="PATHABLE_ONLY NEEDS_OBJECT_FILTER CANNOT_LEAVE_ENCLOSURE CANNOT_TARGET_SELF TREAT_BRIDGES_AS_LOCATIONS"
+		MaxCastRange="300"
+		MinCastRange="50"
+		WaypointModeTerminal="false" >
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ENEMIES NEUTRAL"
+			Include="INFANTRY VEHICLE HUGE_VEHICLE STRUCTURE"
+			Exclude="AIRCRAFT ORE_NODE BRIDGE BRIDGE_SEGMENT BRIDGE_ENDCAP BRIDGE_GATEHOUSE"
+			StatusBitFlagsExclude="AIRBORNE_TARGET OVER_WATER WATER_LOCOMOTOR_ACTIVE NOT_IN_WORLD UNDER_IRON_CURTAIN"/>
+	</SpecialPowerTemplate>
+
+	<WeaponTemplate
+		id="JapanAntiVehicleVehicleTech3RushAttackWeapon"
+		AttackRange="30.0"
+		IdleAfterFiringDelaySeconds="3s"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND"
+		ForbiddenAntiMask="ANTI_STRUCTURE"
+		ClipSize="1"
+		AutoReloadsClip="AUTO"
+		PreAttackType="PER_SHOT"
+        CanFireWhileMoving="false"
+		InstantLoadClipOnActivate="true"
+		FireFX="FX_None"
+        FireVeteranFX="FX_None">
+		<FiringDuration
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<ClipReloadTime
+			MinSeconds="10.0s"
+			MaxSeconds="10.0s" />
+		<Nuggets>
+			<DamageNugget
+				Damage="750.0"
+				Radius="5.0"
+				DamageType="EXPLOSIVE"
+				DamageFXType="JAPAN_RUSH"
+				DeathType="EXPLODED"/>
+			<InformTargetNugget />
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

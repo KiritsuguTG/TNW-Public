@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include type="instance" source="DATA:Base/BaseMissionEvaDialogue.xml" />
+		<Include type="instance" source="DATA:SageXml/Sounds/BaseSoundEffect.xml" />
+	</Includes>
+	<!-- Sound effect -->
+
+	<AudioEvent id="88mmCannonFire" inheritFrom="AudioEvent:BaseSoundEffect"
+		Volume = "90"
+		VolumeShift = "-32"
+		Limit = "3"
+		Control = "INTERRUPT"
+		Type = "WORLD SHROUDED EVERYONE"
+		SubmixSlider = "SOUNDFX" >
+		<PitchShift Low = "-5" High = "5" />
+		<Sound>88mmcannonfire</Sound>
+	</AudioEvent>
+
+	
+
+	<AudioEvent
+	id="maus_IdleLoop"
+	inheritFrom="AudioEvent:BaseSoundEffect"
+	Volume="170"
+	VolumeShift="-5"
+	MinRange="1"
+	MaxRange="750"
+	Control="LOOP FADE_ON_KILL FADE_ON_START"
+	Limit="3"
+	Priority="LOWEST"
+	Type="WORLD SHROUDED EVERYONE"
+	SubmixSlider="SOUNDFX">
+	<PitchShift
+	Low="-15"
+	High="-5" />
+		<Sound>maus_engine1</Sound> 
+	</AudioEvent>
+	
+	<AudioEvent
+	id="maus_MoveLoop"
+	inheritFrom="AudioEvent:BaseSoundEffect"
+	Volume="190"
+	VolumeShift="-5"
+	MinRange="1"
+	MaxRange="700"
+	Limit="3"
+	Control="LOOP FADE_ON_KILL FADE_ON_START"
+	Type="WORLD SHROUDED EVERYONE"
+	SubmixSlider="SOUNDFX">
+	<PitchShift
+	Low="-25"
+	High="-15" />
+		<Sound>maus_moving</Sound> 
+	</AudioEvent>
+
+	<AudioEvent
+	id="maus_MoveStart"
+	inheritFrom="AudioEvent:BaseSoundEffect"
+	Volume="178"
+	VolumeShift="-5"
+	Limit="3"
+	Type="WORLD SHROUDED EVERYONE"
+	SubmixSlider="SOUNDFX">
+	<PitchShift
+	Low="-15"
+	High="-5" />
+		<Delay
+	Low="0"
+	High="150" />
+		<Sound>maus_strat_move</Sound>
+	</AudioEvent>
+
+</AssetDeclaration>

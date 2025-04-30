@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<!-- aka Stingray -->
+		<Include
+			type="all"
+			source="ART:SUAntiNavyShipTech1_D.xml" />
+		<Include
+			type="all"
+			source="ART:Units/StrategicArmyAntiAirShip/SAAntiAirShipTech1_SKN.W3X" />
+		<Include
+			type="all"
+			source="ART:Units/StrategicArmyAntiAirShip/SAAntiAirShipTech1_toWATER.w3x" />
+		<Include
+			type="all"
+			source="ART:Units/StrategicArmyAntiAirShip/SAAntiAirShipTech1_COL_SKL.w3x" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- aka Stingray -->
+	<GameObject
+		id="StrategicArmyAntiAirShip"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="PortraitStrategicArmyAntiAirShip"
+		ButtonImage="ButtonStrategicArmyAntiAirShip"
+		Side="Soviet"
+		SubGroupPriority="480"
+		EditorSorting="UNIT"
+		BuildTime="9"
+		CommandSet="StrategicArmyAntiAirShipCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS TRANSPORT SCORE VEHICLE GARRISONABLE_UNTIL_DESTROYED CAN_BE_FAVORITE_UNIT AMPHIBIOUS FS_RADAR"
+		RadarPriority="UNIT"
+		ProductionQueueType="WATERCRAFT"
+		UnitCategory="VEHICLE"
+		WeaponCategory="MISSILE"
+		VoicePriority="188"
+		EditorName="StrategicArmyAntiAirShip"
+		Description="Desc:StrategicArmyAntiAirShip"
+		BountyValue="150"
+		TypeDescription="Type:StrategicArmyAntiAirShip">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:StrategicArmyAntiAirShip</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="900" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseHarassmentVehicleArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="WaterLocomotorSet"
+			Locomotor="SovietAntiAirShipWaterLocomotor"
+			Condition="NORMAL"
+			Speed="90.0" />
+		<LocomotorSet
+			id="LandLocomotorSet"
+			Locomotor="TestReactiveLocomotorTANK"
+			Condition="NORMAL"
+			Speed="90.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="75"
+			ConquerMetricsDpsBonusAgainstDefenses="2.0"
+			ConquerMetricsOverrideDamageType="CONCUSSIVE"
+			ConquerMetricsOverrideAntiMask="ANTI_WATER ANTI_AIRBORNE_INFANTRY ANTI_AIRBORNE_VEHICLE"
+			ConquerMetricsOverrideForbiddenAntiMask="ANTI_GROUND" />
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				LeftFrontTireBone="Bone_Tracks_Left"
+				RightFrontTireBone="Bone_Tracks_Right"
+				TireRotationMultiplier="0.0"
+				InitialRecoilSpeed="0.5"
+				MaxRecoilDistance="5"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="FX_Damage_01 FX_WEAPON_01 FX_WEAPON_02 FX_TORPEDO_01 FX_TORPEDO_01 Bone_Treads_Left Bone_Treads_Right Bone_Tracks_Left Bone_Tracks_Right"
+				TrackMarks="EXTnkTrack"
+				TrackMarksLeftBone="BONE_TREADS_LEFT"
+				TrackMarksRightBone="BONE_TREADS_RIGHT"
+			>
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+				<TreadScrollingMap
+					LeftTrack="Bone_Treads_Left"
+					RightTrack="Bone_Treads_Right"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%" />
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="SAANTIAIRSHIPTECH1_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_TORPEDO_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_TORPEDO_" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="TERTIARY_WEAPON"
+						BoneName="FX_TORPEDO_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="TERTIARY_WEAPON"
+						BoneName="FX_TORPEDO_" />
+					<Turret
+						TurretNameKey="BONE_TURRET"
+						TurretPitch="BONE_TURRET_PITCH"
+						TurretID="1" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="SAANTIAIRSHIPTECH1_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="USER_2 DAMAGED">
+					<Model
+						Name="SAANTIAIRSHIPTECH1_SKN" />
+					<Texture
+						Original="SUAntiNavyShipTech1"
+						New="SUAntiNavyShipTech12" />
+					<Texture
+						Original="SUAntiAirship"
+						New="SUAntiAirship2" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="USER_2 REALLYDAMAGED">
+					<Model
+						Name="SAANTIAIRSHIPTECH1_SKN" />
+					<Texture
+						Original="SUAntiNavyShipTech1"
+						New="SUAntiNavyShipTech12_D" />
+					<Texture
+						Original="SUAntiAirship"
+						New="SUAntiAirship2_D" />
+					<Texture
+						Original="SUAntiVehicleVehicleTech1"
+						New="SUAntiVehicleVehicleTech1_D" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="SAANTIAIRSHIPTECH1_SKN" />
+					<Texture
+						Original="SUAntiNavyShipTech1"
+						New="SUAntiNavyShipTech12" />
+					<Texture
+						Original="SUAntiAirship"
+						New="SUAntiAirship2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SAANTIAIRSHIPTECH1_SKN" />
+					<Texture
+						Original="SUAntiNavyShipTech1"
+						New="SUAntiNavyShipTech1_D" />
+					<Texture
+						Original="SUAntiAirship"
+						New="SUAntiAirship_D" />
+					<Texture
+						Original="SUAntiVehicleVehicleTech1"
+						New="SUAntiVehicleVehicleTech1_D" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SAANTIAIRSHIPTECH1_SKN" />
+					<ParticleSysBone
+						BoneName="FX_Damage_01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableShowSubObjectPermanently( "TREADS_SKIN" )
+						CurDrawableShowSubObjectPermanently( "BONE_TRACKS_LEFT" )
+						CurDrawableShowSubObjectPermanently( "BONE_TRACKS_RIGHT" )
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Script>
+						CurDrawableHideSubObjectPermanently( "TREADS_SKIN" )
+						CurDrawableHideSubObjectPermanently( "BONE_TRACKS_LEFT" )
+						CurDrawableHideSubObjectPermanently( "BONE_TRACKS_RIGHT" )
+					</Script>
+				</AnimationState>
+			</TruckDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+				id="ModuleTag_ParticlesDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT" />
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER MOVING">
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="StingrayWaterWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="SovietAntiNavyShipFroth"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="SovietAntiNavyShipWaterMist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="JapanAntiVehicleVehicleWaterMistBody"
+						FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="SmallShipWakeIdle"
+						FollowBone="false" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw_MachineGun"
+				MinLength="50.0"
+				MaxLength="75.0"
+				Width="2.5"
+				MinSpeed="30"
+				MaxSpeed="35"
+				SweepSpeed="1.0"
+				SpreadAngle="1.0"
+				MinTracersPerFrame=".2"
+				MaxTracersPerFrame=".2"
+				FrameLifeTime="35"
+				Texture="FXTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="1">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw_MachineGunVeterancy"
+				MinLength="50.0"
+				MaxLength="75.0"
+				Width="2.5"
+				MinSpeed="30"
+				MaxSpeed="35"
+				SweepSpeed="1.0"
+				SpreadAngle="1.0"
+				MinTracersPerFrame=".2"
+				MaxTracersPerFrame=".2"
+				FrameLifeTime="35"
+				Texture="FXTracerHeroic"
+				UseAdditiveBlending="true"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="1">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT"
+					AllowInterleavedFiring="true">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyAntiAirShipFlakCannon" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="StrategicArmyAntiAirShipTorpedo"
+						ObjectStatus="WATER_LOCOMOTOR_ACTIVE" />
+					<Weapon
+						Ordering="TERTIARY_WEAPON"
+						Template="StrategicArmyAntiAirShipTorpedoForBridges"
+						ObjectStatus="WATER_LOCOMOTOR_ACTIVE" />
+					<TurretSettings
+						TurretTurnRate="720"
+						TurretPitchRate="100"
+						AllowsPitch="true"
+						MinimumPitch="0d"
+						PitchHeight="75%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0"
+						ComeToHaltJiggle="2d">
+						<TurretAITargetChooserData
+							TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							RotateToTargetWhenAiming="true"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+							<ObjectVisionRange
+								id="ObjectVisionRange_Aircraft"
+								Range="150">
+								<Filter
+									Rule="ANY"
+									Include="INFANTRY VEHICLE AIRCRAFT"
+									StatusBitFlags="AIRBORNE_TARGET" />
+							</ObjectVisionRange>
+						</TurretAITargetChooserData>
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<!--<WeaponSlotTurret
+					ID="2"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT"
+					AllowInterleavedFiring="true">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyAntiAirShipTorpedo"
+						ObjectStatus="WATER_LOCOMOTOR_ACTIVE"/>
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="StrategicArmyAntiAirShipTorpedoForBridges"
+						ObjectStatus="WATER_LOCOMOTOR_ACTIVE"/>
+					<TurretSettings
+							TurretTurnRate="360"
+							TurretPitchRate="100"
+							MaxDeflectionClockwise="20d"
+							MaxDeflectionAntiClockwise="20d"
+							AllowsPitch="false"
+							MinimumPitch="15d"
+							PitchHeight="75%"
+							MinIdleScanTime="1.0s"
+							MaxIdleScanTime="5.0s"
+							MinIdleScanAngle="0.0"
+							MaxIdleScanAngle="90.0"
+							ComeToHaltJiggle="2d">
+						<TurretAITargetChooserData
+								CanAcquireDynamicIfAssignedOutOfRange="true"
+								CanOnlyAttackTargetsInFront="true"
+								RotateToTargetWhenAiming="true"
+								IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+					</TurretSettings>
+				</WeaponSlotTurret>-->
+			</WeaponSetUpdate>
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<TransportContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED NO_ATTACK"
+				ContainMax="7"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="VehicleExit"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY">
+					<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+				</PassengerFilter>
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="CHASSIS">
+					<Filter
+						Rule="ANY"
+						Include="INFANTRY">
+						<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+					</Filter>
+				</PassengerData>
+			</TransportContain>
+			<SpecialPower
+				id="ModuleTag_GenericGroundEjectPassengers"
+				SpecialPowerTemplate="SpecialPower_GenericGroundEjectPassengers"
+				UpdateModuleStartsAttack="true" />
+			<EjectPassengersSpecialAbilityUpdate
+				id="ModuleTag_GenericGroundEjectPassengersUpdate"
+				SpecialPowerTemplate="SpecialPower_GenericGroundEjectPassengers"
+				Height="0.0"
+				TimePerPassenger="0s"
+				IgnoreTargetLocation="true"
+				Radius="30"
+				Options="RECONSTITUTE_STORED_COMMAND DO_NOT_DO_AI_SPECIAL_POWER" />
+			<FireWeaponUpdate
+				id="Upgrade_TransportRepairHeal"
+				FireInterval="1.0s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="TransportRepairHealShortCircuit"
+					OneShot="false" />
+				<ObjectStatusValidation
+					RequiredStatus="PLAYER_POWER_5" />
+			</FireWeaponUpdate>
+			<StatusBitsUpgrade
+				id="ModuleTag_TransportRepairObjectStatus"
+				StatusToSet="PLAYER_POWER_5">
+				<TriggeredBy>Uprade_IFV_Repair</TriggeredBy>
+				<TriggeredBy>Uprade_SovietEngineer</TriggeredBy>
+			</StatusBitsUpgrade>
+			<SecondaryObjectListenerModule
+				id="ModuleTag_TransportRepairObjectListener"
+				Flags="NOTIFY_WEAPON_SET_UPDATE">
+				<!-- AlliedEngineer, SovietEngineer & JapanEngineer -->
+				<ObjectEffectTuple>
+					<ObjectFilter Rule="NONE">
+						<IncludeThing>JapanEngineer</IncludeThing>
+						<IncludeThing>AlliedEngineer</IncludeThing>
+					</ObjectFilter>
+					<UpgradeSelf>Uprade_IFV_Repair</UpgradeSelf>
+				</ObjectEffectTuple>
+				<ObjectEffectTuple>
+					<ObjectFilter Rule="NONE">
+						<IncludeThing>SovietEngineer</IncludeThing>
+					</ObjectFilter>
+					<UpgradeSelf>Uprade_SovietEngineer</UpgradeSelf>
+				</ObjectEffectTuple>
+			</SecondaryObjectListenerModule>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SUAntiAirShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_SovietShipVehicleDie" />
+			</FXListBehavior>
+			<AttributeModifierUpgrade
+				id="ModuleTag_SovietUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>SovietUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<!-- Anti Sub Invisibility-->
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AntiSubInvisibilityAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="250.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_AntiSubInvisibility">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="SUBMARINE">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech1.xml"/>
+			<!-- Japan NavalPower -->
+			<xi:include
+				href="DATA:Includes/JapanNavalPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanNavalPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					IdleScanDelay="0.0s"
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="true">
+					<ObjectVisionRange
+						id="ObjectVisionRange_Aircraft"
+						Range="150">
+						<Filter
+							Rule="ANY"
+							Include="INFANTRY VEHICLE AIRCRAFT"
+							StatusBitFlags="AIRBORNE_TARGET" />
+					</ObjectVisionRange>
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="400" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="SAOV_AntiAirShip_VoiceShrunken"
+					RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_MoveLoop">
+				<ModelConditionSound Sound="Tank_Land_MoveLoop" RequiredFlags="MOVING"
+					ExcludedFlags="OVER_WATER DYING" />
+				<ModelConditionSound Sound="SOV_Bullfrog_MoveLoopWaterMS"
+					RequiredFlags="MOVING OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="SOV_Bullfrog_VoiceShrunken"
+					RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_WaterEntrySplash">
+				<ModelConditionSound Sound="SOV_Miner_WaterSplashMS" RequiredFlags="OVER_WATER"
+					ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_WaterSoundOverrides">
+				<Override RequiredFlags="OVER_WATER">
+					<AudioArrayVoice>
+						<AudioEntry Sound="SAOV_AntiAirShip_VoiceSelect" AudioType="voiceSelect" />
+						<AudioEntry Sound="SAOV_AntiAirShip_VoiceSelectBattle"
+							AudioType="voiceSelectBattle" />
+						<AudioEntry Sound="SAOV_AntiAirShip_VoiceSelectUnderFire"
+							AudioType="voiceSelectUnderFire" />
+					</AudioArrayVoice>
+					<AudioArraySound>
+						<AudioEntry Sound="SOV_Bullfrog_IdleLoopWater" AudioType="soundAmbient" />
+						<AudioEntry Sound="SOV_Bullfrog_MoveStartWater" AudioType="soundMoveStart" />
+						<!-- <AudioEntry Sound="SOV_Bullfrog_MoveLoopWaterMS"
+						AudioType="soundMoveLoop" /> -->
+					</AudioArraySound>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="25"
+				MinorRadius="15"
+				Height="22"
+				ContactPointGeneration="VEHICLE" />
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="SAOV_AntiAirShip_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SAOV_AntiAirShip_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="SAOV_AntiAirShip_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="SAOV_AntiAirShip_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="SAOV_AntiAirShip_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="SAOV_AntiAirShip_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="SAOV_AntiAirShip_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="SAOV_AntiAirShip_VoiceSelectUnderFire"
+				AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="SOV_Bullfrog_MoveStartLand"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="SOV_Bullfrog_IdleLoopWater"
+				AudioType="soundAmbient" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+	</GameObject>
+	<GameObject
+		id="StrategicArmyAntiAirShip_Ground"
+		inheritFrom="StrategicArmyAntiAirShip"
+		EditorName="StrategicArmyAntiAirShip_Ground"
+		ProductionQueueType="VEHICLE">
+		<EquivalentTo>StrategicArmyAntiAirShip</EquivalentTo>
+	</GameObject>
+	<GameObject
+		id="StrategicArmyAntiAirShip_Crate"
+		inheritFrom="StrategicArmyAntiAirShip"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="StrategicArmyAntiAirShip_Crate">
+		<EquivalentTo>StrategicArmyAntiAirShip</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

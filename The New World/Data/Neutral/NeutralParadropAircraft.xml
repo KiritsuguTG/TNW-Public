@@ -1,0 +1,1194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all"	source="ART:Units/NeutralParadropAircraft/NUAIRPLANE.w3x" />
+		<Include type="all"	source="ART:Units/NeutralParadropAircraft/NUAIRPLANE_IDLA.w3x" />
+		<Include type="instance" source="DATA:BaseObjects/BaseAircraft.xml" />
+		<Include type="instance" source="DATA:Allied/Unit/AlliedBomberAircraft.xml"/>
+	</Includes>
+	<GameObject
+		id="BaseNeutralParadropAircraft"
+		inheritFrom="BaseAircraft"
+		Side="Allies"
+		SubGroupPriority="730"
+		EditorSorting="UNIT"
+		BuildTime="1"
+		CommandSet="AlliedBomberAircraftCommandSet"
+		KindOf="NO_HEAL_ICON CAN_CAST_REFLECTIONS AIRCRAFT VEHICLE LINE_OF_SIGHT_IGNORES_BUILDINGS CAN_BE_FAVORITE_UNIT TRANSPORT SUMMONED IGNORES_SELECT_ALL NO_COLLIDE CAN_ATTACK"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="AIRCRAFT"
+		UnitCategory="AIRCRAFT"
+		VoicePriority="148"
+		Description="Desc:AlliedBomberAircraft"
+		TypeDescription="Type:AlliedBomberAircraft"
+		UnitIntro="Allied_CenturyBomber_UnitIntro">
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			id="NeutralParadropAircraftLocomotor"
+			Locomotor="NeutralParadropAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="150" />
+		<LocomotorSet
+			id="AlliedBomberAircraftTaxiLocomotor"
+			Locomotor="BasicHelicopterTaxiLocomotor"
+			Condition="TAXIING"
+			Speed="30" />
+		<!-- Need ConquerMetricsOverrideDefendingAntiMask or else the TAXIING locomotor will make the AI try to build anti-ground units against this -->
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDefendingAntiMask="ANTI_AIRBORNE_VEHICLE" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				OkToChangeModelColor="true" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NUAIRPLANE" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Model
+						Name="NUAIRPLANE" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner1" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_3">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner2" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner3" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_5">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner4" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner5" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_7">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner6" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_8">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner7" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_9">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner8" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_10">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner9" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1 DAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 DAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner1" />
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_3 DAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner2" />
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4 DAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner3" />
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_5 DAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner4" />
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6 DAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner5" />
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_7 DAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner6" />
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_8 DAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner7" />
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_9 DAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner8" />
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_10 DAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+					Original="GI_Airliner"
+					New="GI_Airliner9" />
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1 REALLYDAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+						Original="GI_Airliner"
+						New="GI_Airliner_D" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 REALLYDAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+						Original="GI_Airliner"
+						New="GI_Airliner1_D" />
+					<Texture
+						Original="GI_Airliner1"
+						New="GI_Airliner1_D" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_3 REALLYDAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+						Original="GI_Airliner"
+						New="GI_Airliner2_D" />
+					<Texture
+						Original="GI_Airliner2"
+						New="GI_Airliner2_D" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4 REALLYDAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+						Original="GI_Airliner"
+						New="GI_Airliner3_D" />
+					<Texture
+						Original="GI_Airliner3"
+						New="GI_Airliner3_D" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_5 REALLYDAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+						Original="GI_Airliner"
+						New="GI_Airliner4_D" />
+					<Texture
+						Original="GI_Airliner4"
+						New="GI_Airliner4_D" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6 REALLYDAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+						Original="GI_Airliner"
+						New="GI_Airliner5_D" />
+					<Texture
+						Original="GI_Airliner5"
+						New="GI_Airliner5_D" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_7 REALLYDAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+						Original="GI_Airliner"
+						New="GI_Airliner6_D" />
+					<Texture
+						Original="GI_Airliner6"
+						New="GI_Airliner6_D" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_8 REALLYDAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+						Original="GI_Airliner"
+						New="GI_Airliner7_D" />
+					<Texture
+						Original="GI_Airliner7"
+						New="GI_Airliner7_D" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_9 REALLYDAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+						Original="GI_Airliner"
+						New="GI_Airliner8_D" />
+					<Texture
+						Original="GI_Airliner8"
+						New="GI_Airliner8_D" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_10 REALLYDAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+						Original="GI_Airliner"
+						New="GI_Airliner9_D" />
+					<Texture
+						Original="GI_Airliner9"
+						New="GI_Airliner9_D" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="NUAIRPLANE" />
+					<Texture
+						Original="GI_Airliner"
+						New="GI_Airliner_D" />
+					<ParticleSysBone
+								  BoneName="JET01"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="JET02"
+								  FXParticleSystemTemplate="FireHawkConTrail"
+								  FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT01"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="LEFT"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="NUAIRPLANE_IDLA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="30"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<RandomModelCondition
+				id="Random_Model"
+				Conditions="USER_1 USER_2 USER_3 USER_4 USER_5 USER_6 USER_7 USER_8 USER_9 USER_10"/>
+			<ActivateSpecialPowerOnCreate
+				id="ModuleTag_ActivateSpecialPowerOnCreate">
+				<SpecialPowerTemplate>SpecialPower_JapanScoutInfantryBomb</SpecialPowerTemplate>
+			</ActivateSpecialPowerOnCreate>
+			<SpecialPower
+			id="ModuleTag_SpecialPowerModule_Bomb"
+			SpecialPowerTemplate="SpecialPower_JapanScoutInfantryBomb"
+			UpdateModuleStartsAttack="true"/>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="NeutralParadropAircraft_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6 SUICIDED"/>
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6 SUICIDED"/>
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_CenturyBomberDie" />
+			</FXListBehavior>
+			<SpecialPower
+				id="ModuleTag_EjectPassengers"
+				SpecialPowerTemplate="SpecialPower_EjectPassengers"
+				UpdateModuleStartsAttack="true" />
+			<EjectPassengersSpecialAbilityUpdate
+				id="ModuleTag_EjectPassengersUpdate"
+				SpecialPowerTemplate="SpecialPower_EjectPassengers"
+				StartAbilityRange="0.0"
+				Height="210.0"
+				TimePerPassenger=".25s"
+				Radius="60"
+				RunOffMapWhenDone="true"
+				IgnoreTargetLocation="true"
+				Options="RECONSTITUTE_STORED_COMMAND DO_NOT_DO_AI_SPECIAL_POWER"/>
+			<RunOffMapBehavior
+				id="ModuleTag_RunOffMapBehavior"
+				xai:joinAction="Replace"
+				FlyingOffMap="true"
+				RequiresSpecificTrigger="true" />
+				<!-- No Invisibility -->
+				<xi:include
+					href="DATA:Includes/NoInvisibilityAndLua.xml"
+					xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:NoInvisibilityAndLua/child::*)" />
+		</Behaviors>
+		<AI>
+			<JetAIUpdate
+				id="ModuleTag_JetAIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO"
+				NeedsRunway="false"
+				KeepsParkingSpaceWhenAirborne="true"
+				CirclesForAttack="true"
+				ReturnToBaseWhenVictimDead="true"
+				StateMachine="JetAIStateMachine">
+			</JetAIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="1000" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				 Type= "BOX"
+				 MajorRadius = "6.96035"
+				 MinorRadius = "46.4378"
+				 Height = "26.2037"
+				 ContactPointGeneration = "VEHICLE" >
+				<Offset
+					x = "-13.0929"
+					y = "-0.24791"
+					z = "0.0" />
+			</Shape>
+			<Shape
+				 Type= "BOX"
+				 MajorRadius = "21.278"
+				 MinorRadius = "7.557"
+				 Height = "5.63419"
+				 ContactPointGeneration = "VEHICLE" >
+				<Offset
+					x = "-49.2352"
+					y = "0.356218"
+					z = "0.0" />
+			</Shape>
+			<Shape
+				 Type= "BOX"
+				 MajorRadius = "71.9198"
+				 MinorRadius = "15.1466"
+				 Height = "21.4663"
+				 ContactPointGeneration = "VEHICLE" >
+				<Offset
+					x = "-0.0970764"
+					y = "0.160202"
+					z = "0.0" />
+			</Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="A06_ParadropTransport_MoveLoop" AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="150"
+			ShroudClearingRange="300" />
+	</GameObject>
+	<GameObject
+		id="AlliedNeutralParadropAircraft"
+		inheritFrom="BaseNeutralParadropAircraft"
+		Side="Allies">
+		<Behaviors>
+			<TransportContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED"
+				ContainMax="8"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="ParachutingOutOfAirplane"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY" />
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="BONEGARRISON">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</PassengerData>
+        <InitialPayload
+          Name="AlliedAntiInfantryInfantry"
+          Count="2" />
+			<InitialPayload
+					Name="AlliedAntiVehicleInfantry"
+					Count="5" />
+			</TransportContain>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate_Bomb"
+				SpecialPowerTemplate="SpecialPower_JapanScoutInfantryBomb"
+				SpecialWeapon="AlliedNeutralParadropAircraftKillSelfWeapon"
+				Options="DO_NOT_DO_AI_SPECIAL_POWER"/>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="SovietNeutralParadropAircraft"
+		inheritFrom="BaseNeutralParadropAircraft"
+		Side="Soviet">
+		<Behaviors>
+			<TransportContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED"
+				ContainMax="8"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="ParachutingOutOfAirplane"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY" />
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="BONEGARRISON">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</PassengerData>
+        <InitialPayload
+          Name="SovietAntiInfantryInfantry"
+          Count="3" />
+			<InitialPayload
+					Name="SovietAntiVehicleInfantry"
+					Count="5" />
+			</TransportContain>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate_Bomb"
+				SpecialPowerTemplate="SpecialPower_JapanScoutInfantryBomb"
+				SpecialWeapon="SovietNeutralParadropAircraftKillSelfWeapon"
+				Options="DO_NOT_DO_AI_SPECIAL_POWER"/>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="JapanNeutralParadropAircraft"
+		inheritFrom="BaseNeutralParadropAircraft"
+		Side="Japan">
+		<Behaviors>
+			<TransportContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED"
+				ContainMax="8"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="ParachutingOutOfAirplane"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY" />
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="BONEGARRISON">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</PassengerData>
+        <InitialPayload
+          Name="JapanAntiInfantryInfantry"
+          Count="2" />
+			<InitialPayload
+					Name="JapanAntiVehicleInfantry"
+					Count="5" />
+			</TransportContain>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate_Bomb"
+				SpecialPowerTemplate="SpecialPower_JapanScoutInfantryBomb"
+				SpecialWeapon="JapanNeutralParadropAircraftKillSelfWeapon"
+				Options="DO_NOT_DO_AI_SPECIAL_POWER"/>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="EUNeutralParadropAircraft"
+		inheritFrom="BaseNeutralParadropAircraft"
+		Side="Allies">
+		<Behaviors>
+			<TransportContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED"
+				ContainMax="8"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="ParachutingOutOfAirplane"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY" />
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="BONEGARRISON">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</PassengerData>
+				<InitialPayload
+				  Name="EUAntiInfantryInfantry"
+				  Count="3" />
+				<InitialPayload
+						Name="EUAntiVehicleInfantry"
+						Count="4" />
+			</TransportContain>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate_Bomb"
+				SpecialPowerTemplate="SpecialPower_JapanScoutInfantryBomb"
+				SpecialWeapon="EUNeutralParadropAircraftKillSelfWeapon"
+				Options="DO_NOT_DO_AI_SPECIAL_POWER"/>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="MODNeutralParadropAircraft"
+		inheritFrom="BaseNeutralParadropAircraft"
+		Side="Japan">
+		<Behaviors>
+			<TransportContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED"
+				ContainMax="8"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="ParachutingOutOfAirplane"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY" />
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="BONEGARRISON">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</PassengerData>
+				<InitialPayload
+						Name="MODAntiVehicleInfantry"
+						Count="5" />
+			</TransportContain>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate_Bomb"
+				SpecialPowerTemplate="SpecialPower_JapanScoutInfantryBomb"
+				SpecialWeapon="MODNeutralParadropAircraftKillSelfWeapon"
+				Options="DO_NOT_DO_AI_SPECIAL_POWER"/>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="SANeutralParadropAircraft"
+		inheritFrom="BaseNeutralParadropAircraft"
+		Side="Soviet">
+		<Behaviors>
+			<TransportContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED"
+				ContainMax="8"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="ParachutingOutOfAirplane"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID"
+				ExtendedExitContainerChecks="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY" />
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="BONEGARRISON">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</PassengerData>
+				<InitialPayload
+				  Name="StrategicArmyAntiInfantryInfantry"
+				  Count="1" />
+				<InitialPayload
+						Name="StrategicArmyAntiVehicleInfantry"
+						Count="4" />
+			</TransportContain>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate_Bomb"
+				SpecialPowerTemplate="SpecialPower_JapanScoutInfantryBomb"
+				SpecialWeapon="SANeutralParadropAircraftKillSelfWeapon"
+				Options="DO_NOT_DO_AI_SPECIAL_POWER"/>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

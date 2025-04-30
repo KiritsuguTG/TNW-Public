@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<!-- aka Tank Buster -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:Japan/Unit/JapanAntiVehicleInfantry.xml" />
+	</Includes>
+	<GameObject
+		id="MODAntiVehicleInfantry"
+		inheritFrom="JapanAntiVehicleInfantry"
+		KindOf="+FS_RADAR"
+		SelectPortrait="Portrait_MODAntiVehicleInfantry"
+		ButtonImage="Button_MODAntiVehicleInfantry"
+		SelectPortraitTransformed="Portrait_MODAntiVehicleInfantry"
+		ButtonImageTransformed="ButtonMODAntiVehicleInfantryB"
+		EditorName="MODAntiVehicleInfantry"
+		WeaponCategory="MISSILE"
+		Description="Desc:MODAntiVehicleInfantry"
+		TypeDescription="Type:AntiAirAndArmor"
+		TypeDescriptionTransformed="Type:AntiAirAndArmor"
+		DescriptionTransformed="Desc:MODAntiVehicleInfantry"
+		UnitTypeIcon="LaserMiniGunIcon">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODAntiVehicleInfantry</DisplayName>
+		<DisplayNameTransformed
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODAntiVehicleInfantry</DisplayNameTransformed>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+			xai:joinAction="Replace"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUAntiVehicleInfantryTNW_SKN" />
+		<Texture
+			Original="JUAntiVehicleInfantry"
+			New="MUAntiVehicleInfantry" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="fx01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="fx01" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="fx01" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="fx01" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1">
+					<Model
+						Name="NPSkeletonTNW_SKN" />
+				</ModelConditionState>		
+				
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_5">
+					<Model
+						Name="NPRadiationTNW" />
+						<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="RadiationPuddle"
+						FollowBone="true" />
+          <ParticleSysBone
+            BoneName="None"
+            FXParticleSystemTemplate="RadiationSplash"
+            FollowBone="true" />
+          <ParticleSysBone
+            BoneName="None"
+            FXParticleSystemTemplate="RadiationLightSmall"
+            FollowBone="true" />          
+				</ModelConditionState>	
+
+        	<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					StateName="STATE_bored"
+					AllowRepeatInRandomPick="true"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_BIDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="100"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_BIDB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="100" 
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_BIDC"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="100" 
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_BIFA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" 
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_BIFB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" 
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_BIFC"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" 
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_BIFW"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" 
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_BIFX"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" 
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_BIFY"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" 
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_BIFZ"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" 
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState();
+						if Prev == "STATE_inHole" then CurDrawableSetTransitionAnimState("TRANS_InHoleToStanding") end;
+						if Prev == "STATE_Suppressed" then CurDrawableSetTransitionAnimState("TRANS_fromSuppressed") end;
+						if Prev == "STATE_Selected" then CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle") end;
+						if Prev == "STATE_stunned_flailing" then CurDrawableSetTransitionAnimState("STATE_stunned_landing")	end;
+						if Prev == "STATE_Parachuting" then CurDrawableSetTransitionAnimState("TRANS_fromParachuting") end;
+					</Script>
+				</AnimationState>     
+				<!--START OF IN_SPIDER_HOLE-->
+				
+				<!-- called when summoned from a special power. -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING SPECIAL_POWER_1">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CDIEA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SPECIAL_POWER_1">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CRCHB"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationBlendTime="0"
+						AnimationAbsoluteTime="2s"/>
+					<FXEvent
+						Frame="13"
+						FireWhenSkipped="true"
+						Effect="FX_Japan_Burrow" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING USER_6">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CDIEA"
+						AnimationMode="ONCE" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CDIEB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- Idle animation of guy in the spider hole -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6"
+					StateName="STATE_inHole"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CAIDA"
+						AnimationMode="ONCE" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_bored" then
+						CurDrawableSetTransitionAnimState("TRANS_StandingToInHole")
+						elseif Prev == "STATE_Selected" then
+						CurDrawableSetTransitionAnimState("TRANS_StandingToInHole")
+						end
+					</Script>
+				</AnimationState>
+				<!--END OF IN_SPIDER_HOLE-->
+
+				<!-- Transition of guy going into the spider hole -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CRCHB"
+						AnimationMode="ONCE"/>
+<!--
+					<Script>
+						CurDrawablePlaySound("JAP_Tankbuster_BurrowInMS")
+					</Script>
+-->
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_FLAILING"
+					StateName="STATE_stunned_flailing">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_FLYA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					StateName="STATE_stunned_landing">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_LNDA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_STANDING_UP">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_GTPA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FRONTCRUSHED">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CDTA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BACKCRUSHED">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CDTB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<!-- parachuting anims -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="LAUNCHED"
+					StateName="STATE_ParachuteLaunch">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_MCNA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PARACHUTING"
+					StateName="STATE_Parachuting">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_MCNC"
+						AnimationMode="LOOP" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_ParachuteLaunch" then
+						CurDrawableSetTransitionAnimState("TRANS_toParachuting")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toParachuting" >
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_MCNB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_fromParachuting" >
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_MCND"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED DYING"
+					StateName="STATE_Suppressed">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_SDIA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<!-- radiation death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_5">
+					<Animation
+						AnimationName="NPRadiationTNW_DIEA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+<!-- sword death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_4">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_DTKA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- fire death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_3">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_DTFA"
+						AnimationMode="ONCE" />
+						<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_DTFB"
+						AnimationMode="ONCE" />
+					<ParticleSysBone
+						BoneName="HIPS"
+						FXParticleSystemTemplate="InfantryFireDeath"
+						FollowBone="true" />
+				</AnimationState>
+
+				<!-- prism/laser death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_2">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_DTPA"
+						AnimationMode="ONCE" />
+						<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_DTPB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- tesla death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1">
+					<Animation
+						AnimationName="NPSkeletonTNW_DIEA"
+						AnimationMode="ONCE" />
+          <ParticleSysBone
+						BoneName="HIPS"
+						FXParticleSystemTemplate="Soviet_TeslaDeath_Spark"
+						FollowBone="true" />
+				</AnimationState>
+
+				<!-- dying when running -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING_WASMOVING">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_RNDA"
+						AnimationMode="ONCE" />
+						<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_RNDB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_DTBA"
+						AnimationMode="ONCE" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_DTBB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CWRY"
+						AnimationMode="LOOP" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CWRZ"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="Allied_DogStun01"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="Allied_DogStunGlows01"
+							FollowBone="true" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED MOVING"
+					StateName="STATE_Suppressed"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_SMVA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED USING_WEAPON_A"
+					StateName="STATE_Suppressed">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_SATA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_Suppressed">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_SIDA"
+						AnimationMode="ONCE" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_Suppressed" and Prev ~= "TRANS_toSuppressed" then CurDrawableSetTransitionAnimState("TRANS_toSuppressed")	end;
+					</Script>
+				</AnimationState>
+
+				<!-- Transition of guy standing up from spider hole -->
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_StandingToInHole">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CRCHB"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+<!--
+					<Script>
+						CurDrawablePlaySound("JAP_Tankbuster_BurrowInMS")
+					</Script>
+-->
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_InHoleToStanding">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CSTND"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+<!--
+					<Script>
+						CurDrawablePlaySound("JAP_Tankbuster_BurrowOutMS")
+					</Script>
+-->
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toSuppressed">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_SDVA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />					
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_fromSuppressed">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_SGTA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+								
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING USING_WEAPON_A"
+					StateName="STATE_Run"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_ATRA"
+						AnimationMode="LOOP"
+						Distance="75" />
+						<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_ATRB"
+						AnimationMode="LOOP"
+						Distance="75" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					StateName="STATE_OverWater">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_SWMB"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AUScoutInfantrySplash"
+						FollowBone="false" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_OverWater" and Prev ~= "TRANS_ToWater" then
+						CurDrawableSetTransitionAnimState("TRANS_ToWater")
+						end
+					</Script>
+				</AnimationState>
+					
+					<!-- idle in water -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_OverWater">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_WADA"
+						AnimationMode="ONCE" 
+						AnimationBlendTime="15" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AUScoutInfantrySplash"
+						FollowBone="false" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					StateName="STATE_Run"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_RUNA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10"
+						Distance="75" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_RUNB"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10"
+						Distance="75" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_RUNC"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10"
+						Distance="75" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_OverWater" or Prev == "TRANS_ToWater" then
+						CurDrawableSetTransitionAnimState("TRANS_FromWater")
+						end
+					</Script>		
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USING_WEAPON_A AIM_HIGH FIRING_OR_PREATTACK_A"
+					FrameForPristineBonePositions="8">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_ATKA"
+						AnimationMode="ONCE"/>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AIM_HIGH ATTACKING">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_ATKB"
+						AnimationMode="MANUAL" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_A"
+					FrameForPristineBonePositions="1">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_ATKA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"/>
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ATTACKING"
+					Flags="RESTART_ANIM_WHEN_COMPLETE" 
+					StateName="STATE_SelectedPose">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_AIDA"
+						AnimationBlendTime="10"
+						AnimationMode="ONCE" />
+				</AnimationState>
+			
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="EMOTION_CELEBRATING"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CHRA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CHRB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_CHRC"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED USER_6"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_Selected">
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_Selected">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_AIDA"
+						AnimationMode="ONCE"
+						AnimationPriority="100"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_AIFA"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_AIFB"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_AIFC"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_AIFD"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+						<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_AIFW"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_AIFY"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_AIFZ"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState();
+						if Prev == "STATE_inHole" then CurDrawableSetTransitionAnimState("TRANS_InHoleToStanding") end;
+						if Prev == "STATE_Suppressed" then CurDrawableSetTransitionAnimState("TRANS_fromSuppressed") end;
+						if Prev == "STATE_bored" then CurDrawableSetTransitionAnimState("TRANS_IdleToSelected") end;
+						if Prev == "STATE_Parachuting" then CurDrawableSetTransitionAnimState("TRANS_fromParachuting") end;
+					</Script>
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_IdleToSelected">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_BATA"
+						AnimationMode="ONCE" 
+						AnimationBlendTime="5"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_BATB"
+						AnimationMode="ONCE" 
+						AnimationBlendTime="5"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SelectedToIdle">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_ABTA"
+						AnimationMode="ONCE" 
+						AnimationBlendTime="5"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_ABTB"
+						AnimationMode="ONCE" 
+						AnimationBlendTime="5"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+				
+								<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_ToWater">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_SWMA"
+						AnimationMode="ONCE" />
+					<Script>
+						CurDrawablePlaySound("SOV_Commando_WaterSplash")
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_FromWater">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTNW_SWMC"
+						AnimationMode="ONCE" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<LaserDraw
+					  id="ModuleTag_LaserDraw"
+					  xai:joinAction="Remove"/>
+			<LaserDraw
+					  id="ModuleTag_LaserDraw_Veteran"
+					  xai:joinAction="Remove"/>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw"
+				MinLength="10.0"
+				MaxLength="10.0"
+				Width="15.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.6"
+				MaxTracersPerFrame="0.9"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXJapanArmorTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="1">
+				<HeadColor
+					r="5.0"
+					g="5.0"
+					b="2.0"
+					a="2.0" />
+				<TailColor
+					r="5.0"
+					g="5.0"
+					b="2.0"
+					a="2.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawVeterancy"
+				MinLength="10.0"
+				MaxLength="10.0"
+				Width="15.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.6"
+				MaxTracersPerFrame="0.9"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXJapanTankProjectile_Veteran"
+				UseAdditiveBlending="true"
+				WeaponSlotID="1">
+				<HeadColor
+					r="5.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="5.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawAntiAir"
+				MinLength="10.0"
+				MaxLength="10.0"
+				Width="15.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.6"
+				MaxTracersPerFrame="0.9"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXJapanArmorTracer"
+				UseAdditiveBlending="true"
+				WeaponSlotID="2">
+				<HeadColor
+					r="5.0"
+					g="5.0"
+					b="2.0"
+					a="2.0" />
+				<TailColor
+					r="5.0"
+					g="5.0"
+					b="2.0"
+					a="2.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawVeterancyAntiAir"
+				MinLength="10.0"
+				MaxLength="10.0"
+				Width="15.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.6"
+				MaxTracersPerFrame="0.9"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXJapanTankProjectile_Veteran"
+				UseAdditiveBlending="true"
+				WeaponSlotID="2">
+				<HeadColor
+					r="5.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="5.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate"
+				xai:joinAction="Replace">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODAntiVehicleInfantryPlasmaLaserGun"
+						ForbiddenObjectStatus="INSIDE_GARRISON OVER_WATER WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODAntiVehicleInfantryPlasmaLaserGun_Veterancy"
+						ObjectStatus="WEAPON_UPGRADED_01"
+						ForbiddenObjectStatus="INSIDE_GARRISON OVER_WATER"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODAntiVehicleInfantryPlasmaLaserGunStr"
+						ObjectStatus="INSIDE_GARRISON"/>
+				</WeaponSlotHardpoint>
+				<WeaponSlotHardpoint
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODAntiVehicleInfantryPlasmaLaserGunAntiAir"
+						ForbiddenObjectStatus="INSIDE_GARRISON OVER_WATER WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODAntiVehicleInfantryPlasmaLaserGunAntiAir_Veterancy"
+						ObjectStatus="WEAPON_UPGRADED_01"
+						ForbiddenObjectStatus="INSIDE_GARRISON OVER_WATER"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODAntiVehicleInfantryPlasmaLaserGunGunAntiAirStr"
+						ObjectStatus="INSIDE_GARRISON"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<AimWeapon
+				id="ModuleTag_AimWeapon" />
+			<CreateObjectDie
+			id="ModuleTag_DeathSpawn"
+			xai:joinAction="Replace"
+			CreationList="OCL_MODAntiVehicleInfantry_Death">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="PLAYER_POWER_5"/>
+			</CreateObjectDie>
+			<AttributeModifierUpgrade
+				id="ModuleTag_LaserUpgrade"
+				xai:joinAction="Remove"/>
+			<LaserState
+				id="ModuleTag_LaserState"
+				xai:joinAction="Remove"/>
+			<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				xai:joinAction="Replace"
+				AttributeModifier="AttributeModifier_DeBugDamageMultUnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+    </Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				xai:joinAction="Replace"
+				MaxHealth="110" />
+		</Body>
+	</GameObject>
+	  <GameObject
+		id="MODAntiVehicleInfantry_Crate"
+		inheritFrom="MODAntiVehicleInfantry"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="MODAntiVehicleInfantry_Crate">
+		<EquivalentTo>MODAntiVehicleInfantry</EquivalentTo>	
+	</GameObject>
+	
+	<GameObject
+		id="MODAntiVehicleInfantry_Ambush"
+		inheritFrom="MODAntiVehicleInfantry"
+		EditorName="MODAntiVehicleInfantry_Ambush">
+		<EquivalentTo>MODAntiVehicleInfantry</EquivalentTo>
+	</GameObject>
+	
+	<GameObject
+		id="MODAntiVehicleInfantry_AmbushUpgrade"
+		inheritFrom="MODAntiVehicleInfantry"
+		EditorName="MODAntiVehicleInfantry_AmbushUpgrade">
+		<EquivalentTo>MODAntiVehicleInfantry</EquivalentTo>
+		<Behaviors>
+			<LevelUpUpgrade
+	id="ModuleTag_LevelUpUpgrade"
+	LevelCap="4"
+	DoFlash="false"
+	LevelsToGain="4">
+	<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</LevelUpUpgrade>
+		</Behaviors>
+	</GameObject>
+	
+	<ObjectCreationList
+		id="OCL_MODAntiVehicleInfantry_Death">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS DO_NOT_COPY_SHADERS DO_NOT_COPY_SCALE REQUIRES_LIVE_PLAYER"
+			Disposition="ON_GROUND_ALIGNED"
+			MinHealth="1"
+			MaxHealth="1">
+			<CreateObject>MODAntiVehicleInfantry_Death</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<GameObject
+		id="MODAntiVehicleInfantry_Death"
+		inheritFrom="MODAntiVehicleInfantry"
+		EditorName="MODAntiVehicleInfantry_Death">
+		<EquivalentTo>MODAntiVehicleInfantry</EquivalentTo>
+		<Behaviors>
+			<AttributeModifierUpgrade
+				id="ModuleTag_CanNotDeathSpawn"
+				AttributeModifier="AttributeMod_CanNotDeathSpawnAttribute">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_DeathSpawnUp"
+				AttributeModifier="AttributeModifier_JapanArcherInfantryDeathSpawn">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</AttributeModifierUpgrade>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

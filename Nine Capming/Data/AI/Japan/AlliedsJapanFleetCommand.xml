@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Tags></Tags>
+
+  <Includes>
+    <Include type="instance" source="DATA:AI/JapanCoopBaseSkirmishPersonality.xml" />
+  </Includes>
+
+  <AIPersonalityDefinition
+		id="3AJFC"
+		PersonalityType="3AlliedsJapanFleetCommand"
+		inheritFrom="JapanCoopBaseSkirmishPersonality"
+		SkirmishPersonality="true"
+		PersonalityUIName="Personality:Naomi"
+		CommanderPortrait="Naomi"
+		>
+	  <Side>AlliedsJapan</Side>
+
+    <OpeningMove Name="AlliedsJapanIsland_EASY" Weight="100%" Difficulty="EASY"/>
+    <OpeningMove Name="AlliedsJapanIsland" Weight="100%" Difficulty="MEDIUM HARD"/>
+    <OpeningMove Name="AlliedsJapanIsland_BRUTAL" Weight="100%" Difficulty="BRUTAL"/>
+
+	  <StrategicState id="JapanExpansion_MEDIUM" xai:joinAction="Remove" xmlns:xai="uri:ea.com:eala:asset:instance"/>
+	  <StrategicState id="JapanExpansion_HARD" xai:joinAction="Remove" xmlns:xai="uri:ea.com:eala:asset:instance"/>
+	  <StrategicState id="JapanExpansion_BRUTAL" xai:joinAction="Remove" xmlns:xai="uri:ea.com:eala:asset:instance"/>
+	  <StrategicState id="AlliedsJapanExpansion_MEDIUM" State="JapanExpansion_MEDIUM" Difficulty="MEDIUM"/>
+	  <StrategicState id="AlliedsJapanExpansion_HARD" State="JapanExpansion_HARD" Difficulty="HARD"/>
+	  <StrategicState id="AlliedsJapanExpansion_BRUTAL" State="JapanExpansion_BRUTAL" Difficulty="BRUTAL"/>
+    <!-- Main Offensive States -->
+
+    <StrategicState id="FleetCommand_NavyHarrassment" State="FleetCommand_NavyHarrassment" Difficulty="MEDIUM HARD BRUTAL"/>
+    <StrategicState id="FleetCommand_NavyAttack" State="FleetCommand_NavyAttack" Difficulty="MEDIUM HARD BRUTAL"/>
+    <StrategicState id="FleetCommand_LandAttack" State="FleetCommand_LandAttack" Difficulty="MEDIUM HARD BRUTAL"/>
+
+    <StrategicState id="FleetCommand_RocketAngelSupport" State="FleetCommand_RocketAngelSupport" Difficulty="MEDIUM HARD BRUTAL"/>
+
+    <!-- Main Offensive States - EASY -->
+    <StrategicState id="BalancedAttackGround_EASY" State="BalancedAttackGround_EASY" Difficulty="EASY"/>
+    <StrategicState id="BalancedAttackWater_EASY" State="BalancedAttackWater_EASY" Difficulty="EASY"/>
+
+    <!-- Unit Preferences -->
+
+    <UnitModifier Unit="JapanAntiVehicleInfantryTech3" OffensiveModifier="2.0" DefensiveModifier="2.0"/>
+
+    <UnitModifier Unit="JapanNavyScout" OffensiveModifier="2.0" DefensiveModifier="2.0"/>
+    <UnitModifier Unit="JapanAntiAirShip" OffensiveModifier="2.0" DefensiveModifier="2.0"/>
+    <UnitModifier Unit="JapanAntiVehicleShip" OffensiveModifier="2.0" DefensiveModifier="2.0"/>
+    <UnitModifier Unit="JapanAntiStructureShip" OffensiveModifier="2.0" DefensiveModifier="2.0"/>
+
+	  <BuildState id="AlliedsJapanNonPathDependentStructureBuildState" State="AlliedsJapanNonPathDependentStructureBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+	  <BuildState id="AlliedsJapanTechBuildState" State="AlliedsJapanTechBuildState" Difficulty="MEDIUM HARD BRUTAL"/>
+	  <BuildState id="AlliedsJapanTechBuildState_EASY" State="AlliedsJapanTechBuildState_EASY" Difficulty="EASY"/>
+	  <BuildState id="AlliedsJapanLandUnitBuildState" State="AlliedsJapanLandUnitBuildState" Difficulty="MEDIUM HARD BRUTAL"/>
+	  <BuildState id="AlliedsJapanWaterUnitBuildState" State="AlliedsJapanWaterUnitBuildState" Difficulty="MEDIUM HARD BRUTAL"/>
+	  <BuildState id="AlliedsJapanDefenseBuildState"         State="AlliedsJapanDefenseBuildState"          Difficulty="EASY MEDIUM HARD BRUTAL"/>
+    <!-- Player Power Preferences -->
+    <PowerChoice PlayerPower="PlayerTech_Japan_FinalSquadron_Rank1" Weight="300%"/>
+    <PowerChoice PlayerPower="PlayerTech_Japan_FinalSquadron_Rank2" Weight="300%"/>
+    <PowerChoice PlayerPower="PlayerTech_Japan_FinalSquadron_Rank3" Weight="300%"/>
+    <PowerChoice PlayerPower="PlayerTech_Japan_NavalPower" Weight="300%"/>
+    <PowerChoice PlayerPower="PlayerTech_Japan_EnhancedKamikaze" Weight="300%"/>
+
+	<!-- Voice Responses -->
+		<FeedbackEntry FeedbackKey="PlanAttackBeaconPlaced" EvaEvent="EmpireCoopNaomiPlanAttack" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="PlanAttackOrderComplete" EvaEvent="EmpireCoopNaomiPlanAttackDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionBeaconPlaced" EvaEvent="EmpireCoopNaomiTakePos" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionOrderComplete" EvaEvent="EmpireCoopNaomiTakePosDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetBeaconPlaced" EvaEvent="EmpireCoopNaomiStrikeThis" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetOrderComplete" EvaEvent="EmpireCoopNaomiStrikeThisDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="OrderCanceled" EvaEvent="EmpireCoopNaomiAutoPilot" FeedbackTo="ALLIES"/>
+
+		<!-- Skirmish feedback -->
+		
+		<!-- Greet ally at beginning of game -->
+		<FeedbackEntry
+				FeedbackKey="StartGame"
+				Video="JNAGR1" 
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="StartGame"
+				Video="JNAGR2" 
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="StartGame"
+				Video="JNAGR3" 
+				FeedbackTo="ALLIES"/>
+
+		<!-- Tell ally I'm in trouble -->
+		<!-- N.B.: If you wanted to add FeedbackTo="ENEMIES" or "NEUTRAL", you would also need to 
+			    adjust the InTroubleSkirmishFeedbackControl block's OnlyIfLocalPlayerIs list -->
+		<FeedbackEntry
+				FeedbackKey="InTrouble"
+				Video="JNAND1" 
+				FeedbackTo="ALLIES"
+				Timeout="600s"/>
+		<FeedbackEntry
+				FeedbackKey="InTrouble"
+				Video="JNAND2" 
+				FeedbackTo="ALLIES"
+				Timeout="600s"/>
+		<FeedbackEntry
+				FeedbackKey="InTrouble"
+				Video="JNAND3" 
+				FeedbackTo="ALLIES"
+				Timeout="600s"/>
+
+		<!-- Tell ally I'm dead -->
+		<FeedbackEntry
+				FeedbackKey="Lost"
+				Video="JNADE1" 
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="Lost"
+				Video="JNADE2" 
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="Lost"
+				Video="JNADE3" 
+				FeedbackTo="ALLIES"/>
+
+		<!-- Tell enemy I'm going to defeat them! (when I first meet them) -->
+		<FeedbackEntry
+				FeedbackKey="FirstSeen"
+				Video="JNATG1" 
+				FeedbackTo="ENEMIES"
+				Timeout="9999999s"/>
+		<FeedbackEntry
+				FeedbackKey="FirstSeen"
+				Video="JNATG2" 
+				FeedbackTo="ENEMIES"
+				Timeout="9999999s"/>
+		<FeedbackEntry
+				FeedbackKey="FirstSeen"
+				Video="JNATG3" 
+				FeedbackTo="ENEMIES"
+				Timeout="9999999s"/>
+
+		<!-- Curse enemy who defeated me -->
+		<FeedbackEntry
+				FeedbackKey="DefeatedByLocalPlayer"
+				Video="JNATD1" 
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedByLocalPlayer"
+				Video="JNATD2" 
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedByLocalPlayer"
+				Video="JNATD3" 
+				FeedbackTo="ENEMIES"/>
+
+		<!-- Laugh at enemy whom I defeated -->
+		<FeedbackEntry
+				FeedbackKey="DefeatedLocalPlayer"
+				Video="JNATV1" 
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedLocalPlayer"
+				Video="JNATV2" 
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedLocalPlayer"
+				Video="JNATV3" 
+				FeedbackTo="ENEMIES"/>
+
+  </AIPersonalityDefinition>
+
+</AssetDeclaration>

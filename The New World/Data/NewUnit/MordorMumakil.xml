@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+
+	<Includes>
+		<Include type="all" source="ART:Units/mammoth/MUMumakil_FOOL.w3x" />
+		<Include type="all" source="ART:Units/mammoth/MUMumakil_SKL.w3x" />
+		<Include type="all" source="ART:Units/mammoth/MUMumakil_ACCL1.w3x" />
+		<Include type="all" source="ART:Units/mammoth/MUMumakil_DIEB.w3x" />
+		<Include type="all" source="ART:Units/mammoth/MUMumakil_IDLA.w3x" />
+		<Include type="all" source="ART:Units/mammoth/MUMumakil_IDLB.w3x" />
+		<Include type="all" source="ART:Units/mammoth/MUMumakil_RUNA.w3x" />
+		<Include type="all" source="ART:Units/mammoth/MUMumakil_TRNL.w3x" />
+		<Include type="all" source="ART:Units/mammoth/MUMumakil_TRNR.w3x" />
+		<Include type="all" source="ART:Units/mammoth/MUMumakil_WLKA.w3x" />
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+
+	</Includes>
+
+	<GameObject
+		id="MordorMumakil"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_Mammoth"
+		ButtonImage="Button_Mammoth"
+		Side="Soviet"
+		SubGroupPriority="666"
+		EditorSorting="UNIT"
+		BuildTime="40"
+		CommandSet="MordorMumakilCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT T3_UNIT"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		TransportSlotCount="10"
+		WeaponCategory="CANNON"
+		VoicePriority="666"
+		EditorName="MordorMumakil"
+		Description="DESC:MordorMumakil"
+		TypeDescription="TYPE:EUAntiVehicleVehicleTech3"
+		HealthBoxHeightOffset="35"
+		VoiceSelectUnderFireTimeout="10s"
+		VoiceSelectUnderFireDamageTime="3s"
+		ShockwaveResistance="9999"
+		BountyValue="400"
+		HealthBar="VeryLargeUnit">
+<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MordorMumakil</DisplayName>
+		<GameDependency>
+			<RequiredObject>SovietTechStructure</RequiredObject>
+			<RequiredObject>SovietNavalYard</RequiredObject>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="4000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseHarassmentVehicleArmor"
+			DamageFX="MumakilDamageFX" />
+		<LocomotorSet
+			Locomotor="MumakilLocomotor"
+			Condition="NORMAL"
+			Speed="45.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			TargetDuringCrush="true"
+			CrushSpeedBonus="150"
+      OutOfRangePenalty="2.0"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="16.0"
+				MaxRecoilDistance="10.0"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="e_FrontLeft e_FrontRight e_BackLeft e_BackRight B_CARGO0 B_BANNER B_LLLID DockWaiting01 DockStart DockAction FX_WEAPON_01 FX_WEAPON_02">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="MUMumakil_FOOL" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponMuzzleFlash
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					StateName="STATE_bored"
+					AllowRepeatInRandomPick="true"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="MUMumakil_IDLA"
+						AnimationMode="ONCE"
+						AnimationPriority="5" />
+					<Animation
+						AnimationName="MUMumakil_IDLB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_B">
+					<Animation
+						AnimationName="MUMumakil_IDLB"
+						AnimationMode="ONCE" 
+                                                AnimationAbsoluteTime="1s"/>
+				</AnimationState>
+
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1"
+					StateName="STATE_die">
+					<Animation
+						AnimationName="MUMumakil_DIEB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="TURN_LEFT"
+					StateName="STATE_turnleft">
+					<Animation
+						AnimationName="MUMumakil_TRNL"
+						AnimationMode="LOOP"
+						AnimationBlendTime="30"
+						AnimationSpeedFactorMin="1.7"
+						AnimationSpeedFactorMax="1.7" />
+					<FXEvent
+						Frame="1"
+						FireWhenSkipped="true"
+						Effect="FX_MUMRightRearFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="40"
+						FireWhenSkipped="true"
+						Effect="FX_MUMRightFrontFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="42"
+						FireWhenSkipped="true"
+						Effect="FX_MUMLeftRearFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="44"
+						FireWhenSkipped="true"
+						Effect="FX_MUMLeftFrontFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="45"
+						FireWhenSkipped="true"
+						Effect="FX_MUMRightRearFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="85"
+						FireWhenSkipped="true"
+						Effect="FX_MUMLeftRearFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="88"
+						FireWhenSkipped="true"
+						Effect="FX_MUMRightFrontFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="89"
+						FireWhenSkipped="true"
+						Effect="FX_MUMLeftFrontFootStep"
+						Bone="" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="TURN_RIGHT"
+					StateName="STATE_turnright">
+					<Animation
+						AnimationName="MUMumakil_TRNR"
+						AnimationMode="LOOP"
+						AnimationBlendTime="30"
+						AnimationSpeedFactorMin="1.7"
+						AnimationSpeedFactorMax="1.7" />
+					<FXEvent
+						Frame="1"
+						FireWhenSkipped="true"
+						Effect="FX_MUMRightRearFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="40"
+						FireWhenSkipped="true"
+						Effect="FX_MUMRightFrontFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="42"
+						FireWhenSkipped="true"
+						Effect="FX_MUMLeftRearFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="44"
+						FireWhenSkipped="true"
+						Effect="FX_MUMLeftFrontFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="45"
+						FireWhenSkipped="true"
+						Effect="FX_MUMRightRearFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="85"
+						FireWhenSkipped="true"
+						Effect="FX_MUMLeftRearFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="88"
+						FireWhenSkipped="true"
+						Effect="FX_MUMRightFrontFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="89"
+						FireWhenSkipped="true"
+						Effect="FX_MUMLeftFrontFootStep"
+						Bone="" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					StateName="STATE_moving">
+					<Animation
+						AnimationName="MUMumakil_WLKA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10"
+						AnimationSpeedFactorMin="1.8"
+						AnimationSpeedFactorMax="1.8" />
+					<FXEvent
+						Frame="9"
+						FireWhenSkipped="true"
+						Effect="FX_MUMLeftRearFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="31"
+						FireWhenSkipped="true"
+						Effect="FX_MUMLeftFrontFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="44"
+						FireWhenSkipped="true"
+						Effect="FX_MUMRightRearFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="74"
+						FireWhenSkipped="true"
+						Effect="FX_MUMRightFrontFootStep"
+						Bone="" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_bored" then CurDrawableSetTransitionAnimState("TRANS_Accelerate1") end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_Accelerate1">
+					<Animation
+						AnimationName="MUMumakil_ACCL1"
+						AnimationMode="ONCE"
+						AnimationBlendTime="10"
+						AnimationSpeedFactorMin="1.8"
+						AnimationSpeedFactorMax="1.8" />
+					<FXEvent
+						Frame="27"
+						FireWhenSkipped="true"
+						Effect="FX_MUMRightRearFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="48"
+						FireWhenSkipped="true"
+						Effect="FX_MUMRightFrontFootStep"
+						Bone="" />
+					<FXEvent
+						Frame="50"
+						FireWhenSkipped="true"
+						Effect="FX_MUMLeftRearFootStep"
+						Bone="" />
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+                                        AllowInterleavedFiring="true"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietMammothCannon" />	
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="MordorMumakilKnockback" />	
+					
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+                        <SpecialPower
+				id="ModuleTag_Roar2"
+				SpecialPowerTemplate="SpecialPower_Roar2"                               				       
+				UpdateModuleStartsAttack="true"
+				AttributeModifier="AttributeModifer_Roar2"
+				AttributeModifierAffectsSelf="true" 
+				TriggerFX="FX_BearRoar"/>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_RoarUpdate"
+				SpecialPowerTemplate="SpecialPower_Roar2"
+				SpecialWeapon="SovietScoutInfantryRoar2"
+				UnpackTime="0s"
+				PackTime="2s"
+				FreezeAfterTriggerDuration="1s"
+				StartAbilityRange="0.0"/>
+
+			<AutoHealBehavior
+				id="Upgrade_PassiveHeal"
+				InitiallyActive="true"
+				HealOnlyIfNotInCombat="false"
+				HealOnlyIfNotUnderAttack="false"
+				StartHealingDelay="1s"
+				HealingAmount="5"
+				HealingDelay=".5s">
+			</AutoHealBehavior>
+			<EmotionTrackerUpdate
+				id="ModuleTag_EmotionTracker">
+				<AddEmotion>Terror_Base</AddEmotion>
+				<AddEmotion>Alert_Base</AddEmotion>
+				<AddEmotion>CheerForAboutToCrush_Base</AddEmotion>
+			</EmotionTrackerUpdate>
+			<FireWeaponWhenDead
+				id="ModuleTag_FallStraight"
+				InitiallyActive="true"
+				DelayTime="0.25s"
+				DeathWeapon="MordorOliphantDeathStraightInitial">
+				<DieMuxData
+					DeathTypes="ALL"
+					RequiredStatus="DEATH_1" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FallRight"
+				InitiallyActive="true"
+				DelayTime="3.3s"
+				DeathWeapon="MordorOliphantToppleFinal">
+				<WeaponOffset x="0" y="-42" z="0" />
+				<DieMuxData
+					DeathTypes="ALL"
+					RequiredStatus="DEATH_2" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FallLeft"
+				InitiallyActive="true"
+				DelayTime="3.3s"
+				DeathWeapon="MordorOliphantToppleFinal">
+				<WeaponOffset x="0" y="42" z="0" />
+				<DieMuxData
+					DeathTypes="ALL"
+					RequiredStatus="DEATH_3" />
+			</FireWeaponWhenDead>
+			<Physics
+				id="ModuleTag_Physics" />
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="15s"
+				SinkRate="2.4"
+				DestructionDelay="30s"
+				DecayBeginTime="6s"
+				DeathFlags="DEATH_1"
+				ShadowWhenDead="true">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<FX Type="INITIAL">
+					<FX>FX_OliphantDie</FX>
+				</FX>
+			</SlowDeath>
+			<SquishCollide
+				id="ModuleTag_SquishCollide" />
+			<HitReactionBehavior
+				id="ModuleTag_HitReaction"
+				LightDamageHitReactionLifeTimer="1s"
+				LightDamageHitReactionThreshold="200" />
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="MumakilFunctions" />
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				Motion="TRACKED"
+				Collision="OMNICOLLIDING"
+				ContactTag="VEHICLE" />
+			<StancesBehavior
+				id="ModuleTag_Stance"
+				StanceTemplate="Generic" />
+			<RunOffMapBehavior
+				id="ModuleTag_RunOffMapBehavior"
+				RequiresSpecificTrigger="true"
+				RunOffMapWaypointName="RunOffMap" />
+<AttributeModifierAuraUpdate 
+id="ModuleTag_AttributeModifierMordorMumakilImmune" 
+AttributeModifierName="AttributeMod_Immune" 
+AllowSelf="true" 
+InitiallyActive="true" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="true"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="5000"
+				BurningDeathBehavior="false"
+				BurningDeathFX="FX_CavalryBurningFlame" />
+		</Body>
+		<!--<ClientUpdates>
+			<LargeGroupAudioClientUpdate
+				UnitWeight="5">
+				<Key>Monster"</Key>
+				<Key>Unit</Key>
+				<Key>Mumakil</Key>
+			</LargeGroupAudioClientUpdate>
+		</ClientUpdates>-->
+		<ClientBehaviors>
+			<AnimationSoundClientBehavior
+				id="ModuleTag_ASCB">
+				<Sound Sound="MumakilPenMumakilBuild"				Animation="MuMumakil_BLDA" Frame="0" />
+				<Sound Sound="OliphantIdleTrumpet"				Animation="MUMumakil_IDLB" Frame="18" />
+
+				<Sound Sound="OliphantFall"					Animation="MUMumakil_DIEA" Frame="90" />
+				<Sound Sound="OliphantFall"					Animation="MUMumakil_DIEB" Frame="85" />
+				<Sound Sound="OliphantFall"					Animation="MUMumakil_DIEC" Frame="85" />
+				<Sound Sound="OliphantFall"					Animation="MUMumakil_DIED" Frame="117" />
+				<Sound Sound="MumakilRampageStomp"	ExcludedMC="WADING"	Animation="MUMumakil_DIED" Frame="117" />
+
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_HITA" Frame="4 11 23" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_HITB" Frame="3 8 164 177" />
+				<Sound Sound="MumakilRampageStomp"	ExcludedMC="WADING"	Animation="MUMumakil_HITB" Frame="48" />
+				<Sound Sound="MumakilRampageVox2"				Animation="MUMumakil_HITB" Frame="1" />
+				<Sound Sound="MumakilRampageWhoosh1"				Animation="MUMumakil_HITB" Frame="10" />
+				<Sound Sound="MumakilRampageWhoosh2"				Animation="MUMumakil_HITB" Frame="61" />
+
+				<Sound Sound="MumakilRampageWhoosh1"				Animation="MUMumakil_RPGA" Frame="86" />
+				<Sound Sound="MumakilRampageWhoosh2"				Animation="MUMumakil_RPGA" Frame="139" />
+				<Sound Sound="MumakilRampageVox1"				Animation="MUMumakil_RPGA" Frame="1" />
+				<Sound Sound="MumakilRampageVox2"				Animation="MUMumakil_RPGA" Frame="103" />
+				<Sound Sound="MumakilRampageStomp"	ExcludedMC="WADING"	Animation="MUMumakil_RPGA" Frame="42" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_RPGA" Frame="89 100 127 185 208" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_RPGB" Frame="259 270 297 355 378" />
+				<Sound Sound="MumakilRampageStomp"	ExcludedMC="WADING"	Animation="MUMumakil_RPGB" Frame="205" />
+				<Sound Sound="MumakilRampageVox1"				Animation="MUMumakil_RPGB" Frame="206" />
+				<Sound Sound="MumakilRampageVox2"				Animation="MUMumakil_RPGB" Frame="360" />
+				<Sound Sound="MumakilRampageVox3"				Animation="MUMumakil_RPGB" Frame="6" />
+				<Sound Sound="MumakilRampageWhoosh1"				Animation="MUMumakil_RPGB" Frame="262" />
+				<Sound Sound="MumakilRampageWhoosh2"				Animation="MUMumakil_RPGB" Frame="352" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_MFDA" Frame="4 10 15 20" />
+
+				<Sound Sound="MumakilRampageStomp"	ExcludedMC="WADING"	Animation="MUMumakil_ATKA" Frame="39" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_ATKA" Frame="103" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_ATKB" Frame="115" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_ATKC" Frame="36" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_ATKD" Frame="55 63" />
+
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MuMumakil_BLDA" Frame="70 94 117 132 158 172" />
+
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_ACCL1" Frame="29 51 59" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_ACCL2" Frame="24 41" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_BAKA" Frame="35 75" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_WLKA" Frame="7 30 48 72" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_WLKB1" Frame="0 40" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_WLKB2" Frame="0 40" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_WLKC" Frame="5 25 41 52" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_RUNA" Frame="4 9 14 19" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_TRNL" Frame="40 80" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_TRNR" Frame="40 80" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_TRNLA" Frame="7 15 20 24" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_TRNRA" Frame="7 15 20 24" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_TRNLB" Frame="7 22 44 50" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_TRNRB" Frame="7 22 44 50" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_DECL1" Frame="60" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_DECL2" Frame="24" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_DECL3" Frame="25" />
+				<Sound Sound="OliphantFootStep"		ExcludedMC="WADING"	Animation="MUMumakil_DECL4" Frame="59 68" />
+
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_DIEA" Frame="90" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_DIEB" Frame="85" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_DIEC" Frame="85" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_DIED" Frame="117" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_DIED" Frame="117" />
+
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_HITA" Frame="4 11 23" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_HITB" Frame="3 8 164 177" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_HITB" Frame="48" />
+
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_RPGA" Frame="42" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_RPGA" Frame="89 100 127 185 208" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_RPGB" Frame="259 270 297 355 378" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_RPGB" Frame="205" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_MFDA" Frame="4 10 15 20" />
+
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_ATKA" Frame="39" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_ATKA" Frame="103" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_ATKB" Frame="115" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_ATKC" Frame="36" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_ATKD" Frame="55 63" />
+
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_ACCL1" Frame="29 51 59" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_ACCL2" Frame="24 41" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_BAKA" Frame="35 75" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_WLKA" Frame="7 30 48 72" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_WLKB1" Frame="0 40" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_WLKB2" Frame="0 40" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_WLKC" Frame="5 25 41 52" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_RUNA" Frame="4 9 14 19" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_TRNL" Frame="40 80" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_TRNR" Frame="40 80" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_TRNLA" Frame="7 15 20 24" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_TRNRA" Frame="7 15 20 24" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_TRNLB" Frame="7 22 44 50" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_TRNRB" Frame="7 22 44 50" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_DECL1" Frame="60" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_DECL2" Frame="24" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_DECL3" Frame="25" />
+				<Sound Sound="OliphantFootstepWater"	RequiredMC="WADING"	Animation="MUMumakil_DECL4" Frame="59 68" />
+			</AnimationSoundClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="40.0"
+				MinorRadius="24.0"
+				Height="32.0"
+				ContactPointGeneration="INFANTRY"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry
+				Sound="OliphantVoiceAttack"
+				AudioType="voiceAttack" />
+			<AudioEntry
+				Sound="OliphantVoiceSelect"
+				AudioType="voiceGuard" />
+			<AudioEntry
+				Sound="OliphantVoiceSelect"
+				AudioType="voiceMove" />
+			<AudioEntry
+				Sound="OliphantVoiceSelect"
+				AudioType="voiceSelect" />
+			<AudioEntry
+				Sound="OliphantCreatedGlobal"
+				AudioType="voiceCreated" />
+			<AudioEntry
+				Sound="OliphantCreatedGlobal"
+				AudioType="voiceFullyCreated" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="OliphantAmbience"
+				AudioType="soundAmbient" />
+		</AudioArraySound>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="UnitLost" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="BuildingConstructionStarted" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="UnitUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="UnitUnderAttackFromShroudedUnit" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="GenericUnitBeingBurned" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="AllyUnitUnderAttack" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="UnitAmbushed" EvaType="ambushed" />
+			<EvaEntry EvaEvent="GenericEnemyUnitSighted" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="EnemyStealthUnitDiscovered" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="NewConstructionOptions" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="BuildOnHold" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="BuildCancelled" EvaType="buildCancelled" />
+			<EvaEntry EvaEvent="UnitPromoted" EvaType="promotedOwner" />
+		</EvaEventArray>
+		<VisionInfo
+			VisionRange="180"
+			ShroudClearingRange="300"
+			MaxVisionBonusPercent="300"
+			VisionBonusTestRadius="200"
+			VisionBonusPercentPerFoot="2" />
+		<CrusherInfo
+			CrusherLevel="30"
+			CrushableLevel="50"
+			CrushWeapon="SovietCrushWeapon" />
+	</GameObject>
+	<EmotionTemplate
+		id="Terror_Base"
+		Type="TERROR"
+		AIState="RUN_AWAY_PANIC"
+		AIStateLockDuration="15s"
+		Options="PREVENT_PLAYER_COMMANDS"
+		ModelConditionsSetOnStart="EMOTION_TERROR EMOTION_AFRAID"
+		ModelConditionsClearOnEnd="EMOTION_TERROR EMOTION_AFRAID"
+		DurationActive="10s"
+		StartFX="FX_EmotionTerror"
+		UpdateFX="FX_EmotionTerror"
+		EndFX="FX_EmotionRegroup" />
+
+	<EmotionTemplate
+		id="Alert_Base"
+		Type="ALERT"
+		ModelConditionsSetOnStart="EMOTION_CELEBRATING"
+		ModelConditionsClearOnEnd="EMOTION_CELEBRATING" />
+
+	<EmotionTemplate
+		id="CheerForAboutToCrush_Base"
+		Type="CHEER_FOR_ABOUT_TO_CRUSH"
+		ModelConditionsSetOnStart="EMOTION_CHEER_FOR_ABOUT_TO_CRUSH"
+		ModelConditionsClearOnEnd="EMOTION_CHEER_FOR_ABOUT_TO_CRUSH"
+		DurationActive="3s"
+		StartFX="FX_EmotionCheerForAboutToCrush" />
+</AssetDeclaration>

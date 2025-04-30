@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:Units/EUAntiAirVehicleTech1/GURPRDRN_SKN.w3x" />
+		<Include type="all" source="ART:Units/EUAntiAirVehicleTech1/GURPRDRN_IDLA.w3x" />
+		<Include type="all" source="ART:Units/EUAntiAirVehicleTech1/GURPRDRN_SKL.w3x" />
+		<Include type="all" source="ART:Units/EUAntiAirVehicleTech1/GURPRDRN_SKN.GURPRDRONE.w3x" />
+		<Include type="all" source="ART:Units/EUAntiAirVehicleTech1/GURPRDRN_SKN.OBBOX01.w3x" />
+		<!--		<Include type="all"	source="ART:AUDrone_02_D.xml" />		-->
+		<Include type="instance" source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+		id="EUAntiAirDrone"
+		inheritFrom="BaseObject"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="CAN_CAST_REFLECTIONS CAN_ATTACK AIRCRAFT VEHICLE SKIP_IDLE_WHEN_CAPTURED PASS_EXPERIENCE_TO_PRODUCER NO_COLLIDE LINE_OF_SIGHT_IGNORES_BUILDINGS NO_HEAL_ICON CAN_SEE_THROUGH_STRUCTURE LINE_OF_SIGHT_IGNORES_BUILDINGS"
+		ProductionQueueType="VEHICLE"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="GUN"
+		EditorName="EUAntiAirDrone"
+		Description="Desc:EUAntiAirDrone">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">NAME:EUAntiAirDrone</DisplayName>
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			Locomotor="EUAntiAirDroneLocomotor"
+			Condition="NORMAL"
+			Speed="220.0" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUANTIAIRDRONE_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Weapon01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Weapon01" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					StateName="STATE_bored">
+					<Animation
+						AnimationName="AUANTIAIRDRONE_IDLA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw"
+				MinLength="30.0"
+				MaxLength="30.0"
+				Width="10.0"
+				MinSpeed="20"
+				MaxSpeed="20"
+				SweepSpeed="3.0"
+				SpreadAngle="4.0"
+				MinTracersPerFrame=".2"
+				MaxTracersPerFrame=".35"
+				FrameLifeTime="30"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracer"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="0.5"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="0.5"
+					a="0.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawVeterancy"
+				MinLength="30.0"
+				MaxLength="35.0"
+				Width="15.0"
+				MinSpeed="20"
+				MaxSpeed="20"
+				SweepSpeed="1.0"
+				SpreadAngle="1.0"
+				MinTracersPerFrame="0.2"
+				MaxTracersPerFrame="0.35"
+				FrameLifeTime="30"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXTracerHeroic"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="0.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate" />
+			<SquishCollide
+				id="DefaultSquishCollide"
+				CrushKillDelay="0.4s" />
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUAntiAirDroneWeapon"
+						ObjectStatus="HAS_TIBERIUM_GROWTH_MOD" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6 SUICIDED" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_JetFighter_Die" />
+			</FXListBehavior>
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_AntiPlusUpgrade"
+				AttributeModifier="AttributeMod_AlliesSovietAntiPlusDroneAttribute">
+				<TriggeredBy>Upgrade_SovietAntiPlus</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_DeBugDamageMultUnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<Physics
+				id="ModuleTag_Physics" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<SlavedUpdate
+				id="ModuleTag_SlavedUpdate"
+				LeashRange="150"
+				GuardMaxRange="150"
+				GuardWanderRange="150"
+				DieOnMastersDeath="true"
+				AttackRange="340"
+				UseSlaverAsControlForEvaObjectSightedEvents="false" />
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="1s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="EUAntiAirDroneKillSelfDummyWeapon"
+					FireDelay="2s"
+					OneShot="false" />
+				<ObjectStatusValidation
+					ForbiddenStatus="UNDER_IRON_CURTAIN IS_FIRING_WEAPON HAS_TIBERIUM_GROWTH_MOD" />
+			</FireWeaponUpdate>
+			<StancesBehavior
+				id="ModuleTag_Stance"
+				StanceTemplate="Generic" />
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Veteran"
+				LevelCap="4"
+				LevelsToGain="1">
+				<TriggeredBy>Upgrade_CreationVeterancy_VETERAN</TriggeredBy>
+			</LevelUpUpgrade>
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Elite"
+				LevelCap="4"
+				LevelsToGain="1">
+				<TriggeredBy>Upgrade_CreationVeterancy_ELITE</TriggeredBy>
+			</LevelUpUpgrade>
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Heroic"
+				LevelCap="4"
+				LevelsToGain="1">
+				<TriggeredBy>Upgrade_CreationVeterancy_HEROIC</TriggeredBy>
+			</LevelUpUpgrade>
+			<!-- AlliedAirPowerUpgrade -->
+			<xi:include
+				href="DATA:Includes/AlliedAirPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedAirPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<JetAIUpdate
+				id="ModuleTag_JetAI"
+				AutoAcquireEnemiesWhenIdle="NO"
+				CirclesForAttack="true"
+				StateMachine="JetAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="true" />
+			</JetAIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="60" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="ALL_JetFighter_moveByLoop" AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="" EvaType="ambushed" />
+			<EvaEntry EvaEvent="" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="" EvaType="buildCancelled" />
+		</EvaEventArray>
+		<VisionInfo
+			VisionRange="350"
+			ShroudClearingRange="0" />
+	</GameObject>
+</AssetDeclaration>

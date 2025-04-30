@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+
+	<Includes>
+		<Include type="instance" source="CoopBasePersonality.xml" />
+	</Includes>
+
+	<AIPersonalityDefinition
+		id="MODCoopBaseSkirmishPersonality"
+		PersonalityType="MODCoopBaseSkirmishPersonality"
+		inheritFrom="CoopBasePersonality">
+		<Side>JapanA</Side>
+		<!-- Water And Ground-->
+		<OpeningMove Name="MODAircraftRush_01" Weight="50%" Difficulty="EASY MEDIUM"/>
+		<OpeningMove Name="MODAircraftRush_02" Weight="50%" Difficulty="EASY MEDIUM"/>
+		<OpeningMove Name="MODAircraftRush_03" Weight="50%" Difficulty="EASY MEDIUM"/>
+		<!-- Ground-->
+		<OpeningMove Name="MODStandard_01" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="MODStandard_02" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="MODBarrackRush_01" Weight="50%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="MODBarrackRush_02" Weight="50%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="MODTankRush_01" Weight="75%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="MODTankRush_02" Weight="75%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- Water-->
+		<OpeningMove Name="MODWaterStandard_01" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- Island-->
+		<OpeningMove Name="MODWaterStandard_01" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- OnlyAircraft-->
+		<OpeningMove Name="MODAircraftRush_01" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveOnlyAircraft" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="MODAircraftRush_02" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveOnlyAircraft" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="MODAircraftRush_03" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveOnlyAircraft" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- Water And Ground-->
+		<OpeningMove Name="MODAircraftRush_01BRUTAL" Weight="50%" Difficulty="HARD BRUTAL"/>
+		<OpeningMove Name="MODAircraftRush_02BRUTAL" Weight="50%" Difficulty="HARD BRUTAL"/>
+		<OpeningMove Name="MODAircraftRush_03BRUTAL" Weight="50%" Difficulty="HARD BRUTAL"/>
+		<!-- Ground-->
+		<OpeningMove Name="MODStandard_01BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="MODStandard_02BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="MODBarrackRush_01BRUTAL" Weight="50%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="MODBarrackRush_02BRUTAL" Weight="50%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="MODTankRush_01BRUTAL" Weight="75%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="MODTankRush_02BRUTAL" Weight="75%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- Water-->
+		<OpeningMove Name="MODWaterStandard_01BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- Island-->
+		<OpeningMove Name="MODWaterStandard_01BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- OnlyAircraft-->
+		<OpeningMove Name="MODAircraftRush_01BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveOnlyAircraft" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="MODAircraftRush_02" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveOnlyAircraft" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="MODAircraftRush_03" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveOnlyAircraft" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- No Boss -->
+		<StrategicState id="JapanExpansion_HARD_TNW" State="JapanExpansion_HARD_TNW" Difficulty="EASY MEDIUM"/>
+		<StrategicState id="JapanExpansion_BRUTAL_TNW" State="JapanExpansion_BRUTAL_TNW" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="AntiGroundAircraftAttack" State="AntiGroundAircraftAttack" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="JapanCaptureTechTNW" State="JapanCaptureTechTNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="JapanOptimalCaptureTechTNW" State="JapanOptimalCaptureTechTNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="JapanCaptureWaterHusksTNW" State="JapanCaptureWaterHusksTNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="JapanInfiltrationStructure" State="JapanInfiltrationStructure" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="JapanInfiltrationStructureFearless" State="JapanInfiltrationStructureFearless" Difficulty="HARD BRUTAL"/>
+		<!-- Build States -->
+		<BuildState id="MODStructureTNWBuildState_BRUTAL" State="MODStructureTNWBuildState_BRUTAL" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODFortressShipEggBuildState" State="MODFortressShipEggBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODDefenseBuildState002" State="MODDefenseBuildState002" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODDefenseBuildState003" State="MODDefenseBuildState003" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- 通用 -->
+		<BuildState id="MODAntiAirOnlyBuildState_TNW" State="MODAntiAirOnlyBuildState_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODAmphibiousUnitBuildState" State="MODAmphibiousUnitBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="JapanGenericUnitBuildState" State="JapanGenericUnitBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODAntiBaseDefenceBuildUnit" State="MODAntiBaseDefenceBuildUnit" Difficulty="MEDIUM HARD BRUTAL"/>
+		<!-- NO Spawn -->
+		<BuildState id="MODBarracksUnitBuildStateTechAll_NoSpawn" State="MODBarracksUnitBuildStateTechAll_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech12_NoSpawn" State="MODWarFactoryUnitBuildStateTech12_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech3_NoSpawn" State="MODWarFactoryUnitBuildStateTech3_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech1_NoSpawn" State="MODNavyYardUnitBuildStateTech1_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech23_NoSpawn" State="MODNavyYardUnitBuildStateTech23_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		
+		<BuildState id="MODExtraBarracksBuildState_NoSpawn" State="MODExtraBarracksBuildState_NoSpawn" Difficulty="BRUTAL"/>
+		<BuildState id="MODExtraNavalYardBuildState_NoSpawn" State="MODExtraNavalYardBuildState_NoSpawn" Difficulty="BRUTAL"/>
+		<BuildState id="MODExtraAirfieldBuildState_NoSpawn" State="MODExtraAirfieldBuildState_NoSpawn" Difficulty="BRUTAL"/>
+		<!-- Balance -->
+		<BuildState id="MODBarracksUnitBuildStateTechAll_Balance" State="MODBarracksUnitBuildStateTechAll_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech12_Balance" State="MODWarFactoryUnitBuildStateTech12_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech3_Balance" State="MODWarFactoryUnitBuildStateTech3_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech1_Balance" State="MODNavyYardUnitBuildStateTech1_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech23_Balance" State="MODNavyYardUnitBuildStateTech23_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODAircraftUnitBuildStateTech1_Balance" State="MODAircraftUnitBuildStateTech1_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- AirPower -->
+		<BuildState id="MODBarracksUnitBuildStateTechAll_AirPower" State="MODBarracksUnitBuildStateTechAll_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech12_AirPower" State="MODWarFactoryUnitBuildStateTech12_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech3_AirPower" State="MODWarFactoryUnitBuildStateTech3_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech1_AirPower" State="MODNavyYardUnitBuildStateTech1_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech23_AirPower" State="MODNavyYardUnitBuildStateTech23_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODAircraftUnitBuildStateTech1_AirPower" State="MODAircraftUnitBuildStateTech1_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- LandPower -->
+		<BuildState id="MODBarracksUnitBuildStateTechAll_LandPower" State="MODBarracksUnitBuildStateTechAll_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech12_LandPower" State="MODWarFactoryUnitBuildStateTech12_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech3_LandPower" State="MODWarFactoryUnitBuildStateTech3_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech1_LandPower" State="MODNavyYardUnitBuildStateTech1_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech23_LandPower" State="MODNavyYardUnitBuildStateTech23_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODAircraftUnitBuildStateTech1_LandPower" State="MODAircraftUnitBuildStateTech1_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- SpecialUnit -->
+		<BuildState id="MODBarracksUnitBuildStateTechAll_SpecialUnit" State="MODBarracksUnitBuildStateTechAll_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech12_SpecialUnit" State="MODWarFactoryUnitBuildStateTech12_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech3_SpecialUnit" State="MODWarFactoryUnitBuildStateTech3_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech1_SpecialUnit" State="MODNavyYardUnitBuildStateTech1_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech23_SpecialUnit" State="MODNavyYardUnitBuildStateTech23_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODAircraftUnitBuildStateTech1_SpecialUnit" State="MODAircraftUnitBuildStateTech1_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- InfantryBuild -->
+		<BuildState id="MODBarracksUnitBuildStateTechAll_InfantryBuild" State="MODBarracksUnitBuildStateTechAll_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech12_InfantryBuild" State="MODWarFactoryUnitBuildStateTech12_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech3_InfantryBuild" State="MODWarFactoryUnitBuildStateTech3_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech1_InfantryBuild" State="MODNavyYardUnitBuildStateTech1_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech23_InfantryBuild" State="MODNavyYardUnitBuildStateTech23_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODAircraftUnitBuildStateTech1_InfantryBuild" State="MODAircraftUnitBuildStateTech1_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- HighTech -->
+		<BuildState id="MODBarracksUnitBuildStateTechAll_HighTech" State="MODBarracksUnitBuildStateTechAll_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech12_HighTech" State="MODWarFactoryUnitBuildStateTech12_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech3_HighTech" State="MODWarFactoryUnitBuildStateTech3_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech1_HighTech" State="MODNavyYardUnitBuildStateTech1_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech23_HighTech" State="MODNavyYardUnitBuildStateTech23_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODAircraftUnitBuildStateTech1_HighTech" State="MODAircraftUnitBuildStateTech1_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- MoreTank -->
+		<BuildState id="MODBarracksUnitBuildStateTechAll_MoreTank" State="MODBarracksUnitBuildStateTechAll_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech12_MoreTank" State="MODWarFactoryUnitBuildStateTech12_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech3_MoreTank" State="MODWarFactoryUnitBuildStateTech3_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech1_MoreTank" State="MODNavyYardUnitBuildStateTech1_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech23_MoreTank" State="MODNavyYardUnitBuildStateTech23_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODAircraftUnitBuildStateTech1_MoreTank" State="MODAircraftUnitBuildStateTech1_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- AllTank -->
+		<BuildState id="MODBarracksUnitBuildStateTechAll_AllTank" State="MODBarracksUnitBuildStateTechAll_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech12_AllTank" State="MODWarFactoryUnitBuildStateTech12_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODWarFactoryUnitBuildStateTech3_AllTank" State="MODWarFactoryUnitBuildStateTech3_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech1_AllTank" State="MODNavyYardUnitBuildStateTech1_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavyYardUnitBuildStateTech23_AllTank" State="MODNavyYardUnitBuildStateTech23_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODAircraftUnitBuildStateTech1_AllTank" State="MODAircraftUnitBuildStateTech1_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- ExtraBuild -->
+		<BuildState id="MODExtraBarracksBuildState_Balance" State="MODExtraBarracksBuildState_Balance" Difficulty="BRUTAL"/>
+		<BuildState id="MODExtraBarracksBuildState_Less" State="MODExtraBarracksBuildState_Less" Difficulty="BRUTAL"/>
+		<BuildState id="MODExtraWarFactoryBuildState_Balance" State="MODExtraWarFactoryBuildState_Balance" Difficulty="BRUTAL"/>
+		<BuildState id="MODExtraWarFactoryBuildState_Less" State="MODExtraWarFactoryBuildState_Less" Difficulty="BRUTAL"/>
+		<BuildState id="MODExtraNavalYardBuildState_Balance" State="MODExtraNavalYardBuildState_Balance" Difficulty="BRUTAL"/>
+		<BuildState id="MODExtraNavalYardBuildState_Less" State="MODExtraNavalYardBuildState_Less" Difficulty="BRUTAL"/>
+		
+		<!-- No Spawn -->
+		<BuildState id="MODUpgradeTechBuildState_EASY_NoSpawn" State="MODUpgradeTechBuildState_EASY_NoSpawn" Difficulty="EASY"/>
+		<BuildState id="MODUpgradeTechBuildState_MEDIUM_NoSpawn" State="MODUpgradeTechBuildState_MEDIUM_NoSpawn" Difficulty="MEDIUM"/>
+		<BuildState id="MODUpgradeTechBuildState_HARD_NoSpawn" State="MODUpgradeTechBuildState_HARD_NoSpawn" Difficulty="HARD"/>
+		<BuildState id="MODUpgradeTechBuildState_BRUTAL_NoSpawn" State="MODUpgradeTechBuildState_BRUTAL_NoSpawn" Difficulty="BRUTAL"/>
+		<!-- Balance -->
+		<BuildState id="MODUpgradeTechBuildState_EASY_Balance" State="MODUpgradeTechBuildState_EASY_Balance" Difficulty="EASY"/>
+		<BuildState id="MODUpgradeTechBuildState_MEDIUM_Balance" State="MODUpgradeTechBuildState_MEDIUM_Balance" Difficulty="MEDIUM"/>
+		<BuildState id="MODUpgradeTechBuildState_HARD_Balance" State="MODUpgradeTechBuildState_HARD_Balance" Difficulty="HARD"/>
+		<BuildState id="MODUpgradeTechBuildState_BRUTAL_Balance" State="MODUpgradeTechBuildState_BRUTAL_Balance" Difficulty="BRUTAL"/>
+		<!-- LongBase -->
+		<BuildState id="MODUpgradeTechBuildState_EASY_LongBase" State="MODUpgradeTechBuildState_EASY_LongBase" Difficulty="EASY"/>
+		<BuildState id="MODUpgradeTechBuildState_MEDIUM_LongBase" State="MODUpgradeTechBuildState_MEDIUM_LongBase" Difficulty="MEDIUM"/>
+		<BuildState id="MODUpgradeTechBuildState_HARD_LongBase" State="MODUpgradeTechBuildState_HARD_LongBase" Difficulty="HARD"/>
+		<BuildState id="MODUpgradeTechBuildState_BRUTAL_LongBase" State="MODUpgradeTechBuildState_BRUTAL_LongBase" Difficulty="BRUTAL"/>
+		<!-- RushTechFinal -->
+		<BuildState id="MODUpgradeTechBuildState_EASY_RushTechFinal" State="MODUpgradeTechBuildState_EASY_RushTechFinal" Difficulty="EASY"/>
+		<BuildState id="MODUpgradeTechBuildState_MEDIUM_RushTechFinal" State="MODUpgradeTechBuildState_MEDIUM_RushTechFinal" Difficulty="MEDIUM"/>
+		<BuildState id="MODUpgradeTechBuildState_HARD_RushTechFinal" State="MODUpgradeTechBuildState_HARD_RushTechFinal" Difficulty="HARD"/>
+		<BuildState id="MODUpgradeTechBuildState_BRUTAL_RushTechFinal" State="MODUpgradeTechBuildState_BRUTAL_RushTechFinal" Difficulty="BRUTAL"/>
+		<!-- RushTech -->
+		<BuildState id="MODUpgradeTechBuildState_EASY_RushTech" State="MODUpgradeTechBuildState_EASY_RushTech" Difficulty="EASY"/>
+		<BuildState id="MODUpgradeTechBuildState_MEDIUM_RushTech" State="MODUpgradeTechBuildState_MEDIUM_RushTech" Difficulty="MEDIUM"/>
+		<BuildState id="MODUpgradeTechBuildState_HARD_RushTech" State="MODUpgradeTechBuildState_HARD_RushTech" Difficulty="HARD"/>
+		<BuildState id="MODUpgradeTechBuildState_BRUTAL_RushTech" State="MODUpgradeTechBuildState_BRUTAL_RushTech" Difficulty="BRUTAL"/>
+		<!-- UpgradeFirst -->
+		<BuildState id="MODUpgradeTechBuildState_EASY_UpgradeFirst" State="MODUpgradeTechBuildState_EASY_UpgradeFirst" Difficulty="EASY"/>
+		<BuildState id="MODUpgradeTechBuildState_MEDIUM_UpgradeFirst" State="MODUpgradeTechBuildState_MEDIUM_UpgradeFirst" Difficulty="MEDIUM"/>
+		<BuildState id="MODUpgradeTechBuildState_HARD_UpgradeFirst" State="MODUpgradeTechBuildState_HARD_UpgradeFirst" Difficulty="HARD"/>
+		<BuildState id="MODUpgradeTechBuildState_BRUTAL_UpgradeFirst" State="MODUpgradeTechBuildState_BRUTAL_UpgradeFirst" Difficulty="BRUTAL"/>
+		<!-- SuperWeapon -->
+		<BuildState id="MODUpgradeTechBuildState_EASY_SuperWeapon" State="MODUpgradeTechBuildState_EASY_SuperWeapon" Difficulty="EASY"/>
+		<BuildState id="MODUpgradeTechBuildState_MEDIUM_SuperWeapon" State="MODUpgradeTechBuildState_MEDIUM_SuperWeapon" Difficulty="MEDIUM"/>
+		<BuildState id="MODUpgradeTechBuildState_HARD_SuperWeapon" State="MODUpgradeTechBuildState_HARD_SuperWeapon" Difficulty="HARD"/>
+		<BuildState id="MODUpgradeTechBuildState_BRUTAL_SuperWeapon" State="MODUpgradeTechBuildState_BRUTAL_SuperWeapon" Difficulty="BRUTAL"/>
+		
+		
+		<BuildState id="MODWarFactoryBuildState" State="MODWarFactoryBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODNavalYardBuildState" State="MODNavalYardBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="MODAirfieldBuildState" State="MODAirfieldBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<!-- 压境 -->
+		<StrategicState id="MODSuperExpansion_BRUTAL" State="MODSuperExpansion_BRUTAL" Difficulty="HARD BRUTAL"/>
+		<BuildState id="MODSuperDefenseBuildState" State="MODSuperDefenseBuildState" Difficulty="HARD BRUTAL"/>
+		<BuildState id="JapanSuperAdvancedDefenseBuildState" State="JapanSuperAdvancedDefenseBuildState" Difficulty="HARD BRUTAL"/>
+		<!-- There is never a reason to have more than 1 of these -->
+		<SpecificUnitCap Unit="MODWarFactoryAI" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiStructureVehicle_Naval" Cap="1" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="MODInfiltrationInfantry" Cap="0" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="JapanCommandoTech1" Cap="0" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="JapanScoutInfantry" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODInfiltrationInfantry" Cap="7" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="JapanTransportVehicle" Cap="4" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODInfiltrationInfantry" Cap="0" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="JapanCommandoTech1" Cap="0" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="JapanScoutInfantry" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODInfiltrationInfantry" Cap="10" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="JapanTransportVehicle" Cap="4" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODNanoFly" Cap="40" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiVehicleInfantry" Cap="60" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiStructureVehicle" Cap="3" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiVehicleVehicleTech1" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiNavyShipTech2" Cap="8" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiStructureVehicle_Naval" Cap="11" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiInfantryVehicle" Cap="10" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="MODAntiInfantryVehicle" Cap="20" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiVehicleVehicleTech3" Cap="10" Difficulty="EASY MEDIUM"/>
+		<SpecificUnitCap Unit="MODAntiVehicleVehicleTech3" Cap="30" Difficulty="HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODNanoFlyMaster" Cap="5" Difficulty="EASY MEDIUM"/>
+		<SpecificUnitCap Unit="MODNanoFlyMaster" Cap="10" Difficulty="HARD BRUTAL"/>
+		<UnitModifier Unit="JapanScoutInfantry" OffensiveModifier="0.5" DefensiveModifier="0.5"/>
+		<UnitModifier Unit="MODNanoFly" OffensiveModifier="5.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="MODAntiVehicleInfantry" OffensiveModifier="2" DefensiveModifier="2"/>
+		<UnitModifier Unit="JapanArcherInfantry" OffensiveModifier="5" DefensiveModifier="5"/>
+		<UnitModifier Unit="MODAntiVehicleInfantryTech3" OffensiveModifier="10" DefensiveModifier="2.0"/>
+		<UnitModifier Unit="JapanCommandoTech1" OffensiveModifier="10.0" DefensiveModifier="1.0"/>
+		<!-- Commandos are good. You pretty much always want them. -->
+
+		<UnitModifier Unit="MODAntiAirVehicleTech1" OffensiveModifier="5.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="MODAntiInfantryVehicle" OffensiveModifier="2.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="MODAntiVehicleVehicleTech3" OffensiveModifier="10.0" DefensiveModifier="10.0"/>
+		<UnitModifier Unit="MODAntiStructureVehicle" OffensiveModifier="10.0" DefensiveModifier="1.0"/>
+
+		<SpecificUnitCap Unit="MODBombVehicle" Cap="2" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<UnitModifier Unit="MODBombVehicle" OffensiveModifier="1.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="MODAntiVehicleVehicleTech1" OffensiveModifier="5.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="MODAntiNavyShipTech2" OffensiveModifier="10.0" DefensiveModifier="10.0"/>
+		<UnitModifier Unit="MODAntiStructureVehicle_Naval" OffensiveModifier="10.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="MODFortressShipEgg" OffensiveModifier="200.0" DefensiveModifier="200.0"/>
+		<!-- New Unit -->
+		<SpecificUnitCap Unit="MODFighterAircraft" Cap="4" Difficulty="EASY MEDIUM"/>
+		<SpecificUnitCap Unit="MODFighterAircraft" Cap="8" Difficulty="HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODAntiGroundAircraft" Cap="2" Difficulty="EASY MEDIUM"/>
+		<SpecificUnitCap Unit="MODAntiGroundAircraft" Cap="6" Difficulty="HARD BRUTAL"/>
+		<SpecificUnitCap Unit="MODBomberAircraft" Cap="2" Difficulty="EASY MEDIUM"/>
+		<SpecificUnitCap Unit="MODBomberAircraft" Cap="6" Difficulty="HARD BRUTAL"/>
+
+		<UnitModifier Unit="MODFighterAircraft" OffensiveModifier="2.5" DefensiveModifier="2.5"/>
+		<UnitModifier Unit="MODAntiGroundAircraft" OffensiveModifier="3.5" DefensiveModifier="3.5"/>
+		<UnitModifier Unit="MODAntiNavyShipTech2" OffensiveModifier="6" DefensiveModifier="6"/>
+		<UnitModifier Unit="MODBomberAircraft" OffensiveModifier="4" DefensiveModifier="4"/>
+		<UnitModifier Unit="MODNanoFlyMaster" OffensiveModifier="1" DefensiveModifier="1"/>
+		<!-- Player Tech -->
+		<!-- Tier 1 -->
+		<PowerChoice PlayerPower="PlayerTech_Japan_PointDefenseDrones" Weight="33%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_EVAAttack" Weight="0%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_Suppression" Weight="0%"/>
+		<!-- Tier 2 -->
+		<PowerChoice PlayerPower="PlayerTech_Japan_NanoFly" Weight="33%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_Ambush" Weight="66%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_DeathSpawn" Weight="100%"/>
+		<!-- Tier 3 -->
+		<PowerChoice PlayerPower="PlayerTech_Japan_FinalSquadron_Rank1" Weight="33%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_EmperorsRage_Rank1" Weight="33%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_BalloonAttack_Rank1" Weight="33%"/>
+		<!-- Tier 4 -->
+		<PowerChoice PlayerPower="PlayerTech_Japan_FinalSquadron_Rank2" Weight="66%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_EmperorsRage_Rank2" Weight="66%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_BalloonAttack_Rank2" Weight="66%"/>
+		<!-- Tier 5 -->
+		<PowerChoice PlayerPower="PlayerTech_Japan_FinalSquadron_Rank3" Weight="100%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_EmperorsRage_Rank3" Weight="100%"/>
+		<PowerChoice PlayerPower="PlayerTech_Japan_BalloonAttack_Rank3" Weight="100%"/>
+			</AIPersonalityDefinition>
+</AssetDeclaration>

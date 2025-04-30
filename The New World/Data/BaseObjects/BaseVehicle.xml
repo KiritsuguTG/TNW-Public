@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseObject.xml" />
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<GameObject
+		id="BaseVehicle"
+		inheritFrom="BaseObject"
+		TransportSlotCount="7"
+		ShockwaveResistance="90"
+		RadarPriority="UNIT"
+		PathPriority="30"
+		ProductionQueueType="VEHICLE"
+		UnitCategory="VEHICLE"
+		CommandPoints="1"
+		EvaEventSecondDamageFarFromFirstScanRange="600"
+		VoiceSelectUnderFireTimeout="10s"
+		VoiceSelectUnderFireDamageTime="3s"
+		MaxDistanceForEngaged="200">
+		<ArmorSet
+			Armor="CryoBeamFrozenVehicleArmor"
+			DamageFX="VehicleDamageFX"
+			Conditions="SECONDARY_DAMAGE" />
+		<ArmorSet
+			id="ModuleTag_ShrinkRayEffectArmor"
+			Armor="ShrinkRayEffectArmor"
+			DamageFX="VehicleDamageFX"
+			Conditions="SHRINK_EFFECT" />
+		<Behaviors>
+			<FireWeaponCollide
+				id="ModuleTag_FireBaseAutoAndShipWeaponCollide"
+				CollideWeapon="CrushBaseAutoAndShipDummyWeapon"
+				ForbiddenStatus="NO_COLLISIONS AIRBORNE_TARGET IMMOBILE IMMOBILE_ALLOW_ROTATE SHRUNK SUBMERGED SURFACED_IMMOBILE IN_SPIDER_HOLE UNPACKING"
+				WhereToFire="TARGET_OBJECT" />
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate" />
+			<SquishCollide
+				id="DefaultSquishCollide"
+				CrushKillDelay="1.5s" />
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				Motion="TRACKED"
+				Collision="OMNICOLLIDING"
+				ContactTag="VEHICLE">
+			</DynamicsUpdate>
+			<FireWeaponWhenDead
+				id="ModuleTag_CatalystDeathWeapon"
+				InitiallyActive="true"
+				DeathWeapon="CatalystVehicleDeathWeapon"
+				ContinueToBezierDestination="false"
+				UseMyKillerAsWeaponSource="true">
+				<DieMuxData DeathTypes="CATALYST" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_SmallCatalystDeathWeapon"
+				InitiallyActive="true"
+				DeathWeapon="SmallCatalystVehicleDeathWeapon"
+				ContinueToBezierDestination="false"
+				UseMyKillerAsWeaponSource="true">
+				<DieMuxData DeathTypes="EXTRA_4" />
+			</FireWeaponWhenDead>
+			<FireWeaponUpdate
+				id="Upgrade_HeroicHeal"
+				FireInterval="1s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="Upgrade_HeroicHealShortCircuit"
+					OneShot="false" />
+				<ObjectStatusValidation
+					RequiredStatus="IMMUNE_TO_BARK" />
+			</FireWeaponUpdate>
+			<StancesBehavior
+				id="ModuleTag_Stance"
+				StanceTemplate="Generic" />
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Veteran"
+				LevelCap="4"
+				LevelsToGain="1">
+				<TriggeredBy>Upgrade_CreationVeterancy_VETERAN</TriggeredBy>
+			</LevelUpUpgrade>
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Elite"
+				LevelCap="4"
+				LevelsToGain="1">
+				<TriggeredBy>Upgrade_CreationVeterancy_ELITE</TriggeredBy>
+			</LevelUpUpgrade>
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Heroic"
+				LevelCap="4"
+				LevelsToGain="1">
+				<TriggeredBy>Upgrade_CreationVeterancy_HEROIC</TriggeredBy>
+			</LevelUpUpgrade>
+			<LevelUpUpgrade
+				id="ModuleTag_ActiveRedAlertExperience"
+				LevelCap="4"
+				LevelsToGain="4">
+				<TriggeredBy>PlayerUnitUpgradeToHeroic</TriggeredBy>
+			</LevelUpUpgrade>
+
+			<!--<InvisibilityUpgrade
+				id="ModuleTag_InvisibilityTrigger"
+				InvisibilityTemplate="CloakingFieldInvisibilityTemplate">
+				<TriggeredBy>Upgrade_CloakingFieldInvisibility</TriggeredBy>
+			</InvisibilityUpgrade>-->
+			<ModelConditionUpgrade
+			id="ModuleTag_InvisibilityTrigger"
+			AddConditionFlags="USER_10">
+			<TriggeredBy>Upgrade_CloakingFieldInvisibility</TriggeredBy>
+			</ModelConditionUpgrade>
+			<SpecialPower
+				id="ModuleTag_GenericInvisibility"
+				SpecialPowerTemplate="SpecialPower_GenericInvisibility"
+				DisabledTypesToIgnore="PARALYZED FREEFALL USER_PARALYZED HELD EMP UNDERPOWERED"/>
+			<SpecialDisguiseUpdate
+				id="ModuleTag_DisguiseUpdate"
+				SpecialPowerTemplate="SpecialPower_GenericInvisibility"
+				Options="RECONSTITUTE_STORED_COMMAND CHECK_SPECIALPOWER_REQUIREMENTS_DURING_UPDATE"
+				OpacityTarget="1"
+				ScanRadiusForPropDisguise="0.1"
+				DisguiseFX="FX_PrimageDisguise">
+				<TerrainData
+					TerrainClass="Misc"
+					ObjectTemplate="PrimageDisguise_Invisible" />
+				<TerrainData
+					TerrainClass="Grass"
+					ObjectTemplate="PrimageDisguise_Invisible" />
+				<TerrainData
+					TerrainClass="Snow"
+					ObjectTemplate="PrimageDisguise_Invisible" />
+				<TerrainData
+					TerrainClass="Mud"
+					ObjectTemplate="PrimageDisguise_Invisible" />
+				<TerrainData
+					TerrainClass="Dirt"
+					ObjectTemplate="PrimageDisguise_Invisible" />
+				<TerrainData
+					TerrainClass="Cliff"
+					ObjectTemplate="PrimageDisguise_Invisible" />
+				<TerrainData
+					TerrainClass="Sand"
+					ObjectTemplate="PrimageDisguise_Invisible" />
+				<TerrainData
+					TerrainClass="Rock"
+					ObjectTemplate="PrimageDisguise_Invisible" />
+				<TerrainData
+					TerrainClass="Road"
+					ObjectTemplate="PrimageDisguise_Invisible" />
+			</SpecialDisguiseUpdate>
+			<SpecialPower
+				id="ModuleTag_GenericNoInvisibility"
+				SpecialPowerTemplate="SpecialPower_GenericLoseInvisibility"
+				DisabledTypesToIgnore="UNMANNED PARALYZED FREEFALL USER_PARALYZED HELD EMP UNDERPOWERED"/>
+			<SpecialAbilityUpdate
+				id="ModuleTag_GenericNoInvisibilitySpecialAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_GenericLoseInvisibility"
+				Options="RECONSTITUTE_STORED_COMMAND LOSE_STEALTH_ON_TRIGGER"/>
+				
+			<SpecialPower
+				id="ModuleTag_GenericOtherNoInvisibility"
+				SpecialPowerTemplate="SpecialPower_GenericOtherLoseInvisibility"
+				DisabledTypesToIgnore="UNMANNED PARALYZED FREEFALL USER_PARALYZED HELD EMP UNDERPOWERED"/>
+			<SpecialAbilityUpdate
+				id="ModuleTag_GenericOtherNoInvisibilitySpecialAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_GenericOtherLoseInvisibility"
+				TriggerAttributeModifier="AttributeModifier_LoseInvisibility"
+				Options="RECONSTITUTE_STORED_COMMAND LOSE_STEALTH_ON_TRIGGER"/>
+			<StatusBitsUpgrade
+				id="ModuleTag_CanNotDisguiseFromOther"
+				StatusToSet="IGNORING_STEALTH">
+				<TriggeredBy>Upgrade_CloakingFieldInvisibility</TriggeredBy>
+			</StatusBitsUpgrade>
+
+			<SecondaryDamageTracker
+				id="ModuleTag_SecondaryDamageTracker"
+				UpdateDuration="1s"
+				DissipateAmount="25"
+				MaxDamageClampScaler="=$MAX_SECONDARY_DAMAGE_SCALER">
+				<Color R="1.0" G="1.0" B="1.75" />
+				<EffectInfo
+					Fraction="0.2"
+					AttributeModifier="AttributeModifer_CryoBeam_02" />
+				<EffectInfo
+					Fraction="0.4"
+					AttributeModifier="AttributeModifer_CryoBeam_04" />
+				<EffectInfo
+					Fraction="0.6"
+					AttributeModifier="AttributeModifer_CryoBeam_06" />
+				<EffectInfo
+					Fraction="0.8"
+					AttributeModifier="AttributeModifer_CryoBeam_08" />
+				<EffectInfo
+					Fraction="1.0"
+					SetUpgradedArmor="true"
+					OnEnterDisable="true"
+					OnEnterCancelSpecialAbilities="true"
+					AttributeModifier="AttributeModifer_CryoBeam_10" />
+				<ObjectStatusValidation
+					ForbiddenStatus="UNDER_IRON_CURTAIN" />
+			</SecondaryDamageTracker>
+			<RunOffMapBehavior
+				id="ModuleTag_RunOffMapBehavior"
+				RequiresSpecificTrigger="true"
+				RunOffMapWaypointName="RunOffMap" />
+			<AttributeModifierUpgrade
+				id="ModuleTag_GrievousLady"
+				AttributeModifier="AttributeMod_GrievousLady">
+				<TriggeredBy>GrievousLadyUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_UnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+
+			<AttributeModifierUpgrade
+				id="ModuleTag_SandBox_AttributeModifier"
+				AttributeModifier="AttributeModifier_SandBoxEffect">
+				<TriggeredBy>Upgrade_SandBox</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_LostUpgradeUprising_AttributeModifier"
+				AttributeModifier="AttributeModifier_UnitLostUpgradeUprising">
+				<TriggeredBy>UprisingOver</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_SuperStructureDie_AttributeModifier"
+				AttributeModifier="AttributeModifier_SuperStructureDie">
+				<TriggeredBy>Upgrade_SuperStructureDie</TriggeredBy>
+			</AttributeModifierUpgrade>
+
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_UnmiliWeapon">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_UnmiliWeapon">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_SandBox">
+				<TriggeredBy>Upgrade_SandBox</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_SandBox">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_AlliedUnitUpgrade_subobject">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+				<Nugget
+					Upgrade="AlliedUnitUpgrade">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_SovietUnitUpgrade_subobject">
+				<TriggeredBy>SovietUnitUpgrade</TriggeredBy>
+				<Nugget
+					Upgrade="SovietUnitUpgrade">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_SovietUnitUpgrade_subobject">
+				<TriggeredBy>SovietUnitUpgrade</TriggeredBy>
+				<Nugget
+					Upgrade="SovietUnitUpgrade">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_JapanUnitUpgrade_subobject">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+				<Nugget
+					Upgrade="JapanUnitUpgrade">
+				</Nugget>
+			</SubObjectsUpgrade>
+
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_SovietCrushPuppiesPower">
+				<TriggeredBy>Upgrade_SovietCrushPuppiesPower</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_SovietCrushPuppiesPower">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_SovietAntiPlus">
+				<TriggeredBy>Upgrade_SovietAntiPlus</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_SovietAntiPlus">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_SovietTerrorDroneEggs">
+				<TriggeredBy>Upgrade_SovietTerrorDroneEggs</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_SovietTerrorDroneEggs">
+				</Nugget>
+			</SubObjectsUpgrade>
+
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_AlliedHighTechnology">
+				<TriggeredBy>Upgrade_AlliedHighTechnology</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_AlliedHighTechnology">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+					id="ModuleTag_Upgrade_AlliedAirPower">
+				<TriggeredBy>Upgrade_AlliedAirPower</TriggeredBy>
+				<Nugget
+						Upgrade="Upgrade_AlliedAirPower">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_AlliedLaserUpgrade">
+				<TriggeredBy>Upgrade_AlliedLaserUpgrade</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_AlliedLaserUpgrade">
+				</Nugget>
+			</SubObjectsUpgrade>
+
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_JapanNavalPower">
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_JapanNavalPower">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_JapanEnhancedKamikaze">
+				<TriggeredBy>Upgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_JapanEnhancedKamikaze">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_Upgrade_JapanAdvancedMissilePacks">
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_JapanAdvancedMissilePacks">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="GenericInvisibilityFunctions" />
+
+			<DestroyDie
+				id="ModuleTag_ChronoDie">
+				<DieMuxData
+					DeathTypes="EXTRA_7 EXTRA_6" />
+			</DestroyDie>
+			<FireWeaponUpdate
+				id="ModuleTag_DebugClonedWeaponUpdate"
+				FireInterval="1s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="DebugClonedShortCircuit"
+					OneShot="true" />
+				<ObjectStatusValidation
+					RequiredStatus="CLONED" />
+			</FireWeaponUpdate>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="DefaultBody" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_MagneticSatelliteSuckedAway">
+				<ModelConditionSound Sound="SOV_MagneticSatellite_SuckedAway"
+					RequiredFlags="SUCKED_UP_HIGH OVER_WATER" />
+				<ModelConditionSound Sound="SOV_MagneticSatellite_SuckedAway"
+					RequiredFlags="SUCKED_UP_HIGH" ExcludedFlags="OVER_WATER" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="Frozen">
+				<Override RequiredFlags="PARALYZED">
+					<AudioArrayVoice>
+						<AudioEntry Sound="" AudioType="voiceAttack" />
+						<AudioEntry Sound="" AudioType="voiceAttackAir" />
+						<AudioEntry Sound="" AudioType="voiceAttackAfterMoving" />
+						<AudioEntry Sound="" AudioType="voiceAttackGarrisonedStructure" />
+						<AudioEntry Sound="" AudioType="voiceAttackStructure" />
+						<AudioEntry Sound="" AudioType="voiceCreated" />
+						<AudioEntry Sound="" AudioType="voiceDock" />
+						<AudioEntry Sound="" AudioType="voiceFear" />
+						<AudioEntry Sound="" AudioType="voiceGarrison" />
+						<AudioEntry Sound="" AudioType="voiceMove" />
+						<AudioEntry Sound="" AudioType="voiceAttackAfterMoving" />
+						<AudioEntry Sound="" AudioType="voiceMoveWaterToLand" />
+						<AudioEntry Sound="" AudioType="voiceMoveLandToWater" />
+						<AudioEntry Sound="" AudioType="voiceRepair" />
+						<AudioEntry Sound="" AudioType="voiceRetreatToCastle" />
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSelect" />
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSelectBattle" />
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSelectUnderFire" />
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSupply" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="EMP">
+				<Override RequiredFlags="AFFECTED_BY_EMP">
+					<AudioArrayVoice>
+						<AudioEntry Sound="" AudioType="voiceAttack" />
+						<AudioEntry Sound="" AudioType="voiceAttackAir" />
+						<AudioEntry Sound="" AudioType="voiceAttackAfterMoving" />
+						<AudioEntry Sound="" AudioType="voiceAttackGarrisonedStructure" />
+						<AudioEntry Sound="" AudioType="voiceAttackStructure" />
+						<AudioEntry Sound="" AudioType="voiceCreated" />
+						<AudioEntry Sound="" AudioType="voiceDock" />
+						<AudioEntry Sound="" AudioType="voiceFear" />
+						<AudioEntry Sound="" AudioType="voiceGarrison" />
+						<AudioEntry Sound="" AudioType="voiceMove" />
+						<AudioEntry Sound="" AudioType="voiceAttackAfterMoving" />
+						<AudioEntry Sound="" AudioType="voiceMoveWaterToLand" />
+						<AudioEntry Sound="" AudioType="voiceMoveLandToWater" />
+						<AudioEntry Sound="" AudioType="voiceRepair" />
+						<AudioEntry Sound="" AudioType="voiceRetreatToCastle" />
+						<AudioEntry Sound="" AudioType="voiceSelect" />
+						<AudioEntry Sound="" AudioType="voiceSelectBattle" />
+						<AudioEntry Sound="" AudioType="voiceSelectUnderFire" />
+						<AudioEntry Sound="" AudioType="voiceSupply" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="UnitLost" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="BuildingConstructionStarted" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="UnitUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="UnitUnderAttackFromShroudedUnit"
+				EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="GenericUnitBeingBurned" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="AllyUnitUnderAttack" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="UnitAmbushed" EvaType="ambushed" />
+			<EvaEntry EvaEvent="GenericEnemyUnitSighted" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="EnemyStealthUnitDiscovered" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="NewConstructionOptions" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="BuildOnHold" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="BuildCancelled" EvaType="buildCancelled" />
+		</EvaEventArray>
+
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="10"
+			CrushableLevel="25"
+			CrushDecelerationPercent="80%">
+			<ExtraCrushLevels CrusherLevel="0" CrushableLevel="1"
+				ModelConditionMatch="SHRINK_EFFECT" />
+		</CrusherInfo>
+	</GameObject>
+
+</AssetDeclaration>

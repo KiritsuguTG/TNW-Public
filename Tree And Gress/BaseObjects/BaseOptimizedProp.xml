@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml"/>
+		<Include type="all"	source="ART:FXInvisBone.w3x" />
+	</Includes>
+	<!--Kindof MACHINE Distinguish between other units-->
+	<GameObject
+		id="BaseOptimizedProp"
+		Side="Neutral" 
+		KindOf="NO_COLLIDE NO_HEAL_ICON NOT_AUTOACQUIRABLE CLEARED_BY_BUILD CAN_TOPPLE CAN_SKIP_SHADOW RESIST_EMP MACHINE CANNOT_HIJACK SKIRMISH_AI_DONT_CONSIDER_THREAT IGNORE_IN_AI_HUNT_TACTIC"
+		CommandSet="EmptyCommandSet"
+		EditorName="BaseOptimizedProp"
+		RadarPriority="NOT_ON_RADAR"
+		ShockwaveResistance="150">
+		<DisplayName>Prop</DisplayName>
+		<ArmorSet
+			Armor="BasePropsArmor"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<!--USER_2 Means Forzen Cant Fire-->
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="USER_2 USER_1">
+					<Model
+								  Name="FXInvisBone" />
+				</ModelConditionState>
+				<!--USER_1 Means TreeFireFX-->
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="USER_1 USER_3">
+					<Model
+						  Name="FXInvisBone" />
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassBurningSmoke_04"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					 BoneName="ROOTTRANSFORM"
+					 FXParticleSystemTemplate="GrassBurningSmoke_03"
+					 FollowBone="true"
+					 OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassFireSlowSmall"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassBurningFire02"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="USER_1 USER_4">
+					<Model
+						  Name="FXInvisBone" />
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassBurningSmoke_00"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					 BoneName="ROOTTRANSFORM"
+					 FXParticleSystemTemplate="GrassBurningFire"
+					 FollowBone="true"
+					 OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassBurningFire02"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassFireSlowLarge"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="USER_1 USER_5">
+					<Model
+						  Name="FXInvisBone" />
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassFireSlowSmall"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					 BoneName="ROOTTRANSFORM"
+					 FXParticleSystemTemplate="GrassBurningFire"
+					 FollowBone="true"
+					 OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassBurningSmoke_04"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassBurningSmoke_02"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="USER_1 USER_6">
+					<Model
+						  Name="FXInvisBone" />
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassFireSlowSmall"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					 BoneName="ROOTTRANSFORM"
+					 FXParticleSystemTemplate="GrassBurningFire"
+					 FollowBone="true"
+					 OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassBurningSmoke_01"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="USER_1 USER_7">
+					<Model
+						  Name="FXInvisBone" />
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassBurningSmoke_03"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					 BoneName="ROOTTRANSFORM"
+					 FXParticleSystemTemplate="GrassBurningFire"
+					 FollowBone="true"
+					 OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassBurningFire02"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="USER_1">
+					<Model
+								  Name="FXInvisBone" />
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassBurningSmoke_02"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					 BoneName="ROOTTRANSFORM"
+					 FXParticleSystemTemplate="GrassBurningFire"
+					 FollowBone="true"
+					 OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="ROOTTRANSFORM"
+					  FXParticleSystemTemplate="GrassBurningFire02"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<!--Different Fire FX-->
+			<RandomModelCondition
+				id="Random_Model"
+				Conditions="USER_3 USER_4 USER_5 USER_6 USER_7"/>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<!--OptimizedPropFire Set fire to the surrounding trees-->
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.2s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="OptimizedPropFire"
+					OneShot="false" />
+				<ObjectStatusValidation
+					RequiredStatus="PLAYER_POWER_5"
+					ForbiddenStatus="OVER_WATER UNDER_FROZEN"/>
+			</FireWeaponUpdate>
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="2s"
+				SinkRate="3"
+				DestructionDelay="6s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+			<FreefallUpdate
+				id="ModuleTag_FreefallUpdate"
+				InitialVelocity="5"
+				Acceleration="1"
+				TerminalVelocity="15"/>
+			</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="2000.0"/>
+		</Body>
+		<Geometry
+			IsSmall="false">
+<Shape 
+     Type= "BOX"
+     MajorRadius = "2.0"
+     MinorRadius = "1.7"
+     Height = "1"
+     ContactPointGeneration = "NONE" >
+</Shape>
+		</Geometry>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="1" />
+	</GameObject>
+</AssetDeclaration>

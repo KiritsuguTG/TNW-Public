@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+    <Include
+		type="all"
+		source="ART:KR_HeartBuilding_COL.w3x" />
+    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+		id="SovietSuperStructure_Collapse"
+		inheritFrom="BaseObject"
+		EditorName="SovietSuperStructure_Collapse">
+		<Draws>
+    <ScriptedModelDraw
+         id="ModuleTag_Animated_Draw">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="KR_HeartBuilding_COL" />
+        </ModelConditionState>
+        <AnimationState
+         ParseCondStateType="PARSE_DEFAULT">
+          <Animation
+            AnimationName="KR_HeartBuilding_COL"
+            AnimationBlendTime="0"
+            AnimationMode="ONCE"/>
+					<FXEvent
+						Frame="1"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShakeAllMap"
+						Bone="FX_Explosion01" />
+					<FXEvent
+						Frame="25"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShake"
+						Bone="FX_Explosion02" />
+					<FXEvent
+						Frame="38"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShakeAllMap"
+						Bone="FX_Explosion03" />
+					<FXEvent
+						Frame="58"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShake"
+						Bone="FX_Explosion04" />
+					<FXEvent
+						Frame="75"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShakeAllMap"
+						Bone="FX_Explosion05" />
+					<FXEvent
+						Frame="160"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShake"
+						Bone="FX_Bone01" />
+					<FXEvent
+						Frame="101"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShakeAllMap"
+						Bone="FX_Bone02" />
+					<FXEvent
+						Frame="128"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShake"
+						Bone="FX_Bone03" />
+					<FXEvent
+						Frame="117"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShake"
+						Bone="FX_Bone04" />
+					<FXEvent
+						Frame="111"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShake"
+						Bone="FX_Bone05" />
+					<FXEvent
+						Frame="196"
+						FireWhenSkipped="true"
+						Effect=""
+						Bone="FX_Fires01" />
+					<FXEvent
+						Frame="205"
+						FireWhenSkipped="true"
+						Effect=""
+						Bone="FX_Fires02" />
+					<FXEvent
+						Frame="204"
+						FireWhenSkipped="true"
+						Effect="FX_NYLibertyFires"
+						Bone="FX_Fires03" />
+					<FXEvent
+						Frame="166"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShakeAllMap"
+						Bone="FX_CoverUp01" />
+					<FXEvent
+						Frame="172"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShake"
+						Bone="FX_CoverUp02" />
+					<FXEvent
+						Frame="179"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShakeAllMap"
+						Bone="FX_CoverUp03" />
+					<FXEvent
+						Frame="184"
+						FireWhenSkipped="true"
+						Effect="FX_SpecialDebrisExplosionShake"
+						Bone="FX_CoverUp04" />
+					<ParticleSysBone
+						BoneName="FX_Fires01"
+						FXParticleSystemTemplate="Amsterdam_01_Fire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fires01"
+						FXParticleSystemTemplate="Amsterdam_01_Smoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fires02"
+						FXParticleSystemTemplate="Amsterdam_01_Fire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fires02"
+						FXParticleSystemTemplate="Amsterdam_01_Smoke2"
+						FollowBone="true" />
+        </AnimationState>
+     </ScriptedModelDraw> 
+	</Draws>
+	  <Behaviors>
+    	<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="0.4s"
+				SinkRate="5"
+				DestructionDelay="15s">
+        <DieMuxData
+					DeathTypes="ALL" />
+      </SlowDeath>
+     <LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="10s"
+				MaxLifetime="10s" />
+    </Behaviors>
+    <Body>
+      <PropBody
+				id="ModuleTag_Body"/>
+    </Body>   
+</GameObject>
+	<GameObject
+		id="SovietSuperStructure_UnpackCollapse"
+		inheritFrom="BaseObject"
+		EditorName="SovietSuperStructure_UnpackCollapse">
+		<Draws>
+			<ScriptedModelDraw
+				 id="ModuleTag_Animated_Draw">
+				<ModelConditionState
+							ParseCondStateType="PARSE_DEFAULT">
+					<Model
+								  Name="KR_HeartBuilding_COL" />
+				</ModelConditionState>
+				<AnimationState
+				 ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+					  AnimationName="KR_HeartBuilding_COL"
+					  AnimationBlendTime="0"
+					  AnimationMode="ONCE"/>
+					<FXEvent
+						Frame="196"
+						FireWhenSkipped="true"
+						Effect=""
+						Bone="FX_Fires01" />
+					<FXEvent
+						Frame="205"
+						FireWhenSkipped="true"
+						Effect=""
+						Bone="FX_Fires02" />
+					<FXEvent
+						Frame="204"
+						FireWhenSkipped="true"
+						Effect="FX_NYLibertyFires"
+						Bone="FX_Fires03" />
+					<ParticleSysBone
+						BoneName="FX_Fires01"
+						FXParticleSystemTemplate="Amsterdam_01_Fire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fires01"
+						FXParticleSystemTemplate="Amsterdam_01_Smoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fires02"
+						FXParticleSystemTemplate="Amsterdam_01_Fire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fires02"
+						FXParticleSystemTemplate="Amsterdam_01_Smoke2"
+						FollowBone="true" />
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<SlowDeath
+					id="ModuleTag_Death"
+					SinkDelay="0.4s"
+					SinkRate="5"
+					DestructionDelay="15s">
+				<DieMuxData
+							DeathTypes="ALL" />
+			</SlowDeath>
+			<LifetimeUpdate
+					   id="ModuleTag_LifeTime"
+					   MinLifetime="10s"
+					   MaxLifetime="10s" />
+		</Behaviors>
+		<Body>
+			<PropBody
+					  id="ModuleTag_Body"/>
+		</Body>
+	</GameObject>
+</AssetDeclaration>

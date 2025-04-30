@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:Soviet/Unit/SovietBomberAircraft.xml" />
+		<!-- Base Object -->
+		<Include type="all"
+			source="ART:Units/StrategicArmyBomberAircraft/SUMISSILEBOMBERAIRCRAFT_FP.w3x" />
+		<Include type="all"
+			source="ART:Units/StrategicArmyBomberAircraft/SUMISSILEBOMBERAIRCRAFT_IDLA.w3x" />
+		<Include type="all"
+			source="ART:Units/StrategicArmyBomberAircraft/SUMISSILEBOMBERAIRCRAFT_SKL.w3x" />
+		<Include type="all"
+			source="ART:Units/StrategicArmyBomberAircraft/SUMISSILEBOMBERAIRCRAFT_SKN.w3x" />
+	</Includes>
+	<!-- aka Soviet Kirov (the Hindenberg unit)-->
+	<GameObject
+		id="StrategicArmyBomberAircraft"
+		inheritFrom="SovietBomberAircraft"
+		BuildTime="30"
+		KindOf="+PRELOAD +SIEGE_WEAPON"
+		CommandSet="StrategicArmyBomberAircraftCommandSet"
+		EditorName="StrategicArmyBomberAircraft"
+		Description="Desc:StrategicArmyBomberAircraft"
+		TypeDescription="Type:AntiAllWitoutAir">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:StrategicArmyBomberAircraft</DisplayName>
+		<ObjectResourceInfo
+			xai:joinAction="Replace">
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="3000" />
+		</ObjectResourceInfo>
+		<Draws
+			xai:joinAction="Replace">
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="FX_MISSILE_01 FX_MISSILE_02 FX_MISSILE_03 FX_MISSILE_04 FX_WEAPON">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUMISSILEBOMBERAIRCRAFT_SKN" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON" />
+					<WeaponRecoilBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_MISSILE_" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_MISSILE_" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="SUBOMBERAIRCRAFT_FP" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 LOCOMOTOR_NORMAL_UPGRADED DAMAGED">
+					<Model
+						Name="SUMISSILEBOMBERAIRCRAFT_SKN" />
+					<Texture
+						Original="SUBomberAircraft"
+						New="SUBomberAircraft2" />
+					<ParticleSysBone
+						BoneName="B_Prop05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 LOCOMOTOR_NORMAL_UPGRADED REALLYDAMAGED">
+					<Model
+						Name="SUMISSILEBOMBERAIRCRAFT_SKN" />
+					<Texture
+						Original="SUBomberAircraft"
+						New="SUBomberAircraft2_D" />
+					<ParticleSysBone
+						BoneName="B_Prop05"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="B_Prop05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire_03"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 LOCOMOTOR_NORMAL_UPGRADED">
+					<Model
+						Name="SUMISSILEBOMBERAIRCRAFT_SKN" />
+					<Texture
+						Original="SUBomberAircraft"
+						New="SUBomberAircraft2" />
+					<ParticleSysBone
+						BoneName="FX_Fire_02"
+						FXParticleSystemTemplate="Soviet_KirovVentHydro"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="LOCOMOTOR_NORMAL_UPGRADED REALLYDAMAGED">
+					<Model
+						Name="SUMISSILEBOMBERAIRCRAFT_SKN" />
+					<Texture
+						Original="SUBomberAircraft"
+						New="SUBomberAircraft_D" />
+					<ParticleSysBone
+						BoneName="B_Prop05"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="B_Prop05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire_03"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="LOCOMOTOR_NORMAL_UPGRADED DAMAGED">
+					<Model
+						Name="SUMISSILEBOMBERAIRCRAFT_SKN" />
+					<ParticleSysBone
+						BoneName="B_Prop05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="LOCOMOTOR_NORMAL_UPGRADED">
+					<Model
+						Name="SUMISSILEBOMBERAIRCRAFT_SKN" />
+					<ParticleSysBone
+						BoneName="FX_Fire_02"
+						FXParticleSystemTemplate="Soviet_KirovVentHydro"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_2">
+					<Model
+						Name="SUMISSILEBOMBERAIRCRAFT_SKN" />
+					<Texture
+						Original="SUBomberAircraft"
+						New="SUBomberAircraft2" />
+					<ParticleSysBone
+						BoneName="B_Prop05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_2">
+					<Model
+						Name="SUMISSILEBOMBERAIRCRAFT_SKN" />
+					<Texture
+						Original="SUBomberAircraft"
+						New="SUBomberAircraft2_D" />
+					<ParticleSysBone
+						BoneName="B_Prop05"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="B_Prop05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire_03"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 DAMAGED">
+					<Model
+						Name="SUMISSILEBOMBERAIRCRAFT_SKN" />
+					<Texture
+						Original="SUBomberAircraft"
+						New="SUBomberAircraft2" />
+					<ParticleSysBone
+						BoneName="B_Prop05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="SUMISSILEBOMBERAIRCRAFT_SKN" />
+					<Texture
+						Original="SUBomberAircraft"
+						New="SUBomberAircraft2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SUMISSILEBOMBERAIRCRAFT_SKN" />
+					<ParticleSysBone
+						BoneName="B_Prop05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SUMISSILEBOMBERAIRCRAFT_SKN" />
+					<Texture
+						Original="SUBomberAircraft"
+						New="SUBomberAircraft_D" />
+					<ParticleSysBone
+						BoneName="B_Prop05"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="B_Prop05"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire_03"
+						FXParticleSystemTemplate="SovietShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Fire_03"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="SUMISSILEBOMBERAIRCRAFT_IDLA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+				id="ModuleTag_BombRackDraw"
+				AttachToBoneInAnotherModule="B_Bombs">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUBomberAircraft_BOMBS" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="SUBomberAircraft_BOMBS"
+						AnimationMode="MANUAL"
+						AnimationBlendTime="0" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="RELOADING_A">
+					<Animation
+						AnimationName="SUBomberAircraft_BOMBS"
+						AnimationMode="ONCE"
+						AnimationBlendTime="0" />
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate"
+				xai:joinAction="Replace">
+				<WeaponSlotTurret
+					ID="1"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_MOST_DAMAGE"
+					AllowInterleavedFiring="false">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyBomberAircraftBombWeapon" />
+					<TurretSettings
+						TurretTurnRate="2000"
+						BlindFireDistance="200.0">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotHardpoint
+					ID="2">
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="StrategicArmyBomberAircraftMIRVRocketLunach"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_01" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="StrategicArmyBomberAircraftMIRVRocketLunachUpgradeRocket"
+						ObjectStatus="WEAPON_UPGRADED_01" />
+				</WeaponSlotHardpoint>
+
+			</WeaponSetUpdate>
+			<SpecialPower
+				id="ModuleTag_SpecialPower_ToggleAfterburners"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPowerAfterburners"
+				UpdateModuleStartsAttack="true"
+				AttributeModifier="AttributeModifier_StrategicArmyBomberAircraftAfterburners"
+				AttributeModifierAffectsSelf="true" />
+			<SpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate"
+				SpecialPowerTemplate="SpecialPowerAfterburners"
+				UnpackTime="0s"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				TriggerSound="SOV_Kirov_CastroBurnersOn" />
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ToggleAfterburnersUpdate"
+				xai:joinAction="Remove" />
+			<SwitchLocomotorUpdate
+				id="ModuleTag_Afterburners"
+				xai:joinAction="Remove" />
+			<LoseHealthUpdate
+				id="ModuleTag_LoseHealthUpdate"
+				xai:joinAction="Remove" />
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>SovietUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+		</Behaviors>
+		<AI>
+			<JetAIUpdate
+				id="ModuleTag_AIUpdate"
+				xai:joinAction="Replace"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="HelicopterAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="true"
+					RotateToTargetWhenAiming="true"
+					CheckVisionRange="true" />
+			</JetAIUpdate>
+		</AI>
+		<AudioArrayVoice
+			xai:joinAction="Replace">
+			<AudioEntry Sound="SAOV_RocketKirov_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SAOV_RocketKirov_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="SAOV_RocketKirov_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="SAOV_RocketKirov_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="SAOV_RocketKirov_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="SAOV_RocketKirov_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="SAOV_RocketKirov_VoiceSelectUnderFire"
+				AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<VisionInfo
+			xai:joinAction="Replace"
+			VisionRange="550"
+			ShroudClearingRange="400" />
+	</GameObject>
+</AssetDeclaration>

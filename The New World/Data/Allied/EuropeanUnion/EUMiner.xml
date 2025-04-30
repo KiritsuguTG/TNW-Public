@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags>
+</Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:Allied/Unit/AlliedMiner.xml" />
+	</Includes>
+	<GameObject
+		id="EUMiner"
+		inheritFrom="AlliedMiner"
+		EditorName="EUMiner"
+		ProductionQueueType="VEHICLE">
+		<EquivalentTo>AlliedMiner</EquivalentTo>
+		<Behaviors>
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelf"
+			xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_UnpackReplaceSelf"
+				Options="IGNORE_FACING_CHECK USE_OBJECT_GEOMETRY_FOR_WITHIN_RANGE_CHECK FAIL_WITH_INVALID_APPROACH"
+				PackTime="3.0s"
+				StartAbilityRange="2.0"
+				ReplaceOptions="CHECK_BUILD_ASSISTANT DISABLE_DURING_REPLACE CLEAR_LOCATION">
+				<ReplacementTemplate>EUOutpost</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+		</Behaviors>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior
+				id="ModuleTag_ShrunkenVoice"
+			xai:joinAction="Replace">
+				<ModelConditionSound Sound="EU_Prospector_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<AudioArrayVoice
+			xai:joinAction="Replace">
+			<AudioEntry Sound="EU_Prospector_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="EU_Prospector_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="EU_Prospector_VoiceMoveOreNode" AudioType="voiceSupply" />
+			<AudioEntry Sound="EU_Prospector_VoiceMoveRefinery" AudioType="voiceDock" />
+			<AudioEntry Sound="EU_Prospector_VoiceMoveToLand" AudioType="voiceMoveWaterToLand" />
+			<AudioEntry Sound="EU_Prospector_VoiceMoveToWater" AudioType="voiceMoveLandToWater" />
+			<AudioEntry Sound="EU_Prospector_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="EU_Prospector_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="EU_Prospector_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="EU_Prospector_VoiceMove" Name="VoiceDeploy" />
+		</AudioArrayVoice>
+	</GameObject>
+	<GameObject
+		id="EUMiner_Naval"
+		inheritFrom="EUMiner"
+		EditorName="EUMiner_Naval"
+		ProductionQueueType="WATERCRAFT">
+		<EquivalentTo>EUMiner</EquivalentTo>
+	</GameObject>
+	<GameObject
+		id="EUMinerAI"
+		inheritFrom="EUMiner"
+		KindOf="-HARVESTER -MOVE_FOR_NOONE +EXPANSION_UNIT"
+		EditorName="EUMinerAI">
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				xai:joinAction="Replace"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine"/>
+		</AI>
+	</GameObject>
+</AssetDeclaration>

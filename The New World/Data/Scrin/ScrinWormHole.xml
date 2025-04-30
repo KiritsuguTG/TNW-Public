@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all"	source="ART:Structures/ScrinWormHole/AUWORMHOLE_SKN.OBBOX100.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinWormHole/AUWORMHOLE_SKN.SPHERE01.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinWormHole/AUWORMHOLE_SKN.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinWormHole/AUWORMHOLE_SKN_HRC.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinWormHole/ABTPBONE_CTR.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinWormHole/ABTPBONE_HRC.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinWormHole/ABTPBONE_OBBOX100_HRC.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinWormHole/ABTPBONE_OBBOX100_CTR.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinWormHole/ABTPBONE.OBBOX01.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinWormHole/ABTPBONE.OBBOX02.w3x" />
+		<Include type="all"	source="ART:Structures/ScrinWormHole/ABTPBONE_OBBOX100.OBBOX100.w3x" />
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:SageXml/BaseObjects/BaseStructure.xml" />
+	</Includes>
+	<GameObject
+		id="ScrinWormHoleCantWork"
+		Side="Neutral"
+		EditorSorting="STRUCTURE"
+		CommandSet="EmptyCommandSet"
+		KindOf="STRUCTURE SELECTABLE UNATTACKABLE IMMOBILE CAN_CAST_REFLECTIONS NOT_AUTOACQUIRABLE NOT_SELLABLE COVER CAN_BUILD_ON_WATER CAN_BUILD_ON_DEEP_WATER"
+		ProductionQueueType="OTHER_STRUCTURE"
+		BuildPlacementTypeFlag="OTHER_STRUCTURE"
+		RadarPriority="STRUCTURE"
+		EditorName="ScrinWormHoleCantWork"
+		SelectPortrait="Portrait_AlienWormHole"
+		ButtonImage="Button_AlienWormHole">
+		<DisplayName>NAME:ScrinWormHoleCantWork</DisplayName>
+		<ArmorSet
+			Armor="NoArmor"
+			DamageFX="InfantryAlienDamageFX" />
+		<SkirmishAIInformation
+			BaseBuildingLocation="FRONT">
+			<ConstructionBaseSelectionCriteria
+				ExcludedBaseTypes="NO_BUILD_RADIUS CAPTURED" />
+		</SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUWORMHOLE_SKN" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Script>
+            CurDrawableHideSubObjectPermanently("SPHERE01")
+          </Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw2"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ABTPBone" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="ABTPDist"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="ABTPFlare"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="ABTPGlow"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="ABTPDarkMatter"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7"/>
+				<Event Index="onDeath" FX="FX_ALI_Wormhole_End" />
+			</FXListBehavior>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate" />
+			<LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				MinLifetime="25.0s"
+				MaxLifetime="25.0s" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="0s"
+				SinkRate="0.5"
+				DestructionDelay="0.01s">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="TOPPLED EXTRA_7" />
+			</SlowDeath>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="StructureAIStateMachine" />
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="3000.0" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="25.0"
+				Height="100.0"/>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALI_WormHole_BeginAndLoopMS"
+				AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="200"
+			ShroudClearingRange="200" />
+	</GameObject>
+	<GameObject
+		id="ScrinWormHoleBuildAnyThing"
+		Side="Neutral"
+		EditorSorting="STRUCTURE"
+		CommandSet="AllUnitsConstructCommandSet"
+		KindOf="STRUCTURE SELECTABLE UNATTACKABLE IMMOBILE CAN_CAST_REFLECTIONS NOT_AUTOACQUIRABLE NOT_SELLABLE COVER CAN_BUILD_ON_WATER CAN_BUILD_ON_DEEP_WATER"
+		ProductionQueueType="OTHER_STRUCTURE"
+		BuildPlacementTypeFlag="OTHER_STRUCTURE"
+		RadarPriority="STRUCTURE"
+		EditorName="ScrinWormHoleBuildAnyThing"
+		SelectPortrait="Portrait_AlienWormHole"
+		ButtonImage="Button_AlienWormHole">
+		<DisplayName>NAME:ScrinWormHole</DisplayName>
+		<ArmorSet
+			Armor="NoArmor"
+			DamageFX="InfantryAlienDamageFX" />
+		<SkirmishAIInformation
+			BaseBuildingLocation="FRONT">
+			<ConstructionBaseSelectionCriteria
+				ExcludedBaseTypes="NO_BUILD_RADIUS CAPTURED" />
+		</SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUWORMHOLE_SKN" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableHideSubObjectPermanently("SPHERE01")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw2"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ABTPBone" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="ABTPDist"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="ABTPFlare"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="ABTPGlow"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="ABTPDarkMatter"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate" />
+			<ProductionUpdate
+				id="ModuleTag_ProductionUpdate"
+				GiveNoXP="true"
+				Type="INVALID"
+				NumDoorAnimations="1"
+				DoorOpeningTime="0.66s"
+				DoorWaitOpenTime="1.66s"
+				DoorCloseTime="0.66s"
+				IgnorePreReqs="true"
+				ProductionTimeDelayScalar="2s">
+				<ProductionModifier
+					CostMultiplier="0"
+					TimeMultiplier="0">
+					<ModifierFilter
+						Rule="ANY"
+						Include="VEHICLE HUGE_VEHICLE INFANTRY AIRCRAFT HARVESTER" />
+				</ProductionModifier>
+			</ProductionUpdate>
+			<QueueProductionExitUpdate
+				id="ModuleTag_QueueProduction"
+				ExitDelaySeconds="0.07s">
+				<UnitCreatePoint
+					x="0.0"
+					y="5.0"
+					z="0.0" />
+				<NaturalRallyPoint
+					x="0.0"
+					y="-120.0"
+					z="0.0" />
+			</QueueProductionExitUpdate>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="StructureAIStateMachine" />
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="300000.0" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="25.0"
+				Height="100.0"/>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALI_WormHole_BeginAndLoopMS"
+				AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="200"
+			ShroudClearingRange="200" />
+	</GameObject>
+	<GameObject
+		id="ScrinWormHole"
+		Side="Neutral"
+		EditorSorting="STRUCTURE"
+		CommandSet="EmptyCommandSet"
+		KindOf="STRUCTURE SELECTABLE UNATTACKABLE IMMOBILE CAN_CAST_REFLECTIONS NOT_AUTOACQUIRABLE NOT_SELLABLE CAN_BUILD_ON_DEEP_WATER CAN_BUILD_ON_WATER IMMUNE_TO_CAPTURE IGNORE_IN_AI_HUNT_TACTIC IGNORE_FOR_VICTORY ALWAYS_VISIBLE_IN_RADAR"
+		RadarPriority="STRUCTURE"
+		UnitCategory="STRUCTURE"
+		EditorName="ScrinWormHole"
+		SelectPortrait="Portrait_AlienWormHole"
+		ButtonImage="Button_AlienWormHole">
+		<DisplayName>Name:ScrinWormHole</DisplayName>
+		<ArmorSet
+			Armor="NoArmor"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUWORMHOLE_SKN" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableHideSubObjectPermanently("SPHERE01")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw2"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ABTPBone" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="ABTPDist"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="ABTPFlare"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="ABTPGlow"
+						FollowBone="false" />
+					<ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="ABTPDarkMatter"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData DeathTypes="ALL" />
+				<Event Index="onDeath" FX="FX_ALI_Wormhole_End" />
+			</FXListBehavior>
+			<TunnelTeleportContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE"
+				ContainMax="10000"
+				AllowEnemiesInside="true"
+				AllowAlliesInside="true"
+				AllowNeutralInside="true"
+				EnterSound="EU_WormHole_Enter"
+				ExitSound="EU_WormHole_Exit"
+				ShowPips="false"
+				KillPassengersOnDeath="false">
+				<PassengerFilter
+					Rule="ALL">
+				</PassengerFilter>
+				<DieMuxData
+					DeathTypes="ALL" />
+			</TunnelTeleportContain>
+			<FireWeaponCollide
+				id="ModuleTag_ACollide"
+				CollideWeapon="AlienWormHoleKillVehOnWater"
+				RequiredStatus="SURFACED_IMMOBILE"
+				WhereToFire="TARGET_OBJECT"/>
+			<FireWeaponCollide
+				id="ModuleTag_BCollide"
+				CollideWeapon="AlienWormHoleKillShipOnLand"
+				ForbiddenStatus="SURFACED_IMMOBILE"
+				WhereToFire="TARGET_OBJECT"/>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.13s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="AlienWormHoleKillVehOnWater"
+					OneShot="false" />
+				<ObjectStatusValidation
+					RequiredStatus="SURFACED_IMMOBILE" />
+			</FireWeaponUpdate>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdateA"
+				FireInterval="0.13s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="AlienWormHoleKillShipOnLand"
+					OneShot="false" />
+				<ObjectStatusValidation
+					ForbiddenStatus="SURFACED_IMMOBILE" />
+			</FireWeaponUpdate>
+			<DestroyDie
+			id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100000.0" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="25.0"
+				Height="100.0"
+				ContactPointGeneration = "STRUCTURE">
+				<Offset
+					x = "0"
+					y = "0"
+					z = "-50" />
+			</Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="EU_WormHole_BeginAndLoopMS"
+				AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="1" />
+	</GameObject>
+</AssetDeclaration>

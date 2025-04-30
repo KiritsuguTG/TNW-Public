@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags/>
+	<Includes>
+		<Include type="all" source="ART:Units/Harbinger Gunship/AUGUNSHIPPROJECTILE.PROJECTILE01.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/AUGUNSHIPPROJECTILE_CTR.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/AUGUNSHIPPROJECTILE_HRC.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/AUGUNSHIPPROJECTILE_VET.PROJECTILE01.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/AUGUNSHIPPROJECTILE_VET_CTR.w3x" />
+		<Include type="all" source="ART:Units/Harbinger Gunship/AUGUNSHIPPROJECTILE_VET_HRC.w3x" />
+		<Include type="instance" source="DATA:SageXml/BaseObjects/BaseProjectile.xml" />
+	</Includes>
+	<GameObject
+		id="AlliedGunshipAircraftWeaponProjectile"
+		inheritFrom="BaseProjectile" 
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="+DEFLECT_BY_SPECIAL_POWER"	
+		EditorName="AlliedGunshipAircraftWeaponProjectile">
+	  <Draws>
+		<ScriptedModelDraw
+			id="ModuleTag_ScriptedModelDraw">
+		  <ModelConditionState
+			  ParseCondStateType="PARSE_DEFAULT">
+			<Model
+				Name="AUGunshipProjectile" />
+			  <ParticleSysBone
+				  BoneName=""
+				  FXParticleSystemTemplate="FXAlliedProtonTail"
+				  FollowBone="true"/>
+			  <ParticleSysBone
+				  BoneName=""
+				  FXParticleSystemTemplate="FXAlliedProtonTail02"
+				  FollowBone="true"/>
+			  <ParticleSysBone
+				  BoneName=""
+				  FXParticleSystemTemplate="FXAlliedProtonTail03"
+				  FollowBone="true"/>
+		  </ModelConditionState>
+		</ScriptedModelDraw>
+	  </Draws>
+	  <Behaviors>
+      <FXListBehavior
+        id="ModuleTag_FXList">
+        <DieMuxData
+          DeathTypes="ALL" />
+        <Event
+          Index="onDeath"
+          FX="FX_AlliedGunshipProtonHit" />
+      </FXListBehavior>
+		<BezierProjectile
+			id="ModuleTag_BezierProjectileBehavior"
+			Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL FIRE_STRAIGHT_THEN_CURVE"
+			FirstHeightMin="0"
+			FirstHeightMax="0"
+			SecondHeightMin="0"
+			SecondHeightMax="0"
+			FirstPercentIndent="30"
+			SecondPercentIndent="60"
+			SidewaysDrift="0"
+			FlightPathAdjustDistPerSecond="0.0"
+			FireStraightDistance="400.0"/>
+	  </Behaviors>
+	  <Geometry
+		  IsSmall="true">
+		<Shape
+			Type="SPHERE"
+			MajorRadius="0.8"/>
+	  </Geometry>
+
+	</GameObject>
+	<!-- VETERAN -->
+	<GameObject
+		id="AlliedGunshipAircraftWeaponProjectile_Veteran"
+		inheritFrom="AlliedGunshipAircraftWeaponProjectile"
+		EditorName="AlliedGunshipAircraftWeaponProjectile_Veteran">
+	  <Draws>
+		<ScriptedModelDraw
+			id="ModuleTag_ScriptedModelDraw"
+			xai:joinAction="Replace">
+		  <ModelConditionState
+			  ParseCondStateType="PARSE_DEFAULT">
+			<Model
+				Name="AUGunshipProjectile_Vet" />
+			  <ParticleSysBone
+				  BoneName=""
+				  FXParticleSystemTemplate="FXAlliedProtonTailVet"
+				  FollowBone="true"/>
+			  <ParticleSysBone
+				  BoneName=""
+				  FXParticleSystemTemplate="FXAlliedProtonTail02Vet"
+				  FollowBone="true"/>
+			  <ParticleSysBone
+				  BoneName=""
+				  FXParticleSystemTemplate="FXAlliedProtonTail03Vet"
+				  FollowBone="true"/>
+		  </ModelConditionState>
+		</ScriptedModelDraw>
+	  </Draws>
+	  <Behaviors>
+      <FXListBehavior
+       id="ModuleTag_FXList"
+       xai:joinAction="Replace">
+        <DieMuxData
+          DeathTypes="ALL" />
+        <Event
+          Index="onDeath"
+          FX="FX_AlliedGunshipProtonHitVet" />
+      </FXListBehavior>
+	  </Behaviors>
+	</GameObject>
+</AssetDeclaration>

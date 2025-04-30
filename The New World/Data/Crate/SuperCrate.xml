@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+
+		<Include
+			type="all"
+			source="ART:NPCrate01.w3x" />
+	</Includes>
+	<GameObject
+		id="SuperCrate"
+		SelectPortrait="Portrait_Neutral_Random"
+		ButtonImage="Portrait_Neutral_Random"
+		Side="Neutral"
+		EditorSorting="UNIT"
+		TransportSlotCount="1"
+		BuildTime="0"
+		CommandSet="EmptyCommandSet"
+		KindOf="SELECTABLE IMMOBILE NOT_AUTOACQUIRABLE UNATTACKABLE CAN_CAST_REFLECTIONS CRATE REVEAL_TO_ALL"
+		RadarPriority="COMMANDO"
+		UnitCategory="STRUCTURE"
+		PlacementViewAngle="0d"
+		EditorName="SuperCrate"
+		Description="DESC:UnitCrate">
+		<DisplayName>NAME:UnitCrate</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="99999"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NPCrate01"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<UnitCrateCollide
+				id="ModuleTagCollide"
+				UnitCount="1"
+				UnitType="SuperUnitCrateRandom"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CrateSpawn">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="FADED"/>
+			</CreateObjectDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="120s"
+				MaxLifetime="120s"
+				DeathType="FADED"/>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+      <Shape 
+          Type= "CYLINDER"
+          MajorRadius = "9.68515"
+          MinorRadius = "9.68515"
+          Height = "16.0349" >
+        <Offset
+            x = "0.0348139"
+            y = "-0.0732222"
+            z = "0.0" />
+      </Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="1"
+			ShroudClearingRange="50" />
+	</GameObject>
+	<GameObject
+		id="SuperUnitCrateRandom"
+		Side="Neutral"
+		CommandSet="EmptyCommandSet"
+		KindOf="IMMOBILE NOT_AUTOACQUIRABLE UNATTACKABLE"
+		EditorName="SuperUnitCrateRandom">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name=""/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_Lifetime"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_SuperUnitCrateRandom">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="9.68515"
+				MinorRadius="9.68515"
+				Height="16.0349">
+				<Offset
+					x="0.0348139"
+					y="-0.0732222"
+					z="0.0"/>
+			</Shape>
+		</Geometry>
+	</GameObject>
+	<ObjectCreationList
+		id="OCL_SuperUnitCrateRandom"
+		Flags="CHOOSE_ONE_CREATE_NUGGET_FROM_LIST">
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			DestinationPlayer=""
+			Count="1">
+			<CreateObject>VacuumBombSeed</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			DestinationPlayer=""
+			Count="1">
+			<CreateObject>TelekineticProjectorDeviceEffect</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1"
+			MinHealth="0.01"
+			MaxHealth="1">
+			<CreateObject>GDIMARVBase</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1"
+			MinHealth="0.01"
+			MaxHealth="1">
+			<CreateObject>JapanFortressShip</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1"
+			MinHealth="0.01"
+			MaxHealth="1">
+			<CreateObject>MODFortressShip</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1"
+			MinHealth="0.01"
+			MaxHealth="1">
+			<CreateObject>AlliedEpicUnit</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1"
+			MinHealth="0.01"
+			MaxHealth="1">
+			<CreateObject>EUKodiak</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedCommandoTech1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>JapanCommandoTech1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietCommandoTech1</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			MinHealth="0.01"
+			MaxHealth="1"
+			Count="1">
+			<CreateObject>SovietEpicUnit</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			MinHealth="0.01"
+			MaxHealth="1"
+			Count="1">
+			<CreateObject>StrategicArmyEpicUnit</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			MinHealth="0.01"
+			MaxHealth="1"
+			Count="1">
+			<CreateObject>JapanMechaKing</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			MinHealth="0.01"
+			MaxHealth="1"
+			Count="1">
+			<CreateObject>FI_FloatingFortressMainGun</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			MinHealth="0.01"
+			MaxHealth="1"
+			Count="1">
+			<CreateObject>KR_ArtilleryDome</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			MinHealth="0.01"
+			MaxHealth="1"
+			Count="1">
+			<CreateObject>BB_EuropeCoastalGun</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS DONT_SET_PRODUCER"
+			MinHealth="0.01"
+			MaxHealth="1"
+			Count="1">
+			<CreateObject>ScrinMateUnitBoss</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>StrategicArmyMCV</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietMCV</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>MODMCV</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>JapanMCV</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>EUMCV</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="DONT_SET_PRODUCER IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedMCV</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+</AssetDeclaration>

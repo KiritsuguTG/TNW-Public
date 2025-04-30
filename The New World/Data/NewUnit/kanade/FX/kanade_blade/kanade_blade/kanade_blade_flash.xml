@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ 	<Includes>
+		<Include source="kanade_blade_flash.w3x" type="instance"/>
+
+		<Include source="lwfx_CTR.w3x" type="instance"/>
+		<Include source="lwfx_HRC.w3x" type="instance"/>
+	</Includes>
+
+ 
+    <FXParticleSystemTemplate Drawable="lwfx" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="W3D_ALPHA" SortLevel="1" SystemLifetime="1" Type="DRAWABLE" id="kanade_blade_flash">
+		<Lifetime High="15" Low="15"/>
+		<Size High="1" Low="1"/>
+
+		<BurstCount High="1" Low="1"/>
+
+		<InitialDelay High="2" Low="2"/>
+		<Alphas>
+			<Alpha Frame="1" High="1" Low="1" RelativeAge="0"/>
+			<Alpha Frame="2" High="0.5" Low="0.5" RelativeAge="50"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="2" RelativeAge="0.1">
+				<Color b="7" g="7" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="5" Low="2"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<RenderObject>
+				<ObjectSet RenderGroup=""/>
+				<ObjectSet RenderGroup=""/>
+				<ObjectSet RenderGroup=""/>
+			</RenderObject>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="-5"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+<!--			<Ortho>
+				<Position>
+					<x High="0.1" Low="-0.1"/>
+					<y High="0.1" Low="-0.1"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+-->			<Ortho>
+				<Position>
+					<x High="0.1" Low="0.1"/>
+					<y High="0.1" Low="0.1"/>
+					<z High="0.1" Low="0.1"/>
+				</Position>
+			</Ortho>
+
+		</Velocity>
+		<Event/>
+		<Update>
+			<RenderObject Rotation="ROTATE_AROUND_VELOCITY">
+				<AngleX High="-200" Low="-200"/>
+				<AngleY High="-180" Low="-180"/>
+				<AngleZ High="180" Low="180"/>  <!--横着转-->
+												
+				<AngularDamping High="1" Low="1"/>
+				<StartSize>
+					<x High="0.5" Low="0.5"/>
+					<y High="0.5" Low="0.5"/>
+					<z High="0.5" Low="0.5"/>
+				</StartSize>
+				<SizeRate>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</SizeRate>
+				<SizeDamping>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</SizeDamping>
+			</RenderObject>
+		</Update>
+	</FXParticleSystemTemplate>
+
+</AssetDeclaration>
+

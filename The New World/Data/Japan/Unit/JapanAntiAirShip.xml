@@ -1,0 +1,1029 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance"
+	xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<!-- aka Sea Wing SeaWing -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+
+		<Include type="all" source="ART:JUAntiShipAircraft_SKN.w3x" />
+		<Include type="all" source="ART:JUAntiShipAircraft_FP.w3x" />
+		<Include type="all" source="ART:JUAntiShipAircraft_2AIR.w3x" />
+		<Include type="all" source="ART:JUAntiShipAircraft_2WTR.w3x" />
+		<Include type="all" source="ART:JUAntiShipAircraft_FLYA.w3x" />
+		<Include type="all" source="ART:JUAntiShipAircraft_MOVA.w3x" />
+		<Include type="all" source="ART:JUAntiShipAircraft_D.xml" />
+		<Include type="instance" source="ART:EX_Headlights.w3x" />
+		<Include type="all" source="ART:JUAntiShipAircraft_02.xml" />
+		<Include type="all" source="ART:JUAntiShipAircraft_02_D.xml" />
+		<Include type="all" source="ART:Units/JapanAntiAirShip/JUANTISHIPAIRCRAFTSTLTH_SKN.w3x" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="JapanAntiAirShip"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_JapanAntiShipAircraft_air"
+		SelectPortraitTransformed="Portrait_JapanAntiShipAircraft_sea"
+		ButtonImage="Button_JapanAntiShipAircraft_air"
+		ButtonImageTransformed="Button_JapanAntiShipAircraft_sea"
+		Side="Japan"
+		SubGroupPriority="335"
+		EditorSorting="UNIT"
+		TransportSlotCount="10"
+		BuildTime="11"
+		JustBuiltTime="2.6s"
+		HealthBoxHeightOffset="20"
+		CommandSet="JapanAntiAirShipCommandSet"
+		KindOf="PRELOAD SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE TRANSFORMER SUBMARINE CAN_BE_FAVORITE_UNIT LINE_OF_SIGHT_IGNORES_BUILDINGS MONSTER FS_RADAR"
+		RadarPriority="UNIT"
+		ProductionQueueType="WATERCRAFT"
+		UnitCategory="VEHICLE"
+		WeaponCategory="GUN"
+		VoicePriority="188"
+		BountyValue="150"
+		EditorName="JapanAntiAirShip"
+		Description="Desc:JapanAntiAirShip"
+		DescriptionTransformed="Desc:JapanAntiAirShip_air"
+		TypeDescription="Type:AntiAirAndInfantry"
+		TypeDescriptionTransformed="Type:AntiAirAndInfantry"
+		UnitIntro="Japan_SeaWing_UnitIntro">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanAntiAirShip_sea</DisplayName>
+		<DisplayNameTransformed xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanAntiAirShip_air</DisplayNameTransformed>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1100" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAntiAirVehicleArmor"
+			DamageFX="SubmarineDamageFX" />
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="AircraftDamageFX"
+			Conditions="AIRBORNE" />
+		<!-- NORMAL WATER -->
+		<LocomotorSet
+			Locomotor="JapanAntiAirShipWaterLocomotor"
+			Condition="NORMAL"
+			Speed="125" />
+		<!-- ATTACKING WATER -->
+		<LocomotorSet
+			Locomotor="JapanAntiAirShipWaterLocomotor_Attacking"
+			Condition="ATTACKING"
+			Speed="125" />
+		<!-- EXITING_PRODUCTION_STRUCTURE -->
+		<LocomotorSet
+			Locomotor="JapanAntiAirShipWaterLocomotor_LeavingFactory"
+			Condition="EXITING_PRODUCTION_STRUCTURE"
+			Speed="125.0" />
+		<LocomotorSet
+			Locomotor="JapanAntiAirShipTestLocomotor"
+			Condition="SUPERSONIC"
+			Speed="175.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="75"
+			ConquerMetricsDpsBonusAgainstDefenses="2.0"
+			ConquerMetricsOverrideDamageType="ROCKET"
+			ConquerMetricsOverrideAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_INFANTRY" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon_" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon_" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon_" />
+				</ModelConditionState>
+
+				<!-- UPGRADED MODEL -->
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW USER_1">
+					<Model
+						Name="JUAntiShipAircraft_FP" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4 USER_2 DAMAGED USER_1">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_021" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4 USER_2 REALLYDAMAGED USER_1">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_021_D" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="USER_4 REALLYDAMAGED USER_2 ">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_021_D" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 USER_4 USER_1">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_021" />
+					<Texture
+						Original="JUAntiShipAircraft_02"
+						New="JUAntiShipAircraft_021" />
+					<Texture
+						Original="JUAntiShipAircraft_022"
+						New="JUAntiShipAircraft_021" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 USER_4">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_021" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 DAMAGED USER_1">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_02" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 DAMAGED">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_02" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 REALLYDAMAGED USER_1">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_02_D" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="USER_2 REALLYDAMAGED">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_02_D" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1 USER_2">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_02" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_02" />
+				</ModelConditionState>
+
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4 DAMAGED USER_1">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_022" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4 DAMAGED">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_022" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4 REALLYDAMAGED USER_1">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_022_D" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="USER_4 REALLYDAMAGED">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_022_D" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4 USER_1">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_022" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_022" />
+				</ModelConditionState>
+
+				<!-- UPGRADED MODEL -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_1">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_D" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedLight"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_1">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_D" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="Underwater_Firesparks"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUAntiShipAircraft_SKN" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_D" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="Underwater_Firesparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="Underwater_FireFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="Underwater_FireOil"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Weapon_02"
+						FXParticleSystemTemplate="Underwater_Firebubbles"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					StateName="STATE_InWater">
+					<Animation
+						AnimationName="JUAntiShipAircraft_MOVA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_InWater" and Prev ~= "TRANS_toWater" then
+						CurDrawableSetTransitionAnimState("TRANS_toWater") end;
+						CurDrawableShowSubObject( "AdditiveFX" )
+						CurDrawableShowSubObject( "SearchLight" )
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					StateName="STATE_InWater"
+					ConditionsYes="MOVING OVER_WATER">
+					<Animation
+						AnimationName="JUAntiShipAircraft_MOVA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_InWater" and Prev ~= "TRANS_toWater" then
+						CurDrawableSetTransitionAnimState("TRANS_toWater") end;
+						CurDrawableShowSubObject( "AdditiveFX" )
+						CurDrawableShowSubObject( "SearchLight" )
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1 REALLYDAMAGED"
+					Flags="START_FRAME_FIRST"
+					StateName="STATE_InAir">
+					<Animation
+						AnimationName="JUAntiShipAircraft_FLYA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_InAir" and Prev ~= "TRANS_toAir" then
+						CurDrawableSetTransitionAnimState("TRANS_toAir") end;
+						CurDrawableHideSubObject( "AdditiveFX" )
+						CurDrawableHideSubObject( "SearchLight" )
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1 DAMAGED"
+					Flags="START_FRAME_FIRST"
+					StateName="STATE_InAir">
+					<Animation
+						AnimationName="JUAntiShipAircraft_FLYA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_InAir" and Prev ~= "TRANS_toAir" then
+						CurDrawableSetTransitionAnimState("TRANS_toAir") end;
+						CurDrawableHideSubObject( "AdditiveFX" )
+						CurDrawableHideSubObject( "SearchLight" )
+					</Script>
+				</AnimationState>
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1"
+					Flags="START_FRAME_FIRST"
+					StateName="STATE_InAir">
+					<Animation
+						AnimationName="JUAntiShipAircraft_FLYA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_InAir" and Prev ~= "TRANS_toAir" then
+						CurDrawableSetTransitionAnimState("TRANS_toAir") end;
+						CurDrawableHideSubObject( "AdditiveFX" )
+						CurDrawableHideSubObject( "SearchLight" )
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toAir">
+					<Animation
+						AnimationName="JUAntiShipAircraft_2AIR"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="1.5s" />
+					<Script>
+						CurDrawableHideSubObject( "AdditiveFX" )
+						CurDrawableHideSubObject( "SearchLight" )
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toWater">
+					<Animation
+						AnimationName="JUAntiShipAircraft_2WTR"
+						AnimationMode="ONCE" />
+					<!-- <Script> CurDrawablePlaySound("JAP_OreCollector_WaterSplashMS") </Script> -->
+					<Script>
+						CurDrawableHideSubObject( "AdditiveFX" )
+						CurDrawableHideSubObject( "SearchLight" )
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<!-- include Headlight draw module. -->
+			<xi:include
+				href="DATA:Includes/HeadlightDraw1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:HeadlightDraw1/child::*)" />
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw"
+				MinLength="30.0"
+				MaxLength="30.0"
+				Width="15.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.2"
+				MaxTracersPerFrame="0.3"
+				FrameLifeTime="35"
+				WeaponSlotType="SECONDARY_WEAPON"
+				Texture="FXJapanTracer"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_03 WEAPON_UPGRADED_01 WEAPON_UPGRADED_02" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawVeterancy"
+				MinLength="20.0"
+				MaxLength="20.0"
+				Width="15.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.5"
+				MaxTracersPerFrame="0.5"
+				FrameLifeTime="35"
+				WeaponSlotType="SECONDARY_WEAPON"
+				Texture="FXJapanTankProjectile_Veteran"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="0.1"
+					b="0.1"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="0.1"
+					b="0.1"
+					a="1.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_03 WEAPON_UPGRADED_01"
+					RequiredStatus="WEAPON_UPGRADED_02" />
+			</TracerModelDraw>
+
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawUpgrade"
+				MinLength="20.0"
+				MaxLength="20.0"
+				Width="15.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.5"
+				MaxTracersPerFrame="0.5"
+				FrameLifeTime="35"
+				WeaponSlotType="TERTIARY_WEAPON"
+				Texture="FXTracerGDISniper"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_02 WEAPON_UPGRADED_01" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawUpgrade_Vet"
+				MinLength="20.0"
+				MaxLength="20.0"
+				Width="15.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.5"
+				MaxTracersPerFrame="0.5"
+				FrameLifeTime="35"
+				WeaponSlotType="TERTIARY_WEAPON"
+				Texture="FXTracerGDISniperHeroic"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="0.1"
+					b="0.1"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="0.1"
+					b="0.1"
+					a="1.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01"
+					RequiredStatus="WEAPON_UPGRADED_02" />
+			</TracerModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					WeaponChoiceCriteria="PREFER_GRAB_OVER_DAMAGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirShipWeapon"
+						ObjectStatus="SURFACED"
+						ForbiddenObjectStatus="SUBMERGED AIRBORNE_TARGET ADVANCED_MISSILE_PACKS"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirShipWeapon_JapanAdvancedMissilePacks"
+						ObjectStatus="ADVANCED_MISSILE_PACKS SURFACED"
+						ForbiddenObjectStatus="SUBMERGED AIRBORNE_TARGET" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiAirShipDummyWeapon"
+						ObjectStatus="SUBMERGED"
+						ForbiddenObjectStatus="AIRBORNE_TARGET" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="JapanAntiAirShipGun"
+						ObjectStatus="AIRBORNE_TARGET"
+						ForbiddenObjectStatus="SUBMERGED SURFACED WEAPON_UPGRADED_03"
+						ConquerMetricsAlwaysCount="true" />
+					<Weapon
+						Ordering="TERTIARY_WEAPON"
+						Template="JapanAntiAirShipUpgradeGun"
+						ObjectStatus="AIRBORNE_TARGET WEAPON_UPGRADED_03"
+						ForbiddenObjectStatus="SUBMERGED SURFACED"
+						ConquerMetricsAlwaysCount="true" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<FireWeaponCollide
+				id="ModuleTag_FireBaseAutoAndShipWeaponCollide"
+				xai:joinAction="Remove" />
+			<Physics
+				id="ModuleTag_Physics" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_WaterDeath"
+				CreationList="JUAntiAirShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="AIRBORNE_TARGET" />
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_AirDeath"
+				CreationList="JUAntiAirShipAirborne_Dying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET" />
+				<UpgradeForbidden>Upgrade_JapanEnhancedKamikaze</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_AirKamikazeDeath"
+				CreationList="JUAntiAirShipAirborne_EnhancedKamikaze_Dying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET" />
+				<UpgradeRequired>Upgrade_JapanEnhancedKamikaze</UpgradeRequired>
+			</CreateObjectDie>
+			<FXListBehavior
+				id="ModuleTag_FXListInAir">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+			</FXListBehavior>
+			<FXListBehavior
+				id="ModuleTag_FXListInWater">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="AIRBORNE_TARGET" />
+				<Event
+					Index="onDeath"
+					FX="FX_Underwater_explosion" />
+			</FXListBehavior>
+			<AttributeModifierUpgrade
+				id="ModuleTag_BaseUpgradeAttributeModifier"
+				AttributeModifier="AttributeModifer_JapanAntiAirShipUniUpgrade">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_02">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_03">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<!-- Transform -->
+			<SpecialPower
+				id="ModuleTag_SpecialPower"
+				SpecialPowerTemplate="SpecialPower_JAAS_Transform"
+				UpdateModuleStartsAttack="true" />
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ToggleTransformUpdate"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				SpecialPowerTemplate="SpecialPower_JAAS_Transform"
+				UnpackTime="0.0s"
+				PackTime="0.0s"
+				TriggerAttributeModifier="AttributeModifier_JapanAntiAirShipTransformation"
+				AttributeModifierDuration="1.6s">
+				<ToggleState
+					LocomotorSet="NORMAL"
+					AIUpdateModuleId="ModuleTag_AI"
+					EnterStateSound="JAP_SeaWing_TransformToWaterMS"
+					AttributeModifier="AttributeModifier_JapanTransformNotSky">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT"
+						Location="Water"
+						NeverUseWhenTargetIsAnyKindOf="INFANTRY"
+						OnlyUseWhenHaveTarget="true">
+						<StateWeapon
+							Weapon="JapanAntiAirShipWeapon" />
+					</SkirmishAiInfo>
+				</ToggleState>
+				<ToggleState
+					ObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+					LocomotorSet="SUPERSONIC"
+					ArmorSet="AIRBORNE"
+					ModelConditions="USER_1"
+					AIUpdateModuleId="ModuleTag_JetAI"
+					EnterStateSound="JAP_SeaWing_TransformToAirMS"
+					AttributeModifier="AttributeModifier_JapanTransformInSky">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_TRANSFORM"
+						Location="Water"
+						NeverUseWhenClear="true"
+						NeverUseWhenTargetIsAnyKindOf="AIRCRAFT">
+						<StateWeapon
+							Weapon="JapanAntiAirShipGun" />
+					</SkirmishAiInfo>
+				</ToggleState>
+			</ToggleStatusSpecialAbilityUpdate>
+			<AttributeModifierUpgrade
+				id="ModuleTag_JapanUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_AirPowerUpgrade"
+				AttributeModifier="AttributeMod_AlliedAirPowerAttribute">
+				<TriggeredBy>Upgrade_AlliedAirPower</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_AlliedAirPowerPlayerPower"
+				AddConditionFlags="USER_4">
+				<TriggeredBy>Upgrade_AlliedAirPower</TriggeredBy>
+			</ModelConditionUpgrade>
+			<!--Sub Invisibility-->
+			<xi:include
+				href="DATA:Includes/SubFirstInvisibility.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:SubFirstInvisibility/child::*)" />
+			<!-- This include gives this unit the Advanced Missiple Packs upgrade. -->
+			<xi:include
+				href="DATA:Includes/JapanAdvancedMissilePacksUpgrade.xml" />
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+			<!-- Japan NavalPower -->
+			<xi:include
+				href="DATA:Includes/JapanNavalPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanNavalPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="true"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+			<JetAIUpdate
+				id="ModuleTag_JetAI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				CirclesForAttack="true"
+				StateMachine="JetAIStateMachine"
+				DefaultLocomotorSet="SUPERSONIC">
+				<UnitAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList" />
+			</JetAIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="400" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="JAP_SeaWing_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior
+				id="Tag_PreventVoiceSelectFromPlayingWhenTransforming">
+				<Override RequiredFlags="USER_3">
+					<AudioArrayVoice>
+						<AudioEntry Sound="" AudioType="voiceSelect" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="MachineGunLoop">
+				<ModelConditionSound Sound="JAP_SeaWing_LaserFireLoop"
+					RequiredFlags="USING_WEAPON_B" ExcludedFlags="DYING" />
+				<ModelConditionSound Sound="JAP_SeaWing_LaserFireLoop"
+					RequiredFlags="USING_WEAPON_C" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_FlyingVoices">
+				<Override RequiredFlags="USER_1">
+					<AudioArrayVoice>
+						<AudioEntry Sound="JAP_SeaWing_VoiceAttackAir" AudioType="voiceAttack" />
+						<AudioEntry Sound="JAP_SeaWing_VoiceMoveAir" AudioType="voiceMove" />
+						<AudioEntry Sound="JAP_SeaWing_Air_VoiceSelectMS" AudioType="voiceSelect" />
+						<AudioEntry Sound="JAP_SeaWing_VoiceSelectBattleAirMS"
+							AudioType="voiceSelectBattle" />
+						<AudioEntry Sound="JAP_SeaWing_VoiceSelectUnderFireAirMS"
+							AudioType="voiceSelectUnderFire" />
+					</AudioArrayVoice>
+					<AudioArraySound>
+						<AudioEntry Sound="JAP_SeaWing_MoveStartAir" AudioType="soundMoveStart" />
+					</AudioArraySound>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<ModelConditionEvaEventSelectorClientBehavior id="ModuleTag_TransformModeEVA">
+				<Override RequiredFlags="USER_1">
+					<EvaEventArray>
+						<EvaEntry EvaEvent="EnemyAircraftDetected" EvaType="enemyObjectSighted" />
+					</EvaEventArray>
+				</Override>
+			</ModelConditionEvaEventSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="15.0"
+				Height="12.0"
+				ContactPointGeneration="INFANTRY" />
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_SeaWing_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="JAP_SeaWing_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_SeaWing_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="JAP_SeaWing_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_SeaWing_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="JAP_SeaWing_Water_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="JAP_SeaWing_VoiceSelectBattleWaterMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="JAP_SeaWing_VoiceSelectUnderFireWaterMS"
+				AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="JAP_SeaWing_MoveStartWater"
+				AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="1"
+			CrushableLevel="25" />
+	</GameObject>
+	<GameObject
+		id="JapanAntiAirShip_Crate"
+		inheritFrom="JapanAntiAirShip"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="JapanAntiAirShip_Crate">
+		<EquivalentTo>JapanAntiAirShip</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

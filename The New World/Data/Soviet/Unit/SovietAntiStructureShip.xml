@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags/>
+	<!-- Dreadnought -->
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include type="all" source="ART:Units/SovietAntiStructureShip/SUANTISTRUCTURESHIP_ATKA.w3x" />
+		<Include type="all" source="ART:Units/SovietAntiStructureShip/SUANTISTRUCTURESHIP_IDLA.w3x" />
+		<Include type="all" source="ART:Units/SovietAntiStructureShip/SUANTISTRUCTURESHIP_PREA.w3x" />
+		<Include type="all" source="ART:Units/SovietAntiStructureShip/SUANTISTRUCTURESHIP_SKLN.w3x" />
+		<Include type="all" source="ART:Units/SovietAntiStructureShip/SUANTISTRUCTURESHIP_FXSKLN.w3x" />
+		<Include type="all" source="ART:Units/SovietAntiStructureShip/SUAntiStructureShip_SKN.NEWSKIN.w3x" />
+		<Include type="all" source="ART:Units/SovietAntiStructureShip/SUAntiStructureShip_SKN.OBBOX01.w3x" />
+		<Include type="all" source="ART:Units/SovietAntiStructureShip/SUAntiStructureShip_SKN.w3x" />
+		<Include
+			type="all"
+			source="ART:SUAntiStructureShip_D.xml" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- A.k.a. Dreadnought Dreadnaught --> 
+	<GameObject
+		id="SovietAntiStructureShip"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_SovietAntiStructureShip_big"
+		ButtonImage="Button_SovietAntiStructureShip_small"
+		EnergyBonus="100"
+		Side="Soviet"
+		SubGroupPriority="525"
+		EditorSorting="UNIT"
+		BuildTime="25"
+		CommandSet="SovietAntiStructureShipCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT SHIP SIEGE_WEAPON T3_UNIT TRANSFORMER"
+		RadarPriority="UNIT"
+		ProductionQueueType="WATERCRAFT"
+		UnitCategory="VEHICLE"
+		WeaponCategory="BLAST"
+		VoicePriority="188"
+		BountyValue="350"
+		EditorName="SovietAntiStructureShip"
+		Description="Desc:SovietAntiStructureShip"
+		TypeDescription="Type:AntiStructure"
+		HealthBoxHeightOffset="40"
+		UnitIntro="Soviet_Dreadnaught_UnitIntro"
+		SelectPortraitTransformed="Portrait_SovietAntiStructureShip_big"
+		ButtonImageTransformed="ButtonSovietAntiStructureShipB"
+		DescriptionTransformed="Desc:SovietAntiStructureShip"
+		TypeDescriptionTransformed="Type:AntiStructure">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietAntiStructureShip</DisplayName>
+		<DisplayNameTransformed
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietAntiStructureShip</DisplayNameTransformed>
+		<GameDependency>
+				<ObjectFilter
+					Rule="NONE"
+					Relationship="ALLIES"
+					StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+						<IncludeThing>SovietTechStructure</IncludeThing>
+				</ObjectFilter>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="2500"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="AntiStructureShipArmor"
+			DamageFX="VehicleDamageFX" />
+		<ArmorSet
+			Armor="AntiStructureShipArmor"
+			DamageFX="VehicleDamageFX"
+			Conditions="PLAYER_UPGRADE" />
+		<LocomotorSet
+			Locomotor="SovietAntiStructureShipWaterLocomotor"
+			Condition="NORMAL"
+			Speed="50.0" />
+		<LocomotorSet
+			Locomotor="SovietAntiStructureShipWaterLocomotor_LeavingFactory"
+			Condition="EXITING_PRODUCTION_STRUCTURE"
+			Speed="50.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="5.0"
+			OutOfRangePenalty="3.0"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			ConquerMetricsOverrideAntiMask="ANTI_STRUCTURE"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="FX_Weapon_01 FX_Weapon_02 FX_Weapon_03 FX_Wake_01 FX_Damage_01 FX_Damage_02 FX_Secondary_01 FX_Secondary_02">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="SUAntiStructureShip_SKNN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon_" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon_" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretID="1" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="SUAntiStructureShip_SKNN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="USER_2 REALLYDAMAGED">
+					<Model
+						Name="SUAntiStructureShip_SKNN" />
+					<Texture
+						Original="SUAntiStructureShip"
+						New="SUAntiStructureShip2_D" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="USER_2">
+					<Model
+						Name="SUAntiStructureShip_SKNN" />
+					<Texture
+						Original="SUAntiStructureShip"
+						New="SUAntiStructureShip2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SUAntiStructureShip_SKNN" />
+					<Texture
+						Original="SUAntiStructureShip"
+						New="SUAntiStructureShip_D" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="SUAntiStructureShip_IDLAN"
+						AnimationMode="LOOP"
+						AnimationBlendTime="30" />     
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Animation
+						AnimationName="SUAntiStructureShip_IDLAN"
+						AnimationMode="LOOP"
+						AnimationBlendTime="30" />
+					<!-- no water FX -->
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					FrameForPristineBonePositions="1"
+					ConditionsYes="FIRING_A">
+					<Animation
+						AnimationName="SUAntiStructureShip_ATKAN"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USING_WEAPON_A"
+					FrameForPristineBonePositions="1"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="SUAntiStructureShip_ATKAN"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toFiring" >
+					<Animation
+						AnimationName="SUAntiStructureShip_PREAN"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_fromFiring"
+					Flags="START_FRAME_LAST" >
+					<Animation
+						AnimationName="SUAntiStructureShip_PREAN"
+						AnimationMode="ONCE_BACKWARDS" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<Animation
+						AnimationName="SUAntiStructureShip_IDLAN"
+						AnimationMode="LOOP" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUANTISTRUCTURESHIP_FX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SUANTISTRUCTURESHIP_FX" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_01"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_03"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_05"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_07"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_09"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SUANTISTRUCTURESHIP_FX" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_01"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_01"
+								  FXParticleSystemTemplate="ShipDamageFire"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_02"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_02"
+								  FXParticleSystemTemplate="ShipDamageFire"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_03"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_03"
+								  FXParticleSystemTemplate="ShipDamageFire"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_04"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_04"
+								  FXParticleSystemTemplate="ShipDamageFire"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_05"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_05"
+								  FXParticleSystemTemplate="ShipDamageFire"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_06"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_06"
+								  FXParticleSystemTemplate="ShipDamageFire"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_07"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_07"
+								  FXParticleSystemTemplate="ShipDamageFire"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_08"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_08"
+								  FXParticleSystemTemplate="ShipDamageFire"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_09"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_09"
+								  FXParticleSystemTemplate="ShipDamageFire"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_10"
+								  FXParticleSystemTemplate="SovietShipDamageSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_Damage_10"
+								  FXParticleSystemTemplate="ShipDamageFire"
+								  FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="false" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<ParticleSysBone
+            			BoneName="FX_WAKE_01"
+            			FXParticleSystemTemplate="SUAntiStructureShipWake"
+            			FollowBone="true" />
+					<ParticleSysBone
+            			BoneName="Fx_WaterFroth"
+            			FXParticleSystemTemplate="SovietDreadnaughtFroth"
+            			FollowBone="true" />
+					<ParticleSysBone
+            			BoneName="Fx_WaterFrothBody"
+            			FXParticleSystemTemplate="SovietDreadnaughtBody01"
+            			FollowBone="true" />
+					<ParticleSysBone
+            			BoneName="Fx_WaterFrothBody"
+            			FXParticleSystemTemplate="SovietDreadnaughtBody02"
+            			FollowBone="true" />
+					<ParticleSysBone
+            			BoneName="Fx_WaterFrothBody"
+            			FXParticleSystemTemplate="SovietDreadnaughtBody03"
+            			FollowBone="true" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_BurnFX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUANTISTRUCTURESHIP_BURNFX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6">
+					<Model
+						Name="SUANTISTRUCTURESHIP_BURNFX" />
+					<ParticleSysBone
+						BoneName="FX_Secondary_01"
+						FXParticleSystemTemplate="SovietDreadnoughtBurn_Fire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Secondary_02"
+						FXParticleSystemTemplate="SovietDreadnoughtBurn_Fire"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietAntiStructureShipV4Rocket"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_01" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietAntiStructureShipV4RocketUpgrade"
+						ObjectStatus="WEAPON_UPGRADED_01" />
+					<TurretSettings
+						TurretTurnRate="360"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SUAntiStructureShip_Collapse_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieByTorpedo"
+				CreationList="SUAntiStructureShip_TorpedoDie_OCL">
+				<DieMuxData
+					DeathTypes="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieNavy"
+				CreationList="SUAntiStructureShip_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieByTorpedoNavy"
+				CreationList="SUAntiStructureShip_UpgradeTorpedoDie_OCL">
+				<DieMuxData
+					DeathTypes="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieFreeze"
+				CreationList="SUAntiStructureShip_Collapse_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="UNDER_FROZEN"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieFreezeNavy"
+				CreationList="SUAntiStructureShip_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="UNDER_FROZEN"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSky"
+				CreationList="SUAntiStructureShip_Collapse_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSkyNavy"
+				CreationList="SUAntiStructureShip_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_DreadnoughtDie" />
+				<Event
+					Index="onDeath"
+					FX="FX_LargeBuildingDieExplosionRumble" />
+			</FXListBehavior>
+
+			<SpecialPower
+				id="ModuleTag_ToggleRapidLaunchTrigger"
+				SpecialPowerTemplate="SpecialPower_ToggleRapidLaunch"
+				UpdateModuleStartsAttack="true" />
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ToggleRapidLaunchTriggerUpdate"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				SpecialPowerTemplate="SpecialPower_ToggleRapidLaunch">
+				<ToggleState>
+					<SkirmishAiInfo
+					   ToggleHint="TOGGLE_DEFAULT"/>
+				</ToggleState>
+
+				<ToggleState
+					ObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+					AttributeModifier="AttributeModifier_RapidLaunch"
+          ModelConditions="USER_6">
+					<Module 
+						ModuleId="ModuleTag_RapidLaunchHealthDrain"
+						TriggerAtTargetPosition="false"
+						TriggerType="SELF_POSITION"/>
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_ALWAYS"
+						UseOnlyWhenCostAdvantageIsBelow="0.75"
+						NeverUseInState="RETREAT"
+						NeverUseDuringTask="REPAIRING"
+						OnlyUseWhenHaveTarget="true"
+						NeverUseWhenHealthIsBelow="500" />
+				</ToggleState>
+
+			</ToggleStatusSpecialAbilityUpdate>
+			<LoseHealthUpdate	
+				id="ModuleTag_RapidLaunchHealthDrain" 
+				HealthTrigger="101%"
+				DamagePerSecond="100">
+				<ObjectStatusValidation
+					RequiredStatus="TRANSFORMATION_TOGGLE_STATE"
+					ForbiddenStatus="UNDER_IRON_CURTAIN"/>
+			</LoseHealthUpdate>
+			
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_02">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>SovietUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech2/child::*)" />
+			<!-- Japan NavalPower -->
+			<xi:include
+				href="DATA:Includes/JapanNavalPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanNavalPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanChaseAttack="false"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="2100" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="SOV_Dreadnought_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="78.0"
+				MinorRadius="20.8"
+				Height="19.5"
+				ContactPointGeneration="VEHICLE"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="SOV_Dreadnought_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SOV_Dreadnought_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="SOV_Dreadnought_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="SOV_Dreadnought_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="SOV_Dreadnought_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="SOV_Dreadnought_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="SOV_Dreadnought_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="SOV_Dreadnought_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="SOV_Dreadnought_MoveLoopWaterMS"
+				AudioType="soundMoveLoop" />
+			<AudioEntry
+				Sound="SOV_Dreadnought_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="SOV_Dreadnought_IdleLoop"
+				AudioType="soundAmbient" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />	
+			<!-- <AudioEntry Sound="AudioEvent:MammothTankTurretMoveLoop" AudioType="soundTurretMoveLoop" /> -->
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="1250"
+			ShroudClearingRange="=$SIEGE_SHIP_SHROUD_CLEAR" />
+		<CrusherInfo
+			CrusherLevel="30"
+			CrushableLevel="31"
+			CrushWeapon="SovietCrushWeapon"
+      CrushDecelerationPercent="50%"
+			CrushEqualLevelProps="true"/>
+	</GameObject>
+	  <GameObject
+		id="SovietAntiStructureShip_Crate"
+		inheritFrom="SovietAntiStructureShip"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="SovietAntiStructureShip_Crate">
+		<EquivalentTo>SovietAntiStructureShip</EquivalentTo>	
+	</GameObject>
+</AssetDeclaration>

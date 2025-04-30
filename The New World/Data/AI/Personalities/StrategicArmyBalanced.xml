@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+
+	<Includes>
+		<Include type="instance" source="StrategicArmyCoopBaseSkirmishPersonality.xml" />
+	</Includes>
+
+	<AIPersonalityDefinition
+		id="01SA"
+		PersonalityType="01SA"
+		inheritFrom="StrategicArmyCoopBaseSkirmishPersonality"
+		EnemySortingBrutalDifficulty="Flat"
+		EnemySortingHardDifficulty="Flat"
+		EnemySortingMediumDifficulty="Flat"
+		EnemySortingEasyDifficulty="Flat"
+		SkirmishPersonality="true"
+		PersonalityUIName="Personality:Oleg"
+		CommanderPortrait="Oleg">
+		<!-- Voice Responses -->
+		<FeedbackEntry FeedbackKey="PlanAttackBeaconPlaced" EvaEvent="SovietCoopOlegPlanAttack" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="PlanAttackOrderComplete" EvaEvent="SovietCoopOlegPlanAttackDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionBeaconPlaced" EvaEvent="SovietCoopOlegTakePos" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionOrderComplete" EvaEvent="SovietCoopOlegTakePosDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetBeaconPlaced" EvaEvent="SovietCoopOlegStrikeThis" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetOrderComplete" EvaEvent="SovietCoopOlegStrikeThisDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="OrderCanceled" EvaEvent="SovietCoopOlegAutoPilot" FeedbackTo="ALLIES"/>
+		<!-- Skirmish feedback -->
+		<!-- Greet ally at beginning of game -->
+		<FeedbackEntry
+				FeedbackKey="StartGame"
+				Video="SOLGR1"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="StartGame"
+				Video="SOLGR2"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="StartGame"
+				Video="SOLGR3"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+					FeedbackKey="StartGame"
+					Video="SOLGR4"
+					FeedbackTo="ALLIES"/>
+
+		<!-- Tell ally I'm in trouble -->
+		<!-- N.B.: If you wanted to add FeedbackTo="ENEMIES" or "NEUTRAL", you would also need to 
+			    adjust the InTroubleSkirmishFeedbackControl block's OnlyIfLocalPlayerIs list -->
+		<FeedbackEntry
+				FeedbackKey="InTrouble"
+				Video="SOLND1"
+				FeedbackTo="ALLIES"
+				Timeout="600s"/>
+		<FeedbackEntry
+				FeedbackKey="InTrouble"
+				Video="SOLND2"
+				FeedbackTo="ALLIES"
+				Timeout="600s"/>
+		<FeedbackEntry
+				FeedbackKey="InTrouble"
+				Video="SOLND3"
+				FeedbackTo="ALLIES"
+				Timeout="600s"/>
+		<FeedbackEntry
+					FeedbackKey="InTrouble"
+					Video="SOLND4"
+					FeedbackTo="ALLIES"
+					Timeout="600s"/>
+
+		<!-- Tell ally I'm dead -->
+		<FeedbackEntry
+				FeedbackKey="Lost"
+				Video="SOLDE1"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="Lost"
+				Video="SOLDE2"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+				FeedbackKey="Lost"
+				Video="SOLDE3"
+				FeedbackTo="ALLIES"/>
+		<FeedbackEntry
+			FeedbackKey="Lost"
+			Video="SOLDE4"
+			FeedbackTo="ALLIES"/>
+
+		<!-- Tell enemy I'm going to defeat them! (when I first meet them) -->
+		<FeedbackEntry
+				FeedbackKey="FirstSeen"
+				Video="SOLTG1"
+				FeedbackTo="ENEMIES"
+				Timeout="9999999s"/>
+		<FeedbackEntry
+				FeedbackKey="FirstSeen"
+				Video="SOLTG2"
+				FeedbackTo="ENEMIES"
+				Timeout="9999999s"/>
+		<FeedbackEntry
+				FeedbackKey="FirstSeen"
+				Video="SOLTG3"
+				FeedbackTo="ENEMIES"
+				Timeout="9999999s"/>
+		<FeedbackEntry
+			FeedbackKey="FirstSeen"
+			Video="SOLTG4"
+			FeedbackTo="ENEMIES"
+			Timeout="9999999s"/>
+
+		<!-- Curse enemy who defeated me -->
+		<FeedbackEntry
+				FeedbackKey="DefeatedByLocalPlayer"
+				Video="SOLTD1"
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedByLocalPlayer"
+				Video="SOLTD2"
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedByLocalPlayer"
+				Video="SOLTD3"
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+			FeedbackKey="DefeatedByLocalPlayer"
+			Video="SOLTD4"
+			FeedbackTo="ENEMIES"/>
+
+		<!-- Laugh at enemy whom I defeated -->
+		<FeedbackEntry
+				FeedbackKey="DefeatedLocalPlayer"
+				Video="SOLTV1"
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedLocalPlayer"
+				Video="SOLTV2"
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+				FeedbackKey="DefeatedLocalPlayer"
+				Video="SOLTV3"
+				FeedbackTo="ENEMIES"/>
+		<FeedbackEntry
+			FeedbackKey="DefeatedLocalPlayer"
+			Video="SOLTV4"
+			FeedbackTo="ENEMIES"/>
+		<!-- 莉莉莎 -->
+		<!--<FeedbackEntry FeedbackKey="PlanAttackBeaconPlaced" EvaEvent="SACoopBossPlanAttack" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="PlanAttackOrderComplete" EvaEvent="SACoopBossPlanAttackDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionBeaconPlaced" EvaEvent="SACoopBossTakePos" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="TakePositionOrderComplete" EvaEvent="SACoopBossTakePosDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetBeaconPlaced" EvaEvent="SACoopBossStrikeThis" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StrikeTargetOrderComplete" EvaEvent="SACoopBossStrikeThisDone" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="OrderCanceled" EvaEvent="SACoopBossAutoPilot" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="StartGame" EvaEvent="SACoopBossStartGame" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="InTrouble" EvaEvent="SACoopBossInTrouble" FeedbackTo="ALLIES" Timeout="600s"/>
+		<FeedbackEntry FeedbackKey="Lost" EvaEvent="SACoopBossLost" FeedbackTo="ALLIES"/>
+		<FeedbackEntry FeedbackKey="FirstSeen" EvaEvent="SACoopBossFirstSeen" FeedbackTo="ENEMIES" Timeout="9999999s"/>
+		<FeedbackEntry FeedbackKey="DefeatedByLocalPlayer" EvaEvent="SACoopBossDefeatedByLocalPlayer" FeedbackTo="ENEMIES"/>
+		<FeedbackEntry FeedbackKey="DefeatedLocalPlayer" EvaEvent="SACoopBossDefeatedLocalPlayer" FeedbackTo="ENEMIES"/>-->
+	</AIPersonalityDefinition>
+
+</AssetDeclaration>

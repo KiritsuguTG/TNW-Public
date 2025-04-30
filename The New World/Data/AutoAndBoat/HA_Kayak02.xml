@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<!-- aka Riptide ACV -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml"/> 
+
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseBoat.xml"/>
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseCollapsingObject.xml"/>
+	</Includes>
+	<!-- aka PT Boat -->
+	<GameObject
+		id="HA_Kayak02"
+		inheritFrom="BaseAutoSpawn"
+		BuildTime="100.0"
+		EditorName="HA_Kayak02">
+		<DisplayName>Name:BaseAutoSpawn</DisplayName>
+		<Behaviors>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="HA_Kayak02Spawn_OCL">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<ObjectCreationList
+	id="HA_Kayak02Spawn_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE"
+			Count="1"
+			DispositionAngle="-90d">
+			<CreateObject>HA_Kayak02Spawn</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<GameObject
+		id="HA_Kayak02Spawn"
+		inheritFrom="BaseBoat"
+		KindOf="+RESIST_EMP"
+		SubGroupPriority="710" 
+		VoicePriority="188"
+		EditorName="HA_Kayak02Spawn">
+		<LocomotorSet
+			Locomotor="AlliedAntiInfantryWaterLocomotor"
+			Condition="NORMAL_UPGRADED"
+			Speed="40" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"/>
+		<Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw"
+				  ExtraPublicBone="BONE_D_01 BONE_D_02 BONE_D_03 BONE_D_04 BONEGARRISON01 BONEGARRISON02">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="HA_Kayak02N"/>
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="HA_Kayak02N"/>
+					<Material
+						ShaderName="FX_FormPreview.fx"
+						TechniqueName="Default">
+						<Constants>
+							<Texture Name="SpecMap">
+								<Value>FXGradient01</Value>
+							</Texture>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="HA_Kayak02N" />
+					<Texture
+						Original="HA_GolfCart01"
+						New="HA_GolfCart01_D" />
+				</ModelConditionState>
+		  <AnimationState
+			  ParseCondStateType="PARSE_DEFAULT">
+		  </AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					StateName="STATE_OnWater">					
+					<ParticleSysBone
+						BoneName="FX_Wake"
+						FXParticleSystemTemplate="SVAntiAirShipWaterWake"
+						FollowBone="true"/>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes=" OVER_WATER"
+					StateName="STATE_OnWater">					
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="SmallShipWakeIdle"
+						FollowBone="true"/>
+				</AnimationState>
+      </ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<ContestableGarrisonContain
+				id="ModuleTag_Garrison"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED CAN_ATTACK"
+				ContainMax="1"
+				EnterSound="VehicleEnter"
+				ExitSound="VehicleExit"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="false"
+				AllowNeutralInside="true"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				KillPassengersOnDeath="true"
+				RequiredClearingObjectStatus="CAN_CONTEST_GARRISON"
+				IgnoreDisabledBitsForRiders="HELD UNDERPOWERED TEMPORARILY_BUSY INFILTRATED PARALYZED"
+				EjectSpeed="3">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY">
+					<ExcludeThing>AlliedScoutInfantry</ExcludeThing>
+					<ExcludeThing>SovietScoutInfantry</ExcludeThing>
+					<ExcludeThing>EUScoutVehicle</ExcludeThing>
+					<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+				</PassengerFilter>
+				<PassengerData
+					BonePrefix="BONEGARRISON01">
+					<Filter
+						Rule="ANY"
+						Include="INFANTRY"/>					
+				</PassengerData>
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ContestableGarrisonContain>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="HA_Kayak02_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="150"
+				MaxHealthReallyDamagedPercentage="20">
+				</ActiveBody>
+		</Body>
+		<Geometry
+			IsSmall="false">
+<Shape 
+     Type= "BOX"
+     MinorRadius = "6.05875"
+     MajorRadius = "24.4177"
+     Height = "7.66147"
+     ContactPointGeneration = "VEHICLE" >
+    <Offset
+        y = "0.0903587"
+        x = "-1.50387"
+        z = "0.0" />
+</Shape>
+		</Geometry>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushEqualLevelProps="true"
+			CrusherLevel="1"
+			CrushableLevel="20"/>
+	</GameObject>
+	<GameObject
+		id="HA_Kayak02_Collapse"
+		inheritFrom="BaseCollapsingObject"
+		EditorName="HA_Kayak02_Collapse">
+		<Draws>
+			<DynamicsDraw
+				id="ModuleTag_Draw"
+				Collision="NONINTERCOLLIDING"
+				Explodiness="4"
+				FlingPerturbation="15">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="HA_Kayak02N" />
+					<Texture
+						Original="HA_GolfCart01"
+						New="HA_GolfCart01_D" />
+				</ModelConditionState>
+				<BoneVolumes>
+<BoneVolume BoneName="Bone_D_01" Mass="815" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3.547" HalfSizeY="4.651" HalfSizeZ="2.473" >
+		<Translation x="0.0" y="17.138" z="4.143" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_02" Mass="700" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="2.889" HalfSizeY="5.778" HalfSizeZ="2.098" >
+		<Translation x="0.0" y="-8.046" z="3.215" />
+		<Rotation x="-6.85283e-006" y="-0.0043633" z="-0.00157054" w="0.999989" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_03" Mass="1666" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="3.748" HalfSizeY="6.061" HalfSizeZ="3.667" >
+		<Translation x="0.0" y="4.648" z="3.427" />
+		<Rotation x="2.1135e-007" y="0.00063329" z="-0.00183964" w="0.999998" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_04" Mass="266" Spinniness="3.0" ContactTag="PROP" >
+	<Box  HalfSizeX="1.331" HalfSizeY="2.14" HalfSizeZ="4.674" >
+		<Translation x="0.0" y="-19.854" z="4.008" />
+		<Rotation x="-0.707103" y="0.00224148" z="-0.00224148" w="0.707103" />
+	</Box>
+</BoneVolume>
+
+				</BoneVolumes>
+				<Lifetime
+					Delay="10s"
+					FadeTime="10s" />
+			</DynamicsDraw>
+		</Draws>
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="15s"
+			MaxLifetime="15s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1"
+			DestructionDelay="20s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+	</GameObject>
+	<ObjectCreationList
+		id="HA_Kayak02_Die_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="LIKE_EXISTING INHERIT_VELOCITY"
+			Count="1"
+			VelocityScale="20.0"
+			MinForceMagnitude="1.0"
+			MaxForceMagnitude="2.0"
+			MinForcePitch="90d"
+			MaxForcePitch="75d">
+			<CreateObject>HA_Kayak02_Collapse</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>	
+</AssetDeclaration>

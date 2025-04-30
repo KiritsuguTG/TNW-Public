@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include type="all" source="ART:MultiplayerBeacon.w3x" />	
+		<Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+	</Includes>
+	<GameObject
+		id="KodiakSpwan"
+		inheritFrom="BaseStructure"
+		SelectPortrait="Portrait_SUAircraftF"
+		ButtonImage="Button_SUAircraftF"
+		Side="Allies"
+		EditorSorting="STRUCTURE"
+		BuildTime="50"
+		EnergyProduction="0"
+		CommandSet="EmptyCommandSet"
+		KindOf="STRUCTURE CAN_CAST_REFLECTIONS RESIST_EMP NOT_SELLABLE UNATTACKABLE CAN_BUILD_ON_WATER CAN_BUILD_ON_DEEP_WATER UNIQUE_UNIT CAN_BE_FAVORITE_UNIT"
+		RadarPriority="NOT_ON_RADAR"
+		PlacementViewAngle="315d"
+		ProductionQueueType="OTHER_STRUCTURE"
+		BuildPlacementTypeFlag="OTHER_STRUCTURE"
+		EditorName="KodiakSpwan"
+		Description="Desc:GDIKodiak"
+		TypeDescription="Type:EpicUnit"
+		BountyValue="0"
+		MaxSimultaneousOfType="1">
+		<EquivalentTo>AlliedEpicUnit</EquivalentTo>
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:GDIKodiak</DisplayName>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_AlliedTech3</NeededUpgrade>
+			<NeededUpgrade>Upgrade_AlliedAirPower</NeededUpgrade>
+			<NeededUpgrade>Upgrade_AlliedHighTechnology</NeededUpgrade>
+			<NeededUpgrade>Upgrade_AlliedLaserUpgrade</NeededUpgrade>
+			<NeededUpgrade>Upgrade_AlliesFaction</NeededUpgrade>
+				<ObjectFilter
+					Rule="NONE"
+					Relationship="ALLIES"
+					StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+						<IncludeThing>AlliedTechStructure</IncludeThing>
+				</ObjectFilter>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="0" Amount="5000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="AlliedPowerPlantArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<SkirmishAIInformation
+			BaseBuildingLocation="FRONT" >
+			<ConstructionBaseSelectionCriteria
+				PreferredBaseTypes="UNDER_ATTACK ENEMIES_IN_BASE EXPANSION"
+				SortOrder="PREFER_MOST_RECENTLY_ATTACKED"/>
+		</SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="MultiplayerBeacon" />
+					<ShadowInfo
+						Type="ADDITIVE_DECAL"
+						SizeX="100"
+						SizeY="100"
+						OverrideLODVisibility="true"
+						MaxHeight="200"
+						UseHouseColor="true"
+						IsRotatingWithObject="false"
+						Texture="Decal_KodiakSpwan"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="3.0s"
+				MaxLifetime="3.0s"
+				CountdownSound="FX_BeaconSignal"
+				DeathType="SUICIDED"/>
+				<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="SUICIDED" />
+			</DestroyDie>			
+				      <CreateObjectDie
+						  id="ModuleTag_CreateObjectDie"
+						  CreationList="KodiakSpwanSet">
+						  <DieMuxData
+							  DeathTypes="ALL" />
+						  <UpgradeForbidden>Upgrade_SandBox</UpgradeForbidden>
+					  </CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSandbox"
+				CreationList="KodiakSpwanSetSandBox">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>Upgrade_SandBox</UpgradeRequired>
+			</CreateObjectDie>
+			<StructureUnpackUpdate
+				id="StructureUnpackUpdate"
+				UnpackTime="2s" />
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Veteran"
+				LevelCap="4"
+				LevelsToGain="1">
+				<TriggeredBy>Upgrade_CreationVeterancy_VETERAN</TriggeredBy>
+			</LevelUpUpgrade>
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Elite"
+				LevelCap="4"
+				LevelsToGain="1">
+				<TriggeredBy>Upgrade_CreationVeterancy_ELITE</TriggeredBy>
+			</LevelUpUpgrade>
+			<LevelUpUpgrade
+				id="ModuleTag_LevelUpUpgrade_Heroic"
+				LevelCap="4"
+				LevelsToGain="1">
+				<TriggeredBy>Upgrade_CreationVeterancy_HEROIC</TriggeredBy>
+			</LevelUpUpgrade>
+		</Behaviors>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">			
+		</CrusherInfo>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				StateMachine="StructureAIStateMachine">
+				<UnitAITargetChooserData/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="9999.0" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape 
+				Type= "BOX"
+				MajorRadius = "15"
+				MinorRadius = "15"
+				Height = "5">
+				<Offset
+					x = "0.0"
+					y = "0.0"
+					z = "0.0" />
+			</Shape>
+			<Shape
+				Type= "BOX"
+				MajorRadius = "0"
+				MinorRadius = "0"
+				Height = "5.0" >
+				<Offset
+					x = "0.0"
+					y = "0.0"
+					z = "0.0" />
+			</Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="60" />
+	</GameObject>
+	
+</AssetDeclaration>

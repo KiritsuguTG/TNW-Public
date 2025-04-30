@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseObject.xml" />
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+
+	<GameObject
+		id="BaseOrbitalRefuseSpawner"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="IMMOBILE UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE "
+		EditorName="BaseOrbitalRefuseSpawner"
+		Description="Desc:BaseOrbitalRefuseEffect"
+		TypeDescription="Type:BaseOrbitalRefuseEffect"	>
+		<DisplayName>BaseOrbitalRefuseEffect</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="BeaconFlare"/> 
+					<ParticleSysBone
+						BoneName="None"
+					FXParticleSystemTemplate="BeaconSmoke"/> 	
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"/>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+	</GameObject>
+	<GameObject
+		id="BaseOrbitalRefuseSpawnerStartSpawner"
+		EditorName="BaseOrbitalRefuseSpawnerStartSpawner"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE INERT INERT_SHROUD_REVEALER SKIRMISH_AI_ATTEMPT_TO_DODGE">
+    <SkirmishAIInformation
+      DodgeSafetyDistance="250.0">
+      <DodgeWithUnits Rule="ALL"
+        StatusBitFlagsExclude="AIRBORNE_TARGET">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+	</GameObject>
+	<!-- Orbital Refuse Spawner Effect Level 1 -->
+	<GameObject
+		id="OrbitalRefuseSpawnerStartSpawnerLvl1"
+		inheritFrom="BaseOrbitalRefuseSpawnerStartSpawner"
+		EditorName="OrbitalRefuseSpawnerStartSpawnerLvl1">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="0.2s"
+			  MaxLifetime="0.2s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_OrbitalRefuseLvl1">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>SovietSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_OrbitalRefuseLvl1Upgrade">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>SovietSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="OrbitalRefuseSpawnerLvl1"
+		inheritFrom="BaseOrbitalRefuseSpawner"
+		EditorName="OrbitalRefuseSpawnerLvl1">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="3s"
+			  MaxLifetime="3s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_OrbitalRefuse_Level1">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="OrbitalRefuseSpawnerLvl1Upgrade"
+		inheritFrom="BaseOrbitalRefuseSpawner"
+		EditorName="OrbitalRefuseSpawnerLvl1Upgrade">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="1s"
+			  MaxLifetime="1s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_OrbitalRefuseUpgrade_Level1">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	
+	<!-- Orbital Refuse Spawner Effect Level 2 -->
+	<GameObject
+		id="OrbitalRefuseSpawnerStartSpawnerLvl2"
+		inheritFrom="BaseOrbitalRefuseSpawnerStartSpawner"
+		EditorName="OrbitalRefuseSpawnerStartSpawnerLvl2">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="0.2s"
+			  MaxLifetime="0.2s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_OrbitalRefuseLvl2">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>SovietSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_OrbitalRefuseLvl2Upgrade">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>SovietSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="OrbitalRefuseSpawnerLvl2"
+		inheritFrom="BaseOrbitalRefuseSpawner"
+		EditorName="OrbitalRefuseSpawnerLvl2">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="6s"
+			  MaxLifetime="6s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_OrbitalRefuse_Level2">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="OrbitalRefuseSpawnerLvl2Upgrade"
+		inheritFrom="BaseOrbitalRefuseSpawner"
+		EditorName="OrbitalRefuseSpawnerLvl2Upgrade">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="4s"
+			  MaxLifetime="4s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_OrbitalRefuseUpgrade_Level2">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+
+	<!-- Orbital Refuse Spawner Effect Level 3 -->
+	<GameObject
+		id="OrbitalRefuseSpawnerStartSpawnerLvl3"
+		inheritFrom="BaseOrbitalRefuseSpawnerStartSpawner"
+		EditorName="OrbitalRefuseSpawnerStartSpawnerLvl3">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="0.2s"
+			  MaxLifetime="0.2s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_OrbitalRefuseLvl3">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>SovietSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_OrbitalRefuseLvl3Upgrade">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>SovietSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="OrbitalRefuseSpawnerLvl3"
+		inheritFrom="BaseOrbitalRefuseSpawner"
+		EditorName="OrbitalRefuseSpawnerLvl3">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="9s"
+			  MaxLifetime="9s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_OrbitalRefuse_Level3">
+				<UpgradeForbidden>SovietSpellBookUpgrade</UpgradeForbidden>
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="OrbitalRefuseSpawnerLvl3Upgrade"
+		inheritFrom="BaseOrbitalRefuseSpawner"
+		EditorName="OrbitalRefuseSpawnerLvl3Upgrade">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="7s"
+			  MaxLifetime="7s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_OrbitalRefuseUpgrade_Level3">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="OrbitalRefuseSatteliteDebris_SuperStructureSeed"
+		inheritFrom="BaseOrbitalRefuseSpawner"
+		EditorName="OrbitalRefuseSatteliteDebris_SuperStructureSeed">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"/>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_OrbitalRefuse_SuperStructure">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="ART:FX_FlakShell.w3x" />
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<GameObject
+		id="JapanPowerDroneEVA"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="NOT_AUTOACQUIRABLE NO_COLLIDE SUMMONED"
+		EditorName="JapanPowerDroneEVA">
+		<DisplayName>JapanPowerDroneEVA</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FX_FlakShell" />
+          <ParticleSysBone
+						BoneName="roottransform"
+						FXParticleSystemTemplate="JapanSuperReadyRays"
+						FollowBone="true"/>
+        </ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<AttachUpdate
+				id="ModuleTag_Attach"
+				Flags="TELEPORT STICK_TO_PARENT DIE_WHEN_DETACH_ALWAYS"
+				ParentStatus="PLAYER_POWER_4"
+				CloseEnoughRange="5"/>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_JapanPowerDroneEVAShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="1.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeJapanPowerDroneEVA">
+				<ObjectFilter
+					Rule="ANY"
+			    Relationship="ALLIES"
+			Include="FS_FACTORY"
+			Exclude="FS_POWER FS_TECHNOLOGY"
+			StatusBitFlagsExclude="NOT_IN_WORLD SOLD UNPACKING MARCH_OF_DEATH RIFT_OCCUPIED UNDER_FROZEN PLAYER_POWER_4 IN_NANOHIVE">
+				</ObjectFilter>   
+			</AttributeModifierAuraUpdate>
+				<FXListBehavior
+					id="ModuleTag_FXList">
+        <DieMuxData
+					DeathTypes="ALL" />
+        <Event Index="onCreate" FX="FX_DroneEVA" />
+      </FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="30s"
+				MaxLifetime="30s"/>
+			<Physics
+				id="ModuleTag_Physics" />
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="1.0"
+				Height="10.0">
+			</Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="JLL_EVADrone_Loop" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<ShadowInfo
+			Type="NONE" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+	<GameObject
+		id="JapanPowerDroneEVAUpgrade"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="NOT_AUTOACQUIRABLE NO_COLLIDE SUMMONED"
+		EditorName="JapanPowerDroneEVAUpgrade">
+		<DisplayName>JapanPowerDroneEVAUpgrade</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FX_FlakShell" />
+          <ParticleSysBone
+						BoneName="roottransform"
+						FXParticleSystemTemplate="FXJapanPowerDroneAllies"
+						FollowBone="true"/>
+        </ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<AttachUpdate
+				id="ModuleTag_Attach"
+				Flags="TELEPORT STICK_TO_PARENT DIE_WHEN_DETACH_ALWAYS"
+				ParentStatus="PLAYER_POWER_4"
+				CloseEnoughRange="5"/>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_JapanPowerDroneEVAShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="1.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeJapanPowerDroneEVAUpgrade">
+				<ObjectFilter
+					Rule="ANY"
+			    Relationship="ALLIES"
+			Include="FS_FACTORY"
+			Exclude="FS_POWER FS_TECHNOLOGY"
+			StatusBitFlagsExclude="NOT_IN_WORLD SOLD UNPACKING MARCH_OF_DEATH RIFT_OCCUPIED UNDER_FROZEN PLAYER_POWER_4 IN_NANOHIVE">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+				<FXListBehavior
+					id="ModuleTag_FXList">
+        <DieMuxData
+					DeathTypes="ALL" />
+        <Event Index="onCreate" FX="FX_DroneEVA" />
+      </FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="60s"
+				MaxLifetime="60s"/>
+			<Physics
+				id="ModuleTag_Physics" />
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="1.0"
+				Height="10.0">
+			</Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="JLL_EVADrone_Loop" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<ShadowInfo
+			Type="NONE" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+	<GameObject
+		id="JapanPowerDroneEnemyEVA"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="NOT_AUTOACQUIRABLE NO_COLLIDE SUMMONED"
+		EditorName="JapanPowerDroneEnemyEVA">
+		<DisplayName>JapanPowerDroneEnemyEVA</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FX_FlakShell" />
+          <ParticleSysBone
+						BoneName="roottransform"
+						FXParticleSystemTemplate="FXJapanPowerDroneEnemy"
+						FollowBone="true"/>
+        </ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<AttachUpdate
+				id="ModuleTag_Attach"
+				Flags="TELEPORT STICK_TO_PARENT DIE_WHEN_DETACH_ALWAYS DIE_WHEN_PARENT_HAS_FORBIDDEN_STATUS"
+				ParentStatus="PLAYER_POWER_4"
+				ForbiddenParentStatus="UNDER_IRON_CURTAIN"
+				CloseEnoughRange="5"/>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_EnemyPowerDroneEVAAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="1.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeJapanPowerDroneEVAAnti">
+				<ObjectFilter
+					Rule="ANY"
+			    Relationship="ALLIES"
+					Include="FS_WAR_FACTORY FS_BARRACKS FS_AIR_FIELD"
+					Exclude="VEHICLE IGNORE_FOR_VICTORY"
+					StatusBitFlagsExclude="NOT_IN_WORLD SOLD UNPACKING UNDER_IRON_CURTAIN">
+				</ObjectFilter>   
+			</AttributeModifierAuraUpdate>
+				<FXListBehavior
+					id="ModuleTag_FXList">
+        <DieMuxData
+					DeathTypes="ALL" />
+        <Event Index="onCreate" FX="FX_DroneEVA" />
+      </FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="30s"
+				MaxLifetime="30s"/>
+			<Physics
+				id="ModuleTag_Physics" />
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="1.0"
+				Height="10.0">
+			</Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="JLL_EVADrone_Loop" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<ShadowInfo
+			Type="NONE" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+	<GameObject
+		id="JapanPowerDroneEVAEnemyUpgrade"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="NOT_AUTOACQUIRABLE NO_COLLIDE SUMMONED"
+		EditorName="JapanPowerDroneEVAEnemyUpgrade">
+		<DisplayName>JapanPowerDroneEVAEnemyUpgrade</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FX_FlakShell" />
+          <ParticleSysBone
+						BoneName="roottransform"
+						FXParticleSystemTemplate="FXJapanPowerDroneEnemy"
+						FollowBone="true"/>
+        </ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<AttachUpdate
+				id="ModuleTag_Attach"
+				Flags="TELEPORT STICK_TO_PARENT DIE_WHEN_DETACH_ALWAYS DIE_WHEN_PARENT_HAS_FORBIDDEN_STATUS"
+				ParentStatus="PLAYER_POWER_4"
+				ForbiddenParentStatus="UNDER_IRON_CURTAIN"
+				CloseEnoughRange="5"/>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_EnemyPowerDroneEVAAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="1.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeJapanPowerDroneEVAAntiUpgrade">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ALLIES"
+					Include="FS_WAR_FACTORY FS_BARRACKS FS_AIR_FIELD"
+					Exclude="VEHICLE IGNORE_FOR_VICTORY"
+					StatusBitFlagsExclude="NOT_IN_WORLD SOLD UNPACKING UNDER_IRON_CURTAIN">
+				</ObjectFilter>   
+			</AttributeModifierAuraUpdate>
+				<FXListBehavior
+					id="ModuleTag_FXList">
+        <DieMuxData
+					DeathTypes="ALL" />
+        <Event Index="onCreate" FX="FX_DroneEVA" />
+      </FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="30s"
+				MaxLifetime="30s"/>
+			<Physics
+				id="ModuleTag_Physics" />
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="1.0"
+				Height="10.0">
+			</Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="JLL_EVADrone_Loop" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<ShadowInfo
+			Type="NONE" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+</AssetDeclaration>

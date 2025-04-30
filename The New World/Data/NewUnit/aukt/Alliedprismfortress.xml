@@ -1,0 +1,1592 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<!-- aka Mirage Tank -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include type="all"	source="ART:AUAntiVehicleVehicleTech3_D.xml" />
+		<Include type="all" source="ART:AUAntiVehicleVehicleTech3_FX.w3x" />
+		<Include type="all"	source="ART:AUAntiVehicleVehicleTech3_SKN.w3x" />
+		<Include type="all"	source="ART:AUAntiVehicleVehicleTech3_IDLA.w3x" />
+		<Include type="all"	source="ART:AUAntiVehicleVehicleTech3_MOVA.w3x" />
+    <Include type="all" source="ART:FXAlliedPrismBeam.xml" />
+    <Include type="all" source="ART:FXAlliedPrismBeam_Vet.xml" />
+    <Include type="all"	source="ART:FXShldAbility.w3x" />
+    <Include type="all"	source="ART:EXCloakingField.w3x" />
+    <Include type="all"	source="PrismFortress.w3x" />
+    <Include type="instance" source="ART:EXTireTrack2.xml" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- aka The Primage Tank -->
+	<GameObject
+		id="Alliedprismfortress"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="buttonpaladin2"
+		ButtonImage="buttonpaladin"
+		Side="Neutral"
+		SubGroupPriority="535" 
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="25"
+		BuildTime="40"
+		CommandSet="AlliedprismfortressCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT DISGUISER T3_UNIT"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		EditorName="AlliedPrismFortress"
+		Description="Desc:Alliedprismfortress"
+		TypeDescription="Type:Alliedprismfortress"
+		UnitIntro="Allied_MirageTank_UnitIntro"
+		Scale="1.5">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:Alliedprismfortress</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="6000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="AlliedAntiVehicleVehicleTech3Armor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="DefaultLocomotor"
+			Locomotor="AlliedAntiVehicleVehicleTech3Locomotor"
+			Condition="NORMAL"
+			Speed="75.0" />
+			<LocomotorSet
+      id="DefaultWaterLocomotor"
+			Locomotor="AlliedAntiInfantryWaterLocomotor"
+			Condition="NORMAL"
+			Speed="80.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+      OutOfRangePenalty="2.0"/>
+		<Draws>
+		<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				LeftFrontTireBone="Bone_Track_L"
+				RightFrontTireBone="Bone_Track_R"
+				TireRotationMultiplier="0.0"		
+				InitialRecoilSpeed="0.75"
+				MaxRecoilDistance="5"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="1.5"
+				TrackMarks="EXTnkTrack"
+				TrackMarksLeftBone="HENJI01"
+				TrackMarksRightBone="HENJI02"
+				ExtraPublicBone="Bone_Track_L Bone_Track_R Bone_Tread_L Bone_Tread_R Bone_Turret FXHEADLIGHT_L FXHEADLIGHT_R HENJI01 HENJI02">
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+				<TreadScrollingMap
+					LeftTrack="Bone_Tread_L"
+					RightTrack="Bone_Tread_R"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%"/>
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="PRISMFORTRESS" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_TURRETA" />          
+					<Turret
+						TurretNameKey="BONE_TURRETA"
+						TurretPitch="BONE_PITCHA"
+						TurretID="1" /> 
+						<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPONA" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_TURRETB" />          
+					<Turret
+						TurretNameKey="BONE_TURRETB"
+						TurretPitch="BONE_PITCHB"
+						TurretID="2" /> 
+						<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPONB" />
+					
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_TURRETC" />          
+					<Turret
+						TurretNameKey="BONE_TURRETC"
+						TurretPitch="BONE_PITCHC"
+						TurretID="3" /> 
+						<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPONC" />
+					
+					<WeaponLaunchBone
+						WeaponSlotID="4"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_TURRETD" />          
+					<Turret
+						TurretNameKey="BONE_TURRETD"
+						TurretPitch="BONE_PITCHD"
+						TurretID="4" /> 
+						<WeaponFireFXBone
+						WeaponSlotID="4"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPOND" />
+					
+					<WeaponLaunchBone
+						WeaponSlotID="5"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_TURRETE" />          
+					<Turret
+						TurretNameKey="BONE_TURRETE"
+						TurretPitch="BONE_PITCHE"
+						TurretID="5" /> 
+						<WeaponFireFXBone
+						WeaponSlotID="5"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPONE" />
+					
+					<WeaponLaunchBone
+						WeaponSlotID="6"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_TURRETF" />          
+					<Turret
+						TurretNameKey="BONE_TURRETF"
+						TurretPitch="BONE_PITCHF"
+						TurretID="6" /> 
+						<WeaponFireFXBone
+						WeaponSlotID="6"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPONF" />
+						
+						<WeaponLaunchBone
+						WeaponSlotID="7"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_TURRETG" />          
+					<Turret
+						TurretNameKey="BONE_TURRETG"
+						TurretPitch="BONE_PITCHG"
+						TurretID="7" /> 
+						<WeaponFireFXBone
+						WeaponSlotID="7"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPONG" />
+							
+						<WeaponFireFXBone
+						WeaponSlotID="8"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_WeaponTower" />
+			        <WeaponRecoilBone
+						WeaponSlotID="8"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_WeaponTower" />
+					<WeaponMuzzleFlash
+						WeaponSlotID="8"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_WeaponTower" />	
+					<WeaponLaunchBone
+						WeaponSlotID="8"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_WeaponTower" />
+				</ModelConditionState>
+
+        <!-- DISGUISED -->
+			    <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DISGUISED">
+					<Model
+						Name="PRISMFORTRESS" />
+
+					<ParticleSysBone
+						BoneName="Bone_Ear_Left"
+						FXParticleSystemTemplate="Primage_Disguise_Rays"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_Ear_Right"
+						FXParticleSystemTemplate="Primage_Disguise_Rays02"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED DISGUISED">
+					<Model
+						Name="PRISMFORTRESS" />
+					<Texture
+						Original="AUAntiVehicleVehicleTech3"
+						New="AUAntiVehicleVehicleTech3_D" />
+					<ParticleSysBone
+						BoneName="Bone_Ear_Left"
+						FXParticleSystemTemplate="Primage_Disguise_Rays"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="Bone_Ear_Right"
+						FXParticleSystemTemplate="Primage_Disguise_Rays02"
+						FollowBone="true" />
+				</ModelConditionState>
+				
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="PRISMFORTRESS" />
+					<Texture
+						Original="AUAntiVehicleVehicleTech3"
+						New="AUAntiVehicleVehicleTech3_D" />
+				</ModelConditionState>	
+        
+        <!-- Animations -->			
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_bored">
+					<Animation
+						AnimationName="AUAntiVehicleVehicleTech3_IDLA"
+						AnimationMode="ONCE" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Field" then
+						CurDrawableSetTransitionAnimState("TRANS_FromField")
+						end
+					</Script>						
+				</AnimationState>
+
+				<AnimationState
+					  ParseCondStateType="PARSE_NORMAL"
+					  ConditionsYes="USER_6 MOVING"
+					  StateName="STATE_Field" >
+					<Animation
+						AnimationName="AUAntiVehicleVehicleTech3_MOVA"
+						AnimationMode="LOOP" />
+				</AnimationState>	
+					
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6 SELECTED"
+          			Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_Field">
+					<Animation
+						AnimationName="AUAntiVehicleVehicleTech3_IDLA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<AnimationState
+					  ParseCondStateType="PARSE_NORMAL"
+					  ConditionsYes="MOVING">
+					<Animation
+						AnimationName="AUAntiVehicleVehicleTech3_MOVA"
+						AnimationMode="LOOP" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Field" then
+						CurDrawableSetTransitionAnimState("TRANS_FromField")
+						end
+					</Script>						
+				</AnimationState>	
+				
+					<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					StateName="STATE_OnWater">					
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="SVAntiAirShipWaterWake"
+						FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes=" OVER_WATER"
+					StateName="STATE_OnWater">					
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="SmallShipWakeIdle"
+						FollowBone="true" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+          			Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_SelectedPose">
+					<Animation
+						AnimationName="AUAntiVehicleVehicleTech3_IDLA"
+						AnimationMode="ONCE" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Field" then
+						CurDrawableSetTransitionAnimState("TRANS_FromField")
+						end
+					</Script>						
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_Field">
+					<Animation
+						AnimationName="AUAntiVehicleVehicleTech3_IDLA"
+						AnimationMode="ONCE" />
+						<!-- <FXEvent Effect="FX_ALL_MirageFieldStart" FireWhenSkipped="true" /> -->
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_FromField" >
+					<Animation
+						AnimationName="AUAntiVehicleVehicleTech3_IDLA"
+						AnimationMode="ONCE" />
+						<!-- <FXEvent Effect="FX_ALL_MirageFieldStart" FireWhenSkipped="true" /> -->
+				</AnimationState>
+					
+			</TruckDraw>
+
+			<ScriptedModelDraw
+				id="ModuleTag_DisguiseDraw"
+				InvertStealthOpacity="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+
+      <!-- include Headlight draw module. -->
+      <xi:include
+				href="DATA:Includes/HeadlightDraw2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:HeadlightDraw2/child::*)" />
+      
+<!-- DRAW PARTICLES -->
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUAntiVehicleVehicleTech3_FX" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED DISGUISED">
+					<Model
+						Name="AUAntiVehicleVehicleTech3_FX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED DISGUISED">
+					<Model
+						Name="AUAntiVehicleVehicleTech3_FX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AUAntiVehicleVehicleTech3_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUAntiVehicleVehicleTech3_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>						
+
+<!-- Draw Shield -->
+			 
+			<ScriptedModelDraw
+				id="ModuleTag_ShieldDraw"
+				NoRotate="true"
+				OkToChangeModelColor="false">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP USER_6">
+					<Model Name="EXCloakingField" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PARALYZED USER_6">
+					<Model Name="EXCloakingField" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6">
+					<Model Name="EXCloakingField" />
+				</ModelConditionState>
+				<!-- no mirage when damaged. -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model Name="" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					StateName="STATE_NoField"
+					Flags="START_FRAME_FIRST">
+					<Animation
+					AnimationName="EXCloakingField"
+					AnimationMode="ONCE" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Field" then
+						CurDrawableSetTransitionAnimState("TRANS_FromField")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6 AFFECTED_BY_EMP"
+					StateName="STATE_Field">
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Field" then
+						CurDrawableSetTransitionAnimState("TRANS_FromField")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6 PARALYZED"
+					StateName="STATE_Field">
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Field" then
+						CurDrawableSetTransitionAnimState("TRANS_FromField")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6"
+					StateName="STATE_Field">
+					<Animation
+						AnimationName="EXCloakingField"
+						AnimationMode="ONCE" />
+						<!-- <FXEvent Effect="FX_ALL_MirageFieldStart" FireWhenSkipped="true" /> -->
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_FromField" >
+					<Animation
+						AnimationName="EXCloakingField"
+						AnimationMode="ONCE_BACKWARDS" />
+						<!-- <FXEvent Effect="FX_ALL_MirageFieldStart" FireWhenSkipped="true" /> -->
+				</AnimationState>
+		</ScriptedModelDraw>
+
+      <LaserDraw
+				id="ModuleTag_LaserDrawA"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="0"
+				WeaponSlotID="1"
+				LaserStateID="201">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+      <LaserDraw
+				id="ModuleTag_LaserDrawA_Vet"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="25"
+				WeaponSlotID="1"
+				LaserStateID="202">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlliedPrismBeam_Vet</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+      <LaserDraw
+				id="ModuleTag_LaserDrawB"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="0"
+				WeaponSlotID="2"
+				LaserStateID="203">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+      <LaserDraw
+				id="ModuleTag_LaserDrawB_Vet"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="25"
+				WeaponSlotID="2"
+				LaserStateID="204">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlliedPrismBeam_Vet</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+      <LaserDraw
+				id="ModuleTag_LaserDrawC"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="0"
+				WeaponSlotID="3"
+				LaserStateID="205">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+      <LaserDraw
+				id="ModuleTag_LaserDrawC_Vet"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="25"
+				WeaponSlotID="3"
+				LaserStateID="206">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlliedPrismBeam_Vet</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+      <LaserDraw
+				id="ModuleTag_LaserDrawD"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="0"
+				WeaponSlotID="4"
+				LaserStateID="207">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+      <LaserDraw
+				id="ModuleTag_LaserDrawD_Vet"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="25"
+				WeaponSlotID="4"
+				LaserStateID="208">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlliedPrismBeam_Vet</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+      <LaserDraw
+				id="ModuleTag_LaserDrawE"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="0"
+				WeaponSlotID="5"
+				LaserStateID="209">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+      <LaserDraw
+				id="ModuleTag_LaserDrawE_Vet"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="25"
+				WeaponSlotID="5"
+				LaserStateID="210">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlliedPrismBeam_Vet</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+      <LaserDraw
+				id="ModuleTag_LaserDrawF"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="0"
+				WeaponSlotID="6"
+				LaserStateID="211">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+      <LaserDraw
+				id="ModuleTag_LaserDrawF_Vet"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="25"
+				WeaponSlotID="6"
+				LaserStateID="212">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlliedPrismBeam_Vet</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+      <LaserDraw
+				id="ModuleTag_LaserDrawG"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="0"
+				WeaponSlotID="7"
+				LaserStateID="213">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+      <LaserDraw
+				id="ModuleTag_LaserDrawG_Vet"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="25"
+				WeaponSlotID="7"
+				LaserStateID="214">
+        <FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedPrismBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlliedPrismBeam_Vet</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+              <Value>4.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDrawTime"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="0"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".8"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				WeaponSlotID="8"
+				LaserStateID="101">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlliedFutureLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienLaser</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>4.500000</Value>
+							<Value>4.500000</Value>
+							<Value>4.500000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+        <ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_02" />
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDrawTimeVet"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="0"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".8"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				WeaponSlotID="8"
+				LaserStateID="102">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXAlliedFutureLaser</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXAlienLaserHeroic</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>9.000000</Value>
+              <Value>1.500000</Value>
+              <Value>1.500000</Value>
+            </Float>
+          </Constants>
+				</FXShader>
+        <ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_02" />
+			</LaserDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+			<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismCannonA"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismCannonAVET"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE"
+						ObjectStatus="WEAPON_UPGRADED_01"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="0d"
+						AllowsPitch="true"
+						PitchHeight="10%"
+						TurretPitchRate="20"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="2.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismCannonB"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismCannonBVET"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE"
+						ObjectStatus="WEAPON_UPGRADED_01"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="0d"
+						AllowsPitch="true"
+						PitchHeight="10%"
+						TurretPitchRate="20"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="2.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="3">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismCannonC"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismCannonCVET"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE"
+						ObjectStatus="WEAPON_UPGRADED_01"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="0d"
+						AllowsPitch="true"
+						PitchHeight="10%"
+						TurretPitchRate="20"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="2.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="4">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismCannonD"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismCannonDVET"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE"
+						ObjectStatus="WEAPON_UPGRADED_01"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="0d"
+						AllowsPitch="true"
+						PitchHeight="10%"
+						TurretPitchRate="20"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="2.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="5">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismCannonE"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismCannonEVET"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE"
+						ObjectStatus="WEAPON_UPGRADED_01"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="0d"
+						AllowsPitch="true"
+						PitchHeight="10%"
+						TurretPitchRate="20"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="2.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="6">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismCannonF"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismCannonFVET"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE"
+						ObjectStatus="WEAPON_UPGRADED_01"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="0d"
+						AllowsPitch="true"
+						PitchHeight="10%"
+						TurretPitchRate="20"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="2.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="7">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismCannonG"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismCannonGVET"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE"
+						ObjectStatus="WEAPON_UPGRADED_01"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="0d"
+						AllowsPitch="true"
+						PitchHeight="10%"
+						TurretPitchRate="20"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="2.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="8">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismtime"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_01"
+						ObjectStatus="GENERIC_TOGGLE_STATE"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedfprtressPrismtimeVet"
+						ObjectStatus="GENERIC_TOGGLE_STATE WEAPON_UPGRADED_01"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="0d"
+						AllowsPitch="true"
+						PitchHeight="10%"
+						TurretPitchRate="20"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="2.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+      <LaserState
+		id="ModuleTag_LaserStateA"
+        LaserId="201"
+        OriginBoneName="FX_WEAPONA">
+        <LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+      </LaserState>
+      <LaserState
+		id="ModuleTag_LaserStateB"
+        LaserId="203"
+        OriginBoneName="FX_WEAPONB">
+        <LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+      </LaserState>
+      <LaserState
+		id="ModuleTag_LaserStateC"
+        LaserId="205"
+        OriginBoneName="FX_WEAPONC">
+        <LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+      </LaserState>
+      <LaserState
+		id="ModuleTag_LaserStateD"
+        LaserId="207"
+        OriginBoneName="FX_WEAPOND">
+        <LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+      </LaserState>
+      <LaserState
+		id="ModuleTag_LaserStateE"
+        LaserId="209"
+        OriginBoneName="FX_WEAPONE">
+        <LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+      </LaserState>
+      <LaserState
+		id="ModuleTag_LaserStateF"
+        LaserId="211"
+        OriginBoneName="FX_WEAPONF">
+        <LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+      </LaserState>
+      <LaserState
+		id="ModuleTag_LaserStateG"
+        LaserId="213"
+        OriginBoneName="FX_WEAPONG">
+        <LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+      </LaserState>
+      <!-- VETERAN -->
+      <LaserState
+		id="ModuleTag_LaserStateA_Vet"
+        LaserId="202"
+        OriginBoneName="FX_WEAPONA">
+        <LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+      </LaserState>
+      <LaserState
+		id="ModuleTag_LaserStateB_Vet"
+        LaserId="204"
+        OriginBoneName="FX_WEAPONB">
+        <LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+      </LaserState>
+      <LaserState
+		id="ModuleTag_LaserStateC_Vet"
+        LaserId="206"
+        OriginBoneName="FX_WEAPONC">
+        <LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+      </LaserState>
+      <LaserState
+		id="ModuleTag_LaserStateD_Vet"
+        LaserId="208"
+        OriginBoneName="FX_WEAPOND">
+        <LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+      </LaserState>
+      <LaserState
+		id="ModuleTag_LaserStateE_Vet"
+        LaserId="210"
+        OriginBoneName="FX_WEAPONE">
+        <LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+      </LaserState>
+      <LaserState
+		id="ModuleTag_LaserStateF_Vet"
+        LaserId="212"
+        OriginBoneName="FX_WEAPONF">
+        <LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+      </LaserState>
+      <LaserState
+		id="ModuleTag_LaserStateG_Vet"
+        LaserId="214"
+        OriginBoneName="FX_WEAPONG">
+        <LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+        <LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+      </LaserState>
+	   <LaserState
+		id="ModuleTag_PrismtimeLaserState"
+        LaserId="101">
+        <LaserStartParticleSystem>AlliedCryoBeamFireGlow</LaserStartParticleSystem>
+      </LaserState>
+	   <LaserState
+		id="ModuleTag_PrismtimeLaserState"
+        LaserId="102">
+        <LaserStartParticleSystem>AlliedCryoBeamFireGlow</LaserStartParticleSystem>
+      </LaserState>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AUAntiVehicleVehicleTech3_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_AlliedChieftanDie" />
+			</FXListBehavior>
+			
+			<!-- mirage special power -->
+			<InvisibilityBroadcastUpdate
+				id="ModuleTag_BroadcastInvisibility"
+				BroadcastRange="175"
+				UpdatePeriod="0.2s"
+				AffectsSelf="false" 
+				InvisibilityTemplate="AlliedAntiVehicleVehicleTech3InvisibilityBroadcastTemplate">
+				<BroadcastObjectFilter
+					Rule="ANY"
+					Relationship="ALLIES"
+					Include="INFANTRY VEHICLE"
+					StatusBitFlagsExclude="AIRBORNE_TARGET BROADCASTING_INVISIBILITY IGNORING_STEALTH">
+					<ExcludeThing>SovietAntiGroundAircraft</ExcludeThing>
+				</BroadcastObjectFilter>
+				<ObjectStatusValidation
+					RequiredStatus="GENERIC_TOGGLE_STATE" />
+			</InvisibilityBroadcastUpdate>
+
+			<!-- executed from code. SpecialPower is just a dummy so we can check for prevention conditions -->
+			
+			<SpecialPower
+				id="ModuleTag_ToggleMortarcycle2"
+				SpecialPowerTemplate="SpecialPower_ToggleAumeltingmod"
+				UpdateModuleStartsAttack="true"/>
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ToggleMortarcycleUpdate"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				SpecialPowerTemplate="SpecialPower_ToggleAumeltingmod">
+				
+				<ToggleState
+					ObjectStatus="ANTI_GARRISON"
+					ModelConditions="USER_5"
+					EnterStateSound="SOV_MortarCycle_MortarGunToggleOffMS">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT" >
+						<StateWeapon
+							Weapon="AlliedAntiVehicleVehicleTech3PrismCannon" />
+					</SkirmishAiInfo>
+				</ToggleState>
+				<ToggleState
+					ObjectStatus="GENERIC_TOGGLE_STATE"
+					ModelConditions="WEAPONSET_TOGGLE_1"
+					EnterStateSound="SOV_MortarCycle_MortarGunToggleOnMS"
+					AttributeModifier="AttributeModifier_ReturnToBaseAAA8789879">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_WEAPON">
+						<StateWeapon
+							Weapon="AlliedfprtressPrismtime" />
+					</SkirmishAiInfo>
+				</ToggleState>
+			</ToggleStatusSpecialAbilityUpdate>
+
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<LoseHealthUpdate	
+				id="ModuleTag_RapidLaunchHealthDrain" 
+				HealthTrigger="101%"
+				DamagePerSecond="80">
+				<ObjectStatusValidation
+					RequiredStatus="GENERIC_TOGGLE_STATE"/>
+			</LoseHealthUpdate>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="DisguiseWhenIdleAIStateMachine">
+				<UnitAITargetChooserData 
+				IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="7200" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="ALL_MirageTank_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_MirageField">
+				<ModelConditionSound Sound="ALL_MirageField_StartAndEndLoop" RequiredFlags="USER_6" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_MirageFieldVoices">
+				<Override RequiredFlags="USER_6">
+					<AudioArrayVoice>
+						<AudioEntry Sound="ALL_MirageTank_VoiceMoveSpecial" AudioType="voiceMove" />
+						<AudioEntry Sound="ALL_MirageTank_VoiceSelectMirageMS" AudioType="voiceSelect" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="20.0"
+				MinorRadius="14.0"
+				Height="17.0"
+				ContactPointGeneration="VEHICLE"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="AU_KNGHT____VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="AU_KNGHT____VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="AU_KNGHT____VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="AU_KNGHT____VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="AU_KNGHT____VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="AU_KNGHT___VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="AU_KNGHT___VoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="AU_KNGHT___VoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALL_Mirage_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+			<AudioEntry
+				Sound="Tank_Land_MoveLoop"
+				AudioType="soundMoveLoop" />	
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="650"
+			ShroudClearingRange="=$STANDARD_SHROUD_CLEAR" />
+	<CrusherInfo
+			CrusherLevel="30"
+			CrushableLevel="31"
+			CrushDecelerationPercent="80%"/>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Includes>
+		<Include type="instance" source="DATA:SageXml/BaseObjects/BaseCollapsingObject.xml" />
+		<Include type="instance" source="DATA:SageXml/BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	
+	<GameObject
+		id="JapanSentinelVehicle"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_JapanSteelRonin"
+		ButtonImage="Button_JapanSteelRonin"
+		Side="Japan"
+		SubGroupPriority="305"
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="25"
+		BuildTime="0.2"
+		EnergyProduction="-25"
+		CommandSet="JapanSentinelVehicleCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT T2_UNIT NO_COLLIDE LINE_OF_SIGHT_IGNORES_BUILDINGS"
+		ThreatLevel="10"
+		WeaponCategory="GUN"
+		VoicePriority="176"
+		EditorName="JapanSentinelVehicle"
+		Description="DESC:JapanSentinelVehicle"
+		TypeDescription="TYPE:JapanSentinelVehicle">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanSentinelVehicle</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="0" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="DefaultUnitArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="DefaultLocomotorSet"
+			Locomotor="JapanSentinelVehicleLocomotor"
+			Condition="NORMAL"
+			Speed="100.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUSentinelVehicle_SKN" />
+				</ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+          <Model
+						Name="JUSentinelVehicle_SKN" />
+          <ParticleSysBone
+						BoneName="B_Flag01L"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+ 					<Texture
+						Original="JUSentinelVehicle"
+						New="JUSentinelVehicle_D" />	
+          <Model
+						Name="JUSentinelVehicle_SKN" />
+          <ParticleSysBone
+						BoneName="B_Flag01L"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="B_Flag01L"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="B_Flag01L"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+        </ModelConditionState>
+ 				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Model
+						Name="JUSentinelVehicle_DIE_SKN" />
+					<Texture
+						Original="JUSentinelVehicle"
+						New="JUSentinelVehicle_D" />		
+				</ModelConditionState>       
+				
+					<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					AllowRepeatInRandomPick="true"
+					StateName="STATE_Bored">
+					<Animation
+						AnimationName="JUSentinelVehicle_BIDA"
+						AnimationMode="ONCE"
+						AnimationPriority="100" 
+						AnimationBlendTime="15" />
+
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						<!--
+						if Prev == "STATE_Suppressed" then
+						CurDrawableSetTransitionAnimState("TRANS_fromSuppressed")
+						elseif Prev == "STATE_Parachuting" then
+						CurDrawableSetTransitionAnimState("TRANS_fromParachuting")
+						-->
+						if Prev == "STATE_Selected" then
+						CurDrawableSetTransitionAnimState("TRANS_attentionToBored")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+          ConditionsYes="AFFECTED_BY_EMP"
+					StateName="STATE_EMP">
+					<Animation
+						AnimationName="JUSentinelVehicle_BIDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="80" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Selected" then
+						CurDrawableSetTransitionAnimState("TRANS_attentionToBored")
+						end
+					</Script>
+				</AnimationState>
+				
+				<!-- default death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimationName="JUSentinelVehicle_DIEA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+<!--
+        <AnimationState
+          ParseCondStateType="PARSE_NORMAL"
+          ConditionsYes="MOVING SPECIAL_POWER_SELECTED"
+          StateName="STATE_LaserWeapon">
+          <Animation
+						AnimationName="JUSentinelVehicle_XAIDA"
+						AnimationMode="LOOP" />
+        </AnimationState>
+-->
+
+			<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="COMING_OUT_OF_FACTORY">
+					<Animation
+						AnimationName="JUSentinelVehicle_XWLKA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="0"
+						Distance="50" />
+					<FXEvent
+						Frame="14"
+						FireWhenSkipped="true"
+						Effect="FX_JapanVXFP"
+						Bone="BONE05" />
+          <FXEvent
+						Frame="1"
+						FireWhenSkipped="true"
+						Effect="FX_JapanVXFP"
+						Bone="BONE02" />
+				</AnimationState>
+				
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="TURN_LEFT"
+					Flags="RANDOMSTART"
+					StateName="STATE_Moving">
+          <Animation
+						AnimationName="JUSentinelVehicle_WLKA"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="1.0"
+						AnimationSpeedFactorMax="1.0"
+						Distance="60" />
+          <FXEvent
+						Frame="14"
+						FireWhenSkipped="true"
+						Effect="FX_JapanVXFP"
+						Bone="BONE05" />
+          <FXEvent
+						Frame="1"
+						FireWhenSkipped="true"
+						Effect="FX_JapanVXFP"
+						Bone="BONE02" />
+        </AnimationState>
+
+        <AnimationState
+          ParseCondStateType="PARSE_NORMAL"
+          ConditionsYes="TURN_RIGHT"
+          Flags="RANDOMSTART"
+          StateName="STATE_Moving">
+          <Animation
+						AnimationName="JUSentinelVehicle_WLKA"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="1.0"
+						AnimationSpeedFactorMax="1.0"
+						Distance="60" />
+          <FXEvent
+						Frame="14"
+						FireWhenSkipped="true"
+						Effect="FX_JapanVXFP"
+						Bone="BONE05" />
+          <FXEvent
+						Frame="1"
+						FireWhenSkipped="true"
+						Effect="FX_JapanVXFP"
+						Bone="BONE02" />
+        </AnimationState>
+
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART"
+					StateName="STATE_Moving">
+					<Animation
+						AnimationName="JUSentinelVehicle_RUNA"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="1.0"
+						AnimationSpeedFactorMax="1.0"
+						Distance="80" />
+          <FXEvent
+						Frame="18"
+						FireWhenSkipped="true"
+						Effect="FX_JapanVXFP"
+						Bone="BONE05" />
+          <FXEvent
+						Frame="3"
+						FireWhenSkipped="true"
+						Effect="FX_JapanVXFP"
+						Bone="BONE02" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SPECIAL_WEAPON_ONE"
+          StateName="STATE_SpecialAttack">
+					<Animation
+						AnimationName="JUSentinelVehicle_XATKA"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="1.0s"/>
+          <ParticleSysBone
+						BoneName="FX_Eye01"
+						FXParticleSystemTemplate="Japan_Spear_Sec_Eyes"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FX_Eye02"
+						FXParticleSystemTemplate="Japan_Spear_Sec_Eyes"
+						FollowBone="true" />
+
+          <ParticleSysBone
+						BoneName="FX_MouthCorner01"
+						FXParticleSystemTemplate="Japan_Spear_Sec_Mouth"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FX_MouthCorner02"
+						FXParticleSystemTemplate="Japan_Spear_Sec_Mouth"
+						FollowBone="true" />
+				</AnimationState>
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_A">
+					<Animation
+						AnimationName="JUSentinelVehicle_ATKA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ATTACKING">
+					<Animation
+						AnimationName="JUSentinelVehicle_AIDA"
+						AnimationMode="LOOP"
+            AnimationBlendTime="15"/>
+				</AnimationState>
+
+        <AnimationState
+          ParseCondStateType="PARSE_NORMAL"
+          ConditionsYes="SELECTED SPECIAL_WEAPON_ONE"
+          StateName="STATE_Special">
+          <Animation
+						AnimationName="JUSentinelVehicle_XAIDA"
+						AnimationMode="LOOP" />
+          <ParticleSysBone
+						BoneName="FX_Eye01"
+						FXParticleSystemTemplate="Japan_Spear_Sec_Eyes"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FX_Eye02"
+						FXParticleSystemTemplate="Japan_Spear_Sec_Eyes"
+						FollowBone="true" />
+
+          <ParticleSysBone
+						BoneName="FX_MouthCorner01"
+						FXParticleSystemTemplate="Japan_Spear_Sec_Mouth"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FX_MouthCorner02"
+						FXParticleSystemTemplate="Japan_Spear_Sec_Mouth"
+						FollowBone="true" />
+          <Script>
+            Prev = CurDrawablePrevAnimationState()
+            if Prev ~= "STATE_Special" and Prev ~= "TRANS_AttentionToSpecial" then
+            CurDrawableSetTransitionAnimState("TRANS_AttentionToSpecial")
+            end
+          </Script>          
+        </AnimationState>
+        
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_Selected">
+					<Animation
+						AnimationName="JUSentinelVehicle_AIDA"
+						AnimationMode="ONCE"
+						AnimationPriority="100"
+						AnimationBlendTime="15"
+						AnimationMustCompleteBlend="true" />
+						<Script>
+              Prev = CurDrawablePrevAnimationState()
+              if Prev == "STATE_Bored" or Prev == "State_EMP" then
+              CurDrawableSetTransitionAnimState("TRANS_boredToAttention")
+              elseif Prev == "STATE_SpecialAttack" then
+              CurDrawableSetTransitionAnimState("TRANS_SpecialAttackToAttention")
+              end
+            </Script>
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_boredToAttention">
+					<Animation
+						AnimationName="JUSentinelVehicle_BATA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_attentionToBored">
+					<Animation
+						AnimationName="JUSentinelVehicle_ABTA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+        <AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_AttentionToSpecial">
+          <Animation
+						AnimationName="JUSentinelVehicle_SWPA"
+						AnimationMode="ONCE" />
+        </AnimationState>
+        
+        <AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SpecialAttackToAttention">
+          <Animation
+						AnimationName="JUSentinelVehicle_XATKB"
+						AnimationMode="ONCE" />
+        </AnimationState>
+      </ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT"
+					AllowInterleavedFiring="true">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanSentinelVehicleLaserGlaiveWeapon"
+						ForbiddenObjectStatus="HEALTH_PERCENT_100 IS_MOVING_TO_RALLY_POINT"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanSentinelVehicleLaserGlaiveAntiAlliedWeapon"
+						ObjectStatus="HEALTH_PERCENT_100"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<BezierProjectile
+				id="ModuleTag_AntiStructureProjectile"
+			xai:joinAction="Replace"/>
+			<Physics
+					id="ModuleTag_Physics" />
+			<DestroyDie
+				id="ModuleTag_VacuumBombDie">
+				<DieMuxData
+					DeathTypes="SUPERNATURAL" />
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="JUSentinelVehicle_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="3s"
+				SinkRate="1.0"
+				DestructionDelay="7s">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUPERNATURAL" />
+			</SlowDeath>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+			</FXListBehavior>
+			<FreefallUpdate
+				id="ModuleTag_FreefallUpdate"
+				ModelConditionsToSet="STUNNED_FLAILING"
+				InitialVelocity="5"
+				Acceleration="1"
+				TerminalVelocity="15"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					ReacquireDelay="0.4s"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1250" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="JAP_SteelRonin_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<AnimationSoundClientBehavior id="ModuleTag_AnimationSounds">
+				<Sound Sound="JAP_Sentinel_Footstep" Animation="JUSentinelVehicle_RUNA" Frame="3 18" />
+				<Sound Sound="JAP_Sentinel_Footstep" Animation="JUSentinelVehicle_WLKA" Frame="0 15" />
+				<Sound Sound="JAP_Sentinel_Footstep" Animation="JUSentinelVehicle_XWLKA" Frame="0 15" />
+				<Sound Sound="JAP_Sentinel_Footstep" Animation="JUSentinelVehicle_XATKA" Frame="18 45" />
+				<Sound Sound="JAP_Sentinel_Footstep" Animation="JUSentinelVehicle_XATKB" Frame="20" />
+				<Sound Sound="JAP_Sentinel_Footstep" Animation="JUSentinelVehicle_XBATA" Frame="10 20" />
+				<Sound Sound="JAP_Sentinel_Footstep" Animation="JUSentinelVehicle_BATA" Frame="11 21" />
+				<Sound Sound="JAP_Sentinel_Footstep" Animation="JUSentinelVehicle_ATKA" Frame="18" />
+				<Sound Sound="JAP_Sentinel_Footstep" Animation="JUSentinelVehicle_ATKB" Frame="18" />
+				<Sound Sound="JAP_Sentinel_Footstep" Animation="JUSentinelVehicle_ABTA" Frame="15 30" />
+				<Sound Sound="JAP_Sentinel_Footstep" Animation="JUSentinelVehicle_DIEA" Frame="8" />
+				<Sound Sound="JAP_Sentinel_DieImpact" Animation="JUSentinelVehicle_DIEA" Frame="50" />
+				<Sound Sound="JAP_Sentinel_SelectAnimation1" Animation="JUSentinelVehicle_BATA" Frame="1" />
+				<!-- <Sound Sound="JAP_Sentinel_SelectAnimation2" Animation="JUSentinelVehicle_ATKA" Frame="1" /> -->
+			</AnimationSoundClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="20.0"
+				Height="50.0"
+				ContactPointGeneration="INFANTRY"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_SteelRonin_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="JAP_SteelRonin_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_SteelRonin_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_SteelRonin_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="JAP_SteelRonin_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="JAP_SteelRonin_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="JAP_SteelRonin_VoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="JAP_SteelRonin_VoiceAttackGlaiveBlast" Name="voiceGlaiveBlast" />
+		</AudioArrayVoice>
+		<VisionInfo
+			VisionRange="200"
+			ShroudClearingRange="500" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="50">
+		</CrusherInfo>
+	</GameObject>
+	
+	<GameObject
+		id="JapanSentinelVehicle_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="JapanSentinelVehicle_Collapse">
+		<Draws>
+			<DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="30"
+			Explodiness="4" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUSentinelVehicle_COL" />
+					<Texture
+						Original="JUSentinelVehicle"
+						New="JUSentinelVehicle_D" />
+
+
+				<xi:include
+					href="DATA:SageXml/Includes/VehicleCollapseParticles/JapanVehicleCollapseParticles.xml"
+					xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanVehicleCollapseParticles/child::*)" />
+					
+        
+				</ModelConditionState>
+
+				<BoneVolumes>
+
+<BoneVolume BoneName="Bone_D_01" Mass="1658" Spinniness="5.0" ContactTag="VEHICLE" >
+	<Box  HalfSizeX="2.883" HalfSizeY="3.236" HalfSizeZ="8.886" >
+		<Translation x="-2.096" y="-11.289" z="22.647" />
+		<Rotation x="-0.157798" y="0.0" z="0.0" w="0.987471" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_02" Mass="984" Spinniness="5.0" ContactTag="VEHICLE" >
+	<Box  HalfSizeX="2.216" HalfSizeY="2.561" HalfSizeZ="8.676" >
+		<Translation x="-6.054" y="-5.878" z="44.822" />
+		<Rotation x="0.0937074" y="0.0" z="0.0" w="0.9956" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_03" Mass="377" Spinniness="5.0" ContactTag="VEHICLE" >
+	<Box  HalfSizeX="2.388" HalfSizeY="2.781" HalfSizeZ="2.841" >
+		<Translation x="-1.064" y="-0.03" z="38.078" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_04" Mass="449" Spinniness="5.0" ContactTag="VEHICLE" >
+	<Box  HalfSizeX="2.967" HalfSizeY="1.757" HalfSizeZ="4.316" >
+		<Translation x="-2.091" y="11.346" z="34.183" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_05" Mass="299" Spinniness="5.0" ContactTag="VEHICLE" >
+	<Box  HalfSizeX="2.269" HalfSizeY="1.625" HalfSizeZ="4.057" >
+		<Translation x="7.113" y="5.049" z="37.864" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_06" Mass="333" Spinniness="5.0" ContactTag="VEHICLE" >
+	<Box  HalfSizeX="2.07" HalfSizeY="1.701" HalfSizeZ="4.73" >
+		<Translation x="-2.096" y="13.487" z="16.534" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_07" Mass="1059" Spinniness="5.0" ContactTag="VEHICLE" >
+	<Box  HalfSizeX="1.511" HalfSizeY="1.511" HalfSizeZ="23.202" >
+		<Translation x="-17.159" y="-24.508" z="25.464" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_08" Mass="1000" Spinniness="5.0" ContactTag="VEHICLE" >
+	<Box  HalfSizeX="2.216" HalfSizeY="2.601" HalfSizeZ="8.676" >
+		<Translation x="-6.054" y="5.758" z="44.822" />
+		<Rotation x="-0.0813201" y="0.0" z="0.0" w="0.996688" />
+	</Box>
+</BoneVolume>
+
+
+			</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="4s"
+			MaxLifetime="5s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1.5"
+			DestructionDelay="8s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+</GameObject>
+
+	<GameObject
+		id="JapanSentinelVehicleAI"
+		inheritFrom="JapanSentinelVehicle"
+		KindOf="-SELECTABLE">
+		<GameDependency
+			ForbiddenModelConditions="SPECIALPOWER5_READY">
+			<NeededUpgrade>AIPlayerJapanSentinelVehicle</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo
+			xai:joinAction="Replace">
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1500"/>
+		</ObjectResourceInfo>
+		<Behaviors>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="SpecialPower_JapanSentinelVehicleAIWeapon"
+					OneShot="true" />
+			</FireWeaponUpdate>
+		</Behaviors>
+	</GameObject>
+	<WeaponTemplate
+		id="SpecialPower_JapanSentinelVehicleAIWeapon"
+		RadiusDamageAffects="ALLIES"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_STRUCTURE">
+		<Nuggets>
+			<AttributeModifierNugget
+			Radius="50.0"
+			AttributeModifierName="SpecialPower_JapanSentinelVehicleAI">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Relationship="SAME_PLAYER">
+					<IncludeThing>AlliedWarFactoryAI</IncludeThing>
+				</SpecialObjectFilter>
+			</AttributeModifierNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructJapanSentinelVehicleAI">
+		<Object>JapanSentinelVehicleAI</Object>
+	</LogicCommand>
+</AssetDeclaration>

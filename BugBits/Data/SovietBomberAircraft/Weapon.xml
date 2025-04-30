@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="SovietBomberAircraftBombWeapon"
+		AttackRange="5.0"
+		RadiusDamageAffects="ENEMIES"
+		AcceptableAimDelta="360d"
+		CanFireWhileMoving="true"
+		ClipSize="1"
+		ScatterRadius="20"
+		FireSound="SOV_Kirov_BombDrop"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND"
+		ForbiddenAntiMask="ANTI_STRUCTURE"
+		UseCenterForRangeCheck="true">
+		<FiringDuration
+			MinSeconds=".1s"
+			MaxSeconds=".1s" />
+		<ClipReloadTime
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<Nuggets>
+			<ProjectileNugget
+				ProjectileTemplate="SovietBomberAircraftBombProjectile"
+				WarheadTemplate="SovietBomberAircraftBombWarhead">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+				<VeterancyProjectiles
+				  VeterancyLevel="HEROIC"
+				  ProjectileTemplate="SovietBomberAircraftBombProjectile_Veteran"/>
+			</ProjectileNugget>
+			<InformTargetNugget>
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+			</InformTargetNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="SovietBomberAircraftBombWarhead"
+		ProjectileCollidesWith="ENEMIES NEUTRAL"
+	RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+        Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND"
+		ForbiddenAntiMask="ANTI_STRUCTURE">
+		<Nuggets>
+			<DamageNugget
+				Damage="400.0"
+				Radius="50.0"
+				DamageTaperOff="0"
+				DamageType="EXPLOSIVE"
+				DeathType="NORMAL" >
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+				<DamageScalarDetails Scalar= "0%">
+					<Filter
+						Rule="ALL"
+					      Relationship="ALLIES"
+					      StatusBitFlagsExclude="HEALTH_PERCENT_100"/>
+				</DamageScalarDetails>
+				<DamageScalarDetails Scalar= "100%">
+					<Filter
+						Rule="ALL"
+					      Relationship="ALLIES"
+					      StatusBitFlags="HEALTH_PERCENT_100"/>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

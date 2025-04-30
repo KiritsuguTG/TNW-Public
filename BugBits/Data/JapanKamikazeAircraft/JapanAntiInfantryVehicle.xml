@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+
+		<Include type="all"	source="ART:AUFighterAircraft_SKN.w3x" />
+		<Include type="all"	source="ART:AUFighterAircraft_FX.w3x" />
+    <Include type="all"	source="ART:AUFighterAircraft_FP.w3x" />
+		<Include type="all"	source="ART:AUFighterAircraft_HVRA.w3x" />
+		<Include type="all" source="ART:AUFighterAircraft_MOVA.w3x" />
+		<Include type="all" source="ART:AUFighterAircraft_D.xml" />			
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include type="all"	source="ART:AUFighterAircraft_02.xml" />				
+		<Include type="all"	source="ART:AUFighterAircraft_02_D.xml" />
+		<Include type="all" source="Weapon.xml" />			
+	</Includes>
+	<GameObject
+		id="JapanAntiInfantryVehicle"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_JapanAntiInfantryVehicle_jet"
+		ButtonImage="Button_JapanAntiInfantryVehicle_jet"
+		Side="Japan"
+		SubGroupPriority="610"
+		EditorSorting="UNIT"
+		BuildTime="0.2"
+		CommandSet="AlliedFighterAircraftCommandSet"
+		EnergyProduction="-25"
+		KindOf="CAN_CAST_REFLECTIONS CAN_ATTACK SCORE AIRCRAFT VEHICLE PATH_THROUGH_EACH_OTHER LINE_OF_SIGHT_IGNORES_BUILDINGS CAN_BE_FAVORITE_UNIT SELECTABLE NO_COLLIDE"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="VEHICLE"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="MISSILE"
+		VoicePriority="148"
+		EditorName="JapanAntiInfantryVehicle"
+		Description="Desc:JapanAntiInfantryVehicle"
+		TypeDescription="Type:JapanAntiInfantryVehicle"
+		HealthBoxHeightOffset="30"
+		UnitIntro="Japan_JetTengu_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedFighterAircraft</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="DefaultUnitArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			id="AlliedFighterAircraftLocomotor"
+			Locomotor="JapanAntiAirShipTestLocomotor"
+			Condition="NORMAL"
+			Speed="200" />
+		<!-- Need ConquerMetricsOverrideDefendingAntiMask or else the TAXIING locomotor will make the AI try to build anti-ground units against this -->
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="BONE_FRONT_L BONE_REAR">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUAntiInfantryVehicleFlying_SKN" />
+					<WeaponFireFXBone
+					   WeaponSlotID="1"
+					   WeaponSlotType="PRIMARY_WEAPON"
+					   BoneName="FX_WEAPON" />
+					<WeaponLaunchBone
+					  WeaponSlotID="1"
+					  WeaponSlotType="PRIMARY_WEAPON"
+					  BoneName="FX_WEAPON" />
+				</ModelConditionState>
+<!-- UPGRADED MODEL -->
+
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="JUAntiInfantryVehicle_FP" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="JUAntiInfantryVehicleFlying_SKN" />
+					<ParticleSysBone
+					  BoneName="B_Spine"
+					  FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+					  FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUAntiInfantryVehicleFlying_SKN" />
+					<Texture
+						Original="JUAntiInfantryVehicle"
+						New="JUAntiInfantryVehicle_D" />
+					<ParticleSysBone
+								  BoneName="B_Spine"
+								  FXParticleSystemTemplate="JapanVehicleDamagedFire"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="B_Spine"
+								  FXParticleSystemTemplate="JapanVehicleDamagedLight"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="B_Spine"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="B_Spine"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+								  FollowBone="true"/>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="JUAntiInfantryVehicleFlying_IDLA"
+						AnimationMode="LOOP"/>
+				</AnimationState>
+				<AnimationState
+				    ParseCondStateType="PARSE_NORMAL"
+				    ConditionsYes="MOVING"
+				    StateName="STATE_Run"
+				    Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUAntiInfantryVehicleFlying_RUNA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10"
+						Distance="100" />
+					<ParticleSysBone
+					  BoneName="Bone_11"
+					  FXParticleSystemTemplate="JapanTenguFlyGlow"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="Bone_12"
+					  FXParticleSystemTemplate="JapanTenguFlyGlow"
+					  FollowBone="true"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+						WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiInfantryVehicleKamikaze"
+						ForbiddenObjectStatus="IS_MOVING_TO_RALLY_POINT"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<!-- gravity mult of 30 is temporary -->
+			<SpecialPower
+				id="ModuleTag_KamikazeAttack"
+				SpecialPowerTemplate="SpecialPower_JapanInterceptorKamikazeAttack"
+				AttributeModifier="AttributeModifier_KamikazeAttack"
+				AttributeModifierAffectsSelf="true"
+				UpdateModuleStartsAttack="true" />
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_KamikazeAttackUpdate"
+				SpecialWeapon="JapanAntiInfantryVehicleKamikazeMeleeAttackWeapon"
+				SpecialPowerTemplate="SpecialPower_JapanInterceptorKamikazeAttack"
+				UnpackTime="0.0s"
+				StartAbilityRange="200.0"
+				BusyForDuration="0.0s"
+				WhichSpecialWeapon="1"
+				Options="RECONSTITUTE_STORED_COMMAND BUSY_DURING_UNPACK"/>
+			<BezierProjectile
+				id="ModuleTag_AntiStructureProjectile"
+				xai:joinAction="Replace"
+				FlightPathAdjustDistPerSecond="100"
+				Flags="DETONATE_CALLS_KILL ORIENT_TO_FLIGHT_PATH USE_ATTACHPOS_ON_VICTIM"
+				FirstHeightMin="0"
+				FirstHeightMax="20"
+				SecondHeightMin="20"
+				SecondHeightMax="20"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66">
+			</BezierProjectile>
+			<Physics
+				id="ModuleTag_Physics"
+				GravityMultiplier="30" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieAir"
+				CreationList="JUAntiInfantryVehicleAirborne_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanBalloon" />
+			</FXListBehavior>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					ReacquireDelay="0.4s"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="160" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="JAP_MechaTengu_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="20.0"
+				MinorRadius="10.0"
+				Height="25.5"
+				ContactPointGeneration="VEHICLE" />
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_JetTengu_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="JAP_JetTengu_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_JetTengu_VoiceMoveWhileFlying" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_JetTengu_VoiceMoveAttackWhileFlying" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="JAP_JetTengu_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="JAP_JetTengu_VoiceSelectWhileFlyingMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="JAP_JetTengu_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="JAP_JetTengu_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_MechaTengu_MoveByLoop" AudioType="soundMoveLoop" />
+			<AudioEntry Sound="JAP_MechaTengu_MoveStart" AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="225"
+			ShroudClearingRange="=$STANDARD_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="50" />
+	</GameObject>
+
+	<GameObject
+		id="JapanAntiInfantryVehicleAI"
+		inheritFrom="JapanAntiInfantryVehicle"
+		KindOf="-SELECTABLE">
+		<GameDependency
+			ForbiddenModelConditions="SPECIALPOWER6_READY">
+			<NeededUpgrade>AIPlayerJapanAntiInfantryVehicle</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo
+			xai:joinAction="Replace">
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1000"/>
+		</ObjectResourceInfo>
+		<Behaviors>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="SpecialPower_JapanAntiInfantryVehicleAIWeapon"
+					OneShot="true" />
+			</FireWeaponUpdate>
+		</Behaviors>
+	</GameObject>
+	<WeaponTemplate
+		id="SpecialPower_JapanAntiInfantryVehicleAIWeapon"
+		RadiusDamageAffects="ALLIES"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_STRUCTURE">
+		<Nuggets>
+			<AttributeModifierNugget
+			Radius="50.0"
+			AttributeModifierName="SpecialPower_JapanAntiInfantryVehicleAI">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Relationship="SAME_PLAYER">
+					<IncludeThing>AlliedWarFactoryAI</IncludeThing>
+				</SpecialObjectFilter>
+			</AttributeModifierNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructJapanAntiInfantryVehicleAI">
+		<Object>JapanAntiInfantryVehicleAI</Object>
+	</LogicCommand>
+</AssetDeclaration>

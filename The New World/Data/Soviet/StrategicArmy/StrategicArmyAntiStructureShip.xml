@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+				type="all"
+				source="ART:Units/StrategicArmyAntiStructureShip/SAAntiStructureShip_OPEN.w3x" />
+		<Include
+				type="all"
+				source="ART:Units/StrategicArmyAntiStructureShip/SAANTISTRUCTURESHIP_ATK.w3x" />
+    <Include
+			type="all"
+			source="ART:Units/StrategicArmyAntiStructureShip/SAAntiStructureShip_SKN.w3x" />
+		<Include
+				type="all"
+				source="ART:Units/StrategicArmyAntiStructureShip/SAAntiStructureShip_COL_SKN.w3x" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="StrategicArmyAntiStructureShip"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_SAAntiStructureShip"
+		ButtonImage="Button_SAAntiStructureShip"
+		Side="Soviet"
+		SubGroupPriority="515" 
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="10"
+		BuildTime="14"
+		CommandSet="SovietAntiStructureVehicleCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE SHIP CAN_BE_FAVORITE_UNIT T2_UNIT SIEGE_WEAPON"
+		RadarPriority="UNIT"
+		ProductionQueueType="WATERCRAFT"
+		UnitCategory="VEHICLE"
+		WeaponCategory="BLAST"
+		VoicePriority="188"
+		BountyValue="250"
+		EditorName="StrategicArmyAntiStructureShip"
+		Description="Desc:StrategicArmyAntiStructureShip"
+		TypeDescription="Type:AntiStructure"
+		UnitIntro="Allied_AssaultDestroyer_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:StrategicArmyAntiStructureShip</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1400"/>
+		</ObjectResourceInfo>
+		<GameDependency
+			id="ModuleTag_GameDependency">
+				<ObjectFilter
+					Rule="NONE"
+					Relationship="ALLIES"
+					StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+						<IncludeThing>SovietTechStructure</IncludeThing>
+				</ObjectFilter>
+		</GameDependency>
+		<ArmorSet
+			Armor="BaseTankArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="SovietAntiNavyShipTech1WaterLocomotor"
+			Condition="NORMAL"
+			Speed="80" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsDpsBonusAgainstDefenses="5.0"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			ConquerMetricsOverrideAntiMask="ANTI_STRUCTURE"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="FXWEAPON01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SAANTISTRUCTURESHIP_SKN" />
+					<WeaponFireFXBone
+							WeaponSlotID="1"
+							WeaponSlotType="PRIMARY_WEAPON"
+							BoneName="FX_WEAPON_01" />
+					<WeaponLaunchBone
+							WeaponSlotID="1"
+							WeaponSlotType="PRIMARY_WEAPON"
+							BoneName="FX_WEAPON_01" />
+					<WeaponFireFXBone
+							WeaponSlotID="2"
+							WeaponSlotType="PRIMARY_WEAPON"
+							BoneName="NONE" />
+					<WeaponLaunchBone
+							WeaponSlotID="2"
+							WeaponSlotType="PRIMARY_WEAPON"
+							BoneName="NONE" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="SAANTISTRUCTURESHIP_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 DAMAGED">
+					<Model
+						Name="SAANTISTRUCTURESHIP_SKN" />
+					<Texture
+						Original="SUAntiNavyShipTech1"
+						New="SUAntiNavyShipTech12" />
+					<ParticleSysBone
+						BoneName="ARMSLOWER"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 REALLYDAMAGED">
+					<Model
+						Name="SAANTISTRUCTURESHIP_SKN" />
+					<Texture
+							Original="SUAntiStructureVehicle"
+							New="SUAntiStructureVehicle_D" />
+					<Texture
+							Original="SUAntiNavyShipTech1"
+							New="SUAntiNavyShipTech1_D" />
+					<ParticleSysBone
+							BoneName="ARMSLOWER"
+							FXParticleSystemTemplate="VehicleDamageSmoke"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="ARMSLOWER"
+							FXParticleSystemTemplate="VehicleDamageFire"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="ARMSLOWER"
+							FXParticleSystemTemplate="VehicleDamageFire02"
+							FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="SAANTISTRUCTURESHIP_SKN" />
+					<Texture
+						Original="SUAntiNavyShipTech1"
+						New="SUAntiNavyShipTech12" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SAANTISTRUCTURESHIP_SKN" />
+					<ParticleSysBone
+							BoneName="ARMSLOWER"
+							FXParticleSystemTemplate="VehicleDamageSmoke"
+							FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SAANTISTRUCTURESHIP_SKN" />
+					<Texture
+						Original="SUAntiStructureVehicle"
+						New="SUAntiStructureVehicle_D" />
+					<Texture
+						Original="SUAntiNavyShipTech1"
+						New="SUAntiNavyShipTech1_D" />
+					<ParticleSysBone
+							BoneName="ARMSLOWER"
+							FXParticleSystemTemplate="VehicleDamageSmoke"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="ARMSLOWER"
+							FXParticleSystemTemplate="VehicleDamageFire"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="ARMSLOWER"
+							FXParticleSystemTemplate="VehicleDamageFire02"
+							FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="START_FRAME_FIRST">
+					<Animation
+							AnimationName="SAANTISTRUCTURESHIP_ATK"
+							AnimationMode="LOOP"/>
+				</AnimationState>
+				<AnimationState
+						ParseCondStateType="PARSE_NORMAL"
+						ConditionsYes="USING_WEAPON_A"
+						Flags="START_FRAME_LAST">
+					<Animation
+							AnimationName="SAANTISTRUCTURESHIP_OPEN"
+							AnimationMode="ONCE_BACKWARDS"
+							AnimationAbsoluteTime="2.0s"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+					id="ModuleTag_ParticlesDraw" >
+				<ModelConditionState
+						ParseCondStateType="PARSE_DEFAULT">
+					<Model
+							Name="FXInvisBone" />
+				</ModelConditionState>
+
+				<AnimationState
+						ParseCondStateType="PARSE_DEFAULT"/>
+
+				<AnimationState
+						ParseCondStateType="PARSE_NORMAL"
+						ConditionsYes="OVER_WATER MOVING">
+					<ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="StingrayWaterWake"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="SovietAntiNavyShipFroth"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="SovietAntiNavyShipWaterMist"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="JapanAntiVehicleVehicleWaterMistBody"
+							FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+						ParseCondStateType="PARSE_NORMAL"
+						ConditionsYes="OVER_WATER">
+					<ParticleSysBone
+							BoneName="None"
+							FXParticleSystemTemplate="SmallShipWakeIdle"
+							FollowBone="false" />
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyAntiStructureShipRocket"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE "/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyAntiStructureShipUpgradeRocket"
+						ObjectStatus="WEAPON_UPGRADED_01"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietAntiStructureVehicleMIRVRocket"
+						ObjectStatus="TRANSFORMATION_TOGGLE_STATE"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<SpecialPower
+				id="ModuleTag_MIRV"
+				SpecialPowerTemplate="SpecialPower_MIRV"
+				UpdateModuleStartsAttack="true" />
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ToggleMIRV"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				SpecialPowerTemplate="SpecialPower_MIRV">
+				<ToggleState EnterStateSound="SOV_V4MissileLauncher_MIRVoffMS">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT">
+					</SkirmishAiInfo>
+				</ToggleState>
+				<ToggleState
+					ObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+					EnterStateSound="SOV_V4MissileLauncher_MIRVonMS"
+					ModelConditions="WEAPONSTATE_ONE">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_AOE_ATTACK">
+						<StateWeapon
+							Weapon="SovietAntiStructureVehicleMIRVLauncher"
+							AoeAttackEmanationLocation="EMANATE_FROM_TARGET"
+							AffectsFriendlies="true"
+							AffectsSelf="true"
+							TotalValueGreaterThan="5" />
+						<!-- Note: TotalValueGreaterThan="5" means that there must be at least 5 more enemies than friends in the Area of Effect -->
+					</SkirmishAiInfo>
+				</ToggleState>
+			</ToggleStatusSpecialAbilityUpdate>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="StrategicArmyAntiStructureShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<Physics
+				id="ModuleTag_Physics" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+					id="ModuleTag_FXList">
+				<DieMuxData
+						DeathTypes="ALL"
+						DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+						Index="onDeath"
+						FX="FX_SovietShipVehicleDie" />
+			</FXListBehavior>
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>SovietUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech2/child::*)" />
+			<!-- Japan NavalPower -->
+			<xi:include
+				href="DATA:Includes/JapanNavalPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanNavalPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+					CanPickDynamicTargets="true"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="500" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="SOV_AntiNavy_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_VoiceSelectShield">
+				<Override RequiredFlags="WEAPONSTATE_TWO">
+					<AudioArrayVoice>
+						<AudioEntry Sound="SOV_AntiNavy_VoiceSelectSpecial" AudioType="voiceSelect" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="28"
+				MinorRadius="12"
+				Height="22"
+				ContactPointGeneration="VEHICLE"/>
+	</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="SOV_AntiNavy_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SOV_AntiNavy_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="SOV_AntiNavy_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="SOV_AntiNavy_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="SOV_AntiNavy_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="SOV_AntiNavy_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="SOV_AntiNavy_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="SOV_AntiNavy_VoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="SOV_Stingray_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="SOV_Bullfrog_MoveLoopWaterMS"
+				AudioType="soundAmbient" />
+			<AudioEntry
+				Sound="SOV_Stingray_MoveLoopWaterMS"
+				AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="750"
+			ShroudClearingRange="=$ADVANCE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="1"
+			CrushableLevel="30"
+			CrushDecelerationPercent="50%"
+			CrushWeapon="SovietCrushWeapon"
+			CrushEqualLevelProps="true">
+		</CrusherInfo>
+	</GameObject>
+</AssetDeclaration>

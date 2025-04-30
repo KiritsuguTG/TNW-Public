@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+<!-- aka Aircraft Carrier -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:Units/EUAntiStructureShip/AUBattleShip_FX.w3x" />
+		<Include type="all" source="ART:Units/EUAntiStructureShip/AUBattleShip_SKN.w3x" />
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- A.k.a. Aircraft Carrier -->
+	<GameObject
+		id="EUAntiStructureShip"
+		inheritFrom="BaseVehicle"
+		EnergyBonus="100"
+		Side="Allies"
+		SubGroupPriority="550"
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="50"
+		BuildTime="25"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT SHIP SIEGE_WEAPON T3_UNIT"
+		RadarPriority="UNIT"
+		ProductionQueueType="WATERCRAFT"
+		UnitCategory="VEHICLE"
+		WeaponCategory="BLAST"
+		VoicePriority="188"
+		BountyValue="350"
+		SelectPortrait="Portrait_EUAntiStructureShip"
+		ButtonImage="Button_EUAntiStructureShip"
+		CommandSet="EUAntiStructureShipCommandSet"
+		EditorName="EUAntiStructureShip"
+		TypeDescription="Type:AntiStructure"
+		Description="Desc:EUAntiStructureShip">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:EUAntiStructureShip</DisplayName>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_AlliedTech3</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="2500"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="AntiStructureShipArmor"
+			DamageFX="VehicleDamageFX"/>
+		<LocomotorSet
+			id="AlliedAntiStructureShipWaterLocomotor"
+			Locomotor="AlliedAntiStructureShipWaterLocomotor"
+			Condition="NORMAL"
+			Speed="55.0" />
+		<LocomotorSet
+			id="AlliedAntiStructureShipWaterLocomotor_LeavingFactory"
+			Locomotor="AlliedAntiStructureShipWaterLocomotor_LeavingFactory"
+			Condition="EXITING_PRODUCTION_STRUCTURE"
+			Speed="55.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			ConquerMetricsDpsBonusAgainstDefenses="5.0"
+			OutOfRangePenalty="3.0"
+			ConquerMetricsOverrideAntiMask="ANTI_STRUCTURE"
+			ConquerMetricsOverrideForbiddenAntiMask="ANTI_SUBMERGED"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.5"
+				MaxRecoilDistance="6.0"
+				RecoilDamping="5.0"
+				RecoilSettleSpeed="3.0">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="AUBATTLESHIP_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="TURRETA_BARREL_" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="TURRETA_BARREL_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="TURRETA_BARREL_" />
+					<Turret
+						TurretNameKey="TURRETA"
+						TurretPitch="TURRETAPITCH"
+						TurretID="1" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="TURRETB_BARREL_" />
+					<WeaponRecoilBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="TURRETB_BARREL_" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="TURRETB_BARREL_" />
+					<Turret
+						TurretNameKey="TURRETB"
+						TurretPitch="TURRETBPITCH"
+						TurretID="2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_2">
+					<Model
+						Name="AUBATTLESHIP_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="AUAntiNavyShipTech12_D" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="AUBATTLESHIP_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="AUAntiNavyShipTech12" />
+        </ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUBATTLESHIP_SKN" />
+					<Texture
+						Original="AUAntiNavyShipTech1"
+						New="AUAntiNavyShipTech1_D" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<!-- DRAW PARTICLES -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUBATTLESHIP_FX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AUBATTLESHIP_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="AlliesShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE02"
+						FXParticleSystemTemplate="AlliesShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE05"
+						FXParticleSystemTemplate="AlliesShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE08"
+						FXParticleSystemTemplate="AlliesShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE08"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUBATTLESHIP_FX" />
+					<ParticleSysBone
+					  BoneName="FX_BONE01"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE01"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE02"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE02"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE03"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE03"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE04"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE04"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE05"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE05"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE05"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE06"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE06"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE06"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE07"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE07"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE07"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE08"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE08"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE08"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"/>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="false" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="SUAntiStructureShipWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="AlliedAircraftCarrierFroth"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="AlliedAircraftCarrierWaterMist"
+						FollowBone="true" />
+				</AnimationState>								
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUAntiStructureShipWeapon"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_02"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUAntiStructureShipParticleWeapon"
+						ObjectStatus="WEAPON_UPGRADED_02"/>
+					<TurretSettings
+						MaxDeflectionClockwise="120d"
+						MaxDeflectionAntiClockwise="120d"
+						TurretTurnRate="90"
+						MinIdleScanTime="0.0s"
+						MaxIdleScanTime="0.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="=$MEDIUM_IDLE_SCAN_DELAY"/>
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotTurret ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUAntiStructureShipWeapon"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_02"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="EUAntiStructureShipParticleWeapon"
+						ObjectStatus="WEAPON_UPGRADED_02"/>
+					<TurretSettings
+						MaxDeflectionClockwise="120d"
+						MaxDeflectionAntiClockwise="120d"
+						TurretTurnRate="90"
+						MinIdleScanTime="0.0s"
+						MaxIdleScanTime="0.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0">
+						<TurretAITargetChooserData
+							CanPickDynamicTargets="true"
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="=$MEDIUM_IDLE_SCAN_DELAY"/>
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_AlliedCarrierDie" />
+				<Event
+					Index="onDeath"
+					FX="FX_LargeBuildingDieExplosionRumble" />
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="EUAntiStructureShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieByTorpedo"
+				CreationList="EUAntiStructureShip_TorpedoDie_OCL">
+				<DieMuxData
+					DeathTypes="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieNavy"
+				CreationList="EUAntiStructureShip_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieByTorpedoNavy"
+				CreationList="EUAntiStructureShip_UpgradeTorpedoDie_OCL">
+				<DieMuxData
+					DeathTypes="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieFreeze"
+				CreationList="EUAntiStructureShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="UNDER_FROZEN"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieFreezeNavy"
+				CreationList="EUAntiStructureShip_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="UNDER_FROZEN"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSky"
+				CreationList="EUAntiStructureShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSkyNavy"
+				CreationList="EUAntiStructureShip_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<AutoHealBehavior
+				id="ModuleTag_ActiveHeal"
+				InitiallyActive="true"
+				HealOnlyIfNotInCombat="false"
+				HealOnlyIfNotUnderAttack="false"
+				StartHealingDelay="0s"
+				HealingAmount="10"
+				HealingDelay="0.4s">
+				<ObjectStatusValidation
+					RequiredStatus="GENERIC_TOGGLE_STATE" />
+			</AutoHealBehavior>
+			<ActivateModuleSpecialPower
+			id="ModuleTag_SpecialPower"
+			SpecialPowerTemplate="SpecialPower_HealthWakeShip"
+			UpdateModuleStartsAttack="true"
+			AttributeModifier="AttributeModifier_HealthWakeShip"
+			AttributeModifierAffectsSelf="true">
+				<Modules
+					ModuleId="ModuleTag_ActiveHeal"
+					TriggerAtTargetPosition="false"
+					TriggerType="SELF_POSITION" />
+			</ActivateModuleSpecialPower>
+			<SpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_HealthWakeShip"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				TriggerSound="ALL_PlatRepairSelf_VoiceRepair"/>
+			<AttributeModifierUpgrade
+				id="ModuleTag_AlliedUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_02">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<!-- High Technology  -->
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech3.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech3/child::*)" />
+			<!-- Japan NavalPower -->
+			<xi:include
+				href="DATA:Includes/JapanNavalPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanNavalPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="false"
+					CanChaseAttack="false"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1800" />
+		</Body>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="62.6467"
+				MinorRadius="18.3739"
+				Height="33.3832"
+				ContactPointGeneration="VEHICLE">
+				<Offset x="-5.35986" y="0.220289" z="-9.87173"/>
+			</Shape>
+		</Geometry>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="EU_BattleShip_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<AudioArrayVoice>
+			<AudioEntry Sound="EU_BattleShip_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="EU_BattleShip_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="EU_BattleShip_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="EU_BattleShip_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="EU_BattleShip_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="EU_BattleShip_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="EU_BattleShip_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="EU_BattleShip_VoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALL_AircraftCarrier_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="Ship_Large_MoveLoopWater"
+				AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="1250"
+			ShroudClearingRange="=$SIEGE_SHIP_SHROUD_CLEAR" />
+		<CrusherInfo
+			CrusherLevel="20"
+			CrushEqualLevelProps="true"
+			CrushableLevel="30"
+			CrushDecelerationPercent="50%"
+			CrushWeapon="SovietCrushWeapon"/>
+	</GameObject>
+	<GameObject
+	  id="EUAntiStructureShip_Crate"
+	  inheritFrom="EUAntiStructureShip"
+	  KindOf="+TIBERIUM_BASED"
+	  EditorName="EUAntiStructureShip_Crate">
+		<EquivalentTo>EUAntiStructureShip</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

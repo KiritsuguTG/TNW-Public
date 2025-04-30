@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 		
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+        id="UnitUpgradeToHeroic"
+        inheritFrom="BaseObject"
+        Side="Neutral"
+        EditorSorting="SYSTEM"
+        KindOf="STRUCTURE NOT_AUTOACQUIRABLE AUTO_ACQUIRABLE_BY_AI COVER IMMOBILE IGNORE_FOR_VICTORY RESIST_EMP DONT_DESTROY_IF_ON_BRIDGE NO_COLLIDE IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+        EditorName="UprisingMoney"
+        Description="Desc:RangBu"
+        TypeDescription="Type:RangBu"
+        MaxSimultaneousOfType="1">
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+            Armor="InvulnerableArmor"/>
+		<Behaviors>
+			<DestroyDie
+                id="ModuleTag_Die">
+				<DieMuxData
+                    DeathTypes="ALL"/>
+			</DestroyDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="0.06s"
+				MaxLifetime="0.06s" />
+			<GrantUpgradeCreate
+				id="ModuleTag_Upgrade_UnitUpgrade"
+				UpgradeToGrant="PlayerUnitUpgradeToHeroic"/>
+			<UpgradeDie
+				id="ModuleTag_RemovePlayerUnitUpgradeToHeroic"
+				UpgradeId="PlayerUnitUpgradeToHeroic">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</UpgradeDie>
+		</Behaviors>
+		<CrusherInfo
+            id="id_CrusherInfo"
+            CrusherLevel="0"
+            CrushableLevel="100">
+		</CrusherInfo>
+		<AI>
+			<AIUpdate
+                id="ModuleTag_AI"
+                StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+                id="ModuleTag_Body"/>
+		</Body>
+		<ClientUpdates>
+			<EvaAnnounceClientCreate
+				id="UprisingDetected"
+		  AnnouncementEventEnemy="EnemyRedAlertActivated"
+		  AnnouncementEventAlly="AllyRedAlertActivated"
+		  AnnouncementEventOwner="OwnerRedAlertActivated"
+		  UseObjectsPosition="false"/>
+		</ClientUpdates>
+		<VisionInfo
+            VisionRange="0"
+            ShroudClearingRange="0" />
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,1440 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+		<Includes>
+		<Include type="all" source="ART:Units/Giga-Fortress/JUFORTRESSSHIP_COL.NEWSKIN.w3x" />
+		<Include type="all" source="ART:Units/Giga-Fortress/JUFORTRESSSHIP_COL.OBBOX01.w3x" />
+		<Include type="all" source="ART:Units/Giga-Fortress/JUFORTRESSSHIP_COL_CTR.w3x" />
+		<Include type="all" source="ART:Units/Giga-Fortress/JUFORTRESSSHIP_COL_HRC.w3x" />
+		<Include type="all" source="ART:Units/Giga-Fortress/JUFORTRESSSHIPHEAD_COL.NEWSKIN.w3x" />
+		<Include type="all" source="ART:Units/Giga-Fortress/JUFORTRESSSHIPHEAD_COL.OBBOX01.w3x" />
+		<Include type="all" source="ART:Units/Giga-Fortress/JUFORTRESSSHIPHEAD_COL_CTR.w3x" />
+		<Include type="all" source="ART:Units/Giga-Fortress/JUFORTRESSSHIPHEAD_COL_HRC.w3x" />
+		<Include type="instance" source="DATA:SageXml/BaseObjects/BaseCollapsingObject.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="JapanFortressShip_Collapse"
+		inheritFrom="BaseCollapsingObject"
+		EditorName="JapanFortressShip_Collapse"
+		Description="Desc:JapanFortressShip_Collapse">
+    <Draws>
+      <DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="INTERCOLLIDING"
+			FlingPerturbation="30"
+			Explodiness="4" >
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="JUFortressShip_COL" />
+          <Texture
+						Original="JUFortressShip"
+						New="JUFortressShip_D" />
+          <xi:include
+            href="DATA:Includes/VehicleCollapseParticles/JapanShipCollapseParticles.xml"
+            xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanShipCollapseParticles/child::*)" />
+        </ModelConditionState>
+
+        <BoneVolumes>
+
+          <BoneVolume BoneName="Bone_D_01" Mass="28491" Spinniness="0.35" ContactTag="DEBRIS" LinearDrag="0.35">
+            <Box  HalfSizeX="15.973" HalfSizeY="31.0" HalfSizeZ="2.877" >
+              <Translation x="20.948" y="-0.308" z="5.824" />
+              <Rotation x="0.0" y="0.0" z="-0.707107" w="0.707107" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_02" Mass="1538" Spinniness="3.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="9.119" HalfSizeY="2.904" HalfSizeZ="2.904" >
+              <Translation x="22.521" y="50.238" z="8.099" />
+              <Rotation x="-0.706676" y="0.0246777" z="-0.0246777" w="0.706676" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_03" Mass="1412" Spinniness="3.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="9.103" HalfSizeY="2.785" HalfSizeZ="2.785" >
+              <Translation x="-36.47" y="31.025" z="8.099" />
+              <Rotation x="-0.707107" y="0.0" z="0.0" w="0.707107" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_04" Mass="740" Spinniness="3.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="1.679" HalfSizeY="3.974" HalfSizeZ="5.546" >
+              <Translation x="14.195" y="28.655" z="6.745" />
+              <Rotation x="-0.69934" y="0.104517" z="-0.104517" w="0.69934" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_05" Mass="1413" Spinniness="3.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="9.107" HalfSizeY="2.786" HalfSizeZ="2.786" >
+              <Translation x="22.538" y="-50.191" z="8.099" />
+              <Rotation x="-0.706864" y="-0.0185099" z="0.0185099" w="0.706864" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_06" Mass="1228" Spinniness="3.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="2.318" HalfSizeY="3.296" HalfSizeZ="8.04" >
+              <Translation x="11.423" y="-8.881" z="26.466" />
+              <Rotation x="-0.805472" y="0.215826" z="-0.142852" w="0.53313" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_07" Mass="9166" Spinniness="3.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="6.376" HalfSizeY="5.016" HalfSizeZ="14.331" >
+              <Translation x="-3.655" y="0.534" z="48.373" />
+              <Rotation x="0.0" y="0.0" z="-0.75471" w="0.656059" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_08" Mass="25606" Spinniness="3.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="14.226" HalfSizeY="18.53" HalfSizeZ="4.857" >
+              <Translation x="11.631" y="-40.084" z="0.228" />
+              <Rotation x="-0.00853578" y="0.00181434" z="0.0523339" w="0.998591" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_09" Mass="878" Spinniness="3.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="4.625" HalfSizeY="2.43" HalfSizeZ="3.91" >
+              <Translation x="16.515" y="-12.35" z="11.79" />
+              <Rotation x="-0.216007" y="-0.676738" z="-0.246072" w="0.659405" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_10" Mass="1140" Spinniness="3.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="3.278" HalfSizeY="3.589" HalfSizeZ="4.845" >
+              <Translation x="-7.266" y="20.582" z="11.79" />
+              <Rotation x="-0.0059867" y="-0.0102192" z="0.119889" w="0.992717" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_11" Mass="15109" Spinniness="3.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="11.467" HalfSizeY="8.694" HalfSizeZ="7.578" >
+              <Translation x="-26.78" y="-0.996" z="9.887" />
+              <Rotation x="-0.659548" y="-0.25037" z="-0.251101" w="0.662767" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_12" Mass="15500" Spinniness="3.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="17.727" HalfSizeY="4.351" HalfSizeZ="10.048" >
+              <Translation x="-32.574" y="25.252" z="0.228" />
+              <Rotation x="-0.666548" y="0.236037" z="-0.236037" w="0.666548" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_13" Mass="920" Spinniness="3.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="3.231" HalfSizeY="2.633" HalfSizeZ="5.412" >
+              <Translation x="4.076" y="-31.941" z="6.745" />
+              <Rotation x="-0.691206" y="-0.137089" z="0.141998" w="0.695182" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_14" Mass="1044" Spinniness="3.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="2.485" HalfSizeY="2.101" HalfSizeZ="9.999" >
+              <Translation x="11.423" y="11.192" z="27.786" />
+              <Rotation x="-0.113259" y="-0.439081" z="-0.724075" w="0.519707" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_15" Mass="3100" Spinniness="3.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="5.039" HalfSizeY="7.534" HalfSizeZ="4.084" >
+              <Translation x="-35.768" y="0.0" z="-14.781" />
+              <Rotation x="-0.712255" y="0.00336067" z="0.00336064" w="0.701905" />
+            </Box>
+          </BoneVolume>
+
+        </BoneVolumes>
+		  <Lifetime
+			  Delay="18s"
+			  FadeTime="7s" />
+      </DynamicsDraw>
+    </Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="25s"
+				MaxLifetime="25s" />
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="18s"
+				SinkRate="1"
+				DestructionDelay="25s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+			</FXListBehavior>
+
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_PropBody" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="RA3VehicleExplosionMediumNoDelay" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+	<GameObject
+		id="JapanFortressShipAirborne_Collapse"
+		inheritFrom="BaseCollapsingObject"
+		EditorName="JapanFortressShipAirborne_Collapse"
+		Description="Desc:JapanFortressShipAirborne_Collapse">
+    <Draws>
+      <DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="INTERCOLLIDING"
+			FlingPerturbation="20"
+			Explodiness="3.0" >
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="JUFortressShipHead_COL" />
+          <Texture
+						Original="JUFortressShip"
+						New="JUFortressShip_D" />
+          <xi:include
+            href="DATA:Includes/VehicleCollapseParticles/JapanShipCollapseParticles.xml"
+            xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanShipCollapseParticles/child::*)" />
+
+          <ParticleSysBone
+            BoneName="FX_Weapon_GunA_01"
+            FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterFlash"
+            FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FX_Weapon_GunA_01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterFlashLight"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FX_Weapon_GunA_01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterBubbles"
+						FollowBone="true"
+						OnlyIfOnWater="true"/>
+        </ModelConditionState>
+
+        <BoneVolumes>
+
+          <BoneVolume BoneName="Bone_D_01" Mass="88230" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="6.413" HalfSizeY="4.805" HalfSizeZ="14.317" >
+              <Translation x="2.24" y="0.0" z="86.813" />
+              <Rotation x="0.0" y="0.0" z="-0.66262" w="0.748956" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_02" Mass="333430" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="19.98" HalfSizeY="6.096" HalfSizeZ="13.688" >
+              <Translation x="-23.942" y="29.297" z="44.638" />
+              <Rotation x="0.169986" y="0.0128038" z="-0.0378433" w="0.984636" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_03" Mass="304080" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="22.845" HalfSizeY="8.158" HalfSizeZ="8.158" >
+              <Translation x="-28.181" y="0.0" z="64.148" />
+              <Rotation x="-0.701836" y="0.0861746" z="-0.0861746" w="0.701836" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_04" Mass="316670" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="19.443" HalfSizeY="5.463" HalfSizeZ="14.907" >
+              <Translation x="-23.945" y="-29.295" z="44.638" />
+              <Rotation x="-0.157281" y="-0.00491248" z="-0.0747598" w="0.984708" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_05" Mass="174290" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="22.7" HalfSizeY="6.196" HalfSizeZ="6.196" >
+              <Translation x="-57.203" y="0.001" z="34.972" />
+              <Rotation x="-0.705384" y="0.0493253" z="-0.0493253" w="0.705384" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_06" Mass="247520" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="19.901" HalfSizeY="5.35" HalfSizeZ="11.624" >
+              <Translation x="-23.41" y="17.722" z="11.176" />
+              <Rotation x="-0.470779" y="-0.0220506" z="0.0057503" w="0.881957" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_07" Mass="325140" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="21.726" HalfSizeY="11.56" HalfSizeZ="6.473" >
+              <Translation x="-22.933" y="-16.051" z="13.173" />
+              <Rotation x="-0.343177" y="0.0698202" z="-0.0734905" w="0.933785" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_08" Mass="53700" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="2.402" HalfSizeY="6.871" HalfSizeZ="16.269" >
+              <Translation x="21.399" y="0.0" z="62.712" />
+              <Rotation x="-0.696347" y="-0.105184" z="-0.0737646" w="0.706113" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_09" Mass="364380" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="8.936" HalfSizeY="13.939" HalfSizeZ="14.627" >
+              <Translation x="7.332" y="0.0" z="55.805" />
+              <Rotation x="0.0237156" y="-0.0133457" z="-0.00416357" w="0.999621" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_10" Mass="90370" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="17.718" HalfSizeY="4.543" HalfSizeZ="5.614" >
+              <Translation x="1.465" y="0.0" z="2.918" />
+              <Rotation x="-0.00871453" y="0.000456709" z="-0.0523339" w="0.998592" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_11" Mass="37900" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="4.714" HalfSizeY="8.237" HalfSizeZ="4.881" >
+              <Translation x="24.149" y="0.0" z="30.923" />
+              <Rotation x="-0.72999" y="0.0274754" z="-0.0134607" w="0.682773" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_12" Mass="360050" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="9.773" HalfSizeY="11.616" HalfSizeZ="15.858" >
+              <Translation x="8.428" y="0.0" z="30.539" />
+              <Rotation x="-0.0196334" y="-0.00268999" z="-0.0134251" w="0.999713" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_13" Mass="464600" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="8.252" HalfSizeY="16.852" HalfSizeZ="16.705" >
+              <Translation x="-13.891" y="-1.292" z="40.973" />
+              <Rotation x="0.00872626" y="-0.00822602" z="0.00291298" w="0.999924" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_14" Mass="24960" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="5.276" HalfSizeY="9.063" HalfSizeZ="2.61" >
+              <Translation x="-35.361" y="16.282" z="45.007" />
+              <Rotation x="-0.607626" y="0.0484329" z="-0.037164" w="0.791874" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_15" Mass="21900" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="3.05" HalfSizeY="8.111" HalfSizeZ="4.427" >
+              <Translation x="-35.491" y="-15.891" z="46.303" />
+              <Rotation x="-0.49954" y="0.389348" z="-0.643886" w="0.429277" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_16" Mass="15140" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="7.249" HalfSizeY="3.232" HalfSizeZ="3.232" >
+              <Translation x="-31.46" y="-12.819" z="19.542" />
+              <Rotation x="-0.89702" y="0.190667" z="-0.12322" w="0.379233" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_17" Mass="11380" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="7.06" HalfSizeY="1.876" HalfSizeZ="4.299" >
+              <Translation x="-32.556" y="13.809" z="20.063" />
+              <Rotation x="-0.424359" y="-0.254669" z="0.175029" w="0.851133" />
+            </Box>
+          </BoneVolume>
+
+        </BoneVolumes>
+        <Lifetime
+          Delay="5s"
+          FadeTime="4s" />
+      </DynamicsDraw>
+    </Draws>    
+  
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="1s"
+				MaxLifetime="1s" />
+			<SlowDeath
+				id="ModuleTag_SlowDeath"
+				SinkDelay="3.0s"
+				SinkRate="5.0"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+			</FXListBehavior>
+
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_PropBody" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_EmperorsPearl_DieImpactGroundMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+	<GameObject
+		id="JapanFortressShipAirborne_Dying"
+		EditorName="JapanFortressShipAirborne_Dying"
+		Description="Desc:JapanFortressShipAirborne_Dying"
+		KindOf="PROJECTILE INERT NO_COLLIDE UNATTACKABLE SELECTABLE">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUFortressShipHead" />
+          <Texture
+						Original="JUFortressShip"
+						New="JUFortressShip_D" />
+          <ParticleSysBone
+						BoneName="FX_Weapon_GunA_01"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_01"
+						FXParticleSystemTemplate="JapanVehicleDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+						FollowBone="true"
+						OnlyIfOnWater="true"/>
+
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_02"
+						FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+						FollowBone="true"
+						OnlyIfOnWater="true"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"
+				TumbleRandomly="true"
+				MaxXRotationVelocity="0"
+				MaxYRotationVelocity="50"
+				MaxZRotationVelocity="200"
+				KillWhenRestingOnGround="true"/>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="JUFortressShipAirborne_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+			<FireWeaponWhenDead
+				id="ModuleTag_JapanFortressShipAirborneDeathWeapon"
+				DeathWeapon="JapanFortressShipAirborneDeathWeapon"
+				InitiallyActive="true">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</FireWeaponWhenDead>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+			</FXListBehavior>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_PropBody" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_EmperorsPearl_DieStartMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="CriticalUnitUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="CriticalUnitLost" EvaType="dieOwner" />
+		</EvaEventArray>
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="300" />
+	</GameObject>
+	<GameObject
+		id="JapanFortressShipAirborne_Overwater_Collapse"
+		inheritFrom="BaseCollapsingObject"
+		EditorName="JapanFortressShipAirborne_Overwater_Collapse"
+		Description="Desc:JapanFortressShipAirborne_Overwater_Collapse">
+    <Draws>
+      <DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="INTERCOLLIDING"
+			FlingPerturbation="50"
+			Explodiness="5.0" >
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="JUFortressShipHead_COL" />
+          <Texture
+						Original="JUFortressShip"
+						New="JUFortressShip_D" />
+          <xi:include
+            href="DATA:Includes/VehicleCollapseParticles/JapanShipCollapseParticles.xml"
+            xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanShipCollapseParticles/child::*)" />
+
+          <ParticleSysBone
+            BoneName="FX_Weapon_GunA_01"
+            FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterFlash"
+            FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FX_Weapon_GunA_01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterFlashLight"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FX_Weapon_GunA_01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterBubbles"
+						FollowBone="true"
+						OnlyIfOnWater="true"/>
+        </ModelConditionState>
+
+        <BoneVolumes>
+
+          <BoneVolume BoneName="Bone_D_01" Mass="88230" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="6.413" HalfSizeY="4.805" HalfSizeZ="14.317" >
+              <Translation x="2.24" y="0.0" z="86.813" />
+              <Rotation x="0.0" y="0.0" z="-0.66262" w="0.748956" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_02" Mass="333430" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="19.98" HalfSizeY="6.096" HalfSizeZ="13.688" >
+              <Translation x="-23.942" y="29.297" z="44.638" />
+              <Rotation x="0.169986" y="0.0128038" z="-0.0378433" w="0.984636" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_03" Mass="304080" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="22.845" HalfSizeY="8.158" HalfSizeZ="8.158" >
+              <Translation x="-28.181" y="0.0" z="64.148" />
+              <Rotation x="-0.701836" y="0.0861746" z="-0.0861746" w="0.701836" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_04" Mass="316670" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="19.443" HalfSizeY="5.463" HalfSizeZ="14.907" >
+              <Translation x="-23.945" y="-29.295" z="44.638" />
+              <Rotation x="-0.157281" y="-0.00491248" z="-0.0747598" w="0.984708" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_05" Mass="174290" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="22.7" HalfSizeY="6.196" HalfSizeZ="6.196" >
+              <Translation x="-57.203" y="0.001" z="34.972" />
+              <Rotation x="-0.705384" y="0.0493253" z="-0.0493253" w="0.705384" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_06" Mass="247520" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="19.901" HalfSizeY="5.35" HalfSizeZ="11.624" >
+              <Translation x="-23.41" y="17.722" z="11.176" />
+              <Rotation x="-0.470779" y="-0.0220506" z="0.0057503" w="0.881957" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_07" Mass="325140" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="21.726" HalfSizeY="11.56" HalfSizeZ="6.473" >
+              <Translation x="-22.933" y="-16.051" z="13.173" />
+              <Rotation x="-0.343177" y="0.0698202" z="-0.0734905" w="0.933785" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_08" Mass="53700" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="2.402" HalfSizeY="6.871" HalfSizeZ="16.269" >
+              <Translation x="21.399" y="0.0" z="62.712" />
+              <Rotation x="-0.696347" y="-0.105184" z="-0.0737646" w="0.706113" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_09" Mass="364380" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="8.936" HalfSizeY="13.939" HalfSizeZ="14.627" >
+              <Translation x="7.332" y="0.0" z="55.805" />
+              <Rotation x="0.0237156" y="-0.0133457" z="-0.00416357" w="0.999621" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_10" Mass="90370" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="17.718" HalfSizeY="4.543" HalfSizeZ="5.614" >
+              <Translation x="1.465" y="0.0" z="2.918" />
+              <Rotation x="-0.00871453" y="0.000456709" z="-0.0523339" w="0.998592" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_11" Mass="37900" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="4.714" HalfSizeY="8.237" HalfSizeZ="4.881" >
+              <Translation x="24.149" y="0.0" z="30.923" />
+              <Rotation x="-0.72999" y="0.0274754" z="-0.0134607" w="0.682773" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_12" Mass="360050" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="9.773" HalfSizeY="11.616" HalfSizeZ="15.858" >
+              <Translation x="8.428" y="0.0" z="30.539" />
+              <Rotation x="-0.0196334" y="-0.00268999" z="-0.0134251" w="0.999713" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_13" Mass="464600" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="8.252" HalfSizeY="16.852" HalfSizeZ="16.705" >
+              <Translation x="-13.891" y="-1.292" z="40.973" />
+              <Rotation x="0.00872626" y="-0.00822602" z="0.00291298" w="0.999924" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_14" Mass="24960" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="5.276" HalfSizeY="9.063" HalfSizeZ="2.61" >
+              <Translation x="-35.361" y="16.282" z="45.007" />
+              <Rotation x="-0.607626" y="0.0484329" z="-0.037164" w="0.791874" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_15" Mass="21900" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="3.05" HalfSizeY="8.111" HalfSizeZ="4.427" >
+              <Translation x="-35.491" y="-15.891" z="46.303" />
+              <Rotation x="-0.49954" y="0.389348" z="-0.643886" w="0.429277" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_16" Mass="15140" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="7.249" HalfSizeY="3.232" HalfSizeZ="3.232" >
+              <Translation x="-31.46" y="-12.819" z="19.542" />
+              <Rotation x="-0.89702" y="0.190667" z="-0.12322" w="0.379233" />
+            </Box>
+          </BoneVolume>
+          <BoneVolume BoneName="Bone_D_17" Mass="11380" Spinniness="2.0" ContactTag="DEBRIS" >
+            <Box  HalfSizeX="7.06" HalfSizeY="1.876" HalfSizeZ="4.299" >
+              <Translation x="-32.556" y="13.809" z="20.063" />
+              <Rotation x="-0.424359" y="-0.254669" z="0.175029" w="0.851133" />
+            </Box>
+          </BoneVolume>
+
+        </BoneVolumes>
+        <Lifetime
+          Delay="5s"
+          FadeTime="4s" />
+      </DynamicsDraw>
+    </Draws>    
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="1s"
+				MaxLifetime="1s" />
+			<SlowDeath
+				id="ModuleTag_SlowDeath"
+				SinkDelay="3.0s"
+				SinkRate="10.0"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+			</FXListBehavior>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_PropBody" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_EmperorsPearl_DieImpactGroundMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+	<GameObject
+		id="JapanFortressShipAirborne_OverWater_Dying"
+		EditorName="JapanFortressShipAirborne_OverWater_Dying"
+		Description="Desc:JapanFortressShipAirborne_OverWater_Dying"
+		KindOf="PROJECTILE INERT NO_COLLIDE HIDE_IF_FOGGED UNATTACKABLE SELECTABLE">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUFortressShipHead" />
+          <Texture
+						Original="JUFortressShip"
+						New="JUFortressShip_D" />
+          <ParticleSysBone
+						BoneName="FX_Weapon_GunA_01"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_01"
+						FXParticleSystemTemplate="JapanVehicleDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+						FollowBone="true"
+						OnlyIfOnWater="true"/>
+
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_02"
+						FXParticleSystemTemplate="JapanVehicleDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Weapon_GunA_02"
+						FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+						FollowBone="true"
+						OnlyIfOnWater="true"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"
+				TumbleRandomly="true"
+				MaxXRotationVelocity="0"
+				MaxYRotationVelocity="50"
+				MaxZRotationVelocity="200"
+				KillWhenRestingOnGround="true"/>
+      <CreateObjectDie
+				id="ModuleTag_CreateObjectDie_OverWater"
+				CreationList="JUFortressShipAirborne_Die_OverWater_OCL">
+        <DieMuxData
+					DeathTypes="ALL"/>
+      </CreateObjectDie>
+      <FireWeaponWhenDead
+				id="ModuleTag_JapanFortressShipAirborneDeathWeapon"
+				DeathWeapon="JapanFortressShipAirborneDeathWeapon"
+				InitiallyActive="true">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</FireWeaponWhenDead>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+			</FXListBehavior>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_PropBody" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_EmperorsPearl_DieStartMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="600"
+			ShroudClearingRange="350" />
+	</GameObject>
+
+	<GameObject
+		  id="JapanFortressShip_WaterDying12s"
+		  KindOf="HIDE_IF_FOGGED INERT NO_COLLIDE"
+		  EditorName="JapanFortressShip_WaterDying12s">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUFortressShip_SKN" />
+					<Texture
+						Original="JUFortressShip"
+						New="JUFortressShip_D" />
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableHideSubObjectPermanently("FX_JetGlow01")
+						CurDrawableHideSubObjectPermanently("FX_JetGlow02")
+						CurDrawableHideSubObjectPermanently("FX_JetGlow03")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ShipSlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="18s"
+				FadeTime="2s"
+				SinkDelay="12s"
+				SinkRate="6"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ShipSlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100" />
+		</Body>
+	</GameObject>
+	<GameObject
+		  id="JapanFortressShip_WaterDying10s"
+		  KindOf="HIDE_IF_FOGGED INERT NO_COLLIDE"
+		  EditorName="JapanFortressShip_WaterDying10s">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUFortressShip_SKN" />
+					<Texture
+						Original="JUFortressShip"
+						New="JUFortressShip_D" />
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableHideSubObjectPermanently("FX_JetGlow01")
+						CurDrawableHideSubObjectPermanently("FX_JetGlow02")
+						CurDrawableHideSubObjectPermanently("FX_JetGlow03")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ShipSlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="18s"
+				FadeTime="2s"
+				SinkDelay="10s"
+				SinkRate="4.5"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ShipSlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100" />
+		</Body>
+	</GameObject>
+	<GameObject
+		  id="JapanFortressShip_WaterDying8s"
+		  KindOf="HIDE_IF_FOGGED INERT NO_COLLIDE"
+		  EditorName="JapanFortressShip_WaterDying8s">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUFortressShip_SKN" />
+					<Texture
+						Original="JUFortressShip"
+						New="JUFortressShip_D" />
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableHideSubObjectPermanently("FX_JetGlow01")
+						CurDrawableHideSubObjectPermanently("FX_JetGlow02")
+						CurDrawableHideSubObjectPermanently("FX_JetGlow03")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ShipSlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="18s"
+				FadeTime="2s"
+				SinkDelay="8s"
+				SinkRate="3"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ShipSlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100" />
+		</Body>
+	</GameObject>
+	<GameObject
+		  id="JapanFortressShip_WaterDying6s"
+		  KindOf="HIDE_IF_FOGGED INERT NO_COLLIDE"
+		  EditorName="JapanFortressShip_WaterDying6s">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUFortressShip_SKN" />
+					<Texture
+						Original="JUFortressShip"
+						New="JUFortressShip_D" />
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire01"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire02"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire03"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipDamagedSparks"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipDamagedSmoke"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipDamagedFire"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FX_Ship_Fire04"
+						FXParticleSystemTemplate="JapanShipAndStructureDamagedLight"
+						FollowBone="true"
+						OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+					  BoneName="FX_Ship_Fire04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableHideSubObjectPermanently("FX_JetGlow01")
+						CurDrawableHideSubObjectPermanently("FX_JetGlow02")
+						CurDrawableHideSubObjectPermanently("FX_JetGlow03")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ShipSlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="18s"
+				FadeTime="2s"
+				SinkDelay="6s"
+				SinkRate="1.5"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ShipSlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100" />
+		</Body>
+	</GameObject>
+</AssetDeclaration>

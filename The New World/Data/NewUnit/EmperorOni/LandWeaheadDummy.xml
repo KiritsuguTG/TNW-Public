@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+
+	</Includes>
+
+	<GameObject
+		id="LandWeaheadDummy"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="IMMOBILE UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE PASS_EXPERIENCE_TO_PRODUCER"
+		EditorName="LandWeaheadDummy"
+		Description="Desc:LandWeaheadDummy"
+		TypeDescription="Type:LandWeaheadDummy"	>
+		<DisplayName>LandWeaheadDummy</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+		</Draws>     
+		<Behaviors>	
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<LifetimeUpdate
+			  	id="ModuleTag_LifetimeUpdate"
+			  	MinLifetime="0.3s"
+			  	MaxLifetime="0.3s"/>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeapon"
+				InitiallyActive="true"
+				DeathWeapon="JapanHeavyAntiVehicleVehicleTech3LandWeapon">
+				<DieMuxData
+					DeathTypes="ALL" />
+	             	</FireWeaponWhenDead>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+	</GameObject>
+</AssetDeclaration>

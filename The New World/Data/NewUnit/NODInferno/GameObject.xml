@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xai="uri:ea.com:eala:asset:instance" >
+	<Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseProjectile.xml" />
+	</Includes>
+	<GameObject
+		id="NODInfernoBomber"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_AlliedBomberAircraft"
+		ButtonImage="Button_AlliedBomberAircraft_on"
+		Side="Allies"
+		SubGroupPriority="730" 
+		EditorSorting="UNIT"
+		BuildTime="20"
+		CommandSet="NODInfernoBomberCommandSet"
+		KindOf="CAN_CAST_REFLECTIONS CAN_ATTACK SELECTABLE SCORE AIRCRAFT VEHICLE BOMBER_AIRCRAFT T3_UNIT LINE_OF_SIGHT_IGNORES_BUILDINGS LEAVE_PARKING_ON_BUILD_COMPLETE CAN_BE_FAVORITE_UNIT PRODUCED_AT_HELIPAD CARPET_BOMBER"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="AIRCRAFT"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="MISSILE"
+		VoicePriority="148"
+		EditorName="NODInfernoBomber"
+		Description="Desc:NODInfernoBomber"
+		TypeDescription="Type:NODInfernoBomber"
+		HealthBoxHeightOffset="20">
+		<DisplayName xai:joinAction="Replace">Name:NODInfernoBomber</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="2000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			id="SovietBomberAircraftLocomotor"
+			Locomotor="SovietBomberAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="150" />
+		<LocomotorSet
+			id="AlliedBomberAircraftTaxiLocomotor"
+			Locomotor="BasicHelicopterTaxiLocomotor"
+			Condition="TAXIING"
+			Speed="30" />
+		
+		<!-- Need ConquerMetricsOverrideDefendingAntiMask or else the TAXIING locomotor will make the AI try to build anti-ground units against this -->
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDefendingAntiMask="ANTI_AIRBORNE_VEHICLE" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				OkToChangeModelColor="true" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NUInfernoAircraft_SKN" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPONA" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="NUInfernoAircraft_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="NUInfernoAircraft_SKN" />
+					<Texture
+						Original="NUInfernoAircraft"
+						New="NUInfernoAircraft_D" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Script>
+						CurDrawableHideSubObjectPermanently( "NEWSKIN_BOMB" )
+					</Script>
+				</AnimationState>								
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Script>
+						CurDrawableShowSubObjectPermanently( "NEWSKIN_BOMB" )
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="NODInfernoBomberBombWeapon02"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_02"/>
+					<!--Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="NODInfernoBomberBombWeapon"
+						ObjectStatus="WEAPON_UPGRADED_02"/-->
+				</WeaponSlotHardpoint>
+				<WeaponSlotHardpoint
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="NODInfernoBomberDummyWeapon"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				AliveOnly="true">
+				<FireWeaponNugget WeaponName="NODInfernoBomberBombReloadWeapon01"/>
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_03"
+					RequiredStatus="WEAPON_UPGRADED_01"/>
+			</FireWeaponUpdate>
+			<Physics
+				id="ModuleTag_Physics"/>
+
+			<SpecialPower
+				id="ModuleTag_ActivateTargetPainterTrigger"
+				SpecialPowerTemplate="SpecialPower_ToggleReloadWeapon"
+				UpdateModuleStartsAttack="true" />
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ActivateTargetPainterTriggerUpdate"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				SpecialPowerTemplate="SpecialPower_ToggleReloadWeapon"
+				ReloadAllWeaponsOnToggle="true">
+				<ToggleState>
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT"/>
+				</ToggleState>
+				<ToggleState>
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT"/>
+				</ToggleState>
+			</ToggleStatusSpecialAbilityUpdate>
+
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AUBomberAircraft_Dying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_CenturyBomberDie" />
+			</FXListBehavior>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="NODInfernoBomberReloadWeaponFunction" />
+		</Behaviors>
+		<AI>
+			<JetAIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="HelicopterAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="true"
+					CheckVisionRange="true"/>
+			</JetAIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="1500" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="16.0"
+				MinorRadius="30.0"
+				Height="8.0"
+				ContactPointGeneration="VEHICLE">
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="ALL_CenturyBomber_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="ALL_CenturyBomber_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="ALL_CenturyBomber_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="ALL_CenturyBomber_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="ALL_CenturyBomber_VoiceReturn" AudioType="voiceEnter" />
+			<AudioEntry Sound="ALL_CenturyBomber_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="ALL_CenturyBomber_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="ALL_CenturyBomber_VoiceReturn" Name="ReturnToProducer" />
+			<NamedEntry Sound="ALL_CenturyBomber_VoiceRetreat" Name="ReturnToProducerWhileUnderAttack" />
+			<NamedEntry Sound="ALL_CenturyBomber_VoiceEvacuate" Name="VoiceEvacuate" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="ALL_CenturyBomber_MoveStart" AudioType="soundMoveStart" />
+			<AudioEntry Sound="ALL_CenturyBomber_MoveLoop" AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="350"
+			ShroudClearingRange="=$STANDARD_SHROUD_CLEAR" />
+	</GameObject>
+
+	<GameObject
+		id="NodInfernoBomberDroppingMissileProjectile"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE SMALL_MISSILE DEFLECT_BY_SPECIAL_POWER NO_COLLIDE HIDE_IF_FOGGED"
+		EditorName="NodInfernoBomberDroppingMissileProjectile">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NUInfernoAircraftBomb" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  IgnoreProjectileState="true"
+			  MinLifetime="1.0s"
+			  MaxLifetime="1.0s" />
+			<!--FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="" />
+			</FXListBehavior-->
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeapon"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="NodInfernoBomberBombSecondHalfWeapon">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="-150"
+				FirstHeightMax="-150"
+				SecondHeightMin="-25"
+				SecondHeightMax="-25"
+				FirstPercentIndent="0"
+				SecondPercentIndent="25"
+				FlightPathAdjustDistPerSecond="50.0"
+				/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"/>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+
+	<GameObject
+		inheritFrom="NodInfernoBomberDroppingMissileProjectile"
+		id="NodInfernoBomberDroppingMissileProjectile_Veteran">
+		<Draws>
+		</Draws>
+		<Behaviors>
+			<FireWeaponWhenDead
+				xai:joinAction="Replace"
+				id="ModuleTag_FinalWeapon"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="NodInfernoBomberBombSecondHalfWeapon_Vet">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+		</Behaviors>
+	</GameObject>
+
+	<GameObject
+		id="NODInfernoBomberMissileProjectile"
+		inheritFrom="BaseProjectile"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="+DEFLECT_BY_SPECIAL_POWER +PASS_EXPERIENCE_TO_PRODUCER">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NUInfernoAircraftBomb" />
+          <ParticleSysBone
+						BoneName="FX_TRAIL"
+						FXParticleSystemTemplate="SovietShipV4TrailFire"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FX_TRAIL"
+						FXParticleSystemTemplate="SovietShipV4TrailFireLight"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FX_TRAIL"
+						FXParticleSystemTemplate="SovietShipV4TrailSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_V4Explosion" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="-25"
+				FirstHeightMax="-25"
+				SecondHeightMin="-25"
+				SecondHeightMax="-25"
+				FirstPercentIndent="10"
+				SecondPercentIndent="30"
+				FlightPathAdjustDistPerSecond="100.0"
+				MaxDistanceToTravel="750.0"
+				Acceleration="0.5"
+				/>
+
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_NodInfernoBomberBombFirefield">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"/>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_V4MissileLauncher_MIRVincoming" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+
+	<GameObject
+		inheritFrom="NODInfernoBomberMissileProjectile"
+		id="NODInfernoBomberMissileProjectile_Veteran">
+		<Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+        xai:joinAction="Replace">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="NUInfernoAircraftBomb" />
+          <ParticleSysBone
+						BoneName="FX_TRAIL"
+						FXParticleSystemTemplate="SovietShipV4TrailFire_Vet"
+						FollowBone="true"/>
+          <ParticleSysBone
+						BoneName="FX_TRAIL"
+						FXParticleSystemTemplate="SovietShipV4TrailFireLight_Vet"
+						FollowBone="true"/>
+          <ParticleSysBone
+						BoneName="FX_TRAIL"
+						FXParticleSystemTemplate="SovietShipV4TrailSmoke"
+						FollowBone="true"/>
+        </ModelConditionState>
+      </ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_V4Explosion_Vet" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="-25"
+				FirstHeightMax="-25"
+				SecondHeightMin="-25"
+				SecondHeightMax="-25"
+				FirstPercentIndent="10"
+				SecondPercentIndent="30"
+				FlightPathAdjustDistPerSecond="100.0"
+				MaxDistanceToTravel="750.0"
+				Acceleration="0.5"
+				/>
+			<CreateObjectDie
+				xai:joinAction="Replace"
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_NodInfernoBomberBombFirefield_Vet">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+
+	<GameObject
+		id="NODInfernoBomberBombReloadDrone"
+		Side="Allied"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="STRUCTURE NO_COLLIDE SUMMONED NOT_AUTOACQUIRABLE UNATTACKABLE"
+		EditorName="NODInfernoBomberBombReloadDrone">
+		<DisplayName>NODInfernoBomberBombReloadDrone</DisplayName>
+		<ArmorSet
+			Armor="JapanPointDefenseDroneArmor" />
+		<LocomotorSet
+			Locomotor="JapanPointDefenseDroneLocomotor"
+			Condition="NORMAL"
+			Speed="200.0" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				ExtraPublicBone="FX_Bone_01 FX_Bone_02 FX_Bone_03"
+				NoRotate="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+
+			<AttachUpdate
+				id="ModuleTag_Attach"
+				Flags="DIE_WHEN_PARENT_DIES_FROM_NOT_ME STICK_TO_PARENT TELEPORT INSTANT_TELEPORT_ON_PARENT_TELEPORT ABSORB_ALL_DAMAGE LEECH_DAMAGE_FROM_PARENT DIE_WHEN_DETACH_ALWAYS DEFECT_WHEN_PARENT_DEFECTS"
+				CloseEnoughRange="1.0"
+				DamageTypesToNotLeech="CRUSH UNRESISTABLE HEALING FALLING BLAST MAGIC ROCKET GUN CANNON GRENADE SNIPER MELEE AUTO_CANNON EXPLOSIVE CONCUSSIVE FLAK PRISM TESLA KI RADIATION"
+				DeathTypesToNotLeech="DETONATED"
+				ParentStatus="WEAPON_UPGRADED_03">
+			</AttachUpdate>
+
+			<AutoHealBehavior
+				id="Upgrade_Heal"
+				InitiallyActive="true"
+				HealOnlyIfNotInCombat="false"
+				HealOnlyIfNotUnderAttack="false"
+				StartHealingDelay="0s"
+				HealingAmount="1"
+				HealingDelay="0.1s">
+			</AutoHealBehavior>
+			
+			<FireWeaponWhenDead
+				id="ModuleTag_DeathWeapon"
+				InitiallyActive="true"
+				DeathWeapon="MissileReloadDroneDeathWeapon"
+				ContinueToBezierDestination="false">
+			 <DieMuxData
+				DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="15s"
+				MaxLifetime="15s" />
+
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+
+			<Physics
+				id="ModuleTag_Physics" />
+				
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				StateMachine="UnitAIStateMachine" />
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				InitialHealth="1"
+				MaxHealth="225" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="10.0"
+				Height="10.0">
+			</Shape>
+		</Geometry>
+		<AudioArraySound>
+		</AudioArraySound>
+		<ShadowInfo
+			Type="NONE" />
+		<VisionInfo
+			VisionRange="10"
+			ShroudClearingRange="10" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+	<GameObject
+		id="NODInfernoBomberBombReload02"
+		Side="Allied"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="STRUCTURE NO_COLLIDE SUMMONED NOT_AUTOACQUIRABLE UNATTACKABLE"
+		EditorName="AlliedAntiGroundAircraftMissileReloadDrone02">
+		<DisplayName>AlliedAntiGroundAircraftMissileReloadDrone02</DisplayName>
+		<ArmorSet
+			Armor="JapanPointDefenseDroneArmor" />
+		<LocomotorSet
+			Locomotor="JapanPointDefenseDroneLocomotor"
+			Condition="NORMAL"
+			Speed="200.0" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				ExtraPublicBone="FX_Bone_01 FX_Bone_02 FX_Bone_03"
+				NoRotate="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+
+			<AttachUpdate
+				id="ModuleTag_Attach"
+				Flags="DIE_WHEN_PARENT_DIES_FROM_NOT_ME STICK_TO_PARENT TELEPORT INSTANT_TELEPORT_ON_PARENT_TELEPORT ABSORB_ALL_DAMAGE LEECH_DAMAGE_FROM_PARENT DIE_WHEN_DETACH_ALWAYS DEFECT_WHEN_PARENT_DEFECTS"
+				CloseEnoughRange="1.0"
+				DamageTypesToNotLeech="CRUSH UNRESISTABLE HEALING FALLING BLAST MAGIC ROCKET GUN CANNON GRENADE SNIPER MELEE AUTO_CANNON EXPLOSIVE CONCUSSIVE FLAK PRISM TESLA KI RADIATION"
+				DeathTypesToNotLeech="DETONATED"
+				ParentStatus="WEAPON_UPGRADED_02">
+			</AttachUpdate>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="0.1s"
+				MaxLifetime="0.1s" />
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+
+			<Physics
+				id="ModuleTag_Physics" />
+				
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				StateMachine="UnitAIStateMachine" />
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="10.0"
+				Height="10.0">
+			</Shape>
+		</Geometry>
+		<AudioArraySound>
+		</AudioArraySound>
+		<ShadowInfo
+			Type="NONE" />
+		<VisionInfo
+			VisionRange="10"
+			ShroudClearingRange="10" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+
+	<GameObject
+		id="NodInfernoBomberBombFireFieldSeed"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE SKIRMISH_AI_ATTEMPT_TO_DODGE PASS_EXPERIENCE_TO_PRODUCER"
+		EditorName="NodInfernoBomberBombFireFieldSeed">
+		<!--Note: Below are the two kind of removed for the sake of Lua, if any problem occur, consider to put these two kind of back and attempt double OCL to acheive delayed firing weapons -->
+		<!--INERT INERT_SHROUD_REVEALER-->
+		<DisplayName>NodInfernoBomberBombFireFieldSeed</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+    <SkirmishAIInformation
+      DodgeSafetyDistance="300.0">
+      <DodgeWithUnits Rule="ALL"
+        StatusBitFlagsExclude="AIRBORNE_TARGET">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="" />
+					<ParticleSysBone
+						FXParticleSystemTemplate="NodInfernoBomberBombFieldGiantEmber" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="NodInfernoBomberBombFieldCloud" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="NodInfernoBomberBombFieldSmallEmber" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="NodInfernoBomberBombFieldCenterCloud" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="NodInfernoBomberBombFieldRisingFlame" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="NodInfernoBomberBombFieldFlash" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="NodInfernoBomberBombFieldCenterRisingFlame" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="NodInfernoBomberBombFieldCenterFlash" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Model Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+
+			<ObjectSMCHelper
+				id="ObjectSMCHelper"/>
+
+			<LifetimeUpdate
+				id="Moduletag_LifetimeUpdate"
+				MinLifetime="30s"
+				MaxLifetime="30s" />
+
+      <!--FXListBehavior
+        id="ModuleTag_FXLists">
+        <DieMuxData
+					DeathTypes="ALL" />
+        <Event
+					Index="onCreate"
+					FX="FX_SuperDesolatorField" />
+      </FXListBehavior-->
+      
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="NODInfernoBomberBombLinearExplosionFunction" />
+
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.2s">
+				<FireWeaponNugget
+					WeaponName="NodInfernoBomberContinuousDamageWeapon" />
+			</FireWeaponUpdate>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="1.0"
+				Height="1.0">
+			</Shape>
+		</Geometry>
+		<ShadowInfo
+			Type="NONE" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+
+	<GameObject
+		inheritFrom="NodInfernoBomberBombFireFieldSeed"
+		id="NodInfernoBomberBombFireFieldSeed_Veteran">
+		<Draws>
+			<!--ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="" />
+					<ParticleSysBone
+						FXParticleSystemTemplate="Soviet_Desolator" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="Soviet_Desolator02" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="Soviet_Desolator03" />
+          <ParticleSysBone
+						FXParticleSystemTemplate="Soviet_Desolator04" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Model Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw-->
+		</Draws>
+		<Behaviors>
+			<LUAEventList
+				xai:joinAction="Replace"
+				id="ModuleTag_LUAEventList"
+				EventListName="NODInfernoBomberBombLinearExplosionVeteranFunction" />
+		</Behaviors>
+	</GameObject>
+
+</AssetDeclaration>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <WeaponTemplate
+		id="KwK88Cannon"
+		AttackRange="450.0"
+		WeaponSpeed="900"
+		ClipSize="1"
+		ReAcquireDetailType="PRE_FIRE"
+		WeaponRecoil="5d"
+		AutoReloadsClip="AUTO"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+		ProjectileCollidesWith="ENEMIES NEUTRAL STRUCTURES WALLS"
+		FireSound="PZ6_88MMFIRE"
+		FireFX="FX_SovietTankGunTNW"
+		FireVeteranFX="FX_SovietTankGunTNWVET"
+ 		>
+		<FiringDuration
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<ClipReloadTime
+			MinSeconds="4.8s"
+			MaxSeconds="5.3s" />
+			 <WeaponAiHintInfo UseLongLockOnTimeCode="true" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="Kwk88Warhead"			
+                ProjectileTemplate="JapanAntiVehicleVehicleTech1Projectile">
+                <VeterancyProjectiles
+                    VeterancyLevel="HEROIC"
+                    ProjectileTemplate="JapanAntiVehicleVehicleTech1Projectile_Veteran"/>
+            </ProjectileNugget>
+			<InformTargetNugget />
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="Kwk88Warhead"
+		ProjectileCollidesWith="ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+        Flags="NOT_ATTRACTED_BY_MAGNETS">
+        <Nuggets>
+		    <DamageContainedNugget
+			    MaxUnitsToDamage="3"
+				WindowBlastFX="FX_None"
+				Damage="35"
+				DamageType="EXPLOSIVE"
+				DeathType="EXPLODED">
+				<DamageObjectFilter
+					Rule="NONE"
+					Include="INFANTRY" />
+			</DamageContainedNugget>
+            <DamageNugget
+				Damage="200"
+                DamageTaperOff="40"
+				Radius="50"
+				DamageType="EXPLOSIVE"
+				DamageFXType="ALLIED_CANNON"
+				DeathType="EXPLODED" >
+			</DamageNugget>
+        </Nuggets>
+    </WeaponTemplate>
+
+	<WeaponTemplate
+		id="PZ4UNMANEDWeapon"
+        Flags="NOT_ATTRACTED_BY_MAGNETS" 
+		RadiusDamageAffects="SELF ALLIES"
+		WeaponSpeed="100.0">
+		<Nuggets>
+			<ParalyzeNugget				
+				ParalyzeType="UNMANNED">					
+			</ParalyzeNugget>		  
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="TankChaingun"
+		FiringLoopSound="MG_42fireloop"
+		FiringLoopSoundContinuesDuringReload="false"
+		FireFX="FX_MuzzleSovietSentryGun"
+		AttackRange="350.0"
+		AimDirection="150d"
+		WeaponSpeed="999999.0"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		CanFireWhileMoving="true"
+		ScatterRadius="30"
+		ClipSize="5"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		ReAcquireDetailType="PRE_FIRE">
+		<FiringDuration
+			MinSeconds="0.08s"
+			MaxSeconds="0.08s" />
+		<ClipReloadTime
+			MinSeconds="0.6s"
+			MaxSeconds="0.6s" />
+		<Nuggets>
+		    <DamageContainedNugget
+				MaxUnitsToDamage="1"
+				WindowBlastFX="FX_None"
+				Damage="1"
+				DamageType="EXPLOSIVE"
+				DeathType="EXPLODED">
+				<DamageObjectFilter
+					Rule="NONE"
+					Include="INFANTRY" />
+			</DamageContainedNugget>
+			<DamageNugget
+				Damage="8.0"
+				Radius="0.0"
+				DamageType="AUTO_CANNON"
+                DamageFXType="SOVIET_MACHINEGUN" 
+				DeathType="NORMAL"/>
+		</Nuggets>
+	</WeaponTemplate>	
+</AssetDeclaration>

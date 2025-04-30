@@ -1,0 +1,620 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseInfantry.xml" />
+	</Includes>
+	<GameObject
+		id="StrategicArmyInfiltrationInfantry"
+		inheritFrom="BaseInfantry"
+		SelectPortrait="Portrait_SovietChiefScientist"
+		ButtonImage="Button_SovietChiefScientist"
+		Side="Soviet"
+		SubGroupPriority="830"
+		EditorSorting="UNIT"		
+		BuildTime="8"
+		CommandSet="StrategicArmyInfiltrationInfantryCommandSet"
+		IsTrainable="true"
+		KindOf="PRELOAD SELECTABLE CAN_CAST_REFLECTIONS INFANTRY SCORE SKIRMISH_AI_DONT_GARRISON INFILTRATOR CAN_BE_FAVORITE_UNIT CYCLE_SELECTION DONT_SUBMERGE_BY_WAVES CANNOT_HIJACK NO_GARRISON AMPHIBIOUS PATH_THROUGH_INFANTRY SKIRMISH_AI_DONT_MULTI_TARGET"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="INFANTRY"
+		UnitCategory="INFANTRY"
+		WeaponCategory="GUN"
+		VoicePriority="68"
+		EditorName="StrategicArmyInfiltrationInfantry"
+		Description="Desc:SovietChiefEngineer"
+		TypeDescription="Type:StrategicArmyInfiltrationInfantry"
+		BountyValue="50"
+		HealthBoxHeightOffset="10">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietChiefEngineer</DisplayName>
+		<GameDependency
+			id="ModuleTag_GameDependency">
+			<ObjectFilter
+				Rule="NONE"
+				Relationship="ALLIES"
+				StatusBitFlagsExclude="NOT_IN_WORLD RIFT_OCCUPIED USER_PARALYZED POWERED_DOWN_EMP">
+				<IncludeThing>SovietPowerPlantAdvanced</IncludeThing>
+				<IncludeThing>StrategicArmyRadar</IncludeThing>
+			</ObjectFilter>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="800"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseHeavyInfantryArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="defaultLocomotor"
+			Locomotor="TestReactiveLocomotorHUMAN"
+			Condition="NORMAL"
+			Speed="60" />
+		<LocomotorSet
+			id="waterdefaultLocomotor"
+			Locomotor="StrategicArmyInfiltrationInfantryWaterLocomotor"
+			Condition="NORMAL"
+			Speed="60" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+      OutOfRangePenalty="2.0"
+			ConquerMetricsOverrideAntiMask="ANTI_VEHICLE"
+			ConquerMetricsOverrideForbiddenAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_INFANTRY ANTI_STRUCTURE ANTI_AIRBORNE_INFANTRY"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="B_WEAPONA_FX">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUScientist_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPONA_FX" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPONA_FX" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_WEAPONA_FX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="THROWN_PROJECTILE">
+					<Model
+						Name="SUScientist_SKN" />
+					<!-- Shared Particle Systems -->
+					<ParticleSysBone
+								  BoneName="obbox01"
+								  FXParticleSystemTemplate="AlliedLegionnaireLeapJetLight"
+								  FollowBone="true" />
+					<!-- FX_Jet1 Particle Systems -->
+					<ParticleSysBone
+								  BoneName="YET01"
+								  FXParticleSystemTemplate="AlliedLegionnaireLeapJetTrail"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="YET01"
+								  FXParticleSystemTemplate="AlliedLegionnaireLeapJetSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="YET01"
+								  FXParticleSystemTemplate="AlliedLegionnaireLeapJetSparkles"
+								  FollowBone="true" />
+					<!-- FX_Jet2 Particle Systems -->
+					<ParticleSysBone
+								  BoneName="YET02"
+								  FXParticleSystemTemplate="AlliedLegionnaireLeapJetTrail"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="YET02"
+								  FXParticleSystemTemplate="AlliedLegionnaireLeapJetSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="YET02"
+								  FXParticleSystemTemplate="AlliedLegionnaireLeapJetSparkles"
+								  FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="SUScientist_SKN" />
+					<!-- Shared Particle Systems -->
+					<ParticleSysBone
+								  BoneName="obbox01"
+								  FXParticleSystemTemplate="AlliedLegionnaireLeapJetLight"
+								  FollowBone="true" />
+					<!-- FX_Jet1 Particle Systems -->
+					<ParticleSysBone
+								  BoneName="YET01"
+								  FXParticleSystemTemplate="AlliedLegionnaireLeapJetTrail"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="YET01"
+								  FXParticleSystemTemplate="AlliedLegionnaireLeapJetSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="YET01"
+								  FXParticleSystemTemplate="AlliedLegionnaireLeapJetSparkles"
+								  FollowBone="true" />
+					<!-- FX_Jet2 Particle Systems -->
+					<ParticleSysBone
+								  BoneName="YET02"
+								  FXParticleSystemTemplate="AlliedLegionnaireLeapJetTrail"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="YET02"
+								  FXParticleSystemTemplate="AlliedLegionnaireLeapJetSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="YET02"
+								  FXParticleSystemTemplate="AlliedLegionnaireLeapJetSparkles"
+								  FollowBone="true" />
+				</ModelConditionState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					AllowRepeatInRandomPick="true"
+					StateName="STATE_Bored">
+					<Animation
+						AnimationName="SUScientist_BIDA"
+						AnimationMode="ONCE"
+						AnimationPriority="100"
+						AnimationBlendTime="15" 
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Parachuting" then
+            			CurDrawableSetTransitionAnimState("TRANS_fromParachuting")
+						elseif Prev == "STATE_Selected" then
+						CurDrawableSetTransitionAnimState("TRANS_attentionToBored")
+						elseif Prev == "STATE_stunned_flailing" then
+						CurDrawableSetTransitionAnimState("STATE_stunned_landing")
+						end
+					</Script>
+				</AnimationState>
+				
+				<!-- meta impact anims -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_FLAILING"
+					StateName="STATE_stunned_flailing">
+					<Animation
+						AnimationName="SUScientist_FLYA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING SPLATTED">
+					<Animation
+						AnimationName="SUScientist_LNDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_STANDING_UP">
+					<Animation
+						AnimationName="SUScientist_GTPA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED"
+					StateName="STATE_stunned_landing">
+					<Animation
+						AnimationName="SUScientist_LNDA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimNickName="DTA"
+						AnimationName="SUScientist_DTBA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					StateName="STATE_Moving" 
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="SUScientist_RUNA"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="1.0"
+						AnimationSpeedFactorMax="1.0" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="HIT_REACTION">
+					<Animation
+						AnimationName="SUScientist_HITA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_Selected">
+					<Animation
+						AnimationName="SUScientist_AIDA"
+						AnimationMode="ONCE"
+						AnimationPriority="100"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Suppressed" then
+						CurDrawableSetTransitionAnimState("TRANS_fromSuppressedB")
+						end
+						if Prev == "STATE_Parachuting" then
+						CurDrawableSetTransitionAnimState("TRANS_fromParachuting")
+						end
+						if Prev == "STATE_Bored" then
+						CurDrawableSetTransitionAnimState("TRANS_boredToAttention")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_boredToAttention">
+					<Animation
+						AnimationName="SUScientist_BATA"
+						AnimationMode="ONCE" 
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_attentionToBored">
+					<Animation
+						AnimationName="SUScientist_ABTA"
+						AnimationMode="ONCE" 
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_WEAPON_FX"
+				ExtraPublicBone="B_WEAPONA_FX">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PREATTACK_A">
+					<Model
+						Name="FXInvisBone" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="StrategicArmyInfiltrationInfantryLaser_Start"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="0"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				LaserStateID="165">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+										Name="Texture1">
+							<Value>FXGrid_3</Value>
+						</Texture>
+						<Texture
+										Name="Texture2">
+							<Value>FXInterlacedMask2</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>6.00000</Value>
+							<Value>6.00000</Value>
+							<Value>6.00000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDrawHeal"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="0"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="20"
+				LaserStateID="166">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+										Name="Texture1">
+							<Value>FXGrid_3</Value>
+						</Texture>
+						<Texture
+										Name="Texture2">
+							<Value>FXInterlacedMask2</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>6.00000</Value>
+							<Value>3.00000</Value>
+							<Value>3.00000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="StrategicArmyInfiltrationInfantryWeaponScrambler"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<SuppressionUpdate
+				id="ModuleTag_SuppressionUpdate"
+			xai:joinAction="Remove"/>
+			<SpecialPower
+				id="ModuleTag_CryoLeap"
+				SpecialPowerTemplate="SpecialPower_TriggerScientistLeap"
+				UpdateModuleStartsAttack="true" />
+			<!-- UnpackTime should match leap animation length -->
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_LeapUpdate"
+				SpecialWeapon="AlliedLegionnaireLeapWeapon"
+				SpecialPowerTemplate="SpecialPower_TriggerScientistLeap"
+				Options="FAIL_WITH_INVALID_APPROACH"
+				UnpackTime="0.25s"
+				PackTime="0s"
+				TriggerSound="ALL_CryoLegionaire_Jump"
+				SetObjectStatusOnTrigger="IGNORE_AI_COMMAND"
+				ClearObjectStatusOnExit="IGNORE_AI_COMMAND"
+				StartAbilityRange="300.0"
+				WhichSpecialWeapon="1" />
+			<BezierProjectile
+				id="ModuleTag_Projectile"
+				Flags="NO_DETONATE DETONATE_CALLS_KILL"
+				FirstHeightMin="150"
+				FirstHeightMax="160"
+				SecondHeightMin="100"
+				SecondHeightMax="110"
+				FirstPercentIndent="40%"
+				SecondPercentIndent="60%"
+				BounceCount="0"
+				FinalStuckTime="1.0s"
+				GroundHitWeapon="AlliedLegionnaireInfantryLandWeapon" />
+			<Physics
+				id="ModuleTag_Physics" />
+			<ProductionUpdate
+				id="ModuleTag_ProductionUpdate" />
+			<EmotionTrackerUpdate
+				id="Module_ETU">
+				<TauntAndPointExcluded
+					Rule="NONE" />
+					<AddEmotion>CheerIdle_Base</AddEmotion>
+					<AddEmotion>CheerBusy_Base</AddEmotion>
+			</EmotionTrackerUpdate>
+			<AttributeModifierUpgrade
+							id="ModuleTag_SovietUnitUpgradeSpecialPower"
+							AttributeModifier="AttributeStrategicArmyInfiltrationInfantryUnitUpgradeSpecialPower">
+				<TriggeredBy>SovietUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="6s"
+				SinkRate="2.4"
+				DestructionDelay="10.0s">
+                <DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="ELECTROCUTED LASERED BURNED STABBED IRRADIATED"
+                    ExemptStatus="OVER_WATER"/>
+                <Sound
+					Type="INITIAL"
+					List="SOV_SovietScientist_VoiceDie" />
+            </SlowDeath>
+            
+            <SlowDeath
+				id="ModuleTag_DeathWater"
+                Fade="true"
+                FadeDelay="6s"
+                FadeTime="2s"
+				SinkDelay="0.5s"
+				SinkRate="1.2"
+				DestructionDelay="10.0s">
+                <DieMuxData
+					DeathTypes="ALL"
+                    RequiredStatus="OVER_WATER"/>
+                <Sound
+					Type="INITIAL" List="SOV_SovietScientist_VoiceDie" />
+			</SlowDeath>
+	
+	<SlowDeath
+				id="ModuleTag_TeslaDeath"
+				DeathFlags="DEATH_1"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+                <DieMuxData
+					DeathTypes="ELECTROCUTED"
+					DeathTypesForbidden="LASERED BURNED STABBED IRRADIATED"
+                    ExemptStatus="OVER_WATER"/>
+				<Sound Type="INITIAL" List="SOV_SovietScientist_VoiceDieShock" />
+			</SlowDeath>
+			
+			<SlowDeath
+				id="ModuleTag_LaserDeath"
+				DeathFlags="DEATH_2"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="LASERED"
+					DeathTypesForbidden="ELECTROCUTED BURNED STABBED IRRADIATED"
+                    ExemptStatus="OVER_WATER"/>
+				<Sound Type="INITIAL" List="SOV_SovietScientist_VoiceDie" />
+			</SlowDeath>
+			
+			<SlowDeath
+				id="ModuleTag_FireDeath"
+				DeathFlags="DEATH_3"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="BURNED"
+					DeathTypesForbidden="ELECTROCUTED LASERED STABBED IRRADIATED"
+                    ExemptStatus="OVER_WATER"/>
+                <Sound Type="INITIAL" List="SOV_SovietScientist_VoiceDieFire" />
+            </SlowDeath>
+            
+            <SlowDeath
+				id="ModuleTag_SwordDeath"
+				DeathFlags="DEATH_4"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+                <DieMuxData
+					DeathTypes="STABBED"
+					DeathTypesForbidden="ELECTROCUTED LASERED BURNED IRRADIATED"
+                    ExemptStatus="OVER_WATER"/>
+				<Sound Type="INITIAL" List="SOV_SovietScientist_VoiceDie" />
+			</SlowDeath>
+			
+			<SlowDeath
+				id="ModuleTag_RadiationDeath"
+				DeathFlags="DEATH_5"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="IRRADIATED"
+					DeathTypesForbidden="ELECTROCUTED LASERED BURNED STABBED"
+					ExemptStatus="OVER_WATER"/>
+				<Sound Type="INITIAL" List="SOV_SovietScientist_VoiceDiePoison" />
+			</SlowDeath>
+		
+			<xi:include
+				href="DATA:Includes/CaptureBehavior.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:Behaviors/child::*)" />	
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<LaserState
+				id="ModuleTag_LaserState"
+				LaserId="165" >
+				<LaserEndParticleSystem>StrategicArmyInfiltrationInfantryLaser_Sparks</LaserEndParticleSystem>
+			</LaserState>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+					RotateToTargetWhenAiming="true"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="200.0" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_YurikoVoiceDieFall">
+				<ModelConditionSound Sound="SOV_SovietScientist_VoiceDieYurikoFall" RequiredFlags="IMPENDING_DOOM" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_YurikoVoiceUp">
+				<ModelConditionSound Sound="SOV_SovietScientist_VoiceDieYurikoUp" RequiredFlags="STUNNED_FLAILING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<AnimationSoundClientBehavior id="ModuleTag_ASCB">
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="SUScientist_DTBA" Frame="20" />
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="SUScientist_LNDA" Frame="8 16" />
+			</AnimationSoundClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_WaterEntrySplash">
+				<ModelConditionSound Sound="Infantry_WaterSplash" RequiredFlags="OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="" EvaType="detectedEnemy" />
+		</EvaEventArray>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.25"
+				Height="13.0"
+				ContactPointGeneration="SQUAD_MEMBER"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="SOV_SovietScientist_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="SOV_SovietScientist_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SOV_SovietScientist_VoiceFear" AudioType="voiceFear" />
+			<AudioEntry Sound="SOV_SovietScientist_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="SOV_SovietScientist_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="SOV_SovietScientist_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="SOV_SovietScientist_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="SOV_SovietScientist_VoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<ShadowInfo
+			Type="DECAL"
+			SizeX="14"
+			SizeY="14"
+			Texture="ShadowI" />
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="=$ADVANCE_INFANTRY_SHROUD_CLEAR"/>
+		<CrusherInfo
+			CrushableLevel="25" />
+	</GameObject>
+	<GameObject
+  id="StrategicArmyInfiltrationInfantry_Crate"
+  inheritFrom="StrategicArmyInfiltrationInfantry"
+  KindOf="+TIBERIUM_BASED"
+  EditorName="StrategicArmyInfiltrationInfantry_Crate">
+		<EquivalentTo>StrategicArmyInfiltrationInfantry</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,783 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml"/>
+	</Includes>
+
+
+	<!-- This is the NULL player template.  Don't touch this unless you really really know
+		what you're doing, or you risk breaking stuff. - asc -->
+	<PlayerTemplate
+		id="Null"
+		Type="NULL"
+		DisplayNameToken="GUI:NULL">
+		<PreferredColor R="255" G="255" B="255"/>
+		<PreferredCampaignRadarColor R="255" G="255" B="255"/>
+	</PlayerTemplate>
+
+	<PlayerTemplate
+		id="Random"
+		Side="RANDOM"
+		Type="RANDOM"
+		DisplayNameToken="GUI:RandomSide"
+		FactionIconImageName="GameSetup_flag_Random"
+		LoadScreenMusic="TEMP_RAM_Music360_LoadScreen">
+		<PreferredColor R="255" G="255" B="255"/>
+		<PreferredCampaignRadarColor R="255" G="255" B="255"/>
+	</PlayerTemplate>
+
+	<PlayerTemplate
+		id="Observer"
+		Side="Neutral"
+		Type="OBSERVER"
+		DisplayNameToken="INI:FactionObserver"
+		FactionIconImageName="GameSetup_flag_Observer"
+		LoadScreenMusic="TEMP_RAM_Music360_LoadScreen">
+		<PreferredColor R="255" G="255" B="255"/>
+		<PreferredCampaignRadarColor R="255" G="255" B="255"/>
+	</PlayerTemplate>
+
+	<PlayerTemplate
+		id="Commentator"
+		Side="Neutral"
+		Type="COMMENTATOR"
+		DisplayNameToken="INI:FactionCommentator"
+		FactionIconImageName="GameSetup_flag_Commentator"
+		LoadScreenMusic="TEMP_RAM_Music360_LoadScreen">
+		<PreferredColor R="64" G="64" B="64" />
+		<PreferredCampaignRadarColor R="64" G="64" B="64" />
+	</PlayerTemplate>
+
+	<PlayerTemplate
+		id="Civilian"
+		Side="Neutral"
+		ScriptedHuntTactic="ScriptedHuntTactic"
+		DisplayNameToken="INI:FactionCivilian"
+		FactionIconImageName="INVALID"
+		LoadScreenMusic="TEMP_RAM_Music360_LoadScreen">
+		<PreferredColor R="128" G="128" B="128"/>
+		<PreferredCampaignRadarColor R="128" G="128" B="128"/>
+	</PlayerTemplate>
+
+	<PlayerTemplate
+		id="Neutral"
+		Side="Neutral"
+		ScriptedHuntTactic="ScriptedHuntTactic"
+		DisplayNameToken="INI:FactionNeutral"
+		FactionIconImageName="INVALID"
+		LoadScreenMusic="TEMP_RAM_Music360_LoadScreen">
+		<PreferredColor R="192" G="192" B="192"/>
+		<PreferredCampaignRadarColor R="192" G="192" B="192"/>
+	</PlayerTemplate>
+
+	<!--盟军-->
+	<PlayerTemplate
+		id="Allies"
+		Side="Allies"
+		Type="PLAYABLE"
+		StartingBuilding="AlliedConstructionYard"
+		ScriptedHuntTactic="ScriptedHuntTactic"
+		DisplayNameToken="INI:FactionAllies"
+		FactionIconImageName="GameSetup_flag_Allied"
+		UnattachedMpBeaconTemplate="MultiplayerBeacon"
+		AttachedMpBeaconTemplate="MultiplayerBeaconAttached"
+		MaxMpBeacons="5" 
+		LoadScreenMusic="TEMP_RAM_Music360_LoadScreen"
+		SkirmishMPVictoryMusic=""
+		SkirmishMPDefeatMusic=""
+		FactionDataPathMusicEvent="SetPlayerAllied"
+		MatchVictoryPathMusicEvent="S_EndMissionWin"
+		MatchDefeatPathMusicEvent="S_EndMissionLose"
+		SpellBookSP="PlayerSpellBook"
+		SpellBookMP="PlayerSpellBook"
+		NumberOfResourceAccounts="1"
+		ParachuteOCL="OCL_AlliedParachute"
+		DefaultTech="PlayerTech_Allied"
+		PlayerTechUpgradeBinding="PlayerTechUpgradeBinding"
+		TechRankPointsPerSecond="1"
+		InitialTechPoints="0"
+		PowerOutageTurnsOffRadar="false">
+		<RedAlertTemplate>BaseRedAlert</RedAlertTemplate>
+		<PreferredColor R="50" G="75" B="200"/>
+		<PreferredCampaignRadarColor R="50" G="75" B="200"/>
+		<InitialUpgrade>Upgrade_AlliesFaction</InitialUpgrade>
+		<InitialUpgrade>Upgrade_AlliesFactionSearch</InitialUpgrade>
+		<InitialUpgrade>UpgradeUprisingNoUse</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_AlliedLaserUpgrade</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_AlliedAirPower</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_AlliedHighTechnology</InitialUpgrade>
+		<InitialUpgrade>AntiAlliedUnitUpgrade</InitialUpgrade>
+<!-- /////////////////////////StartingUnitsStart///////////////////// -->
+		<StartingUnitInfo>
+			<Object>GameStartSpawn</Object>
+			<Position 
+				x="0.0" 
+				y="0.0" 
+				z="50.0" /> 
+		</StartingUnitInfo>
+		<StartingUnitInfo>
+			<Object>AIAttackStyleSpawn</Object>
+			<Position 
+				x="0.0" 
+				y="0.0" 
+				z="50.0" /> 
+		</StartingUnitInfo>
+<!-- /////////////////////////StartingUnitsEnd///////////////////// -->
+		<StartingMoney Account="=$ACCOUNT_ORE"		Amount="10000"/>
+		<MoneyCap		Account="=$ACCOUNT_ORE"		Amount="9999999"/>
+		<AIBeaconSettings
+			BeaconType="Assault"
+			UnattachedTemplate="AIAssaultBeacon"
+			AttachedTemplate="AIAssaultBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldObject"
+			AttachedTemplate="AIHoldBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldPosition"
+			UnattachedTemplate="AIHoldBeacon"/>
+		<TechRank>PlayerTechRank_AlliedRank1</TechRank>
+		<TechRank>PlayerTechRank_Rank2</TechRank>
+		<TechRank>PlayerTechRank_Rank3</TechRank>
+		<TechRank>PlayerTechRank_Rank4</TechRank>
+		<TechRank>PlayerTechRank_Rank5</TechRank>
+		<TechRank>PlayerTechRank_Rank6</TechRank>
+		<TechRank>PlayerTechRank_Rank7</TechRank>
+		<TechRank>PlayerTechRank_Rank8</TechRank>
+		<TechRank>PlayerTechRank_Rank9</TechRank>
+		<TechRank>PlayerTechRank_Rank10</TechRank>
+		<TechRank>PlayerTechRank_Rank11</TechRank>
+		<TechProductionBonuses
+			RequiredTech="PlayerTech_Generic_Rank_7"
+			HarvesterBonus="25%"
+			HarvesterBonusAllies="0%"/>
+	</PlayerTemplate>
+
+	<!--欧盟-->
+	<PlayerTemplate
+		id="AlliesG"
+		Side="Allies"
+		Type="PLAYABLE"
+		StartingBuilding="EUConstructionYard"
+		ScriptedHuntTactic="ScriptedHuntTactic"
+		DisplayNameToken="INI:FactionEuropeanUnion"
+		FactionIconImageName="GameSetup_flag_EU"
+		UnattachedMpBeaconTemplate="MultiplayerBeacon"
+		AttachedMpBeaconTemplate="MultiplayerBeaconAttached"
+		MaxMpBeacons="5"
+		LoadScreenMusic="TEMP_RAM_Music360_LoadScreen"
+		SkirmishMPVictoryMusic=""
+		SkirmishMPDefeatMusic=""
+		FactionDataPathMusicEvent="SetPlayerAllied"
+		MatchVictoryPathMusicEvent="S_EndMissionWin"
+		MatchDefeatPathMusicEvent="S_EndMissionLose"
+		SpellBookSP="PlayerSpellBook"
+		SpellBookMP="PlayerSpellBook"
+		NumberOfResourceAccounts="1"
+		ParachuteOCL="OCL_AlliedParachute"
+		DefaultTech="PlayerTech_Allied"
+		PlayerTechUpgradeBinding="PlayerTechUpgradeBinding"
+		TechRankPointsPerSecond="1"
+		InitialTechPoints="0"
+		PowerOutageTurnsOffRadar="false">
+		<RedAlertTemplate>BaseRedAlert</RedAlertTemplate>
+		<PreferredColor R="50" G="75" B="200"/>
+		<PreferredCampaignRadarColor R="50" G="75" B="200"/>
+		<InitialUpgrade>Upgrade_AlliesFaction</InitialUpgrade>
+		<InitialUpgrade>Upgrade_EuropeanUnionFaction</InitialUpgrade>
+		<InitialUpgrade>UpgradeUprisingNoUse</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_AlliedLaserUpgrade</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_AlliedAirPower</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_AlliedHighTechnology</InitialUpgrade>
+		<InitialUpgrade>AntiAlliedUnitUpgrade</InitialUpgrade>
+		<!-- /////////////////////////StartingUnitsStart///////////////////// -->
+		<StartingUnitInfo>
+			<Object>GameStartSpawn</Object>
+			<Position 
+				x="0.0" 
+				y="0.0" 
+				z="50.0" /> 
+		</StartingUnitInfo>
+		<StartingUnitInfo>
+			<Object>AIAttackStyleSpawn</Object>
+			<Position 
+				x="0.0" 
+				y="0.0" 
+				z="50.0" /> 
+		</StartingUnitInfo>
+		<!-- /////////////////////////StartingUnitsEnd///////////////////// -->
+		<StartingMoney Account="=$ACCOUNT_ORE"		Amount="10000"/>
+		<MoneyCap		Account="=$ACCOUNT_ORE"		Amount="9999999"/>
+		<AIBeaconSettings
+			BeaconType="Assault"
+			UnattachedTemplate="AIAssaultBeacon"
+			AttachedTemplate="AIAssaultBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldObject"
+			AttachedTemplate="AIHoldBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldPosition"
+			UnattachedTemplate="AIHoldBeacon"/>
+		<TechRank>PlayerTechRank_AlliedRank1</TechRank>
+		<TechRank>PlayerTechRank_Rank2</TechRank>
+		<TechRank>PlayerTechRank_Rank3</TechRank>
+		<TechRank>PlayerTechRank_Rank4</TechRank>
+		<TechRank>PlayerTechRank_Rank5</TechRank>
+		<TechRank>PlayerTechRank_Rank6</TechRank>
+		<TechRank>PlayerTechRank_Rank7</TechRank>
+		<TechRank>PlayerTechRank_Rank8</TechRank>
+		<TechRank>PlayerTechRank_Rank9</TechRank>
+		<TechRank>PlayerTechRank_Rank10</TechRank>
+		<TechRank>PlayerTechRank_Rank11</TechRank>
+		<TechProductionBonuses
+			RequiredTech="PlayerTech_Generic_Rank_7"
+			HarvesterBonus="25%"
+			HarvesterBonusAllies="0%"/>
+	</PlayerTemplate>
+
+	<!--盟系随机
+	<PlayerTemplate
+		id="AlliesE"
+		Side="Allies"
+		Type="PLAYABLE"
+		StartingBuilding="AlliesRandomStructure"
+		ScriptedHuntTactic="ScriptedHuntTactic"
+		DisplayNameToken="INI:FactionAlliesRandom"
+		FactionIconImageName="GameSetup_flag_ARandom"
+		UnattachedMpBeaconTemplate="MultiplayerBeacon"
+		AttachedMpBeaconTemplate="MultiplayerBeaconAttached"
+		MaxMpBeacons="5"
+		LoadScreenMusic="TEMP_RAM_Music360_LoadScreen"
+		SkirmishMPVictoryMusic=""
+		SkirmishMPDefeatMusic=""
+		FactionDataPathMusicEvent="SetPlayerAllied"
+		MatchVictoryPathMusicEvent="S_EndMissionWin"
+		MatchDefeatPathMusicEvent="S_EndMissionLose"
+		SpellBookSP="PlayerSpellBook"
+		SpellBookMP="PlayerSpellBook"
+		NumberOfResourceAccounts="1"
+		ParachuteOCL="OCL_AlliedParachute"
+		DefaultTech="PlayerTech_Allied"
+		PlayerTechUpgradeBinding="PlayerTechUpgradeBinding"
+		TechRankPointsPerSecond="1"
+		InitialTechPoints="0"
+		PowerOutageTurnsOffRadar="false">
+		<RedAlertTemplate>BaseRedAlert</RedAlertTemplate>
+		<PreferredColor R="50" G="75" B="200"/>
+		<PreferredCampaignRadarColor R="50" G="75" B="200"/>
+		<InitialUpgrade>Upgrade_AlliesFaction</InitialUpgrade>
+		<StartingUnitInfo>
+			<Object>GameStartSpawn</Object>
+			<Position
+			x="0.0"
+			y="0.0"
+			z="50.0" />
+		</StartingUnitInfo>
+		<StartingUnitInfo>
+			<Object>UprisingReady</Object>
+			<Position
+			x="0.0"
+			y="0.0"
+			z="600.0" />
+		</StartingUnitInfo>
+		<StartingMoney Account="=$ACCOUNT_ORE"		Amount="10000"/>
+		<MoneyCap		Account="=$ACCOUNT_ORE"		Amount="999999"/>
+		<AIBeaconSettings
+			BeaconType="Assault"
+			UnattachedTemplate="AIAssaultBeacon"
+			AttachedTemplate="AIAssaultBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldObject"
+			AttachedTemplate="AIHoldBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldPosition"
+			UnattachedTemplate="AIHoldBeacon"/>
+		<TechRank>PlayerTechRank_AlliedRank1</TechRank>
+		<TechRank>PlayerTechRank_Rank2</TechRank>
+		<TechRank>PlayerTechRank_Rank3</TechRank>
+		<TechRank>PlayerTechRank_Rank4</TechRank>
+		<TechRank>PlayerTechRank_Rank5</TechRank>
+		<TechRank>PlayerTechRank_Rank6</TechRank>
+		<TechRank>PlayerTechRank_Rank7</TechRank>
+		<TechRank>PlayerTechRank_Rank8</TechRank>
+		<TechRank>PlayerTechRank_Rank9</TechRank>
+		<TechRank>PlayerTechRank_Rank10</TechRank>
+		<TechRank>PlayerTechRank_Rank11</TechRank>
+		<TechProductionBonuses
+			RequiredTech="PlayerTech_Generic_Rank_7"
+			HarvesterBonus="25%"
+			HarvesterBonusAllies="0%"/>
+	</PlayerTemplate>-->
+
+	<!--苏联-->
+	<PlayerTemplate
+		id="Soviet"
+		Side="Soviet"
+		Type="PLAYABLE"
+		StartingBuilding="SovietConstructionYard"
+		ScriptedHuntTactic="ScriptedHuntTactic"
+		DisplayNameToken="INI:FactionSoviet"
+		FactionIconImageName="GameSetup_flag_Soviet"
+		UnattachedMpBeaconTemplate="MultiplayerBeacon"
+		AttachedMpBeaconTemplate="MultiplayerBeaconAttached"
+		MaxMpBeacons="5" 
+		LoadScreenMusic="TEMP_RAM_Music360_LoadScreen"
+		SkirmishMPVictoryMusic=""
+		SkirmishMPDefeatMusic=""
+		FactionDataPathMusicEvent="SetPlayerSoviet"
+		MatchVictoryPathMusicEvent="S_EndMissionWin"
+		MatchDefeatPathMusicEvent="S_EndMissionLose"
+		SpellBookSP="PlayerSpellBook"
+		SpellBookMP="PlayerSpellBook"
+		NumberOfResourceAccounts="1"
+		ParachuteOCL="OCL_SovietParachute"
+		DefaultTech="PlayerTech_Soviet"
+		PlayerTechUpgradeBinding="PlayerTechUpgradeBinding"
+		TechRankPointsPerSecond="1"
+		InitialTechPoints="0"
+		PowerOutageTurnsOffRadar="false">
+		<RedAlertTemplate>BaseRedAlert</RedAlertTemplate>
+		<PreferredColor R="230" G="20" B="20"/>
+		<PreferredCampaignRadarColor R="230" G="20" B="20"/>
+		<InitialUpgrade>Upgrade_SovietFaction</InitialUpgrade>
+		<InitialUpgrade>Upgrade_SovietFactionSearch</InitialUpgrade>
+		<InitialUpgrade>UpgradeUprisingNoUse</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_SovietTerrorDroneEggs</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_SovietCrushPuppiesPower</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_SovietAntiPlus</InitialUpgrade>
+<!-- /////////////////////////StartingUnitsStart///////////////////// -->
+		<StartingUnitInfo>
+			<Object>GameStartSpawn</Object>
+			<Position
+				x="0.0"
+				y="0.0"
+				z="50.0" />
+		</StartingUnitInfo>
+		<StartingUnitInfo>
+			<Object>AIAttackStyleSpawn</Object>
+			<Position
+				x="0.0"
+				y="0.0"
+				z="50.0" />
+		</StartingUnitInfo>
+<!-- /////////////////////////StartingUnitsEnd///////////////////// -->
+		<StartingMoney Account="=$ACCOUNT_ORE"		Amount="10000"/>
+		<MoneyCap		Account="=$ACCOUNT_ORE"		Amount="9999999"/>
+		<AIBeaconSettings
+			BeaconType="Assault"
+			UnattachedTemplate="AIAssaultBeacon"
+			AttachedTemplate="AIAssaultBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldObject"
+			AttachedTemplate="AIHoldBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldPosition"
+			UnattachedTemplate="AIHoldBeacon"/>
+		<TechRank>PlayerTechRank_SovietRank1</TechRank>
+		<TechRank>PlayerTechRank_Rank2</TechRank>
+		<TechRank>PlayerTechRank_Rank3</TechRank>
+		<TechRank>PlayerTechRank_Rank4</TechRank>
+		<TechRank>PlayerTechRank_Rank5</TechRank>
+		<TechRank>PlayerTechRank_Rank6</TechRank>
+		<TechRank>PlayerTechRank_Rank7</TechRank>
+		<TechRank>PlayerTechRank_Rank8</TechRank>
+		<TechRank>PlayerTechRank_Rank9</TechRank>
+		<TechRank>PlayerTechRank_Rank10</TechRank>
+		<TechRank>PlayerTechRank_Rank11</TechRank>
+		<TechProductionBonuses
+			RequiredTech="PlayerTech_Generic_Rank_7"
+			HarvesterBonus="25%"
+			HarvesterBonusAllies="0%"/>
+	</PlayerTemplate>
+
+	<!--战略军-->
+	<PlayerTemplate
+		id="SovietB"
+		Side="Soviet"
+		Type="PLAYABLE"
+		StartingBuilding="StrategicArmyConstructionYard"
+		ScriptedHuntTactic="ScriptedHuntTactic"
+		DisplayNameToken="INI:FactionStrategicArmy"
+		FactionIconImageName="GameSetup_flag_SA"
+		UnattachedMpBeaconTemplate="MultiplayerBeacon"
+		AttachedMpBeaconTemplate="MultiplayerBeaconAttached"
+		MaxMpBeacons="5"
+		LoadScreenMusic="TEMP_RAM_Music360_LoadScreen"
+		SkirmishMPVictoryMusic=""
+		SkirmishMPDefeatMusic=""
+		FactionDataPathMusicEvent="SetPlayerSoviet"
+		MatchVictoryPathMusicEvent="S_EndMissionWin"
+		MatchDefeatPathMusicEvent="S_EndMissionLose"
+		SpellBookSP="PlayerSpellBook"
+		SpellBookMP="PlayerSpellBook"
+		NumberOfResourceAccounts="1"
+		ParachuteOCL="OCL_SovietParachute"
+		DefaultTech="PlayerTech_Soviet"
+		PlayerTechUpgradeBinding="PlayerTechUpgradeBinding"
+		TechRankPointsPerSecond="1"
+		InitialTechPoints="0"
+		PowerOutageTurnsOffRadar="false">
+		<RedAlertTemplate>BaseRedAlert</RedAlertTemplate>
+		<PreferredColor R="230" G="20" B="20"/>
+		<PreferredCampaignRadarColor R="230" G="20" B="20"/>
+		<InitialUpgrade>Upgrade_SovietFaction</InitialUpgrade>
+		<InitialUpgrade>Upgrade_StrategicArmyFaction</InitialUpgrade>
+		<InitialUpgrade>UpgradeUprisingNoUse</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_SovietTerrorDroneEggs</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_SovietCrushPuppiesPower</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_SovietAntiPlus</InitialUpgrade>
+		<!-- /////////////////////////StartingUnitsStart///////////////////// -->
+		<StartingUnitInfo>
+			<Object>GameStartSpawn</Object>
+			<Position
+				x="0.0"
+				y="0.0"
+				z="50.0" />
+		</StartingUnitInfo>
+		<StartingUnitInfo>
+			<Object>AIAttackStyleSpawn</Object>
+			<Position
+				x="0.0"
+				y="0.0"
+				z="50.0" />
+		</StartingUnitInfo>
+		<!-- /////////////////////////StartingUnitsEnd///////////////////// -->
+		<StartingMoney Account="=$ACCOUNT_ORE"		Amount="10000"/>
+		<MoneyCap		Account="=$ACCOUNT_ORE"		Amount="9999999"/>
+		<AIBeaconSettings
+			BeaconType="Assault"
+			UnattachedTemplate="AIAssaultBeacon"
+			AttachedTemplate="AIAssaultBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldObject"
+			AttachedTemplate="AIHoldBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldPosition"
+			UnattachedTemplate="AIHoldBeacon"/>
+		<TechRank>PlayerTechRank_SovietRank1</TechRank>
+		<TechRank>PlayerTechRank_Rank2</TechRank>
+		<TechRank>PlayerTechRank_Rank3</TechRank>
+		<TechRank>PlayerTechRank_Rank4</TechRank>
+		<TechRank>PlayerTechRank_Rank5</TechRank>
+		<TechRank>PlayerTechRank_Rank6</TechRank>
+		<TechRank>PlayerTechRank_Rank7</TechRank>
+		<TechRank>PlayerTechRank_Rank8</TechRank>
+		<TechRank>PlayerTechRank_Rank9</TechRank>
+		<TechRank>PlayerTechRank_Rank10</TechRank>
+		<TechRank>PlayerTechRank_Rank11</TechRank>
+		<TechProductionBonuses
+			RequiredTech="PlayerTech_Generic_Rank_7"
+			HarvesterBonus="25%"
+			HarvesterBonusAllies="0%"/>
+	</PlayerTemplate>
+
+	<!--苏系随机
+	<PlayerTemplate
+		id="SovietL"
+		Side="Soviet"
+		Type="PLAYABLE"
+		StartingBuilding="SovietRandomStructure"
+		ScriptedHuntTactic="ScriptedHuntTactic"
+		DisplayNameToken="INI:FactionSovietRandom"
+		FactionIconImageName="GameSetup_flag_SRandom"
+		UnattachedMpBeaconTemplate="MultiplayerBeacon"
+		AttachedMpBeaconTemplate="MultiplayerBeaconAttached"
+		MaxMpBeacons="5"
+		LoadScreenMusic="TEMP_RAM_Music360_LoadScreen"
+		SkirmishMPVictoryMusic=""
+		SkirmishMPDefeatMusic=""
+		FactionDataPathMusicEvent="SetPlayerSoviet"
+		MatchVictoryPathMusicEvent="S_EndMissionWin"
+		MatchDefeatPathMusicEvent="S_EndMissionLose"
+		SpellBookSP="PlayerSpellBook"
+		SpellBookMP="PlayerSpellBook"
+		NumberOfResourceAccounts="1"
+		ParachuteOCL="OCL_SovietParachute"
+		DefaultTech="PlayerTech_Soviet"
+		PlayerTechUpgradeBinding="PlayerTechUpgradeBinding"
+		TechRankPointsPerSecond="1"
+		InitialTechPoints="0"
+		PowerOutageTurnsOffRadar="false">
+		<RedAlertTemplate>BaseRedAlert</RedAlertTemplate>
+		<PreferredColor R="230" G="20" B="20"/>
+		<PreferredCampaignRadarColor R="230" G="20" B="20"/>
+		<InitialUpgrade>Upgrade_SovietFaction</InitialUpgrade>
+		<StartingUnitInfo>
+			<Object>GameStartSpawn</Object>
+			<Position
+			x="0.0"
+			y="0.0"
+			z="50.0" />
+		</StartingUnitInfo>
+		<StartingUnitInfo>
+			<Object>UprisingReady</Object>
+			<Position
+			x="0.0"
+			y="0.0"
+			z="600.0" />
+		</StartingUnitInfo>
+		<StartingMoney Account="=$ACCOUNT_ORE"		Amount="10000"/>
+		<MoneyCap		Account="=$ACCOUNT_ORE"		Amount="999999"/>
+		<AIBeaconSettings
+			BeaconType="Assault"
+			UnattachedTemplate="AIAssaultBeacon"
+			AttachedTemplate="AIAssaultBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldObject"
+			AttachedTemplate="AIHoldBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldPosition"
+			UnattachedTemplate="AIHoldBeacon"/>
+		<TechRank>PlayerTechRank_SovietRank1</TechRank>
+		<TechRank>PlayerTechRank_Rank2</TechRank>
+		<TechRank>PlayerTechRank_Rank3</TechRank>
+		<TechRank>PlayerTechRank_Rank4</TechRank>
+		<TechRank>PlayerTechRank_Rank5</TechRank>
+		<TechRank>PlayerTechRank_Rank6</TechRank>
+		<TechRank>PlayerTechRank_Rank7</TechRank>
+		<TechRank>PlayerTechRank_Rank8</TechRank>
+		<TechRank>PlayerTechRank_Rank9</TechRank>
+		<TechRank>PlayerTechRank_Rank10</TechRank>
+		<TechRank>PlayerTechRank_Rank11</TechRank>
+		<TechProductionBonuses
+			RequiredTech="PlayerTech_Generic_Rank_7"
+			HarvesterBonus="25%"
+			HarvesterBonusAllies="0%"/>
+	</PlayerTemplate>-->
+
+	<!--帝国-->
+	<PlayerTemplate
+		id="Japan"
+		Side="Japan"
+		Type="PLAYABLE"
+		StartingBuilding="JapanConstructionYard"
+		ScriptedHuntTactic="ScriptedHuntTactic"
+		DisplayNameToken="INI:FactionJapan"
+		FactionIconImageName="GameSetup_flag_Japan"
+		UnattachedMpBeaconTemplate="MultiplayerBeacon"
+		AttachedMpBeaconTemplate="MultiplayerBeaconAttached"
+		MaxMpBeacons="5"
+		LoadScreenMusic="TEMP_RAM_Music360_LoadScreen"
+		SkirmishMPVictoryMusic=""
+		SkirmishMPDefeatMusic=""
+		FactionDataPathMusicEvent="SetPlayerJapan"
+		MatchVictoryPathMusicEvent="S_EndMissionWin"
+		MatchDefeatPathMusicEvent="S_EndMissionLose"
+		SpellBookSP="PlayerSpellBook"
+		SpellBookMP="PlayerSpellBook"
+		NumberOfResourceAccounts="1"
+		ParachuteOCL="OCL_JapanParachute"
+		DefaultTech="PlayerTech_Japan"
+		PlayerTechUpgradeBinding="PlayerTechUpgradeBinding"
+		TechRankPointsPerSecond="1"
+		InitialTechPoints="0"
+		PowerOutageTurnsOffRadar="false">
+		<RedAlertTemplate>BaseRedAlert</RedAlertTemplate>
+		<PreferredColor R="225" G="115" B="20"/>
+		<PreferredCampaignRadarColor R="225" G="115" B="20"/>
+		<InitialUpgrade>Upgrade_JapanFaction</InitialUpgrade>
+		<InitialUpgrade>Upgrade_JapanFactionSearch</InitialUpgrade>
+		<InitialUpgrade>UpgradeUprisingNoUse</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_JapanEnhancedKamikaze</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_JapanAdvancedMissilePacks</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_JapanNavalPower</InitialUpgrade>
+<!-- /////////////////////////StartingUnitsStart///////////////////// -->
+		<StartingUnitInfo>
+			<Object>GameStartSpawn</Object>
+			<Position
+				x="0.0"
+				y="0.0"
+				z="50.0" />
+		</StartingUnitInfo>
+		<StartingUnitInfo>
+			<Object>AIAttackStyleSpawn</Object>
+			<Position
+				x="0.0"
+				y="0.0"
+				z="50.0" />
+		</StartingUnitInfo>
+<!-- /////////////////////////StartingUnitsEnd///////////////////// -->
+		<StartingMoney Account="=$ACCOUNT_ORE"		Amount="10000"/>
+		<MoneyCap		Account="=$ACCOUNT_ORE"		Amount="9999999"/>
+		<AIBeaconSettings
+			BeaconType="Assault"
+			UnattachedTemplate="AIAssaultBeacon"
+			AttachedTemplate="AIAssaultBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldObject"
+			AttachedTemplate="AIHoldBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldPosition"
+			UnattachedTemplate="AIHoldBeacon"/>
+		<TechRank>PlayerTechRank_JapanRank1</TechRank>
+		<TechRank>PlayerTechRank_Rank2</TechRank>
+		<TechRank>PlayerTechRank_Rank3</TechRank>
+		<TechRank>PlayerTechRank_Rank4</TechRank>
+		<TechRank>PlayerTechRank_Rank5</TechRank>
+		<TechRank>PlayerTechRank_Rank6</TechRank>
+		<TechRank>PlayerTechRank_Rank7</TechRank>
+		<TechRank>PlayerTechRank_Rank8</TechRank>
+		<TechRank>PlayerTechRank_Rank9</TechRank>
+		<TechRank>PlayerTechRank_Rank10</TechRank>
+		<TechRank>PlayerTechRank_Rank11</TechRank>
+		<TechProductionBonuses
+			RequiredTech="PlayerTech_Generic_Rank_7"
+			HarvesterBonus="25%"
+			HarvesterBonusAllies="0%"/>
+	</PlayerTemplate>
+
+	<!--国防省-->
+	<PlayerTemplate
+		id="JapanA"
+		Side="Japan"
+		Type="PLAYABLE"
+		StartingBuilding="MODConstructionYard"
+		ScriptedHuntTactic="ScriptedHuntTactic"
+		DisplayNameToken="INI:FactionMinistryofDefense"
+		FactionIconImageName="GameSetup_flag_MOD"
+		UnattachedMpBeaconTemplate="MultiplayerBeacon"
+		AttachedMpBeaconTemplate="MultiplayerBeaconAttached"
+		MaxMpBeacons="5"
+		LoadScreenMusic="TEMP_RAM_Music360_LoadScreen"
+		SkirmishMPVictoryMusic=""
+		SkirmishMPDefeatMusic=""
+		FactionDataPathMusicEvent="SetPlayerJapan"
+		MatchVictoryPathMusicEvent="S_EndMissionWin"
+		MatchDefeatPathMusicEvent="S_EndMissionLose"
+		SpellBookSP="PlayerSpellBook"
+		SpellBookMP="PlayerSpellBook"
+		NumberOfResourceAccounts="1"
+		ParachuteOCL="OCL_JapanParachute"
+		DefaultTech="PlayerTech_Japan"
+		PlayerTechUpgradeBinding="PlayerTechUpgradeBinding"
+		TechRankPointsPerSecond="1"
+		InitialTechPoints="0"
+		PowerOutageTurnsOffRadar="false">
+		<RedAlertTemplate>BaseRedAlert</RedAlertTemplate>
+		<PreferredColor R="225" G="115" B="20"/>
+		<PreferredCampaignRadarColor R="225" G="115" B="20"/>
+		<InitialUpgrade>Upgrade_JapanFaction</InitialUpgrade>
+		<InitialUpgrade>Upgrade_MinistryofDefenseFaction</InitialUpgrade>
+		<InitialUpgrade>UpgradeUprisingNoUse</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_JapanEnhancedKamikaze</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_JapanAdvancedMissilePacks</InitialUpgrade>
+		<InitialUpgrade>AntiUpgrade_JapanNavalPower</InitialUpgrade>
+		<!-- /////////////////////////StartingUnitsStart///////////////////// -->
+		<StartingUnitInfo>
+			<Object>GameStartSpawn</Object>
+			<Position
+				x="0.0"
+				y="0.0"
+				z="50.0" />
+		</StartingUnitInfo>
+		<StartingUnitInfo>
+			<Object>AIAttackStyleSpawn</Object>
+			<Position
+				x="0.0"
+				y="0.0"
+				z="50.0" />
+		</StartingUnitInfo>
+		<!-- /////////////////////////StartingUnitsEnd///////////////////// -->
+		<StartingMoney Account="=$ACCOUNT_ORE"		Amount="10000"/>
+		<MoneyCap		Account="=$ACCOUNT_ORE"		Amount="9999999"/>
+		<AIBeaconSettings
+			BeaconType="Assault"
+			UnattachedTemplate="AIAssaultBeacon"
+			AttachedTemplate="AIAssaultBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldObject"
+			AttachedTemplate="AIHoldBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldPosition"
+			UnattachedTemplate="AIHoldBeacon"/>
+		<TechRank>PlayerTechRank_JapanRank1</TechRank>
+		<TechRank>PlayerTechRank_Rank2</TechRank>
+		<TechRank>PlayerTechRank_Rank3</TechRank>
+		<TechRank>PlayerTechRank_Rank4</TechRank>
+		<TechRank>PlayerTechRank_Rank5</TechRank>
+		<TechRank>PlayerTechRank_Rank6</TechRank>
+		<TechRank>PlayerTechRank_Rank7</TechRank>
+		<TechRank>PlayerTechRank_Rank8</TechRank>
+		<TechRank>PlayerTechRank_Rank9</TechRank>
+		<TechRank>PlayerTechRank_Rank10</TechRank>
+		<TechRank>PlayerTechRank_Rank11</TechRank>
+		<TechProductionBonuses
+			RequiredTech="PlayerTech_Generic_Rank_7"
+			HarvesterBonus="25%"
+			HarvesterBonusAllies="0%"/>
+	</PlayerTemplate>
+
+	<!--帝系随机
+	<PlayerTemplate
+		id="JapanG"
+		Side="Japan"
+		Type="PLAYABLE"
+		StartingBuilding="JapanRandomStructure"
+		ScriptedHuntTactic="ScriptedHuntTactic"
+		DisplayNameToken="INI:FactionJapanRandom"
+		FactionIconImageName="GameSetup_flag_JRandom"
+		UnattachedMpBeaconTemplate="MultiplayerBeacon"
+		AttachedMpBeaconTemplate="MultiplayerBeaconAttached"
+		MaxMpBeacons="5"
+		LoadScreenMusic="TEMP_RAM_Music360_LoadScreen"
+		SkirmishMPVictoryMusic=""
+		SkirmishMPDefeatMusic=""
+		FactionDataPathMusicEvent="SetPlayerJapan"
+		MatchVictoryPathMusicEvent="S_EndMissionWin"
+		MatchDefeatPathMusicEvent="S_EndMissionLose"
+		SpellBookSP="PlayerSpellBook"
+		SpellBookMP="PlayerSpellBook"
+		NumberOfResourceAccounts="1"
+		ParachuteOCL="OCL_JapanParachute"
+		DefaultTech="PlayerTech_Japan"
+		PlayerTechUpgradeBinding="PlayerTechUpgradeBinding"
+		TechRankPointsPerSecond="1"
+		InitialTechPoints="0"
+		PowerOutageTurnsOffRadar="false">
+		<RedAlertTemplate>BaseRedAlert</RedAlertTemplate>
+		<PreferredColor R="225" G="115" B="20"/>
+		<PreferredCampaignRadarColor R="225" G="115" B="20"/>
+		<InitialUpgrade>Upgrade_JapanFaction</InitialUpgrade>
+		<StartingUnitInfo>
+			<Object>GameStartSpawn</Object>
+			<Position
+			x="0.0"
+			y="0.0"
+			z="50.0" />
+		</StartingUnitInfo>
+		<StartingUnitInfo>
+			<Object>UprisingReady</Object>
+			<Position
+			x="0.0"
+			y="0.0"
+			z="600.0" />
+		</StartingUnitInfo>
+		<StartingMoney Account="=$ACCOUNT_ORE"		Amount="10000"/>
+		<MoneyCap		Account="=$ACCOUNT_ORE"		Amount="999999"/>
+		<AIBeaconSettings
+			BeaconType="Assault"
+			UnattachedTemplate="AIAssaultBeacon"
+			AttachedTemplate="AIAssaultBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldObject"
+			AttachedTemplate="AIHoldBeaconAttached"/>
+		<AIBeaconSettings
+			BeaconType="HoldPosition"
+			UnattachedTemplate="AIHoldBeacon"/>
+		<TechRank>PlayerTechRank_JapanRank1</TechRank>
+		<TechRank>PlayerTechRank_Rank2</TechRank>
+		<TechRank>PlayerTechRank_Rank3</TechRank>
+		<TechRank>PlayerTechRank_Rank4</TechRank>
+		<TechRank>PlayerTechRank_Rank5</TechRank>
+		<TechRank>PlayerTechRank_Rank6</TechRank>
+		<TechRank>PlayerTechRank_Rank7</TechRank>
+		<TechRank>PlayerTechRank_Rank8</TechRank>
+		<TechRank>PlayerTechRank_Rank9</TechRank>
+		<TechRank>PlayerTechRank_Rank10</TechRank>
+		<TechRank>PlayerTechRank_Rank11</TechRank>
+		<TechProductionBonuses
+			RequiredTech="PlayerTech_Generic_Rank_7"
+			HarvesterBonus="25%"
+			HarvesterBonusAllies="0%"/>
+	</PlayerTemplate>-->
+</AssetDeclaration>

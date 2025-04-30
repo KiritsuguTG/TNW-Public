@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:Units/MODAntiStructureVehicle/JUHoverMLRS_EMP.w3x" />
+		<Include type="all" source="ART:Units/MODAntiStructureVehicle/JUHoverMLRS_IDLA.w3x" />
+		<Include type="all" source="ART:Units/MODAntiStructureVehicle/JUHoverMLRS_MOVA.w3x" />
+		<Include type="all" source="ART:Units/MODAntiStructureVehicle/JUHoverMLRS_SKN.w3x" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- aka KingOni King Oni -->
+	<GameObject
+		id="MODAntiStructureVehicle"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="PortraitMODAntiStructureVehicle"
+		ButtonImage="ButtonMODAntiStructureVehicle"
+		Side="Japan"
+		SubGroupPriority="460"
+		EditorSorting="UNIT"
+		TransportSlotCount="10"
+		BuildTime="16"
+		CommandSet="MODAntiStructureVehicleCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT T3_UNIT SIEGE_WEAPON AMPHIBIOUS TRANSFORMER"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		BountyValue="250"
+		EditorName="MODAntiStructureVehicle"
+		Description="Desc:MODAntiStructureVehicle"
+		TypeDescription="Type:AntiStructure"
+		HealthBoxHeightOffset="20"
+		SelectPortraitTransformed="PortraitMODAntiStructureVehicle"
+		ButtonImageTransformed="ButtonMODAntiStructureVehicleB"
+		DescriptionTransformed="Desc:MODAntiStructureVehicle"
+		TypeDescriptionTransformed="Type:AntiStructure">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODAntiStructureVehicle</DisplayName>
+		<DisplayNameTransformed
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODAntiStructureVehicle</DisplayNameTransformed>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_JapanWarFactoryTech3</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1600" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseArtilleryArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="DefaultLandLocomotor"
+			Locomotor="MODAntiStructureVehicleLocomotor"
+			Condition="NORMAL"
+			Speed="90" />
+		<LocomotorSet
+			id="DefaultWaterLocomotor"
+			Locomotor="MODAntiStructureVehicleWaterLocomotor"
+			Condition="NORMAL"
+			Speed="90.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			ConquerMetricsDpsBonusAgainstDefenses="5.0"
+			OutOfRangePenalty="3.0"
+			ConquerMetricsOverrideAntiMask="ANTI_STRUCTURE" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="FX_WEAPON_01 FX_WEAPON_02 FX_WEAPON_03 FX_WEAPON_04 FX_WEAPON_05 FX_WEAPON_06 FX_WEAPON_07 FX_WEAPON_08 FX_WEAPON_09 FX_WEAPON_10 FX_WEAPON_11 FX_WEAPON_12 FX_HEADLIGHT_R FX_HEADLIGHT_L BONE_TURRET TURRET_PITCH">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="JUHOVERMLRS_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<Turret
+						TurretNameKey="BONE_TURRET"
+						TurretPitch="TURRET_PITCH"
+						TurretID="1" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="JUHOVERMLRS_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 REALLYDAMAGED">
+					<Model
+						Name="JUHOVERMLRS_SKN" />
+					<Texture
+						Original="JUHoverMLRS"
+						New="JUHoverMLRS02_D" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_04"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_04"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_04"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_08"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_08"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_08"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 DAMAGED">
+					<Model
+						Name="JUHOVERMLRS_SKN" />
+					<Texture
+						Original="JUHoverMLRS"
+						New="JUHoverMLRS02" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_04"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_04"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="JUHOVERMLRS_SKN" />
+					<Texture
+						Original="JUHoverMLRS"
+						New="JUHoverMLRS02" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="JUHOVERMLRS_SKN" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_04"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_04"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUHOVERMLRS_SKN" />
+					<Texture
+						Original="JUHoverMLRS"
+						New="JUHoverMLRS_D" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_04"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_04"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_04"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_08"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_08"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_WEAPON_08"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="JUHOVERMLRS_IDLA"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2"
+						AnimationBlendTime="8" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP"
+					StateName="STATE_EMP">
+					<Animation
+						AnimationName="JUHOVERMLRS_EMP"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<Animation
+						AnimationName="JUHOVERMLRS_MOVA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="8" />
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+				id="ModuleTag_Water_FX">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+					<ParticleSysBone
+						FXParticleSystemTemplate="AlliedArtilleryTankDust"
+						BoneName="InvisBone01"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="FXInvisBone" />
+					<ParticleSysBone
+						FXParticleSystemTemplate="AlliedArtilleryTankWater"
+						BoneName="InvisBone01"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Laser_FX"
+				AttachToBoneInAnotherModule="FX_WEAPONLASER">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Model
+						Name="FXInvisBone" />
+					<ParticleSysBone
+						BoneName="InvisBone01"
+						FXParticleSystemTemplate="JapanTenguJetGlow"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_HeadLightL"
+				AttachToBoneInAnotherModule="FX_HEADLIGHT_L"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="NIGHT">
+					<Model
+						Name="EX_Headlights" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_HeadLightR"
+				AttachToBoneInAnotherModule="FX_HEADLIGHT_R"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="NIGHT">
+					<Model
+						Name="EX_Headlights" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".03"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="1"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="10"
+				LaserStateID="1">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXObeliskLaserHeroic</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXLaserOverlay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1"
+					WeaponChoiceCriteria="PREFER_LONGEST_RANGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODAntiStructureVehicleRocket"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODAntiStructureVehicleRocket_AdvancedMissile"
+						ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE"
+						ObjectStatus="ADVANCED_MISSILE_PACKS" />
+					<TurretSettings
+						TurretTurnRate="240"
+						TurretPitchRate="100"
+						AllowsPitch="true"
+						MinimumPitch="-60d"
+						PitchHeight="90%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0">
+						<TurretAITargetChooserData
+							TargetingCompareList="CommandoTargetingCompareList"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true">
+						</TurretAITargetChooserData>
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<LaserState
+				id="ModuleTag_LaserState"
+				LaserId="1">
+				<LaserEndParticleSystem>Japan_Target_LaserEnd</LaserEndParticleSystem>
+			</LaserState>
+			<SpecialPower
+				id="ModuleTag_ActivateTargetPainterTrigger"
+				SpecialPowerTemplate="SpecialPower_MODAntiStructureTargetPainter"
+				UpdateModuleStartsAttack="true" />
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_ArrowBarrageSpecialPowerUpdate"
+				SpecialWeapon="MODAntiStructureTargetPainterRocket"
+				SpecialPowerTemplate="SpecialPower_MODAntiStructureTargetPainter"
+				UnpackTime="0.2s"
+				PackTime="1s"
+				BusyForDuration="1.0s"
+				StartAbilityRange="1000.0"
+				FaceTarget="true"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="2"
+				Options="BUSY_DURING_UNPACK BUSY_DURING_PACK FAIL_WITH_INVALID_APPROACH" />
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="MODAntiStructureVehicle_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleLargeDie" />
+			</FXListBehavior>
+			<AttributeModifierUpgrade
+				id="ModuleTag_JapanUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeSiegeWeaponUnitUpgrade">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<!-- SovietTerrorDrone -->
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneEggsSpawnTech2.xml"/>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech2/child::*)" />
+			<xi:include
+				href="DATA:Includes/JapanAdvancedMissilePacksUpgrade.xml" />
+			<!-- Japan NavalPower -->
+			<xi:include
+				href="DATA:Includes/JapanNavalPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanNavalPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+					CanPickDynamicTargets="false" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="750" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_WhipArmed">
+				<Override RequiredFlags="USER_1">
+					<AudioArrayVoice>
+						<AudioEntry Sound="MOD_ROCKETVEHICL_VoiceAttackSP" AudioType="voiceAttack" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="MOD_ROCKETVEHICL_VoiceRetreat"
+					RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="22.3998"
+				MinorRadius="15.6115"
+				Height="18.0414"
+				ContactPointGeneration="VEHICLE">
+				<Offset x="3.22502" z="3.18383" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="MOD_ROCKETVEHICL_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="MOD_ROCKETVEHICL_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="MOD_ROCKETVEHICL_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="MOD_ROCKETVEHICL_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="MOD_ROCKETVEHICL_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="MOD_ROCKETVEHICL_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="MOD_ROCKETVEHICL_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_KingOni_MoveStart" AudioType="soundMoveStart" />
+			<AudioEntry Sound="JAP_KingOni_IdleLoop" AudioType="soundAmbient" />
+			<AudioEntry Sound="VehicleCrush" AudioType="soundCrushing" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="750"
+			ShroudClearingRange="=$ADVANCE_VEHICLE_SHROUD_CLEAR" />
+		<CrusherInfo
+			CrushableLevel="25"
+			CrusherLevel="20"
+			CrushWeapon="SovietCrushWeapon"
+			CrushDecelerationPercent="80%">
+			<ExtraCrushLevels CrusherLevel="1" CrushableLevel="25" ModelConditionMatch="OVER_WATER" />
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="MODAntiStructureVehicle_Naval"
+		inheritFrom="MODAntiStructureVehicle"
+		EditorName="MODAntiStructureVehicle_Naval"
+		ProductionQueueType="WATERCRAFT">
+		<EquivalentTo>MODAntiStructureVehicle</EquivalentTo>
+		<GameDependency
+			xai:joinAction="Replace">
+			<NeededUpgrade>Upgrade_JapanNavalYardTech3</NeededUpgrade>
+		</GameDependency>
+	</GameObject>
+	<GameObject
+		id="MODAntiStructureVehicle_Crate"
+		inheritFrom="MODAntiStructureVehicle"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="MODAntiStructureVehicle_Crate">
+		<EquivalentTo>MODAntiStructureVehicle</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

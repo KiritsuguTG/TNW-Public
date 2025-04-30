@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="ART/SAUANTIVEHICLEVEHICLETECH1_COL.w3x" />
+		<Include
+			type="all"
+			source="ART/SAUANTIVEHICLEVEHICLETECH1_COL_AA.w3x" />
+		<Include
+			type="all"
+			source="ART/SAUANTIVEHICLEVEHICLETECH1_COL_BIG_CANNON.w3x" />
+		<Include
+			type="all"
+			source="ART/SAUANTIVEHICLEVEHICLETECH1_COL_FLAME.w3x" />
+
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+
+	<GameObject
+		id="SovietArmorAntiVehicleVehicleTech1_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="SovietArmorAntiVehicleVehicleTech1_Collapse">
+		<Draws>
+			<DynamicsDraw 
+				id="ModuleTag_Draw" 
+				Collision="NONINTERCOLLIDING"
+				FlingPerturbation="15"
+				Explodiness="4">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SAUANTIVEHICLEVEHICLETECH1_COL" />
+						<xi:include
+							href="DATA:Includes/VehicleCollapseParticles/SovietVehicleCollapseParticles.xml"
+							xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:SovietVehicleCollapseParticles/child::*)" />
+				</ModelConditionState>
+				<BoneVolumes>
+					<BoneVolume BoneName="Bone_D_01" Mass="1895" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="3.93544" HalfSizeY="12.5755" HalfSizeZ="3.7836" >
+							<Translation x="-19.1671" y="-0.120053" z="13.4759" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_02" Mass="1957" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="18.6381" HalfSizeY="3.42148" HalfSizeZ="3.03131" >
+							<Translation x="16.147" y="-0.0900417" z="12.074" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_03" Mass="58" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="1.02044" HalfSizeY="0.750325" HalfSizeZ="7.60653" >
+							<Translation x="-10.3951" y="5.58242" z="14.8016" />
+							<Rotation x="0.0" y="-0.0311026" z="0.0" w="0.999516" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_04" Mass="5099" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="11.3149" HalfSizeY="10.5946" HalfSizeZ="4.20117" >
+							<Translation x="-2.7612" y="-0.240105" z="10.9637" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_05" Mass="17573" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="21.944" HalfSizeY="14.5586" HalfSizeZ="5.43294" >
+							<Translation x="-3.39559" y="-0.0848899" z="0.0" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+				</BoneVolumes>
+				<Lifetime
+					Delay="5s"
+					FadeTime="4s" />
+			</DynamicsDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="4s"
+				MaxLifetime="5s" />	
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="1s"
+				SinkRate="1.5"
+				DestructionDelay="8s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+		</Behaviors>
+	</GameObject>
+
+	<GameObject
+		id="SovietArmorAntiVehicleVehicleTech1_Apoc_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="SovietArmorAntiVehicleVehicleTech1_Apoc_Collapse">
+		<Draws>
+			<DynamicsDraw 
+				id="ModuleTag_Draw" 
+				Collision="NONINTERCOLLIDING"
+				FlingPerturbation="15"
+				Explodiness="4">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SAUANTIVEHICLEVEHICLETECH1_COL_BIG_CANNON" />
+						<xi:include
+							href="DATA:Includes/VehicleCollapseParticles/SovietVehicleCollapseParticles.xml"
+							xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:SovietVehicleCollapseParticles/child::*)" />
+				</ModelConditionState>
+				<BoneVolumes>
+					<BoneVolume BoneName="Bone_D_01" Mass="1895" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="3.93544" HalfSizeY="12.5755" HalfSizeZ="3.7836" >
+							<Translation x="-19.1671" y="-0.120053" z="13.4759" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_02" Mass="1957" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="18.6381" HalfSizeY="3.42148" HalfSizeZ="3.03131" >
+							<Translation x="16.147" y="-0.0900417" z="12.074" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_03" Mass="58" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="1.02044" HalfSizeY="0.750325" HalfSizeZ="7.60653" >
+							<Translation x="-10.3951" y="5.58242" z="14.8016" />
+							<Rotation x="0.0" y="-0.0311026" z="0.0" w="0.999516" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_04" Mass="5099" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="11.3149" HalfSizeY="10.5946" HalfSizeZ="4.20117" >
+							<Translation x="-2.7612" y="-0.240105" z="10.9637" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_05" Mass="17573" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="21.944" HalfSizeY="14.5586" HalfSizeZ="5.43294" >
+							<Translation x="-3.39559" y="-0.0848899" z="0.0" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+				</BoneVolumes>
+				<Lifetime
+					Delay="5s"
+					FadeTime="4s" />
+			</DynamicsDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="4s"
+				MaxLifetime="5s" />	
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="1s"
+				SinkRate="1.5"
+				DestructionDelay="8s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+		</Behaviors>
+	</GameObject>
+
+	<GameObject
+		id="SovietArmorAntiVehicleVehicleTech1_AA_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="SovietArmorAntiVehicleVehicleTech1_AA_Collapse">
+		<Draws>
+			<DynamicsDraw 
+				id="ModuleTag_Draw" 
+				Collision="NONINTERCOLLIDING"
+				FlingPerturbation="15"
+				Explodiness="4">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SAUANTIVEHICLEVEHICLETECH1_COL_AA" />
+						<xi:include
+							href="DATA:Includes/VehicleCollapseParticles/SovietVehicleCollapseParticles.xml"
+							xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:SovietVehicleCollapseParticles/child::*)" />
+				</ModelConditionState>
+				<BoneVolumes>
+					<BoneVolume BoneName="Bone_D_01" Mass="1895" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="3.93544" HalfSizeY="12.5755" HalfSizeZ="3.7836" >
+							<Translation x="-19.1671" y="-0.120053" z="13.4759" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_03" Mass="58" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="1.02044" HalfSizeY="0.750325" HalfSizeZ="7.60653" >
+							<Translation x="-10.3951" y="5.58242" z="14.8016" />
+							<Rotation x="0.0" y="-0.0311026" z="0.0" w="0.999516" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_07" Mass="5099" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="11.3149" HalfSizeY="10.5946" HalfSizeZ="4.20117" >
+							<Translation x="-2.7612" y="-0.240105" z="10.9637" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_02" Mass="17573" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="21.944" HalfSizeY="14.5586" HalfSizeZ="5.43294" >
+							<Translation x="-3.39559" y="-0.0848899" z="0.0" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_04" Mass="371" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="2.35061" HalfSizeY="3.73462" HalfSizeZ="4.17932" >
+							<Translation x="-3.36116" y="0.0219676" z="17.562" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_06" Mass="2063" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="11.1223" HalfSizeY="4.03883" HalfSizeZ="4.53592" >
+							<Translation x="-0.0540686" y="12.2807" z="11.5264" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_05" Mass="2063" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="11.1223" HalfSizeY="4.03883" HalfSizeZ="4.53592" >
+							<Translation x="-0.0540686" y="-12.2566" z="11.5264" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+				</BoneVolumes>
+				<Lifetime
+					Delay="5s"
+					FadeTime="4s" />
+			</DynamicsDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="4s"
+				MaxLifetime="5s" />	
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="1s"
+				SinkRate="1.5"
+				DestructionDelay="8s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+		</Behaviors>
+	</GameObject>
+
+	<GameObject
+		id="SovietArmorAntiVehicleVehicleTech1_Flame_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="SovietArmorAntiVehicleVehicleTech1_Flame_Collapse">
+		<Draws>
+			<DynamicsDraw 
+				id="ModuleTag_Draw" 
+				Collision="NONINTERCOLLIDING"
+				FlingPerturbation="15"
+				Explodiness="4">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SAUANTIVEHICLEVEHICLETECH1_COL_FLAME" />
+						<xi:include
+							href="DATA:Includes/VehicleCollapseParticles/SovietVehicleCollapseParticles.xml"
+							xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:SovietVehicleCollapseParticles/child::*)" />
+				</ModelConditionState>
+				<BoneVolumes>
+					<BoneVolume BoneName="Bone_D_01" Mass="1895" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="3.93544" HalfSizeY="12.5755" HalfSizeZ="3.7836" >
+							<Translation x="-19.1671" y="-0.120053" z="13.4759" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_02" Mass="1957" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="18.6381" HalfSizeY="3.42148" HalfSizeZ="3.03131" >
+							<Translation x="16.147" y="-0.0900417" z="12.074" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_03" Mass="58" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="1.02044" HalfSizeY="0.750325" HalfSizeZ="7.60653" >
+							<Translation x="-10.3951" y="5.58242" z="14.8016" />
+							<Rotation x="0.0" y="-0.0311026" z="0.0" w="0.999516" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_04" Mass="5099" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="11.3149" HalfSizeY="10.5946" HalfSizeZ="4.20117" >
+							<Translation x="-2.7612" y="-0.240105" z="10.9637" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_05" Mass="17573" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="21.944" HalfSizeY="14.5586" HalfSizeZ="5.43294" >
+							<Translation x="-3.39559" y="-0.0848899" z="0.0" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="Bone_D_06" Mass="159" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="9.01952" HalfSizeY="1.12479" HalfSizeZ="1.54924" >
+							<Translation x="6.92841" y="3.90722" z="0.0" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+				</BoneVolumes>
+				<Lifetime
+					Delay="5s"
+					FadeTime="4s" />
+			</DynamicsDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="4s"
+				MaxLifetime="5s" />	
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="1s"
+				SinkRate="1.5"
+				DestructionDelay="8s">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</SlowDeath>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

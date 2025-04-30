@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags/>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+
+		<Include type="all"	source="ART:JUAntiVehicleInfantryTech3_SKN.w3x" />
+    <Include type="all"	source="ART:JUAntiVehicleInfantryTech3_FP.w3x" />
+		<Include type="all"	source="ART:JUAntiVehicleInfantryTech3_AIDA.w3x" />
+		<Include type="all"	source="ART:JUAntiVehicleInfantryTech3_BIDA.w3x" />
+		<Include type="all"	source="ART:JUAntiVehicleInfantryTech3_ATKB.w3x" />
+		<Include type="all"	source="ART:JUAntiVehicleInfantryTech3_MOVA.w3x" />
+		<Include type="all"	source="ART:JUAntiVehicleInfantryTech3_MOVB.w3x" />
+		<Include type="all"	source="ART:JUAntiVehicleInfantryTech3_ABTB.w3x" />
+		<Include type="all"	source="ART:JUAntiVehicleInfantryTech3_BATB.w3x" />
+		<Include type="all"	source="ART:JUAntiVehicleInfantryTech3_DIEA.w3x" />
+		<Include type="all" source="ART:JUAntiVehicleInfantryTech3_DIEB.w3x" />
+		<Include type="all"	source="ART:JUAntiVehicleInfantryTech3_ATKC.w3x" />
+		<!-- Base Object -->
+    <Include type="instance" source="ART:FXBeam.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include type="all" source="Weapon.xml" />
+	</Includes>
+
+	<!-- aka Rocket Angel -->
+	<GameObject
+		id="JapanAntiVehicleInfantryTech3"
+		inheritFrom="BaseVehicle"
+		Side="Japan"
+		SubGroupPriority="610"
+		EditorSorting="UNIT"
+		BuildTime="0.2"
+		KindOf="CAN_CAST_REFLECTIONS VEHICLE LINE_OF_SIGHT_IGNORES_BUILDINGS NO_COLLIDE UNATTACKABLE"
+		VoicePriority="148"
+		EditorName="JapanAntiVehicleInfantryTech3"
+		HealthBoxHeightOffset="10">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanAntiVehicleInfantryTech3</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="CanNotAttackArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			id="AlliedFighterAircraftLocomotor"
+			Locomotor="AlliedFighterAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="0" />
+		<Behaviors>
+			<ObjectCreationUpgrade
+				id="ModuleTagPlayer_AlliedSpellBookUpgrade"
+			  ThingToSpawn="JapanAntiVehicleInfantryTech3B">
+				<TriggeredBy>Upgrade_ObjectDefault</TriggeredBy>
+			</ObjectCreationUpgrade>
+			<GrantUpgradeCreate
+				id="ModuleTag_Upgrade_ObjectDefault"
+			  UpgradeToGrant="Upgrade_ObjectDefault"/>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="1.0s"
+				MaxLifetime="1.0s"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					ReacquireDelay="0.4s"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1" />
+		</Body>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="" EvaType="ambushed" />
+			<EvaEntry EvaEvent="" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="" EvaType="buildCancelled" />
+			<EvaEntry EvaEvent="" EvaType="promotedOwner" />
+		</EvaEventArray>
+	</GameObject>
+	<GameObject
+		id="JapanAntiVehicleInfantryTech3B"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_JapanAntiVehicleInfantryTech3"
+		ButtonImage="Button_JapanAntiVehicleInfantryTech3"
+		Side="Japan"
+		SubGroupPriority="435"
+		EditorSorting="UNIT"		
+		BuildTime="0.2"
+		CommandSet="JapanAntiVehicleTech3CommandSet"
+		EnergyProduction="-25"
+		KindOf="CAN_ATTACK CAN_CAST_REFLECTIONS INFANTRY AIRCRAFT SKIRMISH_AI_DONT_GARRISON SCORE SELECTABLE NO_COLLIDE LINE_OF_SIGHT_IGNORES_BUILDINGS"
+		ThreatLevel="10"
+		WeaponCategory="MISSILE"
+		VoicePriority="100"
+		EditorName="JapanAntiVehicleInfantryTech3B"
+		Description="Desc:JapanAntiVehicleInfantryTech3"
+		TypeDescription="Type:JapanAntiVehicleInfantryTech3"
+		UnitTypeIcon="RocketAngelIcon"
+		HealthBoxHeightOffset="30"
+		ProductionQueueType="VEHICLE"
+		UnitIntro="Japan_RocketAngel_UnitIntro">
+		<DisplayName
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanAntiVehicleInfantryTech3</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="DefaultUnitArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			Locomotor="JapanAntiVehicleInfantryTech3Locomotor"
+			Condition="NORMAL"
+			Speed="75" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUAntiVehicleInfantryTech3_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Weapon" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_HandR" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="B_HandR" />
+				</ModelConditionState>
+
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+          <Model
+						Name="JUAntiVehicleInfantryTech3_FP" />
+        </ModelConditionState>        
+        
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+          ConditionsYes="USER_6">
+          <Model
+						Name="JUAntiVehicleInfantryTech3_SKN" />
+          <ParticleSysBone
+						BoneName="B_HandR"
+						FXParticleSystemTemplate="fxjapanmirvfiresparks"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="B_HandL"
+						FXParticleSystemTemplate="fxjapanmirvfiresparks"
+						FollowBone="true" />
+        </ModelConditionState>
+
+				<!-- falling out of the sky -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="EXPLODED_FLAILING">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTech3_DIEA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<!-- hit the ground and dead -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTech3_DIEB"
+						AnimationMode="ONCE" />
+					<Script>
+						CurDrawablePlaySound("BodyfallGeneric")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="COMING_OUT_OF_FACTORY">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTech3_MOVB"
+						AnimationMode="LOOP"
+						AnimationBlendTime="0"
+						Distance="75" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					StateName="STATE_Run"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTech3_MOVA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10"
+						Distance="75" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_A USER_6"
+					FrameForPristineBonePositions="0">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTech3_ATKB"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+						BoneName="B_HandR"
+						FXParticleSystemTemplate="FXJapanMIRVFireSparks"
+						FollowBone="true" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_A"
+					FrameForPristineBonePositions="20">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTech3_ATKC"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ATTACKING"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTech3_AIDA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_Selected">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTech3_AIDA"
+						AnimationMode="ONCE"
+						AnimationPriority="80"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState();
+						if Prev == "STATE_bored" then CurDrawableSetTransitionAnimState("TRANS_boredToAttention")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					StateName="STATE_bored"
+					AllowRepeatInRandomPick="true"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTech3_BIDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="80" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState();
+						if Prev == "STATE_Selected" or Prev == "ATNB" or Prev == "STATE_Run" then CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_boredToAttention">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTech3_BATB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SelectedToIdle">
+					<Animation
+						AnimationName="JUAntiVehicleInfantryTech3_ABTB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+			</ScriptedModelDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate="-.3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".5"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate="-.6"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="7"
+				WeaponSlotID="2" 
+				LaserStateID="1">
+					<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+          <Constants>
+            <Texture
+							Name="Texture1">
+              <Value>FXBeam</Value>
+            </Texture>
+            <Texture
+							Name="Texture2">
+              <Value>FXBeam</Value>
+            </Texture>
+            <Float Name="ColorEmissive">
+              <Value>5.000000</Value>
+              <Value>10.000000</Value>
+              <Value>10.000000</Value>
+            </Float>
+          </Constants>
+        </FXShader>
+      </LaserDraw>
+
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+						WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					 <Weapon
+						  Ordering="PRIMARY_WEAPON"
+						  Template="JapanAntiVehicleInfantryTech3MisslePods"
+						  ForbiddenObjectStatus="GENERIC_TOGGLE_STATE"/>
+					<Weapon
+						 Ordering="PRIMARY_WEAPON"
+						 Template="JapanAntiVehicleInfantryTech3MisslePodsUsePower"
+						 ObjectStatus="GENERIC_TOGGLE_STATE"/>
+				</WeaponSlotHardpoint>
+				<WeaponSlotHardpoint
+					ID="2"
+						WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					<Weapon
+						  Ordering="PRIMARY_WEAPON"
+						  Template="JapanAntiVehicleInfantryTech3LockDownGun"
+						  ObjectStatus="GENERIC_TOGGLE_STATE" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<LaserState
+				id="ModuleTag_LaserState"
+				LaserId="1" >
+					<LaserEndParticleSystem>JapanLockDownHit</LaserEndParticleSystem>
+			</LaserState>
+			<Physics
+				id="ModuleTag_Physics" 
+        GroundHitFX="FX_DeathRocketAngel"/>
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="4s"
+				SinkRate="2.4"
+				DestructionDelay="6.0s"
+				FlingForce="0.1">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Sound Type="INITIAL" List="JAP_RocketAngel_VoiceFalling" />
+			</SlowDeath>
+			<SlowDeath
+			   id="ModuleTag_DeathWater"
+			   Fade="true"
+			   FadeDelay="6s"
+			   FadeTime="2s"
+			   SinkDelay="0.5s"
+			   SinkRate="1.2"
+			   DestructionDelay="10.0s"
+			   FlingForce="0.1">
+				<DieMuxData
+					DeathTypes="ALL"
+          RequiredStatus="OVER_WATER"/>
+				<Sound Type="INITIAL" List="JAP_RocketAngel_VoiceFalling" />
+			</SlowDeath>
+
+      <FXListBehavior
+        id="ModuleTag_FXList">
+        <DieMuxData
+          DeathTypes="ALL"/>
+        <Event
+          Index="onDeath"
+          FX="FX_JAP_RocketAngelDie" />
+      </FXListBehavior>
+
+			<!-- This include gives this unit the Advanced Missiple Packs upgrade. -->
+			<xi:include
+				href="DATA:Includes/JapanAdvancedMissilePacksUpgrade.xml" />
+
+			<StatusBitsUpgrade
+					  id="ModuleTag_VeterancyUpgrade"
+					  StatusToSet="WEAPON_UPGRADED_03">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_SPShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				RefreshDelay="15s"
+				AllowSelf="true"
+				AttributeModifierName="AttributeModifier_JapanAntiVehicleInfantryTech3SP">
+			</AttributeModifierAuraUpdate>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="true"
+					ReacquireDelay="0.4s"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="400" />
+		</Body>
+		<ClientBehaviors>
+			<!-- SAM BIRD SAM BIRD SAM BIRD SAM BIRD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+			<!-- I already added her death bodyfall with CurDrawablePlaySound("BodyfallGeneric") above!!!! -->
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_WhipArmed">
+				<Override RequiredFlags="USER_6">
+					<AudioArrayVoice>
+						<AudioEntry Sound="JAP_RocketAngel_VoiceAttackSpecial" AudioType="voiceAttack" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+
+			<AnimationSoundClientBehavior
+				id="AnimationSoundCB" >	
+				<Sound Sound="BodyfallGenericDirt" ExcludedMC="OVER_WATER" Animation="JUAntiVehicleInfantryTech3_DIEB" Frame="4" />
+			</AnimationSoundClientBehavior>	
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="7.0"
+				Height="13.0"
+				ContactPointGeneration="SQUAD_MEMBER"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_RocketAngel_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="JAP_RocketAngel_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_RocketAngel_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_RocketAngel_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="JAP_RocketAngel_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="JAP_RocketAngel_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="JAP_RocketAngel_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_RocketAngel_MoveStart" AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<ShadowInfo
+			Type="DECAL"
+			SizeX="14"
+			SizeY="14"
+			Texture="ShadowI" />
+		<VisionInfo
+			VisionRange="200"
+			ShroudClearingRange="=$STANDARD_SHROUD_CLEAR" />
+	</GameObject>
+
+	<GameObject
+		id="JapanAntiVehicleInfantryTech3AI"
+		inheritFrom="JapanAntiVehicleInfantryTech3">
+		<GameDependency
+			ForbiddenModelConditions="RIDER1">
+			<NeededUpgrade>AIPlayerJapanAntiVehicleInfantryTech3</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo
+			xai:joinAction="Replace">
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1500"/>
+		</ObjectResourceInfo>
+		<Behaviors>
+			<ObjectCreationUpgrade
+				id="ModuleTagPlayer_AlliedSpellBookUpgrade"
+			xai:joinAction="Replace"
+			  ThingToSpawn="JapanAntiVehicleInfantryTech3BAI">
+				<TriggeredBy>Upgrade_ObjectDefault</TriggeredBy>
+			</ObjectCreationUpgrade>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="SpecialPower_JapanAntiVehicleInfantryTech3AIWeapon"
+					OneShot="true" />
+			</FireWeaponUpdate>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="JapanAntiVehicleInfantryTech3BAI"
+		inheritFrom="JapanAntiVehicleInfantryTech3B"
+		KindOf="-SELECTABLE"/>
+	<WeaponTemplate
+		id="SpecialPower_JapanAntiVehicleInfantryTech3AIWeapon"
+		RadiusDamageAffects="ALLIES"
+        Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_STRUCTURE">
+		<Nuggets>
+			<AttributeModifierNugget
+			Radius="50.0"
+			AttributeModifierName="SpecialPower_JapanAntiVehicleInfantryTech3AI">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Relationship="SAME_PLAYER">
+					<IncludeThing>AlliedWarFactoryAI</IncludeThing>
+				</SpecialObjectFilter>
+			</AttributeModifierNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<LogicCommand
+		  Type="UNIT_BUILD"
+		  id="Command_ConstructJapanAntiVehicleInfantryTech3AI">
+		<Object>JapanAntiVehicleInfantryTech3AI</Object>
+	</LogicCommand>
+</AssetDeclaration>

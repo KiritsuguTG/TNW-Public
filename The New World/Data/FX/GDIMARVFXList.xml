@@ -1,0 +1,1125 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<!-- GDI MARV自我维修效果 -->
+	<FXList id="FX_GDIMARVEngineerUpgrade">
+		<NuggetList>
+			<ParticleSystem
+				Particle="GDIMARVEngineerGlow"
+				OrientToObject="true" />
+			<ParticleSystem
+				Particle="GDIMARVEngineerRing"
+				OrientToObject="true" />
+		</NuggetList>
+	</FXList>
+	
+	<!-- GDI MARV自我维修效果 -->
+	<FXList id="FX_GDIMARVExplode">
+		<NuggetList>
+			<ParticleSystem
+				Particle="GDIMARVExplodeDebris">
+				<Offset x="0.0" y="0.0" z="30.0"/>
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="GDIMARVExplodeDistortion">
+				<Offset x="0.0" y="0.0" z="30.0"/>
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="GDIMARVExplodeDustRing">
+				<Offset x="0.0" y="0.0" z="30.0"/>
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="GDIMARVExplodeEmbers">
+				<Offset x="0.0" y="0.0" z="30.0"/>
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="GDIMARVExplodeFire">
+				<Offset x="0.0" y="0.0" z="30.0"/>
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="GDIMARVExplodeFlash">
+				<Offset x="0.0" y="0.0" z="30.0"/>
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="GDIMARVExplodeFlash1">
+				<Offset x="0.0" y="0.0" z="30.0"/>
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="GDIMARVExplodeGlow">
+				<Offset x="0.0" y="0.0" z="30.0"/>
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="GDIMARVExplodeStreaks">
+				<Offset x="0.0" y="0.0" z="30.0"/>
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="GDIMARVExplodeStreaks01">
+				<Offset x="0.0" y="0.0" z="30.0"/>
+			</ParticleSystem>
+			<DynamicDecal
+				Decal="FXNukeMarkA"
+				Size="80"
+				OpacityStart="0"
+				OpacityFadeTimeOne="0s"
+				OpacityPeak="100"
+				OpacityPeakTime="1000s"
+				OpacityFadeTimeTwo="3000s"
+				OpacityEnd="0"	
+				StartingDelay="0s"
+				OnlyIfOnLand="true"
+				Lifetime= "50s">
+				<Color R="1" G="1" B="1" />
+				<Offset x="0" y="0" />
+			</DynamicDecal>
+			<TerrainScorch
+				Type= "RANDOM"
+				Weather= "NORMAL"
+				Radius= "100" >
+				<RandomRange
+					Low="SCORCH_9"
+					High="SCORCH_16" />
+			</TerrainScorch>
+			<ViewShake 
+				Type="NORMAL" />
+			<Sound
+				Value="VehicleExplosionSmallMS" />
+		</NuggetList>
+	</FXList>
+	<!-- 开火效果 -->
+  <FXList id="FX_SovietMARVCannon">
+    <NuggetList>
+      <ParticleSystem
+				Particle="FX_SovietMARVCannonFireFlash"
+				OrientToObject="true" />
+      <ParticleSystem
+				Particle="FX_SovietMARVCannonShootDust"
+				OrientToObject="true" />
+    </NuggetList>
+  </FXList>
+	<!-- 开火效果 -->
+	<FXParticleSystemTemplate ParticleTexture="FXSmokeCloud" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="ALPHA" SortLevel="1" SystemLifetime="1" Type="GPU_PARTICLE" id="FX_SovietMARVCannonShootDust">
+		<Lifetime High="100" Low="30"/>
+		<Size High="45" Low="30"/>
+		<BurstCount High="30" Low="30"/>
+		<InitialDelay High="3" Low="3"/>
+		<Alphas>
+			<Alpha Frame="1" High="0.5" Low="0.5" RelativeAge="0"/>
+			<Alpha Frame="2" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors HouseColorSaturation="0">
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.666667" g="0.666667" r="0.666667"/>
+			</Color>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.627451" g="0.627451" r="0.627451"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0.698039" g="0.698039" r="0.698039"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.65" Low="0.3"/>
+				<DriftVelocity x="0" y="0" z="0.1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXAbaloneEnv" MiscValue1="0.2" MiscValue2="0.1" MiscValue3="45" MiscValue4="0.05" Shader="gpuparticledistort.fx" SpeedMultiplier="1" TotalFrames="0"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="15" Low="5"/>
+					<y High="2" Low="-2"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="2" Low="0"/>
+				<SizeRateDamping High="0.95" Low="0.85"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularRateZ High="0.02" Low="-0.02"/>
+				<AngularDamping High="0.99" Low="0.99"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate Drawable="FXIMPACTSPLASH02" ParticleTexture="AlliedAntiVehicleVehicleTech1FXFire03VET" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" SortLevel="2" SystemLifetime="1" Type="GPU_PARTICLE" id="FX_SovietMARVCannonFireFlash">
+		<Lifetime High="15" Low="15"/>
+		<Size High="90" Low="90"/>
+		<BurstCount High="1" Low="1"/>
+		<InitialDelay High="2" Low="2"/>
+		<Alphas>
+			<Alpha Frame="1" High="1" Low="1" RelativeAge="0"/>
+			<Alpha Frame="2" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="2" RelativeAge="9.999999">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="75">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="1.5" Low="1"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.45" Low="0.45"/>
+				<DriftVelocity x="0" y="0" z="0"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu FramesPerRow="6" SpeedMultiplier="2.5" TotalFrames="36"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="17" Low="17"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.55" Low="0.55"/>
+				<SizeRateDamping High="0.95" Low="0.95"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+<!-- GDI MARV自我维修特效 -->
+	<FXParticleSystemTemplate IsGroundAligned="true" ParticleTexture="FXLenzFlare02" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" id="GDIMARVEngineerGlow">
+		<Lifetime High="50" Low="50"/>
+		<Size High="30" Low="30"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors UseHouseColor="true">
+			<Color Frame="2" RelativeAge="30">
+				<Color b="0.0588235" g="0.0588235" r="0.0588235"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.8" Low="0.7"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Default/>
+		</Draw>
+		<Volume>
+			<Line>
+				<StartPoint x="0" y="0" z="0"/>
+				<EndPoint x="0" y="0" z="0"/>
+			</Line>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="0.7" Low="0.6"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularRateZ High="0.05" Low="-0.05"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate IsGroundAligned="true" ParticleTexture="FXMGDefense" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SortLevel="1" id="GDIMARVEngineerRing">
+		<Lifetime High="40" Low="40"/>
+		<BurstDelay High="20" Low="20"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors UseHouseColor="true">
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.337255" g="0.337255" r="0.337255"/>
+			</Color>
+			<Color Frame="2" RelativeAge="10">
+				<Color b="0.270588" g="0.270588" r="0.270588"/>
+			</Color>
+			<Color Frame="3" RelativeAge="50">
+				<Color b="0.764706" g="0.764706" r="0.764706"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default ParticlesAttachToBone="true">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Default/>
+		</Draw>
+		<Volume>
+			<Line IsHollow="true">
+				<StartPoint x="0" y="0" z="0"/>
+				<EndPoint x="0" y="0" z="0"/>
+			</Line>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.8" Low="0.8"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="-0.5" Low="-1.5"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<!-- GDI MARV自我维修特效结束 -->	
+	
+	
+	<!-- GDI MARV受损特效 -->
+	<FXParticleSystemTemplate ParticleTexture="FXFireScroll" PerParticleAttachedSystem="" Priority="VERY_LOW_OR_ABOVE" Type="GPU_PARTICLE" id="GDIMARVDamagedFire">
+		<Lifetime High="25" Low="10"/>
+		<Size High="30" Low="10"/>
+		<BurstDelay High="1" Low="1"/>
+		<BurstCount High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="1" High="0.25" Low="0.25" RelativeAge="0"/>
+			<Alpha Frame="2" High="0.13" Low="0.13" RelativeAge="50"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+			<Alpha Frame="4" High="0" Low="0" RelativeAge="200"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="15">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<Color Frame="4" RelativeAge="200">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.99" Low="0.95"/>
+				<DriftVelocity x="0" y="0" z="0.5"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXSphereNRM" FramesPerRow="4" SpeedMultiplier="1" TotalFrames="16"/>
+		</Draw>
+		<Volume>
+			<Cylinder Radius="6">
+				<Offset x="0" y="0" z="18"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0.5" Low="-0.5"/>
+					<y High="0.5" Low="-0.5"/>
+					<z High="1" Low="-0.5"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.1" Low="0.1"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularRateZ High="0.02" Low="-0.02"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXFractal01NRM" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="ALPHA" Type="GPU_PARTICLE" id="GDIMARVDamagedFireDist">
+		<Lifetime High="35" Low="35"/>
+		<Size High="30" Low="15"/>
+		<BurstDelay High="2" Low="2"/>
+		<BurstCount High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="2" High="0.25" Low="0.25" RelativeAge="9"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+			<Alpha Frame="4" High="0" Low="0" RelativeAge="200"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="15">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<Color Frame="4" RelativeAge="200">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.99" Low="0.95"/>
+				<DriftVelocity x="0" y="0" z="2"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu Shader="GPUParticleDistortion.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder Radius="10">
+				<Offset x="0" y="0" z="20"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Cylindrical>
+				<Radial High="0" Low="0"/>
+				<Normal High="0" Low="0"/>
+			</Cylindrical>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.1" Low="0.1"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularRateZ High="0.02" Low="-0.02"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Type="GPU_PARTICLE" id="GDIMARVDamagedFlash">
+		<Lifetime High="5" Low="3"/>
+		<Size High="30" Low="5"/>
+		<BurstDelay High="100" Low="90"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="25">
+				<Color b="0.619608" g="0.776471" r="0.913725"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.95" Low="0.95"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="-4" y="10" z="10"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="2" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXSmoke01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="ALPHA" Type="GPU_PARTICLE" id="GDIMARVDamagedSmoke">
+		<Lifetime High="120" Low="40"/>
+		<Size High="20" Low="15"/>
+		<BurstCount High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="2" High="0.25" Low="0.25" RelativeAge="9"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+			<Alpha Frame="4" High="0" Low="0" RelativeAge="200"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.458824" g="0.458824" r="0.466667"/>
+			</Color>
+			<Color Frame="2" RelativeAge="15">
+				<Color b="0.458824" g="0.458824" r="0.466667"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0.458824" g="0.458824" r="0.466667"/>
+			</Color>
+			<Color Frame="4" RelativeAge="200">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.97" Low="0.95"/>
+				<DriftVelocity x="0.15" y="0" z="0.15"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu GeometryType="TWO_CONCENTRIC_QUADS" Shader="GPUParticleLit.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder Radius="5">
+				<Offset x="0" y="0" z="15"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0.5" Low="-0.5"/>
+					<y High="0.5" Low="-0.5"/>
+					<z High="1" Low="-0.2"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.1" Low="0.02"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularRateZ High="0.02" Low="-0.02"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXDirt2x2" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="ALPHA" SortLevel="1" Type="GPU_PARTICLE" id="GDIMARVDamagedSmoke2">
+		<Lifetime High="60" Low="30"/>
+		<BurstCount High="3" Low="1"/>
+		<Alphas>
+			<Alpha Frame="2" High="0.25" Low="0.25" RelativeAge="9"/>
+			<Alpha Frame="3" High="0.25" Low="0.25" RelativeAge="9"/>
+			<Alpha Frame="4" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.501961" g="0.788235" r="0.882353"/>
+			</Color>
+			<Color Frame="2" RelativeAge="10">
+				<Color b="0.305882" g="0.305882" r="0.305882"/>
+			</Color>
+			<Color Frame="3" RelativeAge="70">
+				<Color b="0.32549" g="0.32549" r="0.32549"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="0.341176" g="0.341176" r="0.341176"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default Swirly="true">
+				<VelocityDamping High="1" Low="0.5"/>
+				<DriftVelocity x="0" y="0" z="0.25"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXSmoke2x2_01_NRM" FramesPerRow="2" Shader="GPUParticleNormalMap.fx" SpeedMultiplier="0.01" TotalFrames="4"/>
+		</Draw>
+		<Volume>
+			<Cylinder IsHollow="true" Radius="15">
+				<Offset x="0" y="0" z="10"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0.1" Low="-0.3"/>
+					<y High="0.2" Low="-0.1"/>
+					<z High="0.2" Low="0.1"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="2" Low="1"/>
+				<SizeRateDamping High="0.96" Low="0.93"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularRateZ High="0.015" Low="-0.015"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXBlast02" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" SortLevel="1" Type="GPU_PARTICLE" id="GDIMARVDamagedSparks">
+		<Lifetime High="10" Low="5"/>
+		<Size High="20" Low="10"/>
+		<BurstDelay High="100" Low="90"/>
+		<BurstCount High="2" Low="2"/>
+		<Alphas>
+			<Alpha Frame="2" High="1" Low="0.75" RelativeAge="4"/>
+			<Alpha Frame="3" High="0" Low="-0.5" RelativeAge="9"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.247059" g="0.352941" r="0.603922"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default/>
+		</Physics>
+		<Draw>
+			<Gpu SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Point/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="5" Low="5"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="1" Low="-1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<!-- GDI MARV受损特效结束 -->
+	
+
+	<!-- GDI MARV爆炸特效 -->
+	<FXParticleSystemTemplate ParticleTexture="FXGDIDebris" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="ALPHA" SystemLifetime="5" Type="GPU_PARTICLE" id="GDIMARVExplodeDebris">
+		<Lifetime High="30" Low="30"/>
+		<Size High="15" Low="5"/>
+		<BurstCount High="8" Low="3"/>
+		<InitialDelay High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="1" High="1" Low="1" RelativeAge="0"/>
+			<Alpha Frame="2" High="1" Low="1" RelativeAge="9"/>
+			<Alpha Frame="3" High="1" Low="1" RelativeAge="75"/>
+			<Alpha Frame="4" High="1" Low="1" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="10">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="4" RelativeAge="200">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default Gravity="-1">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXGDIDebrisNRM" FramesPerRow="3" GeometryType="TWO_CONCENTRIC_QUADS" Shader="GPUParticleNormalMap.fx" SpeedMultiplier="0.01" TotalFrames="9"/>
+		</Draw>
+		<Volume>
+			<Box>
+				<HalfSize x="15" y="5" z="5"/>
+			</Box>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="6" Low="-2"/>
+					<y High="2" Low="-4"/>
+					<z High="10" Low="-2"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularRateZ High="1" Low="-1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXSphereNRM" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="ALPHA" SystemLifetime="1" Type="GPU_PARTICLE" id="GDIMARVExplodeDistortion">
+		<Lifetime High="15" Low="15"/>
+		<Size High="5" Low="5"/>
+		<BurstCount High="1" Low="1"/>
+		<InitialDelay High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="1" High="0.75" Low="0.75" RelativeAge="0"/>
+			<Alpha Frame="2" High="0.1" Low="0.1" RelativeAge="50"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+			<Alpha Frame="4" High="0" Low="0" RelativeAge="200"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="15">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="4" RelativeAge="200">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXSphereNRM" Shader="GPUParticleDistortion.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="15" Low="15"/>
+				<SizeRateDamping High="0.7" Low="0.7"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularRateZ High="0.02" Low="-0.02"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXsmokeplume" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="ALPHA" SystemLifetime="1" Type="GPU_PARTICLE" id="GDIMARVExplodeDustRing">
+		<Lifetime High="85" Low="60"/>
+		<Size High="12" Low="5"/>
+		<BurstCount High="50" Low="50"/>
+		<InitialDelay High="4" Low="4"/>
+		<Alphas>
+			<Alpha Frame="2" High="0.4" Low="0.4" RelativeAge="9"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.415686" g="0.52549" r="0.584314"/>
+			</Color>
+			<Color Frame="2" RelativeAge="10">
+				<Color b="0.211765" g="0.258824" r="0.278431"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0.243137" g="0.301961" r="0.32549"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.85" Low="0.7"/>
+				<DriftVelocity x="0.3" y="0.2" z="0"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder IsHollow="true" Radius="10">
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Outward>
+				<Speed High="9" Low="5"/>
+				<OtherSpeed High="3" Low="1"/>
+			</Outward>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.7" Low="0.5"/>
+				<SizeRateDamping High="0.98" Low="0.98"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularRateZ High="0.01" Low="-0.01"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXEmbersLight" PerParticleAttachedSystem="" Priority="VERY_LOW_OR_ABOVE" SortLevel="1" SystemLifetime="1" id="GDIMARVExplodeEmbers">
+		<Lifetime High="25" Low="25"/>
+		<Size High="100" Low="50"/>
+		<BurstCount High="20" Low="20"/>
+		<Alphas>
+			<Alpha Frame="2" High="1" Low="1" RelativeAge="3"/>
+			<Alpha Frame="3" High="0" Low="-0.1" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.47451" g="0.796078" r="0.968627"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default Gravity="0.01">
+				<VelocityDamping High="0.98" Low="0.95"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Default/>
+		</Draw>
+		<Volume>
+			<Point/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="3" Low="-3"/>
+					<y High="3" Low="-3"/>
+					<z High="3" Low="-3"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="2" Low="1"/>
+				<SizeRateDamping High="0.95" Low="0.9"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXFireball4x4" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="ALPHA" SystemLifetime="5" Type="GPU_PARTICLE" id="GDIMARVExplodeFire">
+		<Lifetime High="15" Low="15"/>
+		<Size High="20" Low="15"/>
+		<BurstCount High="10" Low="5"/>
+		<InitialDelay High="4" Low="4"/>
+		<Alphas>
+			<Alpha Frame="2" High="1" Low="1" RelativeAge="9"/>
+			<Alpha Frame="3" High="0.25" Low="0.25" RelativeAge="75"/>
+			<Alpha Frame="4" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="10">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="75">
+				<Color b="0.341176" g="0.341176" r="0.341176"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="0.0901961" g="0.160784" r="0.376471"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.9" Low="0.9"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu FramesPerRow="4" SpeedMultiplier="1" TotalFrames="16"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="false" Radius="7"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="2" Low="-4"/>
+					<y High="3" Low="-2"/>
+					<z High="7" Low="-2"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="2.5" Low="1.5"/>
+				<SizeRateDamping High="0.95" Low="0.95"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularRateZ High="0.1" Low="-0.1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate IsEmitAboveGroundOnly="true" ParticleTexture="FXLenzFlare04" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SystemLifetime="1" id="GDIMARVExplodeFlash">
+		<Lifetime High="10" Low="10"/>
+		<Size High="120" Low="120"/>
+		<BurstCount High="7" Low="7"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="1">
+				<Color b="0.176471" g="0.32549" r="0.490196"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.75" Low="0.7"/>
+				<DriftVelocity x="0.1" y="0" z="0"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Default/>
+		</Draw>
+		<Volume>
+			<Cylinder Radius="20">
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="3" Low="1"/>
+				<SizeRateDamping High="0.99" Low="0.95"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularRateZ High="0.05" Low="-0.05"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXBlast02" PerParticleAttachedSystem="" Priority="VERY_LOW_OR_ABOVE" SortLevel="1" SystemLifetime="1" id="GDIMARVExplodeFlash1">
+		<Lifetime High="10" Low="6"/>
+		<Size High="100" Low="40"/>
+		<BurstCount High="20" Low="10"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.517647" g="0.835294" r="0.984314"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="100" Low="0"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+				<DriftVelocity x="0" y="0" z="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Default/>
+		</Draw>
+		<Volume>
+			<Cylinder Radius="5">
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="10" Low="8"/>
+				<SizeRateDamping High="1" Low="0.95"/>
+				<AngleZ High="2" Low="-0.2"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate IsEmitAboveGroundOnly="true" ParticleTexture="FXLenzFlare04" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" SystemLifetime="1" id="GDIMARVExplodeGlow">
+		<Lifetime High="20" Low="20"/>
+		<Size High="40" Low="40"/>
+		<BurstCount High="7" Low="7"/>
+		<Alphas>
+			<Alpha Frame="1" High="0.25" Low="0.1" RelativeAge="0"/>
+			<Alpha Frame="2" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.513726" g="0.678431" r="0.952941"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.75" Low="0.7"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Default/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="false" Radius="20"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="6" Low="2"/>
+				<SizeRateDamping High="0.9" Low="0.85"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularRateZ High="0.05" Low="-0.05"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate IsParticleUpTowardsEmitter="true" ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="GDIMStrikeTrail" Priority="VERY_LOW_OR_ABOVE" SystemLifetime="4" id="GDIMARVExplodeStreaks">
+		<Lifetime High="25" Low="2"/>
+		<Size High="5" Low="5"/>
+		<BurstCount High="18" Low="10"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.00392157" g="0.00784314" r="0.0117647"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0.0588235" g="0.0588235" r="0.0588235"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.15">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Default/>
+		</Draw>
+		<Volume>
+			<Line>
+				<StartPoint x="-5" y="0" z="-5"/>
+				<EndPoint x="-5" y="0" z="-5"/>
+			</Line>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="10" Low="-10"/>
+					<y High="10" Low="-10"/>
+					<z High="10" Low="-10"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="0.7" Low="0.6"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate IsParticleUpTowardsEmitter="true" ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="GDIMStrikeTrail01" Priority="VERY_LOW_OR_ABOVE" SystemLifetime="2" id="GDIMARVExplodeStreaks01">
+		<Lifetime High="25" Low="4"/>
+		<Size High="5" Low="5"/>
+		<BurstCount High="12" Low="8"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.00392157" g="0.00784314" r="0.0117647"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0.0588235" g="0.0588235" r="0.0588235"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default Gravity="-1.5">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Default/>
+		</Draw>
+		<Volume>
+			<Line>
+				<StartPoint x="-5" y="0" z="-5"/>
+				<EndPoint x="-5" y="0" z="-5"/>
+			</Line>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="6" Low="-6"/>
+					<y High="6" Low="-6"/>
+					<z High="20" Low="5"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="0.7" Low="0.6"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<!-- GDI MARV爆炸特效结束 -->
+
+
+</AssetDeclaration>

@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+	</Includes>
+	<GameObject
+		id="BossNanoFlyEffect"
+		inheritFrom="BaseStructure"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		EnergyProduction="999999"
+		IsTrainable="false"
+		KindOf="+CAN_CAST_REFLECTIONS +RESIST_EMP +IGNORE_FOR_VICTORY +IGNORE_IN_AI_HUNT_TACTIC +SKIRMISH_AI_DONT_CONSIDER_THREAT +NO_COLLIDE"
+		EditorName="BossNanoFlyEffect"
+		Description="Desc:BossNanoFlyEffect"
+		TypeDescription="Type:BossNanoFlyEffect">
+		<DisplayName>BossNanoFlyEffect</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+        </ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_DeathSpawnShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="999999.0"
+				RefreshDelay="0.13s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_DeathSpawn">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ALLIES"
+					Include="INFANTRY"
+					Exclude="CANNOT_HIJACK NO_GARRISON VEHICLE SKIRMISH_AI_DONT_REPAIR">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<GrantUpgradeCreate
+				id="ModuleTag_UpgradeJapanNavalPower"
+			  UpgradeToGrant="Upgrade_JapanNavalPower"/>
+			<GrantUpgradeCreate
+				id="ModuleTagBoss_UpgradeJapanEnhancedKamikaze"
+			  UpgradeToGrant="Upgrade_JapanEnhancedKamikaze"/>
+			<GrantUpgradeCreate
+				id="ModuleTagBoss_UpgradeJapanAdvancedMissilePacks"
+			  UpgradeToGrant="Upgrade_JapanAdvancedMissilePacks"/>
+			<GrantUpgradeCreate
+				id="ModuleTagBoss_JapanUnitUpgrade"
+			  UpgradeToGrant="JapanUnitUpgrade"/>
+			<GrantUpgradeCreate
+				id="ModuleTagBoss_JapanSpellBookUpgrade"
+			  UpgradeToGrant="JapanSpellBookUpgrade"/>
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				UnpackTime="0s" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+					  id="ModuleTag_AI"
+					  StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<VisionInfo
+				VisionRange="70"
+				ShroudClearingRange="99999" />
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.0"
+				Height="5.0"/>
+		</Geometry>
+						<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="BossYurikoEffect"
+		inheritFrom="BaseStructure"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		EnergyProduction="999999"
+		IsTrainable="false"
+		KindOf="+CAN_CAST_REFLECTIONS +RESIST_EMP +IGNORE_FOR_VICTORY +NO_COLLIDE +UNATTACKABLE +IGNORE_IN_AI_HUNT_TACTIC +SKIRMISH_AI_DONT_CONSIDER_THREAT"
+		EditorName="BossYurikoEffect"
+		Description="Desc:BossYurikoEffect"
+		TypeDescription="Type:BossYurikoEffect">
+		<DisplayName>BossYurikoEffect</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+        </ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<BombardAreaUpdate
+				id="ModuleTag_CommandoTech1Weapon"
+				WeaponName="JapanBossCommandoTech1Weapon"
+				MaxShots="9000">
+				<TimeDelayRange
+					Low="60s"
+					High="60s"/>
+				<RadiusSpreadRange
+					Low="500"
+					High="1500"/>
+			</BombardAreaUpdate>
+			<GrantUpgradeCreate
+				id="ModuleTag_UpgradeJapanNavalPower"
+			  UpgradeToGrant="Upgrade_JapanNavalPower"/>
+			<GrantUpgradeCreate
+				id="ModuleTagBoss_UpgradeJapanEnhancedKamikaze"
+			  UpgradeToGrant="Upgrade_JapanEnhancedKamikaze"/>
+			<GrantUpgradeCreate
+				id="ModuleTagBoss_UpgradeJapanAdvancedMissilePacks"
+			  UpgradeToGrant="Upgrade_JapanAdvancedMissilePacks"/>
+			<GrantUpgradeCreate
+				id="ModuleTagBoss_JapanUnitUpgrade"
+			  UpgradeToGrant="JapanUnitUpgrade"/>
+			<GrantUpgradeCreate
+				id="ModuleTagBoss_JapanSpellBookUpgrade"
+			  UpgradeToGrant="JapanSpellBookUpgrade"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<VisionInfo
+				VisionRange="70"
+				ShroudClearingRange="99999" />
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.0"
+				Height="5.0"/>
+		</Geometry>
+						<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="ThreeBossMineEffect"
+		inheritFrom="BaseStructure"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		EnergyProduction="999999"
+		IsTrainable="false"
+		KindOf="+CAN_CAST_REFLECTIONS +RESIST_EMP +IGNORE_FOR_VICTORY +NO_COLLIDE +IGNORE_IN_AI_HUNT_TACTIC +SKIRMISH_AI_DONT_CONSIDER_THREAT +CAN_SEE_THROUGH_STRUCTURE +CAN_ATTACK"
+		EditorName="ThreeBossMineEffect"
+		Description="Desc:ThreeBossMineEffect"
+		TypeDescription="Type:ThreeBossMineEffect">
+		<DisplayName>ThreeBossMineEffect</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				ExtraPublicBone="invisbone01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					WeaponChoiceCriteria="SELECT_AT_RANDOM">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanThreeBossAttackMine"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<GrantUpgradeCreate
+				id="ModuleTag_UpgradeJapanNavalPower"
+			  UpgradeToGrant="Upgrade_JapanNavalPower"/>
+			<GrantUpgradeCreate
+				id="ModuleTagBoss_UpgradeJapanEnhancedKamikaze"
+			  UpgradeToGrant="Upgrade_JapanEnhancedKamikaze"/>
+			<GrantUpgradeCreate
+				id="ModuleTagBoss_UpgradeJapanAdvancedMissilePacks"
+			  UpgradeToGrant="Upgrade_JapanAdvancedMissilePacks"/>
+			<GrantUpgradeCreate
+				id="ModuleTagBoss_JapanUnitUpgrade"
+			  UpgradeToGrant="JapanUnitUpgrade"/>
+			<GrantUpgradeCreate
+				id="ModuleTagBoss_JapanSpellBookUpgrade"
+			  UpgradeToGrant="JapanSpellBookUpgrade"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+				IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<VisionInfo
+				VisionRange="99999"
+				ShroudClearingRange="99999" />
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.0"
+				Height="5.0"/>
+		</Geometry>
+						<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="ThreeBossConEffect"
+		inheritFrom="BaseStructure"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		EnergyProduction="999999"
+		IsTrainable="false"
+		KindOf="+CAN_CAST_REFLECTIONS +RESIST_EMP +IGNORE_FOR_VICTORY +NO_COLLIDE +IGNORE_IN_AI_HUNT_TACTIC +SKIRMISH_AI_DONT_CONSIDER_THREAT +CAN_SEE_THROUGH_STRUCTURE +CAN_ATTACK"
+		EditorName="ThreeBossConEffect"
+		Description="Desc:ThreeBossConEffect"
+		TypeDescription="Type:ThreeBossConEffect">
+		<DisplayName>ThreeBossConEffect</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				ExtraPublicBone="invisbone01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanThreeBossAttackCon"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+				IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<VisionInfo
+				VisionRange="99999"
+				ShroudClearingRange="99999" />
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.0"
+				Height="5.0"/>
+		</Geometry>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="ThreeBossEnggerEffect"
+		inheritFrom="BaseStructure"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		EnergyProduction="999999"
+		IsTrainable="false"
+		KindOf="+CAN_CAST_REFLECTIONS +RESIST_EMP +IGNORE_FOR_VICTORY +NO_COLLIDE +IGNORE_IN_AI_HUNT_TACTIC +SKIRMISH_AI_DONT_CONSIDER_THREAT +CAN_SEE_THROUGH_STRUCTURE +CAN_ATTACK"
+		EditorName="ThreeBossEnggerEffect"
+		Description="Desc:ThreeBossEnggerEffect"
+		TypeDescription="Type:ThreeBossEnggerEffect">
+		<DisplayName>ThreeBossEnggerEffect</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				ExtraPublicBone="invisbone01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					WeaponChoiceCriteria="SELECT_AT_RANDOM">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanThreeBossAttackEngger"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+				IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<VisionInfo
+				VisionRange="99999"
+				ShroudClearingRange="99999" />
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.0"
+				Height="5.0"/>
+		</Geometry>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="ThreeBossUnitEffect"
+		inheritFrom="BaseStructure"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		EnergyProduction="999999"
+		IsTrainable="false"
+		KindOf="+CAN_CAST_REFLECTIONS +RESIST_EMP +IGNORE_FOR_VICTORY +NO_COLLIDE +IGNORE_IN_AI_HUNT_TACTIC +SKIRMISH_AI_DONT_CONSIDER_THREAT +CAN_SEE_THROUGH_STRUCTURE +CAN_ATTACK"
+		EditorName="ThreeBossUnitEffect"
+		Description="Desc:ThreeBossUnitEffect"
+		TypeDescription="Type:ThreeBossUnitEffect">
+		<DisplayName>ThreeBossUnitEffect</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				ExtraPublicBone="invisbone01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanThreeBossAttackUnit"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+				IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<VisionInfo
+				VisionRange="99999"
+				ShroudClearingRange="99999" />
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.0"
+				Height="5.0"/>
+		</Geometry>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="ThreeBossSuperWeaponEffect"
+		inheritFrom="BaseStructure"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		EnergyProduction="999999"
+		IsTrainable="false"
+		KindOf="+CAN_CAST_REFLECTIONS +RESIST_EMP +IGNORE_FOR_VICTORY +NO_COLLIDE +IGNORE_IN_AI_HUNT_TACTIC +SKIRMISH_AI_DONT_CONSIDER_THREAT +CAN_SEE_THROUGH_STRUCTURE +CAN_ATTACK"
+		EditorName="ThreeBossSuperWeaponEffect"
+		Description="Desc:ThreeBossSuperWeaponEffect"
+		TypeDescription="Type:ThreeBossSuperWeaponEffect">
+		<DisplayName>ThreeBossSuperWeaponEffect</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				ExtraPublicBone="invisbone01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					WeaponChoiceCriteria="SELECT_AT_RANDOM">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanThreeBossAttackSuperWeapon"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+				IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<VisionInfo
+				VisionRange="99999"
+				ShroudClearingRange="99999" />
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.0"
+				Height="5.0"/>
+		</Geometry>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">
+		</CrusherInfo>
+	</GameObject>
+	<GameObject
+		id="ThreeBossEpicUniyEffect"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		KindOf="STRUCTURE NOT_AUTOACQUIRABLE IMMOBILE IGNORE_FOR_VICTORY RESIST_EMP DONT_DESTROY_IF_ON_BRIDGE IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT NO_COLLIDE"
+		EditorName="BossEpicUniyEffect"
+		Description="Desc:BossEpicUniyEffect"
+		TypeDescription="Type:BossEpicUniyEffect">
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="InvulnerableArmor"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+						</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ObjectSMCHelper
+				id="ObjectSMCHelper"/>
+			<ObjectDefectionHelper
+				id="ObjectDefectionHelper"/>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_Death"
+				CreationList="BossEpicUniyEffect_OCL">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="12500.0" />
+		</Body>
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="0" />
+						<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">
+		</CrusherInfo>
+	</GameObject>
+</AssetDeclaration>

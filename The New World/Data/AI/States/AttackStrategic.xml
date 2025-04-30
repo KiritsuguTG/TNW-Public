@@ -1,0 +1,167 @@
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!-- Brutal needs its own cleanup state because its income is different-->
+	<AIStrategicStateDefinition
+		id="TNWBalancedCleanup"
+		MaxTargets="3"
+		CannotAttackTargetReaction="Ignore">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<EnemyNearbyHeuristic Distance="700.0" EnemyNearby="false" />
+			<IncomeAdvantageHeuristic Value="3.0" Above="true" />
+			<PowerAdvantageHeuristic Value="3.0" Above="true" IncludeOwnDefenses="false"
+				IncludeEnemyDefenses="true" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="AttackEnemySuperStructure" Priority="100" />
+		<TargetHeuristic TargetHeuristic="ClosestStructureHeuristic_NonUnique" Priority="50" />
+		<TargetHeuristic TargetHeuristic="ClosestUnitHeuristic_NonUnique" Priority="50" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandBaseStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterBaseStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterStructureHeuristic" Priority="10" />
+		<Tactic id="Attack" Tactic="SimpleAttack" EndBehavior="RAMPAGE"
+			DisbandAfterRetreatTeamSize="999" UseAestheticsManager="false">
+			<TeamTemplate MinUnits="1"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER LIMITED_PRODUCTION_AIRCRAFT"
+				AllowedLocomotorTypes="LAND WATER AMPHIBIOUS AIR"
+				Priority="STANDARD" ReleaseType="RELEASE_TO_PRIORITY" AlwaysRecruit="true"
+				SortByDistance="false"
+				MicroManager="TNWStandardMicroManager">
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="TNWBalancedAttackGround"
+		MaxTargets="1">
+		<Heuristic>
+			<PathToTargetHeuristic Surface="Land" PathExists="true"
+				ObjectTypeToUseForTest="OpeningMoveGroundToGround"
+				LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ClosestToEnemyAllLandAttackUnitHeuristic" Priority="100" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandBaseStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterBaseStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterStructureHeuristic" Priority="10" />
+		<Tactic id="Attack" Tactic="SimpleAttack" DisbandAfterRetreatTeamSize="999">
+			<TeamTemplate MinUnits="10"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER SHIP LIMITED_PRODUCTION_AIRCRAFT"
+				AllowedLocomotorTypes="LAND AMPHIBIOUS AIR"
+				Priority="STANDARD" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false"
+				SortByDistance="false"
+				MicroManager="TNWStandardMicroManager">
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="TNWBalancedAttackWater"
+		MaxTargets="1">
+		<Heuristic>
+			<PathToTargetHeuristic Surface="Water" PathExists="true"
+				ObjectTypeToUseForTest="OpeningMoveWaterToWater"
+				LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ClosestToEnemyAllWaterAttackUnitHeuristic" Priority="50" />
+		<TargetHeuristic TargetHeuristic="SafestToWaterHarvesterHeuristic" Priority="50" />
+		<TargetHeuristic TargetHeuristic="SafestToWaterStructureHeuristicTNW" Priority="50" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandBaseStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllLandStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterUnitHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterBaseStructureHeuristic" Priority="10" />
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllWaterStructureHeuristic" Priority="10" />
+		<Tactic id="Attack" Tactic="SimpleAttack" DisbandAfterRetreatTeamSize="999">
+			<TeamTemplate MinUnits="5"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="IGNORES_SELECT_ALL HARVESTER INFANTRY LIMITED_PRODUCTION_AIRCRAFT"
+				AllowedLocomotorTypes="WATER AMPHIBIOUS AIR"
+				Priority="STANDARD" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false"
+				SortByDistance="false"
+				MicroManager="TNWStandardMicroManager">
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="TNWAttackFighterAircraft">
+		<Heuristic>
+			<IntervalHeuristic IntervalTime="1s" ActiveTime="15s" CountFrom="AI_START" />
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					StatusBitFlags="AIRBORNE_TARGET"
+					StatusBitFlagsExclude="UNATTACKABLE UNDER_IRON_CURTAIN IN_NANOHIVE">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="ANY"
+					Include="FIGHTER_AIRCRAFT">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ClosestFighterAircraftTargetHeuristic" Priority="100" />
+		<TargetHeuristic TargetHeuristic="ClosestAirborneTargetHeuristic" Priority="75"/>
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllAirborneUnitHeuristic" Priority="50" />
+		<Tactic id="Attack" Tactic="SimpleAttack" EndBehavior="DISBAND"
+			DisbandAfterRetreatTeamSize="999">
+			<TeamTemplate MinUnits="2" MaxUnits="12"
+				RegisteredObjectSet="AIRCRAFT"
+				AllowedLocomotorTypes="AIR"
+				IncludeKindOf="FIGHTER_AIRCRAFT"
+				ExcludeKindOf="ENGINEER IGNORES_SELECT_ALL HARVESTER ASSAULT_AIRCRAFT BOMBER_AIRCRAFT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				AllowRecruitUnitsInCombat="true" SortByDistance="false"
+				MicroManager="FighterAircraftMicroManager" />
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="TNWAvoidanceAttackFighterAircraft">
+		<Heuristic>
+			<IntervalHeuristic IntervalTime="1s" ActiveTime="15s" CountFrom="AI_START" />
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					StatusBitFlags="AIRBORNE_TARGET"
+					StatusBitFlagsExclude="UNATTACKABLE UNDER_IRON_CURTAIN IN_NANOHIVE">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="ANY"
+					Include="FIGHTER_AIRCRAFT">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ClosestFighterAircraftTargetHeuristic" Priority="100" />
+		<TargetHeuristic TargetHeuristic="ClosestAirborneTargetHeuristic" Priority="75"/>
+		<TargetHeuristic TargetHeuristic="TargetToEnemyAllAirborneUnitHeuristic" Priority="50" />
+		<Tactic id="Attack" Tactic="DefenseAvoidanceAttack" EndBehavior="DISBAND"
+			DisbandAfterRetreatTeamSize="999">
+			<TeamTemplate MinUnits="2" MaxUnits="12"
+				RegisteredObjectSet="AIRCRAFT"
+				AllowedLocomotorTypes="AIR"
+				IncludeKindOf="FIGHTER_AIRCRAFT"
+				ExcludeKindOf="ENGINEER IGNORES_SELECT_ALL HARVESTER ASSAULT_AIRCRAFT BOMBER_AIRCRAFT"
+				Priority="STANDARD" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				AllowRecruitUnitsInCombat="true" SortByDistance="false"
+				MicroManager="FighterAircraftMicroManager" />
+		</Tactic>
+	</AIStrategicStateDefinition>
+</AssetDeclaration>

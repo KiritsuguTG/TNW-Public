@@ -1,0 +1,1735 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<!-- FX Includes -->
+		<Include type="all" source="ART:FXJapanTracer.xml" />
+
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseInfantry.xml" />
+	</Includes>
+	<GameObject
+		id="JapanAntiInfantryInfantry"
+		inheritFrom="BaseInfantry"
+		SelectPortrait="Portrait_JapanAntiInfantryInfantry"
+		ButtonImage="Button_JapanAntiInfantryInfantry"
+		Side="Japan"
+		SubGroupPriority="350"
+		EditorSorting="UNIT"
+		BuildTime="3"
+		HealthBoxHeightOffset="30"
+		CommandSet="JapanAntiInfantryInfantryCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS INFANTRY SCORE PRELOAD PATH_THROUGH_INFANTRY"
+		ThreatLevel="10"
+		WeaponCategory="GUN"
+		VoicePriority="104"
+		BountyValue="25"
+		EditorName="JapanAntiInfantryInfantry"
+		Description="Desc:JapanAntiInfantryInfantry"
+		TypeDescription="Type:AntiInfantry"
+		UnitTypeIcon="RiflemenIcon"
+		UnitIntro="Japan_ImperialWarrior_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanAntiInfantryInfantry</DisplayName>
+		<GameDependency
+			ForbiddenModelConditions="OVER_WATER" />
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="75" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseInfantryArmor"
+			DamageFX="InfantryDamageFX" />
+		<LocomotorSet
+			id="HumanLocomotor"
+			Locomotor="TestReactiveLocomotorHUMAN"
+			Condition="NORMAL"
+			Speed="40" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="25"
+			ConquerMetricsDpsBonusAgainstDefenses="2.0"
+			ConquerMetricsOverrideDamageType="GUN"
+			ConquerMetricsOverrideAntiMask="ANTI_INFANTRY"
+			ConquerMetricsOverrideForbiddenAntiMask="ANTI_WATER" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="FX01 Sword">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUAntiInfantryInfantryTNW_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX01" />
+					<WeaponRecoilBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX01" />
+					<WeaponLaunchBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX01" />
+					<WeaponFireFXBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX01" />
+					<WeaponRecoilBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX01" />
+					<WeaponLaunchBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX01" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+					<Model
+						Name="" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1">
+					<Model
+						Name="NPSkeletonTNW_SKN" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_5">
+					<Model
+						Name="NPRadiationTNW" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="RadiationPuddle"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="RadiationSplash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="RadiationLightSmall"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1">
+					<Model
+						Name="JUAntiInfantryInfantryTNW_SKN" />
+					<ParticleSysBone
+						BoneName="Sword"
+						FXParticleSystemTemplate="JapanImperial_Aura"
+						FollowBone="True" />
+				</ModelConditionState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="INSIDE_GARRISON">
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FRONTCRUSHED USER_1">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SCDTA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BACKCRUSHED USER_1">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SCDTB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- radiation death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_5 USER_1">
+					<Animation
+						AnimationName="NPRadiationTNW_DIEA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- sword death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_4 USER_1">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SDTKA"
+						AnimationMode="ONCE" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SDTKB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- fire death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_3 USER_1">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SDTFA"
+						AnimationMode="ONCE" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SDTFB"
+						AnimationMode="ONCE" />
+					<ParticleSysBone
+						BoneName="HIPS"
+						FXParticleSystemTemplate="InfantryFireDeath"
+						FollowBone="true" />
+				</AnimationState>
+
+				<!-- prism/laser death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_2 USER_1">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SDTPA"
+						AnimationMode="ONCE" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SDTPB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- tesla death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1 USER_1">
+					<Animation
+						AnimationName="NPSkeletonTNW_DIEA"
+						AnimationMode="ONCE" />
+					<ParticleSysBone
+						BoneName="HIPS"
+						FXParticleSystemTemplate="Soviet_TeslaDeath_Spark"
+						FollowBone="true" />
+				</AnimationState>
+
+				<!-- dying when running -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING_WASMOVING USER_1">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SRNDA"
+						AnimationMode="ONCE" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SRNDB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- dying when in banzai mode.  -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_10">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SDTBA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SDTBB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" />
+				</AnimationState>
+
+
+				<!-- meta impact anims -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_FLAILING USER_1"
+					StateName="STATE_stunned_flailing">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SFLYA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_STANDING_UP USER_1">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SGTPA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED USER_1"
+					StateName="STATE_Swordstunned_landing">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SLNDA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING SPLATTED USER_1">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SLNDA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP USER_1">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SCWRY"
+						AnimationMode="LOOP" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SCWRZ"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Allied_DogStun01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Allied_DogStunGlows01"
+						FollowBone="true" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_A USER_1"
+					FrameForPristineBonePositions="1">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SATKA"
+						AnimationMode="ONCE" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SATKB"
+						AnimationMode="ONCE" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SATKC"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING USER_1"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SRUNA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15"
+						Distance="75" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SRUNB"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15"
+						Distance="75" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SRUNC"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15"
+						Distance="75" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ATTACKING USER_1"
+					StateName="STATE_SelectedPose">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SATKA"
+						AnimationMode="MANUAL" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ENGAGED USER_1">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SAIDA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED USER_1"
+					StateName="STATE_SwordSelectedPose"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SAIDA"
+						AnimationMode="ONCE"
+						AnimationPriority="100"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SAIDB"
+						AnimationMode="ONCE"
+						AnimationPriority="100"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SAIFA"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SAIFB"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SAIFC"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SAIFD"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+
+						if Prev == "STATE_SwordBored" then
+						CurDrawableSetTransitionAnimState("TRANS_SwordIdleToSelected")
+						elseif Prev == "STATE_SelectedPose" then
+						CurDrawableSetTransitionAnimState("TRANS_SelectedToSwordSelected")
+						elseif Prev == "STATE_Parachuting" then
+						CurDrawableSetTransitionAnimState("TRANS_fromParachutingSword")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					AllowRepeatInRandomPick="true"
+					StateName="STATE_SwordBored">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SBIDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="100"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SBIDB"
+						AnimationMode="ONCE"
+						AnimationPriority="100"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SBIDC"
+						AnimationMode="ONCE"
+						AnimationPriority="100"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SBIFA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SBIFB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SBIFC"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SBIFD"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10" />
+
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_SwordSelectedPose" then
+						CurDrawableSetTransitionAnimState("TRANS_SwordSelectedToIdle")
+						end
+						if Prev == "STATE_stunned_flailing" then
+						CurDrawableSetTransitionAnimState("STATE_Swordstunned_landing")
+						elseif Prev == "STATE_Parachuting" then
+						CurDrawableSetTransitionAnimState("TRANS_fromParachutingSword")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SwordIdleToSelected">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SBATA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="5"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SBATB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="5"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SwordSelectedToIdle">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SABTA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SABTB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+
+				<!-- parachuting anims shield-->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="LAUNCHED USER_1"
+					StateName="STATE_ParachuteLaunchShield">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SMCNA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PARACHUTING USER_1"
+					StateName="STATE_Parachuting">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SMCNC"
+						AnimationMode="LOOP" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_ParachuteLaunchSword" then
+						CurDrawableSetTransitionAnimState("TRANS_toParachutingSword")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toParachutingSword">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SMCNB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_fromParachutingSword">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SMCND"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					AllowRepeatInRandomPick="true"
+					StateName="STATE_bored">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_BIDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="100"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_BIDB"
+						AnimationMode="ONCE"
+						AnimationPriority="100"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_BIDC"
+						AnimationMode="ONCE"
+						AnimationPriority="100"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_BIFA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_BIFB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_BIFC"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_BIFD"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_BIFW"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_BIFX"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_BIFY"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_BIFZ"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="10"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Suppressed" then
+						CurDrawableSetTransitionAnimState("TRANS_fromSuppressed")
+						end
+						if Prev == "STATE_SelectedPose" then
+						CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle")
+						end
+						if Prev == "STATE_stunned_flailing" then
+						CurDrawableSetTransitionAnimState("STATE_stunned_landing")
+						end
+						if Prev == "STATE_Parachuting" then
+						CurDrawableSetTransitionAnimState("TRANS_fromParachuting")
+						end
+						if Prev == "STATE_SwordSelectedPose" then
+						CurDrawableSetTransitionAnimState("TRANS_SwordSelectedToSelected")
+						end
+						if Prev == "STATE_SwordBored" then
+						CurDrawableSetTransitionAnimState("TRANS_SwordSelectedToSelected")
+						end
+
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_FLAILING"
+					StateName="STATE_stunned_flailing">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_FLYA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					StateName="STATE_stunned_landing">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_LNDA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING SPLATTED">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_LNDA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FRONTCRUSHED">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_CDTA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BACKCRUSHED">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_CDTB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED DYING"
+					StateName="STATE_Suppressed">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SDIA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- radiation death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_5">
+					<Animation
+						AnimationName="NPRadiationTNW_DIEA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- sword death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_4">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_DTKA"
+						AnimationMode="ONCE" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_DTKB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- fire death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_3">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_DTFA"
+						AnimationMode="ONCE" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_DTFB"
+						AnimationMode="ONCE" />
+					<ParticleSysBone
+						BoneName="HIPS"
+						FXParticleSystemTemplate="InfantryFireDeath"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="RightHand"
+						FXParticleSystemTemplate="InfantryFireDeath"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="LeftHand"
+						FXParticleSystemTemplate="InfantryFireDeath"
+						FollowBone="true" />
+				</AnimationState>
+
+				<!-- prism/laser death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_2">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_DTPA"
+						AnimationMode="ONCE" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_DTPB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<!-- tesla death -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING DEATH_1">
+					<Animation
+						AnimationName="NPSkeletonTNW_DIEA"
+						AnimationMode="ONCE" />
+					<ParticleSysBone
+						BoneName="HIPS"
+						FXParticleSystemTemplate="Soviet_TeslaDeath_Spark"
+						FollowBone="true" />
+				</AnimationState>
+
+				<!-- dying when running -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING_WASMOVING">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_RNDA"
+						AnimationMode="ONCE" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_RNDB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_DTBA"
+						AnimationMode="ONCE" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_DTBB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_CWRY"
+						AnimationMode="LOOP" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_CWRZ"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Allied_DogStun01"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Allied_DogStunGlows01"
+						FollowBone="true" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED MOVING"
+					StateName="STATE_Suppressed"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SMVA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED USING_WEAPON_A"
+					StateName="STATE_Suppressed">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SATA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SUPPRESSED"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_Suppressed">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SIDA"
+						AnimationMode="ONCE" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_Suppressed" and Prev ~= "TRANS_toSuppressed" then
+						CurDrawableSetTransitionAnimState("TRANS_toSuppressed")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toSuppressed">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SDVA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_fromSuppressed">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_GTPA"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING USING_WEAPON_A">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_ATRA"
+						AnimationMode="LOOP" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_ATRB"
+						AnimationMode="LOOP" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					StateName="STATE_OverWater">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SWMB"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AUScoutInfantrySplash"
+						FollowBone="false" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev ~= "STATE_OverWater" and Prev ~= "TRANS_ToWater" then
+						CurDrawableSetTransitionAnimState("TRANS_ToWater")
+						end
+					</Script>
+				</AnimationState>
+
+				<!-- idle in water -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_OverWater">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_WADA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AUScoutInfantrySplash"
+						FollowBone="false" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_RUNA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15"
+						Distance="75" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_RUNC"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15"
+						Distance="75" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_OverWater" or Prev == "TRANS_ToWater" then
+						CurDrawableSetTransitionAnimState("TRANS_FromWater")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_A"
+					FrameForPristineBonePositions="1">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_ATKZ"
+						AnimationMode="ONCE" />
+					<Animation
+            AnimationName="JUAntiInfantryInfantryTNW_ATKB"
+            AnimationBlendTime="10"
+            AnimationMode="ONCE" />
+           <Animation
+            AnimationName="JUAntiInfantryInfantryTNW_ATKC"
+            AnimationBlendTime="10"
+            AnimationMode="ONCE" />
+           <Animation
+            AnimationName="JUAntiInfantryInfantryTNW_ATKD"
+            AnimationBlendTime="10"
+            AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ATTACKING"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					StateName="STATE_SelectedPose">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_AIDA"
+						AnimationBlendTime="10"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<!--      
+          <AnimationState
+					  ParseCondStateType="PARSE_NORMAL"
+					  ConditionsYes="ENGAGED">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_AIDA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+-->
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STUNNED_STANDING_UP">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_GTPA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="EMOTION_CELEBRATING"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_CHRA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_CHRB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_CHRC"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					StateName="STATE_SelectedPose"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_AIDA"
+						AnimationMode="ONCE"
+						AnimationPriority="100"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_AIDB"
+						AnimationPriority="100"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_AIFA"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_AIFB"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_AIFC"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_AIFD"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_AIFW"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_AIFX"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_AIFY"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_AIFZ"
+						AnimationMode="ONCE"
+						AnimationPriority="10"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_bored" then
+						CurDrawableSetTransitionAnimState("TRANS_IdleToSelected")
+						end
+						if Prev == "STATE_SwordSelectedPose" then
+						CurDrawableSetTransitionAnimState("TRANS_SwordSelectedToSelected")
+						end
+						if Prev == "STATE_Parachuting" then
+						CurDrawableSetTransitionAnimState("TRANS_fromParachuting")
+						end
+					</Script>
+				</AnimationState>
+
+				<!-- parachuting anims-->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="LAUNCHED"
+					StateName="STATE_ParachuteLaunch">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_MCNA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PARACHUTING"
+					StateName="STATE_Parachuting">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_MCNC"
+						AnimationMode="LOOP" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_ParachuteLaunch" then
+						CurDrawableSetTransitionAnimState("TRANS_toParachuting")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_toParachuting">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_MCNB"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_fromParachuting">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_MCND"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_IdleToSelected">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_BATA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="5"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_BATB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="5"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SelectedToIdle">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_ABTA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_ABTB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+				</AnimationState>
+
+				<!-- swapping to Sword -->
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SelectedToSwordSelected">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SWPA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="10" />
+					<!-- <Script>
+						CurDrawablePlaySound("JAP_ImperialWarrior_Weapon_SwordUnsheath")
+					</Script> -->
+				</AnimationState>
+
+				<!-- swapping to gun -->
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SwordSelectedToSelected">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SWPA"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationBlendTime="10" />
+					<!-- <Script>
+						CurDrawablePlaySound("JAP_ImperialWarrior_Weapon_SwordSheath")
+					</Script> -->
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_ToWater">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SWMA"
+						AnimationMode="ONCE" />
+					<Script>
+						CurDrawablePlaySound("SOV_Commando_WaterSplash")
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_FromWater">
+					<Animation
+						AnimationName="JUAntiInfantryInfantryTNW_SWMC"
+						AnimationMode="ONCE" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<!-- include parachute draw module. -->
+			<xi:include
+				href="DATA:Includes/ParachuteDrawJapan.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:ParachuteDraws/child::*)" />
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw"
+				MinLength="15.0"
+				MaxLength="15.0"
+				Width="5.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.2"
+				MaxTracersPerFrame="0.3"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXJapanTracer"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a=".0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01 WEAPON_UPGRADED_02 WEAPON_UPGRADED_03" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawVeterancy"
+				MinLength="15.0"
+				MaxLength="15.0"
+				Width="5.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.2"
+				MaxTracersPerFrame="0.3"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				Texture="FXJapanTracer"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="0.0"
+					b="0.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01"
+					ForbiddenStatus="WEAPON_UPGRADED_02 WEAPON_UPGRADED_03" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawUpgradeVeterancy"
+				MinLength="15.0"
+				MaxLength="15.0"
+				Width="5.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.5"
+				MaxTracersPerFrame="0.5"
+				FrameLifeTime="35"
+				WeaponSlotType="SECONDARY_WEAPON"
+				Texture="FXTracerGDISniperHeroic"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="0.0"
+					b="0.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="0.0"
+					b="0.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01"
+					ForbiddenStatus="WEAPON_UPGRADED_02" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDrawUpgrade"
+				MinLength="15.0"
+				MaxLength="15.0"
+				Width="5.0"
+				MinSpeed="40"
+				MaxSpeed="40"
+				SweepSpeed="1.0"
+				SpreadAngle="2.0"
+				MinTracersPerFrame="0.2"
+				MaxTracersPerFrame="0.3"
+				FrameLifeTime="35"
+				WeaponSlotType="SECONDARY_WEAPON"
+				Texture="FXTracerGDISniper"
+				UseAdditiveBlending="true">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01 WEAPON_UPGRADED_02" />
+			</TracerModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					AllowInterleavedFiring="false"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_MOST_DAMAGE">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiInfantryInfantryWeapon"
+						ForbiddenObjectStatus="OVER_WATER GENERIC_TOGGLE_STATE WEAPON_UPGRADED_03" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="JapanAntiInfantryInfantryWeaponUpgrade"
+						ObjectStatus="WEAPON_UPGRADED_03"
+						ForbiddenObjectStatus="OVER_WATER GENERIC_TOGGLE_STATE" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiInfantryInfantryWeaponBonzai"
+						ForbiddenObjectStatus="OVER_WATER INSIDE_GARRISON"
+						ObjectStatus="GENERIC_TOGGLE_STATE" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanAntiInfantryInfantryWeaponStr"
+						ObjectStatus="INSIDE_GARRISON"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE WEAPON_UPGRADED_03" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="JapanAntiInfantryInfantryWeaponUpgradeStr"
+						ObjectStatus="WEAPON_UPGRADED_03 INSIDE_GARRISON"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<AttributeModifierUpgrade
+				id="ModuleTag_BaseAntiInfantryInfantryUnitUpgradeSpecialPower"
+				AttributeModifier="AttributeBaseAntiInfantryInfantryUnitUpgradeSpecialPower">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_AntiPlusUpgrade"
+				AttributeModifier="AttributeMod_AlliesSovietAntiPlusAttribute">
+				<TriggeredBy>Upgrade_SovietAntiPlus</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_03">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<SuppressionUpdate
+				id="ModuleTag_SuppressionUpdate"
+				xai:joinAction="Replace"
+				UpdateDelay="1s"
+				Suppressability="50"
+				SuppressionDuration="5s"
+				AttributeModifierSuppressed="Modifier_Test_Suppression"
+				AttributeModifierForceMove="Modifier_Test_Suppression_ForceMove"
+				IgnoreSuppressionObjectStatus="OVER_WATER AIRBORNE_TARGET PARACHUTING GENERIC_TOGGLE_STATE INSIDE_GARRISON PLAYER_POWER_4" />
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_DeathSpawn"
+				CreationList="OCL_JapanAntiInfantryInfantry_Death">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="PLAYER_POWER_5" />
+			</CreateObjectDie>
+			<!-- standard death -->
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="3s"
+				SinkRate="2.4"
+				DestructionDelay="4s">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED ELECTROCUTED LASERED BURNED STABBED IRRADIATED"
+					ExemptStatus="WEAPON_UPGRADED_02" />
+				<Sound Type="INITIAL" List="JAP_ImperialWarrior_VoiceDie" />
+			</SlowDeath>
+
+			<SlowDeath
+				id="ModuleTag_BearDeath"
+				SinkDelay="3s"
+				SinkRate="2.4"
+				DestructionDelay="4s"
+				FlingForce="5"
+				FlingForceVariance="2"
+				FlingPitch="20d"
+				FlingPitchVariance="10d">
+				<DieMuxData
+					DeathTypes="MAULED"
+					DeathTypesForbidden="BITTEN ELECTROCUTED LASERED BURNED STABBED IRRADIATED"
+					ExemptStatus="WEAPON_UPGRADED_02" />
+				<Sound
+					Type="INITIAL"
+					List="JAP_ImperialWarrior_VoiceDie" />
+			</SlowDeath>
+			<!-- dying when switched to sword ability -->
+			<SlowDeath
+				id="ModuleTag_BanzaiDeath"
+				DeathFlags="DEATH_10"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED ELECTROCUTED LASERED BURNED STABBED IRRADIATED"
+					RequiredStatus="WEAPON_UPGRADED_02" />
+				<Sound Type="INITIAL" List="JAP_ImperialWarrior_VoiceDie" />
+			</SlowDeath>
+			<SlowDeath
+				id="ModuleTag_BanzaiBearDeath"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s"
+				FlingForce="5"
+				FlingForceVariance="2"
+				FlingPitch="20d"
+				FlingPitchVariance="10d">
+				<DieMuxData
+					DeathTypes="MAULED"
+					DeathTypesForbidden="BITTEN ELECTROCUTED LASERED BURNED STABBED IRRADIATED"
+					RequiredStatus="WEAPON_UPGRADED_02" />
+				<Sound
+					Type="INITIAL"
+					List="JAP_ImperialWarrior_VoiceDie" />
+			</SlowDeath>
+
+			<SlowDeath
+				id="ModuleTag_TeslaDeath"
+				DeathFlags="DEATH_1"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="ELECTROCUTED"
+					DeathTypesForbidden="MAULED LASERED BURNED STABBED IRRADIATED" />
+				<Sound Type="INITIAL" List="JAP_ImperialWarrior_VoiceDieShock" />
+			</SlowDeath>
+
+			<SlowDeath
+				id="ModuleTag_LaserDeath"
+				DeathFlags="DEATH_2"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="LASERED"
+					DeathTypesForbidden="MAULED ELECTROCUTED BURNED STABBED IRRADIATED" />
+				<Sound Type="INITIAL" List="JAP_ImperialWarrior_VoiceDie" />
+			</SlowDeath>
+
+			<SlowDeath
+				id="ModuleTag_FireDeath"
+				DeathFlags="DEATH_3"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="BURNED"
+					DeathTypesForbidden="MAULED ELECTROCUTED LASERED STABBED IRRADIATED" />
+				<Sound Type="INITIAL" List="JAP_ImperialWarrior_VoiceDieFire" />
+			</SlowDeath>
+
+			<SlowDeath
+				id="ModuleTag_SwordDeath"
+				DeathFlags="DEATH_4"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="STABBED"
+					DeathTypesForbidden="MAULED ELECTROCUTED LASERED BURNED IRRADIATED" />
+				<Sound Type="INITIAL" List="JAP_ImperialWarrior_VoiceDie" />
+			</SlowDeath>
+
+			<SlowDeath
+				id="ModuleTag_RadiationDeath"
+				DeathFlags="DEATH_5"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="IRRADIATED"
+					DeathTypesForbidden="MAULED ELECTROCUTED LASERED BURNED STABBED" />
+				<Sound Type="INITIAL" List="JAP_ImperialWarrior_VoiceDie" />
+			</SlowDeath>
+			<SpecialPower
+				id="ModuleTag_SpecialPower"
+				SpecialPowerTemplate="SpecialPower_JapanAntiInfantryInfantryBonzai"
+				UpdateModuleStartsAttack="true"
+				AttributeModifier="AttributeModifier_JapanAntiInfantryInfantryBonzai"
+				AttributeModifierAffectsSelf="true" />
+			<SpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate"
+				SpecialPowerTemplate="SpecialPower_JapanAntiInfantryInfantryBonzai"
+				UnpackTime="0s"
+				Options="RECONSTITUTE_STORED_COMMAND" />
+			<!-- ActiveLoopSound="JAP_ImperialWarrior_Weapon_SwordSheathFakeLoop" no worky didn't
+			loop at all -->
+
+			<!-- Allied Parachute Behaviors -->
+			<ModelConditionUpgrade
+				id="ModuleTag_JapanFaction"
+				AddConditionFlags="USER_8">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_SovietFaction"
+				AddConditionFlags="USER_9">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+					IdleScanDelay="=$MEDIUM_IDLE_SCAN_DELAY" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="115.0" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_YurikoVoiceDieFall">
+				<ModelConditionSound Sound="JAP_ImperialWarrior_VoiceDieYurikoFall"
+					RequiredFlags="IMPENDING_DOOM" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_YurikoVoiceUp">
+				<ModelConditionSound Sound="JAP_ImperialWarrior_VoiceDieYurikoUp"
+					RequiredFlags="STUNNED_FLAILING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<AnimationSoundClientBehavior id="ModuleTag_ASCB">
+				<Sound Sound="SOV_Bear_ParachuteOpen" Animation="SUCommando_MCNB" Frame="3" />
+				<Sound Sound="BodyfallGeneric" Animation="JUAntiInfantryInfantryTNW_DTBA" Frame="25" />
+				<Sound Sound="BodyfallGeneric" Animation="JUAntiInfantryInfantryTNW_DTBB" Frame="25" />
+				<Sound Sound="BodyfallGeneric" Animation="JUAntiInfantryInfantryTNW_RNDA" Frame="25" />
+				<Sound Sound="BodyfallGeneric" Animation="JUAntiInfantryInfantryTNW_RNDB" Frame="25" />
+				<Sound Sound="FootstepDirt" Animation="JUAntiInfantryInfantryTNW_RUNA"
+					Frame="1 13 25 37" />
+				<Sound Sound="FootstepDirt" Animation="JUAntiInfantryInfantryTNW_RUNC"
+					Frame="7 18 29 40" />
+				<Sound Sound="FootstepDirt" Animation="JUAntiInfantryInfantryTNW_SRUNA"
+					Frame="5 15 25" />
+				<Sound Sound="FootstepDirt" Animation="JUAntiInfantryInfantryTNW_SRUNB"
+					Frame="5 15 25" />
+				<Sound Sound="FootstepDirt" Animation="JUAntiInfantryInfantryTNW_SRUNC"
+					Frame="5 15 25" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_CDTA" Frame="7" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_CDTB" Frame="6" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_DTBA" Frame="22" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_DTBB" Frame="24" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_DTFA" Frame="75" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_DTFB" Frame="64" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_DTKA" Frame="30" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_DTKB" Frame="38" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_DTPA" Frame="79" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_DTPB" Frame="81" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_DTSA" Frame="10" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_DTSB" Frame="8" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_LNDA" Frame="5" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_MCND" Frame="4" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_RNDA" Frame="33" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_RNDB" Frame="24" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SCDTA" Frame="6" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SCDTB" Frame="7" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SDTBA" Frame="10" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SDTBB" Frame="95" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SDTFA" Frame="116" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SDTFB" Frame="84" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SDTKB" Frame="23" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SDTPA" Frame="104" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SDTPB" Frame="83" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SDTSA" Frame="8" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SDVA" Frame="21" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SLNDA" Frame="4" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SMCND" Frame="4" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SRNDA" Frame="35" />
+				<Sound Sound="BodyfallGenericArmorMS" ExcludedMC="OVER_WATER"
+					Animation="JUAntiInfantryInfantryTNW_SRNDB" Frame="24" />
+			</AnimationSoundClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="BonzaiChargeVoice">
+				<Override RequiredFlags="USER_1">
+					<AudioArrayVoice>
+						<AudioEntry Sound="JAP_ImperialWarrior_VoiceAttackBonzaiCharge"
+							AudioType="voiceAttack" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_SwordUnsheath">
+				<ModelConditionSound Sound="JAP_ImperialWarrior_Weapon_SwordUnsheathMS"
+					RequiredFlags="USER_1" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.25"
+				Height="13.0"
+				ContactPointGeneration="SQUAD_MEMBER" />
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_ImperialWarrior_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="JAP_ImperialWarrior_VoiceAttackClear"
+				AudioType="voiceAttackGarrisonedStructure" />
+			<AudioEntry Sound="JAP_ImperialWarrior_VoiceGarrison" AudioType="voiceGarrison" />
+			<AudioEntry Sound="JAP_ImperialWarrior_VoiceMoveAttack"
+				AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="JAP_ImperialWarrior_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_ImperialWarrior_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_ImperialWarrior_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="JAP_ImperialWarrior_VoiceSelectBattleMS"
+				AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="JAP_ImperialWarrior_VoiceSelectUnderFireMS"
+				AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="JAP_ImperialWarrior_VoiceBonzaiCharge" Name="VoiceBonzaiCharge" />
+		</AudioArrayVoice>
+		<ShadowInfo
+			Type="DECAL"
+			SizeX="14"
+			SizeY="14"
+			Texture="ShadowI"
+		/>
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$BASE_INFANTRY_SHROUD_CLEAR" />
+	</GameObject>
+	<GameObject
+		id="JapanAntiInfantryInfantry_Crate"
+		inheritFrom="JapanAntiInfantryInfantry"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="JapanAntiInfantryInfantry_Crate">
+		<EquivalentTo>JapanAntiInfantryInfantry</EquivalentTo>
+	</GameObject>
+	<ObjectCreationList
+		id="OCL_JapanAntiInfantryInfantry_Death">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS DO_NOT_COPY_SHADERS DO_NOT_COPY_SCALE REQUIRES_LIVE_PLAYER"
+			Disposition="ON_GROUND_ALIGNED"
+			MinHealth="1"
+			MaxHealth="1">
+			<CreateObject>JapanAntiInfantryInfantry_Death</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<GameObject
+		id="JapanAntiInfantryInfantry_Death"
+		inheritFrom="JapanAntiInfantryInfantry"
+		EditorName="JapanAntiInfantryInfantry_Death">
+		<EquivalentTo>JapanAntiInfantryInfantry</EquivalentTo>
+		<Behaviors>
+			<AttributeModifierUpgrade
+				id="ModuleTag_CanNotDeathSpawn"
+				AttributeModifier="AttributeMod_CanNotDeathSpawnAttribute">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_DeathSpawnUp"
+				AttributeModifier="AttributeModifier_JapanArcherInfantryDeathSpawn">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</AttributeModifierUpgrade>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

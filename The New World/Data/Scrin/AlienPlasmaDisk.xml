@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<!-- The default plasma disk projectile -->
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all"	source="ART:Units/AlienPlasmaDisk/EXDISK.MUZZLEFLASHA02.w3x" />
+		<Include type="all"	source="ART:Units/AlienPlasmaDisk/EXDISK.MUZZLEFLASHA03.w3x" />
+		<Include type="all"	source="ART:Units/AlienPlasmaDisk/EXDISK_CTR.w3x" />
+		<Include type="all"	source="ART:Units/AlienPlasmaDisk/EXDISK_G.MUZZLEFLASHA02.w3x" />
+		<Include type="all"	source="ART:Units/AlienPlasmaDisk/EXDISK_G.MUZZLEFLASHA03.w3x" />
+		<Include type="all"	source="ART:Units/AlienPlasmaDisk/EXDISK_G_CTR.w3x" />
+		<Include type="all"	source="ART:Units/AlienPlasmaDisk/EXDISK_G_HRC.w3x" />
+		<Include type="all"	source="ART:Units/AlienPlasmaDisk/EXDISK_HRC.w3x" />
+		<Include type="all"	source="ART:Units/AlienPlasmaDisk/EXDISKLRG.MUZZLEFLASHA02.w3x" />
+		<Include type="all"	source="ART:Units/AlienPlasmaDisk/EXDISKLRG.MUZZLEFLASHA03.w3x" />
+		<Include type="all"	source="ART:Units/AlienPlasmaDisk/EXDISKLRG_CTR.w3x" />
+		<Include type="all"	source="ART:Units/AlienPlasmaDisk/EXDISKLRG_HRC.w3x" />
+	</Includes>
+	<GameObject
+		id="AlienPlasmaDisk"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE NO_COLLIDE HIDE_IF_FOGGED"
+		EditorName="AlienPlasmaDisk">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EXDisk" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="AlienPlasmaDiskTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior	
+				id="ModuleTag_FXLists">
+				<DieMuxData	
+					DeathTypes="ALL"/>
+				<Event 
+					Index="onDeath" 
+					FX="FX_ALI_SeekerTank_WeaponProjectileImpact" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="20"
+				FirstHeightMax="20"
+				SecondHeightMin="20"
+				SecondHeightMax="20"
+				FirstPercentIndent="30"
+				SecondPercentIndent="90"
+				CurveFlattenMinDist="100"
+				SidewaysDrift="50"
+				FlightPathAdjustDistPerSecond="200"
+				GroundHitFX="FX_PlasmaDiskGroundHit">
+			</BezierProjectile>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+</AssetDeclaration>

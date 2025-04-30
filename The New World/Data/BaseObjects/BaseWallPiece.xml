@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseStructure.xml" />
+	</Includes>
+	<!-- Wall Piece (these alternate between Wall hubs and Wall segments on a case by case basis) -->
+	<GameObject
+		id="BaseWallPiece"
+		inheritFrom="BaseStructure"
+		EditorSorting="STRUCTURE"		
+		BuildTime="0"
+		KindOf="NO_HEAL_ICON STRUCTURE SELECTABLE IMMOBILE WALL_PIECE COVER IGNORE_FOR_VICTORY CAN_CAST_REFLECTIONS RESIST_EMP CLASSIFY_ENTIRE_FOOTPRINT NOT_AUTOACQUIRABLE AUTO_ACQUIRABLE_BY_AI"
+		RadarPriority="NOT_ON_RADAR"
+		EnergyProduction="0"
+		CommandSet="EmptyCommandSet"
+		PlacementViewAngle="225d"
+		ProductionQueueType="OTHER_STRUCTURE"
+		BuildPlacementTypeFlag="OTHER_STRUCTURE"
+		CampnessValue="=$CAMPNESS_WALL"
+		TypeDescription="Type:Wall">
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseWallStructureArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<Behaviors>
+			<SquishCollide
+				id ="DefaultSquishCollide"
+				AllowAllyCrush="true"/>
+			<Physics
+				id="ModuleTag_Physics" />
+			<AutoHealBehavior
+				id="Upgrade_PassiveHeal"
+				InitiallyActive="true"
+				HealOnlyIfNotInCombat="false"
+				HealOnlyIfNotUnderAttack="false"
+				StartHealingDelay="1s"
+				HealingAmount="10"
+				HealingDelay="1s">
+			</AutoHealBehavior>
+			<xi:include
+				href="DATA:Includes/GenericAlliedBuildingDestructionNoSpawn.xml" />
+			<xi:include
+				href="DATA:Includes/GenericAlliedBuildingSuicideNoSpawn.xml" />
+			<FXListBehavior xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_DieSound">
+				<DieMuxData DeathTypes="ALL" DeathTypesForbidden="SUICIDED EXTRA_7" />
+				<Event Index="onDeath" FX="FX_WallDieExplosion" />
+			</FXListBehavior>
+			<StructureUnpackUpdate
+				id="StructureUnpackUpdate"
+				UnpackTime="4s"/>
+		<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED"/>
+			</DestroyDie>	
+			<WallBuilderBehavior
+				id="ModuleTag_WallBuilder" 
+				MaxNumSegments="10">
+				<ConnectingObjectFilter
+					Rule="ANY"
+					Include="WALL_PIECE">
+				</ConnectingObjectFilter>
+			</WallBuilderBehavior>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="150" />
+		</Body>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="StructureAIStateMachine">
+			</AIUpdate>
+		</AI>
+		<AudioArraySound>
+			<AudioEntry Sound="HumanFaction_SmallBuilding_LightDamageMS" AudioType="soundOnDamaged" />
+			<AudioEntry Sound="HumanFaction_SmallBuilding_HeavyDamageMS" AudioType="soundOnReallyDamaged" />
+		</AudioArraySound>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="" EvaType="soldOwner"/>
+			<EvaEntry EvaEvent="" EvaType="enemyObjectSighted"/>
+		</EvaEventArray>
+		
+		<!-- Curshable level should be the same across factions so no one has an advantage -->
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="25" />
+		<VisionInfo
+			VisionRange="10"
+			ShroudClearingRange="15" />
+	</GameObject>
+</AssetDeclaration>

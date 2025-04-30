@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<!-- Base Object -->
+    <Include
+			type="all"
+			source="ART:FXInvisBone.w3x" />
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<GameObject
+		id="AlliedSatelliteSweepRevealUpgradeObject"
+		Side="Allies"
+		CommandSet="EmptyCommandSet"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE SUMMONED NO_COLLIDE INERT INERT_SHROUD_REVEALER"
+		IsTrainable="false"
+		RadarPriority="NOT_ON_RADAR"
+		EditorName="AlliedSatelliteSweepRevealUpgradeObject"
+		Description="Desc:AlliedSatelliteSweepRevealObject"
+		EditorSorting="SYSTEM">
+		<ArmorSet
+			Armor="NoArmor" />
+    <Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="FXInvisBone" />
+        </ModelConditionState>
+      </ScriptedModelDraw>
+    </Draws>
+
+		<Behaviors>
+      <LifetimeUpdate
+           id="ModuleTag_LifeTimeUpdate"
+           MinLifetime="5s"
+           MaxLifetime="5s" />
+      <FXListBehavior
+				id="ModuleTag_FXList">
+        <DieMuxData
+					DeathTypes="ALL" />
+        <Event
+					Index="onCreate"
+					FX="FX_SurvGridUpgrade" />
+      </FXListBehavior>
+			<Physics
+				id="ModuleTag_Physics" />		
+			<DestroyDie
+				id="ModuleTag_DeathFaded">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="2.0"
+				Height="2.0"/>
+		</Geometry>
+		<VisionInfo
+			VisionRange="10"
+			ShroudClearingRange="450" />
+	</GameObject>
+	<FXList id="FX_SurvGridUpgrade">
+		<NuggetList>
+			<DynamicDecal
+					  Decal				= "FXGrid"
+					  Shader				= "ADDITIVE"
+					  Size				= "450"
+					  OpacityStart		= "0"
+					  OpacityFadeTimeOne	= "2s"
+					  OpacityPeak			= "1"
+					  OpacityPeakTime		= "0s"
+					  OpacityFadeTimeTwo	= "5s"
+					  OpacityEnd			= "0"
+					  StartingDelay		= "0s"
+					  OnlyIfOnLand		="true"
+					  Lifetime			= "5s">
+				<Color R="255" G="255" B="255" />
+				<Offset x="0" y="0" />
+			</DynamicDecal>
+
+		</NuggetList>
+	</FXList>
+</AssetDeclaration>

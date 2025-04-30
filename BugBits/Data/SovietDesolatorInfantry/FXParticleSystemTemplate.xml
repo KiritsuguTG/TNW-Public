@@ -1,0 +1,738 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<FXParticleSystemTemplate ParticleTexture="FXCorrupterStream2" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="MULTIPLY" SortLevel="2" SystemLifetime="5" Type="STREAK" id="DesolatorSprayStream01">
+		<Lifetime High="5" Low="5"/>
+		<Size High="1" Low="1"/>
+		<BurstCount High="15" Low="15"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.1" g="0.9" r="0.1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="1" Low="1"/>
+		</Colors>
+		<Physics/>
+		<Draw>
+			<Lightning>
+				<StartPoint x="100" y="300" z="220"/>
+				<EndPoint x="300" y="300" z="220"/>
+				<RandomSet>
+					<StartAmplitude High="2" Low="1"/>
+					<EndAmplitudeChange High="1" Low="-1"/>
+					<StartFrequency High="2" Low="1"/>
+					<EndFrequencyChange High="0.1" Low="-0.1"/>
+					<StartPhase High="2" Low="0"/>
+					<EndPhaseChange High="0.05" Low="0"/>
+				</RandomSet>
+				<RandomSet>
+					<StartAmplitude High="2" Low="1"/>
+					<StartFrequency High="2" Low="1"/>
+					<EndFrequencyChange High="1" Low="-1"/>
+					<StartPhase High="2" Low="0"/>
+					<EndPhaseChange High="0.05" Low="0"/>
+				</RandomSet>
+			</Lightning>
+		</Draw>
+		<Volume>
+			<Lightning/>
+		</Volume>
+		<Velocity/>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.1" Low="-0.1"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" Priority="HIGH_OR_ABOVE" SystemLifetime="1" id="FXDesolatorBlatGunProjectileLight">
+		<Lifetime High="100" Low="100"/>
+		<Size High="35" Low="35"/>
+		<BurstDelay High="30" Low="30"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0" g="0.807843" r="0.466667"/>
+			</Color>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0" g="0.909804" r="0.545098"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0.160784" g="0.780392" r="0.423529"/>
+			</Color>
+			<ColorScale High="3" Low="3"/>
+		</Colors>
+		<Physics>
+			<Default ParticlesAttachToBone="true">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<LightSource/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="5"/>
+			</Cylinder>
+		</Volume>
+		<Velocity/>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="3" Low="-3"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXToxicDecal" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="MULTIPLY" SortLevel="1" SystemLifetime="5" Type="GPU_PARTICLE" id="SovietToxicDeathExplosionCloud">
+		<Lifetime High="60" Low="50"/>
+		<Size High="25" Low="15"/>
+		<BurstCount High="4" Low="4"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="9.999999">
+				<Color b="0.176471" g="0.333333" r="0.2"/>
+			</Color>
+			<Color Frame="3" RelativeAge="50">
+				<Color b="0.113725" g="0.313726" r="0.196078"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.02">
+				<VelocityDamping High="0.9" Low="0.9"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXDisotrtionFractal01" EnableSoftParticles="false" MiscValue1="0.1" MiscValue2="0.05" MiscValue3="45" MiscValue4="0.05" RandTex="1" Shader="gpuparticledistort.fx" SortParticles="true" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="15"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="5" Low="-5"/>
+					<y High="5" Low="-5"/>
+					<z High="4" Low="2"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="5" Low="5"/>
+				<SizeRateDamping High="0.85" Low="0.8"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXLenzflareHDR01" PerParticleAttachedSystem="" Priority="HIGH_OR_ABOVE" SortLevel="2" SystemLifetime="3" Type="GPU_PARTICLE" id="SovietToxicDeathExplosionCloudGlow">
+		<Lifetime High="40" Low="30"/>
+		<Size High="25" Low="25"/>
+		<BurstCount High="3" Low="3"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="10">
+				<Color b="0" g="0.615686" r="0.309804"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="2" Low="2"/>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.02">
+				<VelocityDamping High="0.9" Low="0.9"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXDisotrtionFractal01" MiscValue1="0.1" MiscValue2="0.02" MiscValue3="45" MiscValue4="0.05" Shader="gpuparticledistort.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="15"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="5" Low="-5"/>
+					<y High="5" Low="-5"/>
+					<z High="4" Low="2"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="5" Low="5"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXEmbersLight" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" SortLevel="1" SystemLifetime="1" Type="GPU_PARTICLE" id="SovietToxicDeathExplosionEmbers">
+		<Lifetime High="50" Low="25"/>
+		<Size High="30" Low="30"/>
+		<BurstCount High="50" Low="50"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="9.999999">
+				<Color b="0.352941" g="0.886275" r="0.529412"/>
+			</Color>
+			<Color Frame="3" RelativeAge="50">
+				<Color b="0.45098" g="0.733333" r="0.533333"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="5" Low="5"/>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.1">
+				<VelocityDamping High="0.9" Low="0.9"/>
+				<DriftVelocity x="0" y="0" z="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXDisotrtionFractal01" EnableSoftParticles="false" FramesPerRow="2" MiscValue1="0.1" MiscValue2="0.02" MiscValue3="45" MiscValue4="0.1" RandTex="1" Shader="gpuparticledistort.fx" SortParticles="true" SpeedMultiplier="1" TotalFrames="4"/>
+		</Draw>
+		<Volume>
+			<Cylinder Length="30" Radius="10" RadiusRate="5">
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="5" Low="-5"/>
+					<y High="5" Low="-5"/>
+					<z High="6" Low="3"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="-0.15" Low="-0.1"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXAlienBlood" PerParticleAttachedSystem="" Priority="LOW_OR_ABOVE" Shader="MULTIPLY" SortLevel="2" SystemLifetime="5" Type="GPU_PARTICLE" id="SovietToxicFireDrip">
+		<Lifetime High="30" Low="15"/>
+		<Size High="5" Low="5"/>
+		<BurstCount High="3" Low="0"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="30.000002">
+				<Color b="0.066667" g="0.490196" r="0.54902"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<ColorScale High="2" Low="2"/>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.1">
+				<VelocityDamping High="0.99" Low="0.99"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXFracTileNRM" MiscValue1="0.1" MiscValue2="0.05" MiscValue3="45" MiscValue4="1" RandTex="1" Shader="gpuparticledistort.fx" SingleRow="1" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Point/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="3" Low="1"/>
+					<y High="0.5" Low="-0.5"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="4" Low="4"/>
+				<SizeRateDamping High="0.95" Low="0.95"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularRateZ High="0.1" Low="-0.1"/>
+				<AngularDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" Priority="VERY_LOW_OR_ABOVE" SystemLifetime="1" Type="GPU_PARTICLE" id="SovietToxicFireGlow">
+		<Lifetime High="15" Low="4"/>
+		<Size High="100" Low="100"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.541177" g="0.968627" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.007843" g="1" r="0.529412"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder Radius="1">
+				<Offset x="0.1" y="0.1" z="0.1"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="1" Low="1"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="1" Low="1"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXToxicDecal" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="MULTIPLY" SortLevel="1" SystemLifetime="3" Type="GPU_PARTICLE" id="SovietToxicHitCloud">
+		<Lifetime High="60" Low="50"/>
+		<Size High="25" Low="15"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="5">
+				<Color b="0.176471" g="0.333333" r="0.2"/>
+			</Color>
+			<Color Frame="3" RelativeAge="50">
+				<Color b="0.113725" g="0.313726" r="0.196078"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.01">
+				<VelocityDamping High="0.9" Low="0.9"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXDisotrtionFractal01" EnableSoftParticles="false" MiscValue1="0.1" MiscValue2="0.05" MiscValue3="45" MiscValue4="0.05" RandTex="1" Shader="gpuparticledistort.fx" SortParticles="true" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="1" Low="-1"/>
+					<y High="1" Low="-1"/>
+					<z High="1" Low="-1"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="3" Low="3"/>
+				<SizeRateDamping High="0.85" Low="0.8"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXToxicDecal" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="MULTIPLY" SortLevel="1" SystemLifetime="6" Type="GPU_PARTICLE" id="SovietToxicHitCloudVet">
+		<Lifetime High="60" Low="50"/>
+		<Size High="25" Low="15"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="5">
+				<Color b="0.176471" g="0.333333" r="0.2"/>
+			</Color>
+			<Color Frame="3" RelativeAge="50">
+				<Color b="0.113725" g="0.313726" r="0.196078"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.01">
+				<VelocityDamping High="0.9" Low="0.9"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXDisotrtionFractal01" EnableSoftParticles="false" MiscValue1="0.1" MiscValue2="0.05" MiscValue3="45" MiscValue4="0.05" RandTex="1" Shader="gpuparticledistort.fx" SortParticles="true" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="1" Low="-1"/>
+					<y High="1" Low="-1"/>
+					<z High="2" Low="1"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="3" Low="3"/>
+				<SizeRateDamping High="0.85" Low="0.8"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularRateZ High="0.01" Low="-0.01"/>
+				<AngularDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXCloudCR01" PerParticleAttachedSystem="" Priority="HIGH_OR_ABOVE" SortLevel="2" SystemLifetime="2" Type="GPU_PARTICLE" id="SovietToxicHitSplash">
+		<Lifetime High="40" Low="30"/>
+		<Size High="40" Low="20"/>
+		<BurstDelay High="20" Low="10"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="10">
+				<Color b="0.117647" g="0.658824" r="0.345098"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="8" Low="4"/>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.01">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXDisotrtionFractal01" MiscValue1="0.1" MiscValue2="0.02" MiscValue3="45" MiscValue4="0.05" Shader="gpuparticledistort.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Outward>
+				<Speed High="0.1" Low="0.1"/>
+				<OtherSpeed High="0" Low="0"/>
+			</Outward>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXCloudCR01" PerParticleAttachedSystem="" Priority="HIGH_OR_ABOVE" SortLevel="2" SystemLifetime="5" Type="GPU_PARTICLE" id="SovietToxicHitSplashVet">
+		<Lifetime High="40" Low="30"/>
+		<Size High="40" Low="20"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="9.999999">
+				<Color b="0.117647" g="0.658824" r="0.345098"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="10" Low="6"/>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.01">
+				<VelocityDamping High="0.95" Low="0.9"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXDisotrtionFractal01" MiscValue1="0.1" MiscValue2="0.02" MiscValue3="45" MiscValue4="0.05" Shader="gpuparticledistort.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="1" Low="-1"/>
+					<y High="1" Low="-1"/>
+					<z High="1" Low="0.5"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXIonCannonFire" PerParticleAttachedSystem="" Priority="LOW_OR_ABOVE" SortLevel="1" Type="GPU_PARTICLE" id="SovietToxicStreamCloud">
+		<Lifetime High="90" Low="60"/>
+		<Size High="30" Low="15"/>
+		<BurstDelay High="3" Low="3"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="19.999998">
+				<Color b="0.309804" g="1" r="0.25098"/>
+			</Color>
+			<Color Frame="3" RelativeAge="79.999993">
+				<Color b="0" g="1" r="0.25098"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="0.5" Low="0.5"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1.04" Low="1.04"/>
+				<DriftVelocity x="0" y="0" z="0.25"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXFractal01NRM" FramesPerRow="4" MiscValue1="0.03" MiscValue2="0.02" MiscValue3="45" MiscValue4="0.25" Shader="gpuparticledistort.fx" SingleRow="1" SpeedMultiplier="1" TotalFrames="16"/>
+		</Draw>
+		<Volume>
+			<Spline>
+				<StartPoint x="-5" y="0" z="0"/>
+				<EndPoint x="5" y="0" z="0"/>
+			</Spline>
+		</Volume>
+		<Velocity>
+			<Cylindrical>
+				<Radial High="0.05" Low="0.03"/>
+				<Normal High="0" Low="0"/>
+			</Cylindrical>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.1" Low="0.1"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularRateZ High="0.01" Low="-0.01"/>
+				<AngularDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXFractal01NRM" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="ALPHA" Type="GPU_PARTICLE" id="SovietToxicStreamDistortion">
+		<Lifetime High="40" Low="40"/>
+		<Size High="1" Low="1"/>
+		<BurstDelay High="1" Low="1"/>
+		<BurstCount High="1" Low="1"/>
+		<InitialDelay High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="2" High="0.05" Low="0.05" RelativeAge="50"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="14.999999">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="4" RelativeAge="200">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXSphereNRM" Shader="gpuparticledistortion.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Spline>
+				<StartPoint x="-10" y="0" z="0"/>
+				<EndPoint x="10" y="0" z="0"/>
+			</Spline>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="5" Low="2"/>
+				<SizeRateDamping High="0.9" Low="0.9"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularRateZ High="0.02" Low="-0.02"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXAlienBlood" PerParticleAttachedSystem="" Priority="VERY_LOW_OR_ABOVE" Shader="MULTIPLY" SortLevel="2" Type="GPU_PARTICLE" id="SovietToxicStreamDrip">
+		<Lifetime High="30" Low="15"/>
+		<Size High="10" Low="10"/>
+		<BurstCount High="3" Low="3"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="30.000002">
+				<Color b="0.223529" g="0.203922" r="0.168627"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<ColorScale High="2" Low="2"/>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.02">
+				<VelocityDamping High="0.95" Low="0.95"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXFracTileNRM" MiscValue1="0.1" MiscValue2="0.05" MiscValue3="45" MiscValue4="1" RandTex="1" Shader="gpuparticledistort.fx" SingleRow="1" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Spline>
+				<StartPoint x="0" y="0" z="0"/>
+				<EndPoint x="0" y="0" z="0"/>
+			</Spline>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="1" Low="-1"/>
+					<y High="3" Low="0"/>
+					<z High="0" Low="-1"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="2" Low="2"/>
+				<SizeRateDamping High="0.95" Low="0.95"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularRateZ High="0.1" Low="-0.1"/>
+				<AngularDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXIonCannonFire" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="MULTIPLY" SortLevel="2" Type="GPU_PARTICLE" id="SovietToxic_Cloud">
+		<Lifetime High="40" Low="40"/>
+		<Size High="25" Low="15"/>
+		<BurstDelay High="8" Low="5"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.003922" g="0.286275" r="0.145098"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<ColorScale High="1.5" Low="1"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+				<DriftVelocity x="0" y="0" z="-0.1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXFractal01NRM" FramesPerRow="4" MiscValue1="0.1" MiscValue2="0.01" MiscValue3="45" MiscValue4="0.3" RandTex="1" Shader="gpuparticledistort.fx" SpeedMultiplier="0.2" TotalFrames="16"/>
+		</Draw>
+		<Volume>
+			<Cylinder Length="10">
+				<Offset x="0" y="0" z="20"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Cylindrical>
+				<Radial High="0.05" Low="0.03"/>
+				<Normal High="0" Low="0"/>
+			</Cylindrical>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.4" Low="0.4"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="5" Low="-5"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

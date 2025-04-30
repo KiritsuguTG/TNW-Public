@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseAircraft.xml" />
+		<Include type="all" source="ART:Units/MODFighterAircraft/JUFighterAircraft.w3x"/>
+		<Include type="all" source="ART:Units/MODFighterAircraft/JUFighterAircraft_FP.w3x"/>
+	</Includes>
+	<GameObject
+		id="MODFighterAircraft"
+		inheritFrom="BaseAircraft"
+		SelectPortrait="Portrait_MODFighterAircraft"
+		ButtonImage="Button_MODFighterAircraft"
+		Side="Japan"
+		SubGroupPriority="610"
+		EditorSorting="UNIT"
+		BuildTime="10"
+		CommandSet="JapanAircraftCommandSet"
+		KindOf="CAN_CAST_REFLECTIONS CAN_ATTACK SELECTABLE SCORE AIRCRAFT VEHICLE FIGHTER_AIRCRAFT LINE_OF_SIGHT_IGNORES_BUILDINGS CAN_BE_FAVORITE_UNIT LIMITED_PRODUCTION_AIRCRAFT"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="AIRCRAFT"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="MISSILE"
+		VoicePriority="148"
+		EditorName="MODFighterAircraft"
+		Description="Desc:JapanFighterAircraft"
+		TypeDescription="Type:AntiAir"
+		HealthBoxHeightOffset="10"
+		BountyValue="150">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanFighterAircraft</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			Locomotor="SovietFighterAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="210.0" />
+		<LocomotorSet
+			Locomotor="BasicHelicopterTaxiLocomotor"
+			Condition="TAXIING"
+			Speed="30" />
+		<!-- Need ConquerMetricsOverrideDefendingAntiMask or else the TAXIING locomotor will make the AI try to build anti-ground units against this -->
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			ConquerMetricsOverrideAntiMask="ANTI_AIRBORNE_INFANTRY ANTI_AIRBORNE_VEHICLE"
+			ConquerMetricsOverrideDefendingAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="FX_DAMAGE01 FX_WEAPON_01 FX_WEAPON_02">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUFIGHTERAIRCRAFT" />
+					<ParticleSysBone
+						BoneName="FX_JET_EXHAUST_01"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_EXHAUST_02"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL01"
+								  FXParticleSystemTemplate="JapanTorpedoTrail"
+								  FollowBone="true"
+								  PersistID="1"
+								  FXAction="SPAWN" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL02"
+								  FXParticleSystemTemplate="JapanTorpedoTrail"
+								  FollowBone="true"
+								  PersistID="4"
+								  FXAction="SPAWN" />
+					<WeaponFireFXBone
+								  WeaponSlotID="1"
+								  WeaponSlotType="PRIMARY_WEAPON"
+								  BoneName="FX_WEAPON_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+				</ModelConditionState>
+				<!-- UPGRADED MODEL -->
+
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="JUFIGHTERAIRCRAFT_FP" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_2">
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_02" />
+					<Model
+						Name="JUFIGHTERAIRCRAFT" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_EXHAUST_01"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_EXHAUST_02"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL01"
+								  FXParticleSystemTemplate="JapanTorpedoTrail"
+								  FollowBone="true"
+								  PersistID="1"
+								  FXAction="SPAWN" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL02"
+								  FXParticleSystemTemplate="JapanTorpedoTrail"
+								  FollowBone="true"
+								  PersistID="4"
+								  FXAction="SPAWN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_2">
+					<Model
+						Name="JUFIGHTERAIRCRAFT" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_02_D" />
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedFire"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedLight"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+								  FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_EXHAUST_01"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_EXHAUST_02"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL01"
+								  FXParticleSystemTemplate="JapanTorpedoTrail"
+								  FollowBone="true"
+								  PersistID="1"
+								  FXAction="SPAWN" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL02"
+								  FXParticleSystemTemplate="JapanTorpedoTrail"
+								  FollowBone="true"
+								  PersistID="4"
+								  FXAction="SPAWN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="JUFIGHTERAIRCRAFT" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_02" />
+					<ParticleSysBone
+						BoneName="FX_JET_EXHAUST_01"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_EXHAUST_02"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL01"
+								  FXParticleSystemTemplate="JapanTorpedoTrail"
+								  FollowBone="true"
+								  PersistID="1"
+								  FXAction="SPAWN" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL02"
+								  FXParticleSystemTemplate="JapanTorpedoTrail"
+								  FollowBone="true"
+								  PersistID="4"
+								  FXAction="SPAWN" />
+				</ModelConditionState>
+				<!-- UPGRADED MODEL -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="JUFIGHTERAIRCRAFT" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_EXHAUST_01"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_EXHAUST_02"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL01"
+								  FXParticleSystemTemplate="JapanTorpedoTrail"
+								  FollowBone="true"
+								  PersistID="1"
+								  FXAction="SPAWN" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL02"
+								  FXParticleSystemTemplate="JapanTorpedoTrail"
+								  FollowBone="true"
+								  PersistID="4"
+								  FXAction="SPAWN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUFIGHTERAIRCRAFT" />
+					<Texture
+						Original="JUAntiShipAircraft"
+						New="JUAntiShipAircraft_D" />
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedFire"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedLight"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+								  FollowBone="true"/>
+					<ParticleSysBone
+								  BoneName="FX_DAMAGE01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+								  FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_JET_EXHAUST_01"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_EXHAUST_02"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL01"
+								  FXParticleSystemTemplate="JapanTorpedoTrail"
+								  FollowBone="true"
+								  PersistID="1"
+								  FXAction="SPAWN" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL02"
+								  FXParticleSystemTemplate="JapanTorpedoTrail"
+								  FollowBone="true"
+								  PersistID="4"
+								  FXAction="SPAWN" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<Animation
+						AnimationName="AUFighterAircraft_MOVA"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL01"
+								  FXParticleSystemTemplate="JapanTenguJetGlow"
+								  FollowBone="true"
+								  PersistID="2"
+								  FXAction="SPAWN" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL02"
+								  FXParticleSystemTemplate="JapanTenguJetGlow"
+								  FollowBone="true"
+								  PersistID="3"
+								  FXAction="SPAWN" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FLYING">
+					<Animation
+						AnimationName="AUFighterAircraft_HVRA"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.9"
+						AnimationSpeedFactorMax="1.1" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL01"
+								  FXParticleSystemTemplate="JapanTenguJetGlow"
+								  FollowBone="true"
+								  PersistID="2"
+								  FXAction="SPAWN" />
+					<ParticleSysBone
+								  BoneName="JAPANJETTRAIL02"
+								  FXParticleSystemTemplate="JapanTenguJetGlow"
+								  FollowBone="true"
+								  PersistID="3"
+								  FXAction="SPAWN" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<LaserDraw
+				id="ModuleTag_LaserDistort"
+				Texture1_UTile="1"
+				Texture1_VTile="1.2"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".9"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".4"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="1"
+				FadeInTime="0.1s"
+				FadeOutTime="0.5s"
+				LaserWidth="10"
+				LaserStateID="401">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXRailGunCore</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXRailGunCore</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>5.000000</Value>
+							<Value>5.000000</Value>
+							<Value>5.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDistort_Vet"
+				Texture1_UTile="1"
+				Texture1_VTile="1.2"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".9"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".4"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="1"
+				FadeInTime="0.1s"
+				FadeOutTime="0.5s"
+				LaserWidth="10"
+				LaserStateID="402">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXRailGunCore</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXRailGunCore</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>4.000000</Value>
+							<Value>1.000000</Value>
+							<Value>1.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODFighterAircraftLaser"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODFighterAircraftLaser_AlliedAirPower"
+						ObjectStatus="WEAPON_UPGRADED_02"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODFighterAircraftLaserUnmiliWeapon"
+						ObjectStatus="WEAPON_UPGRADED_01"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_02"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="MODFighterAircraftLaserUnmiliWeapon_AlliedAirPower"
+						ObjectStatus="WEAPON_UPGRADED_01 WEAPON_UPGRADED_02"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<LaserState
+					  id="ModuleTag_LaserState"
+					  LaserId="401" >
+				<LaserEndParticleSystem>JapanOniLaserHitFlash</LaserEndParticleSystem>
+				<LaserEndParticleSystem>JapanOniLaserHitLight</LaserEndParticleSystem>
+				<LaserEndParticleSystem>JapanOniLaserHitMolt</LaserEndParticleSystem>
+				<LaserEndParticleSystem>JapanOniLaserHitSpark</LaserEndParticleSystem>
+			</LaserState>
+      <LaserState
+				id="ModuleTag_LaserState_Vet"
+				LaserId="402" >
+        <LaserEndParticleSystem>JapanOniLaserHitFlash_Vet</LaserEndParticleSystem>
+        <LaserEndParticleSystem>JapanOniLaserHitLight_Vet</LaserEndParticleSystem>
+        <LaserEndParticleSystem>JapanOniLaserHitMolt_Vet</LaserEndParticleSystem>
+        <LaserEndParticleSystem>JapanOniLaserHitSpark</LaserEndParticleSystem>
+      </LaserState>
+			<StatusBitsUpgrade
+				id="ModuleTag_UnmiliWeapon"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</StatusBitsUpgrade>
+			<StatusBitsUpgrade
+				id="ModuleTag_AlliedAirPowerWeapon"
+				StatusToSet="WEAPON_UPGRADED_02">
+				<TriggeredBy>Upgrade_AlliedAirPower</TriggeredBy>
+			</StatusBitsUpgrade>
+<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_FighterUnmiliWeapon">
+		<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+</AttributeModifierUpgrade>
+			<!-- gravity mult of 30 is temporary -->
+			<Physics
+				id="ModuleTag_Physics"
+				GravityMultiplier="30" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieAir"
+				CreationList="JULaserFighterAircraft_Dying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="PLAYER_POWER_1" />
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieEn"
+				CreationList="JULaserFighterAircraftEnhanced_Dying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="PLAYER_POWER_1" />
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_JAP_TenguDie" />
+			</FXListBehavior>
+			<!--Please make sure the model condition duration matches the attribute mod duration-->
+			<ReturnToProducerSpecialPower
+				id="ModuleTag_ReturnToProducerSpecialPower"
+				SpecialPowerTemplate="SpecialPowerReturnToProducer"
+				AttributeModifier="AttributeModifier_ReturnToBase"
+				AttributeModifierAffectsSelf="true"
+				SetModelCondition="USER_1"
+				SetModelConditionTime="30s"/>
+			<!-- These help the AI decide when to use SUPERSONIC! -->
+			<TrackIncomingWeaponFireBehavior
+					 id="TrackIncomingWeaponFireForSupersonic" />
+			<TrackDamage
+					 id="TrackDamageForSupersonic"
+					 TimeToTrack="1s"
+					 InstantWeaponsOnly="true" />
+
+			<!-- AlliedAirPowerUpgrade -->
+			<xi:include
+				href="DATA:Includes/AlliedAirPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedAirPowerUpgrade/child::*)" />
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech1/child::*)" />
+			<AttributeModifierUpgrade
+							id="ModuleTag_AlliedLaserUpgradeUpgradeFX"
+							AttributeModifier="AttributeMod_AlliesAlliedLaserUpgradeAttribute">
+				<TriggeredBy>Upgrade_AlliedLaserUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+		</Behaviors>
+		<AI>
+			<JetAIUpdate
+				id="ModuleTag_JetAIUpdate"
+				AutoAcquireEnemiesWhenIdle="YES"
+				KeepsParkingSpaceWhenAirborne="true"
+				OutOfAmmoDamagePerSecond="1.5"
+				ReturnToBaseWhenVictimDead="true"
+				StateMachine="HelicopterAIStateMachine">
+				<UnitAITargetChooserData
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</JetAIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="320" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior
+				id="ModuleTag_FlyingLoop">
+				<ModelConditionSound
+					Sound="ALL_Apollo_IdleLoop"
+					RequiredFlags="FLYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="15.15"
+				MinorRadius="9.74"
+				Height="6.5"
+				ContactPointGeneration="VEHICLE">
+			<Offset z="-1"/>
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_Byakko_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="JAP_Byakko_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_Byakko_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_Byakko_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="JAP_Byakko_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="JAP_Byakko_VoiceReturn" AudioType="voiceEnter" />
+			<AudioEntry Sound="JAP_Byakko_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="JAP_Byakko_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="JAP_Byakko_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="JAP_Byakko_VoiceReturn" Name="ReturnToProducer" />
+			<NamedEntry Sound="JAP_Byakko_VoiceRetreat" Name="ReturnToProducerWhileUnderAttack" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_MechaTengu_MoveByLoop" AudioType="soundMoveLoop" />
+			<AudioEntry Sound="JAP_MechaTengu_MoveStart" AudioType="soundMoveStart" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="=$BASE_AIRCRAFT_SHROUD_CLEAR" />
+	</GameObject>
+	<GameObject
+			id="MODFighterAircraft_Crate"
+			inheritFrom="MODFighterAircraft"
+			KindOf="+TIBERIUM_BASED"
+			EditorName="MODFighterAircraft_Crate">
+		<EquivalentTo>MODFighterAircraft</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

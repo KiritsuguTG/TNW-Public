@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+		id="SovietRandomStructure"
+		inheritFrom="BaseObject"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		KindOf="STRUCTURE IMMOBILE CAN_CAST_REFLECTIONS NOT_AUTOACQUIRABLE AUTO_ACQUIRABLE_BY_AI COVER CAN_BUILD_ON_WATER CAN_BUILD_ON_DEEP_WATER"
+		TransportSlotCount="0"
+		PlacementViewAngle="315d"
+		IsTrainable="false"
+		CampnessValue="2000"
+		CampnessValueRadius="300"
+		EditorName="SovietRandomStructure"
+		UnitCategory="STRUCTURE">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:GameStarSpawn</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="3000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="InvulnerableArmor"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_SovietRandomStructure">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				MinLifetime="0s"
+				MaxLifetime="0s" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<PlacementShape
+				Type= "BOX"
+				MajorRadius = "49.5"
+				MinorRadius = "30.0"
+				Height = "43.0"
+				ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "-10.0"
+					y = "0.0"
+					z = "0.0" />
+			</PlacementShape>
+			<PlacementShape
+				Type= "BOX"
+				MajorRadius = "14.587"
+				MinorRadius = "42.8455"
+				Height = "31.0208"
+				ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "-33.0781"
+					y = "0.0"
+					z = "0.0" />
+			</PlacementShape>
+			<PlacementShape
+				Type= "BOX"
+				MajorRadius = "9.18982"
+				MinorRadius = "39.4178"
+				Height = "9.61645"
+				ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "18.1633"
+					y = "0.0"
+					z = "0.0" />
+			</PlacementShape>
+			<PlacementShape
+				Type= "BOX"
+				MajorRadius = "10.0"
+				MinorRadius = "10.0"
+				Height = "63.9494"
+				ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "9.16862"
+					y = "0.0"
+					z = "0.0" />
+			</PlacementShape>
+			<PlacementShape
+				Type= "BOX"
+				MajorRadius = "6.625"
+				MinorRadius = "7.8625"
+				Height = "72.9023"
+				ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "-40.5171"
+					y = "0.0"
+					z = "0.0" />
+			</PlacementShape>
+			<PlacementShape
+				Type= "BOX"
+				MajorRadius = "10.0"
+				MinorRadius = "30.0"
+				Height = "10.0"
+				ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "48.6655"
+					y = "0.0"
+					z = "0.0" />
+			</PlacementShape>
+			<PlacementShape
+				Type= "BOX"
+				MajorRadius = "60.0"
+				MinorRadius = "45.0"
+				Height = "5.0" >
+				<Offset
+					x = "0.0"
+					y = "0.0"
+					z = "0.0" />
+			</PlacementShape>
+			<Shape
+				Type= "BOX"
+				MajorRadius = "5.0"
+				MinorRadius = "5.0"
+				Height = "5"
+				ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "0.0"
+					y = "0.0"
+					z = "0.0" />
+			</Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="10"
+			ShroudClearingRange="0" />
+	</GameObject>
+</AssetDeclaration>

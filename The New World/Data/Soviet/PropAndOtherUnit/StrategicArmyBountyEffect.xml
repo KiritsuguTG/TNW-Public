@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+	</Includes>
+	<GameObject
+		id="StrategicArmyBountyEffectSpawn"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		KindOf="IMMOBILE NO_COLLIDE INERT_SHROUD_REVEALER NOT_AUTOACQUIRABLE IGNORE_FOR_VICTORY CANNOT_BE_DETECTED RESIST_EMP SKIRMISH_AI_ATTEMPT_TO_DODGE"
+		EditorName="StrategicArmyBountyEffectSpawn">
+		<DisplayName>StrategicArmyBountyEffectSpawn</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="BeaconFlare"/>
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="BeaconSmoke"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+		<CreateObjectDie
+			id="ModuleTag_CreateObjectDie"
+			CreationList="OCL_StrategicArmyBounty">
+			<DieMuxData
+				DeathTypes="ALL" />
+			<UpgradeForbidden>SovietSpellBookUpgrade</UpgradeForbidden>
+		</CreateObjectDie>
+		<CreateObjectDie
+			id="ModuleTag_CreateObjectDieUpgrade"
+			CreationList="OCL_StrategicArmyBountyUpgrade">
+			<DieMuxData
+				DeathTypes="ALL" />
+			<UpgradeRequired>SovietSpellBookUpgrade</UpgradeRequired>
+		</CreateObjectDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="2.0s"
+				MaxLifetime="2.0s"/>
+			<DestroyDie
+				id="ModuleTag_DestroyDie">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="1.0"
+				Height="1.0"/>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="ALL_SurgicalStrike_BeaconMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="50"
+			ShroudClearingRange="50" />
+	</GameObject>
+	<GameObject
+		id="StrategicArmyBountyEffect"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		CommandSet="EmptyCommandSet"
+		KindOf="NOT_AUTOACQUIRABLE RESIST_EMP"
+		EditorName="StrategicArmyBountyEffect">
+		<DisplayName>Name:StrategicArmyBountyEffect</DisplayName>
+		<ArmorSet
+			Armor="StructureArmor"
+			DamageFX="GenericStructureDamageFX" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone"/>
+					<ShadowInfo
+						Type="ADDITIVE_DECAL"
+						SizeX="400"
+						SizeY="400"
+						OverrideLODVisibility="true"
+						MaxHeight="200"
+						UseHouseColor="true"
+						Texture="Decal_BountyEffect"
+						LocalPlayerOnly="false"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_DeathSpawnShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="200.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_StrategicArmyBountyEffect">
+				<ObjectFilter
+					Rule="ALL"
+					Relationship="ALLIES"/>
+			</AttributeModifierAuraUpdate>
+			<LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				MinLifetime="20s"
+				MaxLifetime="20s" />
+			<DestroyDie
+				id="ModuleTag_DestroyDie">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<VisionInfo
+			VisionRange="125"
+			ShroudClearingRange="0" />
+	</GameObject>
+	<GameObject
+		id="StrategicArmyBountyEffectUpgrade"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		CommandSet="EmptyCommandSet"
+		KindOf="NOT_AUTOACQUIRABLE RESIST_EMP"
+		EditorName="StrategicArmyBountyEffect">
+		<DisplayName>Name:StrategicArmyBountyEffect</DisplayName>
+		<ArmorSet
+			Armor="StructureArmor"
+			DamageFX="GenericStructureDamageFX" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXInvisBone"/>
+						<ShadowInfo
+							Type="ADDITIVE_DECAL"
+							SizeX="400"
+							SizeY="400"
+							OverrideLODVisibility="true"
+							MaxHeight="200"
+							UseHouseColor="true"
+							Texture="Decal_BountyEffect"
+							LocalPlayerOnly="false"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_DeathSpawnShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="200.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_StrategicArmyBountyEffectUpgrade">
+				<ObjectFilter
+					Rule="ALL"
+					Relationship="ALLIES"/>
+			</AttributeModifierAuraUpdate>
+			<LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				MinLifetime="20s"
+				MaxLifetime="20s" />
+			<DestroyDie
+				id="ModuleTag_DestroyDie">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<VisionInfo
+			VisionRange="125"
+			ShroudClearingRange="0" />
+	</GameObject>
+</AssetDeclaration>

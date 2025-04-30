@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<Defines>
+		<!-- thaw rate -->
+
+
+	</Defines>
+	
+	<WeaponTemplate
+		id="ScatterableWeapon3">
+		<ScatterRadiusVsType
+			Radius="70.0"
+			RequiredModelConditions="SHRINK_EFFECT">
+			<Filter
+				Rule="ANY"
+				Include="INFANTRY AIRCRAFT VEHICLE" />
+		</ScatterRadiusVsType>
+	</WeaponTemplate>
+
+<WeaponTemplate
+		id="msztankCannon"
+		inheritFrom="ScatterableWeapon3"
+		AttackRange="250.0"
+		MinTargetPitch="-15d"
+		MaxTargetPitch="15d"
+		FireSound="152mmcGunfire2"
+		WeaponSpeed="1000"
+		WeaponRecoil="1d"
+		FireFX="FX_AlliedTankGun"
+		FireVeteranFX="FX_AlliedTankGun_Vet"
+		RadiusDamageAffects="ENEMIES"
+		CanFireWhileMoving="true"
+		ClipSize="2"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		ReAcquireDetailType="PER_SHOT"
+		ShotsPerBarrel="1"		
+		ProjectileCollidesWith="ENEMIES NEUTRAL STRUCTURES WALLS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER">
+		<FiringDuration
+				MinSeconds="0.8s"
+				MaxSeconds="0.8s" />
+		<ClipReloadTime
+				MinSeconds="3s"
+				MaxSeconds="3s" />
+		<Nuggets>
+			<ProjectileNugget
+				ProjectileTemplate="FXSovietAntiVehicleVehicleTech3Projectile"
+				WarheadTemplate="msztankCannon_Warhead">
+				<VeterancyProjectiles
+					VeterancyLevel="HEROIC"
+					ProjectileTemplate="FXSovietAntiVehicleVehicleTech3Projectile_Veteran"/>
+			</ProjectileNugget>
+            <!--DamageNugget
+				Damage="100.0"
+				DamageType="CANNON"
+				DamageFXType="SOVIET_CANNON"
+				DeathType="EXPLODED" />
+			<SuppressionNugget
+					  Radius="25.0"
+					  Suppression="75"
+					  DurationSeconds="2s" /-->
+			<InformTargetNugget />
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="msztankCannon_Warhead"
+		ProjectileCollidesWith="ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+                Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER">
+		<Nuggets>
+			<DamageNugget
+				Damage="300.0"
+				Radius="15.0"
+				DamageType="CANNON"
+				DamageFXType="SOVIET_CANNON"
+				DeathType="EXPLODED">
+				<DamageScalarDetails Scalar= "200%">
+					<Filter
+						Rule="NONE"
+						Include="VEHICLE" />
+				</DamageScalarDetails>
+			</DamageNugget>
+		 <MetaImpactNugget
+				ShockWaveAmount="50.0"
+				ShockWaveRadius="10.0"
+				   ShockWaveTaperOff="1.0"/>
+		</Nuggets>
+	</WeaponTemplate>
+
+
+	<WeaponTemplate
+		id="yhtankChaingun"
+		FiringLoopSound="KPVT_MG_fireloop"
+		FiringLoopSoundContinuesDuringReload="false"
+		FireFX="FX_PhalanxGunFire"
+		FireVeteranFX="FX_PhalanxGunFire_Vet"
+		AttackRange="200.0"
+		WeaponSpeed="999999.0"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		CanFireWhileMoving="true"
+		ClipSize="5"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		ReAcquireDetailType="PER_CLIP">
+		<FiringDuration
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<ClipReloadTime
+			MinSeconds="0.1s"
+			MaxSeconds="0.1s" />
+		<Nuggets>
+			<DamageNugget
+				Damage="15.0"
+				Radius="5.0"
+				DamageType="AUTO_CANNON"
+        DamageFXType="SOVIET_MACHINEGUN" 
+				DeathType="NORMAL">
+				<DamageScalarDetails Scalar= "125%">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</DamageScalarDetails>
+		</DamageNugget>
+			<SuppressionNugget
+				Radius="30.0"
+				Suppression="250"
+				DurationSeconds="10s" />
+		</Nuggets>
+	</WeaponTemplate>
+
+</AssetDeclaration>

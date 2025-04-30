@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="ART:FXAlliedPrismBeam.xml" />
+	</Includes>
+	<GameObject
+		id="AlliedAntiVehicleVehicleTech3CannonNodeBase"
+		KindOf="DEFLECT_BY_SPECIAL_POWER INERT NO_COLLIDE">
+		<ArmorSet
+			Armor="NoArmor"/>
+		<Draws>
+			<LaserDraw
+				id="ModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="5"
+				WeaponSlotID="1"
+				LaserStateID="1">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlliedPrismBeam</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlliedPrismBeam</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>4.000000</Value>
+							<Value>4.000000</Value>
+							<Value>4.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<LaserScatterUpdate
+				id="ModuleTag_LaserScatterUpdate"  
+				LaserLifetime="0.5s" />
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+
+	<GameObject
+		id="AlliedAntiVehicleVehicleTech3CannonNodeEnd"
+		inheritFrom="AlliedAntiVehicleVehicleTech3CannonNodeBase" >
+		<Behaviors>
+			<WeaponScatterEffectUpdate
+					 id="Base_ScatterEffect">
+				<ScatterSettings ScatterAmount="0" ScatterDelay="0.0s" />
+				<Filter
+					Rule="NONE"
+					Include="INFANTRY" 
+					Exclude="MACHINE" />
+			</WeaponScatterEffectUpdate>
+		</Behaviors>
+	</GameObject>
+	
+	<GameObject
+		id="AlliedAntiVehicleVehicleTech3CannonNodeRegular"
+		inheritFrom="AlliedAntiVehicleVehicleTech3CannonNodeBase" >
+		<Behaviors>
+			<!-- This manages the Scattering effect -->
+			<WeaponScatterEffectUpdate
+					 id="Regular_ScatterEffect"
+					 WeaponTemplate="AlliedAntiVehicleVehicleTech3CannonNode">
+				<ScatterSettings ScatterAmount="5" ScatterDelay="0.0s" />
+				<Filter
+					Rule="NONE"
+					Include="INFANTRY"
+					Exclude="MACHINE"/>
+			</WeaponScatterEffectUpdate>
+		</Behaviors>
+	</GameObject>
+
+	<GameObject
+		id="AlliedAntiVehicleVehicleTech3CannonNodeVeteran1"
+		inheritFrom="AlliedAntiVehicleVehicleTech3CannonNodeBase" >
+		<Behaviors>
+			<!-- This manages the Scattering effect -->
+			<WeaponScatterEffectUpdate
+					 id="VeteranTier1_ScatterEffect"
+					 WeaponTemplate="AlliedAntiVehicleVehicleTech3CannonNode_Veteran1">
+				<ScatterSettings ScatterAmount="5" ScatterDelay="0.0s" />
+				<Filter
+					Rule="NONE"
+					Include="INFANTRY"
+					Exclude="MACHINE"/>
+			</WeaponScatterEffectUpdate>
+		</Behaviors>
+	</GameObject>
+
+	<GameObject
+		id="AlliedAntiVehicleVehicleTech3CannonNodeVeteran2"
+		inheritFrom="AlliedAntiVehicleVehicleTech3CannonNodeBase" >
+		<Behaviors>
+			<!-- This manages the Scattering effect -->
+			<WeaponScatterEffectUpdate
+					 id="VeteranTier2_ScatterEffect"
+					 WeaponTemplate="AlliedAntiVehicleVehicleTech3CannonNode_Veteran2">
+				<ScatterSettings ScatterAmount="3" ScatterDelay="0.0s" />
+				<Filter
+					Rule="NONE"
+					Include="INFANTRY"
+					Exclude="MACHINE"/>
+			</WeaponScatterEffectUpdate>
+		</Behaviors>
+	</GameObject>
+	
+	<GameObject
+		id="AlliedAntiVehicleVehicleTech3CannonNodeRegularAntiVehcile"
+		inheritFrom="AlliedAntiVehicleVehicleTech3CannonNodeBase" >
+		<Behaviors>
+			<!-- This manages the Scattering effect -->
+			<WeaponScatterEffectUpdate
+					 id="Regular_ScatterEffect"
+					 WeaponTemplate="AlliedAntiVehicleVehicleTech3CannonNode">
+				<ScatterSettings ScatterAmount="2" ScatterDelay="0.0s" />
+				<Filter
+					Rule="ANY"
+					Include="VEHICLE INFANTRY"
+					Exclude="MACHINE"/>
+			</WeaponScatterEffectUpdate>
+		</Behaviors>
+	</GameObject>
+	
+	<GameObject
+		id="AlliedAntiVehicleVehicleTech3CannonNodeRegularAntiVehcile_Veteran"
+		inheritFrom="AlliedAntiVehicleVehicleTech3CannonNodeBase" >
+		<Behaviors>
+			<!-- This manages the Scattering effect -->
+			<WeaponScatterEffectUpdate
+					 id="Regular_ScatterEffect"
+					 WeaponTemplate="AlliedAntiVehicleVehicleTech3CannonNode">
+				<ScatterSettings ScatterAmount="2" ScatterDelay="0.0s" />
+				<Filter
+					Rule="ANY"
+					Include="VEHICLE INFANTRY"
+					Exclude="MACHINE"/>
+			</WeaponScatterEffectUpdate>
+		</Behaviors>
+	</GameObject>
+	
+	<GameObject
+		id="AlliedAntiAirShipAntiAirPrismNodeRegular"
+		inheritFrom="AlliedAntiVehicleVehicleTech3CannonNodeBase" >
+		<Behaviors>
+			<!-- This manages the Scattering effect -->
+			<WeaponScatterEffectUpdate
+					 id="Regular_ScatterEffect"
+					 WeaponTemplate="AlliedAntiAirShipAntiAirPrismNode">
+				<ScatterSettings ScatterAmount="2" ScatterDelay="0.0s" />
+				<Filter
+					Rule="ANY"
+					Include="AIRCRAFT VEHICLE INFANTRY"
+					Exclude="PROJECTILE MACHINE"
+					StatusBitFlags="AIRBORNE_TARGET"/>
+			</WeaponScatterEffectUpdate>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedAntiAirShipAntiAirPrismNodeRegular_Veteran"
+		inheritFrom="AlliedAntiVehicleVehicleTech3CannonNodeBase" >
+		<Behaviors>
+			<!-- This manages the Scattering effect -->
+			<WeaponScatterEffectUpdate
+					 id="Regular_ScatterEffect"
+					 WeaponTemplate="AlliedAntiAirShipAntiAirPrismNode">
+				<ScatterSettings ScatterAmount="2" ScatterDelay="0.0s" />
+				<Filter
+					Rule="ANY"
+					Include="AIRCRAFT VEHICLE INFANTRY"
+					Exclude="PROJECTILE MACHINE"
+					StatusBitFlags="AIRBORNE_TARGET"/>
+			</WeaponScatterEffectUpdate>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedFighterAircraftPrismNodeRegular"
+		inheritFrom="AlliedAntiVehicleVehicleTech3CannonNodeBase">
+		<Draws>
+			<LaserDraw
+				id="ModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="2"
+				WeaponSlotID="1"
+				LaserStateID="1">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlliedPrismBeam</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlliedPrismBeam</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>4.000000</Value>
+							<Value>4.000000</Value>
+							<Value>4.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+		</Draws>
+		<Behaviors>
+			<!-- This manages the Scattering effect -->
+			<WeaponScatterEffectUpdate
+					 id="Regular_ScatterEffect"
+					 WeaponTemplate="AlliedFighterAircraftPrismNode">
+				<ScatterSettings ScatterAmount="1" ScatterDelay="0.0s" />
+				<Filter
+					Rule="ANY"
+					Include="AIRCRAFT VEHICLE INFANTRY"
+					Exclude="PROJECTILE MACHINE"
+					StatusBitFlags="AIRBORNE_TARGET"/>
+			</WeaponScatterEffectUpdate>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedFighterAircraftPrismNodeRegular_Veteran"
+		inheritFrom="AlliedAntiVehicleVehicleTech3CannonNodeBase">
+		<Draws>
+			<LaserDraw
+				id="ModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="2"
+				WeaponSlotID="1"
+				LaserStateID="1">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlliedPrismBeam</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlliedPrismBeam</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>4.000000</Value>
+							<Value>4.000000</Value>
+							<Value>4.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+		</Draws>
+		<Behaviors>
+			<!-- This manages the Scattering effect -->
+			<WeaponScatterEffectUpdate
+					 id="Regular_ScatterEffect"
+					 WeaponTemplate="AlliedFighterAircraftPrismNode_Veteran">
+				<ScatterSettings ScatterAmount="1" ScatterDelay="0.0s" />
+				<Filter
+					Rule="ANY"
+					Include="AIRCRAFT VEHICLE INFANTRY"
+					Exclude="PROJECTILE MACHINE"
+					StatusBitFlags="AIRBORNE_TARGET"/>
+			</WeaponScatterEffectUpdate>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="EUAntiVehicleVehicleTech1CannonNodeRegular"
+		inheritFrom="AlliedAntiVehicleVehicleTech3CannonNodeBase" >
+		<Behaviors>
+			<!-- This manages the Scattering effect -->
+			<WeaponScatterEffectUpdate
+					 id="Regular_ScatterEffect"
+					 WeaponTemplate="EUAntiVehicleVehicleTech1CannonNode">
+				<ScatterSettings ScatterAmount="1" ScatterDelay="0.0s" />
+				<Filter
+					Rule="ANY"
+					Include="INFANTRY"
+					Exclude="MACHINE"/>
+			</WeaponScatterEffectUpdate>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

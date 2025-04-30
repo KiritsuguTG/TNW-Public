@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<!-- aka Riptide ACV -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml"/> 
+
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseAuto.xml"/>
+    <Include type="instance" source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<!-- aka PT Boat -->
+	<GameObject
+		id="SM_Auto03"
+		inheritFrom="BaseAutoSpawn"
+		BuildTime="100.0"
+		EditorName="SM_Auto03">
+		<DisplayName>Name:BaseAutoSpawn</DisplayName>
+		<Behaviors>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SM_Auto03Spawn_OCL">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<ObjectCreationList
+	id="SM_Auto03Spawn_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE"
+			Count="1"
+			DispositionAngle="-90d">
+			<CreateObject>SM_Auto03Spawn</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<GameObject
+		id="SM_Auto03Spawn"
+		inheritFrom="BaseAuto"
+		VoicePriority="188"
+		EditorName="SM_Auto03Spawn">
+    <LocomotorSet
+      id="DefaultLandLocomotor"
+			Locomotor="AutoSmallLocomotor"
+			Condition="NORMAL_UPGRADED"
+			Speed="125.0"/>
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"/>
+		<Draws>
+      <TruckDraw
+				id="ModuleTag_Draw"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="BONEGARRISON01 BONEGARRISON02 BONE_TIRE_LEFT_FRONT BONE_TIRE_LEFT_REAR BONE_TIRE_RIGHT_REAR BONE_TIRE_RIGHT_FRONT FXTRACKSL FXTRACKSR"
+				TrackMarks="EXTireTrack2"
+				LeftFrontTireBone="BONE_TIRE_LEFT_FRONT"
+				RightFrontTireBone="BONE_TIRE_RIGHT_FRONT"
+				LeftRearTireBone="BONE_TIRE_LEFT_REAR"
+				RightRearTireBone="BONE_TIRE_RIGHT_REAR"
+				TrackMarksLeftBone="FXTRACKSL"
+				TrackMarksRightBone="FXTRACKSR">
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="SM_AUTO_03_SKN"/>
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="SM_AUTO_03_SKN"/>
+					<Material
+						ShaderName="FX_FormPreview.fx"
+						TechniqueName="Default">
+						<Constants>
+							<Texture Name="SpecMap">
+								<Value>FXGradient01</Value>
+							</Texture>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SM_AUTO_03_SKN" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SM_AUTO_03_SKN" />
+					<Texture
+						Original="SM_Auto01"
+						New="SM_Auto01_D" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/> 
+				</ModelConditionState>
+      </TruckDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+      	id="ModuleTag_Draw_HeadLightL"
+      	AttachToBoneInAnotherModule="fxheadlight_L"
+      	OkToChangeModelColor="true">
+    <ModelConditionState
+      ParseCondStateType="PARSE_DEFAULT">
+      <Model
+        Name="" />
+    </ModelConditionState>
+    <ModelConditionState
+      ParseCondStateType="PARSE_NORMAL"
+      ConditionsYes="USER_1 NIGHT">
+      <Model
+        Name="EX_Headlights" />
+    </ModelConditionState>
+  </ScriptedModelDraw>
+  <ScriptedModelDraw
+    id="ModuleTag_Draw_HeadLightR"
+    AttachToBoneInAnotherModule="fxheadlight_R"
+    OkToChangeModelColor="true">
+    <ModelConditionState
+      ParseCondStateType="PARSE_DEFAULT">
+      <Model
+        Name="" />
+    </ModelConditionState>
+    <ModelConditionState
+      ParseCondStateType="PARSE_NORMAL"
+      ConditionsYes="USER_1 NIGHT">
+      <Model
+        Name="EX_Headlights" />
+    </ModelConditionState>
+  </ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ContestableGarrisonContain
+				id="ModuleTag_Garrison"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED CAN_ATTACK"
+				ContainMax="2"
+				EnterSound="VehicleEnter"
+				ExitSound="VehicleExit"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="false"
+				AllowNeutralInside="true"
+				AllowOwnPlayerInsideOverride="true"
+				PassDisabilityToRiders="true"
+				ShowPips="true"
+				KillPassengersOnDeath="true"
+				RequiredClearingObjectStatus="CAN_CONTEST_GARRISON"
+				IgnoreDisabledBitsForRiders="HELD UNDERPOWERED TEMPORARILY_BUSY INFILTRATED PARALYZED"
+				EjectSpeed="3">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY">
+					<ExcludeThing>AlliedScoutInfantry</ExcludeThing>
+					<ExcludeThing>SovietScoutInfantry</ExcludeThing>
+					<ExcludeThing>EUScoutVehicle</ExcludeThing>
+				</PassengerFilter>
+				<PassengerData
+					BonePrefix="BONEGARRISON01 BONEGARRISON02">
+					<Filter
+						Rule="ANY"
+						Include="INFANTRY"/>					
+				</PassengerData>	
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ContestableGarrisonContain>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SM_Auto03_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="200"
+				MaxHealthReallyDamagedPercentage="20">
+				</ActiveBody>
+		</Body>
+    <Geometry>
+<Shape 
+     Type= "BOX"
+     MajorRadius = "18.7"
+     MinorRadius = "9.3"
+     Height = "10.6389"
+     ContactPointGeneration = "VEHICLE" >
+			<Offset
+				x = "0.82844"
+					y = "0.165838"
+				z = "0.0"/>
+</Shape>
+    </Geometry>
+	</GameObject>
+	<ObjectCreationList
+		id="SM_Auto03_Die_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="LIKE_EXISTING INHERIT_VELOCITY"
+			Count="1"
+			VelocityScale="35.0"
+			MinForceMagnitude="2.0"
+			MaxForceMagnitude="4.0"
+			MinForcePitch="90d"
+			MaxForcePitch="45d">
+			<CreateObject>SM_Auto03_Collapse</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+  <GameObject
+		id="SM_Auto03_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="SM_Auto03_Collapse">
+		<Draws>
+			<DynamicsDraw 
+				id="ModuleTag_Draw" 
+				Collision="NONINTERCOLLIDING"
+				FlingPerturbation="15"
+				Explodiness="8" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SM_AUTO_03_SKN" />
+					<Texture
+						Original="SM_Auto01"
+						New="SM_Auto01_D" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"
+          OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"
+          OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"
+          OnlyIfOnLand="true"/> 
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterFlash"
+						FollowBone="true"
+            OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterFlashLight"
+						FollowBone="true" 
+            OnlyIfOnWater="true"/>          
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterBubbles"
+						FollowBone="true"
+						OnlyIfOnWater="true"/>
+				</ModelConditionState>
+				<BoneVolumes>
+<BoneVolume BoneName="BONE_TIRE_RIGHT_REAR" Mass="147" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3" HalfSizeY="1.5" HalfSizeZ="3" >
+		<Translation x="-9.379" y="-9.27" z="3.251" />
+		<Rotation x="-0.703473" y="0.00501652" z="0.00821613" w="0.710657" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="BONE_TIRE_RIGHT_FRONT" Mass="147" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3" HalfSizeY="1.5" HalfSizeZ="3" >
+		<Translation x="11.131" y="-5.565" z="5.883" />
+		<Rotation x="-0.20702" y="0.00317218" z="-0.00329927" w="0.978326" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="BONE_TIRE_LEFT_REAR" Mass="147" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3" HalfSizeY="1.5" HalfSizeZ="3" >
+		<Translation x="-1.863" y="-0.932" z="6.632" />
+		<Rotation x="-0.707107" y="0.0" z="0.0" w="0.707107" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="BONE_TIRE_LEFT_FRONT" Mass="147" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3" HalfSizeY="1.5" HalfSizeZ="3" >
+		<Translation x="11.02" y="-9.147" z="3.28" />
+		<Rotation x="-0.701236" y="0.00411048" z="-0.00823006" w="0.712869" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="BONE_BODY" Mass="4045" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="12.221" HalfSizeY="2.458" HalfSizeZ="6.733" >
+		<Translation x="-3.784" y="-3.345" z="12.406" />
+		<Rotation x="-0.707107" y="0.0" z="0.0" w="0.707107" />
+	</Box>
+</BoneVolume>
+</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="4s"
+			MaxLifetime="5s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1.5"
+			DestructionDelay="8s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+</GameObject>
+</AssetDeclaration>

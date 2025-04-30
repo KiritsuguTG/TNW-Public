@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<AIBuildStateDefinition
+		id="MODBarracksUnitBuildStateTechAll_NoSpawn">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true"
+				Location="Land">
+				<ObjectFilter
+					Relationship="ENEMIES"
+					Rule="ANY"
+					Include="CAN_ATTACK STRUCTURE"
+					Exclude="IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+					StatusBitFlagsExclude="OVER_WATER AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true"
+				Location="Water Land">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="ANY"
+					Include="FS_BARRACKS">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic />
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>BalanceBuildSpawn</IncludeThing>
+					<IncludeThing>AirPowerBuildSpawn</IncludeThing>
+					<IncludeThing>LandBuildSpawnSpawn</IncludeThing>
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>OnlyHighTechUnitBuildSpawn</IncludeThing>
+					<IncludeThing>MoreTankBuildSpawn</IncludeThing>
+					<IncludeThing>SoManyTanksBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<PathToTargetHeuristic Surface="Land" PathExists="true"
+				ObjectTypeToUseForTest="OpeningMoveGroundToGround"
+				LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="MODNanoFly" Heuristic="FEWEST_UNIT" />
+		<BuildEntry Build="JapanArcherInfantry" Heuristic="FEWEST_UNIT">
+			<BlockIfThingNearFactory
+				Rule="NONE"
+				Relationship="ENEMIES">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+				<IncludeThing>AlliedAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>SovietAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>AlliedAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>JapanSentinelVehicle</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="MODAntiVehicleInfantry" Heuristic="FEWEST_UNIT" CountModifier="2.0">
+			<BlockIfThingNearFactory
+				Rule="ANY"
+				Relationship="ENEMIES"
+				Include="INFANTRY"
+				StatusBitFlagsExclude="AIRBORNE_TARGET">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutVehicle</IncludeThing>
+				<IncludeThing>SovietAntiVehicleVehicleTech2</IncludeThing>
+				<IncludeThing>AlliedAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>SovietAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>AlliedAntiInfantryVehicle</IncludeThing>
+				<IncludeThing>JapanSentinelVehicle</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+		id="MODWarFactoryUnitBuildStateTech12_NoSpawn">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true"
+				Location="Land">
+				<ObjectFilter
+					Relationship="ENEMIES"
+					Rule="ANY"
+					Include="CAN_ATTACK STRUCTURE"
+					Exclude="IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+					StatusBitFlagsExclude="OVER_WATER AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true"
+				Location="Water Land">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="ANY"
+					Include="FS_WAR_FACTORY"
+					StatusBitFlagsExclude="HEALTH_PERCENT_0">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>BalanceBuildSpawn</IncludeThing>
+					<IncludeThing>AirPowerBuildSpawn</IncludeThing>
+					<IncludeThing>LandBuildSpawnSpawn</IncludeThing>
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>OnlyHighTechUnitBuildSpawn</IncludeThing>
+					<IncludeThing>MoreTankBuildSpawn</IncludeThing>
+					<IncludeThing>SoManyTanksBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic />
+			<PathToTargetHeuristic Surface="Land" PathExists="true"
+				ObjectTypeToUseForTest="OpeningMoveGroundToGround"
+				LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="MODAntiAirVehicleTech1" Heuristic="BEST_UNIT_WEIGHTED"
+			BlockIfThingNearFactoryDistance="200">
+			<BlockIfThingNearFactory
+				Rule="ANY"
+				Relationship="ENEMIES"
+				Include="COMMANDO T3_UNIT T2_UNIT">
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="MODAntiInfantryVehicle" Heuristic="BEST_UNIT_WEIGHTED" />
+		<BuildEntry Build="MODAntiVehicleVehicleTech1" Heuristic="FEWEST_UNIT" CountModifier="2.0"/>
+		<BuildEntry Build="MODNanoFlyMaster" Heuristic="BEST_UNIT_WEIGHTED" />
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="MODWarFactoryUnitBuildStateTech3_NoSpawn">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true"
+				Location="Land">
+				<ObjectFilter
+					Relationship="ENEMIES"
+					Rule="ANY"
+					Include="CAN_ATTACK STRUCTURE"
+					Exclude="IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+					StatusBitFlagsExclude="OVER_WATER AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true"
+				Location="Water Land">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="ANY"
+					Include="FS_WAR_FACTORY"
+					StatusBitFlags="HEALTH_PERCENT_0">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>BalanceBuildSpawn</IncludeThing>
+					<IncludeThing>AirPowerBuildSpawn</IncludeThing>
+					<IncludeThing>LandBuildSpawnSpawn</IncludeThing>
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>OnlyHighTechUnitBuildSpawn</IncludeThing>
+					<IncludeThing>MoreTankBuildSpawn</IncludeThing>
+					<IncludeThing>SoManyTanksBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic />
+			<PathToTargetHeuristic Surface="Land" PathExists="true"
+				ObjectTypeToUseForTest="OpeningMoveGroundToGround"
+				LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="MODAntiAirVehicleTech1" Heuristic="BEST_UNIT_WEIGHTED"
+			BlockIfThingNearFactoryDistance="200">
+			<BlockIfThingNearFactory
+				Rule="ANY"
+				Relationship="ENEMIES"
+				Include="COMMANDO T3_UNIT T2_UNIT">
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+		<BuildEntry Build="MODNanoFlyMaster" Heuristic="BEST_UNIT_WEIGHTED" />
+		<BuildEntry Build="MODAntiVehicleVehicleTech3" Heuristic="FEWEST_UNIT" CountModifier="2.0" />
+		<BuildEntry Build="MODAntiStructureVehicle" Heuristic="BEST_UNIT_WEIGHTED" />
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+		id="MODNavyYardUnitBuildStateTech1_NoSpawn">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true"
+				Location="Water">
+				<ObjectFilter
+					Relationship="ENEMIES"
+					Rule="ANY"
+					Include="CAN_ATTACK STRUCTURE"
+					Exclude="IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+					StatusBitFlags="SUBMERGED OVER_WATER"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true"
+				Location="Water">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="ANY"
+					Include="CAN_NOT_BUILD_ON_LAND"
+					StatusBitFlagsExclude="HEALTH_PERCENT_0 HEALTH_PERCENT_25">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>BalanceBuildSpawn</IncludeThing>
+					<IncludeThing>AirPowerBuildSpawn</IncludeThing>
+					<IncludeThing>LandBuildSpawnSpawn</IncludeThing>
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>OnlyHighTechUnitBuildSpawn</IncludeThing>
+					<IncludeThing>MoreTankBuildSpawn</IncludeThing>
+					<IncludeThing>SoManyTanksBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic />
+			<PathToTargetHeuristic Surface="Water" PathExists="true"
+				ObjectTypeToUseForTest="OpeningMoveWaterToWater"
+				LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="JapanNavyScoutShip" Heuristic="FEWEST_UNIT" />
+		<BuildEntry Build="MODAntiVehicleVehicleTech1" Heuristic="BEST_UNIT_WEIGHTED" />
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="MODNavyYardUnitBuildStateTech23_NoSpawn">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true"
+				Location="Water">
+				<ObjectFilter
+					Relationship="ENEMIES"
+					Rule="ANY"
+					Include="CAN_ATTACK STRUCTURE"
+					Exclude="IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+					StatusBitFlags="SUBMERGED OVER_WATER"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true"
+				Location="Water">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="ANY"
+					Include="CAN_NOT_BUILD_ON_LAND"
+					StatusBitFlags="HEALTH_PERCENT_0 HEALTH_PERCENT_25">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>BalanceBuildSpawn</IncludeThing>
+					<IncludeThing>AirPowerBuildSpawn</IncludeThing>
+					<IncludeThing>LandBuildSpawnSpawn</IncludeThing>
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>OnlyHighTechUnitBuildSpawn</IncludeThing>
+					<IncludeThing>MoreTankBuildSpawn</IncludeThing>
+					<IncludeThing>SoManyTanksBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic />
+			<PathToTargetHeuristic Surface="Water" PathExists="true"
+				ObjectTypeToUseForTest="OpeningMoveWaterToWater"
+				LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="MODAntiNavyShipTech2" Heuristic="FEWEST_UNIT" CountModifier="2.0" />
+		<BuildEntry Build="MODAntiStructureVehicle" Heuristic="BEST_UNIT_WEIGHTED" />
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+		id="MODAircraftUnitBuildStateTech1_NoSpawn">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true"
+				Location="Water Land">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="ANY"
+					Include="FS_AIR_FIELD">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true"
+				Location="Land Water">
+				<ObjectFilter
+					Relationship="ENEMIES"
+					Rule="ANY"
+					Include="CAN_ATTACK STRUCTURE"
+					Exclude="IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>BalanceBuildSpawn</IncludeThing>
+					<IncludeThing>AirPowerBuildSpawn</IncludeThing>
+					<IncludeThing>LandBuildSpawnSpawn</IncludeThing>
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>OnlyHighTechUnitBuildSpawn</IncludeThing>
+					<IncludeThing>MoreTankBuildSpawn</IncludeThing>
+					<IncludeThing>SoManyTanksBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ConstantHeuristic />
+		</Heuristic>
+		<BuildEntry Build="MODAntiGroundAircraft" Heuristic="FEWEST_UNIT" />
+		<BuildEntry Build="MODBomberAircraft" Heuristic="FEWEST_UNIT" />
+		<BuildEntry Build="MODAntiVehicleInfantryTech3" Heuristic="FEWEST_UNIT"
+			BlockIfThingNearFactoryDistance="300">
+			<BlockIfThingNearFactory
+				Rule="ANY"
+				Relationship="ENEMIES"
+				Include="FIGHTER_AIRCRAFT COMMANDO">
+				<IncludeThing>SovietAntiAirShip</IncludeThing>
+				<IncludeThing>MODAntiAirVehicleTech1</IncludeThing>
+				<IncludeThing>AlliedAntiAirShip</IncludeThing>
+				<IncludeThing>AlliedAntiAirVehicleTech1</IncludeThing>
+				<IncludeThing>EUAntiAirVehicleTech1</IncludeThing>
+				<IncludeThing>StrategicArmyAntiStructureVehicle</IncludeThing>
+				<IncludeThing>MODAntiAirVehicleTech1</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+		id="MODUpgradeTechBuildState_EASY_NoSpawn">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<ConstantHeuristic />
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>BalanceTechSpawn</IncludeThing>
+					<IncludeThing>LongT1TechSpawn</IncludeThing>
+					<IncludeThing>FastT3TechSpawn</IncludeThing>
+					<IncludeThing>FastT2TechSpawn</IncludeThing>
+					<IncludeThing>FastUnitUpgradeTechSpawn</IncludeThing>
+					<IncludeThing>FastSuperWeaponTechSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="MODTechStructure" Heuristic="TECH" MinTime="540s" />
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech2" Heuristic="UPGRADE_TEST" MinTime="360s" />
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech3" Heuristic="UPGRADE_TEST" MinTime="600s" />
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech2" Heuristic="UPGRADE_TEST" MinTime="360s" />
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech3" Heuristic="UPGRADE_TEST" MinTime="600s" />
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech2" Heuristic="UPGRADE_TEST" MinTime="360s" />
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech3" Heuristic="UPGRADE_TEST" MinTime="600s" />
+		<BuildEntry Build="MODSuperWeaponAdvanced" Heuristic="TECH" MinTime="780s" />
+		<BuildEntry Build="MODSuperWeapon" Heuristic="TECH" MinTime="720s" />
+
+		<BuildEntry Build="JapanEnhancedKamikazeUpgradeUpgrade" Heuristic="FEWEST_UNIT" MinTime="360s" />
+		<BuildEntry Build="JapanNavalPowerUpgradeUpgrade" Heuristic="FEWEST_UNIT" MinTime="360s" />
+		<BuildEntry Build="JapanAdvancedMissilePacksUpgradeUpgrade" Heuristic="FEWEST_UNIT" MinTime="360s" />
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="MODUpgradeTechBuildState_MEDIUM_NoSpawn">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<ConstantHeuristic />
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>BalanceTechSpawn</IncludeThing>
+					<IncludeThing>LongT1TechSpawn</IncludeThing>
+					<IncludeThing>FastT3TechSpawn</IncludeThing>
+					<IncludeThing>FastT2TechSpawn</IncludeThing>
+					<IncludeThing>FastUnitUpgradeTechSpawn</IncludeThing>
+					<IncludeThing>FastSuperWeaponTechSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="MODTechStructure" Heuristic="TECH" MinTime="420s" />
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech2" Heuristic="UPGRADE_TEST" MinTime="300s" />
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech3" Heuristic="UPGRADE_TEST" MinTime="480s" />
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech2" Heuristic="UPGRADE_TEST" MinTime="300s" />
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech3" Heuristic="UPGRADE_TEST" MinTime="480s" />
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech2" Heuristic="UPGRADE_TEST" MinTime="300s" />
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech3" Heuristic="UPGRADE_TEST" MinTime="480s" />
+		<BuildEntry Build="MODSuperWeaponAdvanced" Heuristic="TECH" MinTime="720s" />
+		<BuildEntry Build="MODSuperWeapon" Heuristic="TECH" MinTime="600s" />
+		<BuildEntry Build="MODVIPStructure" Heuristic="TECH" MinTime="540s" />
+
+		<BuildEntry Build="JapanEnhancedKamikazeUpgradeUpgrade" Heuristic="FEWEST_UNIT" MinTime="300s" />
+		<BuildEntry Build="JapanNavalPowerUpgradeUpgrade" Heuristic="FEWEST_UNIT" MinTime="300s" />
+		<BuildEntry Build="JapanAdvancedMissilePacksUpgradeUpgrade" Heuristic="FEWEST_UNIT" MinTime="300s" />
+		<BuildEntry Build="JapanUnitUpgradeUpgrade" Heuristic="FEWEST_UNIT" MinTime="540s" />
+		<BuildEntry Upgrade="Upgrade_JapanPowerPlant" Heuristic="UPGRADE_TEST" MinTime="480s" />
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="MODUpgradeTechBuildState_HARD_NoSpawn">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<ConstantHeuristic />
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>BalanceTechSpawn</IncludeThing>
+					<IncludeThing>LongT1TechSpawn</IncludeThing>
+					<IncludeThing>FastT3TechSpawn</IncludeThing>
+					<IncludeThing>FastT2TechSpawn</IncludeThing>
+					<IncludeThing>FastUnitUpgradeTechSpawn</IncludeThing>
+					<IncludeThing>FastSuperWeaponTechSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="MODTechStructure" Heuristic="TECH" MinTime="240s" />
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech2" Heuristic="UPGRADE_TEST" MinTime="180s" />
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech3" Heuristic="UPGRADE_TEST" MinTime="300s" />
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech2" Heuristic="UPGRADE_TEST" MinTime="180s" />
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech3" Heuristic="UPGRADE_TEST" MinTime="300s" />
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech2" Heuristic="UPGRADE_TEST" MinTime="180s" />
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech3" Heuristic="UPGRADE_TEST" MinTime="300s" />
+		<BuildEntry Build="MODSuperWeaponAdvanced" Heuristic="TECH" MinTime="480s" />
+		<BuildEntry Build="MODSuperWeapon" Heuristic="TECH" MinTime="420s" />
+		<BuildEntry Build="MODVIPStructure" Heuristic="TECH" MinTime="360s" />
+
+		<BuildEntry Build="JapanEnhancedKamikazeUpgradeUpgrade" Heuristic="FEWEST_UNIT"
+			MinTime="240s" />
+		<BuildEntry Build="JapanNavalPowerUpgradeUpgrade" Heuristic="FEWEST_UNIT" MinTime="240s" />
+		<BuildEntry Build="JapanAdvancedMissilePacksUpgradeUpgrade" Heuristic="FEWEST_UNIT"
+			MinTime="240s" />
+		<BuildEntry Build="JapanUnitUpgradeUpgrade" Heuristic="FEWEST_UNIT" MinTime="360s" />
+		<BuildEntry Upgrade="Upgrade_JapanPowerPlant" Heuristic="UPGRADE_TEST" MinTime="300s" />
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="MODUpgradeTechBuildState_BRUTAL_NoSpawn">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<ConstantHeuristic />
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>BalanceTechSpawn</IncludeThing>
+					<IncludeThing>LongT1TechSpawn</IncludeThing>
+					<IncludeThing>FastT3TechSpawn</IncludeThing>
+					<IncludeThing>FastT2TechSpawn</IncludeThing>
+					<IncludeThing>FastUnitUpgradeTechSpawn</IncludeThing>
+					<IncludeThing>FastSuperWeaponTechSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+		</Heuristic>
+		<BuildEntry Build="MODTechStructure" Heuristic="TECH" MinTime="240s" />
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech2" Heuristic="UPGRADE_TEST" MinTime="180s" />
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech3" Heuristic="UPGRADE_TEST" MinTime="300s" />
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech2" Heuristic="UPGRADE_TEST" MinTime="180s" />
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech3" Heuristic="UPGRADE_TEST" MinTime="300s" />
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech2" Heuristic="UPGRADE_TEST" MinTime="180s" />
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech3" Heuristic="UPGRADE_TEST" MinTime="300s" />
+		<BuildEntry Build="MODSuperWeaponAdvanced" Heuristic="TECH" MinTime="480s" />
+		<BuildEntry Build="MODSuperWeapon" Heuristic="TECH" MinTime="420s" />
+		<BuildEntry Build="MODVIPStructure" Heuristic="TECH" MinTime="360s" />
+
+		<BuildEntry Build="JapanEnhancedKamikazeUpgradeUpgrade" Heuristic="FEWEST_UNIT" Score="100" MinTime="180s" />
+		<BuildEntry Build="JapanNavalPowerUpgradeUpgrade" Heuristic="FEWEST_UNIT" Score="100" MinTime="180s" />
+		<BuildEntry Build="JapanAdvancedMissilePacksUpgradeUpgrade" Heuristic="FEWEST_UNIT" Score="100" MinTime="180s" />
+		<BuildEntry Build="JapanUnitUpgradeUpgrade" Heuristic="FEWEST_UNIT" MinTime="360s" />
+		<BuildEntry Upgrade="Upgrade_JapanPowerPlant" Heuristic="UPGRADE_TEST" MinTime="300s" />
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+		id="MODExtraBarracksBuildState_NoSpawn">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>BalanceBuildSpawn</IncludeThing>
+					<IncludeThing>AirPowerBuildSpawn</IncludeThing>
+					<IncludeThing>LandBuildSpawnSpawn</IncludeThing>
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>OnlyHighTechUnitBuildSpawn</IncludeThing>
+					<IncludeThing>MoreTankBuildSpawn</IncludeThing>
+					<IncludeThing>SoManyTanksBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<MoneyHeuristic Money="20000" Above="true" />
+			<IntervalHeuristic IntervalTime="150s" ActiveTime="20s" CountFrom="AI_START" />
+			<PowerAdvantageHeuristic Value="6.0" Above="false" IncludeOwnDefenses="false"
+				IncludeEnemyDefenses="true" />
+			<IncomeAdvantageHeuristic Value="6.0" Above="false" />
+			<PathToTargetHeuristic Surface="Water" PathExists="true"
+				ObjectTypeToUseForTest="OpeningMoveAmphibious"
+				LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="MODWarFactory" Heuristic="CONSTANT" Score="100" />
+		<BuildEntry Build="MODBarracks" Heuristic="CONSTANT" Score="50" />
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="MODExtraNavalYardBuildState_NoSpawn">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>BalanceBuildSpawn</IncludeThing>
+					<IncludeThing>AirPowerBuildSpawn</IncludeThing>
+					<IncludeThing>LandBuildSpawnSpawn</IncludeThing>
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>OnlyHighTechUnitBuildSpawn</IncludeThing>
+					<IncludeThing>MoreTankBuildSpawn</IncludeThing>
+					<IncludeThing>SoManyTanksBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<MoneyHeuristic Money="20000" Above="true" />
+			<IntervalHeuristic IntervalTime="150s" ActiveTime="20s" CountFrom="AI_START" />
+			<PowerAdvantageHeuristic Value="6.0" Above="false" IncludeOwnDefenses="false"
+				IncludeEnemyDefenses="true" />
+			<IncomeAdvantageHeuristic Value="6.0" Above="false" />
+			<PathToTargetHeuristic Surface="Water" PathExists="true"
+				ObjectTypeToUseForTest="OpeningMoveAmphibious"
+				LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="MODNavalYard" Heuristic="CONSTANT" Score="100" />
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="MODExtraAirfieldBuildState_NoSpawn">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>BalanceBuildSpawn</IncludeThing>
+					<IncludeThing>AirPowerBuildSpawn</IncludeThing>
+					<IncludeThing>LandBuildSpawnSpawn</IncludeThing>
+					<IncludeThing>SpecialTechBuildSpawn</IncludeThing>
+					<IncludeThing>InfantryBuildSpawn</IncludeThing>
+					<IncludeThing>OnlyHighTechUnitBuildSpawn</IncludeThing>
+					<IncludeThing>MoreTankBuildSpawn</IncludeThing>
+					<IncludeThing>SoManyTanksBuildSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<MoneyHeuristic Money="20000" Above="true" />
+			<IntervalHeuristic IntervalTime="150s" ActiveTime="20s" CountFrom="AI_START" />
+			<PowerAdvantageHeuristic Value="6.0" Above="false" IncludeOwnDefenses="false"
+				IncludeEnemyDefenses="true" />
+			<IncomeAdvantageHeuristic Value="6.0" Above="false" />
+		</Heuristic>
+		<BuildEntry Build="MODAirfield" Heuristic="CONSTANT" Score="100" />
+	</AIBuildStateDefinition>
+</AssetDeclaration>

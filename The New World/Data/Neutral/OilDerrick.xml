@@ -1,0 +1,589 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="ART:Structures/Neutral/NBOILDERRICK.NEWSKIN.w3x" />
+		<Include type="all" source="ART:Structures/Neutral/NBOILDERRICK_CTR.w3x" />
+		<Include type="all" source="ART:Structures/Neutral/NBOILDERRICK_HRC.w3x" />
+		<Include type="all" source="ART:Structures/Neutral/NBOILDERRICK_PAK.w3x" />
+		<Include type="instance" source="DATA:BaseObjects/BaseTechStructure.xml" />
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all" source="ART:Neutral_Platform.w3x" />	
+		<Include type="instance" source="DATA:Civilian/Yucatan_YU/Props/YU_HotelDebris.xml" />
+		<Include type="all" source="ART:ABBarracks_particles.w3x" />
+    <Include type="instance" source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+		<Include type="all" source="ART:Structures/Neutral/NBOILDERRICK_COL.NEWSKIN.w3x" />
+		<Include type="all" source="ART:Structures/Neutral/NBOILDERRICK_COL.OBBOX01.w3x" />
+		<Include type="all" source="ART:Structures/Neutral/NBOILDERRICK_COL_CTR.w3x" />
+		<Include type="all" source="ART:Structures/Neutral/NBOILDERRICK_COL_HRC.w3x" />
+		<Include type="all" source="ART:Structures/Neutral/NEUTRAL_PLATFORM_COL.NEWSKIN.w3x" />
+		<Include type="all" source="ART:Structures/Neutral/NEUTRAL_PLATFORM_COL.OBBOX01.w3x" />
+		<Include type="all" source="ART:Structures/Neutral/NEUTRAL_PLATFORM_COL_CTR.w3x" />
+		<Include type="all" source="ART:Structures/Neutral/NEUTRAL_PLATFORM_COL_HRC.w3x" />
+	</Includes>
+	<GameObject
+		id="OilDerrick"
+		inheritFrom="BaseTechStructure"
+		SelectPortrait="Portrait_Neutral_OilDerrick"
+		ButtonImage="Button_Neutral_OilDerrick"
+		CommandSet="OilDerrickCommandSet"
+		KindOf="+SUPPLY_SOURCE +ACTIVATE_AFTER_UNPACK"
+		EditorName="OilDerrick"
+		HealthBoxHeightOffset="55"
+		Description="Desc:TechBuildingOilDerrick"
+		TypeDescription="TYPE:TechStructure">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:TechBuildingOilDerrick</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="=$TECH_STRUCTURE_EFFECTIVE_COST"/>
+		</ObjectResourceInfo>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="BoneFlag01 BONE_CONTACT_POINT_01 BONE_CONTACT_POINT_02 BONE_CONTACT_POINT_03 BONE_CONTACT_POINT_04 BONE_CONTACT_POINT_05 BONE_CONTACT_POINT_06 BONE_CONTACT_POINT_07 BONE_CONTACT_POINT_08 BONE_CONTACT_POINT_09 BONE_CONTACT_POINT_10 BONE_CONTACT_POINT_11 BONE_CONTACT_POINT_12 BONE_CONTACT_POINT_13 BONE_CONTACT_POINT_14 BONE_CONTACT_POINT_15 BONE_CONTACT_POINT_16 BONE_CONTACT_POINT_17 BONE_CONTACT_POINT_18	BONE_CONTACT_POINT_19 BONE_CONTACT_POINT_20 BONEGARRISON01 BONEGARRISON02 BONEGARRISON03 BONEGARRISON04 BONEGARRISON05 BONEGARRISON06 BONEGARRISON07 BONEGARRISON08 BONEGARRISON09 BONEGARRISON10 BONEGARRISON11 BONEGARRISON12">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NBOilDerrick" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="NBOILDERRICK_IDLE"
+						AnimationMode="LOOP"/>
+				</AnimationState>
+			  <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="NBOILDERRICK_UPK"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+				<AnimationState
+					  ParseCondStateType="PARSE_NORMAL"
+					  ConditionsYes="USER_5">
+				</AnimationState>
+			</ScriptedModelDraw>
+<!-- DRAW PLATFORM -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Platform"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+				ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="Neutral_Platform" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					StateName="STATE_IdleOnLand">
+					<Animation
+						AnimationName=""
+						AnimationMode="ONCE"
+						AnimationBlendTime="0" />	
+					<Script>
+						CurDrawableShowSubObjectPermanently("Bib")
+						CurDrawableHideSubObjectPermanently("Platform")
+						CurDrawableHideSubObjectPermanently("Wall")
+					</Script>
+				</AnimationState>		
+			  <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER"
+					StateName="STATE_IdleOnWater">					
+					<Animation
+						AnimationName=""
+						AnimationMode="ONCE"
+						AnimationBlendTime="0" />	
+					<Script>
+						CurDrawableShowSubObjectPermanently("Platform")
+						CurDrawableShowSubObjectPermanently("Bib")
+						CurDrawableShowSubObjectPermanently("Wall")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw> 
+	<ScriptedModelDraw
+		id="ModuleTag_FlagDraw"
+		AttachToBoneInAnotherModule="BoneFlag01"
+		OkToChangeModelColor="true" >
+		<ModelConditionState
+			ParseCondStateType="PARSE_DEFAULT" >
+			<Model Name="SU_Garrison_Flag" />			
+			<Texture
+				Original="SU_GarFlag"
+				New="NU_GarFlag" />
+			<Texture
+				Original="AU_GarFlag"
+				New="NU_GarFlag" />
+			<Texture
+				Original="JU_GarFlag"
+				New="NU_GarFlag" />
+		</ModelConditionState>
+		<AnimationState
+			ParseCondStateType="PARSE_DEFAULT">
+			<Animation
+				AnimationName="SU_Garrison_Flag"
+				AnimationMode="LOOP" />			
+		</AnimationState>
+		<ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_1">
+			<Model Name="AU_Garrison_Flag" />
+			<Texture
+				Original="SU_GarFlag"
+				New="AU_GarFlag" />
+			<Texture
+				Original="NU_GarFlag"
+				New="AU_GarFlag" />
+			<Texture
+				Original="JU_GarFlag"
+				New="AU_GarFlag" />
+		</ModelConditionState>
+		<AnimationState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_1">
+			<Animation
+				AnimationName="AU_Garrison_Flag"
+				AnimationMode="LOOP" />
+		</AnimationState>
+
+		<ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_2">
+			<Model Name="SU_Garrison_Flag" />
+			<Texture
+				Original="AU_GarFlag"
+				New="SU_GarFlag" />
+			<Texture
+				Original="NU_GarFlag"
+				New="SU_GarFlag" />
+			<Texture
+				Original="JU_GarFlag"
+				New="SU_GarFlag" />
+		</ModelConditionState>
+		<AnimationState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_2">
+			<Animation
+				AnimationName="SU_Garrison_Flag"
+				AnimationMode="LOOP" />
+		</AnimationState>
+
+		<ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_3">
+			<Model Name="JU_Garrison_Flag" />
+			<Texture
+				Original="AU_GarFlag"
+				New="JU_GarFlag" />
+			<Texture
+				Original="NU_GarFlag"
+				New="JU_GarFlag" />
+			<Texture
+				Original="SU_GarFlag"
+				New="JU_GarFlag" />
+		</ModelConditionState>
+		<AnimationState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_3">
+			<Animation
+				AnimationName="JU_Garrison_Flag"
+				AnimationMode="LOOP" />
+		</AnimationState>
+	</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_RepairDecal"
+				OkToChangeModelColor="true"
+				AttachToBoneInAnotherModule="BoneFlag01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4">
+					<Model Name="FXInvisBone" />
+          <ParticleSysBone
+						BoneName="INVISBONE01"
+						FXParticleSystemTemplate="Japan_Burst_Timer"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="INVISBONE01"
+						FXParticleSystemTemplate="Japan_Burst_Timer02"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="INVISBONE01"
+						FXParticleSystemTemplate="Japan_Burst_Timer03"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AutoDepositUpdate
+				id="ModuleTag_AutoDeposit"
+				DepositInterval="2s"
+				GiveNoXP="true"
+				Flags="ACTIVE_WHEN_REPAIRING">
+				<InitialCaptureBonus Account="=$ACCOUNT_ORE" Amount="500" />
+				<Deposit Account="=$ACCOUNT_ORE" Amount="20"/>
+			</AutoDepositUpdate>
+			<GrantUpgradeCreate
+				id="ModuleTag_UpgradeToGrant"
+				UpgradeToGrant="Upgrade_ObjectDefault"/>
+			<ModelConditionUpgrade
+				id="ModuleTag_ObjectDefault"
+				AddConditionFlags="USER_5">
+				<TriggeredBy>Upgrade_ObjectDefault</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_5">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_AlliesUSER_2ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_2">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_AlliesUSER_3ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_3">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_SovietUSER_1ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_1">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_SovietUSER_3ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_3">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_JapanUSER_1ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_1">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_JapanUSER_3ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_2">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgradeObjectDefaultAllies">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<UpgradeToRemove>Upgrade_ObjectDefault</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_SovietFaction</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_JapanFaction</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgradeObjectDefaultSoviet">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+				<UpgradeToRemove>Upgrade_ObjectDefault</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_AlliesFaction</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_JapanFaction</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgradeObjectDefaultJapan">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<UpgradeToRemove>Upgrade_ObjectDefault</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_AlliesFaction</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_SovietFaction</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<xi:include
+				href="DATA:Includes/GenericEngineerContain.xml" />
+			<xi:include
+				href="DATA:Includes/GenericBuildingRepair.xml" />
+			<BuildingDestructionBehavior
+				id="ModuleTag_BuildingDestruction">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Item
+					BonePrefix="BONE_CONTACT_POINT_"
+					FX="SovietRefineryHit"
+					CreationObject="AlliedBarracks_Debris"
+					FlingVelocity="100.0"/>
+			</BuildingDestructionBehavior>
+			<FXListBehavior
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6"
+					ExemptStatus="UNPACKING"/>
+				<Event
+					Index="onDeath"
+					FX="FX_OilDerrickXP" />
+			</FXListBehavior>
+			<FXListBehavior
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_FXBigList">
+				<DieMuxData
+					DeathTypes="SUICIDED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_OilDerrickBigXP" />
+			</FXListBehavior>
+			<SpecialPower
+				id="ModuleTag_SpecialPowerModule_Bomb"
+				SpecialPowerTemplate="SpecialPower_OilDerrickBomb"
+				UpdateModuleStartsAttack="true"/>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate_Bomb"
+				SpecialPowerTemplate="SpecialPower_OilDerrickBomb"
+				SpecialWeapon="OilDerrickBombWeapon"
+				Options="DO_NOT_DO_AI_SPECIAL_POWER"/>
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				UnpackTime="2.0s" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="NBOilDerrick_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectSpawn"
+				CreationList="NBOilDerrickSpawn_Spawn_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FireWeaponWhenDead
+				id="ModuleTag_OilDeathWeapon"
+				DeathWeapon="OilDerrickExplosion"
+				InitiallyActive="true">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="UNPACKING"/>
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_OilSpecialPowerDeathWeapon"
+				DeathWeapon="OilDerrickSpecialExplosion"
+				InitiallyActive="true">
+				<DieMuxData
+					DeathTypes="SUICIDED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</FireWeaponWhenDead>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="AllSideSuperWeaponFunctions"/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1125.0" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_AmbientOnCapture">
+				<ModelConditionSound Sound="TEC_OilDerrick_AmbientLoop" RequiredFlags="USER_1" ExcludedFlags="DYING" />
+				<ModelConditionSound Sound="TEC_OilDerrick_AmbientLoop" RequiredFlags="USER_2" ExcludedFlags="DYING" />
+				<ModelConditionSound Sound="TEC_OilDerrick_AmbientLoop" RequiredFlags="USER_3" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="false">
+<Shape 
+     Type= "BOX"
+     MajorRadius = "45.8023"
+     MinorRadius = "40.8427"
+     Height = "38.6332"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "0.0"
+        y = "0.0"
+        z = "0.0" />
+</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry EvaEvent="OilDerrickCaptured" AudioType="voiceDefectingTowards" />
+			<AudioEntry Sound="TEC_OilDerrick_Select" AudioType="voiceSelect" />
+			<NamedEntry Sound="OilDerrickExplosion" Name="VoiceSelfDestruct" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="HumanFaction_MediumBuilding_LightDamageMS" AudioType="soundOnDamaged" />
+			<AudioEntry Sound="HumanFaction_MediumBuilding_HeavyDamageMS" AudioType="soundOnReallyDamaged" />
+		</AudioArraySound>
+		<VisionInfo
+				VisionRange="275"
+				ShroudClearingRange="200" />
+	</GameObject>
+	<GameObject
+		id="OilDerrickReSpawn"
+		inheritFrom="OilDerrick"
+		EditorName="OilDerrickReSpawn" >
+		<EquivalentTo>OilDerrick</EquivalentTo>
+		<Behaviors>
+			<AutoDepositUpdate
+				id="ModuleTag_AutoDeposit"
+				xai:joinAction="Replace"
+				DepositInterval="2s"
+				GiveNoXP="true"
+				Flags="ACTIVE_WHEN_REPAIRING">
+				<Deposit Account="=$ACCOUNT_ORE" Amount="20"/>
+			</AutoDepositUpdate>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="OilDerrickOrigin"
+		inheritFrom="OilDerrick"
+		EditorName="OilDerrickOrigin" >
+		<EquivalentTo>OilDerrick</EquivalentTo>
+		<Behaviors>
+			<AutoDepositUpdate
+				id="ModuleTag_AutoDeposit"
+				xai:joinAction="Replace"
+				DepositInterval="2s"
+				GiveNoXP="true"
+				Flags="ACTIVE_WHEN_REPAIRING">
+				<InitialCaptureBonus	Account="=$ACCOUNT_ORE" Amount="500" />
+				<Deposit			Account="=$ACCOUNT_ORE" Amount="15"/>
+			</AutoDepositUpdate>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectSpawn"
+				xai:joinAction="Remove"/>
+			<SpecialPower
+				id="ModuleTag_SpecialPowerModule_Bomb"
+				xai:joinAction="Remove"/>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_SpecialAbilityUpdate_Bomb"
+				xai:joinAction="Remove"/>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="NBOilDerrick_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="NBOilDerrick_Collapse">
+		<Draws>
+			<DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="5"
+			Explodiness="0.5">
+			<ModelConditionState
+				ParseCondStateType="PARSE_DEFAULT">
+				<Model
+					Name="NBOilDerrick_COL" />
+			</ModelConditionState>
+			<BoneVolumes>
+<BoneVolume BoneName="Bone_D_01" Mass="6846" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="5.838" HalfSizeY="3.651" HalfSizeZ="16.061" >
+		<Translation x="3.525" y="-5.336" z="23.436" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_02" Mass="6492" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="5.411" HalfSizeY="6.447" HalfSizeZ="9.306" >
+		<Translation x="-29.33" y="6.31" z="13.512" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_03" Mass="22683" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="25.045" HalfSizeY="5.307" HalfSizeZ="8.533" >
+		<Translation x="-15.981" y="-32.213" z="43.733" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_04" Mass="2552" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="6.477" HalfSizeY="1.483" HalfSizeZ="13.288" >
+		<Translation x="-2.248" y="-24.906" z="19.292" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_05" Mass="7150" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="7.123" HalfSizeY="3.205" HalfSizeZ="15.661" >
+		<Translation x="4.542" y="2.653" z="22.88" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_06" Mass="8395" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="8.908" HalfSizeY="5.45" HalfSizeZ="8.646" >
+		<Translation x="25.986" y="-32.226" z="12.464" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_07" Mass="6590" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3.49" HalfSizeY="10.146" HalfSizeZ="9.306" >
+		<Translation x="-19.757" y="10.24" z="13.512" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_08" Mass="2633" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="1.705" HalfSizeY="5.906" HalfSizeZ="13.078" >
+		<Translation x="4.769" y="-33.079" z="18.983" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_09" Mass="2165" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="1.705" HalfSizeY="4.855" HalfSizeZ="13.078" >
+		<Translation x="-9.266" y="-32.24" z="18.983" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_10" Mass="2676" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="5.906" HalfSizeY="1.705" HalfSizeZ="13.288" >
+		<Translation x="-3.087" y="-39.258" z="19.292" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_11" Mass="6050" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3.204" HalfSizeY="10.146" HalfSizeZ="9.306" >
+		<Translation x="-38.502" y="10.24" z="13.512" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_12" Mass="7072" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="5.1" HalfSizeY="4.317" HalfSizeZ="16.061" >
+		<Translation x="26.606" y="6.274" z="23.437" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_13" Mass="4832" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="5.496" HalfSizeY="5.496" HalfSizeZ="7.999" >
+		<Translation x="-34.154" y="-32.25" z="11.513" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_14" Mass="1541" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="4.459" HalfSizeY="1.915" HalfSizeZ="9.027" >
+		<Translation x="-29.305" y="17.969" z="13.102" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_15" Mass="7328" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="4.467" HalfSizeY="5.107" HalfSizeZ="16.062" >
+		<Translation x="1.616" y="11.604" z="23.435" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_16" Mass="4687" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="4.323" HalfSizeY="3.378" HalfSizeZ="16.05" >
+		<Translation x="21.014" y="14.192" z="23.453" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_17" Mass="11866" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="6.08" HalfSizeY="6.08" HalfSizeZ="16.05" >
+		<Translation x="6.076" y="23.301" z="23.453" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+			</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	<Behaviors/>
+</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	
+	
+	<WeaponTemplate
+		id="handsonic_ground"
+		FireFX="kanade_blade_flash"
+		FireSound="FX_kanade_handsonic"				
+		AttackRange="20.0"
+		WeaponSpeed="125"
+		ProjectileSelf="true"		
+		RadiusDamageAffects="ENEMIES"	
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+		ClipSize="1"
+		AcceptableAimDelta="5d"
+		MeleeWeapon="true"
+		FinishAttackOnceStarted="true"
+		ReAcquireDetailType="PER_CLIP">
+		<FiringDuration
+				MinSeconds="0.6s"
+				MaxSeconds="0.6s" />
+		<ClipReloadTime
+				MinSeconds="0.3s"
+				MaxSeconds="0.3s" />
+		<Nuggets>
+			<DamageNugget
+				id="DefaultDamageNugget"
+				Damage="170.0"
+				DamageType="EXPLOSIVE"
+				DamageFXType="JAPAN_BONZAI"
+				DeathType="STABBED"
+				DelayTimeSeconds="0.5s">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+
+	<WeaponTemplate
+	  id="kanade_howling_weapon"
+ 		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+		FireFX="FX_howlingDistortion"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+	  ClipSize="1"        
+		CanFireWhileMoving="false">
+		<PreAttackDelay
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<Nuggets>
+			<ParalyzeNugget
+				id="DefaultParalyzeNugget"
+				Radius="250.0"
+				DurationSeconds="7s"
+				ParalyzeType="EMP"
+				ParalyzeFX="FX_DogStun"
+				ForbiddenTargetModelCondition="LANDING TAKING_OFF">
+			</ParalyzeNugget>
+			<DamageNugget
+					  id="DefaultDamageNugget"
+					  Damage="150.0"
+					  Radius="250"
+					  DamageTaperOff="100"
+					  DamageType="EXPLOSIVE"
+					  DamageFXType="SOVIET_ORBITAL3"
+					  DeathType="NORMAL"
+					  RadiusAffectsBridges="true"/>
+  			<MetaImpactNugget
+				ShockWaveAmount="200.0"
+				ShockWaveRadius="225.0"
+				ShockWaveZMult="1.50" >
+								<SpecialObjectFilter
+					Rule="ANY"					
+					Include="INFANTRY">
+				</SpecialObjectFilter>
+			</MetaImpactNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+
+	<WeaponTemplate
+		id="kanade_tanshiblade_weapon"
+		FireFX="FX_kanade_tanshiblade"		
+		FireSound="FX_kanade_handsonic"					
+		RadiusDamageAffects="ENEMIES"	
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+		ClipSize="1">
+		<FiringDuration
+				MinSeconds="0s"
+				MaxSeconds="0s" />
+		<ClipReloadTime
+				MinSeconds="0s"
+				MaxSeconds="0s" />
+		<Nuggets>
+			<DamageNugget
+				id="DefaultDamageNugget"
+				Damage="450.0"
+			    Radius="65"				  			
+				DamageType="EXPLOSIVE"
+				DamageTaperOff="35"
+				DamageArc="45d"				
+				DamageFXType="JAPAN_BONZAI"
+				DeathType="NORMAL">
+			</DamageNugget>
+			
+			
+			 <MetaImpactNugget
+				ShockWaveAmount="89"
+				ShockWaveRadius="75.0"
+				ShockWaveTaperOff="1.0"
+				ShockWaveArc="30d"				
+				ShockWaveZMult="1.0">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Relationship="ENEMIES"
+					StatusBitFlagsExclude="IN_SPIDER_HOLE">
+				</SpecialObjectFilter>			
+			</MetaImpactNugget>
+
+		</Nuggets>
+	</WeaponTemplate>    
+
+	
+	<WeaponTemplate
+		id="kanade_delay"
+		IdleAfterFiringDelaySeconds="0s"
+		AttackRange="300.0"
+		WeaponSpeed="200"
+
+		ClipSize="=$UNLIMITED_CLIP_SIZE"
+		AutoReloadsClip="AUTO"
+		PreAttackType="PER_SHOT"
+		RadiusDamageAffects="ENEMIES"	
+		RequiredAntiMask="ANTI_GROUND"
+		FireFX="FX_None"
+		FireVeteranFX="FX_None"
+		Flags="NOT_ATTRACTED_BY_MAGNETS" 
+		HitPercentage="0%"
+		ProjectileSelf="true"
+		FinishAttackOnceStarted="true">
+		<FiringDuration
+			MinSeconds="0.1s"
+			MaxSeconds="0.1s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="DummyWeaponWarhead" />
+			<InformTargetNugget />
+		</Nuggets>
+	</WeaponTemplate>	
+	
+	
+	<WeaponTemplate
+		id="kanade_delay_ground"
+		FireFX=""
+    Flags="NOT_ATTRACTED_BY_MAGNETS" >
+		<Nuggets>
+			<DamageNugget
+				id="DefaultDamageNugget"
+				Damage="20.0"
+				DamageTaperOff="0"
+				Radius="20.0"
+				DamageType="MELEE"
+				DeathType="CRUSHED">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	
+	
+	
+	
+		<WeaponTemplate
+		id="kanade_ocl"		
+    Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<Nuggets>
+        <WeaponOCLNugget
+				WeaponOCL="kanade_ocl"/>
+		</Nuggets>
+	</WeaponTemplate>
+	
+		<WeaponTemplate
+		id="kanade_ocl2"		
+    Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<Nuggets>
+        <WeaponOCLNugget
+				WeaponOCL="kanade_ocl2"/>
+		</Nuggets>
+	</WeaponTemplate>	
+	
+		<WeaponTemplate
+		id="kanade_ocl3"		
+    Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<Nuggets>
+        <WeaponOCLNugget
+				WeaponOCL="kanade_ocl3"/>
+		</Nuggets>
+	</WeaponTemplate>	
+	
+		<WeaponTemplate
+		id="kanade_ocl4"		
+    Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<Nuggets>
+        <WeaponOCLNugget
+				WeaponOCL="kanade_ocl4"/>
+		</Nuggets>
+	</WeaponTemplate>		
+</AssetDeclaration>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="ART:JUBalloonBomb_SKN.w3x" />
+		<Include
+			type="all"
+			source="ART:JUBalloonBomb_FALL.w3x" />
+		<Include
+			type="all"
+			source="ART:JUBalloonBomb_DIE.w3x" />
+		<!-- this is the bomb part -->
+		<Include
+			type="all"
+			source="ART:JUBalloonBomb_BOMB.w3x" />
+
+		<Include
+			type="all"
+			source="ART:FXBalloonBits.w3x" />
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml"/>
+	</Includes>
+	<GameObject
+		id="StrategicArmyParadropShipAndAuto"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_SovietAntiNavyShipTech1_big"
+		ButtonImage="Button_SovietAntiNavyShipTech1_small"
+		Side="Soviet"
+		SubGroupPriority="480"
+		EditorSorting="UNIT"
+		BuildTime="10"
+		KindOf="SELECTABLE AMPHIBIOUS SCORE VEHICLE"
+		RadarPriority="UNIT"
+		ProductionQueueType="WATERCRAFT"
+		UnitCategory="VEHICLE"
+		WeaponCategory="BLAST"
+		VoicePriority="188"
+		EditorName="StrategicArmyParadropShipAndAuto">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietAntiNavyShipTech1</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="AutoAndShipArmor"
+			DamageFX="VehicleDamageFX" />
+		<!--BaseHarassmentVehicleArmor-->
+		<LocomotorSet
+      id="WaterLocomotorSet"
+			Locomotor="StrategicArmyParadropShipAndAutoWaterLocomotor"
+			Condition="NORMAL"
+			Speed="0.0" />
+		<LocomotorSet
+		  id="LandLocomotorSet"
+				Locomotor="StrategicArmyParadropShipAndAutoLandLocomotor"
+				Condition="NORMAL"
+				Speed="0.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="MR_AUTO_02_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PASSENGER OVER_WATER">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PASSENGER">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER DAMAGED">
+					<Model
+						Name="OD_WATERTAXI01N" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER REALLYDAMAGED">
+					<Model
+						Name="OD_WATERTAXI01N" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Model
+						Name="OD_WATERTAXI01N" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="MR_AUTO_02_SKN" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="MR_AUTO_02_SKN" />
+					<Texture
+						Original="MR_Auto01"
+						New="MR_Auto01_D" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+				id="ModuleTag_ParachuteDraw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NPParachuteSoviet_SKN" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					StateName="STATE_Idle">
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<CreateObjectDie
+				id="ModuleTag_DieCreateAirWater"
+				CreationList="OD_WaterTaxi01_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					RequiredStatus="OVER_WATER AIRBORNE_TARGET"/>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_DieCreateAirGround"
+				CreationList="MR_Auto02_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					RequiredStatus="AIRBORNE_TARGET"
+					ExemptStatus="OVER_WATER"/>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateAirWater"
+				CreationList="OCL_StrategicArmyParadropShipWaterDie">
+				<DieMuxData
+					DeathTypes="ALL"
+					RequiredStatus="OVER_WATER"
+					ExemptStatus="AIRBORNE_TARGET"/>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateAirGround"
+				CreationList="OCL_StrategicArmyParadropAutoGroundDie">
+				<DieMuxData
+					DeathTypes="ALL"
+					ExemptStatus="OVER_WATER AIRBORNE_TARGET"/>
+			</CreateObjectDie>
+			<Physics
+				id="ModuleTag_Physics"
+				KillWhenRestingOnGround="true"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine">
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="500" />
+		</Body>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="" EvaType="ambushed" />
+			<EvaEntry EvaEvent="" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="" EvaType="buildCancelled" />
+		</EvaEventArray>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="30.0"
+				MinorRadius="14.0"
+				Height="20.0"
+				ContactPointGeneration="VEHICLE">
+			</Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="210"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+	</GameObject>
+</AssetDeclaration>

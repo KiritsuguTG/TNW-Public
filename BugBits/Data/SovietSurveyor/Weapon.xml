@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="SovietSurveyorDummyWeapon"
+		AttackRange="20"
+		WeaponSpeed="999999.0"
+		ClipSize="1"
+		AcceptableAimDelta="20d"
+		CanFireWhileMoving="false"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		ForbiddenAntiMask="ANTI_STRUCTURE"
+		Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<ClipReloadTime
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<Nuggets>
+			<DamageNugget
+				Damage="25.0"
+				Radius="5.0"
+				DamageType="EXPLOSIVE"
+				DamageFXType="JAPAN_RUSH"
+				DeathType="EXPLODED">
+				<DamageScalarDetails Scalar= "200%">
+					<Filter
+						Rule="NONE">
+						<IncludeThing>SovietSurveyor</IncludeThing>
+						<IncludeThing>SovietSurveyorAI</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

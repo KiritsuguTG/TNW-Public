@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="SovietAntiVehicleVehicleTech1CannonWeapon"
+		AttackRange="175.0"
+		ClipSize="1"
+		AutoReloadsClip="AUTO"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND"
+		ForbiddenAntiMask="ANTI_STRUCTURE"
+		PreAttackType="PER_CLIP"
+		FireSound="SOV_HammerTank_CanonFire"
+		FireFX="FX_SovietTankGun"
+		FireVeteranFX="FX_SovietTankGun_Vet">
+		<FiringDuration
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<ClipReloadTime
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="SovietAntiVehicleVehicleTech1CannonWarhead"
+				ProjectileTemplate="SovietAntiVehicleVehicleTech1TankProjectile">
+				<VeterancyProjectiles
+                    VeterancyLevel="HEROIC"
+                    ProjectileTemplate="SovietAntiVehicleVehicleTech1TankProjectile"/>
+			</ProjectileNugget>
+			<InformTargetNugget />
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="SovietAntiVehicleVehicleTech1CannonWarhead"
+		ProjectileCollidesWith="ENEMIES NEUTRAL"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+        Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND"
+		ForbiddenAntiMask="ANTI_STRUCTURE">
+		<Nuggets>
+			<DamageNugget
+				Damage="60.0"
+				DamageType="CANNON"
+				DamageFXType="SOVIET_CANNON"
+				DeathType="EXPLODED">
+				<DamageScalarDetails Scalar= "50%">
+					<Filter
+						Rule="NONE">
+						<IncludeThing>SovietAntiVehicleVehicleTech1</IncludeThing>
+						<IncludeThing>SovietAntiVehicleVehicleTech1AI</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+			<SuppressionNugget
+				Radius="20.0"
+				Suppression="10"
+				DurationSeconds="3s" />
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="SovietAntiVehicleVehicleTech1LeechBeamWeapon"
+		FiringLoopSound="SOV_HammerTank_LeechBeamLoop"
+		FiringLoopSoundContinuesDuringReload="true"
+		FireFX="FX_None"
+		FireVeteranFX="FX_None"
+		AttackRange="200.0"
+		WeaponSpeed="999999.0"
+		ClipSize="1"
+		AutoReloadsClip="AUTO"
+		ReAcquireDetailType="PER_ATTACK"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RadiusDamageAffects="ENEMIES"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+		CanFireWhileMoving="false"
+        IgnoresContactPoints="true">
+		<ClipReloadTime
+			MinSeconds="1s"
+			MaxSeconds="1s" />
+		<Nuggets>
+			<ActivateLaserNugget
+				Lifetime="1s"
+				LaserId="1">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="INFANTRY AIRCRAFT"/>
+			</ActivateLaserNugget>
+			<LeechHealthDamageNugget
+				Damage="30.0"
+				DamageType="MAGIC"
+				DeathType="NORMAL">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="INFANTRY AIRCRAFT"/>
+			</LeechHealthDamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

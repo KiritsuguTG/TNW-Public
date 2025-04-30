@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<HealthBarTemplate id="Short_Mod" Length="20" />
+	<HealthBarTemplate id="Medium_Mod" Length="40" />
+	<HealthBarTemplate id="Long_Mod" Length="70"/>
+	<HealthBarTemplate id="LargeUnit_Mod" Length="90" />
+	<HealthBarTemplate id="VeryLargeUnit_Mod" Length="120" />
+	<HealthBarTemplate id="Structure_Mod" Length="140" />
+	<HealthBarSettings
+		id="HealthBarSettings"
+		DefaultHealthBar="Medium_Mod">
+		<ObjectMapping
+			HealthBar="Short_Mod">
+				<ObjectFilter
+					Rule="ANY"
+					Include="INFANTRY">
+				</ObjectFilter>
+		</ObjectMapping>
+		
+		<ObjectMapping
+			HealthBar="Medium_Mod">
+			<ObjectFilter
+				Rule="ANY"
+				Include="FS_BASE_DEFENSE">
+				<IncludeThing>AlliedWallPiece</IncludeThing>
+				<IncludeThing>AlliedWallSegmentPiece</IncludeThing>
+				<IncludeThing>SovietWallPiece</IncludeThing>
+				<IncludeThing>ChronoTank</IncludeThing>
+				<IncludeThing>SovietWallSegmentPiece</IncludeThing>
+				<IncludeThing>JapanWallPiece</IncludeThing>
+				<IncludeThing>JapanWallSegmentPiece</IncludeThing>
+				<IncludeThing>SovietBunker</IncludeThing>
+			</ObjectFilter>
+		</ObjectMapping>
+		
+		<ObjectMapping
+			HealthBar="Long_Mod">
+			<ObjectFilter
+			 	Rule="ANY">
+				<IncludeThing>SovietAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>SovietMCV</IncludeThing>
+				<IncludeThing>SovietAntiStructureShip</IncludeThing>
+				<IncludeThing>SovietBomberAircraft</IncludeThing>
+				<IncludeThing>SovietBomberAircraftB</IncludeThing>
+				<IncludeThing>SovietAntiNavyShipTech2</IncludeThing>
+				<IncludeThing>AlliedMCV</IncludeThing>
+				<IncludeThing>AlliedBomberAircraft</IncludeThing>
+				<IncludeThing>AlliedAntiStructureShip</IncludeThing>
+				<IncludeThing>AlliedAntiStructureVehicle</IncludeThing>
+				<IncludeThing>AlliedAntiNavyShipTech1</IncludeThing>
+				<IncludeThing>AlliedGunshipAircraft</IncludeThing>
+				<IncludeThing>JapanMCV</IncludeThing>
+				<IncludeThing>JapanAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanAntiStructureVehicle</IncludeThing>
+				<IncludeThing>JapanAntiStructureShip</IncludeThing>
+				<IncludeThing>JapanAntiVehicleShip</IncludeThing>
+				<IncludeThing>JapanEmperorMecha</IncludeThing>
+				<IncludeThing>KR_ArtilleryDome</IncludeThing>
+				<IncludeThing>VL_ShippingBoat01</IncludeThing>
+		</ObjectFilter>
+		</ObjectMapping>
+		
+		<ObjectMapping
+			HealthBar="VeryLargeUnit_Mod">
+			<ObjectFilter
+				Rule="ANY"
+				Include="UNIQUE_UNIT"
+				Exclude="INFANTRY STRUCTURE">
+			</ObjectFilter>
+		</ObjectMapping>
+		
+		<ObjectMapping
+			HealthBar="Structure_Mod">
+			<ObjectFilter
+				Rule="ANY"
+				Include="STRUCTURE">
+				<IncludeThing>JapanMechaKing</IncludeThing>
+				<IncludeThing>ST_ShuttleDisguiseBuilding</IncludeThing>
+				<IncludeThing>FI_FloatingFortressMainGun</IncludeThing>
+			</ObjectFilter>
+		</ObjectMapping>
+	</HealthBarSettings>
+</AssetDeclaration>

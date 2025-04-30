@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+<!-- aka Aircraft Carrier -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_DOOR.NEWSKIN.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_DOOR.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_DOOR_CTR.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_DOOR_HRC.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_FP.AUANTISTRUCTURESHIP_FP.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_FP.OBBOX01.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_FP_CTR.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_FP_HRC.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_FX_CTR.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_FXN.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_OPN.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_SKL.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_SKN.NEWSKIN.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_SKN.OBBOX01.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_SKN.OBBOX02.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_SKN.OBBOX03.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUANTISTRUCTURESHIP_SKN.OBBOX04.w3x" />
+		<Include type="all" source="ART:Units/AlliedAntiStructureShip/AUAntiStructureShip_SKN.w3x" />
+
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<Defines>
+		<Define name="SPECIAL_MODEL_STATE_MODEL" value="AUAntiStructureShip_SKN" />
+		<Define name="SPECIAL_MODEL_STATE_DIFFUSE_TEXTURE" value="AUAntiStructureShip" />
+		<Define name="SPECIAL_MODEL_STATE_NORMAL_MAP" value="AUAntiStructureShip_NRM" />
+		<Define name="SPECIAL_MODEL_STATE_SPECULAR_MAP" value="AUAntiStructureShip_SPM" />
+	</Defines>
+	<!-- A.k.a. Aircraft Carrier -->
+	<GameObject
+		id="AlliedAntiStructureShip"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_AlliedAntiStructureShip"
+		ButtonImage="Button_AlliedAntiStructureShip_on"
+		EnergyBonus="100"
+		Side="Allies"
+		SubGroupPriority="550"
+		EditorSorting="UNIT"
+		HealthBoxHeightOffset="50"
+		BuildTime="25"
+		CommandSet="AlliedAntiStructureShipCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE AIRFIELD CAN_BE_FAVORITE_UNIT SHIP SIEGE_WEAPON T3_UNIT"
+		RadarPriority="UNIT"
+		ProductionQueueType="WATERCRAFT"
+		UnitCategory="VEHICLE"
+		WeaponCategory="BLAST"
+		VoicePriority="188"
+		BountyValue="350"
+		EditorName="AlliedAntiStructureShip"
+		Description="Desc:AlliedAntiStructureShip"
+		TypeDescription="Type:AntiStructure"
+		UnitIntro="Allied_AircraftCarrier_UnitIntro">
+		<DisplayName
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedAntiStructureShip</DisplayName>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_AlliedTech3</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="2500"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="AntiStructureShipArmor"
+			DamageFX="VehicleDamageFX"/>
+		<LocomotorSet
+			id="AlliedAntiStructureShipWaterLocomotor"
+			Locomotor="AlliedAntiStructureShipWaterLocomotor"
+			Condition="NORMAL"
+			Speed="40.0" />
+		<LocomotorSet
+			id="AlliedAntiStructureShipWaterLocomotor_LeavingFactory"
+			Locomotor="AlliedAntiStructureShipWaterLocomotor_LeavingFactory"
+			Condition="EXITING_PRODUCTION_STRUCTURE"
+			Speed="40.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="100"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			ConquerMetricsDpsBonusAgainstDefenses="5.0"
+			OutOfRangePenalty="3.0"
+			ConquerMetricsOverrideAntiMask="ANTI_STRUCTURE"
+			ConquerMetricsOverrideForbiddenAntiMask="ANTI_SUBMERGED"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="Runway0Park0Han Runway0Park1Han Runway1Park0Han RunwayTakeOff Runway1Park1Han FX_Wake_01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="AUAntiStructureShip_SKNN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Runway0Park0Han" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Runway0Park0Han" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="RunwayTakeOff" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="RunwayTakeOff" />
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Runway0Park0Han" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Runway0Park0Han" />
+					<Turret
+						TurretNameKey="Turret"
+						TurretID="1" />
+				</ModelConditionState>
+			
+
+				<!-- include special model states. -->
+				<xi:include
+					href="DATA:Includes/SpecialModelStates.xml"
+					xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:SpecialModelStates/child::*)" />
+<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_2">
+					<Model
+						Name="AUAntiStructureShip_SKNN" />
+					<Texture
+						Original="AUAntiStructureShip"
+						New="AUAntiStructureShip1_D" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="AUAntiStructureShip_SKNN" />
+					<Texture
+						Original="AUAntiStructureShip"
+						New="AUAntiStructureShip1" />
+        </ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUAntiStructureShip_SKNN" />
+					<Texture
+						Original="AUAntiStructureShip"
+						New="AUAntiStructureShip_D" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="START_FRAME_FIRST"
+					StateName="STATE_Closed">
+					<Animation
+						AnimationName="AUAntiStructureShip_OPNN"
+						AnimationMode="MANUAL" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					Flags="START_FRAME_LAST"
+					ConditionsYes="PARKINGPLACE_1_DOOR_OPEN">
+					<Animation
+						AnimationName="AUAntiStructureShip_OPNN"
+						AnimationMode="MANUAL" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Closed" then
+						CurDrawableSetTransitionAnimState("TRANS_OpenDoor")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					Flags="START_FRAME_LAST"
+					ConditionsYes="PARKINGPLACE_2_DOOR_OPEN">
+					<Animation
+						AnimationName="AUAntiStructureShip_OPNN"
+						AnimationMode="MANUAL" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Closed" then
+						CurDrawableSetTransitionAnimState("TRANS_OpenDoor")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					Flags="START_FRAME_LAST"
+					ConditionsYes="PARKINGPLACE_3_DOOR_OPEN">
+					<Animation
+						AnimationName="AUAntiStructureShip_OPNN"
+						AnimationMode="MANUAL" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Closed" then
+						CurDrawableSetTransitionAnimState("TRANS_OpenDoor")
+						end
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					Flags="START_FRAME_LAST"
+					ConditionsYes="PARKINGPLACE_4_DOOR_OPEN">
+					<Animation
+						AnimationName="AUAntiStructureShip_OPNN"
+						AnimationMode="MANUAL" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Closed" then
+						CurDrawableSetTransitionAnimState("TRANS_OpenDoor")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_OpenDoor">
+					<Animation
+						AnimationName="AUAntiStructureShip_OPNN"
+						AnimationMode="ONCE" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+				id="ModuleTag_DrawDoor"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUAntiStructureShip_DOORN" />
+				</ModelConditionState>
+
+        <ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="FROZEN">
+          <Model
+								  Name="AUAntiStructureShip_DOORN" />
+          <Material
+					  ShaderName="ObjectsFrozen.fx"
+					  TechniqueName="Default">
+            <Constants>
+              <Texture Name="DiffuseTexture">
+                <Value>AUAntiStructureShip</Value>
+              </Texture>
+              <Texture Name="NormalMap">
+                <Value>AUAntiStructureShip_NRM</Value>
+              </Texture>
+              <Texture Name="SpecMap">
+                <Value>AUAntiStructureShip_SPM</Value>
+              </Texture>
+              <Float Name="EnvMult">
+                <Value>1.000000</Value>
+              </Float>
+              <Bool Name="AlphaTestEnable">
+                <Value>false</Value>
+              </Bool>
+            </Constants>
+          </Material>
+        </ModelConditionState>        
+        
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="AUAntiStructureShip_DOORN"
+						AnimationMode="MANUAL" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Animation
+						AnimationName="AUAntiStructureShip_DOORN"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PACKING">
+					<Animation
+						AnimationName="AUAntiStructureShip_DOORN"
+						AnimationMode="ONCE_BACKWARDS" />
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_A">
+					<Animation
+						AnimationName="AUAntiStructureShip_DOORN"
+						AnimationMode="ONCE" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="RELOADING_A">
+					<Animation
+						AnimationName="AUAntiStructureShip_DOORN"
+						AnimationMode="ONCE_BACKWARDS" />
+				</AnimationState>
+
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_DrawZ"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<!-- DRAW PARTICLES -->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUAntiStructureShip_FXN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="AUAntiStructureShip_FXN" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="AlliesShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE02"
+						FXParticleSystemTemplate="AlliesShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE05"
+						FXParticleSystemTemplate="AlliesShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE08"
+						FXParticleSystemTemplate="AlliesShipDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE08"
+						FXParticleSystemTemplate="ShipDamageFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="AUAntiStructureShip_FXN" />
+					<ParticleSysBone
+					  BoneName="FX_BONE01"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE01"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"
+					  OnlyIfOnLand="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE02"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE02"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE02"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE03"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE03"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE03"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE04"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE04"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE04"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE05"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE05"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE05"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE06"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE06"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE06"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE07"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE07"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE07"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE08"
+					  FXParticleSystemTemplate="ShipDamageFire"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE08"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisFireLight"
+					  FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FX_BONE08"
+					  FXParticleSystemTemplate="AlliesShipDamageSmoke"
+					  FollowBone="true"/>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="false" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="SUAntiStructureShipWake"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="AlliedAircraftCarrierFroth"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Wake_01"
+						FXParticleSystemTemplate="AlliedAircraftCarrierWaterMist"
+						FollowBone="true" />
+				</AnimationState>								
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedAntiStructureAttackDrones" 
+						ForbiddenObjectStatus="WEAPON_UPGRADED_01"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedAntiStructureAttackDronesUpgrade"
+						ObjectStatus="WEAPON_UPGRADED_01"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						TurretPitchRate="360"
+						AllowsPitch="true">
+						<TurretAITargetChooserData
+							ActiveWhenPerformingSpecialAbility="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<SlaughterHordeContain
+				id="ModuleTag_SlaughterContain"
+				CashBackPercent="0"
+				ResetInitialTeamOnCapture="true">
+				<CanAlwaysEnterObjectFilter
+					Rule="NONE">
+					<IncludeThing>AlliedAttackDrone</IncludeThing>
+				</CanAlwaysEnterObjectFilter>
+			</SlaughterHordeContain>
+			<ParkingPlaceBehavior
+				id="ModuleTag_ParkingPlaceBehavior"
+				NumRows="2"
+				NumCols="2"
+				ApproachHeight="10"
+				ParkInHangars="true"
+				DoorOpenTime="4.0s">
+				<CanParkHereFilter
+					Rule="NONE"
+					Relationship="ALLIES">
+					<IncludeThing>AlliedAttackDrone</IncludeThing>
+				</CanParkHereFilter>
+			</ParkingPlaceBehavior>
+			<SpecialPower
+				id="ModuleTag_EMPCruiseMissle"
+				SpecialPowerTemplate="SpecialPower_TriggerEMPCruiseMissle"
+				UpdateModuleStartsAttack="true"
+				CanAffectObjectFilter="AlliedAntiStructureShipEMPMissleSpecialPowerObjectFilter"/>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_EMPCruiseMissleUpdate"
+				SpecialWeapon="AlliedAntiStructureShipEMPCruiseMissle"
+				SpecialPowerTemplate="SpecialPower_TriggerEMPCruiseMissle"
+				UnpackTime="1s"
+				PackTime="1s"
+				FaceTarget="false"
+				StartAbilityRange="1250.0"
+				BusyForDuration="0.2s"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="2" />
+			<AttributeModifierUpgrade
+							id="ModuleTag_AlliedUnitUpgradeSpecialPower"
+							AttributeModifier="AttributeUnitUpgradeSpecialPower">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<xi:include
+				href="DATA:Includes/AlliedHighTechnologyUpgrade.xml" />
+			<StatusBitsUpgrade
+				id="ModuleTag_UpgradeWeapon"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>AlliedUnitUpgrade</TriggeredBy>
+			</StatusBitsUpgrade>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AUAntiStructureShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieByTorpedo"
+				CreationList="AUAntiStructureShip_TorpedoDie_OCL">
+				<DieMuxData
+					DeathTypes="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieNavy"
+				CreationList="AUAntiStructureShip_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieByTorpedoNavy"
+				CreationList="AUAntiStructureShip_UpgradeTorpedoDie_OCL">
+				<DieMuxData
+					DeathTypes="MAULED LASERED DETONATED INTERNAL_DESTRUCTION IRRADIATED ELECTROCUTED"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="UNDER_FROZEN AIRBORNE_TARGET"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieFreeze"
+				CreationList="AUAntiStructureShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="UNDER_FROZEN"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieFreezeNavy"
+				CreationList="AUAntiStructureShip_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="UNDER_FROZEN"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSky"
+				CreationList="AUAntiStructureShip_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET"/>
+				<UpgradeForbidden>Upgrade_JapanNavalPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSkyNavy"
+				CreationList="AUAntiStructureShip_UpgradeDie_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="AIRBORNE_TARGET"/>
+				<UpgradeRequired>Upgrade_JapanNavalPower</UpgradeRequired>
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_AlliedCarrierDie" />
+				<Event
+					Index="onDeath"
+					FX="FX_LargeBuildingDieExplosionRumble" />
+			</FXListBehavior>
+			<!-- Enhanced Kamikaze -->
+			<xi:include
+				href="DATA:Includes/JapanKamikazeExplosionTech3.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanKamikazeExplosionTech3/child::*)" />
+			<!-- Japan NavalPower -->
+			<xi:include
+				href="DATA:Includes/JapanNavalPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:JapanNavalPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="false"
+					CanChaseAttack="false"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1800" />
+		</Body>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="78.0"
+				MinorRadius="23.4"
+				Height="39.0"
+				ContactPointGeneration="VEHICLE"/>
+		</Geometry>
+		
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="ALL_AircraftCarrier_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<AnimationSoundClientBehavior id="ModuleTag_ASCB">
+				<Sound Sound="ALL_AircraftCarrier_BlackoutMissileLaunch_DoorsOpen" ExcludedMC="TOPPLED" Animation="AUAntiStructureShip_DOOR" Frame="29" />
+				<Sound Sound="ALL_AircraftCarrier_BlackoutMissileLaunch_DoorsClose" ExcludedMC="TOPPLED" Animation="AUAntiStructureShip_DOOR" Frame="1" />           
+				<Sound Sound="ALL_AircraftCarrier_BlackoutMissileLaunch_DoorsOpen" RequiredMC="TOPPLED" Animation="AUAntiStructureShip_DOOR" Frame="1" />
+				<Sound Sound="ALL_AircraftCarrier_BlackoutMissileLaunch_DoorsClose" RequiredMC="TOPPLED" Animation="AUAntiStructureShip_DOOR" Frame="29" />   
+		
+				<Sound Sound="ALL_AircraftCarrier_BlackoutMissileLaunch_DoorsOpen" RequiredMC="ATTACKING" Animation="AUAntiStructureShip_OPN" Frame="29" />
+				<Sound Sound="ALL_AircraftCarrier_BlackoutMissileLaunch_DoorsClose" RequiredMC="ATTACKING" Animation="AUAntiStructureShip_OPN" Frame="1" />    
+	                    
+			</AnimationSoundClientBehavior>
+		</ClientBehaviors>
+		<AudioArrayVoice>
+			<AudioEntry Sound="ALL_AircraftCarrier_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="ALL_AircraftCarrier_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="ALL_AircraftCarrier_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="ALL_AircraftCarrier_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="ALL_AircraftCarrier_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="ALL_AircraftCarrier_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="ALL_AircraftCarrier_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="ALL_AircraftCarrier_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" /> 
+			<NamedEntry Sound="ALL_AircraftCarrier_VoiceAttackEMP" Name="VoiceEMP" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALL_AircraftCarrier_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="Ship_Large_MoveLoopWater"
+				AudioType="soundMoveLoop" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="1250"
+			ShroudClearingRange="=$SIEGE_SHIP_SHROUD_CLEAR" />
+		<CrusherInfo
+			CrusherLevel="20"
+			CrushEqualLevelProps="true"
+			CrushableLevel="30"
+			CrushDecelerationPercent="50%"
+			CrushWeapon="SovietCrushWeapon"/>
+	</GameObject>
+	<GameObject
+	  id="AlliedAntiStructureShip_Crate"
+	  inheritFrom="AlliedAntiStructureShip"
+	  KindOf="+TIBERIUM_BASED"
+	  EditorName="AlliedAntiStructureShip_Crate">
+		<EquivalentTo>AlliedAntiStructureShip</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

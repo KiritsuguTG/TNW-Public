@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+
+ <SpecialPowerTemplate
+		id="SpecialPower_kanadecmd1"
+		Flags="IS_PLAYER_POWER"
+		TargetType="NONE"
+		ReloadTime="0s">
+	</SpecialPowerTemplate>
+ <SpecialPowerTemplate
+		id="SpecialPower_kanadecmd2"
+		Flags="IS_PLAYER_POWER"
+		TargetType="NONE"
+		ReloadTime="0s">
+	</SpecialPowerTemplate>
+		<SpecialPowerTemplate
+		id="SpecialPowerkanade_distortion"
+		TargetType="NONE"
+		Flags="CAN_NOT_BE_SCRAMBLED IS_PLAYER_POWER  SHARED_SYNC"
+		WaypointModeTerminal="false"
+		PreventConditions="RIOT_SHIELDED"
+		ReloadTime="3s" />
+	<SpecialPowerTemplate
+		id="SpecialPower_kanade_tanshiblade"
+		ReloadTime="25s"
+		Flags="IS_PLAYER_POWER  SHARED_SYNC CAN_NOT_BE_SCRAMBLED FOGGED_SHROUDED_CELLS_OK"
+		TargetType="OBJECT_OR_LOCATION"
+		RadiusCursorRadius="30"
+		InitiateSound="kanade_handsonic_special"
+		WaypointModeTerminal="false"
+		PreventConditions="IN_SPIDER_HOLE RIOT_SHIELDED">
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_kanade_delay"
+		ReloadTime="10s"
+		TargetType="LOCATION"
+		Flags="PATHABLE_ONLY NOT_CLIFF_CELL  CAN_NOT_BE_SCRAMBLED IS_PLAYER_POWER NOT_ON_BRIDGE"
+		InitiateSound="kanade_delay_specialpower"		
+		WaypointModeTerminal="false"
+		PreventConditions="IN_SPIDER_HOLE RIOT_SHIELDED">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE CRUSHABLE_OBSTACLE AIRCRAFT BRIDGE_ENDCAP BRIDGE_SEGMENT BRIDGE BRIDGE_GATEHOUSE"
+			Exclude="">
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+		</ForbiddenObjectFilter>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_kanade_howling"
+		ReloadTime="60s"
+		Flags="IS_PLAYER_POWER  SHARED_SYNC CAN_NOT_BE_SCRAMBLED"						
+		TargetType="NONE"
+		Money="-300"				
+		InitiateSound="kanade_howling_specialpower"
+		WaypointModeTerminal="false"
+		PreventConditions="IN_SPIDER_HOLE RIOT_SHIELDED">			
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_kanade_Harmonics"
+		ReloadTime="90s"
+		Money="-2000"		
+		Flags="IS_PLAYER_POWER  SHARED_SYNC CAN_NOT_BE_SCRAMBLED"						
+		TargetType="NONE"
+		InitiateSound="kanade_harmonics_specialpower"
+		WaypointModeTerminal="false">
+	</SpecialPowerTemplate>
+</AssetDeclaration>

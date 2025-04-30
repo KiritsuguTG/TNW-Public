@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Tags></Tags>
+  <Includes>
+    <Include type="all" source="ART:Structures/JapanSuperStructure/TH_TOKYO_TOWER01_SKN.w3x" />
+    <Include type="all" source="ART:Structures/JapanSuperStructure/TH_TOKYO_TOWER01_COL.w3x" />
+    <Include type="all" source="ART:Structures/JapanSuperStructure/TH_TOKYO_TOWER01_SKL.w3x" />
+    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseObject.xml" />
+  </Includes>
+  <GameObject
+		id="JapanSuperStructure_Collapse"
+		inheritFrom="BaseObject"
+		EditorName="JapanSuperStructure_Collapse">
+    <Draws>
+      <ScriptedModelDraw
+           id="ModuleTag_Animated_Draw">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="TH_TOKYO_TOWER01_SKN" />
+        </ModelConditionState>
+        <AnimationState
+         ParseCondStateType="PARSE_DEFAULT">
+          <Animation
+            AnimationName="TH_TOKYO_TOWER01_COL"
+            AnimationBlendTime="0"
+            AnimationMode="ONCE"
+						AnimationSpeedFactorMin="1.2"
+						AnimationSpeedFactorMax="1.2"
+						AnimationAbsoluteTime="7.5s"/>
+					<FXEvent
+						Frame="1"
+						FireWhenSkipped="true"
+						Effect="FX_StatueOfLiberty_SpecialDebrisExplosionShakeAllMap"
+						Bone="TOWERCENTER" />
+					<FXEvent
+						Frame="35"
+						FireWhenSkipped="true"
+						Effect="FX_StatueOfLiberty_SpecialDebrisExplosionShake"
+						Bone="TOWERDOWNLEFT" />
+					<FXEvent
+						Frame="48"
+						FireWhenSkipped="true"
+						Effect="FX_StatueOfLiberty_SpecialDebrisExplosionShakeAllMap"
+						Bone="TOWERBODY" />
+					<FXEvent
+						Frame="75"
+						FireWhenSkipped="true"
+						Effect="FX_StatueOfLiberty_SpecialDebrisExplosionShakeAllMap"
+						Bone="TOWERCENTERTOP" />
+					<FXEvent
+						Frame="103"
+						FireWhenSkipped="true"
+						Effect="FX_StatueOfLiberty_SpecialDebrisExplosionShakeAllMap"
+						Bone="TOWERTOP" />
+					<FXEvent
+						Frame="103"
+						FireWhenSkipped="true"
+						Effect="FX_NYLibertyDuste"
+						Bone="TOWERCENTERTOP" />
+					<FXEvent
+						Frame="153"
+						FireWhenSkipped="true"
+						Effect="FX_StatueOfLiberty_SpecialDebrisExplosionShake_BigSound"
+						Bone="TOWERCENTERTOP" />
+					<FXEvent
+						Frame="153"
+						FireWhenSkipped="true"
+						Effect="FX_NYLibertyDuste_SinkSound"
+						Bone="TOWERTOP" />
+					<FXEvent
+						Frame="158"
+						FireWhenSkipped="true"
+						Effect="FX_StatueOfLiberty_SpecialDebrisExplosionShakeAllMap"
+						Bone="TOWERTOP" />
+					<FXEvent
+						Frame="158"
+						FireWhenSkipped="true"
+						Effect="FX_NYLibertyDuste"
+						Bone="TOWERTOP" />
+					<FXEvent
+						Frame="162"
+						FireWhenSkipped="true"
+						Effect="FX_StatueOfLiberty_SpecialDebrisExplosionShake"
+						Bone="TOWERTOPDOWN" />
+					<FXEvent
+					Frame="162"
+					FireWhenSkipped="true"
+					Effect="FX_NYLibertyDuste"
+					Bone="TOWERTOPDOWN" />
+					<FXEvent
+						Frame="180"
+						FireWhenSkipped="true"
+						Effect="FX_NYLibertyPiecebounce"
+						Bone="TOWERTOPDOWN" />
+					<FXEvent
+						Frame="191"
+						FireWhenSkipped="true"
+						Effect="FX_StatueOfLiberty_SpecialDebrisExplosionShake_BigSound"
+						Bone="TOWERTOPDOWN" />
+				</AnimationState>
+      </ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+    	<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="0.4s"
+				SinkRate="5"
+				DestructionDelay="15s">
+        <DieMuxData
+					DeathTypes="ALL" />
+      </SlowDeath>
+     <LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="10s"
+				MaxLifetime="10s" />
+    </Behaviors>
+    <Body>
+      <PropBody
+				id="ModuleTag_Body"/>
+    </Body>
+  </GameObject>
+</AssetDeclaration>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Tags></Tags>
+	<Includes>
+	</Includes>
+	<MpGameRules
+		 id="TheMpGameRules">
+		<SkirmishStartCash
+        LoCash="2500"
+        HiCash="100000"
+        ChoiceStepAmount="2500"
+        DefaultChoiceIndex="2"/>
+	</MpGameRules>
+	<AIPersonalityDefinition
+		id="1AlliedBalanced"
+		PersonalityType="01A">
+		<CountAsStructureForBuildPurposesFilter />
+	</AIPersonalityDefinition>
+	<AIPersonalityDefinition
+		id="2AlliedSquadronLeader"
+		PersonalityType="02A">
+		<CountAsStructureForBuildPurposesFilter />
+	</AIPersonalityDefinition>
+	<AIPersonalityDefinition
+		id="3AlliedSpecialForces"
+		PersonalityType="03A">
+		<CountAsStructureForBuildPurposesFilter />
+	</AIPersonalityDefinition>
+	
+	<AIPersonalityDefinition
+		id="1JapanBalanced"
+		PersonalityType="01J">
+		<CountAsStructureForBuildPurposesFilter />
+	</AIPersonalityDefinition>
+	<AIPersonalityDefinition
+		id="2JapanMechaWarfare"
+		PersonalityType="02J">
+		<CountAsStructureForBuildPurposesFilter />
+	</AIPersonalityDefinition>
+	<AIPersonalityDefinition
+		id="3JapanFleetCommand"
+		PersonalityType="03J">
+		<CountAsStructureForBuildPurposesFilter />
+	</AIPersonalityDefinition>
+	
+	<AIPersonalityDefinition
+		id="1SovietBalanced"
+		PersonalityType="01S">
+		<CountAsStructureForBuildPurposesFilter />
+	</AIPersonalityDefinition>
+	<AIPersonalityDefinition
+		id="2SovietShockSpecialist"
+		PersonalityType="02S">
+		<CountAsStructureForBuildPurposesFilter />
+	</AIPersonalityDefinition>
+	<AIPersonalityDefinition
+		id="3SovietAirMarshall"
+		PersonalityType="03S">
+		<CountAsStructureForBuildPurposesFilter />
+	</AIPersonalityDefinition>
+	<HealthBarTemplate id="Short_Mod" Length="20" />
+	<HealthBarTemplate id="Medium_Mod" Length="40" />
+	<HealthBarTemplate id="Long_Mod" Length="70"/>
+	<HealthBarTemplate id="LargeUnit_Mod" Length="90" />
+	<HealthBarTemplate id="VeryLargeUnit_Mod" Length="120" />
+	<HealthBarTemplate id="Structure_Mod" Length="140" />
+	<HealthBarSettings
+		id="HealthBarSettings"
+		DefaultHealthBar="Medium_Mod">
+		<ObjectMapping
+			HealthBar="Short_Mod">
+			<ObjectFilter
+				Rule="ANY"
+				Include="INFANTRY">
+			</ObjectFilter>
+		</ObjectMapping>
+
+		<ObjectMapping
+			HealthBar="Medium_Mod">
+			<ObjectFilter
+				Rule="ANY"
+				Include="FS_BASE_DEFENSE">
+				<IncludeThing>AlliedWallPiece</IncludeThing>
+				<IncludeThing>AlliedWallSegmentPiece</IncludeThing>
+				<IncludeThing>SovietWallPiece</IncludeThing>
+				<IncludeThing>SovietWallSegmentPiece</IncludeThing>
+				<IncludeThing>JapanWallPiece</IncludeThing>
+				<IncludeThing>JapanWallSegmentPiece</IncludeThing>
+				<IncludeThing>SovietBunker</IncludeThing>
+			</ObjectFilter>
+		</ObjectMapping>
+
+		<ObjectMapping
+			HealthBar="Long_Mod">
+			<ObjectFilter
+			 	Rule="ANY">
+				<IncludeThing>SovietAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>SovietMCV</IncludeThing>
+				<IncludeThing>SovietAntiStructureShip</IncludeThing>
+				<IncludeThing>SovietBomberAircraft</IncludeThing>
+				<IncludeThing>SovietBomberAircraftB</IncludeThing>
+				<IncludeThing>SovietAntiNavyShipTech2</IncludeThing>
+				<IncludeThing>AlliedMCV</IncludeThing>
+				<IncludeThing>AlliedBomberAircraft</IncludeThing>
+				<IncludeThing>AlliedBomberAircraftB</IncludeThing>
+				<IncludeThing>AlliedAntiStructureShip</IncludeThing>
+				<IncludeThing>AlliedAntiStructureVehicle</IncludeThing>
+				<IncludeThing>AlliedAntiNavyShipTech1</IncludeThing>
+				<IncludeThing>AlliedGunshipAircraft</IncludeThing>
+				<IncludeThing>AlliedGunshipAircraftB</IncludeThing>
+				<IncludeThing>JapanMCV</IncludeThing>
+				<IncludeThing>JapanAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanAntiStructureVehicle</IncludeThing>
+				<IncludeThing>JapanAntiStructureShip</IncludeThing>
+				<IncludeThing>JapanAntiVehicleShip</IncludeThing>
+				<IncludeThing>JapanEmperorMecha</IncludeThing>
+				<IncludeThing>KR_ArtilleryDome</IncludeThing>
+				<IncludeThing>VL_ShippingBoat01</IncludeThing>
+			</ObjectFilter>
+		</ObjectMapping>
+
+		<ObjectMapping
+			HealthBar="VeryLargeUnit_Mod">
+			<ObjectFilter
+				Rule="ANY"
+				Include="UNIQUE_UNIT"
+				Exclude="INFANTRY STRUCTURE">
+			</ObjectFilter>
+		</ObjectMapping>
+
+		<ObjectMapping
+			HealthBar="Structure_Mod">
+			<ObjectFilter
+				Rule="ANY"
+				Include="STRUCTURE">
+				<IncludeThing>JapanMechaKing</IncludeThing>
+				<IncludeThing>ST_ShuttleDisguiseBuilding</IncludeThing>
+				<IncludeThing>FI_FloatingFortressMainGun</IncludeThing>
+			</ObjectFilter>
+		</ObjectMapping>
+	</HealthBarSettings>
+</AssetDeclaration>

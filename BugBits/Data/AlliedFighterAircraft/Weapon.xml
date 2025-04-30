@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="AlliedFighterAircraftCannon"
+		FireSound="ALL_Apollo_WeaponFire"
+		FireFX="FX_Allied_FighterFire"
+		FireVeteranFX="FX_Allied_FighterFire_Vet"
+		AttackRange="100.0"
+		AcceptableAimDelta="20d"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE"
+		CanFireWhileMoving="true"
+		ClipSize="0"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		InstantLoadClipOnActivate="true"
+		ReAcquireDetailType="PER_CLIP">
+		<FiringDuration
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<Nuggets>
+			<DamageNugget
+			  id="DefaultDamageNugget"
+					  Damage="40.0"
+					  DamageType="AUTO_CANNON"
+					  DelayTimeSeconds="0.1s"
+					  DamageFXType="ALLIED_FIGHTER"
+					  DeathType="NORMAL">
+				<DamageScalarDetails Scalar= "50%">
+					<Filter
+						Rule="NONE">
+						<IncludeThing>AlliedFighterAircraft</IncludeThing>
+						<IncludeThing>AlliedFighterAircraftAI</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+</AssetDeclaration>

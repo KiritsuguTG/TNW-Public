@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+  <Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+
+	<WeaponTemplate
+		id="mantikeerAutoGun"
+		FiringLoopSound="ALL_Pacifier_MachineGunLoopMS"
+		FireFX="FX_Allied_Artillery_PrimaryFire"
+		FireVeteranFX="FX_Allied_Artillery_PrimaryFireVet"
+		AttackRange="150.0"
+		WeaponSpeed="999999.0"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		CanFireWhileMoving="true"
+		ClipSize="8"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT RELOAD_WHEN_ATTACK_STOPS"
+		ReAcquireDetailType="PER_ATTACK">
+		<PreAttackDelay
+			MinSeconds="0s"
+			MaxSeconds="0s" />
+		<FiringDuration
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<ClipReloadTime
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<Nuggets>
+			<DamageNugget
+				Damage="10.0"
+				Radius="0.0"
+				DamageType="AUTO_CANNON"
+        DamageFXType="SOVIET_AK47" 
+				DeathType="NORMAL">
+		<DamageScalarDetails Scalar= "125%">
+					<Filter
+					Rule="NONE">
+						<IncludeThing>AlliedAntiInfantryInfantry</IncludeThing>
+					</Filter>		
+					</DamageScalarDetails>
+				</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="mantikeerAutoGun_Air"
+		FiringLoopSound="ALL_Pacifier_MachineGunLoopMS"
+		FireFX="FX_Allied_Artillery_PrimaryFire"
+		FireVeteranFX="FX_Allied_Artillery_PrimaryFireVet"
+		AttackRange="400.0"
+		WeaponSpeed="999999.0"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+		CanFireWhileMoving="true"
+		ClipSize="1"
+		PreAttackType="PER_TARGET"
+		ReAcquireDetailType="PER_ATTACK"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT RELOAD_WHEN_ATTACK_STOPS">
+		<FiringDuration
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<ClipReloadTime
+			MinSeconds="0.0s"
+			MaxSeconds="0.0s" />
+		<Nuggets>
+			<DamageNugget
+				Damage="10.0"
+				Radius="0.0"
+				DamageType="AUTO_CANNON"
+        DamageFXType="SOVIET_AK47" 
+				DeathType="NORMAL"/>
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="mantikeerRocket"
+		AttackRange="150.0"
+		WeaponSpeed="700"
+		MinWeaponSpeed="650"
+		MaxWeaponSpeed="750"
+		FireFX="FX_AlliedTankGun"
+		FireVeteranFX="FX_AlliedTankGun_Vet"	
+		FireSound="ALL_JavelinSoldier_MissileFire"
+		ClipSize="6"
+		PreAttackType="PER_TARGET"
+		ReAcquireDetailType="PER_SHOT"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT RELOAD_WHEN_ATTACK_STOPS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		CanFireWhileMoving="true">
+		<PreAttackDelay
+			MinSeconds="0s"
+			MaxSeconds="0s" />
+		<FiringDuration
+			MinSeconds=".5s"
+			MaxSeconds=".5s" />
+		<ClipReloadTime
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />	
+		<Nuggets>
+			<ProjectileNugget
+				ProjectileTemplate="mantikeerRocketProjectile"
+				WarheadTemplate="mantikeerRocketWarhead">
+				<VeterancyProjectiles
+					VeterancyLevel="HEROIC"
+					ProjectileTemplate="mantikeerRocketProjectile_Veteran"/>
+			</ProjectileNugget>
+			<SuppressionNugget
+				Radius="20.0"
+				Suppression="10"
+				DurationSeconds="1.0s"/>
+			<InformTargetNugget
+					 MaxTimeToImpactFudgeFactor="1.6" />
+		</Nuggets>
+		<ScatterRadiusVsType
+			Radius="70.0"
+			RequiredModelConditions="SHRINK_EFFECT">
+			<Filter
+				Rule="ANY"
+				Include="INFANTRY AIRCRAFT VEHICLE" />
+		</ScatterRadiusVsType>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="mantikeerRocketWarhead"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER" >
+		<Nuggets>
+			<DamageNugget
+				Damage="30.0"
+				Radius="5.0"
+				DamageTaperOff="0"
+				DamageType="ROCKET"
+				DamageFXType="ALLIED_SAM"
+				DeathType="EXPLODED" />
+			<SuppressionNugget
+				Radius="20.0"
+				Suppression="2"
+				DurationSeconds="3s" />
+		</Nuggets>
+	</WeaponTemplate>
+	
+
+	<!-- Primary Weapon Air -->
+	<WeaponTemplate
+		id="mantikeerRocket_Air"
+		AttackRange="400.0"
+		WeaponSpeed="700"
+		MinWeaponSpeed="700"
+		MaxWeaponSpeed="700"
+		FireFX="FX_AlliedTankGun"
+		FireVeteranFX="FX_AlliedTankGun_Vet"	
+		FireSound="ALL_MultiGunnerIFV_RocketFire"
+		PreAttackType="PER_TARGET"
+		ReAcquireDetailType="PER_SHOT"
+		ClipSize="0"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT RELOAD_WHEN_ATTACK_STOPS"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE"
+		ForbiddenAntiMask="ANTI_AIRBORNE_INFANTRY"
+		CanFireWhileMoving="true">
+		<PreAttackDelay
+			MinSeconds="0.0s"
+			MaxSeconds="0.0s" />
+		<FiringDuration
+			MinSeconds=".25s"
+			MaxSeconds=".25s" />
+		<ClipReloadTime
+			MinSeconds="0.0s"
+			MaxSeconds="0.0s" />
+		<Nuggets>
+			<ProjectileNugget
+				ProjectileTemplate="mantikeerRocketProjectile"
+				WarheadTemplate="mantikeerRocket_AirWarhead">
+				<VeterancyProjectiles
+					VeterancyLevel="HEROIC"
+					ProjectileTemplate="mantikeerRocketProjectile_Veteran"/>
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="mantikeerRocket_AirWarhead"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask=" ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY" >
+		<Nuggets>
+			<DamageNugget
+				Damage="20.0"
+				Radius="30.0"
+				DamageTaperOff="20"
+				DamageType="ROCKET"
+				DamageFXType="ALLIED_SAM"
+				DeathType="EXPLODED" >	
+					<DamageScalarDetails Scalar= "120%">
+					<Filter
+					Rule="NONE">
+						<IncludeThing>EUAntiGroundAircraft</IncludeThing>
+						<IncludeThing>AlliedBomberAircraft</IncludeThing>
+						<IncludeThing>SovietAirAll</IncludeThing>
+					</Filter>		
+					</DamageScalarDetails>
+			
+			<DamageScalarDetails Scalar= "375%">
+					<Filter
+					Rule="NONE">
+						<IncludeThing>JapanFortressShip</IncludeThing>
+						<IncludeThing>EUBomberAircraft</IncludeThing>
+						<IncludeThing>SovietBomberAircraft</IncludeThing>
+					</Filter>		
+					</DamageScalarDetails>	
+		  </DamageNugget>	
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="Leech_mantikeer"
+		inheritFrom="mantikeerRocket"
+		ClipSize="1">
+		<FiringDuration
+			MinSeconds=".4s"
+			MaxSeconds=".4s" />
+		<ClipReloadTime
+			MinSeconds="0.0s"
+			MaxSeconds="0.0s" />
+		<Nuggets>
+			<ProjectileNugget
+				ProjectileTemplate="mantikeerRocketProjectile"
+				WarheadTemplate="Leech_mantikeerRocketWarhead">
+				<VeterancyProjectiles
+					VeterancyLevel="HEROIC"
+					ProjectileTemplate="mantikeerRocketProjectile_Veteran"/>
+			</ProjectileNugget>
+			<SuppressionNugget
+				Radius="20.0"
+				Suppression="10"
+				DurationSeconds="1.0s"/>
+			<InformTargetNugget
+					 MaxTimeToImpactFudgeFactor="1.6" />
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="Leech_mantikeerRocketWarhead"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER" >
+		<Nuggets>
+			<DamageNugget
+				Damage="22.5"
+				Radius="5.0"
+				DamageTaperOff="0"
+				DamageType="ROCKET"
+				DamageFXType="ALLIED_SAM"
+				DeathType="EXPLODED" />
+			<SuppressionNugget
+				Radius="20.0"
+				Suppression="2"
+				DurationSeconds="3s" />
+		</Nuggets>
+	</WeaponTemplate>
+	
+
+	
+	<WeaponTemplate
+		id="mantikeerChronoRay"
+		AttackRange="400"
+		MinimumAttackRange="0"
+		RadiusDamageAffects="SELF ALLIES ENEMIES"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		CanFireWhileMoving="false"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_SUBMERGED"
+		IgnoresContactPoints="true">
+		<Nuggets>
+			<DamageNugget
+				Damage="0.0"
+				Radius="0.0"
+				DamageType="AUTO_CANNON"
+				DamageFXType="NOD_GRENADE" 
+				DeathType="NORMAL">
+			</DamageNugget>
+			<!-- ALL nuggets must have same object filter as SpecialPower_ShrinkRay -->
+			<ActivateLaserNugget
+				Lifetime="0.8s"
+				LaserId="1">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE TIME_BOMB AIRCRAFT INFANTRY"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN"/>
+			</ActivateLaserNugget>
+
+			<!-- Normal Weapon -->
+			<AttributeModifierNugget
+				AttributeModifierName="AttributeModifier_TemporalChrono">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE TIME_BOMB AIRCRAFT INFANTRY"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN"/>
+				<ForbiddenUpgrade>Upgrade_AlliedHighTechnology</ForbiddenUpgrade>
+			</AttributeModifierNugget>
+			
+			<ParalyzeNugget
+				DurationSeconds="7.5s"
+				ParalyzeType="USER_PARALYZE"
+				ParalyzeFX="FX_None">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE TIME_BOMB AIRCRAFT INFANTRY"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN">
+				</SpecialObjectFilter>
+				<ForbiddenUpgrade>Upgrade_AlliedHighTechnology</ForbiddenUpgrade>
+			</ParalyzeNugget>
+			
+			<ParalyzeNugget
+				DurationSeconds="7.5s"
+				ParalyzeType="HELD"
+				ParalyzeFX="FX_None">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE TIME_BOMB AIRCRAFT INFANTRY"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN">
+				</SpecialObjectFilter>
+				<ForbiddenUpgrade>Upgrade_AlliedHighTechnology</ForbiddenUpgrade>
+			</ParalyzeNugget>
+
+			<!-- High Technology Special power weapon -->
+			<AttributeModifierNugget
+				AttributeModifierName="AttributeModifier_TemporalChrono_HighTechnology">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE TIME_BOMB AIRCRAFT INFANTRY"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN"/>
+				<RequiredUpgrade>Upgrade_AlliedHighTechnology</RequiredUpgrade>
+			</AttributeModifierNugget>
+			
+			<ParalyzeNugget
+				DurationSeconds="10s"
+				ParalyzeType="USER_PARALYZE"
+				ParalyzeFX="FX_None">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE TIME_BOMB AIRCRAFT INFANTRY"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN">
+				</SpecialObjectFilter>
+				<RequiredUpgrade>Upgrade_AlliedHighTechnology</RequiredUpgrade>
+			</ParalyzeNugget>
+			
+			<ParalyzeNugget
+				DurationSeconds="10s"
+				ParalyzeType="HELD"
+				ParalyzeFX="FX_None">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE TIME_BOMB AIRCRAFT INFANTRY"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN">
+				</SpecialObjectFilter>
+				<RequiredUpgrade>Upgrade_AlliedHighTechnology</RequiredUpgrade>
+			</ParalyzeNugget>
+
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<AttributeModifier
+		id="AttributeModifier_TemporalChrono"
+    		Shader="ShaderOverride_ObjectsChronoRift"
+		ModelConditionsClear="SHRINK_EFFECT"
+		ObjectStatusToSet="NO_BRIBE NO_ATTACK UNSELECTABLE UNATTACKABLE NO_COLLISIONS IN_NANOHIVE SUBMERGED IMMOBILE USER_PARALYZED"
+		StartFX="FX_ChronoRiftHit"
+		EndFX="FX_ChronoRiftHit"
+		Duration="7.5s">
+		<Modifier Type="SPEED" Value="0%"/>
+		<Modifier Type="CRUSHER_LEVEL" Value="0%"/>
+		<Modifier Type="CRUSHABLE_LEVEL" Value="1000%"/>
+		<Modifier Type="INVULNERABLE" Value="100%"/>
+		<Modifier Type="ARMOR" Value="0%"/>
+	</AttributeModifier>
+	
+	<AttributeModifier
+		id="AttributeModifier_TemporalChrono_HighTechnology"
+    		Shader="ShaderOverride_ObjectsChronoRift"
+		ModelConditionsClear="SHRINK_EFFECT"
+		ObjectStatusToSet="NO_BRIBE NO_ATTACK UNSELECTABLE UNATTACKABLE NO_COLLISIONS IN_NANOHIVE SUBMERGED IMMOBILE USER_PARALYZED"
+		StartFX="FX_ChronoRiftHit"
+		EndFX="FX_ChronoRiftHit"
+		Duration="10s">
+		<Modifier Type="SPEED" Value="0%"/>
+		<Modifier Type="CRUSHER_LEVEL" Value="0%"/>
+		<Modifier Type="CRUSHABLE_LEVEL" Value="1000%"/>
+		<Modifier Type="INVULNERABLE" Value="100%"/>
+		<Modifier Type="ARMOR" Value="0%"/>
+	</AttributeModifier>
+
+	
+</AssetDeclaration>

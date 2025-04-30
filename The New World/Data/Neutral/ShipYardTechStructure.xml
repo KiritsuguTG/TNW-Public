@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="ART:ShipHangarTechStructure.w3x" />
+		<Include type="all" source="ART:ShipHangarTechStructure_Anim.w3x" />
+		<Include type="all" source="ART:ShipHangarTechStructure_Still.w3x" />
+		<Include type="instance" source="DATA:BaseObjects/BaseTechStructure.xml" />
+		<Include type="instance" source="DATA:Civilian/Yucatan_YU/Props/YU_HotelDebris.xml" />
+    <Include type="instance" source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+		<Include type="all" source="ART:ABBarracks_particles.w3x" />
+		<Include type="all"	source="SHIPHANGARTECHSTRUCTURE_COL/SHIPHANGARTECHSTRUCTURE_COL.NEWSKIN.w3x" />
+		<Include type="all"	source="SHIPHANGARTECHSTRUCTURE_COL/SHIPHANGARTECHSTRUCTURE_COL.OBBOX01.w3x" />
+		<Include type="all"	source="SHIPHANGARTECHSTRUCTURE_COL/SHIPHANGARTECHSTRUCTURE_COL.OBBOX02.w3x" />
+		<Include type="all"	source="SHIPHANGARTECHSTRUCTURE_COL/SHIPHANGARTECHSTRUCTURE_COL_CTR.w3x" />
+		<Include type="all"	source="SHIPHANGARTECHSTRUCTURE_COL/SHIPHANGARTECHSTRUCTURE_COL_HRC.w3x" />
+	</Includes>
+		<!--CommandSet="ShipYardTechStructureCommandSet" KindOf="+AUTO_RALLYPOINT +REFINERY"-->
+	<GameObject
+		id="ShipYardTechStructure"
+		inheritFrom="BaseTechStructure"
+		CommandSet="EmptyCommandSet"
+		KindOf="+DONT_UNATTACH_WHEN_HEALING"
+		SelectPortrait="Portrait_Neutral_DryDock"
+		ButtonImage="Button_Neutral_DryDock"
+		EditorName="ShipYardTechStructure"
+		Description="DESC:ShipYardTechStructure"
+		TypeDescription="TYPE:TechStructure"
+		HealthBoxHeightOffset="45">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">NAME:ShipYardTechStructure</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="=$TECH_STRUCTURE_EFFECTIVE_COST"/>
+		</ObjectResourceInfo>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="BoneFlag01 BONE_CONTACT_POINT_01 BONE_CONTACT_POINT_02 BONE_CONTACT_POINT_03 BONE_CONTACT_POINT_04 BONE_CONTACT_POINT_05 BONE_CONTACT_POINT_06 BONE_CONTACT_POINT_07 BONE_CONTACT_POINT_08 BONE_CONTACT_POINT_09 BONE_CONTACT_POINT_10 BONE_CONTACT_POINT_11 BONE_CONTACT_POINT_12 BONE_CONTACT_POINT_13 BONE_CONTACT_POINT_14 BONE_CONTACT_POINT_15 BONE_CONTACT_POINT_16 BONE_CONTACT_POINT_17 BONE_CONTACT_POINT_18	BONE_CONTACT_POINT_19 BONE_CONTACT_POINT_20 BONEGARRISON01 BONEGARRISON02 BONEGARRISON03 BONEGARRISON04 BONEGARRISON05 BONEGARRISON06 BONEGARRISON07 BONEGARRISON08 BONEGARRISON09 BONEGARRISON10 BONEGARRISON11 BONEGARRISON12">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ShipHangarTechStructure" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="RUBBLE">
+					<Model
+						Name="ShipHangarTechStructure" />				
+				</ModelConditionState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="ShipHangarTechStructure_Anim"
+						AnimationMode="LOOP"/>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4">
+					<Animation
+						AnimationName="ShipHangarTechStructure_Still"
+						AnimationMode="ONCE"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+
+	<ScriptedModelDraw
+		id="ModuleTag_FlagDraw"
+		AttachToBoneInAnotherModule="BoneFlag01"
+		OkToChangeModelColor="true" >
+
+		<ModelConditionState
+			ParseCondStateType="PARSE_DEFAULT" >
+			<Model Name="SU_Garrison_Flag" />			
+			<Texture
+				Original="SU_GarFlag"
+				New="NU_GarFlag" />
+			<Texture
+				Original="AU_GarFlag"
+				New="NU_GarFlag" />
+			<Texture
+				Original="JU_GarFlag"
+				New="NU_GarFlag" />
+		</ModelConditionState>
+		<AnimationState
+			ParseCondStateType="PARSE_DEFAULT">
+			<Animation
+				AnimationName="SU_Garrison_Flag"
+				AnimationMode="LOOP" />			
+		</AnimationState>
+
+		<ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_1">
+			<Model Name="AU_Garrison_Flag" />
+			<Texture
+				Original="SU_GarFlag"
+				New="AU_GarFlag" />
+			<Texture
+				Original="NU_GarFlag"
+				New="AU_GarFlag" />
+			<Texture
+				Original="JU_GarFlag"
+				New="AU_GarFlag" />
+		</ModelConditionState>
+		<AnimationState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_1">
+			<Animation
+				AnimationName="AU_Garrison_Flag"
+				AnimationMode="LOOP" />
+		</AnimationState>
+
+		<ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_2">
+			<Model Name="SU_Garrison_Flag" />
+			<Texture
+				Original="AU_GarFlag"
+				New="SU_GarFlag" />
+			<Texture
+				Original="NU_GarFlag"
+				New="SU_GarFlag" />
+			<Texture
+				Original="JU_GarFlag"
+				New="SU_GarFlag" />
+		</ModelConditionState>
+		<AnimationState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_2">
+			<Animation
+				AnimationName="SU_Garrison_Flag"
+				AnimationMode="LOOP" />
+		</AnimationState>
+
+		<ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_3">
+			<Model Name="JU_Garrison_Flag" />
+			<Texture
+				Original="AU_GarFlag"
+				New="JU_GarFlag" />
+			<Texture
+				Original="NU_GarFlag"
+				New="JU_GarFlag" />
+			<Texture
+				Original="SU_GarFlag"
+				New="JU_GarFlag" />
+		</ModelConditionState>
+		<AnimationState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_3">
+			<Animation
+				AnimationName="JU_Garrison_Flag"
+				AnimationMode="LOOP" />
+		</AnimationState>
+	</ScriptedModelDraw>			
+		</Draws>
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="ModuleTag_UpgradeToGrant"
+				UpgradeToGrant="Upgrade_ObjectDefault"/>
+			<ModelConditionUpgrade
+				id="ModuleTag_ObjectDefault"
+				AddConditionFlags="USER_4">
+				<TriggeredBy>Upgrade_ObjectDefault</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_4">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_AlliesUSER_2ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_2">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_AlliesUSER_3ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_3">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_SovietUSER_1ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_1">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_SovietUSER_3ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_3">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_JapanUSER_1ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_1">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_JapanUSER_3ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_2">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgradeObjectDefaultAllies">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<UpgradeToRemove>Upgrade_ObjectDefault</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_SovietFaction</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_JapanFaction</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgradeObjectDefaultSoviet">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+				<UpgradeToRemove>Upgrade_ObjectDefault</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_AlliesFaction</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_JapanFaction</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgradeObjectDefaultJapan">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<UpgradeToRemove>Upgrade_ObjectDefault</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_AlliesFaction</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_SovietFaction</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<FireWeaponUpdate
+				id="Upgrade_ShipYardTechStructureHealthWeapon"
+				FireInterval="2s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="ShipYardTechStructureHealthWeapon"
+					OneShot="false" />
+			</FireWeaponUpdate>
+			<!--<QueueDockBehavior
+				id="ModuleTag_QueueDockBehavior"
+				DockStartBoneName="DockStart"
+				DockActionBoneName="DockAction"
+				DockEndBoneName="DockEnd"
+				QueueBonePrefix="Que"
+				DockingAnimation="DOCKING_ACTIVE"
+				TurnTableBoneName="BONE_TABLE"/>
+			<QueueProductionExitUpdate
+				id="ModuleTag_Exit">
+				<UnitCreatePoint
+					x="0.0" />
+				<NaturalRallyPoint
+					x="0.0"/>
+			</QueueProductionExitUpdate>
+			<ProductionUpdate
+				id="ModuleTag_ProductionUpdate"
+				GiveNoXP="true"
+				Type="VEHICLE"
+				NumDoorAnimations="1"
+				DoorOpeningTime="0.66s"
+				DoorWaitOpenTime="3.00s"
+				DoorCloseTime="0.66s"
+				NewObjectFadeInTime="0.5s"/>-->
+
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				UnpackTime="0.0s" />
+
+			<xi:include
+				href="DATA:Includes/GenericEngineerContain.xml" />
+			<xi:include
+				href="DATA:Includes/GenericBuildingRepair.xml" />
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="BuildingPowerFunctions"/>
+			<BuildingDestructionBehavior
+				id="ModuleTag_BuildingDestruction">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7"/>
+				<Item
+					BonePrefix="BONE_CONTACT_POINT_"
+					FX="SovietRefineryHit"
+					CreationObject="AlliedBarracks_Debris"
+					FlingVelocity="100.0"/>
+			</BuildingDestructionBehavior>
+			<FXListBehavior
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7"/>
+				<Event
+					Index="onDeath"
+					FX="FX_MediumBuildingDieExplosion" />
+			</FXListBehavior>
+
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="ShipHangarTechStructure_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7"/>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="3000.0"
+				InitialHealth="3000.0" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+<Shape 
+     Type= "BOX"
+     MajorRadius = "44.825"
+     MinorRadius = "95.5221"
+     Height = "84.6979"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "35.9656"
+        y = "11.1335"
+        z = "1.26443" />
+</Shape>
+<Shape 
+     Type= "BOX"
+     MajorRadius = "44.5234"
+     MinorRadius = "95.4419"
+     Height = "38.1858"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "-43.887"
+        y = "5.33652"
+        z = "-11.2285" />
+</Shape>
+
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry EvaEvent="DryDockCaptured" AudioType="voiceDefectingTowards" />
+			<AudioEntry Sound="NEU_DryDockTechBuilding_Select" AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="HumanFaction_MediumBuilding_LightDamageMS" AudioType="soundOnDamaged" />
+			<AudioEntry Sound="HumanFaction_MediumBuilding_HeavyDamageMS" AudioType="soundOnReallyDamaged" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="200" />
+		<ProjectedBuildabilityInfo
+			Radius="0.0"
+			BuildPlacementTypes="MAIN_STRUCTURE OTHER_STRUCTURE" />
+	</GameObject>
+<ObjectCreationList
+		id="ShipHangarTechStructure_Die_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="LIKE_EXISTING RANDOM_FORCE"
+			Count="1"
+			MinForceMagnitude="1.0"
+			MaxForceMagnitude="2.0"
+			MinForcePitch="90d"
+			MaxForcePitch="75d">
+			<CreateObject>ShipHangarTechStructure_Collapse</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<GameObject
+		id="ShiphangarTechStructure_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="ShiphangarTechStructure_Collapse">
+		<Draws>
+			<DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="5"
+			Explodiness="0.5">
+			<ModelConditionState
+				ParseCondStateType="PARSE_DEFAULT">
+				<Model
+					Name="ShiphangarTechStructure_COL" />
+			</ModelConditionState>
+			<BoneVolumes>
+			
+<BoneVolume BoneName="Bone_D_01" Mass="13774" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="8.641" HalfSizeY="13.669" HalfSizeZ="5.831" >
+		<Translation x="41.187" y="-53.376" z="80.587" />
+		<Rotation x="0.158296" y="0.685013" z="-0.691215" w="-0.167099" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_02" Mass="66086" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="31.849" HalfSizeY="4.098" HalfSizeZ="25.317" >
+		<Translation x="0.918" y="-26.672" z="62.225" />
+		<Rotation x="-0.0052625" y="0.0175802" z="-0.294304" w="0.955536" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_03" Mass="70622" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="17.835" HalfSizeY="12.703" HalfSizeZ="15.586" >
+		<Translation x="56.566" y="-50.312" z="39.206" />
+		<Rotation x="-0.00872643" y="3.03356e-005" z="-0.00347614" w="0.999956" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_04" Mass="27460" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="8.466" HalfSizeY="17.189" HalfSizeZ="9.435" >
+		<Translation x="7.515" y="-50.312" z="39.128" />
+		<Rotation x="0.34473" y="-0.620669" z="0.615618" w="-0.341973" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_05" Mass="29220" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="5.596" HalfSizeY="6.956" HalfSizeZ="37.534" >
+		<Translation x="71.715" y="-35.971" z="11.267" />
+		<Rotation x="-0.707107" y="0.000122821" z="-0.000122821" w="0.707107" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_06" Mass="30303" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="5.596" HalfSizeY="7.863" HalfSizeZ="34.435" >
+		<Translation x="0.106" y="-33.543" z="12.147" />
+		<Rotation x="-0.70708" y="-0.00617059" z="0.00617059" w="0.70708" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_07" Mass="7704" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="7.426" HalfSizeY="10.22" HalfSizeZ="5.076" >
+		<Translation x="30.952" y="-52.514" z="20.554" />
+		<Rotation x="-0.00436413" y="0.00177674" z="8.39645e-005" w="0.999989" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_08" Mass="21007" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="18.251" HalfSizeY="3.406" HalfSizeZ="16.897" >
+		<Translation x="36.604" y="-55.759" z="6.56" />
+		<Rotation x="-0.707106" y="-0.000957134" z="0.000957133" w="0.707106" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_09" Mass="47016" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="20.467" HalfSizeY="6.77" HalfSizeZ="16.966" >
+		<Translation x="36.211" y="42.787" z="80.979" />
+		<Rotation x="-0.707107" y="-0.00029939" z="0.00029939" w="0.707107" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_10" Mass="30649" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="22.065" HalfSizeY="3.435" HalfSizeZ="20.219" >
+		<Translation x="36.238" y="40.051" z="66.831" />
+		<Rotation x="-0.707107" y="8.85716e-005" z="-8.85716e-005" w="0.707107" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_11" Mass="103567" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="14.635" HalfSizeY="18.799" HalfSizeZ="18.822" >
+		<Translation x="56.553" y="26.634" z="37.908" />
+		<Rotation x="-0.710207" y="-0.00244926" z="-0.00496664" w="0.703971" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_12" Mass="152472" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="14.783" HalfSizeY="21.418" HalfSizeZ="24.078" >
+		<Translation x="56.417" y="74.897" z="32.704" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_13" Mass="114838" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="15.607" HalfSizeY="18.128" HalfSizeZ="20.295" >
+		<Translation x="15.181" y="21.187" z="33.524" />
+		<Rotation x="3.63798e-007" y="0.000314049" z="-0.0010131" w="0.999999" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_14" Mass="166327" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="16.751" HalfSizeY="21.418" HalfSizeZ="23.18" >
+		<Translation x="18.654" y="72.254" z="31.197" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_15" Mass="39043" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="9.374" HalfSizeY="15.307" HalfSizeZ="13.605" >
+		<Translation x="-51.309" y="-52.856" z="12.391" />
+		<Rotation x="0.0" y="0.707107" z="0.0" w="0.707107" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_16" Mass="46386" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="11.69" HalfSizeY="12.131" HalfSizeZ="16.355" >
+		<Translation x="-29.223" y="-53.529" z="9.182" />
+		<Rotation x="-0.707105" y="0.00165134" z="-0.00165134" w="0.707105" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_17" Mass="63468" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="10.171" HalfSizeY="20.981" HalfSizeZ="14.871" >
+		<Translation x="-59.791" y="-2.659" z="17.104" />
+		<Rotation x="-0.000709326" y="-0.126853" z="-0.00147274" w="0.99192" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_18" Mass="78432" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="12.694" HalfSizeY="22.359" HalfSizeZ="13.817" >
+		<Translation x="-28.645" y="-3.356" z="18.956" />
+		<Rotation x="-0.00441306" y="0.00564191" z="0.0110515" w="0.999913" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_19" Mass="54268" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="10.146" HalfSizeY="12.602" HalfSizeZ="21.222" >
+		<Translation x="-58.061" y="56.812" z="8.926" />
+		<Rotation x="-0.707793" y="0.00140059" z="0.00316202" w="0.706411" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_20" Mass="59350" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="9.695" HalfSizeY="21.037" HalfSizeZ="14.55" >
+		<Translation x="-33.745" y="57.478" z="12.818" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+
+
+			</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	<Behaviors/>
+</GameObject>
+	<LogicCommandSet
+		id="ShipYardTechStructureCommandSet">
+		<Cmd>Command_ConstructTechStructureSalvageShip</Cmd>
+	</LogicCommandSet>
+</AssetDeclaration>

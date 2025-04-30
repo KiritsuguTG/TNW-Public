@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="SovietScoutVehicleParalyzeWeapon"
+		AttackRange="300"
+		WeaponSpeed="999999.0"
+		ReAcquireDetailType="PRE_FIRE"
+		ClipSize="1"
+		FireFX="FX_SOV_TerrorDrone_WeaponFire"
+		AcceptableAimDelta="10d"
+		CanFireWhileMoving="false"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		Flags="NOT_ATTRACTED_BY_MAGNETS" >
+		<FiringDuration
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<Nuggets>
+			<ActivateLaserNugget
+				Lifetime="0.26s"
+				LaserId="0">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE"
+					Exclude="HARVESTER STRUCTURE"
+					StatusBitFlagsExclude="AIRBORNE_TARGET SUBMERGED UNDER_IRON_CURTAIN">
+					<IncludeThing>SovietScoutVehicle</IncludeThing>
+					<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+				</SpecialObjectFilter>
+			</ActivateLaserNugget>
+			<ParalyzeNugget
+				Radius="0.0"
+				DurationSeconds="0.26s"
+				ParalyzeType="HELD" >
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE"
+					Exclude="HARVESTER STRUCTURE"
+					StatusBitFlagsExclude="AIRBORNE_TARGET SUBMERGED UNDER_IRON_CURTAIN">
+					<IncludeThing>SovietScoutVehicle</IncludeThing>
+					<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+				</SpecialObjectFilter>
+			</ParalyzeNugget>
+			<AttributeModifierNugget
+				AttributeModifierName="AttributeMod_SovietScoutParalyzeWeapon">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE"
+					Exclude="HARVESTER STRUCTURE"
+					StatusBitFlagsExclude="AIRBORNE_TARGET SUBMERGED UNDER_IRON_CURTAIN">
+					<IncludeThing>SovietScoutVehicle</IncludeThing>
+					<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+				</SpecialObjectFilter>
+			</AttributeModifierNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="all"
+			source="ART:Allied_Place_Holder.xml" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseEgg.xml" />
+	</Includes>
+	<GameObject
+		id="JapanSuperStructureEgg"
+		inheritFrom="BaseEgg"
+		BuildTime="4"
+		ButtonImage="Button_JapanSuperStructure"
+		SelectPortrait="Portrait_JapanSuperStructure"
+		Side="Japan"
+		SubGroupPriority="816"
+		CommandSet="JapanSuperStructureEggCommandSet"
+		KindOf="EGG UNPACKS_INTO_BUILDING SELECTABLE CAN_CAST_REFLECTIONS VEHICLE FS_FACTORY EXPANSION_UNIT UNIQUE_UNIT CAN_BE_FAVORITE_UNIT IGNORES_SELECT_ALL CYCLE_SELECTION AMPHIBIOUS SCORE"
+		PlacementViewAngle="-45d"
+		ProductionQueueType="OTHER_STRUCTURE"
+		EditorName="JapanSuperStructureEgg"
+		Description="Desc:JapanSuperStructureEgg"
+		HealthBoxHeightOffset="60"
+		UnitIntro="Japan_Nanocore_UnitIntro"
+		TypeDescription="Type:EpicBuild"
+		MaxSimultaneousOfType="1">
+		<EquivalentTo>JapanSuperStructure</EquivalentTo>
+		<DisplayName
+			xai:joinAction="Replace">Name:JapanSuperStructureEgg</DisplayName>
+		<GameDependency>
+			<RequiredObject>JapanVIPStructure</RequiredObject>
+			<NeededUpgrade>Upgrade_JapanFaction</NeededUpgrade>
+			<ForbiddenUpgrade>SideSuperStructure</ForbiddenUpgrade>
+			<ForbiddenUpgrade>AINoSuperWeaponEffect</ForbiddenUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="25000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseUnAttackVehicleArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="JapanEggLocomotor"
+			Condition="NORMAL"
+			Speed="65.0" />
+		<LocomotorSet
+			Locomotor="JapanEggWaterLocomotor"
+			Condition="NORMAL"
+			Speed="65.0" />
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_DrawEgg"
+				LeftFrontTireBone="Bone_LFTire"
+				RightFrontTireBone="Bone_RFTire"
+				MidLeftRearTireBone="Bone_LMTire"
+				MidRightRearTireBone="Bone_RMTire"
+				LeftRearTireBone="Bone_LRTire"
+				RightRearTireBone="Bone_RRTire"
+				TireRotationMultiplier="0.1"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JUSUPERSTRUCTUREEGG" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="JUSUPERSTRUCTUREEGG" />
+				</ModelConditionState>
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="AIR_POWER_EFFECT">
+					<Model
+								  Name="JUSUPERSTRUCTUREEGG" />
+					<ParticleSysBone
+								  BoneName="GLOWHOVER"
+								  FXParticleSystemTemplate="JapanNanoGlow"
+								  FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="DAMAGED AIR_POWER_EFFECT">
+					<Model
+								  Name="JUSUPERSTRUCTUREEGG" />
+					<ParticleSysBone
+								  BoneName="FXBone01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="GLOWHOVER"
+								  FXParticleSystemTemplate="JapanNanoGlow"
+								  FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+							ParseCondStateType="PARSE_NORMAL"
+							ConditionsYes="REALLYDAMAGED AIR_POWER_EFFECT">
+					<Model
+								  Name="JUSUPERSTRUCTUREEGG" />
+					<Texture
+								  Original="JUEgg"
+								  New="JUEgg_D" />
+					<ParticleSysBone
+								  BoneName="FXBone01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FXBone01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FXBone01"
+								  FXParticleSystemTemplate="JapanVehicleDamagedFire"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="GLOWHOVER"
+								  FXParticleSystemTemplate="JapanNanoGlow"
+								  FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW AIR_POWER_EFFECT">
+					<Model
+						Name="FP_EGG" />
+				</ModelConditionState>
+				
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+          <Model
+						Name="JUSUPERSTRUCTUREEGG" />
+          <ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+          <Model
+						Name="JUSUPERSTRUCTUREEGG" />
+          <Texture
+						Original="JUEgg"
+						New="JUEgg_D" />
+          <ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FXBone01"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+        </ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+			</TruckDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="JUSuperStructureEgg_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_JapanVehicleDie" />
+			</FXListBehavior>
+			<xi:include
+				href="DATA:Includes/GenericUnpackPower.xml" />
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelf"
+				SpecialPowerTemplate="SpecialPower_UnpackReplaceSelf"
+				Options="IGNORE_FACING_CHECK USE_OBJECT_GEOMETRY_FOR_WITHIN_RANGE_CHECK FAIL_WITH_INVALID_APPROACH"
+				PackTime="2.0s"
+				StartAbilityRange="2.0"
+				ReplaceOptions="CHECK_BUILD_ASSISTANT DISABLE_DURING_REPLACE CLEAR_LOCATION">
+				<ReplacementTemplate>JapanSuperStructure</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+			<FireWeaponWhenDead
+				id="ModuleTag_CelebratingWeapon"
+				InitiallyActive="true"
+				DeathWeapon="UnitCelebratingSuperStructure">
+				<DieMuxData
+					DeathTypes="ALL"
+		DeathTypesForbidden="SUICIDED SLAUGHTERED"/>
+			</FireWeaponWhenDead>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+			xai:joinAction="Replace"
+				MaxHealth="1000.0" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="JAP_Nanocore2_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			xai:joinAction="Replace"
+			IsSmall="true">
+			<Shape
+				Type="BOX"
+				MajorRadius="25.0"
+				MinorRadius="12.5"
+				Height="31.25"
+				ContactPointGeneration="VEHICLE" />
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_Nanocore2_VoiceCreateMechaBay" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_Nanocore2_VoiceHelpMe" AudioType="voiceFear" />
+			<AudioEntry Sound="JAP_Nanocore2_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_Nanocore2_VoiceSelectMechaBayMS" AudioType="voiceSelect" />
+			<NamedEntry Sound="JAP_Nanocore2_VoiceMoveSpecial" Name="VoiceDeploy" />
+		</AudioArrayVoice>		
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+
+	<!-- Vietnam Fighter Aircraft -->
+	<WeaponTemplate
+		id="VietnamFighterAircraftCannon"
+		FireFX="FX_SovietFlakTrooperFire"
+		FireVeteranFX="FX_SovietFlakTrooperFire_Vet"
+		FireSound="SOV_FlakCannon_FlakCannonFire"
+		AttackRange="200.0"
+		AcceptableAimDelta="10d"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE"
+		CanFireWhileMoving="true"
+		ClipSize="16"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		AutoReloadsClip="RETURN_TO_BASE"
+		InstantLoadClipOnActivate="true" 
+		ReAcquireDetailType="PER_CLIP">
+		<FiringDuration
+			MinSeconds="1s"
+			MaxSeconds="1s" />
+		<ClipReloadTime
+			MinSeconds="10s"
+			MaxSeconds="10s" />
+		<Nuggets>
+			<DamageNugget
+				id="DefaultDamageNugget"
+				Damage="90.0"
+				Radius="15.0"
+				DamageType="FLAK"
+				DelayTimeSeconds="0.5s"
+				DamageFXType="SOVIET_FLAK"
+				DeathType="EXPLODED">
+				<DamageScalarDetails Scalar= "50%">
+					<Filter
+					Rule="NONE">
+						<IncludeThing>SovietFighterAircraft</IncludeThing>
+						<IncludeThing>AlliedFighterAircraft</IncludeThing>
+						<IncludeThing>JapanFighterAircraft</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>	
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="VietnamFighterAircraftCannon_Veteran"
+		inheritFrom="VietnamFighterAircraftCannon"/>
+</AssetDeclaration>

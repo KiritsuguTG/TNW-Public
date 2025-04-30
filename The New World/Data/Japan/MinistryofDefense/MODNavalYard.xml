@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include type="instance" source="DATA:Japan/Structures/JapanNavalYard.xml" />
+	</Includes>
+	<GameObject
+		id="MODNavalYard"
+		inheritFrom="JapanNavalYard"
+		CommandSet="MODNavalYardCommandSet"
+		EditorName="MODNavalYard"
+		Description="Desc:MODNavalYard">
+		<EquivalentTo>JapanNavalYard</EquivalentTo>
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODNavalYard</DisplayName>
+		<Behaviors>
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelfEgg"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_PackReplaceSelfEgg"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				NewObjectUnpackTime="2s"
+				ReplaceOptions="COPY_UPGRADES DISABLE_DURING_REPLACE DISABLE_NEW_OBJECT_DURING_UNPACK">
+				<ReplacementTemplate>MODNavalYardEgg</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+			<CreateObjectDie
+				id="ModuleTag_CreateEggDie"
+				xai:joinAction="Replace"
+				CreationList="OCL_MODNavalYardEggSpawn">
+				<DieMuxData
+					DeathTypes="EXTRA_6"/>
+			</CreateObjectDie>
+			<CreateObjectDie
+		id="ModuleTag_CreateOccupiedDie"
+		CreationList="OCL_GenericMODBuildingDestruction" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6"/>
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+		id="ModuleTag_CreateOccupiedConfigDie"
+		CreationList="OCL_GenericMODBuildingConfigDestruction" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6"/>
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+	id="ModuleTag_CreateOccupiedSuicide"
+	CreationList="OCL_GenericMODBuildingSuicide" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+	id="ModuleTag_CreateOccupiedConfigSuicide"
+	CreationList="OCL_GenericMODBuildingConfigSuicide" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+			</CreateObjectDie>
+			<!--Command Upgrade-->
+			<CommandSetUpgrade
+				id="ModuleTag_CommandSetTech1"
+				xai:joinAction="Replace"
+				CommandSet="MODNavalYardCommandSetRedAlert">
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanNavalYardTech2</ConflictsWith>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanTech2</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_CommandSetTech2"
+				xai:joinAction="Replace"
+				CommandSet="MODNavalYardCommandSetTech2">
+				<ConflictsWith>UpgradeUprisingCantUse</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanTech2</ConflictsWith>
+				<TriggeredBy>Upgrade_JapanNavalYardTech2</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingNoUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_CommandSetTech2RedAlert"
+				xai:joinAction="Replace"
+				CommandSet="MODNavalYardCommandSetTech2RedAlert">
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanTech2</ConflictsWith>
+				<TriggeredBy>Upgrade_JapanNavalYardTech2</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+			</CommandSetUpgrade>
+			</Behaviors>
+	</GameObject>
+	<GameObject
+	id="MODNavalYard_Crane"
+	inheritFrom="MODNavalYard"
+	EditorName="MODNavalYard">
+		<Draws>
+			<ScriptedModelDraw
+			id="ModuleTag_Draw_Egg"
+			xai:joinAction="Remove"/>
+		</Draws>
+	</GameObject>
+</AssetDeclaration>

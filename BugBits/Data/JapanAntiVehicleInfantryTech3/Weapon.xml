@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="JapanAntiVehicleInfantryTech3MisslePods"
+		AttackRange="150.0"
+		WeaponSpeed="200"
+		MinWeaponSpeed="300"
+		MaxWeaponSpeed="310"
+		FireFX="FX_JapanMIRVFire"
+		FireVeteranFX="FX_JapanMIRVFire"
+		FireSound="JAP_RocketAngel_WeaponFire_Missile"
+		AcceptableAimDelta="45d"
+		ClipSize="18"
+		AutoReloadsClip="AUTO"
+		PreAttackType="PER_CLIP"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_GROUND ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_WATER"
+		ForbiddenAntiMask="ANTI_STRUCTURE"
+		RadiusDamageAffects="ENEMIES">
+		<PreAttackDelay
+			MinSeconds="0.25s"
+			MaxSeconds="0.25s" />
+		<FiringDuration
+			MinSeconds="0.07s"
+			MaxSeconds="0.07s" />
+		<ClipReloadTime
+			MinSeconds="2s"
+			MaxSeconds="2s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="JapanAntiVehicleInfantryTech3ProjectileWarhead"
+				ProjectileTemplate="JapanAntiVehicleInfantryTech3MissileProjectile">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE"/>
+				<VeterancyProjectiles
+				  VeterancyLevel="HEROIC"
+				  ProjectileTemplate="JapanAntiVehicleInfantryTech3MissileProjectile_Veteran"/>
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="JapanAntiVehicleInfantryTech3MisslePodsUsePower"
+		AttackRange="150.0"
+		WeaponSpeed="200"
+		MinWeaponSpeed="300"
+		MaxWeaponSpeed="310"
+		FireFX="FX_JapanMIRVFire"
+		FireVeteranFX="FX_JapanMIRVFire"
+		FireSound="JAP_RocketAngel_WeaponFire_Missile"
+		AcceptableAimDelta="45d"
+		ClipSize="10"
+		AutoReloadsClip="AUTO"
+		PreAttackType="PER_CLIP"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+		RadiusDamageAffects="ENEMIES">
+		<PreAttackDelay
+			MinSeconds="0.25s"
+			MaxSeconds="0.25s" />
+		<FiringDuration
+			MinSeconds="0.07s"
+			MaxSeconds="0.07s" />
+		<ClipReloadTime
+			MinSeconds="2s"
+			MaxSeconds="2s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="JapanAntiVehicleInfantryTech3ProjectileWarhead"
+				ProjectileTemplate="JapanAntiVehicleInfantryTech3MissileProjectile">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+				<VeterancyProjectiles
+				  VeterancyLevel="HEROIC"
+				  ProjectileTemplate="JapanAntiVehicleInfantryTech3MissileProjectile_Veteran"/>
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+			id="JapanAntiVehicleInfantryTech3ProjectileWarhead"
+			ProjectileCollidesWith="ENEMIES NEUTRAL"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+			Flags="NOT_ATTRACTED_BY_MAGNETS"
+			RequiredAntiMask="ANTI_GROUND ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY  ANTI_WATER"
+		ForbiddenAntiMask="ANTI_STRUCTURE">
+		<Nuggets>
+			<DamageNugget
+				Damage="30.0"
+				Radius="10.0"
+				DamageType="ROCKET"
+				DamageFXType="JAPAN_MISSILE"
+				DeathType="EXPLODED">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER"/>
+				<DamageScalarDetails Scalar= "200%">
+					<Filter
+						Rule="NONE">
+						<IncludeThing>JapanAntiVehicleInfantryTech3</IncludeThing>
+						<IncludeThing>JapanAntiVehicleInfantryTech3AI</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="JapanAntiVehicleInfantryTech3LockDownGun"
+		AttackRange="250"
+		WeaponSpeed="999999.0"
+		FiringLoopSound="JAP_RocketAngel_WhipLoop"
+		ReAcquireDetailType="PER_CLIP"
+		AcceptableAimDelta="10d"
+		CanFireWhileMoving="true"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		RequiredAntiMask="ANTI_VEHICLE ANTI_INFANTRY"
+		ForbiddenAntiMask="ANTI_STRUCTURE ANTI_SUBMERGED ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+		Flags="NOT_ATTRACTED_BY_MAGNETS">
+
+		<FiringDuration
+			MinSeconds="0.1s"
+			MaxSeconds="0.1s" />
+		<Nuggets>
+			<ActivateLaserNugget
+				id="DefaultLaserNugget"
+				Lifetime="0.1s"
+				LaserId="1">
+				<SpecialObjectFilter
+					  Rule="ANY"
+						Include="INFANTRY VEHICLE"
+					Exclude="STRUCTURE HARVESTER"
+						StatusBitFlagsExclude="AIRBORNE_TARGET">
+					<ExcludeThing>BaseSovietSupportBomber</ExcludeThing>
+					<ExcludeThing>Soviet_BombingRun</ExcludeThing>
+					<ExcludeThing>JapanFinalSquadronAircraft</ExcludeThing>
+					<ExcludeThing>JapanBalloonBomb</ExcludeThing>
+					<ExcludeThing>AlliedSupersonicBomber</ExcludeThing>
+				</SpecialObjectFilter>
+			</ActivateLaserNugget>
+
+			<ParalyzeNugget
+					DurationSeconds="0.2s"
+					ParalyzeType="EMP" >
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="INFANTRY VEHICLE"
+					Exclude="STRUCTURE HARVESTER"
+					StatusBitFlagsExclude="AIRBORNE_TARGET UNDER_IRON_CURTAIN">
+					<ExcludeThing>BaseSovietSupportBomber</ExcludeThing>
+					<ExcludeThing>Soviet_BombingRun</ExcludeThing>
+					<ExcludeThing>JapanFinalSquadronAircraft</ExcludeThing>
+					<ExcludeThing>JapanBalloonBomb</ExcludeThing>
+					<ExcludeThing>AlliedSupersonicBomber</ExcludeThing>
+				</SpecialObjectFilter>
+			</ParalyzeNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

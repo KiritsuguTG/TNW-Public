@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+  <Tags></Tags>
+  <Includes>
+    <Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+    <Include type="all"	source="ART:FXChronoSpherePlayerPower.w3x" />
+    <Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+  </Includes>
+	<GameObject
+		id="RepireDoneFile"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="IMMOBILE NOT_AUTOACQUIRABLE NO_COLLIDE RESIST_EMP SUMMONED UNATTACKABLE IGNORE_IN_AI_HUNT_TACTIC SKIRMISH_AI_DONT_CONSIDER_THREAT"
+		EditorName="RepireDoneFile"
+		Description="Desc:RepireDoneFile"
+		TypeDescription="Type:RepireDoneFile">
+		<DisplayName>RepireDoneFile</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="FXInvisBone" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="60s"
+			  MaxLifetime="60s"/>
+      <FXListBehavior id="ModuleTag_FXList">
+        <DieMuxData
+					DeathTypes="ALL" />        
+        <Event Index="onCreate" FX="FX_TimeBombChrono" />
+      </FXListBehavior>
+			<AssignSlavesTargetObjectSpecialPower
+				id="ModuleTag_SpecialPowerRepairVehicle"
+				SpecialPowerTemplate="SpecialPower_TargetedRepairVehicle" />
+			<SpawnBehavior
+				id="ModuleTag_SpawnRepairDronesAllied"
+				SpawnNumberData="8"
+				InitialBurst="1"
+				SpawnReplaceDelayData="0.1s"
+				SpawnedRequireSpawner="true"
+				KillSpawnsOnCaptured="true"
+				SpawnInsideBuilding="true"
+				KillSpawnsOnDisabled="true">
+				<Die
+					DeathTypes="ALL" />
+				<SpawnTemplate>AlliedPlayerPowerRepairDrone</SpawnTemplate>
+			</SpawnBehavior>
+			<RestrictSpecialPowerBehavior
+				id="ModuleTag_RestrictSpecialPower"
+				RestrictionType="1"
+				DependentObject="RepireDoneFile"
+				ConsiderSpecialPowerRadius="true">
+				<DependentObjectRadius>200.0</DependentObjectRadius>
+				<DependentObjectRadius>200.0</DependentObjectRadius>
+				<DependentObjectRadius>200.0</DependentObjectRadius>
+			</RestrictSpecialPowerBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+	</GameObject>
+</AssetDeclaration>

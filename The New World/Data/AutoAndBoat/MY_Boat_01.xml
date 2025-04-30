@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseBoat.xml"/>
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseCollapsingObject.xml"/>
+	</Includes>
+	<GameObject
+		id="MY_Boat_01"
+		inheritFrom="BaseAutoSpawn"
+		BuildTime="100.0"
+		EditorName="MY_Boat_01">
+		<DisplayName>Name:BaseAutoSpawn</DisplayName>
+		<Behaviors>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="MY_Boat_01Spawn_OCL">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<ObjectCreationList
+	id="MY_Boat_01Spawn_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE"
+			Count="1"
+			DispositionAngle="-90d">
+			<CreateObject>MY_Boat_01Spawn</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<GameObject
+		id="MY_Boat_01Spawn"
+		inheritFrom="BaseBoat"
+		VoicePriority="188"
+		EditorName="MY_Boat_01">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				ExtraPublicBone="BONE_D_01 BONE_D_02 BONE_D_03 BONE_D_04">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="MY_BOAT_01N" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="MY_BOAT_01N" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="MY_BOAT_01N" />
+					<Texture
+						Original="MY_Boat_01"
+						New="MY_BOAT_01N_D" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER"
+					StateName="STATE_OnWater">
+					<ParticleSysBone
+						BoneName="FX_Wake"
+						FXParticleSystemTemplate="SVAntiAirShipWaterWake"
+						FollowBone="true"/>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes=" OVER_WATER"
+					StateName="STATE_OnWater">
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="SmallShipWakeIdle"
+						FollowBone="true"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<ContestableGarrisonContain
+				id="ModuleTag_Garrison"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED CAN_ATTACK"
+				ContainMax="4"
+				EnterSound="VehicleEnter"
+				ExitSound="VehicleExit"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="false"
+				AllowNeutralInside="true"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				KillPassengersOnDeath="true"
+				RequiredClearingObjectStatus="CAN_CONTEST_GARRISON"
+				IgnoreDisabledBitsForRiders="HELD UNDERPOWERED TEMPORARILY_BUSY INFILTRATED PARALYZED"
+				EjectSpeed="3">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY">
+					<ExcludeThing>AlliedScoutInfantry</ExcludeThing>
+					<ExcludeThing>SovietScoutInfantry</ExcludeThing>
+					<ExcludeThing>EUScoutVehicle</ExcludeThing>
+					<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+				</PassengerFilter>
+				<PassengerData
+					BonePrefix="BONE_D_01 BONE_D_02 BONE_D_03 BONE_D_04">
+					<Filter
+						Rule="ANY"
+						Include="INFANTRY"/>
+				</PassengerData>
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ContestableGarrisonContain>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="MY_Boat_01_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="350"
+				MaxHealthReallyDamagedPercentage="20">
+			</ActiveBody>
+		</Body>
+		<Geometry
+			IsSmall="false">
+	<Shape
+	Name="Shape_01"
+	Type="BOX"
+	MajorRadius="45"
+	MinorRadius="11"
+	Height="16.5">
+		<Offset x="1.3" y="-1" z="3"/>
+	</Shape>
+	<Shape
+		Name="Shape_02"
+		Active="false"
+		UsedForHealthBox="false"
+		Type="BOX"
+		MajorRadius="7.8"
+		MinorRadius="6"
+		Height="13">
+		<Offset x="-7.8" y="-1" z="17.6"/>
+	</Shape>
+		</Geometry>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushEqualLevelProps="true"
+			CrusherLevel="1"
+			CrushableLevel="20"/>
+	</GameObject>
+	<ObjectCreationList
+		id="MY_Boat_01_Die_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="LIKE_EXISTING RANDOM_FORCE"
+			Count="1"
+			MinForceMagnitude="1.0"
+			MaxForceMagnitude="2.0"
+			MinForcePitch="90d"
+			MaxForcePitch="75d">
+			<CreateObject>MY_Boat_01_Collapse</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<GameObject
+		  id="MY_Boat_01_Collapse"
+		  KindOf="HIDE_IF_FOGGED INERT NO_COLLIDE"
+		  EditorName="MY_Boat_01_Collapse">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="MY_BOAT_01N" />
+					<Texture
+						Original="MY_Boat_01"
+						New="MY_BOAT_01N_D" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+					  BoneName="FXDamage01"
+					  FXParticleSystemTemplate="AlliedCarrierDestructionDebrisBubbles"
+					  FollowBone="true"
+					  OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="none"
+						FXParticleSystemTemplate="LargeShipWakeIdle"
+						FollowBone="false" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ShipSlowDeath
+				id="ModuleTag_BearDeathWater"
+				Fade="true"
+				FadeDelay="18s"
+				FadeTime="2s"
+				SinkDelay="6s"
+				SinkRate="1.5"
+				DestructionDelay="20.0s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ShipSlowDeath>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100" />
+		</Body>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Includes>
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE.AURA.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE.GEOSPHERE01.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE_CTR.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE_HRC.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE_VET.AURA.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE_VET.GEOSPHERE01.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE_VET_CTR.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE_VET_HRC.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE02.AURA.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE02.GEOSPHERE01.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE02.PLANE01.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE02_CTR.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE02_HRC.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE02_VET.AURA.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE02_VET.GEOSPHERE01.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE02_VET.PLANE01.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE02_VET_CTR.w3x" />
+		<Include type="all" source="ART:Units/Future Tank X-1/FXFUTUREPROJECTILE02_VET_HRC.w3x" />
+		<Include  type="instance"  source="DATA:BaseObjects/BaseProjectile.xml"/>
+	</Includes>
+	<GameObject
+		id="AlliedFutureTankNeutronScramblerNode"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE SIMPLE_OBJECT_PROP SKIRMISH_AI_ATTEMPT_TO_DODGE PASS_EXPERIENCE_TO_PRODUCER"
+		EditorName="AlliedFutureTankNeutronScramblerNode">
+		<DisplayName>AlliedFutureTankNeutronScramblerNode</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+    <SkirmishAIInformation
+      DodgeSafetyDistance="220.0">
+      <DodgeWithUnits Rule="ALL"
+        StatusBitFlagsExclude="AIRBORNE_TARGET">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				NoRotate="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="" />
+          <ParticleSysBone
+              BoneName="NONE"
+              FXParticleSystemTemplate="AlliedFutureTankHit_XP"
+              FollowBone="true"/>
+          <ParticleSysBone
+              BoneName="NONE"
+              FXParticleSystemTemplate="AlliedFutureTankHit_Light"
+              FollowBone="true"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FireWeaponUpdate
+				id="ModuleTag_FireOneShotWeaponUpdate">
+				<FireWeaponNugget
+					WeaponName="AlliedFutureTankNeutronWeapon_OneShotWeapon"
+					FireDelay="0.0s"
+					OneShot="true">
+				</FireWeaponNugget>
+			</FireWeaponUpdate>
+			<FireWeaponUpdate
+				id="ModuleTag_FireIncrementalWeaponUpdate"
+				FireInterval="0.25s">
+				<FireWeaponNugget
+					WeaponName="AlliedFutureTankNeutronWeapon_IncrementalWeapon"
+					FireDelay="0.0s">
+				</FireWeaponNugget>
+			</FireWeaponUpdate>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="1.5s"
+				MaxLifetime="1.5s" />
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="1.0">
+			</Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="ALL_FutureTank_Weapon_NeutronScramblerImpactSmall" AudioType="soundAmbient"/>
+		</AudioArraySound>
+		<ShadowInfo
+			Type="NONE" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+	<GameObject
+		id="AlliedFutureTankNeutronScramblerNode_Vet"
+		inheritFrom="AlliedFutureTankNeutronScramblerNode">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				NoRotate="true"
+				xai:joinAction="Replace">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="" />
+					<ParticleSysBone
+              BoneName="NONE"
+              FXParticleSystemTemplate="AlliedFutureTankHit_XPVet"
+              FollowBone="true"/>
+					<ParticleSysBone
+              BoneName="NONE"
+              FXParticleSystemTemplate="AlliedFutureTankHit_LightVet"
+              FollowBone="true"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+	</GameObject>
+	
+	<GameObject
+		id="AlliedFutureTankNeutronWeaponProjectile"
+		inheritFrom="BaseProjectile"
+		KindOf="-NO_COLLIDE"
+		Side="Allies"
+		EditorName="AlliedFutureTankNeutronWeaponProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="FXFutureProjectile02" />
+          <ParticleSysBone
+              BoneName="NONE"
+              FXParticleSystemTemplate="AlliedFutureTankProjLight"
+              FollowBone="true"/>
+        </ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_Allied_FutureTank_Hit" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="5"
+				FirstHeightMax="5"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				CurveFlattenMinDist="300"
+				FlightPathAdjustDistPerSecond="20"
+				GroundHitFX="FX_Allied_FutureTank_Hit"
+        Acceleration="5" />
+		</Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8">
+				</Shape>
+		</Geometry>
+	</GameObject>
+	<!-- VETERAN -->
+	<GameObject
+		id="AlliedFutureTankNeutronWeaponProjectile_Vet"
+		inheritFrom="AlliedFutureTankNeutronWeaponProjectile"
+		EditorName="AlliedFutureTankNeutronWeaponProjectile_Vet">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				xai:joinAction="Replace">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="FXFutureProjectile02_Vet" />
+        </ModelConditionState>
+      </ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+      <FXListBehavior
+				id="ModuleTag_FXList">
+        <DieMuxData
+					DeathTypes="ALL" />
+        <Event
+					Index="onDeath"
+          xai:joinAction="Replace"
+					FX="FX_Allied_FutureTank_HitVet" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				xai:joinAction="Replace"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="5"
+				FirstHeightMax="5"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				CurveFlattenMinDist="300"
+				FlightPathAdjustDistPerSecond="20"
+				GroundHitFX="FX_Allied_FutureTank_HitVet"
+				Acceleration="5" />
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

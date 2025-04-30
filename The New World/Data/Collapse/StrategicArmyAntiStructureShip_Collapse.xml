@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<GameObject
+		id="StrategicArmyAntiStructureShip_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="StrategicArmyAntiStructureShip_Collapse">
+		<Draws>
+			<DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="9"
+			Explodiness="4">
+			<ModelConditionState
+				ParseCondStateType="PARSE_DEFAULT">
+				<Model
+					Name="SAANTISTRUCTURESHIP_COL_SKN" />
+				<Texture
+						Original="SUAntiStructureVehicle"
+						New="SUAntiStructureVehicle_D" />
+				<Texture
+						Original="SUAntiNavyShipTech1"
+						New="SUAntiNavyShipTech1_D" />
+				<xi:include
+						href="DATA:Includes/VehicleCollapseParticles/SovietVehicleCollapseParticles.xml"
+						xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:SovietVehicleCollapseParticles/child::*)" />
+			</ModelConditionState>
+			<BoneVolumes>
+				<BoneVolume BoneName="Bone_D_03" Mass="2118" Spinniness="3.0" ContactTag="DEBRIS" >
+					<Box HalfSizeX="12.8519" HalfSizeY="4.21623" HalfSizeZ="3.86064" >
+						<Translation x="-15.0211" y="0.0278621" z="19.0635" />
+						<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+					</Box>
+				</BoneVolume>
+				<BoneVolume BoneName="Bone_D_02" Mass="7308" Spinniness="3.0" ContactTag="DEBRIS" >
+					<Box HalfSizeX="13.2583" HalfSizeY="13.9186" HalfSizeZ="3.91144" >
+						<Translation x="11.5787" y="-6.67572e-006" z="13.6622" />
+						<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+					</Box>
+				</BoneVolume>
+				<BoneVolume BoneName="Bone_D_01" Mass="22924" Spinniness="3.0" ContactTag="DEBRIS" >
+					<Box HalfSizeX="29.2596" HalfSizeY="12.0899" HalfSizeZ="6.40054" >
+						<Translation x="1.09611" y="-4.76837e-007" z="6.73903" />
+						<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+					</Box>
+				</BoneVolume>
+			</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="4s"
+			MaxLifetime="5s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1.5"
+			DestructionDelay="8s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+	
+</GameObject>
+</AssetDeclaration>

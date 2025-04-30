@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:Japan/Structures/JapanWarFactory.xml" />
+	</Includes>
+	<GameObject
+		id="MODWarFactory"
+		inheritFrom="JapanWarFactory"
+		CommandSet="MODWarFactoryCommandSet"
+		EditorName="MODWarFactory"
+		Description="Desc:MODWarFactory">
+		<EquivalentTo>JapanWarFactory</EquivalentTo>
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODWarFactory</DisplayName>
+		<Behaviors>
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelfEgg"
+				xai:joinAction="Replace"
+				SpecialPowerTemplate="SpecialPower_PackReplaceSelfEgg"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				NewObjectUnpackTime="2s"
+				ReplaceOptions="COPY_UPGRADES DISABLE_DURING_REPLACE DISABLE_NEW_OBJECT_DURING_UNPACK">
+				<ReplacementTemplate>MODWarFactoryEgg</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+			<CreateObjectDie
+				id="ModuleTag_CreateEggDie"
+				xai:joinAction="Replace"
+				CreationList="OCL_MODWarFactoryEggSpawn">
+				<DieMuxData
+					DeathTypes="EXTRA_6"/>
+			</CreateObjectDie>
+			<CreateObjectDie
+		id="ModuleTag_CreateOccupiedDie"
+			xai:joinAction="Replace"
+		CreationList="OCL_GenericMODBuildingDestruction" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6"/>
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+		id="ModuleTag_CreateOccupiedConfigDie"
+			xai:joinAction="Replace"
+		CreationList="OCL_GenericMODBuildingConfigDestruction" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6"/>
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+	id="ModuleTag_CreateOccupiedSuicide"
+			xai:joinAction="Replace"
+	CreationList="OCL_GenericMODBuildingSuicide" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+	id="ModuleTag_CreateOccupiedConfigSuicide"
+			xai:joinAction="Replace"
+	CreationList="OCL_GenericMODBuildingConfigSuicide" >
+				<DieMuxData
+					ExemptStatus="OVER_WATER UNPACKING"
+					DeathTypes="SUICIDED" />
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+			</CreateObjectDie>
+			<FireWeaponUpdate
+				id="ModuleTag_TransformationUpdate"
+			xai:joinAction="Remove"/>
+			<!--Command Upgrade-->
+			<CommandSetUpgrade
+				id="ModuleTag_CommandSetTech1"
+				xai:joinAction="Replace"
+				CommandSet="MODWarFactoryCommandSetRedAlert">
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanWarFactoryTech2</ConflictsWith>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanTech2</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_CommandSetTech2"
+				CommandSet="MODWarFactoryCommandSetTech2">
+				<ConflictsWith>UpgradeUprisingCantUse</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanTech2</ConflictsWith>
+				<TriggeredBy>Upgrade_JapanWarFactoryTech2</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingNoUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_CommandSetTech2RedAlert"
+				CommandSet="MODWarFactoryCommandSetTech2RedAlert">
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanTech2</ConflictsWith>
+				<TriggeredBy>Upgrade_JapanWarFactoryTech2</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+			</CommandSetUpgrade>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="MODWarFactoryAI"
+		inheritFrom="MODWarFactory"
+		KindOf="-CAN_BUILD_ON_WATER -CAN_BUILD_ON_DEEP_WATER"
+		EditorName="MODWarFactoryAI">
+		<EquivalentTo>MODWarFactory</EquivalentTo>
+	</GameObject>
+	<GameObject
+	id="MODWarFactory_Crane"
+	inheritFrom="MODWarFactory"
+	EditorName="MODWarFactory_Crane">
+		<Draws>
+			<ScriptedModelDraw
+			id="ModuleTag_Draw_Egg"
+			xai:joinAction="Remove"/>
+		</Draws>
+	</GameObject>
+</AssetDeclaration>

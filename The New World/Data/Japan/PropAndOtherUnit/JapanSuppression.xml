@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+  <Tags></Tags>
+  <Includes>
+    <Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+  </Includes>
+	<GameObject
+		id="JapanSuppressionSpawner"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="IMMOBILE UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE"
+		EditorName="JapanSuppressionSpawner">
+		<DisplayName>JapanSuppressionSpawner</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"/>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="0.2s"
+			  MaxLifetime="0.2s" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_Suppression">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>JapanSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_SuppressionUpgrade">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>JapanSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+	</GameObject>
+
+	<GameObject
+		id="JapanSuppression"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		CommandSet="EmptyCommandSet"
+		KindOf="NOT_AUTOACQUIRABLE IGNORE_FOR_VICTORY NO_COLLIDE IGNORE_IN_AI_HUNT_TACTIC RESIST_EMP DONT_DESTROY_IF_ON_BRIDGE"
+		EditorName="JapanSuppression">
+    <DisplayName>Name:JapanSuppression</DisplayName>
+    <ArmorSet
+			Armor="StructureArmor"
+			DamageFX="GenericStructureDamageFX" />
+    <Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="" />
+        </ModelConditionState>
+      </ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+    	<Physics
+				id="ModuleTag_Physics" />
+      <FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="2s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="JapanSuppressionWeapon"
+					OneShot="false" />
+			</FireWeaponUpdate>
+		<FireWeaponUpdate
+			id="ModuleTag_StopWeaponUpdate">
+			<FireWeaponNugget
+				WeaponName="JapanSuppressionEffectTrigger"
+				OneShot="true"
+				/>
+		</FireWeaponUpdate>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+      <LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				MinLifetime="10s"
+				MaxLifetime="10s"/>
+    </Behaviors>
+    <AI>
+      <AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+    </AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>  
+    <VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="0" />
+  </GameObject>
+	<GameObject
+		id="JapanSuppressionUpgrade"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		CommandSet="EmptyCommandSet"
+		KindOf="NOT_AUTOACQUIRABLE IGNORE_FOR_VICTORY NO_COLLIDE IGNORE_IN_AI_HUNT_TACTIC RESIST_EMP DONT_DESTROY_IF_ON_BRIDGE"
+		EditorName="JapanSuppressionUpgrade">
+		<DisplayName>Name:JapanSuppressionUpgrade</DisplayName>
+		<ArmorSet
+				Armor="StructureArmor"
+				DamageFX="GenericStructureDamageFX" />
+		<Draws>
+			<ScriptedModelDraw
+					  id="ModuleTag_Draw"
+					  OkToChangeModelColor="true">
+				<ModelConditionState
+							ParseCondStateType="PARSE_DEFAULT">
+					<Model
+								  Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+					id="ModuleTag_Physics" />
+			<FireWeaponUpdate
+					  id="ModuleTag_FireWeaponUpdate"
+					  FireInterval="2s"
+					  AliveOnly="true"
+					  ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="JapanSuppressionWeapon"
+					OneShot="false" />
+			</FireWeaponUpdate>
+			<FireWeaponUpdate
+				id="ModuleTag_StopWeaponUpdate">
+				<FireWeaponNugget
+					WeaponName="JapanSuppressionEffectTrigger"
+					OneShot="true"
+				/>
+			</FireWeaponUpdate>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<LifetimeUpdate
+					  id="ModuleTag_Lifetime"
+					  MinLifetime="15s"
+					  MaxLifetime="15s"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+					  id="ModuleTag_AI"
+					  StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<VisionInfo
+				VisionRange="100"
+				ShroudClearingRange="0" />
+	</GameObject>
+</AssetDeclaration>

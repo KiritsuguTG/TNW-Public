@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="AlliedSupportAircraftShrinkRay"
+		AttackRange="200"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		WeaponSpeed="999999.0"
+		ClipSize="1"
+		PreAttackType="PER_CLIP"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		Flags="NOT_ATTRACTED_BY_MAGNETS" >
+		<FiringDuration
+			MinSeconds="0.8s"
+			MaxSeconds="0.8s" />
+		<Nuggets>
+			<ActivateLaserNugget
+				Lifetime="1s"
+				LaserId="1">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE HUGE_VEHICLE"
+					Exclude="AIRCRAFT HARVESTER"
+					StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET"/>
+			</ActivateLaserNugget>
+			<AttributeModifierNugget
+				AttributeModifierName="AttributeMod_AlliedSupportAircraftShrinkRay_HighTechnology">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE HUGE_VEHICLE"
+					Exclude="AIRCRAFT HARVESTER"
+					StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET"/>
+			</AttributeModifierNugget>
+			<TintObjectsNugget
+				PreColorTime="0.4s"
+				SustainedColorTime="0.2s"
+				PostColorTime="0.4s"
+				Frequency="0"
+				Amplitude="0">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE HUGE_VEHICLE"
+					Exclude="AIRCRAFT HARVESTER"
+					StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET"/>
+				<Color R="2" G="2" B="2"/>
+			</TintObjectsNugget>
+			<DamageNugget
+				Damage="1.0"
+				DamageType="MAGIC"
+				DeathType="EXPLODED" >
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE HUGE_VEHICLE"
+					Exclude="AIRCRAFT HARVESTER"
+					StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET"/>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

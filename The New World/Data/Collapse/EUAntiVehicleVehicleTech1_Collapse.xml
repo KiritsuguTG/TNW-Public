@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="ART:Units/EUAntiVehicleVehicleTech1/AUScoutVehicle_COL.w3x" />
+    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<GameObject
+		id="EUAntiVehicleVehicleTech1_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="MODAntiInfantryVehicle_Collapse">
+		<Draws>
+			<DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="15"
+			Explodiness="4" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUSCOUTVEHICLE_COL" />
+					<Texture
+						Original="AUScoutVehicle"
+						New="AUScoutVehicle_D" />
+					<xi:include
+						href="DATA:Includes/VehicleCollapseParticles/AlliedVehicleCollapseParticles.xml"
+						xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedVehicleCollapseParticles/child::*)" />
+        </ModelConditionState>
+				<BoneVolumes>
+					<BoneVolume BoneName="Bone_D_01" Mass="5502" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box HalfSizeX="13.6248" HalfSizeY="8.70119" HalfSizeZ="4.58404" >
+		<Translation x="-0.254641" y="-6.05583e-005" z="4.58404" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_02" Mass="207" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box HalfSizeX="10.3845" HalfSizeY="2.43105" HalfSizeZ="0.810351" >
+		<Translation x="8.92823" y="0.402771" z="10.416" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_03" Mass="109" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box HalfSizeX="2.04209" HalfSizeY="2.22096" HalfSizeZ="2.37733" >
+		<Translation x="-13.8311" y="5.54176" z="6.00644" />
+		<Rotation x="0.0" y="-0.100516" z="0.0" w="0.994935" />
+	</Box>
+</BoneVolume>
+			</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="4s"
+			MaxLifetime="5s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1.5"
+			DestructionDelay="8s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+	<AudioArraySound>
+		<AudioEntry Sound="RA3VehicleExplosionMediumNoDelay" AudioType="soundAmbient" />
+	</AudioArraySound>	
+</GameObject>
+</AssetDeclaration>

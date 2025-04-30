@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="ART:JUAntiAirVehicleTech1_Rocket.w3x" />
+	</Includes>
+	<GameObject
+		id="JapanMisslePlantMissileProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE SMALL_MISSILE DEFLECT_BY_SPECIAL_POWER NO_COLLIDE HIDE_IF_FOGGED"
+		EditorName="JapanMisslePlantMissileProjectile">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="JUAntiAirVehicleTech1_Rocket" />
+          <ParticleSysBone
+             BoneName="NONE"
+             FXParticleSystemTemplate="FXJapanMIRVTrailShort"
+             FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JAP_ChopperMissileHit" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="DETONATE_CALLS_KILL ORIENT_TO_FLIGHT_PATH PING_PONG_SIDEWAYS_DRIFT"
+				GroundHitFX="FX_JAP_ChopperMissileHit"
+				MaxDistanceReachedFX="FX_JAP_ChopperMissileHit"
+				SidewaysDrift="50"
+				FlightPathAdjustDistPerSecond="200"/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	<GameObject
+	id="JapanMechaKingMissilePodsProjectile"
+	Side="Japan"
+	EditorSorting="SYSTEM"
+	KindOf="PROJECTILE SMALL_MISSILE DEFLECT_BY_SPECIAL_POWER NO_COLLIDE HIDE_IF_FOGGED"
+	EditorName="JapanFortressShipMissileProjectileWarhead">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+								  Name="EXJapanFortressRocket" />
+					<ParticleSysBone
+								  BoneName="NONE"
+								  FXParticleSystemTemplate="JapanFortRocketTrail"
+								  FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_FortressShip_MissileImpact" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<BezierProjectile
+	id="ModuleTag_BezierProjectileBehavior"
+	Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+	FirstHeightMin="5"
+	FirstHeightMax="5"
+	SecondHeightMin="5"
+	SecondHeightMax="5"
+	FirstPercentIndent="33"
+	SecondPercentIndent="66"
+	FlightPathAdjustDistPerSecond="100"
+	GroundHitFX="FX_FortressShip_MissileImpact"
+	MaxDistanceReachedFX="FX_FortressShip_MissileImpact"/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_EmperorsPearl_MissileRocketBy_Whizby" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	<GameObject
+	  id="JapanEmperorMechaMissileProjectile"
+	  Side="Japan"
+	  EditorSorting="SYSTEM"
+	  KindOf="PROJECTILE SMALL_MISSILE DEFLECT_BY_SPECIAL_POWER NO_COLLIDE HIDE_IF_FOGGED"
+	  EditorName="JapanEmperorMechaMissileProjectile">
+		<ArmorSet
+				Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+					  id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+							ParseCondStateType="PARSE_DEFAULT">
+					<Model
+								  Name="FX_FlakShell" />
+					<ParticleSysBone
+								  BoneName="NONE"
+								  FXParticleSystemTemplate="JapanMissile_Fire"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="NONE"
+								  FXParticleSystemTemplate="ChopperMissileSmoke"
+								  FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+					  id="ModuleTag_FXLists">
+				<DieMuxData
+							DeathTypes="ALL" />
+				<Event
+							Index="onDeath"
+							FX="FX_JAP_EmperorKingOniMissileImpact" />
+			</FXListBehavior>
+			<DestroyDie
+					  id="ModuleTag_Die">
+				<DieMuxData
+							DeathTypes="ALL" />
+			</DestroyDie>
+			<BezierProjectile
+					  id="ModuleTag_BezierProjectileBehavior"
+					  Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL PING_PONG_SIDEWAYS_DRIFT"
+					  FirstHeightMin="-20"
+					  FirstHeightMax="80"
+					  SecondHeightMin="-20"
+					  SecondHeightMax="80"
+					  FirstPercentIndent="0"
+					  SecondPercentIndent="66"
+					  GroundHitFX="FX_JAP_EmperorKingOniMissileImpact"
+					  MaxDistanceReachedFX="FX_JAP_EmperorKingOniMissileImpact"
+					  SidewaysDrift="30"
+					  FlightPathAdjustDistPerSecond="100.0"
+					  MaxDistanceToTravel="600.0"
+				/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+					  id="ModuleTag_ActiveBody"
+					  MaxHealth="100.0" />
+		</Body>
+		<Geometry
+				IsSmall="true">
+			<Shape
+					  Type="SPHERE"
+					  MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+				VisionRange="0" />
+	</GameObject>
+</AssetDeclaration>

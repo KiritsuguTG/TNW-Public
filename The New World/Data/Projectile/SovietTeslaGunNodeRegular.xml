@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="ART:FXAlliedPrismBeam.xml" />
+	</Includes>
+	<GameObject
+		id="SovietTeslaGunNodeRegularBase"
+		KindOf="DEFLECT_BY_SPECIAL_POWER INERT NO_COLLIDE">
+		<ArmorSet
+			Armor="NoArmor"/>
+		<Draws>
+			<LaserDraw
+			  id="ModuleTag_LaserA"
+			  Texture1_UTile="1"
+			  Texture1_VTile="1"
+			  Texture1_UScrollRate="0"
+			  Texture1_VScrollRate="2"
+			  Texture1_NumFrames="1"
+			  Texture1_FrameRate="30"
+			  Texture2_UTile="1"
+			  Texture2_VTile=".01"
+			  Texture2_UScrollRate="0"
+			  Texture2_VScrollRate=".8"
+			  Texture2_NumFrames="1"
+			  Texture2_FrameRate="30"
+			  LaserWidth="10"
+				WeaponSlotID="1"
+				LaserStateID="1">
+				<FXShader
+							ShaderName="Laser.fx"
+							TechniqueIndex="0">
+					<Constants>
+						<Texture
+										Name="Texture1">
+							<Value>FXLightningMJ02</Value>
+						</Texture>
+						<Texture
+										Name="Texture2">
+							<Value>FXGradRandom</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>10.000000</Value>
+							<Value>10.000000</Value>
+							<Value>10.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserB"
+				Texture1_UTile="1"
+        Texture1_VTile=".7"
+        Texture1_UScrollRate="0"
+        Texture1_VScrollRate="1.8"
+        Texture1_NumFrames="1"
+        Texture1_FrameRate="30"
+        Texture2_UTile="1"
+        Texture2_VTile=".01"
+        Texture2_UScrollRate="0"
+        Texture2_VScrollRate=".5"
+        Texture2_NumFrames="1"
+        Texture2_FrameRate="30"
+				LaserWidth="10"
+				WeaponSlotID="1"
+				LaserStateID="1">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXLightningMJ02</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXGradRandom</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>10.000000</Value>
+							<Value>10.000000</Value>
+							<Value>10.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<LaserScatterUpdate
+				id="ModuleTag_LaserScatterUpdate"
+				LaserLifetime="0.5s" />
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	<GameObject
+		id="SovietAntiVehicleVehicleTech2TeslaNodeEnd"
+		inheritFrom="SovietTeslaGunNodeRegularBase" >
+		<Behaviors>
+			<WeaponScatterEffectUpdate
+					 id="Base_ScatterEffect">
+				<ScatterSettings ScatterAmount="0" ScatterDelay="0.0s" />
+				<Filter
+					Rule="NONE"
+					Include="INFANTRY" 
+					Exclude="MACHINE" />
+			</WeaponScatterEffectUpdate>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="SovietAntiVehicleVehicleTech2TeslaNodeRegular"
+		inheritFrom="SovietTeslaGunNodeRegularBase" >
+		<Behaviors>
+			<WeaponScatterEffectUpdate
+					 id="Regular_ScatterEffect"
+					 WeaponTemplate="SovietAntiVehicleVehicleTech2TeslaNode">
+				<ScatterSettings ScatterAmount="1" ScatterDelay="0.0s" />
+				<Filter
+					Rule="NONE"
+					Include="INFANTRY"
+					Exclude="MACHINE"/>
+			</WeaponScatterEffectUpdate>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="SovietAntiVehicleVehicleTech2TeslaNodeRegulare_Vet"
+		inheritFrom="SovietTeslaGunNodeRegularBase" >
+		<Behaviors>
+			<WeaponScatterEffectUpdate
+					 id="Regular_ScatterEffect"
+					 WeaponTemplate="SovietAntiVehicleVehicleTech2TeslaNode">
+				<ScatterSettings ScatterAmount="2" ScatterDelay="0.0s" />
+				<Filter
+					Rule="NONE"
+					Include="INFANTRY"
+					Exclude="MACHINE"/>
+			</WeaponScatterEffectUpdate>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 		
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+		id="GameStartSpawn"
+		inheritFrom="BaseObject"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		CommandSet="RangBuCommandSet"
+		KindOf="NOT_AUTOACQUIRABLE AUTO_ACQUIRABLE_BY_AI IGNORE_FOR_VICTORY RESIST_EMP IGNORE_IN_AI_HUNT_TACTIC CAN_BUILD_ON_WATER CAN_BUILD_ON_DEEP_WATER STRUCTURE NO_COLLIDE SKIRMISH_AI_DONT_CONSIDER_THREAT"
+		EditorName="GameStartSpawn"
+		Description="Desc:GameStartSpawn"
+		TypeDescription="Type:GameStartSpawn"
+		MaxSimultaneousOfType="1">
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="JapanAdvancedSuperWeaponArmor"
+			DamageFX="FactionStructureDamageFX"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+						</ModelConditionState>
+			</ScriptedModelDraw>	
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<AttributeModifierPoolUpdate 
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<PlayerUpgradeSpecialPower
+				id="ModuleTag_SpecialPower_AINoSuperWeapon"
+				SpecialPowerTemplate="SpecialPowerAINoSuperWeapon"
+				AvailableAtStart="true">
+				<Upgrade>AINoSuperWeapon</Upgrade>
+			</PlayerUpgradeSpecialPower>
+			<PlayerUpgradeSpecialPower
+				id="ModuleTag_SpecialPower_UnmiliWeapon"
+				SpecialPowerTemplate="SpecialPowerUnmiliWeapon"
+				AvailableAtStart="true">
+				<Upgrade>Upgrade_UnmiliWeapon</Upgrade>
+			</PlayerUpgradeSpecialPower>
+				<AttributeModifierUpgrade
+				id="ModuleTag_AINoSuperWeaponCon"
+				AttributeModifier="ConAttributePlayerAINoSuperWeapon">
+		<TriggeredBy>AINoSuperWeaponEffect</TriggeredBy>
+				</AttributeModifierUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_FXUnmiliWeapon"
+				AttributeModifier="AttributeModifier_FXUnmiliWeapon">
+		<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<FireWeaponWhenDead
+	id="ModuleTag_FireWeaponWhenDead"
+	InitiallyActive="true"
+	DeathWeapon="AINoSuperWeaponWhenDead">
+	<DieMuxData
+		DeathTypes="ALL"/>
+			</FireWeaponWhenDead>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_AIUseUnmiliWeapon">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>Upgrade_UnmiliWeapon</UpgradeRequired>
+			</CreateObjectDie>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="GameStartFunctions" />
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="6s"
+				MaxLifetime="6s" />
+		</Behaviors>
+						<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="50">			
+		</CrusherInfo>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1.0" />
+		</Body>
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="0" />	
+	</GameObject>
+	
+		<WeaponTemplate
+		id="AINoSuperWeaponWhenDead"
+		AttackRange="999999"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_WATER"
+		RadiusDamageAffects="ENEMIES">
+        <PreAttackDelay
+			      MinSeconds="0.0s"
+			      MaxSeconds="0.0s" />
+        <Nuggets>
+			<AttributeModifierNugget
+				Radius="9999"
+				AttributeModifierName="AttributeAINoSuperWeaponWhenDead">
+			 <SpecialObjectFilter
+					Rule="NONE"
+				  Relationship="ENEMIES">
+                <IncludeThing>GameStarSpawn</IncludeThing>
+				</SpecialObjectFilter>
+			<RequiredUpgrade>AINoSuperWeapon</RequiredUpgrade>	
+			</AttributeModifierNugget>
+        </Nuggets>
+    </WeaponTemplate>
+	
+	<GameObject
+		id="PointDefenseDroneAINoSuperWeapon"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="NO_COLLIDE SUMMONED VEHICLE NOT_AUTOACQUIRABLE UNATTACKABLE"
+		EditorName="PointDefenseDroneAINoSuperWeapon">
+		<DisplayName>PointDefenseDroneAINoSuperWeapon</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<LocomotorSet
+			Locomotor="JapanPointDefenseDroneLocomotor"
+			Condition="NORMAL"
+			Speed="200.0" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />         
+        </ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<AttachUpdate
+				id="ModuleTag_Attach"
+				Flags="DIE_WHEN_PARENT_DIES_FROM_NOT_ME STICK_TO_PARENT TELEPORT INSTANT_TELEPORT_ON_PARENT_TELEPORT LEECH_DAMAGE_FROM_PARENT DIE_WHEN_DETACH_ALWAYS DEFECT_WHEN_PARENT_DEFECTS"
+				CloseEnoughRange="1.0"
+				DamageTypesToNotLeech="CRUSH UNRESISTABLE"
+				DeathTypesToNotLeech="DETONATED"
+				ParentStatus="POINT_DEFENSE_DRONE_ATTACHED">
+				<ModifierToLeechFromParent>AttributeMod_TargetPainted</ModifierToLeechFromParent>
+				<ModifierToLeechFromParent>AttributeMod_TargetPainted_HighTechnology</ModifierToLeechFromParent>
+			</AttachUpdate>
+			<ObjectCreationUpgrade
+				id="ModuleTag_ObjectCreationUpgrade"
+				GrantUpgrade="AINoSuperWeaponEffect">
+				<TriggeredBy>NormalAIUpgrade</TriggeredBy>
+			</ObjectCreationUpgrade>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="0.13s"
+				MaxLifetime="0.13s" />
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<Physics
+				id="ModuleTag_Physics" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				StateMachine="UnitAIStateMachine" />
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="10.0"
+				Height="10.0">
+			</Shape>
+		</Geometry>
+		<ShadowInfo
+			Type="NONE" />
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="0" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+
+	<GameObject
+		id="AIAttackStyleSpawn"
+		inheritFrom="BaseObject"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		KindOf="NOT_AUTOACQUIRABLE AUTO_ACQUIRABLE_BY_AI IGNORE_FOR_VICTORY RESIST_EMP IGNORE_IN_AI_HUNT_TACTIC CAN_BUILD_ON_WATER CAN_BUILD_ON_DEEP_WATER STRUCTURE NO_COLLIDE SKIRMISH_AI_DONT_CONSIDER_THREAT"
+		EditorName="GameStartSpawn"
+		Description="Desc:GameStartSpawn"
+		TypeDescription="Type:GameStartSpawn"
+		MaxSimultaneousOfType="1">
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="JapanAdvancedSuperWeaponArmor"
+			DamageFX="FactionStructureDamageFX"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateAIAttackStyleSpawn"
+				CreationList="OCL_AIAttackStyleSpawn">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>NormalAIUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateAIBuildStyleSpawn"
+				CreationList="OCL_AIBuildStyleSpawn">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>NormalAIUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateAITechStyleSpawn"
+				CreationList="OCL_AITechStyleSpawn">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>NormalAIUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_PlayerInformation">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="1s"
+				MaxLifetime="1s" />
+		</Behaviors>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="50">
+		</CrusherInfo>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1.0" />
+		</Body>
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="0" />
+	</GameObject>
+</AssetDeclaration>

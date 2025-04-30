@@ -1,0 +1,558 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<!-- aka Riptide ACV -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml"/> 
+		<Include type="all"	source="ART:Decal_Heal_CO.xml" />
+
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseObject.xml"/>
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseAuto.xml"/>
+    <Include type="instance" source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<!-- aka PT Boat -->
+	<GameObject
+		id="TH_Auto04"
+		inheritFrom="BaseAutoSpawn"
+		BuildTime="100.0"
+		EditorName="TH_Auto04">
+		<DisplayName>Name:BaseAutoSpawn</DisplayName>
+		<Behaviors>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="TH_Auto04Spawn_OCL">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<ObjectCreationList
+	id="TH_Auto04Spawn_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE"
+			Count="1"
+			DispositionAngle="-90d">
+			<CreateObject>TH_Auto04Spawn</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<GameObject
+		id="TH_Auto04Spawn"
+		inheritFrom="BaseObject"
+		VoicePriority="188"
+		BuildTime="10"
+		EditorName="TH_Auto04Spawn"
+		Side="Neutral"
+		TransportSlotCount="5" 
+		SelectPortrait="Portrait_HealthCar"
+		ButtonImage="Button_HealthCar"
+		ShockwaveResistance="90"
+		SubGroupPriority="945"
+		RadarPriority="UNIT"
+		PathPriority="30" 
+		ProductionQueueType="VEHICLE"
+		CommandSet="NeutralVehicleCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS VEHICLE CAN_BE_FAVORITE_UNIT SCORE CAN_HEAL_ALLIES"
+		UnitCategory="VEHICLE"
+		CommandPoints="1"
+		HealthBoxHeightOffset="20"
+		EvaEventSecondDamageFarFromFirstScanRange="600"
+		VoiceSelectUnderFireTimeout="10s"
+		VoiceSelectUnderFireDamageTime="3s"
+		EditorSorting="UNIT"
+		Description="Desc:TH_Auto04"
+		TypeDescription="Type:TH_Auto04">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:TH_Auto04</DisplayName>
+    <LocomotorSet
+      id="DefaultLandLocomotor"
+			Locomotor="AutoSmallLocomotor"
+			Condition="NORMAL"
+			Speed="85.0"/>
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"/>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="500"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="AutoAndShipArmor"
+			DamageFX="VehicleDamageFX"/>
+		<ArmorSet
+			Armor="CryoBeamFrozenArmor"
+			DamageFX="VehicleDamageFX"
+			Conditions="SECONDARY_DAMAGE"
+		/>
+		<ArmorSet
+			Armor="ShrinkRayEffectArmor"
+			DamageFX="VehicleDamageFX"
+			Conditions="SHRINK_EFFECT"
+		/>
+		<Draws>
+      <TruckDraw
+				id="ModuleTag_Draw"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="BONEGARRISON01 BONEGARRISON02 BONEGARRISON03 BONEGARRISON04 BONE_TIRE_LEFT_FRONT BONE_TIRE_LEFT_REAR BONE_TIRE_RIGHT_REAR BONE_TIRE_RIGHT_FRONT FXTRACKSL FXTRACKSR"
+				TrackMarks="EXTireTrack2"
+				LeftFrontTireBone="BONE_TIRE_LEFT_FRONT"
+				RightFrontTireBone="BONE_TIRE_RIGHT_FRONT"
+				LeftRearTireBone="BONE_TIRE_LEFT_REAR"
+				RightRearTireBone="BONE_TIRE_RIGHT_REAR"
+				TrackMarksLeftBone="FXTRACKSL"
+				TrackMarksRightBone="FXTRACKSR"
+				OkToChangeModelColor="true">
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="TH_AUTO_04"/>
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="TH_AUTO_04"/>
+					<Material
+						ShaderName="FX_FormPreview.fx"
+						TechniqueName="Default">
+						<Constants>
+							<Texture Name="SpecMap">
+								<Value>FXGradient01</Value>
+							</Texture>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="TH_AUTO_04" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="TH_AUTO_04" />
+					<Texture
+						Original="TH_Auto01"
+						New="TH_Auto01_D" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/> 
+				</ModelConditionState>
+      </TruckDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+      	id="ModuleTag_Draw_HeadLightL"
+      	AttachToBoneInAnotherModule="fxheadlight_L"
+      	OkToChangeModelColor="true">
+    <ModelConditionState
+      ParseCondStateType="PARSE_DEFAULT">
+      <Model
+        Name="" />
+    </ModelConditionState>
+    <ModelConditionState
+      ParseCondStateType="PARSE_NORMAL"
+      ConditionsYes="USER_1 NIGHT">
+      <Model
+        Name="EX_Headlights" />
+    </ModelConditionState>
+  </ScriptedModelDraw>
+  <ScriptedModelDraw
+    id="ModuleTag_Draw_HeadLightR"
+    AttachToBoneInAnotherModule="fxheadlight_R"
+    OkToChangeModelColor="true">
+    <ModelConditionState
+      ParseCondStateType="PARSE_DEFAULT">
+      <Model
+        Name="" />
+    </ModelConditionState>
+    <ModelConditionState
+      ParseCondStateType="PARSE_NORMAL"
+      ConditionsYes="USER_1 NIGHT">
+      <Model
+        Name="EX_Headlights" />
+    </ModelConditionState>
+  </ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_RepairDecal"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED">
+					<Model Name="FXInvisBone" />
+					<ShadowInfo
+						Type="ADDITIVE_DECAL"
+						SizeX="400"
+						SizeY="400"
+						OverrideLODVisibility="true"
+						MaxHeight="200"
+						UseHouseColor="true"
+						Texture="TH_Auto04Heal_decal"
+						LocalPlayerOnly="true"/>
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="TH_Auto04DummyWeapon"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<StatusBitsUpgrade
+					  id="ModuleTag_UpgradeWeapon"
+					  StatusToSet="REPAIR_ALLIES_WHEN_IDLE">
+				<TriggeredBy>Upgrade_NeutralTech</TriggeredBy>
+			</StatusBitsUpgrade>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_ALL_RiptideDie"/>
+			</FXListBehavior>
+			<PassiveAreaEffectBehavior
+				id="ModuleTag_PassiveAreaEffect"
+				EffectRadius="200"
+				NonStackable="true"
+				AffectUnderAttack="true"
+        AffectContained="true"
+				HealingPercentPerSecond="15%" >
+				<AllowFilter
+					Rule="ANY"
+					Include="INFANTRY"
+					Relationship="ALLIES" />
+        <ContainerFilter
+          Rule="ANY"
+          Include="VEHICLE STRUCTURE"
+          Relationship="ALLIES"
+          StatusBitFlags="CONTAINER_OCCUPIED" />
+			</PassiveAreaEffectBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>		
+						<AttributeModifierPoolUpdate 
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<SquishCollide
+				id ="DefaultSquishCollide"
+				CrushKillDelay="1.5s" />
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				Motion="TRACKED"
+				Collision="OMNICOLLIDING"				
+				ContactTag="VEHICLE">
+				<!--Volume="Box"
+				Motion="SIMULATED"
+				Collision="NONINTERCOLLIDING"-->
+			</DynamicsUpdate>
+						<InvisibilityBehavior
+				id="ModuleTag_Invisibility"
+				InvisibilityTemplate="StealthGarrisonInvisibilityTemplate"
+			/>
+			
+			<FireWeaponWhenDead
+				id="ModuleTag_CatalystDeathWeapon"
+				InitiallyActive="true"
+				DeathWeapon="CatalystInfantryDeathWeapon"
+				ContinueToBezierDestination="false"
+				UseMyKillerAsWeaponSource="true">
+				<DieMuxData DeathTypes="CATALYST" />
+			</FireWeaponWhenDead>
+			<SecondaryDamageTracker
+				id="ModuleTag_SecondaryDamageTracker"
+				UpdateDuration="1s"
+				DissipateAmount="25"
+				MaxDamageClampScaler="=$MAX_SECONDARY_DAMAGE_SCALER">
+				<Color R="1.0" G="1.0" B="1.75"/>
+				<EffectInfo
+					Fraction="0.2"
+					AttributeModifier="AttributeModifer_CryoBeam_02"
+				/>
+				<EffectInfo
+					Fraction="0.4"
+					AttributeModifier="AttributeModifer_CryoBeam_04"
+				/>
+				<EffectInfo
+					Fraction="0.6"
+					AttributeModifier="AttributeModifer_CryoBeam_06"
+				/>
+				<EffectInfo
+					Fraction="0.8"
+					AttributeModifier="AttributeModifer_CryoBeam_08"
+				/>
+				<EffectInfo
+					Fraction="1.0"
+					SetUpgradedArmor="true"
+					OnEnterDisable="true"
+					OnEnterCancelSpecialAbilities="true"
+					AttributeModifier="AttributeModifer_CryoBeam_10"
+				/>
+				<ObjectStatusValidation
+					ForbiddenStatus="UNDER_IRON_CURTAIN" />
+			</SecondaryDamageTracker>
+			<RunOffMapBehavior
+				id="ModuleTag_RunOffMapBehavior"
+				RequiresSpecificTrigger="true"
+				RunOffMapWaypointName="RunOffMap"/>
+			<StancesBehavior
+				id="ModuleTag_Stance"
+				StanceTemplate="Generic" />
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="TH_Auto04_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="700"
+				MaxHealthReallyDamagedPercentage="20">
+				</ActiveBody>
+		</Body>
+		<VisionInfo
+			VisionRange="400"
+			ShroudClearingRange="200"/>
+    <Geometry>
+		<Shape
+			 Type= "BOX"
+				 MinorRadius = "8.87814"
+				 MajorRadius = "20.3162"
+			 Height = "19.5101"
+			 ContactPointGeneration = "VEHICLE" >
+			<Offset
+				y = "0.0383339"
+				x = "0.376251"
+				z = "0.0" />
+		</Shape>
+    </Geometry>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_MagneticSatelliteSuckedAway">
+				<ModelConditionSound Sound="SOV_MagneticSatellite_SuckedAway" RequiredFlags="SUCKED_UP_HIGH" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="Frozen">
+				<Override RequiredFlags="PARALYZED">
+					<AudioArrayVoice>
+						<AudioEntry Sound="" AudioType="voiceAttack" />
+						<AudioEntry Sound="" AudioType="voiceAttackAir" />
+						<AudioEntry Sound="" AudioType="voiceAttackAfterMoving" />
+						<AudioEntry Sound="" AudioType="voiceAttackGarrisonedStructure" />
+						<AudioEntry Sound="" AudioType="voiceAttackStructure" />
+						<AudioEntry Sound="" AudioType="voiceCreated" />
+						<AudioEntry Sound="" AudioType="voiceDock" />
+						<AudioEntry Sound="" AudioType="voiceFear" />
+						<AudioEntry Sound="" AudioType="voiceGarrison" />
+						<AudioEntry Sound="" AudioType="voiceMove" />
+						<AudioEntry Sound="" AudioType="voiceAttackAfterMoving" />
+						<AudioEntry Sound="" AudioType="voiceMoveWaterToLand" />
+						<AudioEntry Sound="" AudioType="voiceMoveLandToWater" />
+						<AudioEntry Sound="" AudioType="voiceRepair" />
+						<AudioEntry Sound="" AudioType="voiceRetreatToCastle" />
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSelect" />
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSelectBattle" />
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSelectUnderFire" /> 
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSupply" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="UnitLost" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="BuildingConstructionStarted" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="UnitUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="UnitUnderAttackFromShroudedUnit" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="GenericUnitBeingBurned" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="AllyUnitUnderAttack" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="UnitAmbushed" EvaType="ambushed" />
+			<EvaEntry EvaEvent="GenericEnemyUnitSighted" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="EnemyStealthUnitDiscovered" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="NewConstructionOptions" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="BuildOnHold" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="BuildCancelled" EvaType="buildCancelled" />
+			<EvaEntry EvaEvent="UnitPromoted" EvaType="promotedOwner" />
+		</EvaEventArray>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALL_MultiGunnerIFV_MovStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />	
+		</AudioArraySound>
+	</GameObject>
+	<UnitAbilityButtonTemplate
+		id="Button_ConstructTH_Auto04" 
+		LogicCommand="Command_ConstructTH_Auto04">
+		<Data>
+			<BuildUnit/>
+		</Data>
+	</UnitAbilityButtonTemplate>
+	<LogicCommand
+		Type="UNIT_BUILD"
+		id="Command_ConstructTH_Auto04">
+		<Object>TH_Auto04Spawn</Object>
+	</LogicCommand>
+	<ObjectCreationList
+		id="TH_Auto04_Die_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="LIKE_EXISTING INHERIT_VELOCITY"
+			Count="1"
+			VelocityScale="35.0"
+			MinForceMagnitude="2.0"
+			MaxForceMagnitude="4.0"
+			MinForcePitch="90d"
+			MaxForcePitch="45d">
+			<CreateObject>TH_Auto04_Collapse</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+  <GameObject
+		id="TH_Auto04_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="TH_Auto04_Collapse">
+		<Draws>
+			<DynamicsDraw 
+				id="ModuleTag_Draw" 
+				Collision="NONINTERCOLLIDING"
+				FlingPerturbation="15"
+				Explodiness="8" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="TH_AUTO_04" />
+					<Texture
+						Original="TH_Auto01"
+						New="TH_Auto01_D" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"
+          OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"
+          OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"
+          OnlyIfOnLand="true"/> 
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterFlash"
+						FollowBone="true"
+            OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterFlashLight"
+						FollowBone="true" 
+            OnlyIfOnWater="true"/>          
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterBubbles"
+						FollowBone="true"
+						OnlyIfOnWater="true"/>
+				</ModelConditionState>
+				<BoneVolumes>
+<BoneVolume BoneName="BONE_TIRE_RIGHT_REAR" Mass="147" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3" HalfSizeY="1.5" HalfSizeZ="3" >
+		<Translation x="-9.379" y="-9.27" z="3.251" />
+		<Rotation x="-0.703473" y="0.00501652" z="0.00821613" w="0.710657" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="BONE_TIRE_RIGHT_FRONT" Mass="147" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3" HalfSizeY="1.5" HalfSizeZ="3" >
+		<Translation x="11.131" y="-5.565" z="5.883" />
+		<Rotation x="-0.20702" y="0.00317218" z="-0.00329927" w="0.978326" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="BONE_TIRE_LEFT_REAR" Mass="147" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3" HalfSizeY="1.5" HalfSizeZ="3" >
+		<Translation x="-1.863" y="-0.932" z="6.632" />
+		<Rotation x="-0.707107" y="0.0" z="0.0" w="0.707107" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="BONE_TIRE_LEFT_FRONT" Mass="147" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3" HalfSizeY="1.5" HalfSizeZ="3" >
+		<Translation x="11.02" y="-9.147" z="3.28" />
+		<Rotation x="-0.701236" y="0.00411048" z="-0.00823006" w="0.712869" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="BONE_BODY" Mass="4045" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="12.221" HalfSizeY="2.458" HalfSizeZ="6.733" >
+		<Translation x="-3.784" y="-3.345" z="12.406" />
+		<Rotation x="-0.707107" y="0.0" z="0.0" w="0.707107" />
+	</Box>
+</BoneVolume>
+</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>	
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="4s"
+			MaxLifetime="5s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1.5"
+			DestructionDelay="8s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+</GameObject>
+	<Texture id="TH_Auto04Heal_decal" File="TH_Auto04Heal_decal.dds"/>
+</AssetDeclaration>

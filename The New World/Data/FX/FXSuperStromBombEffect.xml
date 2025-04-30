@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<FXParticleSystemTemplate ParticleTexture="FXSmoke01" PerParticleAttachedSystem="" Priority="LOW_OR_ABOVE" Shader="ALPHA" Type="GPU_PARTICLE" id="FXSuperStromBombEffectDust">
+	<Lifetime High="25" Low="15"/>
+	<Size High="400" Low="400"/>
+	<BurstCount High="1" Low="1"/>
+	<Alphas>
+		<Alpha Frame="2" High="0.25" Low="0.25" RelativeAge="15"/>
+	</Alphas>
+	<Colors>
+		<Color Frame="1" RelativeAge="0">
+			<Color b="1" g="1" r="1"/>
+		</Color>
+		<Color Frame="2" RelativeAge="15.000002">
+			<Color b="1" g="1" r="1"/>
+		</Color>
+		<Color Frame="3" RelativeAge="100">
+			<Color b="1" g="1" r="1"/>
+		</Color>
+	</Colors>
+	<Physics>
+		<Default>
+			<VelocityDamping High="1.05" Low="1.05"/>
+		</Default>
+	</Physics>
+	<Draw>
+		<Gpu DetailTexture="FXFracTileNRM" MiscValue1="0.08" MiscValue2="0.1" MiscValue3="90" MiscValue4="0.5" SpeedMultiplier="1"/>
+	</Draw>
+	<Volume>
+		<Cylinder Radius="40">
+			<Offset x="0" y="0" z="0"/>
+		</Cylinder>
+	</Volume>
+	<Velocity>
+		<Ortho>
+			<Position>
+				<x High="0" Low="0"/>
+				<y High="0" Low="0"/>
+				<z High="4" Low="4"/>
+			</Position>
+		</Ortho>
+	</Velocity>
+	<Event/>
+	<Update>
+		<Default>
+			<SizeRate High="-0.1" Low="-0.1"/>
+			<SizeRateDamping High="0.99" Low="0.99"/>
+			<AngleZ High="7" Low="-7"/>
+			<AngularDampingXY High="1" Low="1"/>
+		</Default>
+	</Update>
+</FXParticleSystemTemplate>
+
+<FXParticleSystemTemplate ParticleTexture="FXWaterFall" PerParticleAttachedSystem="" Priority="VERY_LOW_OR_ABOVE" Shader="ALPHA" SortLevel="1" Type="GPU_PARTICLE" id="FXSuperStromBombEffectMist">
+	<Lifetime High="45" Low="25"/>
+	<Size High="400" Low="400"/>
+	<BurstCount High="2" Low="2"/>
+	<Alphas>
+		<Alpha Frame="2" High="1" Low="1" RelativeAge="14"/>
+		<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+	</Alphas>
+	<Colors>
+		<Color Frame="1" RelativeAge="0">
+			<Color b="1" g="1" r="1"/>
+		</Color>
+		<Color Frame="2" RelativeAge="14.999999">
+			<Color b="1" g="1" r="1"/>
+		</Color>
+		<Color Frame="3" RelativeAge="100">
+			<Color b="1" g="1" r="1"/>
+		</Color>
+	</Colors>
+	<Wind AngleChangeMax="10" AngleChangeMin="-10" FullStrengthDist="1" Motion="PING_PONG" PingPongEndAngleMin="5.49779" Strength="1" TurbulenceAmplitude="0.01" TurbulenceFrequency="0.1"/>
+	<Physics>
+		<Default>
+			<VelocityDamping High="1.1" Low="1.1"/>
+		</Default>
+	</Physics>
+	<Draw>
+		<Gpu SpeedMultiplier="1"/>
+	</Draw>
+	<Volume>
+		<Cylinder Radius="40">
+			<Offset x="0" y="0" z="0"/>
+		</Cylinder>
+	</Volume>
+	<Velocity>
+		<Ortho>
+			<Position>
+				<x High="0" Low="0"/>
+				<y High="0" Low="0"/>
+				<z High="1" Low="1"/>
+			</Position>
+		</Ortho>
+	</Velocity>
+	<Event/>
+	<Update>
+		<Default Rotation="ROTATE_IN_WORLD_SPACE">
+			<SizeRate High="2" Low="2"/>
+			<SizeRateDamping High="0.95" Low="0.92"/>
+			<AngleZ High="3" Low="-3"/>
+			<AngularRateZ High="0.1" Low="-0.1"/>
+			<AngularDamping High="0.9" Low="0.9"/>
+			<AngularDampingXY High="1" Low="1"/>
+		</Default>
+	</Update>
+</FXParticleSystemTemplate>
+
+<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" Priority="HIGH_OR_ABOVE" Shader="ALPHA" Type="WAVE_PARTICLE" id="FXSuperStromBombEffectWake">
+	<Lifetime High="1" Low="1"/>
+	<Size High="8" Low="8"/>
+	<BurstCount High="1" Low="1"/>
+	<Physics/>
+	<Draw/>
+	<Volume>
+		<Cylinder Radius="40">
+			<Offset x="0" y="0" z="0"/>
+		</Cylinder>
+	</Volume>
+	<Velocity>
+		<Wavefront Shape="CIRCLE">
+			<Velocity High="60" Low="50"/>
+			<Amplitude High="40" Low="40"/>
+			<InitialRadius High="4" Low="2"/>
+		</Wavefront>
+	</Velocity>
+	<Event/>
+	<Update/>
+</FXParticleSystemTemplate>
+</AssetDeclaration>

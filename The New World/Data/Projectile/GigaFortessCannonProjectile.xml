@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<!-- The default plasma disk projectile -->
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all"	source="ART:Units/Giga-Fortress/EX_FORTRESSSHIPCANNON_HRC.w3x" />
+		<Include type="all"	source="ART:Units/Giga-Fortress/EX_FORTRESSSHIPCANNON_CTR.w3x" />
+		<Include type="all"	source="ART:Units/Giga-Fortress/EX_FORTRESSSHIPCANNON.PLANE03.w3x" />
+	</Includes>
+	<GameObject
+		id="GigaFortessCannonProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE HIDE_IF_FOGGED"
+		EditorName="GigaFortessCannonProjectile">
+		<ArmorSet
+			Armor="NoArmor" />
+		<SkirmishAIInformation
+			DodgeSafetyDistance="50.0">
+			<DodgeWithUnits Rule="ALL"
+			  StatusBitFlagsExclude="AIRBORNE_TARGET">
+			</DodgeWithUnits>
+		</SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EX_FORTRESSSHIPCANNON" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FortessCannonTrailAdd"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior	
+				id="ModuleTag_FXLists">
+				<DieMuxData	
+					DeathTypes="ALL"/>
+				<Event 
+					Index="onDeath"
+					FX="FX_FortessCannonGroundHit" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="20"
+				FirstHeightMax="20"
+				SecondHeightMin="20"
+				SecondHeightMax="20"
+				FirstPercentIndent="30"
+				SecondPercentIndent="90"
+				CurveFlattenMinDist="100"
+				SidewaysDrift="50"
+				FlightPathAdjustDistPerSecond="200"
+				GroundHitFX="FX_FortessCannonGroundHit">
+			</BezierProjectile>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="5"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	<GameObject
+		id="JapanSuperStructureBeamWeaponProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE HIDE_IF_FOGGED"
+		EditorName="JapanSuperStructureBeamWeaponProjectile">
+		<ArmorSet
+			Armor="NoArmor" />
+		<SkirmishAIInformation
+			DodgeSafetyDistance="50.0">
+			<DodgeWithUnits Rule="ALL"
+			  StatusBitFlagsExclude="AIRBORNE_TARGET">
+			</DodgeWithUnits>
+		</SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="EX_FORTRESSSHIPCANNON" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="FortessCannonTrailAdd"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL"/>
+				<Event
+					Index="onDeath"
+					FX="FX_TimeBombExplosionLvl1" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FlightPathAdjustDistPerSecond="2000"
+				GroundHitFX="FX_TimeBombExplosionLvl1">
+			</BezierProjectile>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="5"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+</AssetDeclaration>

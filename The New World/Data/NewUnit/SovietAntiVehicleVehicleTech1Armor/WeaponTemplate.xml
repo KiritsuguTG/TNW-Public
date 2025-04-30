@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+		<WeaponTemplate
+		id="ScatterableWeapon">
+		<ScatterRadiusVsType
+			Radius="70.0"
+			RequiredModelConditions="SHRINK_EFFECT">
+			<Filter
+				Rule="ANY"
+				Include="INFANTRY AIRCRAFT VEHICLE" />
+		</ScatterRadiusVsType>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="SovietAntiVehicleVehicleTech1ArmorCannonWeapon"
+		AttackRange="500.0"
+		MinimumAttackRange="50"
+		WeaponSpeed="0"
+		MinWeaponSpeed="1400"
+		MaxWeaponSpeed="1600"
+		ClipSize="1"
+		AcceptableAimDelta="3d"
+		WeaponRecoil="5d"
+		ScatterRadius="30"
+		ReAcquireDetailType="PRE_FIRE"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		AutoReloadsClip="AUTO"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+		FireSound="SOV_HammerTank_CanonFire"
+		FireFX="FX_SovietTankGun"
+		FireVeteranFX="FX_SovietTankGun_Vet"
+		InstantLoadClipOnActivate="true">
+		<FiringDuration
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<ClipReloadTime
+			MinSeconds="4.4s"
+			MaxSeconds="4.6s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="SovietAntiVehicleVehicleTech1ArmorCannonWarhead"
+				ProjectileTemplate="SovietArmorAntiVehicleVehicleTech1TankProjectile">
+				<VeterancyProjectiles
+                    VeterancyLevel="HEROIC"
+                    ProjectileTemplate="SovietArmorAntiVehicleVehicleTech1TankProjectile"/>
+			</ProjectileNugget>
+			<InformTargetNugget />
+		</Nuggets>
+		<ScatterRadiusVsType
+            Radius="0">
+			<Filter
+				Rule="ANY"
+				Include="STRUCTURE"
+				Exclude="FS_BASE_DEFENSE WALL_PIECE"/>
+		</ScatterRadiusVsType>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="SovietAntiVehicleVehicleTech1ArmorCannonWarhead"
+		inheritFrom="ScatterableWeapon"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE">
+		<Nuggets>
+			<DamageNugget
+				Damage="180.0"
+				Radius="35.0"
+				DamageTaperOff="35"
+				DamageType="CANNON"
+				DamageFXType="SOVIET_CANNON"
+				DeathType="EXPLODED">
+				<DamageScalarDetails Scalar= "400%">
+					<Filter
+						Rule="ANY"
+						Include="WALL_PIECE">
+					</Filter>
+				</DamageScalarDetails>
+				<DamageScalarDetails Scalar= "50%">
+					<Filter
+						Rule="ALL"
+						Relationship="ALLIES" />
+				</DamageScalarDetails>
+			</DamageNugget>
+			<SuppressionNugget
+				Radius="80.0"
+				Suppression="10"
+				DurationSeconds="5s" />
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="SovietAntiVehicleVehicleTech1Fire"
+		AttackRange="375.0"
+		AcceptableAimDelta="10d"
+		WeaponSpeed="250"
+		FireFX=""
+		ClipSize="15"
+		FiringLoopSoundContinuesDuringReload="true"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		CanFireWhileMoving="true"
+		ReAcquireDetailType="PER_CLIP">
+		<FiringDuration
+			MinSeconds="0.1s"
+			MaxSeconds="0.1s" />
+		<ClipReloadTime
+			MinSeconds="0.1s"
+			MaxSeconds="0.1s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="SovietAntiVehicleVehicleTech1FireWarhead" />
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="SovietAntiVehicleVehicleTech1FireWarhead"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER">
+		<Nuggets>
+			<TintObjectsNugget
+				PreColorTime="1.0s"
+				SustainedColorTime="1.0s"
+				PostColorTime="1.0s"
+				Frequency="0.0"
+				Amplitude="0.0"
+				Radius="10.0">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="BRIDGE_GATEHOUSE BRIDGE_SEGMENT BRIDGE_ENDCAP BRIDGE ORE_NODE" />
+				<Color R="1" G="0.2" B="0.2"/>
+			</TintObjectsNugget>
+
+			<LineDamageNugget
+				id="HeavyInfantrySprayDamage"
+				Damage="5"
+				LineWidth="15.0"
+				Radius="25.0"
+				UseDynamicLineLength="true"
+				OverShootDistance="0.0"
+				DamageType="EXPLOSIVE"
+				DeathType="BURNED"
+				DamageFXType="SOVIET_MOLOTOV">
+				<SpecialObjectFilter
+					Rule="NONE">
+					<IncludeThing>JapanFleetArcherInfantry</IncludeThing>
+					<IncludeThing>JapanAntiVehicleInfantryFleet</IncludeThing>
+					<IncludeThing>JapanInfiltrationInfantryFleet</IncludeThing>
+					<IncludeThing>JapanCommandoTech1Fleet</IncludeThing>
+					<IncludeThing>AlliedLegionnaireInfantry</IncludeThing>
+					<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+					<IncludeThing>SovietHeavyAntiVehicleInfantryTesla</IncludeThing>
+				</SpecialObjectFilter>
+			</LineDamageNugget>
+
+			<LineDamageNugget
+				id="InfantrySprayDamage"
+				Damage="17.5"
+				LineWidth="15.0"
+				Radius="25.0"
+				UseDynamicLineLength="true"
+				OverShootDistance="0.0"
+				DamageType="EXPLOSIVE"
+				DeathType="BURNED"
+				DamageFXType="SOVIET_MOLOTOV">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="INFANTRY">
+					<ExcludeThing>JapanFleetArcherInfantry</ExcludeThing>
+					<ExcludeThing>JapanAntiVehicleInfantryFleet</ExcludeThing>
+					<ExcludeThing>JapanInfiltrationInfantryFleet</ExcludeThing>
+					<ExcludeThing>JapanCommandoTech1Fleet</ExcludeThing>
+					<ExcludeThing>AlliedLegionnaireInfantry</ExcludeThing>
+					<ExcludeThing>SovietHeavyAntiVehicleInfantry</ExcludeThing>
+					<ExcludeThing>SovietHeavyAntiVehicleInfantryTesla</ExcludeThing>
+				</SpecialObjectFilter>
+			</LineDamageNugget>
+
+			<DamageNugget
+				Damage="7.5"
+				Radius="25.0"
+				DamageTaperOff="5"
+				DamageType="EXPLOSIVE"
+				DeathType="BURNED"
+				DamageFXType="SOVIET_MOLOTOV">
+				<SpecialObjectFilter
+					Rule="NONE">
+					<IncludeThing>JapanFleetArcherInfantry</IncludeThing>
+					<IncludeThing>JapanAntiVehicleInfantryFleet</IncludeThing>
+					<IncludeThing>JapanInfiltrationInfantryFleet</IncludeThing>
+					<IncludeThing>JapanCommandoTech1Fleet</IncludeThing>
+					<IncludeThing>AlliedLegionnaireInfantry</IncludeThing>
+					<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+					<IncludeThing>SovietHeavyAntiVehicleInfantryTesla</IncludeThing>
+				</SpecialObjectFilter>
+			</DamageNugget>
+
+			<DamageNugget
+				Damage="20"
+				Radius="25.0"
+				DamageTaperOff="15"
+				DamageType="EXPLOSIVE"
+				DeathType="BURNED"
+				DamageFXType="SOVIET_MOLOTOV">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="INFANTRY">
+					<ExcludeThing>JapanFleetArcherInfantry</ExcludeThing>
+					<ExcludeThing>JapanAntiVehicleInfantryFleet</ExcludeThing>
+					<ExcludeThing>JapanInfiltrationInfantryFleet</ExcludeThing>
+					<ExcludeThing>JapanCommandoTech1Fleet</ExcludeThing>
+					<ExcludeThing>AlliedLegionnaireInfantry</ExcludeThing>
+					<ExcludeThing>SovietHeavyAntiVehicleInfantry</ExcludeThing>
+					<ExcludeThing>SovietHeavyAntiVehicleInfantryTesla</ExcludeThing>
+				</SpecialObjectFilter>
+			</DamageNugget>
+
+			<DamageNugget
+				Damage="2"
+				Radius="25.0"
+				DamageTaperOff="1"
+				DamageType="EXPLOSIVE"
+				DeathType="BURNED"
+				DamageFXType="SOVIET_MOLOTOV">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="VEHICLE STRUCTURE"
+					Exclude="INFANTRY">
+				</SpecialObjectFilter>
+			</DamageNugget>
+
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="SovietAntiVehicleVehicleTech1ApocWeapon"
+		AttackRange="585.0"
+		MinimumAttackRange="50"
+		WeaponSpeed="1750"
+		ClipSize="1"
+        ScatterRadius="40"
+		ReAcquireDetailType="PRE_FIRE"
+		AutoReloadsClip="AUTO"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		CanFireWhileMoving="false"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+		FireSound="A01_CoastalGun_Fire"
+		FireFX="FX_AlliedTankGun"
+		FireVeteranFX="FX_AlliedTankGun_Vet"
+ 		>
+		<FiringDuration
+			MinSeconds="0.3s"
+			MaxSeconds="0.3s" />
+		<ClipReloadTime
+			MinSeconds="6.5s"
+			MaxSeconds="7.5s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="SovietAntiVehicleVehicleTech1ApocWarhead"
+                ProjectileTemplate="SovietArmorAntiVehicleVehicleTech1ApocProjectile">
+			</ProjectileNugget>
+			<InformTargetNugget />
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="SovietAntiVehicleVehicleTech1ApocWarhead"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+        Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE">
+		<Nuggets>
+			<DamageNugget
+				Damage="300.0"
+				Radius="25.0"
+				DamageTaperOff="100"
+				DamageType="CANNON"
+				DamageFXType="SOVIET_CANNON"
+				DeathType="EXPLODED">
+				<DamageScalarDetails Scalar= "250%">
+					<Filter
+						Rule="NONE"
+						Include="WALL_PIECE">
+					</Filter>
+				</DamageScalarDetails>
+				<DamageScalarDetails Scalar= "50%">
+					<Filter
+						Rule="NONE"
+						Include="STRUCTURE"
+						Exclude="WALL_PIECE">
+					</Filter>
+				</DamageScalarDetails>
+				<DamageScalarDetails Scalar= "50%">
+					<Filter
+						Rule="ALL"
+						Relationship="ALLIES" />
+				</DamageScalarDetails>
+			</DamageNugget>
+			<SuppressionNugget
+				Radius="80.0"
+				Suppression="10"
+				DurationSeconds="5s" />
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="SovietArmorAntiVehicleVehicleTech1Chaingun"
+		FiringLoopSound="ALL_ACVRiptide_MGFire"
+		FireFX="FX_MuzzleSovietSickle"
+		FireVeteranFX="FX_MuzzleSovietSickle"
+		AttackRange="375.0"
+		WeaponSpeed="1000.0"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		ProjectileCollidesWith="ENEMIES STRUCTURES WALLS"
+		CanFireWhileMoving="true"
+		ClipSize="75"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		AcceptableAimDelta="11d"
+        ScatterRadius="55"
+		ScatterIndependently="false"
+		InstantLoadClipOnActivate="true"
+		ReAcquireDetailType="PRE_FIRE">
+		<FiringDuration
+			MinSeconds="0.06s"
+			MaxSeconds="0.06s" />
+		<ClipReloadTime
+			MinSeconds="4.5s"
+			MaxSeconds="5s" />
+		<Nuggets>
+			<DamageNugget
+				Damage="1"
+				DelayTimeSeconds="0.0s"
+				DamageType="GUN"
+				DamageFXType="SOVIET_AK47"
+				DeathType="NORMAL">
+			</DamageNugget>
+			<ProjectileNugget
+				WarheadTemplate="SovietArmorAntiVehicleVehicleTech1ChaingunWarhead"
+				ProjectileTemplate="AlliedTankChainGunProjectile">
+				<VeterancyProjectiles
+					VeterancyLevel="HEROIC"
+					ProjectileTemplate="AlliedTankChainGunProjectile_Veteran"/>
+			</ProjectileNugget>
+		</Nuggets>
+		<ScatterRadiusVsType
+			Radius="0.0">
+			<Filter
+				Rule="ANY"
+				Include="STRUCTURE">
+			</Filter>
+		</ScatterRadiusVsType>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="SovietArmorAntiVehicleVehicleTech1ChaingunWarhead"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		ProjectileCollidesWith="ENEMIES NEUTRAL STRUCTURES WALLS"
+		Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<Nuggets>
+			<DamageNugget
+				Damage="4"
+				Radius="5"
+				DelayTimeSeconds="0.0s"
+				DamageType="GUN"
+				DamageFXType="SOVIET_AK47"
+				DeathType="NORMAL">
+				<DamageScalarDetails Scalar= "50%">
+					<Filter
+						Rule="NONE"
+						Include="VEHICLE"
+						Exclude="INFANTRY">
+						<ExcludeThing>StrategicArmyScoutVehicle</ExcludeThing>
+					</Filter>
+				</DamageScalarDetails>
+				<DamageScalarDetails Scalar= "10%">
+					<Filter
+						Rule="NONE"
+						Include="STRUCTURE">
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+			<SuppressionNugget
+				Radius="30.0"
+				Suppression="10"
+				DurationSeconds="5s" />
+		</Nuggets>
+	</WeaponTemplate>
+	
+
+	<WeaponTemplate
+		id="SovietAntiAirShipArmorAAChaingun"
+		AttackRange="500.0"
+		WeaponSpeed="2500.0"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE"
+		CanFireWhileMoving="true"
+		ClipSize="90"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		ReAcquireDetailType="PER_SHOT"
+		ShotsPerBarrel="1">
+		<FiringDuration
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+        <ClipReloadTime
+			MinSeconds="0.2s"
+			MaxSeconds="0.2s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="SovietAntiAirShipArmorAAChaingunWarhead"
+                ProjectileTemplate="SovietAntiAirShipArmorAAChaingunProjectile">
+            </ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="SovietAntiAirShipArmorAAChaingunWarhead"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY ANTI_PARACHUTE ANTI_GROUND ANTI_WATER"
+		ProjectileCollidesWith="ENEMIES NEUTRAL STRUCTURES WALLS"
+        Flags="NOT_ATTRACTED_BY_MAGNETS">
+        <Nuggets>
+			<DamageNugget
+				Damage="16"
+				Radius="2.5"
+				DamageTaperOff="5"
+				DamageType="FLAK"
+				DeathType="NORMAL"/>
+        </Nuggets>
+    </WeaponTemplate>
+
+</AssetDeclaration>

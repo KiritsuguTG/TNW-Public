@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include source="ART:Structures/VIPBunkerAll/FXJAPANPSYONICBLAST.GEOSPHERE01.w3x" type="all"/>
+		<Include source="ART:Structures/VIPBunkerAll/FXJAPANPSYONICBLAST_CTR.w3x" type="all"/>
+		<Include source="ART:Structures/VIPBunkerAll/FXJAPANPSYONICBLAST_HRC.w3x" type="all"/>
+		<Include source="ART:Structures/VIPBunkerAll/FXJAPANPSYONICBLASTMULTIPLY.GEOSPHERE02.w3x" type="all"/>
+		<Include source="ART:Structures/VIPBunkerAll/FXJAPANPSYONICBLASTMULTIPLY_CTR.w3x" type="all"/>
+		<Include source="ART:Structures/VIPBunkerAll/FXJAPANPSYONICBLASTMULTIPLY_HRC.w3x" type="all"/>
+		<Include source="art:fxspherenrm.xml" type="instance"/>
+		<Include source="art:fxjapanpsyonicblastlightrays.xml" type="instance"/>
+	</Includes>
+	<FXParticleSystemTemplate Drawable="FXJAPANPSYONICBLASTSMALL" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="W3D_ALPHA" SortLevel="3" SystemLifetime="1" Type="DRAWABLE" id="JapanPsyonicBlastAdditiveCoreSmall">
+		<Lifetime High="250" Low="250"/>
+		<BurstDelay High="145" Low="145"/>
+		<BurstCount High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="1" High="0.5" Low="0.5" RelativeAge="0"/>
+			<Alpha Frame="2" High="0.1" Low="0.1" RelativeAge="50"/>
+			<Alpha Frame="3" High="0.02" Low="0.02" RelativeAge="75"/>
+			<Alpha Frame="4" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.8" Low="0.8"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<RenderObject>
+				<ObjectSet/>
+				<ObjectSet/>
+				<ObjectSet/>
+			</RenderObject>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="20"/>
+			</Cylinder>
+		</Volume>
+		<Velocity/>
+		<Event/>
+		<Update>
+			<RenderObject Rotation="ROTATE_IN_WORLD_SPACE">
+				<AngularDamping High="0.95" Low="0.95"/>
+				<StartSize>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</StartSize>
+				<SizeRate>
+					<x High="0.1" Low="0.1"/>
+					<y High="0.1" Low="0.1"/>
+					<z High="0.1" Low="0.1"/>
+				</SizeRate>
+				<SizeDamping>
+					<x High="0.8" Low="0.8"/>
+					<y High="0.8" Low="0.8"/>
+					<z High="0.8" Low="0.8"/>
+				</SizeDamping>
+			</RenderObject>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXSphereNRM" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="ALPHA" SystemLifetime="1" Type="GPU_PARTICLE" id="JapanPsyonicBlastDistortionCoreSmall">
+		<Lifetime High="250" Low="250"/>
+		<Size High="30" Low="30"/>
+		<BurstCount High="1" Low="1"/>
+		<InitialDelay High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="2" High="0.3" Low="0.3" RelativeAge="1"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="14.999999">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="4" RelativeAge="200">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXSphereNRM" Shader="gpuparticledistortion.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="20"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="20" Low="20"/>
+				<SizeRateDamping High="0.75" Low="0.75"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularRateZ High="0.02" Low="-0.02"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate IsParticleUpTowardsEmitter="true" ParticleTexture="FXJapanPsyonicBlastLightRays" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SystemLifetime="25" Type="GPU_PARTICLE" id="JapanPsyonicBlastLightRaysSmall">
+		<Lifetime High="69" Low="69"/>
+		<Size High="65" Low="65"/>
+		<BurstCount High="1" Low="1"/>
+		<InitialDelay High="135" Low="135"/>
+		<Alphas>
+			<Alpha Frame="1" High="0.1" Low="0.1" RelativeAge="0"/>
+			<Alpha Frame="2" High="0.1" Low="0.1" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="0.921569" r="0.466667"/>
+			</Color>
+			<Color Frame="2" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="10" Low="10"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXSphereNRM" GeometryType="TWO_QUADS" MiscValue1="1" Shader="gpuparticleperpendicularcenter.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder IsHollow="true" RadiusRate="1.5">
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="1" Low="1"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<RenderObject Rotation="ROTATE_IN_WORLD_SPACE">
+				<AngleX High="7" Low="-7"/>
+				<AngleY High="-1.57" Low="-1.57"/>
+				<AngularDamping High="1" Low="1"/>
+				<StartSize>
+					<x High="50" Low="50"/>
+					<y High="5" Low="5"/>
+					<z High="5" Low="5"/>
+				</StartSize>
+				<SizeRate>
+					<x High="150" Low="150"/>
+					<y High="1" Low="1"/>
+					<z High="1" Low="1"/>
+				</SizeRate>
+				<SizeDamping>
+					<x High="0.8" Low="0.8"/>
+					<y High="1" Low="1"/>
+					<z High="1" Low="1"/>
+				</SizeDamping>
+			</RenderObject>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate Drawable="FXJAPANPSYONICBLASTMULTIPLYSMALL" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="W3D_ALPHA" SortLevel="2" SystemLifetime="2" Type="DRAWABLE" id="JapanPsyonicBlastMultiplySmall">
+		<Lifetime High="125" Low="125"/>
+		<BurstCount High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="2" High="0.4" Low="0.4" RelativeAge="50"/>
+			<Alpha Frame="3" High="0.8" Low="0.8" RelativeAge="100"/>
+		</Alphas>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.8" Low="0.8"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<RenderObject>
+				<ObjectSet/>
+				<ObjectSet/>
+				<ObjectSet/>
+			</RenderObject>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="20"/>
+			</Cylinder>
+		</Volume>
+		<Velocity/>
+		<Event/>
+		<Update>
+			<RenderObject Rotation="ROTATE_IN_WORLD_SPACE">
+				<AngularDamping High="0.95" Low="0.95"/>
+				<StartSize>
+					<x High="3" Low="3"/>
+					<y High="3" Low="3"/>
+					<z High="3" Low="3"/>
+				</StartSize>
+				<SizeRate>
+					<x High="-0.003" Low="-0.003"/>
+					<y High="-0.003" Low="-0.003"/>
+					<z High="-0.003" Low="-0.003"/>
+				</SizeRate>
+				<SizeDamping>
+					<x High="1.03" Low="1.03"/>
+					<y High="1.03" Low="1.03"/>
+					<z High="1.03" Low="1.03"/>
+				</SizeDamping>
+			</RenderObject>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

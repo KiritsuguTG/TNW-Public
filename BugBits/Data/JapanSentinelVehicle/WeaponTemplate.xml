@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<WeaponTemplate
+		id="JapanSentinelVehicleLaserGlaiveWeapon"
+		FireSoundPerClip="JAP_Sentinel_GlaiveSwipeFire"
+		FireFX="FX_SentinalSpearAttack"
+		FireVeteranFX="FX_SentinalSpearAttackVet"
+		RadiusDamageAffects="ENEMIES"
+		AttackRange="30.0"
+		ClipSize="1"
+		WeaponSpeed="999999.0"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE"
+		CanFireWhileMoving="false"
+		DamageDealtAtSelfPosition="true"
+		AcceptableAimDelta="10d"
+		IgnoresContactPoints="true"
+		HitStoredTarget="true"
+		MeleeWeapon="true"
+		ChaseWeapon="true"
+		FinishAttackOnceStarted="true"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		ReAcquireDetailType="PER_CLIP">
+		<PreAttackDelay
+			MinSeconds="0.20s"
+			MaxSeconds="0.20s" />
+		<FiringDuration
+			MinSeconds="0.8s"
+			MaxSeconds="0.8s" />
+		<ClipReloadTime
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<Nuggets>
+			<DamageNugget
+				id="DefaultDamageNugget" 
+				Damage="200.0"
+				Radius="100.0"
+				DamageArc="75d"
+				DelayTimeSeconds="0.4s"
+				DamageType="CANNON"
+				DamageFXType="ALIEN_ION"
+				DeathType="NORMAL"
+				PartitionFilterTestType="SPHERE"
+				ForceFXPositionToVictim="true">
+				<DamageScalarDetails Scalar= "150%">
+					<Filter
+						Rule="ANY"
+						Include="STRUCTURE">
+						<IncludeThing>JapanSentinelVehicle</IncludeThing>
+						<IncludeThing>JapanSentinelVehicleAI</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="JapanSentinelVehicleLaserGlaiveAntiAlliedWeapon"
+		FireSoundPerClip="JAP_Sentinel_GlaiveSwipeFire"
+		FireFX="FX_SentinalSpearAttack"
+		FireVeteranFX="FX_SentinalSpearAttackVet"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		AttackRange="30.0"
+		ClipSize="1"
+		WeaponSpeed="999999.0"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE"
+		CanFireWhileMoving="false"
+		DamageDealtAtSelfPosition="true"
+		AcceptableAimDelta="10d"
+		IgnoresContactPoints="true"
+		HitStoredTarget="true"
+		MeleeWeapon="true"
+		ChaseWeapon="true"
+		FinishAttackOnceStarted="true"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		ReAcquireDetailType="PER_CLIP">
+		<PreAttackDelay
+			MinSeconds="0.20s"
+			MaxSeconds="0.20s" />
+		<FiringDuration
+			MinSeconds="0.8s"
+			MaxSeconds="0.8s" />
+		<ClipReloadTime
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<Nuggets>
+			<DamageNugget
+				id="DefaultDamageNugget"
+				Damage="200.0"
+				Radius="100.0"
+				DamageArc="75d"
+				DelayTimeSeconds="0.4s"
+				DamageType="CANNON"
+				DamageFXType="ALIEN_ION"
+				DeathType="NORMAL"
+				PartitionFilterTestType="SPHERE"
+				ForceFXPositionToVictim="true">
+				<DamageScalarDetails Scalar= "150%">
+					<Filter
+						Rule="ANY"
+						Include="STRUCTURE">
+						<IncludeThing>JapanSentinelVehicle</IncludeThing>
+						<IncludeThing>JapanSentinelVehicleAI</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<!-- The glaive blast special power -->
+	<WeaponTemplate
+		id="JapanSentinelVehicleLaserGlaiveBlastWeapon"
+		AttackRange="300.0"
+		ReAcquireDetailType="PRE_FIRE"
+		ClipSize="1"
+		FireSound="JAP_KingOni_LaserFire"
+		AcceptableAimDelta="10d"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS">
+		<FiringDuration
+			MinSeconds="0.5s"
+			MaxSeconds="0.5s" />
+		<ClipReloadTime
+			MinSeconds="0.5s"
+			MaxSeconds="0.5s" />
+		<Nuggets>
+			<DamageNugget
+				id="JapanSentinelVehicleLaserGlaiveBlastDamageNugget"
+				Damage="0.001"
+				Radius="1.0"
+				DamageType="MAGIC"
+				DeathType="NORMAL"/>
+			<ActivateLinearDamageNugget
+				id="JapanSentinelVehicleLaserGlaiveBlastLinearDamageNugget"
+				Lifetime="2.0s"/>
+		</Nuggets>
+	</WeaponTemplate>
+	
+	<WeaponTemplate
+		id="JapanSentinelVehicleLaserGlaiveBlastSweepingWeapon"
+		RadiusDamageAffects="ENEMIES NEUTRALS">
+		<Nuggets>
+			<DamageNugget
+				id="DefaultNugget" 
+				Damage="100.0"
+				DamageType="EXPLOSIVE"
+				DeathType="NORMAL">
+			<DamageScalarDetails Scalar= "50%">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

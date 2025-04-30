@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<!-- aka Apocolypse tank -->
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include
+			type="all"
+			source="ART:SUAntiVehicleVehicleTech3_FX.w3x" />
+        <Include
+			type="instance"
+			source="ART:EX_Headlights.w3x" />
+		<Include
+			type="instance"
+			source="ART:EXTnkTrack.xml" />
+    <Include
+     type="instance"
+     source="ART:FXBeamAlpha.xml" />
+    <Include
+			type="instance"
+			source="ART:FXHarpoonBeam.xml" />
+    <Include
+			type="instance"
+			source="ART:FXCloud01.xml" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- aka Apocolypse tank -->
+	<GameObject
+		id="PZ6"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_PZ6"
+		ButtonImage="Button_PZ6"
+		Side="Neutral"
+		SubGroupPriority="450"
+		EditorSorting="UNIT"
+		BuildTime="35"
+		CommandSet="PZ6CommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT T3_UNIT"
+		WeaponCategory="CANNON"
+		MaxSimultaneousOfType="1"
+		VoicePriority="60"
+		EditorName="PZ6"
+		Description="Desc:PZ6"
+		TypeDescription="Type:PZ6"
+		HealthBoxHeightOffset="30"
+		UnitIntro="Soviet_ApocTank_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:PZ6</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="5000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="HeavyTankArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="SovietAntiVehicleVehicleTech3Locomotor"
+			Condition="NORMAL"
+			Speed="71.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			TargetDuringCrush="true"
+			CrushSpeedBonus="150"/>
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.75"
+				MaxRecoilDistance="5"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="1.5"
+				ExtraPublicBone="Bone_Tread_Right Bone_Tread_Left SMOKE01 SMOKE02 Turret_Piviot Bone_MG FXWeaponA FXWeaponB HJ01 HJ02 MG_Piviot DENG"
+				TrackMarks="EXTnkTrack"
+				TrackMarksLeftBone="HJ01"
+				TrackMarksRightBone="HJ02">
+				<TreadTerrainParticles>SovietTankTerrainParticleMapping</TreadTerrainParticles>
+
+				<TreadScrollingMap
+					LeftTrack="Bone_Tread_Left"
+					RightTrack="Bone_Tread_Right"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%"/>
+				
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="PZ6_SKN" />		
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXWeaponA" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXWeaponA" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXWeaponA" />
+
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXWeaponB" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXWeaponB" />
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXWeaponC" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FXWeaponC" />
+					<Turret
+						TurretNameKey="Bone_Turret"
+						TurretPitch="Barrel_Pitch"
+						TurretID="1" />
+                    <Turret
+						TurretNameKey="MG_Piviot"
+						TurretPitch="FXWeaponB"
+						TurretID="2" />	
+                    <Turret
+						TurretNameKey=""
+						TurretPitch="MG42_Piviot"
+						TurretID="3" />							
+				</ModelConditionState>
+				
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="PZ6_SKN" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SNOW">
+					<Model
+						Name="PZ6_SKN" />
+					<Texture
+						Original="PZ6"
+						New="PZ6W" />
+					<Texture
+						Original="PZ6T"
+						New="PZ6TW" />
+                </ModelConditionState>
+				
+                <AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RESTART_ANIM_WHEN_COMPLETE RANDOMSTART"
+					StateName="STATE_DoorClosed">
+					<Animation
+						AnimationName="SUAntiVehicleVehicleTech3_IDLA"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+						<Script>
+							Prev = CurDrawablePrevAnimationState()
+							if Prev == "STATE_DoorOpened" then
+							CurDrawableSetTransitionAnimState("TRANS_DoorClose")
+							end
+						</Script>
+				</AnimationState>
+	<!-- Normal Mode -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ACCELERATE"
+					Flags="RANDOMSTART"
+					StateName="STATE_DoorClosed">
+					<Animation
+						AnimationName="SUAntiVehicleVehicleTech3_MOVA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="1"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+          <ParticleSysBone
+						BoneName="SMOKE01"
+						FXParticleSystemTemplate="Soviet_Tank_Exhaust"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="SMOKE02"
+						FXParticleSystemTemplate="Soviet_Tank_Exhaust"
+						FollowBone="true" />
+						<Script>
+							Prev = CurDrawablePrevAnimationState()
+							if Prev == "STATE_DoorOpened" then
+							CurDrawableSetTransitionAnimState("TRANS_DoorClose")
+							end
+						</Script>	
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART"
+					StateName="STATE_DoorClosed">
+					<Animation
+						AnimationName="SUAntiVehicleVehicleTech3_MOVA"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2" />
+						<Script>
+							Prev = CurDrawablePrevAnimationState()
+							if Prev == "STATE_DoorOpened" then
+							CurDrawableSetTransitionAnimState("TRANS_DoorClose")
+							end
+						</Script>	
+				</AnimationState>
+				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					Flags="RANDOMSTART"
+					StateName="STATE_SelectedPose">
+					<Animation
+						AnimationName="SUAntiVehicleVehicleTech3_IDLA"
+						AnimationMode="LOOP"
+						AnimationSpeedFactorMin="0.8"
+						AnimationSpeedFactorMax="1.2">
+					</Animation>
+				</AnimationState>
+				
+				<!-- Transitions -->
+				
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_DoorClose"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="SUAntiVehicleVehicleTech3_DoorOpen"
+						AnimationMode="ONCE_BACKWARDS">
+					</Animation>
+				</AnimationState>
+				
+				<AnimationState
+						ParseCondStateType="PARSE_TRANSITION"
+						StateName="TRANS_DoorOpen"
+						Flags="START_FRAME_FIRST">
+						<Animation
+							AnimationName="SUAntiVehicleVehicleTech3_DoorOpen"
+							AnimationMode="ONCE">
+				    </Animation>
+				    <Script>
+							Prev = CurDrawablePrevAnimationState()
+							if Prev == "STATE_DoorOpened" then
+							CurDrawableSetTransitionAnimState("TRANS_DoorClose")
+							end
+						</Script>	
+				</AnimationState>
+				
+					
+				
+			</TruckDraw>
+
+      <!-- include Headlight draw module. -->
+      <ScriptedModelDraw
+            id="ModuleTag_Draw_HeadLightL"
+            AttachToBoneInAnotherModule="DENG01"
+            OkToChangeModelColor="true">
+    <ModelConditionState
+      ParseCondStateType="PARSE_DEFAULT">
+      <Model
+        Name="" />
+    </ModelConditionState>
+    <ModelConditionState
+      ParseCondStateType="PARSE_NORMAL"
+      ConditionsYes="NIGHT">
+      <Model
+        Name="EX_Headlights" />
+    </ModelConditionState>
+  </ScriptedModelDraw>
+
+  <ScriptedModelDraw
+    id="ModuleTag_Draw_HeadLightR"
+    AttachToBoneInAnotherModule="DENG02"
+    OkToChangeModelColor="true">
+    <ModelConditionState
+      ParseCondStateType="PARSE_DEFAULT">
+      <Model
+        Name="" />
+    </ModelConditionState>
+    <ModelConditionState
+      ParseCondStateType="PARSE_NORMAL"
+      ConditionsYes="NIGHT">
+      <Model
+        Name="EX_Headlights" />
+    </ModelConditionState>
+  </ScriptedModelDraw>
+
+      <!-- DRAW PARTICLES -->
+
+      <ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUAntiVehicleVehicleTech3_FX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SUAntiVehicleVehicleTech3_FX" />
+          <ParticleSysBone
+            BoneName="DAMAGE"
+            FXParticleSystemTemplate="VehicleDamageSmoke"
+            FollowBone="true" />
+  
+        </ModelConditionState>
+        <ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="REALLYDAMAGED">
+			<Model
+				Name="SUAntiVehicleVehicleTech3_FX" />
+			<ParticleSysBone
+				BoneName="DAMAGE"
+				FXParticleSystemTemplate="VehicleDamageSmoke"
+				FollowBone="true" />
+			<ParticleSysBone
+				BoneName="DAMAGE"
+				FXParticleSystemTemplate="VehicleDamageFire"
+				FollowBone="true" />
+			<ParticleSysBone
+				BoneName="DAMAGE"
+				FXParticleSystemTemplate="VehicleDamageFire02"
+				FollowBone="true" />
+			</ModelConditionState>
+		</ScriptedModelDraw>
+		<TracerModelDraw
+				id="ModuleTag_TracerModelDraw"
+				MinLength="10.0"
+				MaxLength="30.0"
+				Width="15.0"
+				MinSpeed="15"
+				MaxSpeed="30"
+				SweepSpeed="3.0"
+				SpreadAngle="4.0"
+				MinTracersPerFrame=".5"
+				MaxTracersPerFrame=".8"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="2"
+				Texture="FXTracer"
+				UseAdditiveBlending="true"
+				TracerHitFx="FX_BulletHitSoviet">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+        <TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+			</TracerModelDraw>
+			<TracerModelDraw
+				id="ModuleTag_TracerModelDraw2"
+				MinLength="10.0"
+				MaxLength="30.0"
+				Width="15.0"
+				MinSpeed="15"
+				MaxSpeed="30"
+				SweepSpeed="3.0"
+				SpreadAngle="4.0"
+				MinTracersPerFrame=".5"
+				MaxTracersPerFrame=".8"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="3"
+				Texture="FXTracer"
+				UseAdditiveBlending="true"
+				TracerHitFx="FX_BulletHitSoviet">
+				<HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+        <TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+			</TracerModelDraw>
+	</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHierarchicalTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="Kwk88Cannon"/>
+					<TurretSettings
+						TurretTurnRate="23"
+						MinimumPitch="-10d"
+						AllowsPitch="true" 
+						TurretPitchRate="180" 
+						ComeToHaltJiggle="3d">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotHierarchicalTurret>
+				<WeaponSlotTurret
+					ID="2">
+                    <Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="TankChaingun"/>
+					<TurretSettings
+						TurretTurnRate="90"
+						MinimumPitch="-30d"
+						AllowsPitch="true" 
+						TurretPitchRate="180" 
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="4.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0"
+						MaxDeflectionAntiClockwise="45d"
+						MaxDeflectionClockwise="45d"
+						ComeToHaltJiggle="3d">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+					</WeaponSlotTurret>
+					<WeaponSlotHierarchicalTurret
+					ParentID="1"
+					ID="3">
+                    <Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="TankChaingun"/>
+					<TurretSettings
+						TurretTurnRate="90"
+						MinimumPitch="-30d"
+						AllowsPitch="true" 
+						TurretPitchRate="180" 
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="4.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0"
+						ComeToHaltJiggle="3d">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+					</WeaponSlotHierarchicalTurret>
+					</WeaponSetUpdate>				
+			<Physics
+				id="ModuleTag_Physics" />
+
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="PZ6_Dying">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_ApocalypseDie" />
+				<Event
+					Index="onDeath"
+					FX="FX_LargeBuildingDieExplosionRumble" />
+			</FXListBehavior>
+
+			<MovementSpecialPower
+				id="ModuleTag_SpecialPower"
+				SpecialPowerTemplate="SpecialPower_BZ"
+				AttributeModifier="AttributeModifier_BZ"
+				AttributeModifierAffectsSelf="true"
+				MovementType="NONE"
+				Duration="8s"
+			/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="true"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1350">
+      </ActiveBody>
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="SOV_Apocalypse_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_HarpoonEnabled">
+				<Override RequiredFlags="WEAPONSTATE_ONE">
+					<AudioArrayVoice>
+						<AudioEntry Sound="SOV_Apocalypse_VoiceAttackSpecial" AudioType="voiceAttack" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_HarpoonLoop">
+				<ModelConditionSound Sound="SOV_ApocalypseTank_HarpoonLoop" RequiredFlags="WEAPONSTATE_ONE ATTACKING" ExcludedFlags="MOVING"/>
+				<ModelConditionSound Sound="SOV_Apocalypse_WeaponStartup" RequiredFlags="WEAPONSTATE_ONE" /> <!-- currently AudioEvent is empty -->
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="30.0"
+				MinorRadius="16.0"
+				Height="15.0"
+				ContactPointGeneration="VEHICLE"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="WTGerman_VoiceMoveAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="WTGerman_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="WTGermanTank_VoiceAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="WTGerman_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="WTGerman_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="WTGerman_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="WTGerman_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="WTGerman_VoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="Tiger1_IdleLoop"
+				AudioType="soundAmbient" />
+			<AudioEntry
+				Sound="Tiger1_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="Tiger1_MoveLoop"
+				AudioType="soundMoveLoop" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />	
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="480"
+			ShroudClearingRange="=500" />
+		<CrusherInfo
+			CrusherLevel="26"
+			CrushableLevel="31"
+			CrushWeapon="SovietCrushWeapon" 
+			CrushDecelerationPercent="90%"/>
+	</GameObject>
+	
+	<GameObject
+		id="PZ6_Dying"
+		inheritFrom="PZ6"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS VEHICLE DEBRIS NOT_AUTOACQUIRABLE T2_UNIT"
+		EditorName="PZ6_Dying">
+		<EquivalentTo>PZ6</EquivalentTo>
+		<Behaviors>
+            <CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="PZ6_Dying">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		  <FireWeaponUpdate
+			id="Moduletag_FireWeaponUpdate"
+			FireInterval="0.1s">
+		  <FireWeaponNugget
+			WeaponName="PZ4UNMANEDWeapon"
+			OneShot="true"/>
+		  <ObjectStatusValidation
+			RequiredStatus="HEALTH_PERCENT_25"/>
+		</FireWeaponUpdate>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1350" >
+			<DamageRangeModifier
+				Min="0"
+				Max="20"
+				AttributeModifier="AttributeModifier_PZ6Dying"/>
+		    </ActiveBody>
+		</Body>
+	</GameObject>
+</AssetDeclaration>

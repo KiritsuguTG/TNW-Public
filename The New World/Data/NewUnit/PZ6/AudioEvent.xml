@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include type="instance" source="DATA:Base/BaseMissionEvaDialogue.xml" />
+		<Include type="instance" source="DATA:SageXml/Sounds/BaseSoundEffect.xml" />
+	</Includes>
+	
+	<AudioEvent id="PZ6_88MMFIRE" inheritFrom="AudioEvent:BaseSoundEffect"
+		Volume = "150"
+		VolumeShift = "-20"
+		Limit = "3"
+		Control = "INTERRUPT"
+		Type = "WORLD SHROUDED EVERYONE"
+		SubmixSlider = "SOUNDFX" >
+		<PitchShift Low = "-5" High = "5" />
+		<Sound>PZ6_88MMFIRE</Sound>
+	</AudioEvent>
+	
+	<AudioEvent
+	id="MG_42fireloop"
+	inheritFrom="AudioEvent:BaseSoundEffect"
+	Volume="160"
+	VolumeShift="-5"
+	Control = "LOOP SEQUENTIAL IMMEDIATE_DECAY_ON_KILL"
+	Priority="HIGH"
+	Limit="3"
+	Type="WORLD SHROUDED EVERYONE"
+	SubmixSlider="SOUNDFX">
+	<PitchShift
+	Low="-5"
+	High="5" />
+		<Sound>MG_42fire</Sound>
+		<Decay>Emptyloadsound</Decay>
+	</AudioEvent>
+
+	<AudioEvent
+	id="Tiger1_IdleLoop"
+	inheritFrom="AudioEvent:BaseSoundEffect"
+	Volume="60"
+	VolumeShift="-5"
+	MinRange="100"
+	MaxRange="300"
+	Control="LOOP FADE_ON_KILL FADE_ON_START"
+	Limit="3"
+	Priority="LOWEST"
+	Type="WORLD SHROUDED EVERYONE"
+	SubmixSlider="SOUNDFX">
+	<PitchShift
+	Low="-15"
+	High="-5" />
+		<Sound>Tiger_engine2</Sound> 
+	</AudioEvent>
+	
+	<AudioEvent
+	id="Tiger1_MoveLoop"
+	inheritFrom="AudioEvent:BaseSoundEffect"
+	Volume="70"
+	VolumeShift="-5"
+	MinRange="100"
+	MaxRange="700"
+	Limit="3"
+	Control="LOOP FADE_ON_KILL FADE_ON_START"
+	Type="WORLD SHROUDED EVERYONE"
+	SubmixSlider="SOUNDFX">
+	<PitchShift
+	Low="-25"
+	High="-15" />
+		<Sound>Tiger_moving</Sound> 
+	</AudioEvent>
+
+	<AudioEvent
+	id="Tiger1_MoveStart"
+	inheritFrom="AudioEvent:BaseSoundEffect"
+	Volume="70"
+	VolumeShift="-5"
+	Limit="3"
+	Type="WORLD SHROUDED EVERYONE"
+	SubmixSlider="SOUNDFX">
+	<PitchShift
+	Low="-15"
+	High="-5" />
+		<Delay
+	Low="0"
+	High="150" />
+		<Sound>Tiger_strat_move</Sound>
+	</AudioEvent>
+	
+
+	<AudioEvent id="WTGermanTank_VoiceAttack" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		ShrunkenPitchModifier="1.8"
+		ShrunkenVolumeModifier="80"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>WTGermanTank_VoiceAttack1</Sound>
+		<Sound>WTGermanTank_VoiceAttack2</Sound>
+		<Sound>WTGermanTank_VoiceAttack3</Sound>
+		<Sound>WTGermanTank_VoiceAttack4</Sound>
+		<Sound>WTGermanTank_VoiceAttack5</Sound>
+		<Sound>WTGermanTank_VoiceAttack6</Sound>
+		<Sound>WTGermanTank_VoiceAttack7</Sound>
+		<Sound>WTGermanTank_VoiceAttack8</Sound>
+		<Sound>WTGermanTank_VoiceAttack9</Sound>
+
+		<Sound>WTGerman_VoiceMoveAttack1</Sound>
+		<Sound>WTGerman_VoiceMoveAttack2</Sound>
+		<Sound>WTGerman_VoiceMoveAttack3</Sound>
+		<Sound>WTGerman_VoiceMoveAttack4</Sound>
+		<Sound>WTGerman_VoiceMoveAttack5</Sound>
+		<Sound>WTGerman_VoiceMoveAttack6</Sound>
+
+		<Sound>WTGerman_VoiceMoveAttack8</Sound>
+		<Sound>WTGerman_VoiceMoveAttack9</Sound>
+		<Sound>WTGerman_VoiceMoveAttack10</Sound>
+		<Sound>WTGerman_VoiceMoveAttack11</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="WTGerman_VoiceCreate" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		ShrunkenPitchModifier="1.8"
+		ShrunkenVolumeModifier="80"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>WTGerman_VoiceCreate1</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="WTGerman_VoiceMove" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		ShrunkenPitchModifier="1.8"
+		ShrunkenVolumeModifier="80"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>WTGerman_VoiceMove1</Sound>
+		<Sound>WTGerman_VoiceMove2</Sound>
+		<Sound>WTGerman_VoiceMove3</Sound>
+	</AudioEvent>
+
+
+	<AudioEvent id="WTGerman_VoiceMoveAttack" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		ShrunkenPitchModifier="1.8"
+		ShrunkenVolumeModifier="80"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>WTGerman_VoiceMoveAttack1</Sound>
+		<Sound>WTGerman_VoiceMoveAttack2</Sound>
+		<Sound>WTGerman_VoiceMoveAttack3</Sound>
+		<Sound>WTGerman_VoiceMoveAttack4</Sound>
+		<Sound>WTGerman_VoiceMoveAttack5</Sound>
+		<Sound>WTGerman_VoiceMoveAttack6</Sound>
+
+		<Sound>WTGerman_VoiceMoveAttack8</Sound>
+		<Sound>WTGerman_VoiceMoveAttack9</Sound>
+		<Sound>WTGerman_VoiceMoveAttack10</Sound>
+		<Sound>WTGerman_VoiceMoveAttack11</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="WTGerman_VoiceSelect" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		ShrunkenPitchModifier="1.8"
+		ShrunkenVolumeModifier="80"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>WTGerman_VoiceSelect1</Sound>
+		<Sound>WTGerman_VoiceSelect2</Sound>
+		<Sound>WTGerman_VoiceSelect3</Sound>
+		<Sound>WTGerman_VoiceSelect4</Sound>
+		<Sound>WTGerman_VoiceSelect5</Sound>
+	</AudioEvent>
+
+	<AudioEvent id="WTGerman_VoiceSelectBattle" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		ShrunkenPitchModifier="1.8"
+		ShrunkenVolumeModifier="80"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>WTGerman_VoiceSelectBattle1</Sound>
+		<Sound>WTGerman_VoiceSelectBattle2</Sound>
+		<Sound>WTGerman_VoiceSelectBattle3</Sound>
+		<Sound>WTGerman_VoiceSelectBattle4</Sound>
+		<Sound>WTGerman_VoiceSelectBattle5</Sound>
+		<Sound>WTGerman_VoiceSelectBattle6</Sound>
+		<Sound>WTGerman_VoiceSelectBattle7</Sound>
+		<Sound>WTGerman_VoiceSelectBattle8</Sound>
+		<Sound>WTGerman_VoiceSelectBattle9</Sound>
+		<Sound>WTGerman_VoiceSelectBattle10</Sound>
+	</AudioEvent>
+	
+	<AudioEvent id="WTGerman_VoiceSelectUnderFire" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "110"
+		MinVolume = "105"
+		ShrunkenPitchModifier="1.8"
+		ShrunkenVolumeModifier="80"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+		<Sound>WTGerman_VoiceSelectUnderFire1</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire2</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire3</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire4</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire5</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire6</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire7</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire8</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire9</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire10</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire11</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire12</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire13</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire14</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire15</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire16</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire17</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire18</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire19</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire20</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire21</Sound>
+		
+		<Sound>WTGerman_VoiceSelectUnderFire23</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire24</Sound>
+		<Sound>WTGerman_VoiceSelectUnderFire25</Sound>
+	</AudioEvent>
+	
+	<AudioEvent id="WTGerman_VoiceRetreat" 
+		inheritFrom="AudioEvent:BaseUnitResponse"
+		Volume = "140"
+		MinVolume = "140"
+		Priority = "HIGH"
+		Type = "WORLD PLAYER VOICE"
+		SubmixSlider = "VOICE" >
+		<PitchShift Low="-1" High="1" />
+		<!-- EP1 -->
+    		<Sound>WTGerman_VoiceRetreat1</Sound>
+    		<Sound>WTGerman_VoiceRetreat2</Sound>
+    		<Sound>WTGerman_VoiceRetreat3</Sound>
+  	</AudioEvent>
+</AssetDeclaration>

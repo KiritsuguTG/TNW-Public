@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<!-- The default tank projectile -->
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="ART:FXNodTankShell.w3x" />
+	</Includes>
+
+	<GameObject
+		id="MODAntiStructureDummyTargetPainterRocketProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE NO_COLLIDE SMALL_MISSILE PASS_EXPERIENCE_TO_PRODUCER"
+		EditorName="MODAntiStructureDummyTargetPainterRocketProjectile">
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				IgnoreProjectileState="true"
+				MinLifetime="0s"
+				MaxLifetime="0s" />
+			<BezierProjectile
+					id="ModuleTag_BezierProjectileBehavior"
+					Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL PING_PONG_SIDEWAYS_DRIFT"
+					FirstHeightMin="40"
+					FirstHeightMax="50"
+					SecondHeightMin="55"
+					SecondHeightMax="65"
+					FirstPercentIndent="45"
+					SecondPercentIndent="76"
+					SidewaysDrift="60"
+					FlightPathAdjustDistPerSecond="0.0"
+					MaxDistanceToTravel="1500.0"
+					Acceleration="10" />
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponA"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="MODAntiStructureTargetPainterRocketDummyA">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponB"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="MODAntiStructureTargetPainterRocketDummyA">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponC"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="MODAntiStructureTargetPainterRocketDummyA">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponD"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="MODAntiStructureTargetPainterRocketDummyA">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeaponE"
+				InitiallyActive="true"
+				ContinueToBezierDestination="true"
+				DeathWeapon="MODAntiStructureTargetPainterRocketDummyA">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+					id="ModuleTag_ActiveBody"
+					MaxHealth="100.0" />
+		</Body>
+		<Geometry
+				IsSmall="true">
+			<Shape
+					Type="SPHERE"
+					MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+				VisionRange="0" />
+	</GameObject>
+	
+	<GameObject
+		id="MODAntiStructureVehicleProjectile"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE NO_COLLIDE SMALL_MISSILE"
+		EditorName="MODAntiStructureVehicleProjectile">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+							ParseCondStateType="PARSE_DEFAULT">
+					<Model
+								  Name="EXJapanFortressRocket" />
+					<ParticleSysBone
+								  BoneName="NONE"
+								  FXParticleSystemTemplate="JapanFortRocketTrail"
+								  FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_FortressShip_MissileImpact" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				CurveFlattenMinDist="300"
+				FlightPathAdjustDistPerSecond="1000"
+				MaxDistanceToTravel="1500.0"/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	<GameObject
+		id="MODAntiStructureVehicleProjectile_Veteran"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE NO_COLLIDE SMALL_MISSILE"
+		EditorName="MODAntiStructureVehicleProjectile_Veteran">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+							ParseCondStateType="PARSE_DEFAULT">
+					<Model
+								  Name="EXJapanFortressRocketVet" />
+					<ParticleSysBone
+								  BoneName="NONE"
+								  FXParticleSystemTemplate="JapanFortRocketTrail"
+								  FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_FortressShip_MissileImpact_Vet" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				CurveFlattenMinDist="300"
+				FlightPathAdjustDistPerSecond="1000"
+				MaxDistanceToTravel="1500.0"/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+
+	<GameObject
+			id="MODAntiStructureTargetPainterRocketProjectile"
+			Side="Japan"
+			EditorSorting="SYSTEM"
+			KindOf="PROJECTILE NO_COLLIDE SMALL_MISSILE"
+			EditorName="MODAntiStructureTargetPainterRocketProjectile">
+		<ArmorSet
+				Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+					id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+						ParseCondStateType="PARSE_DEFAULT">
+					<Model
+							Name="EXJapanFortressRocket" />
+					<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="JapanFortRocketTrail"
+							FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+					id="ModuleTag_Die">
+				<DieMuxData
+						DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+					id="ModuleTag_FXLists">
+				<DieMuxData
+						DeathTypes="ALL" />
+				<Event
+						Index="onDeath"
+						FX="FX_FortressShip_MissileImpact" />
+			</FXListBehavior>
+			<BezierProjectile
+					id="ModuleTag_BezierProjectileBehavior"
+					Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL PING_PONG_SIDEWAYS_DRIFT"
+					FirstHeightMin="40"
+					FirstHeightMax="50"
+					SecondHeightMin="55"
+					SecondHeightMax="65"
+					FirstPercentIndent="45"
+					SecondPercentIndent="76"
+					SidewaysDrift="60"
+					FlightPathAdjustDistPerSecond="0.0"
+					MaxDistanceToTravel="1500.0"
+					Acceleration="10" />
+		</Behaviors>
+		<Body>
+			<ActiveBody
+					id="ModuleTag_ActiveBody"
+					MaxHealth="100.0" />
+		</Body>
+		<Geometry
+				IsSmall="true">
+			<Shape
+					Type="SPHERE"
+					MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+				VisionRange="0" />
+	</GameObject>
+	<GameObject
+			id="MODAntiStructureTargetPainterRocketProjectile_Veteran"
+			Side="Japan"
+			EditorSorting="SYSTEM"
+			KindOf="PROJECTILE NO_COLLIDE SMALL_MISSILE"
+			EditorName="MODAntiStructureTargetPainterRocketProjectile_Veteran">
+		<ArmorSet
+				Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+					id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+						ParseCondStateType="PARSE_DEFAULT">
+					<Model
+							Name="EXJapanFortressRocketVet" />
+					<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="JapanFortRocketTrailVet"
+							FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+					id="ModuleTag_Die">
+				<DieMuxData
+						DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+					id="ModuleTag_FXLists">
+				<DieMuxData
+						DeathTypes="ALL" />
+				<Event
+						Index="onDeath"
+						FX="FX_FortressShip_MissileImpact_Vet" />
+			</FXListBehavior>
+			<BezierProjectile
+					id="ModuleTag_BezierProjectileBehavior"
+					Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL PING_PONG_SIDEWAYS_DRIFT"
+					FirstHeightMin="40"
+					FirstHeightMax="50"
+					SecondHeightMin="55"
+					SecondHeightMax="65"
+					FirstPercentIndent="45"
+					SecondPercentIndent="76"
+					SidewaysDrift="60"
+					FlightPathAdjustDistPerSecond="0.0"
+					MaxDistanceToTravel="1500.0"
+					Acceleration="10" />
+		</Behaviors>
+		<Body>
+			<ActiveBody
+					id="ModuleTag_ActiveBody"
+					MaxHealth="100.0" />
+		</Body>
+		<Geometry
+				IsSmall="true">
+			<Shape
+					Type="SPHERE"
+					MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+				VisionRange="0" />
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<SpecialPowerTemplate
+		id="SpecialPowerJapanEmperorsResolve_L1"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="JAP_EmperorsRage"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		RadiusCursorRadius="100"
+		Flags="IS_PLAYER_POWER WATER_OK IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM"
+		RequiredPlayerTech="PlayerTech_Japan_EmperorsRage_Rank1">
+		<GameDependency
+			id="Japan_EmperorsResolveL1_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Japan_EmperorsRage_Rank1"
+		TechPointsRequired="1">
+	</PlayerTech>
+	<LogicCommand
+		  Options="NEED_TARGET_POS"
+		  Type="SPECIAL_POWER"
+		  id="Command_JapanEmperorsResolve_L1">
+		<SpecialPower>SpecialPowerJapanEmperorsResolve_L1</SpecialPower>
+		<AISpecialPowerInfo
+		  Heuristic="PLAYER_AOE_BUFF"
+		  Manager="SKIRMISH_AI"
+		  TargetObjectInclude="CAN_ATTACK"
+		  TargetObjectExclude="STRUCTURE"
+		  MinTargetsHit="2"
+		  MinEnemiesNearby="2">
+		</AISpecialPowerInfo>
+	</LogicCommand>
+	<ObjectFilterAsset
+		 id="JapanEmperorsResolveSpecialPowerObjectFilter">
+		<Filter
+			Rule="ANY"
+			Include="INFANTRY VEHICLE HUGE_VEHICLE SHIP"
+			Exclude="STRUCTURE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET NOT_IN_WORLD"/>
+	</ObjectFilterAsset>
+	
+	<SpecialPowerTemplate
+		id="SpecialPower_PointDefenseDrones"
+		TargetType="LOCATION"
+		ReloadTime="120s"
+		Flags="IS_PLAYER_POWER WATER_OK NEEDS_OBJECT_FILTER NOT_IN_NANOSWARM"
+		RadiusCursorRadius="100"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		RequiredPlayerTech="PlayerTech_Japan_PointDefenseDrones">
+		<!-- this objfilter must be the same as the one in the PlayerPowerPointDefenseDronesWeapon Weapon -->
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE HUGE_VEHICLE SHIP"
+			Exclude="AIRCRAFT SUBMARINE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET IN_NANOHIVE NOT_IN_WORLD POINT_DEFENSE_DRONE_ATTACHED">
+			<ExcludeThing>JapanPointDefenseDrone</ExcludeThing>
+		</ObjectFilter>
+		<GameDependency
+			id="Japan_PointDefenseDrones_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Japan_PointDefenseDrones"
+		TechPointsRequired="1">
+	</PlayerTech>
+	<LogicCommand
+		Options="NEED_TARGET_POS"
+		Type="SPECIAL_POWER"
+		id="Command_PointDefenseDrones">
+		<SpecialPower>SpecialPower_PointDefenseDrones</SpecialPower>
+		<AISpecialPowerInfo
+		  Heuristic="PLAYER_AOE_BUFF"
+		  Manager="SKIRMISH_AI"
+		  TargetObjectInclude="CAN_ATTACK"
+		  TargetObjectExclude="STRUCTURE"
+		  MinTargetsHit="3">
+		</AISpecialPowerInfo>
+	</LogicCommand>
+	<ObjectFilterAsset
+		 id="JapanPointDefenseDroneSpecialPowerObjectFilter">
+		<Filter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="VEHICLE HUGE_VEHICLE SHIP"
+			Exclude="AIRCRAFT SUBMARINE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET IN_NANOHIVE NOT_IN_WORLD POINT_DEFENSE_DRONE_ATTACHED">
+			<ExcludeThing>JapanPointDefenseDrone</ExcludeThing>
+		</Filter>
+	</ObjectFilterAsset>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoRiftSelectLvl1"
+		TargetType="LOCATION"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM"
+		ReloadTime="120s"
+		RadiusCursorRadius="100"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		RequiredPlayerTech="PlayerTech_Allied_ChronoRift_Rank1">
+		<ObjectFilter
+			Rule="ANY"
+			Include="INFANTRY VEHICLE PROJECTILE TIME_BOMB"
+			Exclude="ORE_NODE STRUCTURE"
+			StatusBitFlagsExclude="AIRBORNE_TARGET UNDER_IRON_CURTAIN IN_NANOHIVE NOT_IN_WORLD">
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl2</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl3</IncludeThing>
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+		</ObjectFilter>
+		<GameDependency
+			id="Allied_ChronoRift_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerChronoRiftTeleportLvl1"
+		inheritFrom="SpecialPowerChronoRiftSelectLvl1">
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Allied_ChronoRift_Rank1"
+		TechPointsRequired="1">
+	</PlayerTech>
+	<LogicCommand
+		Options="NEED_TARGET_POS"
+		Type="SPECIAL_POWER"
+		id="Command_ChronoRiftSelectLvl1">
+		<SpecialPower>SpecialPowerChronoRiftSelectLvl1</SpecialPower>
+		<AISpecialPowerInfo
+		  Heuristic="PLAYER_AOE_DEBUFF"
+		  Manager="SKIRMISH_AI"
+		  TargetObjectInclude="CAN_ATTACK"
+		  TargetObjectExclude="AIRCRAFT STRUCTURE"
+		  MinTargetsHit="2"
+		  SearchRadius="150">
+			<SpecialPowerWeapon Weapon="AlliedCryoSatelliteLvl1"/>
+		</AISpecialPowerInfo>
+	</LogicCommand>
+	<ObjectFilterAsset
+	 id="AlliedChronoRiftSpecialPowerObjectFilter">
+		<Filter
+			Rule="ANY"
+			Include="INFANTRY VEHICLE PROJECTILE TIME_BOMB"
+			Exclude="ORE_NODE STRUCTURE"
+			StatusBitFlagsExclude="AIRBORNE_TARGET UNDER_IRON_CURTAIN IN_NANOHIVE NOT_IN_WORLD">
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl2</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl3</IncludeThing>
+			<ExcludeThing>NanoSwarmHiveEffect</ExcludeThing>
+		</Filter>
+	</ObjectFilterAsset>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerMagneticSingularity"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="100"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		InitiateAtLocationSound="SOV_MagneticSatellite4_StartMS"
+		RequiredPlayerTech="PlayerTech_Soviet_MagneticSingularity">
+		<GameDependency
+			id="Soviet_MagneticSingularity_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Soviet_MagneticSingularity"
+		TechPointsRequired="1">
+	</PlayerTech>
+	<LogicCommand
+		Options="NEED_TARGET_POS"
+		Type="SPECIAL_POWER"
+		id="Command_MagneticSingularity">
+		<SpecialPower>SpecialPowerMagneticSingularity</SpecialPower>
+		<AISpecialPowerInfo
+      		Heuristic="PLAYER_AOE_DEBUFF"
+      		Manager="SKIRMISH_AI"
+      		TargetObjectInclude="CAN_ATTACK"
+      		TargetObjectExclude="STRUCTURE AIRCRAFT"
+      		MinTargetsHit="2">
+			<SpecialPowerWeapon Weapon="MagneticSingularityWeapon"/>
+		</AISpecialPowerInfo>
+	</LogicCommand>
+	<ObjectFilterAsset
+		 id="SovietMagneticSingularitySpecialPowerObjectFilter">
+		<Filter
+			Rule="ANY"
+			Include="VEHICLE INFANTRY"
+			Exclude="UNATTACKABLE STRUCTURE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET UNDER_IRON_CURTAIN" />
+	</ObjectFilterAsset>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerPrecisionStrike"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="50"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		RequiredPlayerTech="PlayerTech_Allied_PrecisionStrike">
+		<GameDependency
+			id="Allied_PrecisionStrike_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Allied_PrecisionStrike"
+		TechPointsRequired="1">
+	</PlayerTech>
+	<LogicCommand
+		  Options="NEED_TARGET_POS"
+		  Type="SPECIAL_POWER"
+		  id="Command_PrecisionStrike">
+		<SpecialPower>SpecialPowerPrecisionStrike</SpecialPower>
+		<AISpecialPowerInfo
+		  Heuristic="PLAYER_AOE_ATTACK"
+		  Manager="SKIRMISH_AI"
+		  TargetObjectExclude="AIRCRAFT SUBMARINE TRANSFORMER STRUCTURE"
+		  MaxTargetSpeed="0.0"
+		  MinTargetsHit="2">
+			<SpecialPowerWeapon Weapon="AlliedPrecisionBomb"/>
+		</AISpecialPowerInfo>
+	</LogicCommand>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerNanoSwarmHive"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="JAP_NanoSwarm_Fire"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		RadiusCursorRadius="200"
+		ForbiddenObjectRange="200"
+		RequiredPlayerTech="PlayerTech_Japan_NanoSwarmHive"
+		Flags="NO_FORBIDDEN_OBJECTS IS_PLAYER_POWER FOGGED_SHROUDED_CELLS_OK WATER_OK IGNORE_MAP_EXTENTS">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Exclude="STRUCTURE INFANTRY VEHICLE">
+			<IncludeThing>NanoSwarmHiveEffect</IncludeThing>
+		</ForbiddenObjectFilter>
+		<GameDependency
+			id="Allied_PrecisionStrike_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Japan_NanoSwarmHive"
+		TechPointsRequired="1">
+	</PlayerTech>
+	<PurchasePlayerTechButtonTemplate
+		id="Purchase_PlayerTech_Japan_NanoSwarmHive"
+		PlayerTech="PlayerTech_Japan_NanoSwarmHive"
+		StateData="ButtonStatePlayerPowerNanoSwarmHive"/>
+	<LogicCommand
+		Options="NEED_TARGET_POS"
+		Type="SPECIAL_POWER"
+		id="Command_NanoSwarmHive">
+		<SpecialPower>SpecialPowerNanoSwarmHive</SpecialPower>
+	</LogicCommand>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_DesolatorBomb_Level1"
+		TargetType="LOCATION"
+		ReloadTime="120s"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		Flags="IS_PLAYER_POWER WATER_OK CANNOT_LEAVE_ENCLOSURE IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM"
+		RadiusCursorRadius="150"
+		RequiredPlayerTech="PlayerTech_Soviet_DesolatorBomb_Rank1">
+		<GameDependency
+			id="Allied_PrecisionStrike_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Soviet_DesolatorBomb_Rank1"
+		TechPointsRequired="1">
+	</PlayerTech>
+	<LogicCommand
+		  Options="NEED_TARGET_POS"
+		  Type="SPECIAL_POWER"
+		  id="Command_DesolatorBomb_Level1">
+		<SpecialPower>SpecialPower_DesolatorBomb_Level1</SpecialPower>
+		<AISpecialPowerInfo
+		  Heuristic="PLAYER_AOE_ATTACK"
+		  Manager="SKIRMISH_AI"
+		  TargetObjectExclude="AIRCRAFT SUBMARINE TRANSFORMER STRUCTURE"
+		  MaxTargetSpeed="0.0"
+		  MinTargetsHit="2">
+			<SpecialPowerWeapon Weapon="AlliedPrecisionBomb"/>
+		</AISpecialPowerInfo>
+	</LogicCommand>
+
+
+	<SpecialPowerTemplate
+		id="SpecialPowerIronCurtain"
+		TargetType="LOCATION"
+		ReloadTime="120s"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		Flags="IS_PLAYER_POWER WATER_OK CANNOT_LEAVE_ENCLOSURE IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM"
+		RadiusCursorRadius="50"
+		RequiredPlayerTech="PlayerTech_Soviet_IronCurtain">
+		<GameDependency
+			id="Allied_PrecisionStrike_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Soviet_IronCurtain"
+		TechPointsRequired="1">
+	</PlayerTech>
+	<PurchasePlayerTechButtonTemplate
+		id="Purchase_PlayerTech_Soviet_IronCurtain"
+		PlayerTech="PlayerTech_Soviet_IronCurtain"
+		StateData="ButtonStatePlayerPowerIronCurtain"/>
+	<LogicCommand
+		Options="NEED_TARGET_POS"
+		Type="SPECIAL_POWER"
+		id="Command_IronCurtain">
+		<SpecialPower>SpecialPowerIronCurtain</SpecialPower>
+		<AISpecialPowerInfo
+		  Heuristic="PLAYER_AOE_BUFF"
+		  Manager="SKIRMISH_AI"
+		  TargetObjectInclude="CAN_ATTACK VEHICLE"
+		  TargetObjectExclude="STRUCTURE AIRCRAFT"
+		  MinTargetsHit="1"
+		  MinEnemiesNearby="5">
+		</AISpecialPowerInfo>
+	</LogicCommand>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_ProductionKickbacks"
+		TargetType="LOCATION"
+		ReloadTime="120s"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM"
+		RadiusCursorRadius="100"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		RequiredPlayerTech="PlayerTech_Soviet_ProductionKickbacks">
+		<GameDependency
+			id="Allied_PrecisionStrike_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Soviet_ProductionKickbacks"
+		TechPointsRequired="1">
+	</PlayerTech>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerOrbitalRefuse_Rank2"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="125"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM IGNORE_MAP_EXTENTS"
+		RequiredPlayerTech="PlayerTech_Soviet_OrbitalRefuse_Rank2">
+		<GameDependency
+			id="Allied_PrecisionStrike_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Soviet_OrbitalRefuse_Rank2"
+		TechPointsRequired="1">
+	</PlayerTech>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerCryoSatelliteLvl1"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="75"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		RequiredPlayerTech="PlayerTech_Allied_CryoSatellite_Rank1">
+		<GameDependency
+			id="Allied_CryoSatelliteLvl1_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Allied_CryoSatellite_Rank1"
+		TechPointsRequired="1">
+	</PlayerTech>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerTimeBombLvl1"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="20"
+		Flags="IS_PLAYER_POWER WATER_OK PATHABLE_ONLY NOT_IN_NANOSWARM NO_FORBIDDEN_OBJECTS"
+		ForbiddenObjectRange="20"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		RequiredPlayerTech="PlayerTech_Allied_TimeBomb_Rank1">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="STRUCTURE" />
+		<GameDependency
+			id="Allied_CryoSatelliteLvl1_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Allied_TimeBomb_Rank1"
+		TechPointsRequired="1">
+	</PlayerTech>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerChronosphereObjectSelect"
+		TargetType="LOCATION"
+		ReloadTime="120s"
+		RadiusCursorRadius="50"
+		TimerImage="Button_PlayerPower_Chronosphere"
+		DisplayName="NAME:SuperweaponTimerChronosphere"
+		InitiateAtLocationSound="ALL_Chronosphere_Select"
+		RequiredPlayerTech="PlayerTech_Allied_Chronosphere"
+		Flags="IS_PLAYER_POWER WATER_OK IGNORE_MAP_EXTENTS">
+		<ObjectFilter
+				Rule="ANY"
+				Include="INFANTRY VEHICLE TIME_BOMB"
+				Exclude="AIRCRAFT"
+				StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET NOT_IN_WORLD">
+			<IncludeThing>AlliedTimeBombLvl1</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl2</IncludeThing>
+			<IncludeThing>AlliedTimeBombLvl3</IncludeThing>
+		</ObjectFilter>
+		<GameDependency
+			id="Allied_CryoSatelliteLvl1_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPowerChronosphereObjectSpawn"
+		ReloadTime="180s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="ALL_Chronosphere_Die"
+		RadiusCursorRadius="300"
+		ForbiddenObjectRange="300"
+		Flags="IS_PLAYER_POWER WATER_OK NO_FORBIDDEN_OBJECTS"
+		RequiredPlayerTech="PlayerTech_Allied_Chronosphere">
+		<ForbiddenObjectFilter
+			Rule="ANY"
+			Include="REFINERY" />
+		<GameDependency
+			id="Allied_CryoSatelliteLvl1_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Allied_Chronosphere"
+		TechPointsRequired="1">
+	</PlayerTech>
+	<PurchasePlayerTechButtonTemplate
+		id="Purchase_PlayerTech_Allied_Chronosphere"
+		PlayerTech="PlayerTech_Allied_Chronosphere"
+		StateData="ButtonStatePlayerPowerChronosphere"/>
+	<ObjectFilterAsset
+		 id="AlliedChronosphereSpecialPowerObjectFilter">
+		<Filter
+			Rule="ANY"
+			Relationship="ALLIES"
+			Include="INFANTRY VEHICLE HUGE_VEHICLE SHIP"
+			Exclude="STRUCTURE"
+			StatusBitFlagsExclude="SUBMERGED AIRBORNE_TARGET NOT_IN_WORLD"/>
+	</ObjectFilterAsset>
+
+
+	<SpecialPowerTemplate
+		id="SpecialPowerJapanBalloonAttack_L1"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		InitiateAtLocationSound="JAP_BalloonBomb_CastMono"
+		RadiusCursorRadius="100"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		Flags="IS_PLAYER_POWER WATER_OK NOT_IN_NANOSWARM"
+		RequiredPlayerTech="PlayerTech_Japan_BalloonAttack_Rank1">
+		<GameDependency
+			id="Allied_CryoSatelliteLvl1_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Japan_BalloonAttack_Rank1"
+		TechPointsRequired="1">
+	</PlayerTech>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerJapanAmbush"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+	  InitiateAtLocationSound="JAP_Powers_SleeperAmbush_Initiate"
+		EvaEventToPlayWhenSelectingTarget="SelectLocation"
+		RadiusCursorRadius="50"
+		Flags="PATHABLE_ONLY NOT_CLIFF_CELL IS_PLAYER_POWER NOT_IN_NANOSWARM"
+		RequiredPlayerTech="PlayerTech_Japan_Ambush">
+		<GameDependency
+			id="Allied_CryoSatelliteLvl1_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Japan_Ambush"
+		TechPointsRequired="1">
+	</PlayerTech>
+
+	<SpecialPowerTemplate
+		id="SpecialPowerFinalSquadron_L1"
+		ReloadTime="120s"
+		TargetType="LOCATION"
+		InitiateSound="JAP_FinalSquadron1_SirenMS"
+		EvaEventToPlayWhenSelectingTarget="SelectSpecialPowerTarget"
+		RadiusCursorRadius="100"
+		Flags="IS_PLAYER_POWER WATER_OK IGNORE_MAP_EXTENTS NOT_IN_NANOSWARM"
+		RequiredPlayerTech="PlayerTech_Japan_FinalSquadron_Rank1">
+		<GameDependency
+			id="Allied_CryoSatelliteLvl1_GameDependency">
+			<RequiredObject>AlliedRefinery</RequiredObject>
+		</GameDependency>
+	</SpecialPowerTemplate>
+	<PlayerTech
+		id="PlayerTech_Japan_FinalSquadron_Rank1"
+		TechPointsRequired="1">
+	</PlayerTech>
+</AssetDeclaration>

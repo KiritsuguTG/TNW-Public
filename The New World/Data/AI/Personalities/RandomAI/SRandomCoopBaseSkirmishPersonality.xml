@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+
+	<Includes>
+		<Include type="instance" source="CoopBasePersonality.xml" />
+	</Includes>
+
+	<AIPersonalityDefinition
+		id="SRandomCoopBaseSkirmishPersonality"
+		PersonalityType="SRandomCoopBaseSkirmishPersonality"
+		inheritFrom="CoopBasePersonality">
+		<Side>SovietL</Side>
+		<OpeningMove Name="SovietLStandard_01" Weight="50%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="SovietHeavyAntiVehicleInfantry" LocomotorConditionToUseForTest="NORMAL" />
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>SovietFaction</IncludeThing>
+						<IncludeThing>SovietConstructionYard_Random</IncludeThing>
+						<IncludeThing>SovietConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="SovietLStandard_02" Weight="50%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="SovietHeavyAntiVehicleInfantry" LocomotorConditionToUseForTest="NORMAL" />
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>SovietFaction</IncludeThing>
+						<IncludeThing>SovietConstructionYard_Random</IncludeThing>
+						<IncludeThing>SovietConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="SovietLIsland_01" Weight="50%" Difficulty="EASY MEDIUM HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="SovietHeavyAntiVehicleInfantry" LocomotorConditionToUseForTest="NORMAL" />
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>SovietFaction</IncludeThing>
+						<IncludeThing>SovietConstructionYard_Random</IncludeThing>
+						<IncludeThing>SovietConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="SovietLStandardScienceLab" Weight="1000%" Difficulty="EASY MEDIUM HARD BRUTAL">
+			<Heuristic>
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>SovietFaction</IncludeThing>
+						<IncludeThing>SovietConstructionYard_Random</IncludeThing>
+						<IncludeThing>SovietConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+						Relationship="ALLIES ENEMIES"
+						Rule="ANY" >
+						<IncludeThing>ScienceLabPoint</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+
+		<OpeningMove Name="StrategicArmyLStandard_01" Weight="50%" Difficulty="EASY MEDIUM HARD">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="SovietHeavyAntiVehicleInfantry" LocomotorConditionToUseForTest="NORMAL" />
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>StrategicArmyFaction</IncludeThing>
+						<IncludeThing>StrategicArmyConstructionYard_Random</IncludeThing>
+						<IncludeThing>StrategicArmyConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="StrategicArmyLStandard_02" Weight="50%" Difficulty="EASY BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="SovietHeavyAntiVehicleInfantry" LocomotorConditionToUseForTest="NORMAL" />
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>StrategicArmyFaction</IncludeThing>
+						<IncludeThing>StrategicArmyConstructionYard_Random</IncludeThing>
+						<IncludeThing>StrategicArmyConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="StrategicArmyLIsland_01" Weight="50%" Difficulty="EASY MEDIUM HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="SovietHeavyAntiVehicleInfantry" LocomotorConditionToUseForTest="NORMAL" />
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>StrategicArmyFaction</IncludeThing>
+						<IncludeThing>StrategicArmyConstructionYard_Random</IncludeThing>
+						<IncludeThing>StrategicArmyConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="StrategicArmyLStandardScienceLab" Weight="1000%" Difficulty="EASY MEDIUM HARD BRUTAL">
+			<Heuristic>
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>StrategicArmyFaction</IncludeThing>
+						<IncludeThing>StrategicArmyConstructionYard_Random</IncludeThing>
+						<IncludeThing>StrategicArmyConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+						Relationship="ALLIES ENEMIES"
+						Rule="ANY" >
+						<IncludeThing>ScienceLabPoint</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+
+		<BuildState id="AllAINeededUnits_TNW" xai:joinAction="Remove" xmlns:xai="uri:ea.com:eala:asset:instance"/>
+		<BuildState id="SovietNeededUnits_TNW" State="SovietNeededUnits_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="StrategicArmyNeededUnits_TNW" State="StrategicArmyNeededUnits_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AllWithoutSovietNeededUnits_TNW" State="AllWithoutSovietNeededUnits_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		
+		<StrategicState id="SovietExpansion" State="SovietExpansion" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SovietScoutAttack_01" State="SovietScoutAttack_01" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="TNWBalancedAttackBomberAircraft" State="TNWBalancedAttackBomberAircraft" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="V4Attack001" State="V4Attack001" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SovietRebuildMCV001" State="SovietRebuildMCV001" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SovietNavalBase" State="SovietNavalBase" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SovietCaptureRushPoint_MEDIUM" State="SovietCaptureRushPoint_MEDIUM" Difficulty="EASY"/>
+		<StrategicState id="SovietCaptureRushPoint" State="SovietCaptureRushPoint" Difficulty="MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SovietCaptureTech" State="SovietCaptureTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SovietCaptureWaterHusks" State="SovietCaptureWaterHusks" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietOnWaterIslandFavouriteUnitBuildState" State="SovietOnWaterIslandFavouriteUnitBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietOnLandIslandFavouriteUnitBuildState" State="SovietOnLandIslandFavouriteUnitBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietEpicUnitStructureDefence" State="SovietEpicUnitStructureDefence" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAntiBaseDefenceBuildUnit" State="SovietAntiBaseDefenceBuildUnit" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="RandomSovietStructureBuildState_TNW" State="RandomSovietStructureBuildState_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietBalanceVIPUpgradeBuildState" State="SovietBalanceVIPUpgradeBuildState" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietDefenseBuildState002" State="SovietDefenseBuildState002" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietDefenseBuildState003" State="SovietDefenseBuildState003" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietDefenseBuildState001" State="SovietDefenseBuildState001" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAntiAirOnlyBuildState_TNW" State="SovietAntiAirOnlyBuildState_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="StrategicArmyDefenseBuildState001" State="StrategicArmyDefenseBuildState001" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="StrategicArmyDefenseBuildState002" State="StrategicArmyDefenseBuildState002" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="StrategicArmyAntiAirOnlyBuildState_TNW" State="StrategicArmyAntiAirOnlyBuildState_TNW" Difficulty="MEDIUM HARD BRUTAL"/>
+		<StrategicState id="StrategicArmyExpansion" State="StrategicArmyExpansion" Difficulty="MEDIUM HARD BRUTAL"/>
+		<!-- Base States -->
+		<BuildState id="StrategicArmyOnWaterIslandFavouriteUnitBuildState" State="StrategicArmyOnWaterIslandFavouriteUnitBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="StrategicArmyOnLandIslandFavouriteUnitBuildState" State="StrategicArmyOnLandIslandFavouriteUnitBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="StrategicArmyAntiBaseDefenceBuildUnit" State="StrategicArmyAntiBaseDefenceBuildUnit" Difficulty="HARD BRUTAL"/>
+		<BuildState id="StrategicArmyAntiAirOnlyBuildState_TNW" State="StrategicArmyAntiAirOnlyBuildState_TNW" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="StrategicArmyEpicUnitStructureDefence" State="StrategicArmyEpicUnitStructureDefence" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="RandomStrategicArmyStructureBuildState_TNW" State="RandomStrategicArmyStructureBuildState_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietBalanceVIPUpgradeBuildState" State="SovietBalanceVIPUpgradeBuildState" Difficulty="HARD BRUTAL"/>
+		<!--被zz钻了出个新的MCV-->
+		<BuildState id="StrategicArmyWarFactoryBuildState" State="StrategicArmyWarFactoryBuildState" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="StrategicArmyNavalYardBuildState" State="StrategicArmyNavalYardBuildState" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="StrategicArmyAirfieldBuildState" State="StrategicArmyAirfieldBuildState" Difficulty="MEDIUM HARD BRUTAL"/>
+	</AIPersonalityDefinition>
+</AssetDeclaration>

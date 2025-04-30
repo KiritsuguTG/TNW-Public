@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<!-- aka Riptide ACV -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml"/> 
+
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseObject.xml"/>
+    <Include type="instance" source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<!-- aka PT Boat -->
+	<GameObject
+		id="TeslaAuto"
+		inheritFrom="BaseObject"
+		Side="Neutral"
+		TransportSlotCount="5"
+		SelectPortrait="Portrait_Car"
+		ButtonImage="Button_Car"
+		ShockwaveResistance="90"
+		SubGroupPriority="945"
+		RadarPriority="UNIT"
+		PathPriority="30"
+		ProductionQueueType="VEHICLE"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS VEHICLE TRANSPORT T1_UNIT"
+		HealthBoxHeightOffset="20"
+		EvaEventSecondDamageFarFromFirstScanRange="600"
+		VoiceSelectUnderFireTimeout="10s"
+		VoiceSelectUnderFireDamageTime="3s"
+		EditorSorting="UNIT"
+		VoicePriority="188"
+		CommandSet="EmptyCommandSet"
+		EditorName="TeslaAuto"
+		Description="Desc:TeslaAuto"
+		TypeDescription="Type:TeslaAuto">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:TeslaAuto</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="AutoAndShipArmor"
+			DamageFX="VehicleDamageFX"/>
+		<ArmorSet
+			Armor="CryoBeamFrozenArmor"
+			DamageFX="VehicleDamageFX"
+			Conditions="SECONDARY_DAMAGE"
+		/>
+		<ArmorSet
+			Armor="ShrinkRayEffectArmor"
+			DamageFX="VehicleDamageFX"
+			Conditions="SHRINK_EFFECT"
+		/>
+    <LocomotorSet
+      id="DefaultLandLocomotor"
+			Locomotor="AutoSmallLocomotor"
+			Condition="NORMAL"
+			Speed="150.0"/>
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"/>
+		<Draws>
+      <TruckDraw
+				id="ModuleTag_Draw"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="BONEGARRISON01 BONEGARRISON02 BONEGARRISON03 BONEGARRISON04 BONE_TIRE_LEFT_FRONT BONE_TIRE_LEFT_REAR BONE_TIRE_RIGHT_REAR BONE_TIRE_RIGHT_FRONT FXTRACKSL FXTRACKSR"
+				TrackMarks="EXTireTrack2"
+				LeftFrontTireBone="BONE_TIRE_LEFT_FRONT"
+				RightFrontTireBone="BONE_TIRE_RIGHT_FRONT"
+				LeftRearTireBone="BONE_TIRE_LEFT_REAR"
+				RightRearTireBone="BONE_TIRE_RIGHT_REAR"
+				TrackMarksLeftBone="FXTRACKSL"
+				TrackMarksRightBone="FXTRACKSR">
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="CC_Auto01N"/>
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="CC_Auto01N"/>
+					<Material
+						ShaderName="FX_FormPreview.fx"
+						TechniqueName="Default">
+						<Constants>
+							<Texture Name="SpecMap">
+								<Value>FXGradient01</Value>
+							</Texture>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="CC_Auto01N" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="CC_Auto01N" />
+					<Texture
+						Original="CC_Auto01"
+						New="CC_Auto01_D" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"/> 
+				</ModelConditionState>
+      </TruckDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<ScriptedModelDraw
+      	id="ModuleTag_Draw_HeadLightL"
+      	AttachToBoneInAnotherModule="fxheadlight_L"
+      	OkToChangeModelColor="true">
+    <ModelConditionState
+      ParseCondStateType="PARSE_DEFAULT">
+      <Model
+        Name="" />
+    </ModelConditionState>
+    <ModelConditionState
+      ParseCondStateType="PARSE_NORMAL"
+      ConditionsYes="USER_1 NIGHT">
+      <Model
+        Name="EX_Headlights" />
+    </ModelConditionState>
+  </ScriptedModelDraw>
+  <ScriptedModelDraw
+    id="ModuleTag_Draw_HeadLightR"
+    AttachToBoneInAnotherModule="fxheadlight_R"
+    OkToChangeModelColor="true">
+    <ModelConditionState
+      ParseCondStateType="PARSE_DEFAULT">
+      <Model
+        Name="" />
+    </ModelConditionState>
+    <ModelConditionState
+      ParseCondStateType="PARSE_NORMAL"
+      ConditionsYes="USER_1 NIGHT">
+      <Model
+        Name="EX_Headlights" />
+    </ModelConditionState>
+  </ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedCollideFireDummyWeapon"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<AttributeModifierPoolUpdate 
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<SquishCollide
+				id ="DefaultSquishCollide"
+				CrushKillDelay="1.5s" />
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				Motion="TRACKED"
+				Collision="OMNICOLLIDING"
+				ContactTag="VEHICLE">
+			</DynamicsUpdate>
+						<InvisibilityBehavior
+				id="ModuleTag_Invisibility"
+				InvisibilityTemplate="StealthGarrisonInvisibilityTemplate"/>
+			<FireWeaponCollide
+				id="ModuleTag_FireWeaponCollide"
+				CollideWeapon="TeslaAutoDeathWeapon"
+				FireOnce="true"
+				Flags="DESTROY_SELF_ON_COLLIDE DO_NOT_COLLIDE_WITH_PRODUCER"
+				WhereToFire="TARGET_POSITION"/>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<ContestableGarrisonContain
+				id="ModuleTag_Garrison"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED CAN_ATTACK"
+				ContainMax="4"
+				EnterSound="VehicleEnter"
+				ExitSound="VehicleExit"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="false"
+				AllowNeutralInside="true"
+				AllowOwnPlayerInsideOverride="true"
+				PassDisabilityToRiders="true"
+				ShowPips="true"
+				KillPassengersOnDeath="true"
+				RequiredClearingObjectStatus="CAN_CONTEST_GARRISON"
+				IgnoreDisabledBitsForRiders="HELD UNDERPOWERED TEMPORARILY_BUSY INFILTRATED PARALYZED"
+				EjectSpeed="3">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY">
+					<ExcludeThing>AlliedScoutInfantry</ExcludeThing>
+					<ExcludeThing>SovietScoutInfantry</ExcludeThing>
+					<ExcludeThing>EUScoutVehicle</ExcludeThing>
+				</PassengerFilter>
+				<PassengerData
+					BonePrefix="BONEGARRISON01 BONEGARRISON02 BONEGARRISON03 BONEGARRISON04">
+					<Filter
+						Rule="ANY"
+						Include="INFANTRY"/>					
+				</PassengerData>	
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</ContestableGarrisonContain>		
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="CC_Auto01_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_YU_Hotel02_Explode" />
+				<Event
+					Index="onDeath"
+					FX="FX_LargeBuildingDieExplosionRumble" />
+				<Event
+					Index="onDeath"
+					FX="FX_LargeBuildingDieExplosion" />
+			</FXListBehavior>
+			<SecondaryDamageTracker
+				id="ModuleTag_SecondaryDamageTracker"
+				UpdateDuration="1s"
+				DissipateAmount="25"
+				MaxDamageClampScaler="=$MAX_SECONDARY_DAMAGE_SCALER">
+				<Color R="1.0" G="1.0" B="1.75"/>
+				<EffectInfo
+					Fraction="0.2"
+					AttributeModifier="AttributeModifer_CryoBeam_02"/>
+				<EffectInfo
+					Fraction="0.4"
+					AttributeModifier="AttributeModifer_CryoBeam_04"/>
+				<EffectInfo
+					Fraction="0.6"
+					AttributeModifier="AttributeModifer_CryoBeam_06"/>
+				<EffectInfo
+					Fraction="0.8"
+					AttributeModifier="AttributeModifer_CryoBeam_08"/>
+				<EffectInfo
+					Fraction="1.0"
+					SetUpgradedArmor="true"
+					OnEnterDisable="true"
+					OnEnterCancelSpecialAbilities="true"
+					AttributeModifier="AttributeModifer_CryoBeam_10"/>
+				<ObjectStatusValidation
+					ForbiddenStatus="UNDER_IRON_CURTAIN" />
+			</SecondaryDamageTracker>
+			<RunOffMapBehavior
+				id="ModuleTag_RunOffMapBehavior"
+				RequiresSpecificTrigger="true"
+				RunOffMapWaypointName="RunOffMap"/>
+			<ModelConditionUpgrade
+				id="ModuleTag_LightFaction"
+				AddConditionFlags="USER_1">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"
+					RotateToTargetWhenAiming="true"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="2">
+				</ActiveBody>
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_MagneticSatelliteSuckedAway">
+				<ModelConditionSound Sound="SOV_MagneticSatellite_SuckedAway" RequiredFlags="SUCKED_UP_HIGH" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="Frozen">
+				<Override RequiredFlags="PARALYZED">
+					<AudioArrayVoice>
+						<AudioEntry Sound="" AudioType="voiceAttack" />
+						<AudioEntry Sound="" AudioType="voiceAttackAir" />
+						<AudioEntry Sound="" AudioType="voiceAttackAfterMoving" />
+						<AudioEntry Sound="" AudioType="voiceAttackGarrisonedStructure" />
+						<AudioEntry Sound="" AudioType="voiceAttackStructure" />
+						<AudioEntry Sound="" AudioType="voiceCreated" />
+						<AudioEntry Sound="" AudioType="voiceDock" />
+						<AudioEntry Sound="" AudioType="voiceFear" />
+						<AudioEntry Sound="" AudioType="voiceGarrison" />
+						<AudioEntry Sound="" AudioType="voiceMove" />
+						<AudioEntry Sound="" AudioType="voiceAttackAfterMoving" />
+						<AudioEntry Sound="" AudioType="voiceMoveWaterToLand" />
+						<AudioEntry Sound="" AudioType="voiceMoveLandToWater" />
+						<AudioEntry Sound="" AudioType="voiceRepair" />
+						<AudioEntry Sound="" AudioType="voiceRetreatToCastle" />
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSelect" />
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSelectBattle" />
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSelectUnderFire" /> 
+						<AudioEntry Sound="UnitSelectFrozen" AudioType="voiceSupply" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="UnitLost" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="BuildingConstructionStarted" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="UnitUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="UnitUnderAttackFromShroudedUnit" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="GenericUnitBeingBurned" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="AllyUnitUnderAttack" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="UnitAmbushed" EvaType="ambushed" />
+			<EvaEntry EvaEvent="GenericEnemyUnitSighted" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="EnemyStealthUnitDiscovered" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="NewConstructionOptions" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="BuildOnHold" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="BuildCancelled" EvaType="buildCancelled" />
+			<EvaEntry EvaEvent="UnitPromoted" EvaType="promotedOwner" />
+		</EvaEventArray>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="ALL_MultiGunnerIFV_MovStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />	
+		</AudioArraySound>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false" />
+			</AIUpdate>
+		</AI>
+    <Geometry>
+		<Shape
+			 Type= "BOX"
+			 MinorRadius = "18.7"
+			 MajorRadius = "9.3"
+			 Height = "10.6389"
+			 ContactPointGeneration = "VEHICLE" >
+		</Shape>
+    </Geometry>
+		<VisionInfo
+			VisionRange="200"
+			ShroudClearingRange="200"/>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushEqualLevelProps="true"
+			CrusherLevel="1"
+			CrushableLevel="20"/>
+	</GameObject>
+	<ObjectCreationList
+		id="CC_Auto01_Die_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="LIKE_EXISTING INHERIT_VELOCITY"
+			Count="1"
+			VelocityScale="35.0"
+			MinForceMagnitude="2.0"
+			MaxForceMagnitude="4.0"
+			MinForcePitch="90d"
+			MaxForcePitch="45d">
+			<CreateObject>CC_Auto01_Collapse</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+  <GameObject
+		id="CC_Auto01_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="CC_Auto01_Collapse">
+		<Draws>
+			<DynamicsDraw 
+				id="ModuleTag_Draw" 
+				Collision="NONINTERCOLLIDING"
+				FlingPerturbation="15"
+				Explodiness="8" >
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="CC_Auto01N" />
+					<Texture
+						Original="CC_Auto01"
+						New="CC_Auto01_D" />
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFire"
+						FollowBone="true"
+          OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageFireLight"
+						FollowBone="true"
+          OnlyIfOnLand="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedVehicleDamageSmoke"
+						FollowBone="true"
+          OnlyIfOnLand="true"/> 
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterFlash"
+						FollowBone="true"
+            OnlyIfOnWater="true"/>
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterFlashLight"
+						FollowBone="true" 
+            OnlyIfOnWater="true"/>          
+					<ParticleSysBone
+						BoneName="FXDamage01"
+						FXParticleSystemTemplate="AlliedCarrierDestructionUnderwaterBubbles"
+						FollowBone="true"
+						OnlyIfOnWater="true"/>
+				</ModelConditionState>
+				<BoneVolumes>
+<BoneVolume BoneName="BONE_TIRE_RIGHT_REAR" Mass="147" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3" HalfSizeY="1.5" HalfSizeZ="3" >
+		<Translation x="-9.379" y="-9.27" z="3.251" />
+		<Rotation x="-0.703473" y="0.00501652" z="0.00821613" w="0.710657" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="BONE_TIRE_RIGHT_FRONT" Mass="147" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3" HalfSizeY="1.5" HalfSizeZ="3" >
+		<Translation x="11.131" y="-5.565" z="5.883" />
+		<Rotation x="-0.20702" y="0.00317218" z="-0.00329927" w="0.978326" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="BONE_TIRE_LEFT_REAR" Mass="147" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3" HalfSizeY="1.5" HalfSizeZ="3" >
+		<Translation x="-1.863" y="-0.932" z="6.632" />
+		<Rotation x="-0.707107" y="0.0" z="0.0" w="0.707107" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="BONE_TIRE_LEFT_FRONT" Mass="147" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="3" HalfSizeY="1.5" HalfSizeZ="3" >
+		<Translation x="11.02" y="-9.147" z="3.28" />
+		<Rotation x="-0.701236" y="0.00411048" z="-0.00823006" w="0.712869" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="BONE_BODY" Mass="4045" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="12.221" HalfSizeY="2.458" HalfSizeZ="6.733" >
+		<Translation x="-3.784" y="-3.345" z="12.406" />
+		<Rotation x="-0.707107" y="0.0" z="0.0" w="0.707107" />
+	</Box>
+</BoneVolume>
+</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	
+	<Behaviors>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="4s"
+			MaxLifetime="5s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="1s"
+			SinkRate="1.5"
+			DestructionDelay="8s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+	</Behaviors>
+</GameObject>
+	<WeaponTemplate
+		id="TeslaAutoDeathWeapon"
+		AttackRange="5.0"
+		WeaponSpeed="999999.0"
+		PreAttackFX="FX_None"
+		FireFX="FX_SovPPXP"
+		CanFireWhileMoving="false"
+		ClipSize="1"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RadiusDamageAffects="SELF ALLIES ENEMIES NEUTRALS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY">
+		<PreAttackDelay
+		  MinSeconds="0.5s"
+		  MaxSeconds="0.5s" />
+		<FiringDuration
+			MinSeconds="3s"
+			MaxSeconds="3s" />
+		<Nuggets>
+			<DamageNugget
+				Damage="90000"
+				DamageTaperOff="90000"
+				DelayTimeSeconds="0.5s"
+				Radius="250"
+				DamageType="EXPLOSIVE"
+				DeathType="EXPLODED">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

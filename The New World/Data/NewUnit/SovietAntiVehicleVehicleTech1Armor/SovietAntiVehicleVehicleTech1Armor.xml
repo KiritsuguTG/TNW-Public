@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<!-- aka Hammer Tank -->
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+
+		<Include
+			type="all"
+			source="ART:SUAntiVehicleVehicleTech1_SKN.w3x" />
+		<Include
+			type="all"
+			source="ART:SUAntiVehicleVehicleTech1_IDLA.w3x" />
+		<Include
+			type="all"
+			source="ART:SUAntiVehicleVehicleTech1_MOVA.w3x" />
+		<Include
+			type="all"
+			source="ART:SUAntiVehicleVehicleTech1_D.xml" />
+		<Include
+			type="all"
+			source="ART:SUAntiVehicleVehicleTech1_FX.w3x" />
+		<Include
+			type="instance"
+			source="ART:EXTnkTrack.xml" />
+		<Include
+			type="instance"
+			source="ART:EX_Headlights.w3x" />
+		<Include
+			type="all"
+			source="ART:FXRailGunCoreDistortion.xml" />
+		<Include
+			type="all"
+			source="ART:FXRailGunCoreMask.xml" />
+		<Include
+			type="instance"
+			source="ART:FXHarpoonBeam.xml" />
+		<Include
+			type="instance"
+			source="ART:FXCloud01.xml" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include
+			type="all"
+			source="ART/SAUANTIVEHICLEVEHICLETECH1_SKN.w3x" />
+
+	</Includes>
+	<LogicCommandSet
+		id="SovietAntiVehicleVehicleTech1ArmorCommandSet">
+		<Cmd>Command_MoveToPositionAndCollect</Cmd>
+		<Cmd>Command_AttackMove</Cmd>
+	</LogicCommandSet>
+	<!-- aka hammer tank -->
+	<GameObject
+		id="SovietAntiVehicleVehicleTech1Armor"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_SovietArmorAntiVehicleVehicleTech1_big"
+		ButtonImage="Button_SovietArmorAntiVehicleVehicleTech1_small"
+		Side="Neutral"
+		SubGroupPriority="355"
+		EditorSorting="UNIT"
+		BuildTime="15"
+		CommandSet="SovietAntiVehicleVehicleTech1ArmorCommandSet"
+		Scale="1.05"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT T2_UNIT"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		EditorName="SovietArmorAntiVehicleVehicleTech1"
+		Description="Desc:SovietAntiVehicleVehicleTech1Armor"
+		TypeDescription="Type:SovietAntiVehicleVehicleTech1Armor"
+		HealthBoxHeightOffset="25"
+		UnitIntro="Soviet_HammerTank_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietAntiVehicleVehicleTech1Armor</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1450"/>
+		</ObjectResourceInfo>
+		<GameDependency>
+			<RequiredObject>SovietPowerPlantAdvanced</RequiredObject>
+		</GameDependency>
+		<ArmorSet
+			Armor="SovietAntiVehicleVehicleTech1Armor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="ModuleTag_Locomotor_Normal"
+			Locomotor="SovietAntiVehicleVehicleTech1Locomotor"
+			Condition="NORMAL"
+			Speed="72.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDPS="60"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			ConquerMetricsOverrideAntiMask="ANTI_GROUND ANTI_VEHICLE ANTI_STRUCTURE"/>
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				LeftFrontTireBone="Bone_Tracks_Left"
+				RightFrontTireBone="Bone_Tracks_Right"
+				TireRotationMultiplier="0.0"
+				InitialRecoilSpeed="0.6"
+				MaxRecoilDistance="7"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="Bone_Turret Bone_Treads_Left Bone_Treads_Right Bone_Tracks_Left Bone_Tracks_Right FX_WEAPON01 FX_FRAMEGUN FX_AA_01 FX_AA_02 FX_AA_03 FX_AA_04"
+				TrackMarks="EXTnkTrack"
+				TrackMarksLeftBone="BONE_TREADS_LEFT"
+				TrackMarksRightBone="BONE_TREADS_RIGHT">
+
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+
+				<TreadScrollingMap
+					LeftTrack="Bone_Treads_Left"
+					RightTrack="Bone_Treads_Right"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%"/>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="SAUANTIVEHICLEVEHICLETECH1_SKN" />
+					<!-- main cannon -->
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON01" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON01" />
+
+					<!-- flame thrower -->
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_FRAMEGUN" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_FRAMEGUN" />
+
+					<Turret
+						TurretNameKey="BONE_TURRET"
+						TurretPitch="BONE_TURRET_PITCH"
+						TurretID="1" />
+
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_SUBGUN" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FX_SUBGUN" />
+					<Turret
+						TurretNameKey="BONE_TOPGUN_TURRET"
+						TurretPitch="BONE_TOPGUN_PITCH"
+						TurretID="2" />
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_AA_" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_AA_" />
+
+					<Turret
+						TurretNameKey="BONE_AATURRET"
+						TurretPitch="BONE_AATURRETPITCH"
+						TurretID="3" />
+
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SAUANTIVEHICLEVEHICLETECH1_SKN" />
+					<ParticleSysBone
+            			BoneName="FX_DAMAGE01"
+            			FXParticleSystemTemplate="VehicleDamageSmoke"
+            			FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SAUANTIVEHICLEVEHICLETECH1_SKN" />
+					<Texture
+						Original="SAUAntiVehicleVehicleTech1"
+						New="SAUAntiVehicleVehicleTech1_D" />
+					<ParticleSysBone
+           				BoneName="FX_DAMAGE01"
+           				FXParticleSystemTemplate="VehicleDamageSmoke"
+           				FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="SAUANTIVEHICLEVEHICLETECH1_SKN" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+			</TruckDraw>
+			<!-- include Headlight draw module. -->
+			<xi:include
+				href="DATA:Includes/HeadlightDraw1.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:HeadlightDraw1/child::*)" />
+
+			<xi:include
+				href="DATA:Includes/ParachuteDrawSoviet.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:ParachuteDraws/child::*)" />
+
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHierarchicalTurret
+					ID="1"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT"
+					AllowInterleavedFiring="true">
+					<!-- main cannon -->
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietAntiVehicleVehicleTech1ArmorCannonWeapon"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_02 WEAPON_UPGRADED_03"/>
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="SovietAntiVehicleVehicleTech1Fire"
+						ObjectStatus="WEAPON_UPGRADED_01"
+						ForbiddenObjectStatus="PLAYER_POWER_1 ADVANCED_MISSILE_PACKS"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietAntiVehicleVehicleTech1ApocWeapon"
+						ObjectStatus="WEAPON_UPGRADED_02"
+						ForbiddenObjectStatus="PLAYER_POWER_1 ADVANCED_MISSILE_PACKS" />
+					<TurretSettings
+						TurretTurnRate="135"
+						AllowsPitch="true"
+						MinimumPitch="0d"
+						TurretPitchRate="180"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0"
+						InvalidIdleScanObjectStatus="SWITCHED_WEAPONS"
+						ComeToHaltJiggle="3d">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotHierarchicalTurret>
+				<WeaponSlotHierarchicalTurret
+					ID="2"
+					ParentID="1">
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="SovietArmorAntiVehicleVehicleTech1Chaingun" 
+						ForbiddenObjectStatus="WEAPON_UPGRADED_03"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						TurretPitchRate="100"
+						AllowsPitch="true"
+						MinimumPitch="-15d"
+						PitchHeight="75%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="90.0"
+						ComeToHaltJiggle="2d">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+					</TurretSettings>
+				</WeaponSlotHierarchicalTurret>
+				<WeaponSlotTurret
+					ID="3">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietAntiAirShipArmorAAChaingun"
+						ObjectStatus="WEAPON_UPGRADED_03"
+						ForbiddenObjectStatus="ADVANCED_MISSILE_PACKS"/>
+					<TurretSettings
+						TurretTurnRate="720"
+						TurretPitchRate="360"
+						AllowsPitch="true"
+						MinimumPitch="15d"
+						PitchHeight="75%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="360.0"
+						ComeToHaltJiggle="2d">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SAUAntiVehicleVehicleTech1_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					ExemptStatus="WEAPON_UPGRADED_01 WEAPON_UPGRADED_02 WEAPON_UPGRADED_03"/>
+			</CreateObjectDie>
+
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie_Apoc"
+				CreationList="SAUAntiVehicleVehicleTech1_Apoc_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					RequiredStatus="WEAPON_UPGRADED_02"
+					ExemptStatus="WEAPON_UPGRADED_01 WEAPON_UPGRADED_03 ADVANCED_MISSILE_PACKS"/>
+			</CreateObjectDie>
+
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie_AA"
+				CreationList="SAUAntiVehicleVehicleTech1_AA_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					RequiredStatus="WEAPON_UPGRADED_03"
+					ExemptStatus="WEAPON_UPGRADED_01 WEAPON_UPGRADED_02 ADVANCED_MISSILE_PACKS"/>
+			</CreateObjectDie>
+
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie_Flame"
+				CreationList="SAUAntiVehicleVehicleTech1_Flame_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					RequiredStatus="WEAPON_UPGRADED_01"
+					ExemptStatus="WEAPON_UPGRADED_02 WEAPON_UPGRADED_03 ADVANCED_MISSILE_PACKS"/>
+			</CreateObjectDie>
+
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie_Speaker"
+				CreationList="SAUAntiVehicleVehicleTech1_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					RequiredStatus="ADVANCED_MISSILE_PACKS"
+					ExemptStatus="WEAPON_UPGRADED_01 WEAPON_UPGRADED_02 WEAPON_UPGRADED_03"/>
+			</CreateObjectDie>
+
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"/>
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_MediumVehicleDie" />
+			</FXListBehavior>
+
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneSpawnUpgradePlayerPower.xml" />
+
+			<xi:include
+				href="DATA:Includes/SovietCrushUpgradePlayerPower.xml" />
+
+			<FireWeaponUpdate
+				id="ModuleTag_SubUnitWeapon"
+				FireInterval="0.06s">
+				<FireWeaponNugget
+					WeaponName="SovietArmorAntiVehicleVehicleTech1SpawnSpeakerWeapon" />
+				<ObjectStatusValidation
+					RequiredStatus="ADVANCED_MISSILE_PACKS"
+					ForbiddenStatus="PLAYER_POWER_4"/>
+			</FireWeaponUpdate>
+			
+			<FireWeaponUpdate
+				id="ModuleTag_KillSubUnitWeapon"
+				FireInterval="0.06s">
+				<FireWeaponNugget
+					WeaponName="SovietArmorAntiVehicleVehicleTech1KillSpeakerWeapon" />
+				<ObjectStatusValidation
+					ForbiddenStatus="ADVANCED_MISSILE_PACKS"/>
+			</FireWeaponUpdate>
+
+		</Behaviors>
+
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="650" />
+		</Body>
+		<!--
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_Leech">
+				<ModelConditionSound Sound="SOV_HammerTank_LeechBeamLoop" RequiredFlags="FIRING_OR_RELOADING_B" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+-->
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="SOV_HammerTank_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_LeechArmed">
+				<ModelConditionSound Sound="SOV_HammerTank_LeechBeamArmed" RequiredFlags="WEAPONSTATE_ONE" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="LeechBeamVoice">
+				<Override RequiredFlags="WEAPONSTATE_ONE">
+					<AudioArrayVoice>
+						<AudioEntry Sound="SOV_Hammer_VoiceAttackLeech" AudioType="voiceAttack" />
+					</AudioArrayVoice>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="29.5"
+				MinorRadius="18.6"
+				Height="20.3"
+				ContactPointGeneration="VEHICLE"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="59_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="59_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="59_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="59_VoiceSelectMS" AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<!--<AudioEntry
+				Sound="SOV_HammerTank_MoveByLoop"
+				AudioType="soundMoveLoop" /> -->
+			<AudioEntry
+				Sound="SOV_HammerTank_Land_MoveLoopMS"
+				AudioType="soundMoveLoop" />
+			<AudioEntry
+				Sound="SOV_HammerTank_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="SOV_HammerTank_IdleLoop"
+				AudioType="soundAmbient" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+			<!-- <AudioEntry Sound="AudioEvent:MammothTankTurretMoveLoop" AudioType="soundTurretMoveLoop" /> -->
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="560"
+			ShroudClearingRange="650" />
+		<CrusherInfo
+			CrusherLevel="20"
+			CrushableLevel="31"
+			CrushWeapon="SovietCrushWeapon"
+			CrushDecelerationPercent="80%" />
+	</GameObject>
+
+	<AttributeModifier
+		id="AttributeModifer_Armor59Fire"
+		Category="NONE"
+		ObjectStatusToSet="PLAYER_POWER_1"
+		StartFX="FX_JAP_FortifyFleetUpgrade">
+	</AttributeModifier>
+
+	<WeaponTemplate
+		id="SovietArmorAntiVehicleVehicleTech1NationalismTrigger"
+		AttackRange="999999"
+        Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		RadiusDamageAffects="ALLIES SELF"
+		CanFireWhileMoving="true">
+		<Nuggets>
+			<FireOnObjectsNugget
+				Radius="120"
+				FireOnVictimObject="true"
+				Weapon="SovietArmorAntiVehicleVehicleTech1NationalismWeapon">
+				<Filter
+					Rule="NONE"
+					Relationship="ALLIES">
+					<IncludeThing>SovietAntiVehicleVehicleTech1Armor</IncludeThing>
+					<IncludeThing>SovietArmorStormTrooper</IncludeThing>
+				</Filter>
+			</FireOnObjectsNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="SovietArmorAntiVehicleVehicleTech1NationalismWeapon"
+		AttackRange="999999"
+        Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER"
+		RadiusDamageAffects="ALLIES SELF"
+		CanFireWhileMoving="true">
+		<Nuggets>
+			<WeaponOCLNugget
+				WeaponOCL="OCL_NationalismEffect_Small"
+				TargetAsPrimaryObject="true">
+				<SpecialObjectFilter
+					Rule="NONE"
+					Relationship="ALLIES">
+					<IncludeThing>SovietArmorStormTrooper</IncludeThing>
+				</SpecialObjectFilter>
+			</WeaponOCLNugget>
+			<WeaponOCLNugget
+				WeaponOCL="OCL_NationalismEffect_Medium"
+				TargetAsPrimaryObject="true">
+				<SpecialObjectFilter
+					Rule="NONE"
+					Relationship="ALLIES">
+					<IncludeThing>SovietAntiVehicleVehicleTech1Armor</IncludeThing>
+				</SpecialObjectFilter>
+			</WeaponOCLNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<ObjectCreationList
+		id="OCL_NationalismEffect_Small">
+		<CreateObject
+			Options="ATTACH_TO_SOURCE">
+			<CreateObject>NationalismEffect_Small</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<ObjectCreationList
+		id="OCL_NationalismEffect_Medium">
+		<CreateObject
+			Options="ATTACH_TO_SOURCE">
+			<CreateObject>NationalismEffect_Medium</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+</AssetDeclaration>

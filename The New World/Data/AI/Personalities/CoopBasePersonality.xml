@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+
+	<Includes>
+		<Include type="instance" source="BasePersonality.xml" />
+	</Includes>
+
+	<AIPersonalityDefinition
+		id="CoopBasePersonality"
+		PersonalityType="CoopBasePersonality"
+		inheritFrom="BasePersonality"
+		CoopPersonality="true">
+		<!--
+		EmergencyManagerHandleUnderAttackAtDifficulty="EASY MEDIUM HARD BRUTAL"
+		-->
+		<UnitBuilderUnitChoiceStrategy Shape="BEST" StandardDeviation="0.25" Difficulty="HARD BRUTAL" />
+		<BudgetState id="BossOpeningMoveBudget" State="BossOpeningMoveBudget" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BudgetState id="DefenseBudget_02" State="DefenseBudget_02" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<BudgetState id="NoSpawnBudget" State="NoSpawnBudget" Difficulty="HARD BRUTAL"/>
+		<BudgetState id="ExpansionMoveBudget" State="ExpansionMoveBudget" Difficulty="HARD BRUTAL"/>
+		<BudgetState id="RushattackMoveBudget" State="RushattackMoveBudget" Difficulty="HARD BRUTAL"/>
+		<BudgetState id="OverattackMoveBudget" State="OverattackMoveBudget" Difficulty="HARD BRUTAL"/>
+		<BudgetState id="FlankattackMoveBudget" State="FlankattackMoveBudget" Difficulty="HARD BRUTAL"/>
+		<BudgetState id="HardNormalBudget" State="HardNormalBudget" Difficulty="EASY MEDIUM"/>
+
+		<BuildState id="NormalAIUpgradeAll" State="NormalAIUpgradeAll" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AIUseMoneySpend" State="AIUseMoneySpend" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AllAINeededUnits_TNW" State="AllAINeededUnits_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AIUseUnmiliWeaponBuildState" State="AIUseUnmiliWeaponBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AIUseUnmiliWeaponBuildStateA" State="AIUseUnmiliWeaponBuildStateA" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EnemyOnlyHaveAircraftBuildState_TNW" State="EnemyOnlyHaveAircraftBuildState_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="CratePickup" State="CratePickup" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="ScoutAircraft" State="ScoutAircraft" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="JapanEggUnpacker" State="JapanEggUnpacker" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="HarvesterController_01" State="HarvesterController_01" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="BaseDefenseController" State="BaseDefenseController" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- 无法生成Spawn时调用以下脚本 -->
+		<StrategicState id="TNWBalancedAttackBomberAircraft" State="TNWBalancedAttackBomberAircraft" Difficulty="MEDIUM HARD BRUTAL"/>
+		<StrategicState id="TNWAttackFighterAircraft" State="TNWAttackFighterAircraft" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="TNWAvoidanceAttackFighterAircraft" State="TNWAvoidanceAttackFighterAircraft" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		
+		<StrategicState id="TNWLastAttackForHumanNoSpawn" State="TNWLastAttackForHumanNoSpawn" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWBalancedAttackGroundNoSpawn" State="TNWBalancedAttackGroundNoSpawn" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWBalancedAttackWaterNoSpawn" State="TNWBalancedAttackWaterNoSpawn" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWCleanup_BRUTALNoSpawn" State="TNWCleanup_BRUTALNoSpawn" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWLandDefenseNoSpawn" State="TNWLandDefenseNoSpawn" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWWaterDefenseNoSpawn" State="TNWWaterDefenseNoSpawn" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWAttackGameOverNoBuildStructure" State="TNWAttackGameOverNoBuildStructure" Difficulty="MEDIUM HARD BRUTAL"/>
+		<StrategicState id="TNWAttackGameOverNoMoney" State="TNWAttackGameOverNoMoney" Difficulty="MEDIUM HARD BRUTAL"/>
+		<StrategicState id="TNWAttackGameOverNoPower" State="TNWAttackGameOverNoPower" Difficulty="MEDIUM HARD BRUTAL"/>
+		<StrategicState id="TNWAttackGameOverEnemyNoUnit" State="TNWAttackGameOverEnemyNoUnit" Difficulty="MEDIUM HARD BRUTAL"/>
+		<StrategicState id="TNWAttackGameOverEnemyNoBuild" State="TNWAttackGameOverEnemyNoBuild" Difficulty="MEDIUM HARD BRUTAL"/>
+		<StrategicState id="TNWAttackGameOverEnemyNoMoney" State="TNWAttackGameOverEnemyNoMoney" Difficulty="MEDIUM HARD BRUTAL"/>
+		<!--防守-->
+		<StrategicState id="TNWLandDefense" State="TNWLandDefense" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWWaterDefense" State="TNWWaterDefense" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWNearbyLandEnemyDefense" State="TNWNearbyLandEnemyDefense" Difficulty="HARD BRUTAL"/>
+		<!-- 平衡 -->
+		<StrategicState id="TNWBalanceAttackGround" State="TNWBalanceAttackGround" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWBalanceAttackWater" State="TNWBalanceAttackWater" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWBalanceAttackAir" State="TNWBalanceAttackAir" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWBalanceAttackUnderAttack" State="TNWBalanceAttackUnderAttack" Difficulty="HARD BRUTAL"/>
+		<!-- 攻城 -->
+		<StrategicState id="TNWSiegeAttack" State="TNWSiegeAttack" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWSiegeAttackGround" State="TNWSiegeAttackGround" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWSiegeAttackWater" State="TNWSiegeAttackWater" Difficulty="HARD BRUTAL"/>
+		<BuildState id="SiegeattackSpawnBuild" State="SiegeattackSpawnBuild" Difficulty="HARD BRUTAL"/>
+		<!--龟缩-->
+		<StrategicState id="TNWOverAttack" State="TNWOverAttack" Difficulty="HARD BRUTAL"/>
+		<!--游击-->
+		<StrategicState id="TNWOptimalDirectAttackGround" State="TNWOptimalDirectAttackGround" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWOptimalDirectAttackWater" State="TNWOptimalDirectAttackWater" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWOptimalAttackGround" State="TNWOptimalAttackGround" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWOptimalAttackWater" State="TNWOptimalAttackWater" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWOptimalAttackAir" State="TNWOptimalAttackAir" Difficulty="HARD BRUTAL"/>
+		<!--激进-->
+		<StrategicState id="TNWRushAttack" State="TNWRushAttack" Difficulty="HARD BRUTAL"/>
+		<BuildState id="RushSpawnBuild" State="RushSpawnBuild" Difficulty="HARD BRUTAL"/>
+		<!--压境-->
+		<StrategicState id="TNWExpansionAttackUnderAttack" State="TNWExpansionAttackUnderAttack" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWLandExpansionDefense" State="TNWLandExpansionDefense" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWWaterExpansionDefense" State="TNWWaterExpansionDefense" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWExpansionAttackGameOver" State="TNWExpansionAttackGameOver" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="TNWGarrisonAttack" State="TNWGarrisonAttack" Difficulty="HARD BRUTAL"/>
+		<!-- EASY -->
+		<StrategicState id="TNWLandDefense_MEDIUM" State="TNWLandDefense_MEDIUM" Difficulty="EASY"/>
+		<StrategicState id="TNWWaterDefense_MEDIUM" State="TNWWaterDefense_MEDIUM" Difficulty="EASY"/>
+		<StrategicState id="BalancedAttackGround_MEDIUM" State="BalancedAttackGround_MEDIUM" Difficulty="EASY"/>
+		<StrategicState id="BalancedAttackWater_MEDIUM" State="BalancedAttackWater_MEDIUM" Difficulty="EASY"/>
+		<StrategicState id="BalancedAttackOverwhelm_MEDIUM" State="BalancedAttackOverwhelm_MEDIUM" Difficulty="EASY"/>
+		<!-- MEDIUM -->
+		<StrategicState id="TNWBalancedAttackGround" State="TNWBalancedAttackGround" Difficulty="MEDIUM"/>
+		<StrategicState id="TNWBalancedAttackWater" State="TNWBalancedAttackWater" Difficulty="MEDIUM"/>
+		<StrategicState id="TNWBalancedCleanup" State="TNWBalancedCleanup" Difficulty="MEDIUM"/>
+		<StrategicState id="TNWBalanceAttackAir" State="TNWBalanceAttackAir" Difficulty="MEDIUM"/>
+		<StrategicState id="LandDefense" State="LandDefense" Difficulty="MEDIUM"/>
+		<StrategicState id="WaterDefense" State="WaterDefense" Difficulty="MEDIUM"/>
+		<StrategicState id="LandEmergencyDefense" State="LandEmergencyDefense" Difficulty="MEDIUM"/>
+		<StrategicState id="WaterEmergencyDefense" State="WaterEmergencyDefense" Difficulty="MEDIUM"/>
+		<!-- Command Behavior -->
+		<StrategicState id="CommandAssault_Gather_Land" State="CommandAssault_Gather_Land" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="CommandAssault_Gather_Water" State="CommandAssault_Gather_Water" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="CommandAssault_Land" State="CommandAssault_Land" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="CommandAssault_Water" State="CommandAssault_Water" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="CommandAssault_FighterAircraft" State="CommandAssault_FighterAircraft" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="CommandAssault_BomberAircraft" State="CommandAssault_BomberAircraft" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<StrategicState id="CommandHold_Land" State="CommandHold_Land" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="CommandHold_Water" State="CommandHold_Water" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="CommandHold_BomberAircraft" State="CommandHold_BomberAircraft" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="CommandHold_FighterAircraft" State="CommandHold_FighterAircraft" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<StrategicState id="Command_StrikeTarget_Land" State="Command_StrikeTarget_Land" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="Command_StrikeTarget_Water" State="Command_StrikeTarget_Water" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="Command_StrikeTarget_BomberAircraft" State="Command_StrikeTarget_BomberAircraft" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!--20190118 add cleanup-->
+		<StrategicState id="CommandoController" State="CommandoController" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		
+		<StrategicDirectiveFeedback
+		StrategicDirective="Assault"
+		Event="Begin"
+		FeedbackKey="PlanAttackBeaconPlaced"/>
+		<StrategicDirectiveFeedback
+		StrategicDirective="Assault"
+		Event="Complete"
+		FeedbackKey="PlanAttackOrderComplete"/>
+		<StrategicDirectiveFeedback
+		StrategicDirective="Assault"
+		Event="Cancel"
+		FeedbackKey="OrderCanceled"/>
+
+		<!-- TakePosition Feedback -->
+		<StrategicDirectiveFeedback
+		StrategicDirective="HoldPosition"
+		Event="Begin"
+		FeedbackKey="TakePositionBeaconPlaced"/>
+		<StrategicDirectiveFeedback
+		StrategicDirective="HoldPosition"
+		Event="Complete"
+		FeedbackKey="TakePositionOrderComplete"/>
+		<StrategicDirectiveFeedback
+		StrategicDirective="HoldPosition"
+		Event="Cancel"
+		FeedbackKey="OrderCanceled"/>
+
+		<!-- StrikeTarget Feedback -->
+		<StrategicDirectiveFeedback
+		StrategicDirective="HoldObject"
+		Event="Begin"
+		FeedbackKey="StrikeTargetBeaconPlaced"/>
+		<StrategicDirectiveFeedback
+		StrategicDirective="HoldObject"
+		Event="Complete"
+		FeedbackKey="StrikeTargetOrderComplete"/>
+		<StrategicDirectiveFeedback
+		StrategicDirective="HoldObject"
+		Event="Cancel"
+		FeedbackKey="OrderCanceled"/>
+
+		<!-- There is no Feedback for Normal -->
+
+		<!-- Feedback for Skirmish / MP Game Events -->
+		<!-- For now, this is mostly just a way of translating enum values into StringHashs. Doesn't really
+add much but makes the code easier. :-P -->
+		<SkirmishGameEventFeedback
+		Event="StartGame"
+		FeedbackKey="StartGame" />
+		<SkirmishGameEventFeedback
+		Event="InTrouble"
+		FeedbackKey="InTrouble" />
+		<SkirmishGameEventFeedback
+		Event="FirstSeen"
+		FeedbackKey="FirstSeen" />
+		<SkirmishGameEventFeedback
+		Event="DefeatedLocalPlayer"
+		FeedbackKey="DefeatedLocalPlayer" />
+		<SkirmishGameEventFeedback
+		Event="DefeatedByLocalPlayer"
+		FeedbackKey="DefeatedByLocalPlayer" />
+		<SkirmishGameEventFeedback
+		Event="Lost"
+		FeedbackKey="Lost" />
+
+		<!-- Control when the InTrouble event is triggered -->
+		<InTroubleSkirmishFeedbackControl
+		OnlyIfLocalPlayerIs="ALLIES"
+		TimeoutAfterPlaying="600s"
+		TimeBetweenScans="5s"
+		TimeThatConditionsMustBeMet="10s"
+		NumberOfObjectsRecentlyLost="3"
+		TimeForNumberOfObjectLost="120s"
+		ObjectLostFilter="SkirmishAIInTroubleObjectList_ImportantStrctures"
+		MinPowerAdvantageEnemiesInMyBaseVsAllMyUnits="1.2" />
+	</AIPersonalityDefinition>
+
+	<!-- Used by the InTroubleSkirmishFeedbackControl block above. These are the objects we look at when
+deciding if we are losing too many structures too fast - basically, we only count important structures -->
+	<ObjectFilterAsset id="SkirmishAIInTroubleObjectList_ImportantStrctures">
+		<Filter
+			Rule="ANY"
+			Include="STRUCTURE"
+			Exclude="FS_BASE_DEFENSE DEFENSIVE_WALL WALL_UPGRADE WALL_PIECE WALL_HUB WALL_SEGMENT SCALEABLE_WALL WALL_GATE SUMMONED GARRISON NEUTRAL_TECH IGNORE_IN_AI_HUNT_TACTIC">
+		</Filter>
+	</ObjectFilterAsset>
+
+</AssetDeclaration>

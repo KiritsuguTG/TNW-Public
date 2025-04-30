@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<GameObject
+		id="StrategicArmyHeroInfantryUpgrade"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="NO_COLLIDE SUMMONED VEHICLE NOT_AUTOACQUIRABLE UNATTACKABLE SKIRMISH_AI_DONT_CONSIDER_THREAT IGNORE_IN_AI_HUNT_TACTIC"
+		EditorName="StrategicArmyHeroInfantryUpgrade">
+		<DisplayName>StrategicArmyHeroInfantryUpgrade</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<LocomotorSet
+			Locomotor="JapanPointDefenseDroneLocomotor"
+			Condition="NORMAL"
+			Speed="200.0" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />         
+        </ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<GrantUpgradeCreate
+				id="ModuleTag_UpgradeStrategicArmyHeroInfantry"
+			  UpgradeToGrant="Upgrade_StrategicArmyHeroInfantry"/>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_ShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="999999.0"
+				RefreshDelay="0.13s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeFourUpgrade">
+				<ObjectFilter
+					Rule="NONE"
+					Relationship="ALLIES">
+					<IncludeThing>StrategicArmyConstructionYard</IncludeThing>
+					<IncludeThing>StrategicArmyMCV</IncludeThing>
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="0.5s"
+				MaxLifetime="0.5s" />
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<Physics
+				id="ModuleTag_Physics" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				StateMachine="UnitAIStateMachine" />
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1" />
+		</Body>
+		<ShadowInfo
+			Type="NONE" />
+		<VisionInfo
+			VisionRange="10"
+			ShroudClearingRange="10" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all"	source="ART:BB_RoyalPavilion.w3x" />
+		<Include type="all"	source="ART:Structures/AlliedSuperStructure/BB_ROYALPAVILION_BLD.w3x" />
+		<Include type="all"	source="ART:Structures/AlliedSuperStructure/BB_ROYALPAVILION_BLD_SKL.w3x" />
+		<Include type="all"	source="ART:Structures/AlliedSuperStructure/BB_ROYALPAVILION_BLD_SKN.w3x" />
+		<Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+		<Include type="instance" source="DATA:Civilian/Yucatan_YU/Props/YU_HotelDebris.xml" />
+	</Includes>
+	<GameObject
+		id="AlliedStructure"
+		inheritFrom="BaseStructure"
+		SelectPortrait="Portrait_AlliedStructure"
+		ButtonImage="Button_AlliedStructure"
+		EditorName="AlliedStructure"
+		EditorSorting="STRUCTURE"
+		Side="Allies"
+		BuildTime="50"
+		KindOf="+RESIST_EMP +NOT_SELLABLE +FS_TECHNOLOGY -CRUSHABLE_BUILDING -CAN_BUILD_ON_WATER -CAN_BUILD_ON_DEEP_WATER +TACTICAL_MARKER +IMMUNE_TO_CAPTURE +UNIQUE_UNIT +PRELOAD"
+		RadarPriority="COMMANDO"
+		Description="Desc:AlliedStructure"
+		EnergyProduction="-400"
+		ProductionQueueType="MAIN_STRUCTURE"
+		BuildPlacementTypeFlag="MAIN_STRUCTURE"
+		TypeDescription="Type:SideStructure"
+		MaxSimultaneousOfType="1"
+		PlacementViewAngle="-45d">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedStructure</DisplayName>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_AlliesFaction</NeededUpgrade>
+			<ForbiddenUpgrade>SideStructure</ForbiddenUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="5000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseStructureArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<SkirmishAIInformation
+			BaseBuildingLocation="SPREAD">
+      <ConstructionBaseSelectionCriteria
+        ExcludedBaseTypes="NO_BUILD_RADIUS CAPTURED"
+        PreferredBaseTypes="MAIN_BASE"
+        SortOrder="PREFER_OLDEST" />
+    </SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				StaticModelLODMode="true"
+				ExtraPublicBone="BoneGarrisonWall01 BoneGarrisonWall02 BoneGarrisonWall03 BoneGarrisonWall04 BONE_CONTACT_POINT_01 BONE_CONTACT_POINT_02 BONE_CONTACT_POINT_03 BONE_CONTACT_POINT_04 BONE_CONTACT_POINT_05 BONE_CONTACT_POINT_06 BONE_CONTACT_POINT_07 BONE_CONTACT_POINT_08 BONE_CONTACT_POINT_09 BONE_CONTACT_POINT_10 BONE_CONTACT_POINT_11 BONE_CONTACT_POINT_12 BONE_CONTACT_POINT_13 BONE_CONTACT_POINT_14 BONE_CONTACT_POINT_15 BONE_CONTACT_POINT_16 BONE_CONTACT_POINT_17 BONE_CONTACT_POINT_18	BONE_CONTACT_POINT_19 BONE_CONTACT_POINT_20 BONEGARRISON01 BONEGARRISON02 BONEGARRISON03 BONEGARRISON04 BONEGARRISON05 BONEGARRISON06 BONEGARRISON07 BONEGARRISON08 BONEGARRISON09 BONEGARRISON10 BONEGARRISON11 BONEGARRISON12">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="BB_RoyalPavilion" />
+				</ModelConditionState>
+
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+          <Model
+						Name="BB_RoyalPavilion" />
+        </ModelConditionState>
+        <!-- BUILD UP -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="BB_ROYALPAVILION_BLD_SKN" />
+				</ModelConditionState>				
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="BB_ROYALPAVILION_BLD"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="2s"/>
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Med"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Lights"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Flash"
+						FollowBone="true" />
+				</AnimationState>	
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<BuildingDestructionBehavior
+				id="ModuleTag_BuildingDestruction">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Item
+					BonePrefix="BONE_CONTACT_POINT_"
+					FX="FX_BuildingDebrisExplosion"
+					CreationObject="YU_HotelDebris"
+					FlingVelocity="100.0"/>
+			</BuildingDestructionBehavior>
+			<FXListBehavior
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_Civ_Explosion_Large" />
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AlliedStructure_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<GrantUpgradeCreate
+				id="ModuleTag_SideStructure"
+			  UpgradeToGrant="SideStructure"/>
+			<DestroyDie
+				id="ModuleTag_DestroyDie">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_EpicSturctureAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="9000.0"
+				RefreshDelay="1s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_EpicSturcture">
+				<ObjectFilter
+					Rule="ALL"
+					Relationship="SAME_PLAYER">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<xi:include
+				href="DATA:Includes/GenericBuildingRepair.xml" />
+				<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				UnpackTime="2s" />
+		</Behaviors>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="50">
+		</CrusherInfo>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO" 
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="6000"/>
+		</Body>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="CriticalStructureUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="CriticalStructureLost" EvaType="dieOwner" />
+		</EvaEventArray>
+		<Geometry
+			IsSmall="false">
+<Shape 
+     Type= "BOX"
+     MajorRadius = "36.472"
+     MinorRadius = "33.2586"
+     Height = "116.903"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "-4.22954"
+        y = "91.3083"
+        z = "0.0" />
+</Shape>
+<Shape 
+     Type= "BOX"
+     MajorRadius = "36.472"
+     MinorRadius = "33.2586"
+     Height = "115.528"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "-4.22954"
+        y = "-91.9424"
+        z = "0.0" />
+</Shape>
+<Shape 
+     Type= "BOX"
+     MajorRadius = "54.3063"
+     MinorRadius = "67.4811"
+     Height = "118.304"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "-10.4954"
+        y = "5.67143"
+        z = "0.0" />
+</Shape>
+<Shape 
+     Type= "BOX"
+     MajorRadius = "17.6736"
+     MinorRadius = "15.9063"
+     Height = "85.6143"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "-63.1949"
+        y = "68.1717"
+        z = "0.0" />
+</Shape>
+<Shape 
+     Type= "BOX"
+     MajorRadius = "17.6736"
+     MinorRadius = "15.9063"
+     Height = "85.6143"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "-63.1949"
+        y = "-68.1016"
+        z = "0.0" />
+</Shape>
+<Shape 
+     Type= "BOX"
+     MajorRadius = "33.5602"
+     MinorRadius = "17.1091"
+     Height = "80.3043"
+     ContactPointGeneration = "STRUCTURE" >
+    <Offset
+        x = "-60.8238"
+        y = "-0.0216084"
+        z = "0.0" />
+</Shape>			
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="HumanFaction_MediumBuilding_LightDamageMS" AudioType="soundOnDamaged" />
+			<AudioEntry Sound="HumanFaction_MediumBuilding_HeavyDamageMS" AudioType="soundOnReallyDamaged" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="150"
+			ShroudClearingRange="400" />
+	</GameObject>	
+</AssetDeclaration>

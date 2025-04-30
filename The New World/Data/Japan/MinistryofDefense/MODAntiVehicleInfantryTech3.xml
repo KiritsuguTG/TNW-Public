@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags/>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="instance" source="DATA:Japan/Unit/JapanAntiVehicleInfantryTech3.xml" />
+	</Includes>
+	<!-- aka Rocket Angel -->
+	<GameObject
+		id="MODAntiVehicleInfantryTech3"
+		inheritFrom="JapanAntiVehicleInfantryTech3"
+		WeaponCategory="CANNON"
+		CommandSet="JapanAntiVehicleTech3CommandSet"
+		EditorName="MODAntiVehicleInfantryTech3"
+		Description="Desc:MODAntiVehicleInfantryTech3"
+		TypeDescription="Type:AntiArmor"
+		TypeDescriptionTransformed="Type:AntiArmor"
+		DescriptionTransformed="Desc:MODAntiVehicleInfantryTech3">
+		<DisplayName
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODAntiVehicleInfantryTech3</DisplayName>
+		<DisplayNameTransformed
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODAntiVehicleInfantryTech3</DisplayNameTransformed>
+		<LocomotorSet
+			xai:joinAction="Replace"
+			Locomotor="JapanAntiVehicleInfantryTech3Locomotor"
+			Condition="NORMAL"
+			Speed="110" />
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate"
+				xai:joinAction="Replace">
+				<WeaponSlotHardpoint
+					ID="1">
+					 <Weapon
+						  Ordering="PRIMARY_WEAPON"
+						  Template="MODAntiVehicleInfantryTech3MisslePods"
+						  ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE ADVANCED_MISSILE_PACKS"/>
+					<Weapon
+						  Ordering="PRIMARY_WEAPON"
+						  Template="MODAntiVehicleInfantryTech3MisslePods_JapanAdvancedMissilePacks"
+						  ObjectStatus="ADVANCED_MISSILE_PACKS"
+						  ForbiddenObjectStatus="TRANSFORMATION_TOGGLE_STATE"/>
+				</WeaponSlotHardpoint>
+				<WeaponSlotHardpoint
+					ID="2">
+					<Weapon
+						  Ordering="PRIMARY_WEAPON"
+						  Template="JapanAntiVehicleInfantryTech3LockDownGun"
+						  ObjectStatus="TRANSFORMATION_TOGGLE_STATE" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<AttributeModifierUpgrade
+			id="ModuleTag_MODSpeed"
+			AttributeModifier="AttributeMODAntiVehicleInfantryTech3UnitUpgrade">
+				<TriggeredBy>JapanUnitUpgrade</TriggeredBy>
+			</AttributeModifierUpgrade>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				xai:joinAction="Replace"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</AIUpdate>
+		</AI>
+		<VisionInfo
+			xai:joinAction="Replace"
+			VisionRange="280"
+			ShroudClearingRange="=$BASE_VEHICLE_SHROUD_CLEAR" />
+	</GameObject>
+	  <GameObject
+		id="MODAntiVehicleInfantryTech3_Crate"
+		inheritFrom="MODAntiVehicleInfantryTech3"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="MODAntiVehicleInfantryTech3_Crate">
+		<EquivalentTo>MODAntiVehicleInfantryTech3</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

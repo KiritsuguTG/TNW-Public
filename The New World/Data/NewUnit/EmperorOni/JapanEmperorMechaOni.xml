@@ -1,0 +1,1266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+	</Includes>
+	<!-- aka KingOni King Oni -->
+	<GameObject
+		id="JapanEmperorMechaOni"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_JapanKenjiMecha"
+		ButtonImage="Button_JapanKenjiMecha"
+		Side="Japan"
+		SubGroupPriority="340"
+		EditorSorting="UNIT"
+		TransportSlotCount="10"
+		BuildTime="20"
+		JustBuiltTime="1.5s"
+		EnergyProduction="-16"
+		CommandSet="JapanEmperorMechaOniCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT T3_UNIT"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		EditorName="JapanEmperorMechaOni"
+		Description="Desc:JapanEmperorMechaOni"
+		TypeDescription="Type:JapanEmperorMechaOni"
+		HealthBoxHeightOffset="30">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:JapanEmperorMechaOni</DisplayName>
+		<GameDependency>
+			<RequiredObject>JapanTechStructure</RequiredObject>
+			<NeededUpgrade>Upgrade_JapanWarFactoryTech3Two</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="3000" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="JapanAntiVehicleVehicleTech3Armor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			Locomotor="JapanGreatOniLocomotor"
+			Condition="NORMAL"
+			Speed="55.0" />
+
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="B_SPINE01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="JUEmperorMecha_SKN" />
+					<Texture
+						Original="JUEmperorMecha"
+						New="JUEmperorMechaBlack" />
+					<WeaponFireFXBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX01" />
+					<WeaponRecoilBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX01" />
+					<WeaponLaunchBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX01" />
+
+					<WeaponFireFXBone
+						WeaponSlotType="SECONDARY_WEAPON"
+						WeaponSlotID="2"
+						BoneName="FXROCKET_" />
+					<WeaponRecoilBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FXROCKET_" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="FXROCKET_" />
+
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="JUEmperorMecha_SKN" />
+					<Texture
+						Original="JUEmperorMecha"
+						New="JUEmperorMechaBlack" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DYING">
+					<Model
+						Name="JUEmperorMecha_DIE_SKN" />
+					<Texture
+						Original="JUEmperorMecha"
+						New="JUEmperorMechaBlack_D" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="JUEmperorMecha_SKN" />
+					<Texture
+						Original="JUEmperorMecha"
+						New="JUEmperorMechaBlack" />
+					<ParticleSysBone
+						BoneName="B_UARML"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXTracksA"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JUEmperorMecha_SKN" />
+					<Texture
+						Original="JUEmperorMecha"
+						New="JUEmperorMechaBlack_D" />
+					<ParticleSysBone
+						BoneName="B_UARML"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="B_UARML"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="B_UARML"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXTracksA"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXTracksA"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXTracksA"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT"
+					Flags="RESTART_ANIM_WHEN_COMPLETE"
+					AllowRepeatInRandomPick="true"
+					StateName="STATE_bored">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_BIDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="80" />
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_BIFA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="80" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Jumping" then
+						CurDrawableSetTransitionAnimState("TRANS_JumpToIdle")
+						elseif Prev == "STATE_SelectedPose" then
+						CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle")
+						end
+
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP"
+					StateName="STATE_EMP">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_BIDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="80" />
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_BIFA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15"
+						AnimationPriority="80" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Jumping" then
+						CurDrawableSetTransitionAnimState("TRANS_JumpToIdle")
+						elseif Prev == "STATE_SelectedPose" then
+						CurDrawableSetTransitionAnimState("TRANS_SelectedToIdle")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING USER_6"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_RUNA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10"
+						Distance="100" />
+					<FXEvent
+						Frame="10"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootL" />
+					<FXEvent
+						Frame="22"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootR" />
+				</AnimationState>
+				<!--************************************************************************************************-->
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SPECIAL_WEAPON_ONE"
+					StateName="STATE_moving">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_ATKB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="10" />
+					<FXEvent
+						Frame="10"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootL" />
+					<FXEvent
+						Frame="22"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootR" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_9"
+					StateName="STATE_moving">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_ATKB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="10" />
+					<FXEvent
+						Frame="10"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootL" />
+					<FXEvent
+						Frame="22"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootR" />
+				</AnimationState>
+				<!--************************************************************************************************-->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_DIEA"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="COMING_OUT_OF_FACTORY">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_WLKB"
+						AnimationMode="LOOP"
+						AnimationBlendTime="0"
+						Distance="85" />
+					<FXEvent
+						Frame="3"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootL" />
+					<FXEvent
+						Frame="26"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootR" />
+				</AnimationState>
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING BACKING_UP"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_WLKA"
+						AnimationMode="LOOP_BACKWARDS"
+						AnimationBlendTime="15"
+						Distance="85" />
+					<FXEvent
+						Frame="3"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootL" />
+					<FXEvent
+						Frame="26"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootR" />
+
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_WLKA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="17"
+						Distance="85" />
+					<FXEvent
+						Frame="3"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootL" />
+					<FXEvent
+						Frame="26"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootR" />
+
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PREATTACK_A"
+					FrameForPristineBonePositions="1">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_ATKC"
+						AnimationMode="ONCE" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USING_WEAPON_A"
+					FrameForPristineBonePositions="1">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_ATKA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USING_WEAPON_B"
+					FrameForPristineBonePositions="1">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_ATKA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_C">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_ATKC"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="1s" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ENGAGED">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_AIDA"
+						AnimationMode="LOOP" />
+				</AnimationState>
+
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="THROWN_PROJECTILE"
+					StateName="STATE_Jumping">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_ATKA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED UNPACKING">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_ATKB"
+						AnimationMode="ONCE"
+						AnimationSpeedFactorMin="2.0"
+						AnimationSpeedFactorMax="2.0" />
+					<FXEvent
+						Frame="13"
+						FireWhenSkipped="true"
+						Effect="FX_GreatOniJump"
+						Bone="None" />
+					<FXEvent
+						Frame="10"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootL" />
+					<FXEvent
+						Frame="22"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootR" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED THROWN_PROJECTILE"
+					StateName="STATE_Jumping">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_ATKA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SELECTED"
+					StateName="STATE_SelectedPose"
+					Flags="RESTART_ANIM_WHEN_COMPLETE">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_AIDA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" />
+					<Script>
+						Prev = CurDrawablePrevAnimationState()
+						if Prev == "STATE_Jumping" then
+						CurDrawableSetTransitionAnimState("TRANS_JumpToIdle")
+						elseif Prev == "STATE_bored" then
+						CurDrawableSetTransitionAnimState("TRANS_IdleToSelected")
+						end
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_IdleToSelected">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_BATA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" />
+					<FXEvent
+						Frame="16"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootL" />
+					<FXEvent
+						Frame="37"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootR" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_SelectedToIdle">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_ABTA"
+						AnimationMode="ONCE"
+						AnimationBlendTime="15" />
+					<FXEvent
+						Frame="45"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootL" />
+					<FXEvent
+						Frame="20"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootR" />
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_TRANSITION"
+					StateName="TRANS_JumpToIdle">
+					<Animation
+						AnimationName="JUAntiVehicleVehicleTech3_ATKB"
+						AnimationMode="ONCE"
+						AnimationBlendTime="10"
+						AnimationAbsoluteTime="1.5s" />
+					<FXEvent
+						Frame="10"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootL" />
+					<FXEvent
+						Frame="22"
+						FireWhenSkipped="true"
+						Effect="FX_JapanFP"
+						Bone="B_FootR" />
+				</AnimationState>
+
+			</ScriptedModelDraw>
+
+
+			<LaserDraw
+				id="ModuleTag_LaserDraw01"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".3"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".7"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="8"
+				LaserStateID="101">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlienLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienLaser</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDistort01"
+				UseDistortionShader="true"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="2"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".7"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="5"
+				LaserStateID="101">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />
+			</LaserDraw>
+
+
+			<LaserDraw
+				id="ModuleTag_LaserDraw02"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".3"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".7"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="8"
+				LaserStateID="102">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlienLaser</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienLaser</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDistort02"
+				UseDistortionShader="true"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="2"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".7"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="5"
+				LaserStateID="102">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />
+			</LaserDraw>
+
+			<!-- Veterancy -->
+
+			<LaserDraw
+				id="ModuleTag_LaserDraw1_Veterancy"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".3"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".7"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="7"
+				LaserStateID="103">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlienLaserHeroic2</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienLaserHeroic2</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDistort01_Veterancy"
+				UseDistortionShader="true"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="2"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".7"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="3"
+				LaserStateID="103">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</LaserDraw>
+
+			<LaserDraw
+				id="ModuleTag_LaserDraw2_Veterancy"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile=".3"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".7"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="7"
+				LaserStateID="104">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlienLaserHeroic2</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienLaserHeroic2</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</LaserDraw>
+			<LaserDraw
+				id="ModuleTag_LaserDistort02_Veterancy"
+				UseDistortionShader="true"
+				Texture1_UTile="1"
+				Texture1_VTile=".5"
+				Texture1_UScrollRate="0"
+				Texture1_VScrollRate=".2"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="30"
+				Texture2_UTile="1"
+				Texture2_VTile="2"
+				Texture2_UScrollRate="0"
+				Texture2_VScrollRate=".7"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="30"
+				LaserWidth="3"
+				LaserStateID="104">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlienOverlay</Value>
+						</Texture>
+						<Float Name="ColorEmissive">
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+							<Value>2.000000</Value>
+						</Float>
+					</Constants>
+				</FXShader>
+				<ObjectStatusValidation
+					RequiredStatus="WEAPON_UPGRADED_01" />
+			</LaserDraw>
+
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					AllowInterleavedFiring="true"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanHeavyAntiVehicleVehicleTech3BeamWeapon"
+						ForbiddenObjectStatus="SPECIALABILITY_ACTIVE GENERIC_TOGGLE_STATE WEAPON_UPGRADED_01" />
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="JapanHeavyAntiVehicleVehicleTech3BeamWeapon_Veteran"
+						ForbiddenObjectStatus="SPECIALABILITY_ACTIVE GENERIC_TOGGLE_STATE"
+						ObjectStatus="WEAPON_UPGRADED_01" />
+					<Weapon
+						Ordering="TERTIARY_WEAPON"
+						Template="GreatOniMeleeAttackWeapon_Land"
+						ForbiddenObjectStatus="SPECIALABILITY_ACTIVE GENERIC_TOGGLE_STATE" />
+				</WeaponSlotHardpoint>
+
+				<WeaponSlotHardpoint
+					ID="2">
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="JapanHeavyAntiVehicleVehicleTech3MissileLauncher"
+						ForbiddenObjectStatus="SPECIALABILITY_ACTIVE GENERIC_TOGGLE_STATE ADVANCED_MISSILE_PACKS" />
+					<Weapon
+						Ordering="SECONDARY_WEAPON"
+						Template="JapanHeavyAntiVehicleVehicleTech3MissileLauncher_JapanAdvancedMissilePacks"
+						ObjectStatus="ADVANCED_MISSILE_PACKS"
+						ForbiddenObjectStatus="SPECIALABILITY_ACTIVE GENERIC_TOGGLE_STATE" />
+				</WeaponSlotHardpoint>
+
+
+			</WeaponSetUpdate>
+
+			<!--**********************************************************************************************************************-->
+			<SweepingLaserState
+				id="ModuleTag_LaserState01"
+				Radius="30"
+				LaserId="101"
+				OriginBoneName="FX01"
+				SweepWeapon="JapanEmperorMechaOni_SweepingWeapon">
+				<EndOffset y="2" />
+				<LaserEndParticleSystem>JapanOniLaserHitFlash</LaserEndParticleSystem>
+				<LaserEndParticleSystem>JapanOniLaserHitLight</LaserEndParticleSystem>
+				<LaserEndParticleSystem>JapanOniLaserHitMolt</LaserEndParticleSystem>
+			</SweepingLaserState>
+			<SweepingLaserState
+				id="ModuleTag_LaserState02"
+				Radius="30"
+				LaserId="102"
+				OriginBoneName="FX02"
+				SweepWeapon="JapanEmperorMechaOni_SweepingWeapon">
+				<EndOffset y="-2" />
+				<LaserEndParticleSystem>JapanOniLaserHitFlash</LaserEndParticleSystem>
+				<LaserEndParticleSystem>JapanOniLaserHitLight</LaserEndParticleSystem>
+				<LaserEndParticleSystem>JapanOniLaserHitMolt</LaserEndParticleSystem>
+			</SweepingLaserState>
+
+
+			<SweepingLaserState
+				id="ModuleTag_LaserState01_Veterancy"
+				Radius="30"
+				LaserId="103"
+				OriginBoneName="FX01"
+				SweepWeapon="JapanEmperorMechaOni_SweepingWeapon_Veteran">
+				<EndOffset y="2" />
+				<LaserEndParticleSystem>JapanOniLaserHitFlash_Vet</LaserEndParticleSystem>
+				<LaserEndParticleSystem>JapanOniLaserHitLight_Vet</LaserEndParticleSystem>
+				<LaserEndParticleSystem>JapanOniLaserHitMolt_Vet</LaserEndParticleSystem>
+			</SweepingLaserState>
+			<SweepingLaserState
+				id="ModuleTag_LaserState02_Veterancy"
+				Radius="30"
+				LaserId="104"
+				OriginBoneName="FX02"
+				SweepWeapon="JapanEmperorMechaOni_SweepingWeapon_Veteran">
+				<EndOffset y="-2" />
+				<LaserEndParticleSystem>JapanOniLaserHitFlash_Vet</LaserEndParticleSystem>
+				<LaserEndParticleSystem>JapanOniLaserHitLight_Vet</LaserEndParticleSystem>
+				<LaserEndParticleSystem>JapanOniLaserHitMolt_Vet</LaserEndParticleSystem>
+			</SweepingLaserState>
+			<!--*******************************************************************************************************************-->
+
+
+			<ActivateModuleSpecialPower
+				id="ModuleTag_LongJumpRun"
+				SpecialPowerTemplate="SpecialPower_TriggerJumpAttack"
+				AttributeModifier="AttributeModifier_JapanHeavyAntiVehicleVehicleTech3RushAttack"
+				AttributeModifierAffectsSelf="true" />
+
+			<!-- UnpackTime should match leap animation length -->
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_JumpUpdate"
+				SpecialWeapon="JapanHeavyAntiVehicleVehicleTech3JumpWeapon"
+				SpecialPowerTemplate="SpecialPower_TriggerJumpAttack"
+				Options="FAIL_WITH_INVALID_APPROACH KILL_ATTRIBUTE_MODIFIER_ON_EXIT BUSY_DURING_PACK BUSY_DURING_UNPACK"
+				UnpackTime="0.5s"
+				PackTime="0s"
+				SetObjectStatusOnTrigger="IGNORE_AI_COMMAND SPECIALABILITY_ACTIVE"
+				ClearObjectStatusOnExit="IGNORE_AI_COMMAND SPECIALABILITY_ACTIVE"
+				StartAbilityRange="220.0"
+				WhichSpecialWeapon="1" />
+			<BezierProjectile
+				id="ModuleTag_Projectile"
+				Flags="CRUSH_STYLE NO_DETONATE DETONATE_CALLS_KILL"
+				FirstHeightMin="130"
+				FirstHeightMax="130"
+				SecondHeightMin="100"
+				SecondHeightMax="100"
+				FirstPercentIndent="40%"
+				SecondPercentIndent="60%"
+				BounceCount="0"
+				FinalStuckTime="3.0s"
+				FlightPathAdjustDistPerSecond="100.0"
+				GroundHitWeapon="DamageSelfWeapon"
+				GroundHitFX="FX_GreatOniLand" />
+
+			<Physics
+				id="ModuleTag_Physics" />
+
+			<AutoHealBehavior
+				id="Upgrade_PassiveHeal"
+				InitiallyActive="true"
+				HealOnlyIfNotInCombat="false"
+				HealOnlyIfNotUnderAttack="false"
+				StartHealingDelay="1s"
+				HealingAmount="3"
+				HealingDelay=".25s">
+			</AutoHealBehavior>
+
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="JUEmperorMecha_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="3s"
+				SinkRate="1.0"
+				DestructionDelay="7s">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUPERNATURAL" />
+			</SlowDeath>
+			<DestroyDie
+				id="ModuleTag_VacuumBombDie">
+				<DieMuxData
+					DeathTypes="SUPERNATURAL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_DreadnoughtV4Explosion" />
+			</FXListBehavior>
+
+
+			<xi:include
+				href="DATA:Includes/JapanAdvancedMissilePacksUpgrade.xml" />
+
+			<StatusBitsUpgrade
+				id="ModuleTag_VeterancyUpgrade"
+				StatusToSet="WEAPON_UPGRADED_01">
+				<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>
+			</StatusBitsUpgrade>
+
+			<FreefallUpdate
+				id="ModuleTag_FreefallUpdate"
+				ModelConditionsToSet="STUNNED_FLAILING"
+				InitialVelocity="5"
+				Acceleration="1"
+				TerminalVelocity="15" />
+
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AttributeModifierAura"
+				InitiallyActive="true"
+				AttributeModifierName="AttributeMod_JapanGreaterKingOniSize"
+				RefreshDelay="0.5s"
+				AllowSelf="true">
+			</AttributeModifierAuraUpdate>
+
+			<AttributeModifierUpgrade
+				id="ModuleTag_HighTechnologyUpgrade"
+				AttributeModifier="AttributeMod_AlliesHighTechnologyAttribute">
+				<TriggeredBy>Upgrade_AlliedHighTechnology</TriggeredBy>
+			</AttributeModifierUpgrade>
+
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					RotateToTargetWhenAiming="true"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY" />
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="2500" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="JAP_KingOni_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<AnimationSoundClientBehavior id="ModuleTag_AnimationSounds">
+				<Sound Sound="JAP_KingOni_Footstep1ForSelect"
+					Animation="JUAntiVehicleVehicleTech3_BATA" Frame="14" />
+				<Sound Sound="JAP_KingOni_Footstep2ForSelect"
+					Animation="JUAntiVehicleVehicleTech3_BATA" Frame="35" />
+				<Sound Sound="JAP_KingOni_FistHitsPalm" Animation="JUAntiVehicleVehicleTech3_BATA"
+					Frame="26" />
+				<Sound Sound="JAP_KingOni_Footstep" Animation="JUAntiVehicleVehicleTech3_ATKB"
+					Frame="1 4 32 40" />
+				<Sound Sound="JAP_KingOni_Punch" Animation="JUAntiVehicleVehicleTech3_ATKB"
+					Frame="6" />
+				<Sound Sound="JAP_KingOni_Footstep" Animation="JUAntiVehicleVehicleTech3_WLKA"
+					Frame="0 22" />
+				<Sound Sound="JAP_KingOni_Footstep" Animation="JUAntiVehicleVehicleTech3_WLKB"
+					Frame="1 24" />
+				<Sound Sound="JAP_KingOni_Footstep" Animation="JUAntiVehicleVehicleTech3_RUNA"
+					Frame="1 16" />
+				<Sound Sound="JAP_KingOni_Motor" Animation="JUAntiVehicleVehicleTech3_WLKA"
+					Frame="13 36" />
+				<Sound Sound="JAP_KingOni_Motor" Animation="JUAntiVehicleVehicleTech3_WLKB"
+					Frame="12 35" />
+				<Sound Sound="JAP_KingOni_Motor" Animation="JUAntiVehicleVehicleTech3_RUNA"
+					Frame="7 22" />
+				<Sound Sound="JAP_KingOni_Unselect" Animation="JUAntiVehicleVehicleTech3_ABTA"
+					Frame="1" />
+				<Sound Sound="JAP_KingOni_FootstepForStand"
+					Animation="JUAntiVehicleVehicleTech3_ABTA" Frame="44" />
+				<Sound Sound="JAP_KingOni_DieImpact" Animation="JUAntiVehicleVehicleTech3_DIEA"
+					Frame="9 12" />
+			</AnimationSoundClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_Leaping">
+				<ModelConditionSound Sound="JAP_KingOni_VoiceBullRush"
+					RequiredFlags="THROWN_PROJECTILE" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="20.0"
+				Height="50.0"
+				ContactPointGeneration="INFANTRY" />
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_KingOni_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="JAP_KingOni_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="JAP_KingOni_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="JAP_KingOni_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="JAP_KingOni_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="JAP_KingOni_VoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="JAP_KingOni_VoiceSelectBattleMS" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="JAP_KingOni_VoiceSelectUnderFireMS" AudioType="voiceSelectUnderFire" />
+			<NamedEntry Sound="JAP_KingOni_VoiceBullRush" Name="VoiceBullRush" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_KingOni_MoveStart" AudioType="soundMoveStart" />
+			<AudioEntry Sound="JAP_KingOni_IdleLoop" AudioType="soundAmbient" />
+			<AudioEntry Sound="VehicleCrush" AudioType="soundCrushing" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$STANDARD_SHROUD_CLEAR" />
+		<CrusherInfo
+			CrusherLevel="30"
+			CrushableLevel="35"
+			CrushWeapon="AlliesCrushWeapon"
+			CrushDecelerationPercent="20%">
+			<ExtraCrushLevels CrusherLevel="31" CrushableLevel="35" ModelConditionMatch="USER_6" />
+		</CrusherInfo>
+	</GameObject>
+
+
+	<!--***************************************************fxList************************************************-->
+	<FXList id="FX_GreatOniJump">
+		<NuggetList>
+			<Sound Value="JAP_KingOni_Select" />
+			<ParticleSystem
+				Particle="Japan_SPC_Mecha_StepDust"
+				OrientToObject="false"
+				OnlyIfOnLand="true">
+			</ParticleSystem>
+		</NuggetList>
+	</FXList>
+
+	<FXList id="FX_GreatOniLand">
+		<NuggetList>
+			<Sound Value="JAP_ShogunExecutioner_Footstep" />
+			<DynamicDecal
+				Decal="EX_MechaFootprint"
+				Size="100"
+				OpacityStart="0"
+				OpacityFadeTimeOne="0s"
+				OpacityPeak="1"
+				OpacityPeakTime="5s"
+				OpacityFadeTimeTwo="15s"
+				OpacityEnd="0"
+				StartingDelay="0s"
+				OnlyIfOnLand="true"
+				Lifetime="20s">
+				<Color R="1" G="1" B="1" />
+				<Offset x="0" y="0" />
+			</DynamicDecal>
+			<ParticleSystem
+				Particle="Japan_SPC_Mecha_StepDust"
+				OrientToObject="false"
+				OnlyIfOnLand="true">
+			</ParticleSystem>
+		</NuggetList>
+	</FXList>
+	<!--***********************************************others*********************************************-->
+	<AttributeModifier
+		id="AttributeMod_JapanGreaterKingOniSize"
+		Category="NONE"
+		ObjectStatusToSet="NO_SQUISHCOLLIDE_DELAY"
+		Duration="1.0s">
+		<Modifier Type="COLLISION_GEOMETRY_SIZE_MULT" Value="120%" />
+	</AttributeModifier>
+
+
+	<LocomotorTemplate
+		id="JapanGreatOniLocomotor"
+		Surfaces="GROUND CRUSHABLE_WALL CRUSHABLE_OBSTACLE"
+		TurnTimeSeconds="2.0s"
+		TurnTimeDamagedSeconds="2.0s"
+		FastTurnRadius="1.0"
+		SlowTurnRadius="1.0"
+		AccelerationSeconds="0.21s"
+		FormationPriority="NO_FORMATION"
+		BrakingSeconds="0.0s"
+		MinTurnSpeed="0%"
+		BehaviorZ="NO_MOTIVE_FORCE"
+		Appearance="TWO_LEGS"
+		StickToGround="true"
+		CanReverseMove="false"
+		AirborneTargetingHeight="30"
+		ActiveObjectStatus="GROUND_LOCOMOTOR_ACTIVE"
+	/>
+
+	<SpecialPowerTemplate
+		id="SpecialPower_TriggerJumpAttack"
+		ReloadTime="40s"
+		TargetType="LOCATION"
+		RadiusCursorRadius="90"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="VoiceBullRush"
+		Flags="LIMIT_DISTANCE NOT_IN_NANOSWARM CANNOT_LEAVE_ENCLOSURE NOT_CLIFF_CELL NO_FORBIDDEN_OBJECTS FOGGED_SHROUDED_CELLS_OK CAN_NOT_BE_SCRAMBLED IGNORE_MAP_EXTENTS"
+		MaxCastRange="750"
+		MinCastRange="50"
+		WaypointModeTerminal="false">
+
+	</SpecialPowerTemplate>
+	<GameObject
+		id="JapanGreatOniMissileProjectile_Veteran"
+		Side="Japan"
+		EditorSorting="SYSTEM"
+		KindOf="PROJECTILE SMALL_MISSILE DEFLECT_BY_SPECIAL_POWER NO_COLLIDE HIDE_IF_FOGGED"
+		EditorName="JapanGreatOniMissileProjectile_Veteran">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FX_FlakShell" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="JapanMissile_Fire_Vet"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="ChopperMissileSmoke_vet"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_JAP_EmperorKingOniMissileImpact" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL PING_PONG_SIDEWAYS_DRIFT"
+				FirstHeightMin="-20"
+				FirstHeightMax="80"
+				SecondHeightMin="-20"
+				SecondHeightMax="80"
+				FirstPercentIndent="0"
+				SecondPercentIndent="66"
+				GroundHitFX="FX_JAP_EmperorKingOniMissileImpact"
+				MaxDistanceReachedFX="FX_JAP_EmperorKingOniMissileImpact"
+				SidewaysDrift="30"
+				FlightPathAdjustDistPerSecond="100.0"
+				MaxDistanceToTravel="600.0"
+			/>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+
+
+</AssetDeclaration>

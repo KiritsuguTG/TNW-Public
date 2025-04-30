@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="ART:Structures/SovietAntiAllBaseDefence/SBAntiAllBaseDefense_COL.w3x" />
+		<Include
+			type="all"
+			source="ART:Structures/SovietAntiAllBaseDefence/SBTOWERCENTER_COL.w3x" />
+    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+	</Includes>
+	<GameObject
+		id="SovietBaseDefenseAntiAll_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="SovietBaseDefenseAntiAll_Collapse">
+		<Draws>
+			<DynamicsDraw 
+			id="ModuleTag_Draw"
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="5"
+			Explodiness="0.5">
+			<ModelConditionState
+				ParseCondStateType="PARSE_DEFAULT">
+				<Model
+					Name="SBANTIALLBASEDEFENSE_COL" />
+				<xi:include
+					href="DATA:Includes/VehicleCollapseParticles/SovietVehicleCollapseParticles.xml"
+					xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:SovietVehicleCollapseParticles/child::*)" />
+			</ModelConditionState>
+			<BoneVolumes>
+				<BoneVolume BoneName="BONE_D_01" Mass="11012" Spinniness="3.0" ContactTag="DEBRIS" >
+					<Box HalfSizeX="11.6749" HalfSizeY="11.0465" HalfSizeZ="8.43369" >
+						<Translation x="9.53674e-007" y="9.53674e-007" z="8.49433" />
+						<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+					</Box>
+				</BoneVolume>
+				<BoneVolume BoneName="BONE_D_02" Mass="1434" Spinniness="3.0" ContactTag="DEBRIS" >
+					<Box HalfSizeX="8.6652" HalfSizeY="8.83057" HalfSizeZ="1.8521" >
+						<Translation x="9.53674e-007" y="0.0" z="18.884" />
+						<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+					</Box>
+				</BoneVolume>
+				<BoneVolume BoneName="BONE_D_03" Mass="1611" Spinniness="3.0" ContactTag="DEBRIS" >
+					<Box HalfSizeX="10.1866" HalfSizeY="2.28206" HalfSizeZ="6.84617" >
+						<Translation x="-2.51121" y="0.0" z="27.2762" />
+						<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+					</Box>
+				</BoneVolume>
+				<BoneVolume BoneName="BONE_D_04" Mass="210" Spinniness="3.0" ContactTag="DEBRIS" >
+					<Box HalfSizeX="13.1265" HalfSizeY="1.5969" HalfSizeZ="0.990077" >
+						<Translation x="17.3176" y="-1.43051e-006" z="27.3746" />
+						<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+					</Box>
+				</BoneVolume>
+			</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	<Behaviors/>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_FlakCannon_Die" AudioType="soundAmbient" />
+		</AudioArraySound>
+</GameObject>
+	<GameObject
+		id="SovietBaseDefenseAntiAllCenter_Collapse"
+		inheritFrom="BaseCollapsingObject"
+		EditorName="SovietBaseDefenseAntiAllCenter_Collapse">
+		<Draws>
+			<DynamicsDraw
+			id="ModuleTag_Draw"
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="5"
+			Explodiness="0.5">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SBTOWERCENTER_COL" />
+					<xi:include
+						href="DATA:Includes/VehicleCollapseParticles/SovietVehicleCollapseParticles.xml"
+						xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:SovietVehicleCollapseParticles/child::*)" />
+				</ModelConditionState>
+				<BoneVolumes>
+					<BoneVolume BoneName="BONE_D_01" Mass="10594" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="10.6989" HalfSizeY="9.25367" HalfSizeZ="10.5695" >
+							<Translation x="-0.003416" y="2.86102e-006" z="10.6587" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="BONE_D_02" Mass="12578" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="12.3657" HalfSizeY="12.0173" HalfSizeZ="8.35988" >
+							<Translation x="-0.0098967" y="1.89245e-006" z="30.0873" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+					<BoneVolume BoneName="BONE_D_03" Mass="1212" Spinniness="3.0" ContactTag="DEBRIS" >
+						<Box HalfSizeX="3.3867" HalfSizeY="3.47906" HalfSizeZ="10.1601" >
+							<Translation x="-0.0033875" y="2.00272e-005" z="27.2629" />
+							<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+						</Box>
+					</BoneVolume>
+				</BoneVolumes>
+				<Lifetime
+					Delay="5s"
+					FadeTime="4s" />
+			</DynamicsDraw>
+		</Draws>
+		<Behaviors/>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_OutPost_Die" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+</AssetDeclaration>

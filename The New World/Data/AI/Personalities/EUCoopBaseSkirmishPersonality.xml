@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+
+	<Includes>
+		<Include type="instance" source="CoopBasePersonality.xml" />
+	</Includes>
+
+	<AIPersonalityDefinition
+        id="EUCoopBaseSkirmishPersonality"
+        PersonalityType="EUCoopBaseSkirmishPersonality"
+        inheritFrom="CoopBasePersonality">
+		<Side>AlliesG</Side>
+		<!-- Water And Ground-->
+		<OpeningMove Name="EUAircraftRush_01" Weight="33%" Difficulty="EASY MEDIUM"/>
+		<OpeningMove Name="EUAircraftRush_02" Weight="33%" Difficulty="EASY MEDIUM"/>
+		<OpeningMove Name="EUAircraftRush_03" Weight="33%" Difficulty="EASY MEDIUM"/>
+		<!-- Ground-->
+		<OpeningMove Name="EUStandard_01" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUStandard_02" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUBarrackRush_01" Weight="50%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUBarrackRush_02" Weight="50%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUTankRush_01" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUTankRush_02" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+					<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- Water-->
+		<OpeningMove Name="EUWaterStandard_01" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUWaterStandard_02" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- Island-->
+		<OpeningMove Name="EUWaterStandard_01" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUWaterStandard_02" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- OnlyAircraft-->
+		<OpeningMove Name="EUAircraftRush_01" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveOnlyAircraft" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUAircraftRush_02" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveOnlyAircraft" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUAircraftRush_03" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveOnlyAircraft" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		
+		<!-- Water And Ground-->
+		<OpeningMove Name="EUAircraftRush_01BRUTAL" Weight="33%" Difficulty="HARD BRUTAL"/>
+		<OpeningMove Name="EUAircraftRush_02BRUTAL" Weight="33%" Difficulty="HARD BRUTAL"/>
+		<OpeningMove Name="EUAircraftRush_03BRUTAL" Weight="33%" Difficulty="HARD BRUTAL"/>
+		<!-- Ground-->
+		<OpeningMove Name="EUStandard_01BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUStandard_02BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUBarrackRush_01BRUTAL" Weight="50%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUBarrackRush_02BRUTAL" Weight="50%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUTankRush_01BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUTankRush_02BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+					<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- Water-->
+		<OpeningMove Name="EUWaterStandard_01BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUWaterStandard_02BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- Island-->
+		<OpeningMove Name="EUWaterStandard_01BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUWaterStandard_02BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- OnlyAircraft-->
+		<OpeningMove Name="EUAircraftRush_01BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveOnlyAircraft" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUAircraftRush_02BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveOnlyAircraft" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUAircraftRush_03BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveOnlyAircraft" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- No Boss -->
+		<StrategicState id="EUExpansion_HARD" State="EUExpansion_HARD" Difficulty="EASY MEDIUM"/>
+		<StrategicState id="EUExpansion_BRUTAL" State="EUExpansion_BRUTAL" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="AntiGroundAircraftAttack" State="AntiGroundAircraftAttack" Difficulty="MEDIUM HARD BRUTAL"/>
+		<StrategicState id="AlliedCaptureTechTNW" State="AlliedCaptureTechTNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="AlliedOptimalCaptureTechTNW" State="AlliedOptimalCaptureTechTNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="AlliedCaptureWaterHusksTNW" State="AlliedCaptureWaterHusksTNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- Build States -->
+		<BuildState id="EUStructureTNWBuildState_BRUTAL" State="EUStructureTNWBuildState_BRUTAL" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUKodiakDefence" State="EUKodiakDefence" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUDefenseBuildState001" State="EUDefenseBuildState001" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUDefenseBuildState002" State="EUDefenseBuildState002" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- 压境 -->
+		<StrategicState id="EUSuperExpansion_BRUTAL" State="EUSuperExpansion_BRUTAL" Difficulty="HARD BRUTAL"/>
+		<BuildState id="EUSuperDefenseBuildState" State="EUSuperDefenseBuildState" Difficulty="HARD BRUTAL"/>
+		<BuildState id="EUSuperAdvancedDefenseBuildState" State="EUSuperAdvancedDefenseBuildState" Difficulty="HARD BRUTAL"/>
+		<!-- 通用 -->
+		<BuildState id="EUAmphibiousUnitBuildState" State="EUAmphibiousUnitBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUAntiBaseDefenceBuildUnit" State="EUAntiBaseDefenceBuildUnit" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUAntiAirOnlyBuildState_TNW" State="EUAntiAirOnlyBuildState_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUGenericUnitBuildState" State="EUGenericUnitBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- NoSpawn -->
+		<BuildState id="EUBarracksUnitBuildStateTechAll_NoSpawn" State="EUBarracksUnitBuildStateTechAll_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech12_NoSpawn" State="EUWarFactoryUnitBuildStateTech12_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech3_NoSpawn" State="EUWarFactoryUnitBuildStateTech3_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech1_NoSpawn" State="EUNavyYardUnitBuildStateTech1_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech23_NoSpawn" State="EUNavyYardUnitBuildStateTech23_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUAircraftUnitBuildStateTech1_NoSpawn" State="EUAircraftUnitBuildStateTech1_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<BuildState id="EUExtraAirfieldBuildState_NoSpawn" State="EUExtraAirfieldBuildState_NoSpawn" Difficulty="BRUTAL"/>
+		<BuildState id="EUExtraNavalYardBuildState_NoSpawn" State="EUExtraNavalYardBuildState_NoSpawn" Difficulty="BRUTAL"/>
+		<BuildState id="EUExtraBarracksBuildState_NoSpawn" State="EUExtraBarracksBuildState_NoSpawn" Difficulty="BRUTAL"/>
+		<!-- Balance -->
+		<BuildState id="EUBarracksUnitBuildStateTechAll_Balance" State="EUBarracksUnitBuildStateTechAll_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech12_Balance" State="EUWarFactoryUnitBuildStateTech12_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech3_Balance" State="EUWarFactoryUnitBuildStateTech3_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech1_Balance" State="EUNavyYardUnitBuildStateTech1_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech23_Balance" State="EUNavyYardUnitBuildStateTech23_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUAircraftUnitBuildStateTech1_Balance" State="EUAircraftUnitBuildStateTech1_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- AirPower -->
+		<BuildState id="EUBarracksUnitBuildStateTechAll_AirPower" State="EUBarracksUnitBuildStateTechAll_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech12_AirPower" State="EUWarFactoryUnitBuildStateTech12_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech3_AirPower" State="EUWarFactoryUnitBuildStateTech3_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech1_AirPower" State="EUNavyYardUnitBuildStateTech1_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech23_AirPower" State="EUNavyYardUnitBuildStateTech23_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUAircraftUnitBuildStateTech1_AirPower" State="EUAircraftUnitBuildStateTech1_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- LandPower -->
+		<BuildState id="EUBarracksUnitBuildStateTechAll_LandPower" State="EUBarracksUnitBuildStateTechAll_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech12_LandPower" State="EUWarFactoryUnitBuildStateTech12_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech3_LandPower" State="EUWarFactoryUnitBuildStateTech3_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech1_LandPower" State="EUNavyYardUnitBuildStateTech1_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech23_LandPower" State="EUNavyYardUnitBuildStateTech23_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUAircraftUnitBuildStateTech1_LandPower" State="EUAircraftUnitBuildStateTech1_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- SpecialUnit -->
+		<BuildState id="EUBarracksUnitBuildStateTechAll_SpecialUnit" State="EUBarracksUnitBuildStateTechAll_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech12_SpecialUnit" State="EUWarFactoryUnitBuildStateTech12_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech3_SpecialUnit" State="EUWarFactoryUnitBuildStateTech3_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech1_SpecialUnit" State="EUNavyYardUnitBuildStateTech1_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech23_SpecialUnit" State="EUNavyYardUnitBuildStateTech23_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUAircraftUnitBuildStateTech1_SpecialUnit" State="EUAircraftUnitBuildStateTech1_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- InfantryBuild -->
+		<BuildState id="EUBarracksUnitBuildStateTechAll_InfantryBuild" State="EUBarracksUnitBuildStateTechAll_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech12_InfantryBuild" State="EUWarFactoryUnitBuildStateTech12_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech3_InfantryBuild" State="EUWarFactoryUnitBuildStateTech3_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech1_InfantryBuild" State="EUNavyYardUnitBuildStateTech1_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech23_InfantryBuild" State="EUNavyYardUnitBuildStateTech23_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUAircraftUnitBuildStateTech1_InfantryBuild" State="EUAircraftUnitBuildStateTech1_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- HighTech -->
+		<BuildState id="EUBarracksUnitBuildStateTechAll_HighTech" State="EUBarracksUnitBuildStateTechAll_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech12_HighTech" State="EUWarFactoryUnitBuildStateTech12_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech3_HighTech" State="EUWarFactoryUnitBuildStateTech3_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech1_HighTech" State="EUNavyYardUnitBuildStateTech1_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech23_HighTech" State="EUNavyYardUnitBuildStateTech23_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUAircraftUnitBuildStateTech1_HighTech" State="EUAircraftUnitBuildStateTech1_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- MoreTank -->
+		<BuildState id="EUBarracksUnitBuildStateTechAll_MoreTank" State="EUBarracksUnitBuildStateTechAll_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech12_MoreTank" State="EUWarFactoryUnitBuildStateTech12_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech3_MoreTank" State="EUWarFactoryUnitBuildStateTech3_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech1_MoreTank" State="EUNavyYardUnitBuildStateTech1_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech23_MoreTank" State="EUNavyYardUnitBuildStateTech23_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUAircraftUnitBuildStateTech1_MoreTank" State="EUAircraftUnitBuildStateTech1_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- AllTank -->
+		<BuildState id="EUBarracksUnitBuildStateTechAll_AllTank" State="EUBarracksUnitBuildStateTechAll_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech12_AllTank" State="EUWarFactoryUnitBuildStateTech12_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryUnitBuildStateTech3_AllTank" State="EUWarFactoryUnitBuildStateTech3_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech1_AllTank" State="EUNavyYardUnitBuildStateTech1_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavyYardUnitBuildStateTech23_AllTank" State="EUNavyYardUnitBuildStateTech23_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUAircraftUnitBuildStateTech1_AllTank" State="EUAircraftUnitBuildStateTech1_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<!-- TechStyle -->
+		<!-- No Spawn -->
+		<BuildState id="EUUpgradeTechBuildState_EASY_NoSpawn" State="EUUpgradeTechBuildState_EASY_NoSpawn" Difficulty="EASY"/>
+		<BuildState id="EUUpgradeTechBuildState_MEDIUM_NoSpawn" State="EUUpgradeTechBuildState_MEDIUM_NoSpawn" Difficulty="MEDIUM"/>
+		<BuildState id="EUUpgradeTechBuildState_HARD_NoSpawn" State="EUUpgradeTechBuildState_HARD_NoSpawn" Difficulty="HARD"/>
+		<BuildState id="EUUpgradeTechBuildState_BRUTAL_NoSpawn" State="EUUpgradeTechBuildState_BRUTAL_NoSpawn" Difficulty="BRUTAL"/>
+		<!-- Balance -->
+		<BuildState id="EUUpgradeTechBuildState_EASY_Balance" State="EUUpgradeTechBuildState_EASY_Balance" Difficulty="EASY"/>
+		<BuildState id="EUUpgradeTechBuildState_MEDIUM_Balance" State="EUUpgradeTechBuildState_MEDIUM_Balance" Difficulty="MEDIUM"/>
+		<BuildState id="EUUpgradeTechBuildState_HARD_Balance" State="EUUpgradeTechBuildState_HARD_Balance" Difficulty="HARD"/>
+		<BuildState id="EUUpgradeTechBuildState_BRUTAL_Balance" State="EUUpgradeTechBuildState_BRUTAL_Balance" Difficulty="BRUTAL"/>
+		<!-- LongBase -->
+		<BuildState id="EUUpgradeTechBuildState_EASY_LongBase" State="EUUpgradeTechBuildState_EASY_LongBase" Difficulty="EASY"/>
+		<BuildState id="EUUpgradeTechBuildState_MEDIUM_LongBase" State="EUUpgradeTechBuildState_MEDIUM_LongBase" Difficulty="MEDIUM"/>
+		<BuildState id="EUUpgradeTechBuildState_HARD_LongBase" State="EUUpgradeTechBuildState_HARD_LongBase" Difficulty="HARD"/>
+		<BuildState id="EUUpgradeTechBuildState_BRUTAL_LongBase" State="EUUpgradeTechBuildState_BRUTAL_LongBase" Difficulty="BRUTAL"/>
+		<!-- TechRushFinal -->
+		<BuildState id="EUUpgradeTechBuildState_EASY_TechRushFinal" State="EUUpgradeTechBuildState_EASY_TechRushFinal" Difficulty="EASY"/>
+		<BuildState id="EUUpgradeTechBuildState_MEDIUM_TechRushFinal" State="EUUpgradeTechBuildState_MEDIUM_TechRushFinal" Difficulty="MEDIUM"/>
+		<BuildState id="EUUpgradeTechBuildState_HARD_TechRushFinal" State="EUUpgradeTechBuildState_HARD_TechRushFinal" Difficulty="HARD"/>
+		<BuildState id="EUUpgradeTechBuildState_BRUTAL_TechRushFinal" State="EUUpgradeTechBuildState_BRUTAL_TechRushFinal" Difficulty="BRUTAL"/>
+		<!-- TechRush -->
+		<BuildState id="EUUpgradeTechBuildState_EASY_TechRush" State="EUUpgradeTechBuildState_EASY_TechRush" Difficulty="EASY"/>
+		<BuildState id="EUUpgradeTechBuildState_MEDIUM_TechRush" State="EUUpgradeTechBuildState_MEDIUM_TechRush" Difficulty="MEDIUM"/>
+		<BuildState id="EUUpgradeTechBuildState_HARD_TechRush" State="EUUpgradeTechBuildState_HARD_TechRush" Difficulty="HARD"/>
+		<BuildState id="EUUpgradeTechBuildState_BRUTAL_TechRush" State="EUUpgradeTechBuildState_BRUTAL_TechRush" Difficulty="BRUTAL"/>
+		<!-- UpgradeFirst -->
+		<BuildState id="EUUpgradeTechBuildState_EASY_UpgradeFirst" State="EUUpgradeTechBuildState_EASY_UpgradeFirst" Difficulty="EASY"/>
+		<BuildState id="EUUpgradeTechBuildState_MEDIUM_UpgradeFirst" State="EUUpgradeTechBuildState_MEDIUM_UpgradeFirst" Difficulty="MEDIUM"/>
+		<BuildState id="EUUpgradeTechBuildState_HARD_UpgradeFirst" State="EUUpgradeTechBuildState_HARD_UpgradeFirst" Difficulty="HARD"/>
+		<BuildState id="EUUpgradeTechBuildState_BRUTAL_UpgradeFirst" State="EUUpgradeTechBuildState_BRUTAL_UpgradeFirst" Difficulty="BRUTAL"/>
+		<!-- SuperWeapon -->
+		<BuildState id="EUUpgradeTechBuildState_EASY_SuperWeapon" State="EUUpgradeTechBuildState_EASY_SuperWeapon" Difficulty="EASY"/>
+		<BuildState id="EUUpgradeTechBuildState_MEDIUM_SuperWeapon" State="EUUpgradeTechBuildState_MEDIUM_SuperWeapon" Difficulty="MEDIUM"/>
+		<BuildState id="EUUpgradeTechBuildState_HARD_SuperWeapon" State="EUUpgradeTechBuildState_HARD_SuperWeapon" Difficulty="HARD"/>
+		<BuildState id="EUUpgradeTechBuildState_BRUTAL_SuperWeapon" State="EUUpgradeTechBuildState_BRUTAL_SuperWeapon" Difficulty="BRUTAL"/>
+
+		<BuildState id="EUAirfieldBuildState" State="EUAirfieldBuildState" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUWarFactoryBuildState" State="EUWarFactoryBuildState" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUNavalYardBuildState" State="EUNavalYardBuildState" Difficulty="MEDIUM HARD BRUTAL"/>
+	<!-- ExtraBuild -->
+		<BuildState id="EUExtraBarracksBuildState_Balance" State="EUExtraBarracksBuildState_Balance" Difficulty="BRUTAL"/>
+		<BuildState id="EUExtraBarracksBuildState_Less" State="EUExtraBarracksBuildState_Less" Difficulty="BRUTAL"/>
+		<BuildState id="EUExtraWarFactoryBuildState_Less" State="EUExtraWarFactoryBuildState_Less" Difficulty="BRUTAL"/>
+		<BuildState id="EUExtraNavalYardBuildState_Balance" State="EUExtraNavalYardBuildState_Balance" Difficulty="BRUTAL"/>
+		<BuildState id="EUExtraNavalYardBuildState_Less" State="EUExtraNavalYardBuildState_Less" Difficulty="BRUTAL"/>
+		<BuildState id="EUExtraAirfieldBuildState_Balance" State="EUExtraAirfieldBuildState_Balance" Difficulty="BRUTAL"/>
+		<BuildState id="EUExtraAirfieldBuildState_Less" State="EUExtraAirfieldBuildState_Less" Difficulty="BRUTAL"/>
+		<!-- Player Tech -->
+		<!-- Tier 1 -->
+		<PowerChoice PlayerPower="PlayerTech_Allied_Paradrop" Weight="66%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_SatelliteSweep" Weight="0%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_TheWorld" Weight="66%"/>
+		<!-- Tier 2 -->
+		<PowerChoice PlayerPower="PlayerTech_Allied_PrecisionStrike" Weight="66%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_ChronoSwap" Weight="0%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_OutPutSP" Weight="0%"/>
+		<!-- Tier 3 -->
+		<PowerChoice PlayerPower="PlayerTech_Allied_TimeBomb_Rank1" Weight="33%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_ChronoRift_Rank1" Weight="33%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_CryoSatellite_Rank1" Weight="33%"/>
+		<!-- Tier 4 -->
+		<PowerChoice PlayerPower="PlayerTech_Allied_TimeBomb_Rank2" Weight="66%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_ChronoRift_Rank2" Weight="66%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_CryoSatellite_Rank2" Weight="66%"/>
+		<!-- Tier 5 -->
+		<PowerChoice PlayerPower="PlayerTech_Allied_TimeBomb_Rank3" Weight="100%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_ChronoRift_Rank3" Weight="100%"/>
+		<PowerChoice PlayerPower="PlayerTech_Allied_CryoSatellite_Rank3" Weight="100%"/>
+		<!-- Caps for difficulty -->
+		<SpecificUnitCap Unit="AlliedScoutInfantry" Cap="25" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiInfantryInfantry" Cap="75" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiVehicleInfantry" Cap="50" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUScoutAntiInfantryVehicle" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiVehicleInfantryTech2" Cap="15" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUScoutVehicle" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiAirVehicleTech1" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiVehicleVehicleTech1" Cap="30" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUBeamVehicle" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiStructureVehicle" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiVehicleVehicleTech3" Cap="5" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="EUAntiVehicleVehicleTech3" Cap="10" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="AlliedAntiNavalScout" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiAirVehicleTech1" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiNavyShipTech2" Cap="15" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiStructureShip" Cap="2" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="EUAntiStructureShip" Cap="5" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUSupportAircraft" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiAirAircraft" Cap="5" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="EUAntiAirAircraft" Cap="10" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUAntiGroundAircraft" Cap="1" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="EUAntiGroundAircraft" Cap="4" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="EUBomberAircraft" Cap="3" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="EUBomberAircraft" Cap="10" Difficulty="MEDIUM HARD BRUTAL"/>
+
+		<!--UnitModifier-->
+		<UnitModifier Unit="AlliedScoutInfantry" OffensiveModifier="1.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="EUAntiInfantryInfantry" OffensiveModifier="3.0" DefensiveModifier="3.0"/>
+		<UnitModifier Unit="EUAntiVehicleInfantry" OffensiveModifier="5" DefensiveModifier="5"/>
+		<UnitModifier Unit="EUAntiVehicleInfantryTech2" OffensiveModifier="5.0" DefensiveModifier="2.0"/>
+		<UnitModifier Unit="EUScoutVehicle" OffensiveModifier="1" DefensiveModifier="5"/>
+		<UnitModifier Unit="AlliedCommandoTech1" OffensiveModifier="10.0" DefensiveModifier="2.0"/>
+		<UnitModifier Unit="EUAntiAirVehicleTech1" OffensiveModifier="3" DefensiveModifier="1"/>
+		<UnitModifier Unit="EUAntiVehicleVehicleTech1" OffensiveModifier="5.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="EUBeamVehicle" OffensiveModifier="10.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="EUAntiStructureVehicle" OffensiveModifier="10.0" DefensiveModifier="1"/>
+		<UnitModifier Unit="EUAntiVehicleVehicleTech3" OffensiveModifier="10.0" DefensiveModifier="10.0"/>
+		<UnitModifier Unit="AlliedAntiNavalScout" OffensiveModifier="2" DefensiveModifier="2"/>
+		<UnitModifier Unit="EUAntiNavyShipTech2" OffensiveModifier="5" DefensiveModifier="5"/>
+		<UnitModifier Unit="EUAntiStructureShip" OffensiveModifier="10" DefensiveModifier="1"/>
+		<UnitModifier Unit="EUSupportAircraft" OffensiveModifier="0" DefensiveModifier="10"/>
+		<UnitModifier Unit="EUAntiAirAircraft" OffensiveModifier="5.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="EUAntiGroundAircraft" OffensiveModifier="10" DefensiveModifier="10"/>
+		<UnitModifier Unit="EUBomberAircraft" OffensiveModifier="10" DefensiveModifier="5"/>
+
+	</AIPersonalityDefinition>
+</AssetDeclaration>

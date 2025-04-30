@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+
+	<Tags/>
+	<Includes/>
+
+
+<!--*************************************************************** JapanEmperorMecha ***************************************************************-->
+	<LogicCommand
+		Type="UNIT_BUILD"
+		id="Command_ConstructJapanEmperorMechaOni">
+		<Object>JapanEmperorMechaOni</Object>
+	</LogicCommand>
+
+
+	<LogicCommand
+		Type="SPECIAL_POWER"
+		id="Command_TriggerJumpAttack">
+		<SpecialPower>SpecialPower_TriggerJumpAttack</SpecialPower>
+		<AISpecialPowerInfo Heuristic="AOE_ATTACK"
+			Manager="MICRO_MANAGER"
+			NeverUseWhilePullingBack="true">
+			<SpecialPowerWeapon
+				Weapon="JapanHeavyAntiVehicleVehicleTech3LandWeapon"
+				AoeAttackPowerBlockAreaAfterActivationTime="1s"
+				AoeAttackPowerLocationPreference="PREFER_CENTER_OF_ENEMIES" />
+		</AISpecialPowerInfo>
+	</LogicCommand>
+	<LogicCommandSet
+		id="JapanEmperorMechaOniCommandSet">
+		<Cmd>Command_TriggerJumpAttack</Cmd>
+		<Cmd>Command_AttackMove</Cmd>
+		<Cmd>Command_MoveToPositionAndCollect</Cmd>
+	</LogicCommandSet>
+	<ButtonSingleStateData
+		id="ButtonStateAbilityOniLeap">
+		<State
+			Image="AbilityOniLeap"
+			Title="NAME:LeapSpecialPower2"
+			Description="DESC:LeapSpecialPower2" />
+	</ButtonSingleStateData>
+	<UnitAbilityButtonTemplate
+		id="ButtonOniLeap"
+		LogicCommand="Command_TriggerJumpAttack">
+		<Data>
+			<TargetedSpecialPower
+				StateData="ButtonStateAbilityOniLeap"
+				RadiusCursor="Target_JapanEmperorMechaOniJump"/>
+		</Data>
+	</UnitAbilityButtonTemplate>
+
+
+
+
+</AssetDeclaration>

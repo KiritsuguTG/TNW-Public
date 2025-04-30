@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:Soviet/PropAndOtherUnit/BaseSovietSupportBomber.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseAircraft.xml" />
+		<Include type="all" source="ART:Units/SovietDetectedAircraft/SUSUPPORTAIRCRAFT.w3x" />
+		<Include type="all" source="ART:Units/SovietDetectedAircraft/SUSUPPORTAIRCRAFTLIGHT.w3x" />
+	</Includes>
+	<!-- SovietSupportBomber - used for desolator air strike player power -->
+	<GameObject
+		id="SovietSupportBomber"
+		inheritFrom="BaseSovietSupportBomber"
+		EditorName="SovietSupportBomber"
+		Description="Desc:SovietSupportBomber">
+		<DisplayName
+			xai:joinAction="Replace">Name:SovietSupportBomber</DisplayName>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietDesolatorBombWeapon" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<ParabolicCurveUpdate
+				id="ModuleTag_ParabolicCurve"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"/>
+			</AIUpdate>
+		</AI>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="0" />
+		<AudioArraySound>
+			<AudioEntry	Sound="SOV_DesolatorBomber_MoveByLoopMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+	<!-- SovietSupportBomber_S07 used on campaign maps to drop off units. -->
+	<GameObject
+		id="SovietSupportBomber_S07"
+		inheritFrom="BaseSovietSupportBomber"
+		KindOf="+TRANSPORT +NO_HEAL_ICON"
+		EditorName="SovietSupportBomber_S07"
+		EditorSorting="CAMPAIGN_UNITS">
+		<LocomotorSet
+			id="Locomotor_Normal"
+			Locomotor="SovietSupportBomberLocomotor_S07"
+			Condition="NORMAL"
+			Speed="175.0" />
+		<Behaviors>	
+			<TransportContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED"
+				ContainMax="7"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="ParachutingOutOfAirplane"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY" />
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="NONE">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</PassengerData>
+			</TransportContain>
+
+			<StrafeAreaUpdate
+				id="ModuleTag_StrafeAreaUpdate"
+				WeaponName="SovietDesolatorBombWeapon"
+				SweepFrequency="0.2"
+				SweepAmplitude="5"
+				PreattackDistance="500.0"
+				Radius="300"
+				MinRadius="20"
+				Options="FLEE_STRAIGHT_AHEAD DO_NOT_AVOID_TALLBUILDING" />
+			
+			<SpecialPower
+				id="ModuleTag_EjectPassengers"
+				SpecialPowerTemplate="SpecialPower_EjectPassengersUntargeted"
+				UpdateModuleStartsAttack="true" />
+			<EjectPassengersSpecialAbilityUpdate
+				id="ModuleTag_EjectPassengersUpdate"
+				SpecialPowerTemplate="SpecialPower_EjectPassengersUntargeted"
+				Height="150.0"
+				TimePerPassenger="1.25s"
+				Radius="0"
+				Options="RECONSTITUTE_STORED_COMMAND DO_NOT_DO_AI_SPECIAL_POWER"/>
+		</Behaviors>	
+	</GameObject>
+	<GameObject
+		id="SovietCommandAntiAirAircraft"
+		inheritFrom="BaseSovietSupportFighter"
+		EditorName="SovietCommandAntiAirAircraft"
+		EditorSorting="SYSTEM"
+		Description="Desc:SovietBombingRun">
+		<LocomotorSet
+			id="Locomotor_Normal"
+			Locomotor="Soviet_BombingRunLocomotor"
+			Condition="NORMAL"
+			Speed="300.0" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SU47MIG" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_01"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="1"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_01"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="2"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_02"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="3"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_02"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="4"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_03"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="5"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_03"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="6"
+						FXAction="SPAWN" />
+					<ParticleSysBone
+						BoneName="FX_JET_01"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_02"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="FP_SU47MIG" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SU47MIG" />
+					<ParticleSysBone
+						BoneName="FX_JET_03"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_01"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="1"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_01"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="2"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_02"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="3"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_02"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="4"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_03"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="5"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_03"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="6"
+						FXAction="SPAWN" />
+					<ParticleSysBone
+						BoneName="FX_JET_01"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_02"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SU47MIG" />
+					<ParticleSysBone
+						BoneName="FX_JET_03"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_03"
+						FXParticleSystemTemplate="AircraftDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_03"
+						FXParticleSystemTemplate="AircraftDamageSmoke"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_01"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="1"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_01"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="2"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_02"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="3"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_02"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="4"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_03"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="5"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_03"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="6"
+						FXAction="SPAWN" />
+					<ParticleSysBone
+						BoneName="FX_JET_01"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_02"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 USER_6">
+					<Model
+						Name="SU47MIG" />
+						<Texture
+						Original="SUFighterAircraft"
+						New="SUFighterAircraft2" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_01"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="1"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_01"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="2"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_02"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="3"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_02"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="4"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_03"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="5"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_03"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="6"
+						FXAction="SPAWN" />
+					<ParticleSysBone
+						BoneName="FX_JET_01"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_02"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+				<!-- Evasive Maneuvers FX -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_6">
+					<Model
+						Name="SU47MIG" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_01"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="1"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_01"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="2"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_02"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="3"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_02"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="4"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_03"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="5"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_03"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="6"
+						FXAction="SPAWN" />
+					<ParticleSysBone
+						BoneName="FX_JET_01"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_02"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="SU47MIG" />
+					<Texture
+						Original="SUFighterAircraft"
+						New="SUFighterAircraft2" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_01"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="1"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_01"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="2"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_02"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="3"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_02"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="4"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_03"
+						FXParticleSystemTemplate="AlliedJetTrail"
+						FollowBone="true"
+						PersistID="5"
+						FXAction="SPAWN" />
+          <ParticleSysBone
+						BoneName="FX_Jet_Exhaust_03"
+						FXParticleSystemTemplate="AlliedJetTrailGlow"
+						FollowBone="true"
+						PersistID="6"
+						FXAction="SPAWN" />
+					<ParticleSysBone
+						BoneName="FX_JET_01"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_JET_02"
+						FXParticleSystemTemplate="FireHawkConTrail"
+						FollowBone="true" />
+				</ModelConditionState>	
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>		
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietCommandAntiAirAircraftMissile" />
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<ParabolicCurveUpdate
+				id="ModuleTag_ParabolicCurve"/>
+			<OCLMonitorUpdate
+				id="ModuleTag_MonitorUpdate"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				xai:joinAction="Replace" 
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"/>
+			</AIUpdate>
+		</AI>
+	</GameObject>
+	<!-- SovietDetectedAircraft - used for desolator air strike player power -->
+	<GameObject
+		id="SovietDetectedAircraft"
+		inheritFrom="BaseAircraft"
+		SelectPortrait="Portrait_GDIOrca"
+		ButtonImage="Portrait_GDIOrca"
+		Side="Soviet"
+		EditorSorting="UNIT"
+		BuildTime="0"
+		Scale="0.75"
+		CommandSet="AlliedBomberAircraftCommandSet"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		IsTrainable="false"
+		ProductionQueueType="AIRCRAFT"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="MISSILE"
+		KindOf="NO_HEAL_ICON CAN_CAST_REFLECTIONS AIRCRAFT VEHICLE SUMMONED IGNORES_SELECT_ALL NO_COLLIDE SKIRMISH_AI_DONT_CONSIDER_THREAT HIDE_IF_FOGGED RESIST_EMP IGNORE_IN_AI_HUNT_TACTIC"
+		EditorName="SovietDetectedAircraft"
+		Description="Desc:SovietDetectedAircraft">
+		<DisplayName
+			xai:joinAction="Replace">Name:SovietDetectedAircraft</DisplayName>
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="Locomotor_Normal"
+			Locomotor="SovietDetectedAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="125.0" />
+		<SkirmishAIInformation
+			ConquerMetricsOverrideDefendingAntiMask="ANTI_AIRBORNE_VEHICLE" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="SUSUPPORTBOMBER">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUSUPPORTAIRCRAFT" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="SUSUPPORTBOMBER" />
+					<ParticleSysBone
+								  BoneName="FX_TRAIL01"
+								  FXParticleSystemTemplate="SUBomberConTrail"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_TRAIL02"
+								  FXParticleSystemTemplate="SUBomberConTrail"
+								  FollowBone="true" />
+				</ModelConditionState>
+
+				<AnimationState
+				ParseCondStateType="PARSE_DEFAULT"
+				Flags="RANDOMSTART">
+					<Animation
+						AnimationName="SUSupportBomber"
+						AnimationMode="LOOP" />
+				</AnimationState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SUSUPPORTAIRCRAFT" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_TRAIL01"
+								  FXParticleSystemTemplate="SUBomberConTrail"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_TRAIL02"
+								  FXParticleSystemTemplate="SUBomberConTrail"
+								  FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SUSUPPORTAIRCRAFT" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_DAMAGE01"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_TRAIL01"
+								  FXParticleSystemTemplate="SUBomberConTrail"
+								  FollowBone="true" />
+					<ParticleSysBone
+								  BoneName="FX_TRAIL02"
+								  FXParticleSystemTemplate="SUBomberConTrail"
+								  FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_LIGHTS"
+				OkToChangeModelColor="true"
+				AttachToBoneInAnotherModule="FX_LIGHT01">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUSUPPORTAIRCRAFTLIGHT.FX_LIGHTS" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<Physics
+				id="ModuleTag_Physics" />
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="90.0s"
+				MaxLifetime="90.0s"
+				DeathType="SUICIDED"/>
+			<SlowDeath
+				id="ModuleTag_TeslaDeath"
+				DeathFlags="DEATH_1"
+				SinkDelay="0s"
+				SinkRate="2.4"
+				DestructionDelay="8.5s">
+				<DieMuxData
+					DeathTypes="SUICIDED"/>
+			</SlowDeath>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SUDetectedAircraft_Collapse_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED"/>
+			</DestroyDie>
+			<StealthDetectorUpdate
+				id="ModuleTag_StealthDetect"
+				DetectionRange="300"
+				ExtraForbiddenKindOf="SUBMARINE"/>
+			<!-- Anti Sub Invisibility-->
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_AntiSubInvisibilityAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="350.0"
+				RefreshDelay="0.2s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_AntiSubInvisibility">
+				<ObjectFilter
+					Rule="ANY"
+					Relationship="ENEMIES NEUTRAL"
+					Include="SUBMARINE">
+				</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="1500" />
+		</Body>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="450" />
+		<AudioArraySound>
+			<AudioEntry	Sound="SOV_DesolatorBomber_MoveByLoopMS" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="" EvaType="ambushed" />
+			<EvaEntry EvaEvent="" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="" EvaType="buildCancelled" />
+			<EvaEntry EvaEvent="" EvaType="promotedOwner" />
+		</EvaEventArray>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				ContactPointGeneration="VEHICLE"
+				Type="BOX"
+				MajorRadius="27.1642"
+				MinorRadius="3.28358"
+				Height="5.97015">
+				<Offset x="-2.12387" y="-0.323282"/>
+			</Shape>
+			<Shape
+				ContactPointGeneration="VEHICLE"
+				Type="BOX"
+				MajorRadius="6.56716"
+				MinorRadius="36.8657"
+				Height="2.08955">
+				<Offset x="8.6224" y="0.124479" z="1.69108"/>
+			</Shape>
+		</Geometry>
+	</GameObject>
+		  <GameObject
+		id="SovietDetectedAircraft_Crate"
+		inheritFrom="SovietDetectedAircraft"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="SovietDetectedAircraft_Crate">
+		<EquivalentTo>SovietDetectedAircraft</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

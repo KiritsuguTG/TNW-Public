@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include type="instance" source="DATA:BaseObjects/BaseVehicle.xml" />
+	  <Include type="all" source="ART:Units/SovietEpicUnit/SovietEpicUnit_SKN.w3x" />
+	</Includes>
+	<GameObject
+		id="SovietEpicUnit"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Portrait_SovietEpicUnit"
+		ButtonImage="Button_SovietEpicUnit"
+		Side="Soviet"
+		BuildTime="50"
+		CommandSet="GDIMARVBaseCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK CAN_CAST_REFLECTIONS SCORE COMMANDO VEHICLE CAN_BE_FAVORITE_UNIT UNIQUE_UNIT CRUSH_CRUSHABLE_BUILDINGS SKIRMISH_AI_DONT_REPAIR EXPANSION_UNIT"
+		UnitCategory="VEHICLE"
+		EditorSorting="UNIT"
+		RadarPriority="COMMANDO"
+		VoicePriority="246"
+		WeaponCategory="MISSILE"
+		EditorName="SovietEpicUnit"
+		Description="Desc:GDIMARV"
+		TypeDescription="Type:EpicUnit"
+		MaxSimultaneousOfType="1"
+		BountyValue="500"
+		HealthBoxHeightOffset="35">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:GDIMARV</DisplayName>
+		<GameDependency>
+			<RequiredObject>SovietTechStructure</RequiredObject>
+			<NeededUpgrade>Upgrade_SovietTerrorDroneEggs</NeededUpgrade>
+			<NeededUpgrade>Upgrade_SovietCrushPuppiesPower</NeededUpgrade>
+			<NeededUpgrade>Upgrade_SovietFaction</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="5000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseEpicArmor"
+			DamageFX="VehicleDamageFX" />
+		<ArmorSet
+			id="ModuleTag_ShrinkRayEffectArmor"
+			xai:joinAction="Replace"
+			Armor="BaseAdvanceTankShrinkRayEffectArmor"
+			DamageFX="VehicleDamageFX"
+			Conditions="SHRINK_EFFECT" />
+		<LocomotorSet
+			Locomotor="GDIMammothLocomotor"
+			Condition="NORMAL"
+			Speed="40.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true"
+			ConquerMetricsOverrideDamageType="EXPLOSIVE"
+			DodgeSafetyDistance="80.0"
+			TargetDuringCrush="true">
+      <DodgeWithUnits
+      	Rule="ANY"
+      	Include="VEHICLE INFANTRY"
+      	Exclude="COMMANDO"
+        StatusBitFlagsExclude="AIRBORNE_TARGET">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.5"
+				MaxRecoilDistance="6.0"
+				RecoilDamping="5.0"
+				RecoilSettleSpeed="3.0"
+				TrackMarks="EXMARVTracks"
+				TrackMarksLeftBone="BONE_TRACKS_REAR_LEFT"
+				TrackMarksRightBone="BONE_TRACKS_REAR_RIGHT"
+				ExtraPublicBone="BONE_TREAD_LEFT_FRONT BONE_TREAD_LEFT_REAR BONE_TREAD_RIGHT_FRONT BONE_TREAD_RIGHT_REAR CANNON_FIRE_FRONT_01 CANNON_FIRE_FRONT_02 CANNON_FIRE_MIDDLE_01 CANNON_FIRE_MIDDLE_02 CANNON_FIRE_REAR_01 CANNON_FIRE_REAR_02 BARREL_FRONT_01 BARREL_FRONT_02 BARREL_MIDDLE_01 BARREL_MIDDLE_02 BARREL_REAR_01 BARREL_REAR_02 ROCKET_FRONT_R_01 ROCKET_FRONT_R_02 ROCKET_MIDDLE_R_01 ROCKET_MIDDLE_R_02 ROCKET_REAR_R_01 ROCKET_REAR_R_02 ROCKET_FRONT_L_01 ROCKET_FRONT_L_02 ROCKET_MIDDLE_L_01 ROCKET_MIDDLE_L_02 ROCKET_REAR_L_01 ROCKET_REAR_L_02">
+				<TreadTerrainParticles>DefaultTankTerrainParticleMapping</TreadTerrainParticles>
+				<TreadScrollingMap
+					LeftTrack="BONE_TREAD_LEFT_REAR"
+					RightTrack="BONE_TREAD_RIGHT_REAR"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%"/>
+				<TreadScrollingMap
+					LeftTrack="BONE_TREAD_LEFT_FRONT"
+					RightTrack="BONE_TREAD_RIGHT_FRONT"
+					SpeedMultiplier="-0.06"
+					TreadDriveSpeedFraction="10%"/>
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true"> 	
+					<Model
+						Name="SOVIETEPICUNIT_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="CANNON_FIRE_FRONT_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="CANNON_FIRE_FRONT_" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BARREL_FRONT_" />
+					<Turret
+						TurretNameKey="CANNON_TURRET_FRONT"
+						TurretPitch="PITCH_FRONT"
+						TurretID="1" />
+					<WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="CANNON_FIRE_MIDDLE_" />
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="CANNON_FIRE_MIDDLE_" />
+					<WeaponRecoilBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BARREL_MIDDLE_" />
+					<Turret
+						TurretNameKey="CANNON_TURRET_MIDDLE"
+						TurretPitch="PITCH_MIDDLE"
+						TurretID="2" />
+					<WeaponFireFXBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="CANNON_FIRE_REAR_" />
+					<WeaponLaunchBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="CANNON_FIRE_REAR_" />
+					<WeaponRecoilBone
+						WeaponSlotID="3"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BARREL_REAR_" />
+					<Turret
+						TurretNameKey="CANNON_TURRET_REAR"
+						TurretPitch="PITCH_REAR"
+						TurretID="3" />
+					<WeaponFireFXBone
+						WeaponSlotID="4"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_FRONT_R_" />
+					<WeaponLaunchBone
+						WeaponSlotID="4"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_FRONT_R_" />
+					<WeaponRecoilBone
+						WeaponSlotID="4"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_FRONT_R_" />
+					<Turret
+						TurretNameKey="ROCKET_TURRET_FRONT_R"
+						TurretPitch="PITCH_FRONT_R"
+						TurretID="4" />
+					<WeaponFireFXBone
+						WeaponSlotID="5"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_MIDDLE_R_" />
+					<WeaponLaunchBone
+						WeaponSlotID="5"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_MIDDLE_R_" />
+					<WeaponRecoilBone
+						WeaponSlotID="5"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_MIDDLE_R_" />
+					<Turret
+						TurretNameKey="ROCKET_TURRET_MIDDLE_R"
+						TurretPitch="PITCH_MIDDLE_R"
+						TurretID="5" />
+					<WeaponFireFXBone
+						WeaponSlotID="6"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_REAR_R_" />
+					<WeaponLaunchBone
+						WeaponSlotID="6"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_REAR_R_" />
+					<WeaponRecoilBone
+						WeaponSlotID="6"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_REAR_R_" />
+					<Turret
+						TurretNameKey="ROCKET_TURRET_REAR_R"
+						TurretPitch="PITCH_REAR_R"
+						TurretID="6" />
+					<WeaponFireFXBone
+						WeaponSlotID="7"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_FRONT_L_" />
+					<WeaponLaunchBone
+						WeaponSlotID="7"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_FRONT_L_" />
+					<WeaponRecoilBone
+						WeaponSlotID="7"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_FRONT_L_" />
+					<Turret
+						TurretNameKey="ROCKET_TURRET_FRONT_L"
+						TurretPitch="PITCH_FRONT_L"
+						TurretID="7" />
+					<WeaponFireFXBone
+						WeaponSlotID="8"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_MIDDLE_L_" />
+					<WeaponLaunchBone
+						WeaponSlotID="8"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_MIDDLE_L_" />
+					<WeaponRecoilBone
+						WeaponSlotID="8"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_MIDDLE_L_" />
+					<Turret
+						TurretNameKey="ROCKET_TURRET_MIDDLE_L"
+						TurretPitch="PITCH_MIDDLE_L"
+						TurretID="8" />
+					<WeaponFireFXBone
+						WeaponSlotID="9"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_REAR_L_" />
+					<WeaponLaunchBone
+						WeaponSlotID="9"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_REAR_L_" />
+					<WeaponRecoilBone
+						WeaponSlotID="9"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="ROCKET_REAR_L_" />
+					<Turret
+						TurretNameKey="ROCKET_TURRET_REAR_L"
+						TurretPitch="PITCH_REAR_L"
+						TurretID="9" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL" 
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model 
+						Name="SOVIETEPICUNIT_SKN" />
+				</ModelConditionState>				
+				<ModelConditionState 
+					ParseCondStateType="PARSE_NORMAL" 
+					RetainSubObjects="true" 
+					ConditionsYes="REALLYDAMAGED">
+					<Model 
+						Name="SOVIETEPICUNIT_SKN" />
+					<Texture
+						Original="SUAntiAirVehicleTech3"
+						New="SUAntiAirVehicleTech3_D" />
+					<Texture
+						Original="SBConstructionYard"
+						New="SBConstructionYard_D" />
+					<Texture
+						Original="SUAntiVehicleVehicleTech1"
+						New="SUAntiVehicleVehicleTech1_D" />
+					<Texture
+						Original="SUAntiStructureShip"
+						New="SUAntiStructureShip_D" />
+					<Texture
+						Original="SUAntiNavyShipTech2"
+						New="SUAntiNavyShipTech2_D" />
+					<Texture
+						Original="RUTeslaTank"
+						New="RUTeslaTank_D" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_FRONT_R"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_FRONT_R"
+						FXParticleSystemTemplate="GDIMARVDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_FRONT_R"
+						FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_FRONT_R"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_FRONT_R"
+						FXParticleSystemTemplate="GDIMARVDamagedFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_FRONT_R"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_FRONT_R"
+						FXParticleSystemTemplate="GDIMARVDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_MIDDLE_L"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_MIDDLE_L"
+						FXParticleSystemTemplate="GDIMARVDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_MIDDLE_L"
+						FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_MIDDLE_L"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_MIDDLE_L"
+						FXParticleSystemTemplate="GDIMARVDamagedFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_MIDDLE_L"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_MIDDLE_L"
+						FXParticleSystemTemplate="GDIMARVDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="CANNON_TURRET_FRONT"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="CANNON_TURRET_FRONT"
+						FXParticleSystemTemplate="GDIMARVDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="CANNON_TURRET_FRONT"
+						FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="CANNON_TURRET_FRONT"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="CANNON_TURRET_FRONT"
+						FXParticleSystemTemplate="GDIMARVDamagedFlash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="CANNON_TURRET_FRONT"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="CANNON_TURRET_FRONT"
+						FXParticleSystemTemplate="GDIMARVDamagedSparks"
+						FollowBone="true" />
+				</ModelConditionState>	
+				<ModelConditionState 
+					ParseCondStateType="PARSE_NORMAL" 
+					RetainSubObjects="true" 
+					ConditionsYes="DAMAGED">
+					<Model 
+						Name="SOVIETEPICUNIT_SKN" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_FRONT_R"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_FRONT_R"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_MIDDLE_L"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="ROCKET_TURRET_MIDDLE_L"
+						FXParticleSystemTemplate="GDIMARVDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+        <AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<ParticleSysBone
+						BoneName="BONE_TRACKS_REAR_RIGHT"
+						FXParticleSystemTemplate="AlliedTankDirtAcc"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_TRACKS_REAR_LEFT"
+						FXParticleSystemTemplate="AlliedTankDirtAcc"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_TRACKS_REAR_RIGHT"
+						FXParticleSystemTemplate="AlliedTankDustAcc"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_TRACKS_REAR_LEFT"
+						FXParticleSystemTemplate="AlliedTankDustAcc"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_TRACKS_REAR_LEFT"
+						FXParticleSystemTemplate="TeslaTankExhaust"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_TRACKS_REAR_RIGHT"
+						FXParticleSystemTemplate="TeslaTankExhaust"
+						FollowBone="true" />
+				</AnimationState>
+			</TruckDraw>
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+			<xi:include
+				href="DATA:Includes/HeadlightDraw2.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:HeadlightDraw2/child::*)" />
+		</Draws>
+		<Behaviors>		
+						<Physics
+				id="ModuleTag_Physics" />
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1"
+					AllowInterleavedFiring="true">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietEpicUnitCannon" />
+					<TurretSettings
+						TurretTurnRate="145"
+						MinimumPitch="-20d"
+						AllowsPitch="true"
+						PitchHeight="85%"
+						TurretPitchRate="120"
+						IdleTurnRateModifier="10%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="60.0"
+						MaxDeflectionAntiClockwise="110d"
+						MaxDeflectionClockwise="110d">
+						<TurretAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+							<ObjectVisionRange
+								id="ObjectVisionRange_Ground"
+								Range="70">
+								<Filter
+									Rule="ANY"
+									Include="INFANTRY VEHICLE"
+									StatusBitFlagsExclude="AIRBORNE_TARGET"/>
+							</ObjectVisionRange>
+						</TurretAITargetChooserData>
+						</TurretSettings> 
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietEpicUnitCannon"/>
+					<TurretSettings
+						TurretTurnRate="145"
+						MinimumPitch="-20d"
+						AllowsPitch="true"
+						PitchHeight="85%"
+						TurretPitchRate="120"
+						IdleTurnRateModifier="10%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="60.0">
+						<TurretAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+							<ObjectVisionRange
+								id="ObjectVisionRange_Ground"
+								Range="70">
+								<Filter
+									Rule="ANY"
+									Include="INFANTRY VEHICLE"
+									StatusBitFlagsExclude="AIRBORNE_TARGET"/>
+							</ObjectVisionRange>
+						</TurretAITargetChooserData>
+						</TurretSettings> 
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="3">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietEpicUnitCannon"/>
+					<TurretSettings
+						TurretTurnRate="145"
+						MinimumPitch="-20d"
+						AllowsPitch="true"
+						PitchHeight="85%"
+						TurretPitchRate="120"
+						IdleTurnRateModifier="10%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="60.0"
+						MaxDeflectionAntiClockwise="110d"
+						MaxDeflectionClockwise="110d"
+						NaturalTurretAngle="180d">
+						<TurretAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true"
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+							<ObjectVisionRange
+								id="ObjectVisionRange_Ground"
+								Range="70">
+								<Filter
+									Rule="ANY"
+									Include="INFANTRY VEHICLE"
+									StatusBitFlagsExclude="AIRBORNE_TARGET"/>
+							</ObjectVisionRange>
+						</TurretAITargetChooserData>
+						</TurretSettings> 
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="4">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietEpicUnitFlakMissile"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="-30d"
+						TurretPitchRate="180"
+						AllowsPitch="true"
+						PitchHeight="90%"
+						IdleTurnRateModifier="10%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="60.0"
+						MaxDeflectionAntiClockwise="90d"
+						MaxDeflectionClockwise="90d"
+						NaturalTurretAngle="-90d">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true" 
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+						</TurretSettings> 
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="5">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietEpicUnitFlakMissile"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="-30d"
+						TurretPitchRate="180"
+						AllowsPitch="true"
+						PitchHeight="90%"
+						IdleTurnRateModifier="10%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="60.0"
+						MaxDeflectionAntiClockwise="90d"
+						MaxDeflectionClockwise="90d"
+						NaturalTurretAngle="-90d">
+						<TurretAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true" 
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+						</TurretSettings> 
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="6">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietEpicUnitFlakMissile"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="-30d"
+						TurretPitchRate="180"
+						AllowsPitch="true"
+						PitchHeight="90%"
+						IdleTurnRateModifier="10%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="60.0"
+						MaxDeflectionAntiClockwise="90d"
+						MaxDeflectionClockwise="180d"
+						NaturalTurretAngle="-90d">
+						<TurretAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true" 
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+						</TurretSettings> 
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="7">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietEpicUnitFlakMissile"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="-30d"
+						TurretPitchRate="180"
+						AllowsPitch="true"
+						PitchHeight="90%"
+						IdleTurnRateModifier="10%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="60.0"
+						MaxDeflectionAntiClockwise="90d"
+						MaxDeflectionClockwise="90d"
+						NaturalTurretAngle="90d">
+						<TurretAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true" 
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+						</TurretSettings> 
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="8">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietEpicUnitFlakMissile"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="-30d"
+						TurretPitchRate="180"
+						AllowsPitch="true"
+						PitchHeight="90%"
+						IdleTurnRateModifier="10%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="60.0"
+						MaxDeflectionAntiClockwise="90d"
+						MaxDeflectionClockwise="90d"
+						NaturalTurretAngle="90d">
+						<TurretAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true" 
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+						</TurretSettings> 
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="9">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietEpicUnitFlakMissile"/>
+					<TurretSettings
+						TurretTurnRate="360"
+						MinimumPitch="-30d"
+						TurretPitchRate="180"
+						AllowsPitch="true"
+						PitchHeight="90%"
+						IdleTurnRateModifier="10%"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="5.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="60.0"
+						MaxDeflectionAntiClockwise="180d"
+						MaxDeflectionClockwise="90d"
+						NaturalTurretAngle="90d">
+						<TurretAITargetChooserData
+					TargetingCompareList="CommandoTargetingCompareList"
+							CanAcquireDynamicIfAssignedOutOfRange="true" 
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+						</TurretSettings> 
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<AutoHealBehavior
+				id="Upgrade_PassiveHeal"
+				InitiallyActive="true"
+				HealOnlyIfNotInCombat="false"
+				HealOnlyIfNotUnderAttack="false"
+				StartHealingDelay="1s"
+				HealingAmount="10"
+				HealingDelay="1s">
+			</AutoHealBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SovietEpicUnitOCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<SpecialPower
+				id="ModuleTag_ActivateFiredate"
+				SpecialPowerTemplate="SpecialPower_Firedate"
+				UpdateModuleStartsAttack="true"
+				AttributeModifier="AttributeModifier_Firedate"
+				AttributeModifierAffectsSelf="true"/>
+			<DestroyDie
+				id="ModuleTag_DestroyDie">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SovPPXP" />
+			</FXListBehavior>
+			<FireWeaponWhenDead
+				id="ModuleTag_GDIMARVDeathWeapon"
+				DeathWeapon="GDIMARVDeathWeapon"
+				InitiallyActive="true">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+<AttributeModifierUpgrade
+				id="ModuleTag_UnmiliWeaponUpgrade"
+				AttributeModifier="AttributeModifier_UnmiliWeapon">
+		<TriggeredBy>Upgrade_UnmiliWeapon</TriggeredBy>
+</AttributeModifierUpgrade>
+			<FireWeaponWhenDead
+	id="ModuleTag_TerrorDroneEggsSpawn"
+	InitiallyActive="true"
+	DeathWeapon="TerrorDroneEggsPlayerPowerWeapon">
+	<DieMuxData
+		DeathTypes="ALL"
+		DeathTypesForbidden="KNOCKBACK DETONATED SLAUGHTERED EXTRA_7 EXTRA_6"/>
+	<WeaponFireProbability
+		DeathType="ALL"
+		ChancePercentage="100" />
+</FireWeaponWhenDead>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false">
+					<ObjectVisionRange
+						id="ObjectVisionRange_Ground"
+						Range="70">
+						<Filter
+							Rule="ANY"
+							Include="INFANTRY VEHICLE"
+							StatusBitFlagsExclude="AIRBORNE_TARGET"/>
+					</ObjectVisionRange>
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="3750" />
+		</Body>
+		<ClientUpdates>
+			<EvaAnnounceClientCreate
+				id="GDIMARVCreatedWarning"
+				AnnouncementEventEnemy="GDIMARVCreatedWarning"
+				AnnouncementEventAlly="GDIMARVCreatedWarning"
+				AnnouncementEventOwner="GDIMARVCreatedWarning"/>
+		</ClientUpdates>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_EMDisruptors">
+				<ModelConditionSound Sound="SOV_TeslaTrooper_EMDisruptorsLoopMS" RequiredFlags="USER_5" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Geometry>
+			<Shape
+				Type="BOX"
+				MajorRadius="60"
+				MinorRadius="30"
+				Height="25.0"
+				ContactPointGeneration="VEHICLE">
+				<Offset
+					x="0"
+					y="0"
+					z="0"/>
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="30"
+				MinorRadius="30"
+				Height="60.0"
+				ContactPointGeneration="VEHICLE">
+				<Offset
+					x="-24"
+					y="0"
+					z="0"/>
+			</Shape>
+		</Geometry>
+				<AudioArrayVoice>
+			<AudioEntry Sound="GDIMARVVoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="GDIMARVVoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="GDIMARVVoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="GDIMARVVoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="GDIMARVVoiceSelectMS" AudioType="voiceSelect" />
+			<AudioEntry Sound="GDIMARVVoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="GDIMARVVoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="SOV_Apocalypse_IdleLoop"
+				AudioType="soundAmbient" />
+			<AudioEntry
+				Sound="SOV_Apocalypse_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="SOV_Apocalypse_MoveLoop"
+				AudioType="soundMoveLoop" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />	
+		</AudioArraySound>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="CriticalUnitUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="CriticalUnitLost" EvaType="dieOwner" />
+		</EvaEventArray>
+		<VisionInfo
+			VisionRange="400"
+			ShroudClearingRange="=$EPIC_SHROUD_CLEAR"/>
+		<CrusherInfo
+			CrusherLevel="45"
+			CrushableLevel="75"
+			CrushDecelerationPercent="80%"
+			CrushWeapon="SovietCrushWeapon" />			
+	</GameObject>
+		  <GameObject
+		id="SovietEpicUnit_Crate"
+		inheritFrom="SovietEpicUnit"
+		KindOf="+TIBERIUM_BASED -UNIQUE_UNIT"
+		EditorName="SovietEpicUnit_Crate">
+		<EquivalentTo>SovietEpicUnit</EquivalentTo>
+	</GameObject>
+	<GameObject
+		id="SovietEpicUnitSandBox"
+		inheritFrom="SovietEpicUnit"
+		KindOf="-UNIQUE_UNIT"
+		EditorName="SovietEpicUnitSandBox"
+		MaxSimultaneousOfType="99">
+	</GameObject>
+</AssetDeclaration>

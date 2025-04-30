@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration	xmlns="uri:ea.com:eala:asset"	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags/>
+	<Includes>
+		<Include type="instance" source="DATA:BaseObjects/BaseCryoSatelliteEffect.xml" />
+	</Includes>
+	<!-- Cryo Satellite spawner -->
+	<GameObject
+		id="BaseAlliedCryoSatelliteEffectStartSpawner"
+		EditorName="BaseAlliedCryoSatelliteEffectStartSpawner"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE INERT INERT_SHROUD_REVEALER SKIRMISH_AI_ATTEMPT_TO_DODGE IGNORE_IN_AI_HUNT_TACTIC">
+    <SkirmishAIInformation
+      DodgeSafetyDistance="250.0">
+      <DodgeWithUnits Rule="ALL"
+        StatusBitFlagsExclude="AIRBORNE_TARGET">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+	</GameObject>
+	<GameObject
+		id="BaseAlliedCryoSatelliteEffectSpawner"
+		EditorName="BaseAlliedCryoSatelliteEffectSpawner"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE INERT INERT_SHROUD_REVEALER SKIRMISH_AI_ATTEMPT_TO_DODGE IGNORE_IN_AI_HUNT_TACTIC">
+    <SkirmishAIInformation
+      DodgeSafetyDistance="250.0">
+      <DodgeWithUnits Rule="ALL"
+        StatusBitFlagsExclude="AIRBORNE_TARGET">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+	</GameObject>
+	<GameObject
+		id="BaseAlliedCryoSatelliteEffectFX"
+		EditorName="BaseAlliedCryoSatelliteEffectFX"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE INERT INERT_SHROUD_REVEALER SKIRMISH_AI_ATTEMPT_TO_DODGE SKIRMISH_AI_DONT_CONSIDER_THREAT IGNORE_IN_AI_HUNT_TACTIC">
+    <SkirmishAIInformation
+      DodgeSafetyDistance="250.0">
+      <DodgeWithUnits Rule="ALL"
+        StatusBitFlagsExclude="AIRBORNE_TARGET">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+	</GameObject>
+			<!-- Cryo Satellite Effect Level 1 -->
+	<GameObject
+		id="AlliedCryoSatelliteEffectStartSpawnerLvl1"
+		inheritFrom="BaseAlliedCryoSatelliteEffectStartSpawner"
+		EditorName="AlliedCryoSatelliteEffectStartSpawnerLvl1">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="0.2s"
+			  MaxLifetime="0.2s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CryoSatelliteNoUpgradeLvl1">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>AlliedSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_CryoSatelliteUpgradeLvl1">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>AlliedSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedCryoSatelliteEffectFXLvl1"
+		inheritFrom="BaseAlliedCryoSatelliteEffectFX"
+		EditorName="AlliedCryoSatelliteEffectFXLvl1">
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onCreate"
+					FX="FX_AlliedCryoSatelliteLvl1" />
+			</FXListBehavior>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="11.0s"
+			  MaxLifetime="11.0s" />
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedCryoSatelliteEffectUpgradeFXLvl1"
+		inheritFrom="BaseAlliedCryoSatelliteEffectFX"
+		EditorName="AlliedCryoSatelliteEffectUpgradeFXLvl1">
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onCreate"
+					FX="FX_AlliedCryoSatelliteUpgradeLvl1" />
+			</FXListBehavior>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="11.0s"
+			  MaxLifetime="11.0s" />
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedCryoSatelliteEffectSpawnerLvl1"
+		inheritFrom="BaseAlliedCryoSatelliteEffectSpawner"
+		EditorName="CryoSatelliteEffectSpawnerLvl1">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="3.0s"
+			  MaxLifetime="3.0s" />
+     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CryoSatelliteLvl1">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie> 
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedCryoSatelliteEffectSpawnerUpgradeLvl1"
+		inheritFrom="BaseAlliedCryoSatelliteEffectSpawner"
+		EditorName="AlliedCryoSatelliteEffectSpawnerUpgradeLvl1">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="1.0s"
+			  MaxLifetime="1.0s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CryoSatelliteLvl1">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+		<!-- Cryo Satellite Effect Level 2 -->
+	<GameObject
+		id="AlliedCryoSatelliteEffectStartSpawnerLvl2"
+		inheritFrom="BaseAlliedCryoSatelliteEffectStartSpawner"
+		EditorName="AlliedCryoSatelliteEffectStartSpawnerLvl2">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="0.2s"
+			  MaxLifetime="0.2s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CryoSatelliteNoUpgradeLvl2">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>AlliedSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_CryoSatelliteUpgradeLvl2">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>AlliedSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedCryoSatelliteEffectFXLvl2"
+		inheritFrom="BaseAlliedCryoSatelliteEffectFX"
+		EditorName="AlliedCryoSatelliteEffectFXLvl2">
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onCreate"
+					FX="FX_AlliedCryoSatelliteLvl2" />
+			</FXListBehavior>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="11.0s"
+			  MaxLifetime="11.0s" />
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedCryoSatelliteEffectUpgradeFXLvl2"
+		inheritFrom="BaseAlliedCryoSatelliteEffectFX"
+		EditorName="AlliedCryoSatelliteEffectUpgradeFXLvl2">
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onCreate"
+					FX="FX_AlliedCryoSatelliteUpgradeLvl2" />
+			</FXListBehavior>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="11.0s"
+			  MaxLifetime="11.0s" />
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedCryoSatelliteEffectSpawnerLvl2"
+		inheritFrom="BaseAlliedCryoSatelliteEffectSpawner"
+		EditorName="AlliedCryoSatelliteEffectSpawnerLvl2">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="4.0s"
+			  MaxLifetime="4.0s" />
+     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CryoSatelliteLvl1">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie> 
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedCryoSatelliteEffectSpawnerUpgradeLvl2"
+		inheritFrom="BaseAlliedCryoSatelliteEffectSpawner"
+		EditorName="AlliedCryoSatelliteEffectSpawnerUpgradeLvl2">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="2.0s"
+			  MaxLifetime="2.0s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CryoSatelliteLvl2">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<!-- Cryo Satellite Effect Level 3 -->
+	<GameObject
+		id="AlliedCryoSatelliteEffectStartSpawnerLvl3"
+		inheritFrom="BaseAlliedCryoSatelliteEffectStartSpawner"
+		EditorName="AlliedCryoSatelliteEffectStartSpawnerLvl3">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="0.2s"
+			  MaxLifetime="0.2s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CryoSatelliteNoUpgradeLvl3">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>AlliedSpellBookUpgrade</UpgradeForbidden>
+			</CreateObjectDie>
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="OCL_CryoSatelliteUpgradeLvl3">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>AlliedSpellBookUpgrade</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedCryoSatelliteEffectFXLvl3"
+		inheritFrom="BaseAlliedCryoSatelliteEffectFX"
+		EditorName="AlliedCryoSatelliteEffectFXLvl3">
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onCreate"
+					FX="FX_AlliedCryoSatelliteLvl3" />
+			</FXListBehavior>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="15.0s"
+			  MaxLifetime="15.0s" />
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedCryoSatelliteEffectUpgradeFXLvl3"
+		inheritFrom="BaseAlliedCryoSatelliteEffectFX"
+		EditorName="AlliedCryoSatelliteEffectUpgradeFXLvl3">
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onCreate"
+					FX="FX_AlliedCryoSatelliteUpgradeLvl3" />
+			</FXListBehavior>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="13.0s"
+			  MaxLifetime="13.0s" />
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedCryoSatelliteEffectSpawnerLvl3"
+		inheritFrom="BaseAlliedCryoSatelliteEffectSpawner"
+		EditorName="AlliedCryoSatelliteEffectSpawnerLvl3">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="5.0s"
+			  MaxLifetime="5.0s" />
+     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CryoSatelliteLvl3">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie> 
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedCryoSatelliteEffectSpawnerUpgradeLvl3"
+		inheritFrom="BaseAlliedCryoSatelliteEffectStartSpawner"
+		EditorName="AlliedCryoSatelliteEffectSpawnerUpgradeLvl3">
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="3.0s"
+			  MaxLifetime="3.0s" />
+	     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CryoSatelliteLvl3">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="AlliedCryoSatelliteEffectSpawnerBoss"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE INERT INERT_SHROUD_REVEALER SKIRMISH_AI_ATTEMPT_TO_DODGE"
+		EditorName="AlliedCryoSatelliteEffectSpawnerBoss">
+    <SkirmishAIInformation
+      DodgeSafetyDistance="100.0">
+      <DodgeWithUnits
+      	Rule="ALL"
+				Relationship="ENEMIES"
+        StatusBitFlagsExclude="AIRBORNE_TARGET">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+		<Behaviors>
+			<LifetimeUpdate
+			  id="ModuleTag_LifetimeUpdate"
+			  MinLifetime="3.0s"
+			  MaxLifetime="3.0s" />
+     	<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="OCL_CryoSatelliteBoss">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</CreateObjectDie> 
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+	</GameObject>
+	<GameObject
+		id="CryoSatelliteEffectBoss"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		Side="Allies"
+		EditorSorting="SYSTEM"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE INERT INERT_SHROUD_REVEALER SKIRMISH_AI_ATTEMPT_TO_DODGE">
+		<DisplayName>CryoSatelliteEffectBoss</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+    <SkirmishAIInformation
+      DodgeSafetyDistance="100.0">
+      <DodgeWithUnits
+      	Rule="ALL"
+				Relationship="ENEMIES"
+        StatusBitFlagsExclude="AIRBORNE_TARGET">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+    <Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model Name="FXCryoSatelliteBeamLvl1" />
+        </ModelConditionState>
+        <AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+			<Script>
+				CurDrawablePlaySound("ALL_Cryoshot_Beam")
+			</Script>
+        </AnimationState>
+      </ScriptedModelDraw>
+    </Draws> 
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+        <Event
+					Index="onCreate"
+					FX="FX_AlliedCryoSatelliteLvl1" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="4.0s"
+				MaxLifetime="4.0s" />
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.25s">
+				<FireWeaponNugget
+					WeaponName="AlliedCryoSatelliteBoss"
+					FireDelay="0s">
+				</FireWeaponNugget>
+			</FireWeaponUpdate>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="50.0"
+				Height="300.0"></Shape>
+		</Geometry>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="UnitConstructionStarted" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="NewConstructionOptions" EvaType="availableForProduction" />
+		</EvaEventArray>
+		<ShadowInfo
+			Type="NONE" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+
+	<GameObject
+		id="CryoSatelliteEffectLvl1"
+		inheritFrom="BaseCryoSatelliteEffect"
+		EditorName="CryoSatelliteEffectLvl1">
+		<Draws>
+			<ScriptedModelDraw
+					  id="ModuleTag_Draw">
+				<ModelConditionState
+							ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="FXCryoSatelliteBeamLvl1" />
+				</ModelConditionState>
+				<AnimationState
+							ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawablePlaySound("ALL_Cryoshot_Beam")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="3.0s"
+				MaxLifetime="3.0s" />
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.2s">
+				<FireWeaponNugget
+					WeaponName="AlliedCryoSatelliteLvl1"
+					FireDelay="0s">
+				</FireWeaponNugget>
+			</FireWeaponUpdate>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="CryoSatelliteEffectLvl2"
+		inheritFrom="BaseCryoSatelliteEffect"
+		EditorName="CryoSatelliteEffectLvl2">
+		<Draws>
+			<ScriptedModelDraw
+					  id="ModuleTag_Draw">
+				<ModelConditionState
+							ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="FXCryoSatelliteBeamLvl2" />
+				</ModelConditionState>
+				<AnimationState
+							ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawablePlaySound("ALL_Cryoblast_Beam")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="4.0s"
+				MaxLifetime="4.0s" />
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.2s">
+				<FireWeaponNugget
+					WeaponName="AlliedCryoSatelliteLvl2"
+					FireDelay="0s">
+				</FireWeaponNugget>
+			</FireWeaponUpdate>
+		</Behaviors>
+	</GameObject>
+	<GameObject
+		id="CryoSatelliteEffectLvl3"
+		inheritFrom="BaseCryoSatelliteEffect"
+		EditorName="CryoSatelliteEffectLvl3">
+		<Draws>
+			<ScriptedModelDraw
+					  id="ModuleTag_Draw">
+				<ModelConditionState
+							ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="FXCryoSatelliteBeamLvl3" />
+				</ModelConditionState>
+				<AnimationState
+							ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawablePlaySound("ALL_Cryogeddon_Beam")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="5.0s"
+				MaxLifetime="5.0s" />
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.2s">
+				<FireWeaponNugget
+					WeaponName="AlliedCryoSatelliteLvl3"
+					FireDelay="0s">
+				</FireWeaponNugget>
+			</FireWeaponUpdate>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

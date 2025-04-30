@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<!--Include type="instance" source="DATA:SageXml/GlobalData/Weapon.xml" /-->
+	</Includes>	
+
+<!-- Flags= RELOAD_WHEN_ATTACK_STOPS FORCE_EMPTY_ENTIRE_CLIP-->
+
+
+ <WeaponTemplate
+		id="AlliedAntiNavyShipTech1CannonEX"
+		AttackRange="250.0"
+		WeaponSpeed="9999"
+		MinWeaponSpeed="9999"
+		MaxWeaponSpeed="9999"
+		AcceptableAimDelta="20d"
+		ClipSize="2"
+		WeaponRecoil="1d"
+		AutoReloadsClip="AUTO"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_SUBMERGED"
+		FireSound="88mmCannonFire"
+		FireFX="FX_AlliedTankGun"
+		FireVeteranFX="FX_AlliedTankGun_Vet"
+ 		>
+        <PreAttackDelay
+			MinSeconds="1s"
+			MaxSeconds="1.2s" />
+        <ClipReloadTime
+			MinSeconds="3s"
+			MaxSeconds="3s" />
+      <Nuggets>
+        <ProjectileNugget
+				WarheadTemplate="EXAlliedAntiNavyShipTech1CannonWarhead"
+				ProjectileTemplate="AlliedAntiNavyShipTech1CannonProjectile">
+        <VeterancyProjectiles
+          VeterancyLevel="HEROIC"
+          ProjectileTemplate="AlliedAntiNavyShipTech1CannonProjectile"/>
+      </ProjectileNugget>
+            <!--DamageNugget
+				Damage="120.0"
+				DamageType="CANNON"
+				DamageFXType="ALLIED_CANNON"
+				DeathType="EXPLODED" />
+            <SuppressionNugget
+				Radius="20.0"
+				Suppression="10"
+				DurationSeconds="3s" /-->
+            <InformTargetNugget />
+        </Nuggets>
+        <ScatterRadiusVsType
+			Radius="20.0">
+            <Filter
+				Rule="NONE"
+				Include="INFANTRY" />
+        </ScatterRadiusVsType>
+    </WeaponTemplate>
+
+    <WeaponTemplate
+		id="EXAlliedAntiNavyShipTech1CannonWarhead"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_SUBMERGED"
+ 		>
+		<Nuggets>
+			<DamageNugget
+				Damage="300.0"
+				Radius="5.0"
+				DelayTimeSeconds="0.0s" 
+				DamageType="CANNON" 
+				DamageFXType="GDI_CANNON"		
+				DeathType="NORMAL">
+			<DamageScalarDetails Scalar= "300%">
+					<Filter
+						Rule="NONE"
+						Include="VEHICLE" />
+				</DamageScalarDetails>
+		</DamageNugget>
+		 <MetaImpactNugget
+				ShockWaveAmount="50.0"
+				ShockWaveRadius="1.0"
+				   ShockWaveTaperOff="1.0"/>
+			<SuppressionNugget
+				Radius="20.0"
+				Suppression="10"
+				DurationSeconds="3s" />
+		</Nuggets>
+	</WeaponTemplate>
+
+
+
+</AssetDeclaration>

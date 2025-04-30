@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Tags></Tags>
+  <Includes></Includes>
+	<AIBuildStateDefinition
+	  id="SovietsJapanLandUnitBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Land">
+				<ObjectFilter
+				  Relationship="ENEMIES"
+				  Rule="ALL" >
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<PathToTargetHeuristic Surface="Land" PathExists="true" ObjectTypeToUseForTest="JapanAntiInfantryInfantry" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+
+		<BuildEntry Build="SovietsJapanWarFactory" Heuristic="FACTORY"/>
+
+		<BuildEntry Build="JapanAntiInfantryInfantry" Heuristic="BEST_UNIT_EXPECTED">
+			<BlockIfThingNearFactory Rule="ANY" Relationship="ENEMIES">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutInfantry</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+
+		<BuildEntry Build="JapanAntiVehicleInfantry" Heuristic="BEST_UNIT_EXPECTED">
+			<BlockIfThingNearFactory Rule="ANY" Relationship="ENEMIES">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>SovietScoutInfantry</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+
+		<BuildEntry Build="JapanAntiVehicleVehicleTech3" Heuristic="BEST_UNIT_EXPECTED">
+			<BlockIfThingNearFactory Rule="ANY" Relationship="ENEMIES">
+				<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+
+		<BuildEntry Build="JapanAntiStructureVehicle" Heuristic="BEST_UNIT_WEIGHTED">
+			<BlockIfThingNearFactory Rule="ANY" Relationship="ENEMIES">
+				<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="SovietsJapanWaterUnitBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Water">
+				<ObjectFilter
+				  Relationship="ENEMIES"
+				  Rule="ALL" >
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<PathToTargetHeuristic Surface="Water" PathExists="true" ObjectTypeToUseForTest="JapanNavyScoutShip" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="SovietsJapanNavalYard" Heuristic="FACTORY"/>
+		<BuildEntry Build="JapanNavyScoutShip" Heuristic="BEST_UNIT_EXPECTED"/>
+		<BuildEntry Build="JapanAntiVehicleShip" Heuristic="BEST_UNIT_EXPECTED"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="SovietsJapanTechBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<EnemyNearbyHeuristic Distance="700.0" EnemyNearby="false" MinEnemyValue="1000">
+				<EnemyFilter
+				  Relationship="ENEMIES"
+				  Rule="ANY"
+				  Include="CAN_ATTACK ENGINEER INFILTRATOR">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech2" Heuristic="UPGRADE_TECH" MinTime="180s"/>
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech3" Heuristic="UPGRADE_TECH" MinTime="360s"/>
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech2" Heuristic="UPGRADE_TECH" MinTime="180s"/>
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech3" Heuristic="UPGRADE_TECH" MinTime="360s"/>
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech2" Heuristic="UPGRADE_TECH" MinTime="180s"/>
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech3" Heuristic="UPGRADE_TECH" MinTime="360s"/>
+		<BuildEntry Build="SovietsJapanTechStructure" Heuristic="TECH" MinTime="360s"/>
+		<BuildEntry Build="SovietsJapanSuperWeaponAdvanced" Heuristic="TECH" MinTime="360s"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="SovietsJapanTechBuildState_EASY">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<EnemyNearbyHeuristic Distance="700.0" EnemyNearby="false" MinEnemyValue="1000"/>
+		</Heuristic>
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech2" Heuristic="UPGRADE_TECH" MinTime="600s"/>
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech3" Heuristic="UPGRADE_TECH" MinTime="900s"/>
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech2" Heuristic="UPGRADE_TECH" MinTime="600s"/>
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech3" Heuristic="UPGRADE_TECH" MinTime="900s"/>
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech2" Heuristic="UPGRADE_TECH" MinTime="600s"/>
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech3" Heuristic="UPGRADE_TECH" MinTime="900s"/>
+		<BuildEntry Build="SovietsJapanTechStructure" Heuristic="TECH" MinTime="900s"/>
+		<BuildEntry Build="SovietsJapanSuperWeaponAdvanced" Heuristic="TECH" MinTime="1800s"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="SovietsJapanNonPathDependentStructureBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+		</Heuristic>
+		<BuildEntry Build="SovietsJapanPowerPlant" Heuristic="POWER"/>
+		<BuildEntry Build="SovietsJapanRefinery" Heuristic="REFINERY"/>
+		<BuildEntry Build="SovietsJapanBarracks" Heuristic="FACTORY"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="SovietsJapanDefenseBuildState">
+		<Heuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="SovietsJapanBaseDefense" Heuristic="BEST_UNIT_EXPECTED"/>
+		<BuildEntry Build="SovietsJapanBaseDefenseAdvanced" Heuristic="BEST_UNIT_EXPECTED"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="AlliedsJapanLandUnitBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Land">
+				<ObjectFilter
+				  Relationship="ENEMIES"
+				  Rule="ALL" >
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<PathToTargetHeuristic Surface="Land" PathExists="true" ObjectTypeToUseForTest="JapanAntiInfantryInfantry" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+
+		<BuildEntry Build="AlliedsJapanWarFactory" Heuristic="FACTORY"/>
+
+		<BuildEntry Build="JapanAntiInfantryInfantry" Heuristic="BEST_UNIT_EXPECTED">
+			<BlockIfThingNearFactory Rule="ANY" Relationship="ENEMIES">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>AlliedscoutInfantry</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+
+		<BuildEntry Build="JapanAntiVehicleInfantry" Heuristic="BEST_UNIT_EXPECTED">
+			<BlockIfThingNearFactory Rule="ANY" Relationship="ENEMIES">
+				<IncludeThing>AlliedScoutInfantry</IncludeThing>
+				<IncludeThing>AlliedscoutInfantry</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+
+		<BuildEntry Build="JapanAntiVehicleVehicleTech3" Heuristic="BEST_UNIT_EXPECTED">
+			<BlockIfThingNearFactory Rule="ANY" Relationship="ENEMIES">
+				<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+
+		<BuildEntry Build="JapanAntiStructureVehicle" Heuristic="BEST_UNIT_WEIGHTED">
+			<BlockIfThingNearFactory Rule="ANY" Relationship="ENEMIES">
+				<IncludeThing>SovietHeavyAntiVehicleInfantry</IncludeThing>
+			</BlockIfThingNearFactory>
+		</BuildEntry>
+
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="AlliedsJapanWaterUnitBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+			  PassIfExists="true"
+			  Location="Water">
+				<ObjectFilter
+				  Relationship="ENEMIES"
+				  Rule="ALL" >
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<PathToTargetHeuristic Surface="Water" PathExists="true" ObjectTypeToUseForTest="JapanNavyScoutShip" LocomotorConditionToUseForTest="NORMAL" />
+		</Heuristic>
+		<BuildEntry Build="AlliedsJapanNavalYard" Heuristic="FACTORY"/>
+		<BuildEntry Build="JapanNavyScoutShip" Heuristic="BEST_UNIT_EXPECTED"/>
+		<BuildEntry Build="JapanAntiVehicleShip" Heuristic="BEST_UNIT_EXPECTED"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="AlliedsJapanTechBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<EnemyNearbyHeuristic Distance="700.0" EnemyNearby="false" MinEnemyValue="1000">
+				<EnemyFilter
+				  Relationship="ENEMIES"
+				  Rule="ANY"
+				  Include="CAN_ATTACK ENGINEER INFILTRATOR">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech2" Heuristic="UPGRADE_TECH" MinTime="180s"/>
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech3" Heuristic="UPGRADE_TECH" MinTime="360s"/>
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech2" Heuristic="UPGRADE_TECH" MinTime="180s"/>
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech3" Heuristic="UPGRADE_TECH" MinTime="360s"/>
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech2" Heuristic="UPGRADE_TECH" MinTime="180s"/>
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech3" Heuristic="UPGRADE_TECH" MinTime="360s"/>
+		<BuildEntry Build="AlliedsJapanTechStructure" Heuristic="TECH" MinTime="360s"/>
+		<BuildEntry Build="AlliedsJapanSuperWeaponAdvanced" Heuristic="TECH" MinTime="360s"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="AlliedsJapanTechBuildState_EASY">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<EnemyNearbyHeuristic Distance="700.0" EnemyNearby="false" MinEnemyValue="1000"/>
+		</Heuristic>
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech2" Heuristic="UPGRADE_TECH" MinTime="600s"/>
+		<BuildEntry Upgrade="Upgrade_JapanBarracksTech3" Heuristic="UPGRADE_TECH" MinTime="900s"/>
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech2" Heuristic="UPGRADE_TECH" MinTime="600s"/>
+		<BuildEntry Upgrade="Upgrade_JapanWarFactoryTech3" Heuristic="UPGRADE_TECH" MinTime="900s"/>
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech2" Heuristic="UPGRADE_TECH" MinTime="600s"/>
+		<BuildEntry Upgrade="Upgrade_JapanNavalYardTech3" Heuristic="UPGRADE_TECH" MinTime="900s"/>
+		<BuildEntry Build="AlliedsJapanTechStructure" Heuristic="TECH" MinTime="900s"/>
+		<BuildEntry Build="AlliedsJapanSuperWeaponAdvanced" Heuristic="TECH" MinTime="1800s"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="AlliedsJapanNonPathDependentStructureBuildState">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+		</Heuristic>
+		<BuildEntry Build="AlliedsJapanPowerPlant" Heuristic="POWER"/>
+		<BuildEntry Build="AlliedsJapanRefinery" Heuristic="REFINERY"/>
+		<BuildEntry Build="AlliedsJapanBarracks" Heuristic="FACTORY"/>
+	</AIBuildStateDefinition>
+
+	<AIBuildStateDefinition
+	  id="AlliedsJapanDefenseBuildState">
+		<Heuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+		<BuildEntry Build="AlliedsJapanBaseDefense" Heuristic="BEST_UNIT_EXPECTED"/>
+		<BuildEntry Build="AlliedsJapanBaseDefenseAdvanced" Heuristic="BEST_UNIT_EXPECTED"/>
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+	  id="JapanNeededUnitsNew">
+		<Heuristic>
+			<ConstantHeuristic/>
+		</Heuristic>
+
+		<BuildEntry Build="JapanEngineer" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanScoutInfantry" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanAntiInfantryInfantry" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanAntiVehicleInfantry" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanAntiVehicleInfantryTech3" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanInfiltrationInfantry" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanCommandoTech1" Heuristic="NEEDED_UNIT"/>
+
+		<BuildEntry Build="JapanMiner" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanLightTransportVehicle" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanAntiInfantryVehicle" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanAntiAirVehicleTech1" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanAntiVehicleVehicleTech1" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanAntiVehicleVehicleTech3" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanAntiStructureVehicle" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanMCV" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="AlliedsJapanMCV" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="SovietsJapanMCV" Heuristic="NEEDED_UNIT"/>
+
+		<BuildEntry Build="JapanNavyScoutShip" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanAntiVehicleVehicleTech1_Naval" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanAntiAirShip" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanAntiVehicleShip" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanAntiStructureShip" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanMCV_Naval" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="AlliedsJapanMCV_Naval" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="SovietsJapanMCV_Naval" Heuristic="NEEDED_UNIT"/>
+
+		<BuildEntry Build="AlliedsJapanPowerPlant" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="AlliedsJapanRefinery" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="SovietsJapanPowerPlant" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="SovietsJapanRefinery" Heuristic="NEEDED_UNIT"/>
+
+		<BuildEntry Build="JapanBaseDefenseEgg" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanBaseDefenseAdvancedEgg" Heuristic="NEEDED_UNIT"/>
+
+		<BuildEntry Build="JapanBarracksEgg" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanNavalYardEgg" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanWarFactoryEgg" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanPowerPlantEgg" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanRefineryEgg" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanTechStructureEgg" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanSuperWeaponEgg" Heuristic="NEEDED_UNIT"/>
+		<BuildEntry Build="JapanSuperWeaponAdvancedEgg" Heuristic="NEEDED_UNIT"/>
+	</AIBuildStateDefinition>
+
+	<AIStrategicStateDefinition
+	  id="AlliedsJapanExpansion_MEDIUM"
+	  MaxRunningCopies="1">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<TimerHeuristic StartTime="240s" EndTime="-1s"/>
+			<TimeSinceLastExpansionHeuristic Time="195s"/>
+			<IsBuildingHeuristic KindOf="FS_TECHNOLOGY FS_FACTORY SUPER_WEAPON" PassIfBuilding="false"/>
+			<EnemyNearbyHeuristic Distance="600.0" EnemyNearby="false"/>
+			<AllNearbyNodesFullHeuristic/>
+			<ResourceNodeShareHeuristic PercentOfFairShare="100%" Above="false"/>
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="400.0"/>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="RefineryPlacementHeuristic"/>
+		<Tactic id="Expand" Tactic="ExactExpansion">
+			<TeamTemplate MinUnits="1" MaxUnits="8"
+						  RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+						  IncludeKindOf="CAN_ATTACK" ExcludeKindOf="SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER"
+						  Priority="STANDARD" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false"
+						  MicroManager="ExpansionMicroManager">
+				<CreateUnits UnitName="AlliedsJapanMCV" MinUnits="1" MaxUnits="1"/>
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+
+	<AIStrategicStateDefinition
+	  id="AlliedsJapanExpansion_HARD"
+	  MaxRunningCopies="1">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<TimerHeuristic StartTime="240s" EndTime="-1s"/>
+			<TimeSinceLastExpansionHeuristic Time="90s"/>
+			<IsBuildingHeuristic KindOf="FS_TECHNOLOGY FS_FACTORY SUPER_WEAPON" PassIfBuilding="false"/>
+			<EnemyNearbyHeuristic Distance="600.0" EnemyNearby="false"/>
+			<AllNearbyNodesFullHeuristic/>
+			<ResourceNodeShareHeuristic PercentOfFairShare="100%" Above="false"/>
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="400.0"/>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="RefineryPlacementHeuristic"/>
+		<Tactic id="Expand" Tactic="ExactExpansion">
+			<TeamTemplate MinUnits="1" MaxUnits="8"
+						  RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+						  IncludeKindOf="CAN_ATTACK" ExcludeKindOf="SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER"
+						  Priority="STANDARD" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false"
+						  MicroManager="ExpansionMicroManager">
+				<CreateUnits UnitName="AlliedsJapanMCV" MinUnits="1" MaxUnits="1"/>
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+
+	<AIStrategicStateDefinition
+	  id="AlliedsJapanExpansion_BRUTAL"
+	  MaxRunningCopies="1">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<TimerHeuristic StartTime="200s" EndTime="-1s"/>
+			<TimeSinceLastExpansionHeuristic Time="60s"/>
+			<IsBuildingHeuristic KindOf="FS_TECHNOLOGY FS_FACTORY SUPER_WEAPON" PassIfBuilding="false"/>
+			<EnemyNearbyHeuristic Distance="600.0" EnemyNearby="false"/>
+			<AllNearbyNodesFullHeuristic/>
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="400.0"/>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="RefineryPlacementHeuristic"/>
+		<Tactic id="Expand" Tactic="ExactExpansion">
+			<TeamTemplate MinUnits="1" MaxUnits="8"
+						  RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+						  IncludeKindOf="CAN_ATTACK" ExcludeKindOf="SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER"
+						  Priority="STANDARD" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false"
+						  MicroManager="ExpansionMicroManager">
+				<CreateUnits UnitName="AlliedsJapanMCV" MinUnits="1" MaxUnits="1"/>
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+
+	<AIStrategicStateDefinition
+	  id="SovietsJapanExpansion_MEDIUM"
+	  MaxRunningCopies="1">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<TimerHeuristic StartTime="240s" EndTime="-1s"/>
+			<TimeSinceLastExpansionHeuristic Time="195s"/>
+			<IsBuildingHeuristic KindOf="FS_TECHNOLOGY FS_FACTORY SUPER_WEAPON" PassIfBuilding="false"/>
+			<EnemyNearbyHeuristic Distance="600.0" EnemyNearby="false"/>
+			<AllNearbyNodesFullHeuristic/>
+			<ResourceNodeShareHeuristic PercentOfFairShare="100%" Above="false"/>
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="400.0"/>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="RefineryPlacementHeuristic"/>
+		<Tactic id="Expand" Tactic="ExactExpansion">
+			<TeamTemplate MinUnits="1" MaxUnits="8"
+						  RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+						  IncludeKindOf="CAN_ATTACK" ExcludeKindOf="SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER"
+						  Priority="STANDARD" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false"
+						  MicroManager="ExpansionMicroManager">
+				<CreateUnits UnitName="SovietsJapanMCV" MinUnits="1" MaxUnits="1"/>
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+
+	<AIStrategicStateDefinition
+	  id="SovietsJapanExpansion_HARD"
+	  MaxRunningCopies="1">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<TimerHeuristic StartTime="240s" EndTime="-1s"/>
+			<TimeSinceLastExpansionHeuristic Time="90s"/>
+			<IsBuildingHeuristic KindOf="FS_TECHNOLOGY FS_FACTORY SUPER_WEAPON" PassIfBuilding="false"/>
+			<EnemyNearbyHeuristic Distance="600.0" EnemyNearby="false"/>
+			<AllNearbyNodesFullHeuristic/>
+			<ResourceNodeShareHeuristic PercentOfFairShare="100%" Above="false"/>
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="400.0"/>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="RefineryPlacementHeuristic"/>
+		<Tactic id="Expand" Tactic="ExactExpansion">
+			<TeamTemplate MinUnits="1" MaxUnits="8"
+						  RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+						  IncludeKindOf="CAN_ATTACK" ExcludeKindOf="SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER"
+						  Priority="STANDARD" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false"
+						  MicroManager="ExpansionMicroManager">
+				<CreateUnits UnitName="SovietsJapanMCV" MinUnits="1" MaxUnits="1"/>
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+
+	<AIStrategicStateDefinition
+	  id="SovietsJapanExpansion_BRUTAL"
+	  MaxRunningCopies="1">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true"/>
+			<TimerHeuristic StartTime="200s" EndTime="-1s"/>
+			<TimeSinceLastExpansionHeuristic Time="60s"/>
+			<IsBuildingHeuristic KindOf="FS_TECHNOLOGY FS_FACTORY SUPER_WEAPON" PassIfBuilding="false"/>
+			<EnemyNearbyHeuristic Distance="600.0" EnemyNearby="false"/>
+			<AllNearbyNodesFullHeuristic/>
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="400.0"/>
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="RefineryPlacementHeuristic"/>
+		<Tactic id="Expand" Tactic="ExactExpansion">
+			<TeamTemplate MinUnits="1" MaxUnits="8"
+						  RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+						  IncludeKindOf="CAN_ATTACK" ExcludeKindOf="SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER"
+						  Priority="STANDARD" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false"
+						  MicroManager="ExpansionMicroManager">
+				<CreateUnits UnitName="SovietsJapanMCV" MinUnits="1" MaxUnits="1"/>
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	</AssetDeclaration>

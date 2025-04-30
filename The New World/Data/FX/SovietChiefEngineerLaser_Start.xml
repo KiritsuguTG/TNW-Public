@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include source="art:fxlenzflare01.xml" type="instance"/>
+		<Include source="art:fxgrid.xml" type="instance"/>
+	</Includes>
+	<FXParticleSystemTemplate ParticleTexture="FXGrid" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SystemLifetime="1" Type="GPU_PARTICLE" id="SovietChiefEngineerLaser_Sparks">
+		<Lifetime High="30" Low="30"/>
+		<Size High="40" Low="40"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="9.999999">
+				<Color b="1.000000" g="1.000000" r="1.000000"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="6" Low="6"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.8" Low="0.8"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu RandTex="1" SingleRow="1" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="false" Radius="0"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="-2" Low="-4"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SystemLifetime="1" Type="GPU_PARTICLE" id="SovietChiefEngineerLaser_Start">
+		<Lifetime High="5" Low="5"/>
+		<Size High="20" Low="20"/>
+		<BurstCount High="3" Low="3"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="9.999999">
+				<Color b="1.000000" g="1.000000" r="1.000000"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="3" Low="3"/>
+		</Colors>
+		<Physics>
+			<Default Gravity="-0.1">
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="false" Radius="2"/>
+		</Volume>
+		<Velocity>
+			<Outward>
+				<Speed High="0" Low="0"/>
+				<OtherSpeed High="0" Low="0"/>
+			</Outward>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="-0.1" Low="-0.1"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+			    <Include
+		type="instance"
+		source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+		    <Include
+		type="all"
+		source="ART:Units/GDIMARVBase/GUMARV_SKND.w3x" />
+	</Includes>
+	<GameObject
+		id="GDIMammothDieOCL"
+		inheritFrom="BaseCollapsingObject">
+    <SkirmishAIInformation
+      DodgeSafetyDistance="250.0">
+      <DodgeWithUnits
+      	Rule="ALL">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="GUMARV_SKND" />
+					<Texture
+						Original="GUMarv1"
+						New="GUMarv1D"/>
+						<ParticleSysBone
+							BoneName="FXTracksRF"
+							FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FXTracksLR"
+							FXParticleSystemTemplate="GDIMARVDamagedFire"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FXTracksLR"
+							FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FXTracksLR"
+							FXParticleSystemTemplate="GDIMARVDamagedSmoke"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="B_Spine02"
+							FXParticleSystemTemplate="GDIMARVDamagedFlash"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="B_Spine02"
+							FXParticleSystemTemplate="GDIMARVDamagedSparks"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FXTracksRF"
+							FXParticleSystemTemplate="GDIMARVExplodeDebris"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FXTracksLR"
+							FXParticleSystemTemplate="GDIMARVExplodeDistortion"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FXTracksLR"
+							FXParticleSystemTemplate="GDIMARVExplodeDustRing"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FXTracksLR"
+							FXParticleSystemTemplate="GDIMARVExplodeEmbers"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="B_Spine02"
+							FXParticleSystemTemplate="GDIMARVExplodeFire"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FX_R05"
+							FXParticleSystemTemplate="GDIMARVExplodeFlash1"
+							FollowBone="true" />
+				  	<ParticleSysBone
+							BoneName="FX_R06"
+							FXParticleSystemTemplate="GDIMARVExplodeStreaks"
+							FollowBone="true" />		
+						<ParticleSysBone
+							BoneName="BASE"
+							FXParticleSystemTemplate="GDIMARVExplodeGlow"
+							FollowBone="true" />	
+				  	<ParticleSysBone
+							BoneName="FX_R10"
+							FXParticleSystemTemplate="GDIMARVExplodeStreaks01"
+							FollowBone="true" />												
+					</ModelConditionState>	
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+					<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="6s"
+			MaxLifetime="6s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="2s"
+			SinkRate="1.5"
+			DestructionDelay="14s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SovPPXP" />
+			</FXListBehavior>
+			<FireWeaponWhenDead
+				id="ModuleTag_GDIMARVDeathWeapon"
+				DeathWeapon="GDIMARVDeathWeapon"
+				InitiallyActive="true">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>	
+		</Behaviors>		
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="300" />		
+	</GameObject>
+	<GameObject
+		id="GDIMammothDieOCLUnpacking"
+		inheritFrom="BaseCollapsingObject">		
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="GUMARV_SKND" />
+					<Texture
+						Original="GUMarv1"
+						New="GUMarv1D"/>
+						<ParticleSysBone
+							BoneName="FXTracksRF"
+							FXParticleSystemTemplate="GDIMARVDamagedSmoke2"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FXTracksLR"
+							FXParticleSystemTemplate="GDIMARVDamagedFire"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FXTracksLR"
+							FXParticleSystemTemplate="GDIMARVDamagedFireDist"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FXTracksLR"
+							FXParticleSystemTemplate="GDIMARVDamagedSmoke"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="B_Spine02"
+							FXParticleSystemTemplate="GDIMARVDamagedFlash"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="B_Spine02"
+							FXParticleSystemTemplate="GDIMARVDamagedSparks"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FXTracksRF"
+							FXParticleSystemTemplate="GDIMARVExplodeDebris"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FXTracksLR"
+							FXParticleSystemTemplate="GDIMARVExplodeDistortion"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FXTracksLR"
+							FXParticleSystemTemplate="GDIMARVExplodeDustRing"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FXTracksLR"
+							FXParticleSystemTemplate="GDIMARVExplodeEmbers"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="B_Spine02"
+							FXParticleSystemTemplate="GDIMARVExplodeFire"
+							FollowBone="true" />
+						<ParticleSysBone
+							BoneName="FX_R05"
+							FXParticleSystemTemplate="GDIMARVExplodeFlash1"
+							FollowBone="true" />
+				  	<ParticleSysBone
+							BoneName="FX_R06"
+							FXParticleSystemTemplate="GDIMARVExplodeStreaks"
+							FollowBone="true" />		
+						<ParticleSysBone
+							BoneName="BASE"
+							FXParticleSystemTemplate="GDIMARVExplodeGlow"
+							FollowBone="true" />	
+				  	<ParticleSysBone
+							BoneName="FX_R10"
+							FXParticleSystemTemplate="GDIMARVExplodeStreaks01"
+							FollowBone="true" />												
+					</ModelConditionState>	
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+					<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="6s"
+			MaxLifetime="6s" />	
+		<SlowDeath
+			id="ModuleTag_Death"
+			SinkDelay="2s"
+			SinkRate="1.5"
+			DestructionDelay="14s">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</SlowDeath>
+		</Behaviors>		
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="300" />		
+	</GameObject>
+	</AssetDeclaration>

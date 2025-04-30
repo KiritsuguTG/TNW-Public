@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 		
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+		id="AIUseSuperStructure"
+		inheritFrom="BaseObject"
+		Side="Neutral"
+		EditorSorting="STRUCTURE"
+		KindOf="NOT_AUTOACQUIRABLE AUTO_ACQUIRABLE_BY_AI IMMOBILE IGNORE_FOR_VICTORY NO_COLLIDE RESIST_EMP IGNORE_IN_AI_HUNT_TACTIC UNATTACKABLE"
+		EditorName="AIUseSuperStructure"
+		Description="Desc:AIUseSuperStructure"
+		TypeDescription="Type:AIUseSuperStructure"
+		MaxSimultaneousOfType="1">
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="JapanAdvancedSuperWeaponArmor"
+			DamageFX="FactionStructureDamageFX"/>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+						</ModelConditionState>
+			</ScriptedModelDraw>	
+		</Draws>
+		<Behaviors>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+<FireWeaponWhenDead
+	id="ModuleTag_FireWeaponWhenDead"
+	InitiallyActive="true"
+	DeathWeapon="SuperStructureWeaponNova">
+	<DieMuxData
+		DeathTypes="SUICIDED"/>
+</FireWeaponWhenDead>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="630s"
+				MaxLifetime="700s"
+				DeathType="SUICIDED"/>
+		</Behaviors>
+						<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">			
+		</CrusherInfo>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				StateMachine="StructureAIStateMachine"/>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1.0" />
+		</Body>
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="0" />	
+	</GameObject>
+</AssetDeclaration>

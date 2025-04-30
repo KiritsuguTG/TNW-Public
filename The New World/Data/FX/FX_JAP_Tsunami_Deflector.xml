@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include source="art:fxidlewake01.xml" type="instance"/>
+		<Include source="art:fxlightrays01.xml" type="instance"/>
+	</Includes>
+	<FXList id="FX_JAP_Tsunami_DeflectorOn">
+		<NuggetList>
+			<Sound Value="JAP_Tsunami_DeflectorOnMS" />
+      <ParticleSystem
+				Particle="Japan_Tsunami_DeflectorGlow"
+				OrientToObject = "true" >
+        <Offset x="0.0" y="3.0" z="0.0" />
+      </ParticleSystem>
+      <ParticleSystem
+				Particle="Japan_Tsunami_DeflectorGlow02"
+				OrientToObject = "true" >
+        <Offset x="0.0" y="3.0" z="0.0" />
+      </ParticleSystem>
+		</NuggetList>
+	</FXList>
+	<FXList id="FX_JAP_Tsunami_DeflectorOff">
+		<NuggetList>
+			<Sound Value="JAP_Tsunami_DeflectorOffMS" />
+      <ParticleSystem
+				Particle="Japan_Tsunami_DeflectorGlow02"
+				OrientToObject = "true" >
+        <Offset x="0.0" y="3.0" z="0.0" />
+      </ParticleSystem>
+		</NuggetList>
+	</FXList>
+	<FXParticleSystemTemplate ParticleTexture="FXIdleWake01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SortLevel="1" SystemLifetime="1" Type="GPU_PARTICLE" id="Japan_Tsunami_DeflectorGlow">
+		<Lifetime High="30" Low="10"/>
+		<Size High="90" Low="40"/>
+		<BurstCount High="10" Low="10"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.952941" g="0.745098" r="0.360784"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="2" Low="2"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="false" Radius="0"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="-2" Low="-2"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="3" Low="-3"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLightRays01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SortLevel="1" SystemLifetime="1" Type="GPU_PARTICLE" id="Japan_Tsunami_DeflectorGlow02">
+		<Lifetime High="30" Low="10"/>
+		<Size High="150" Low="120"/>
+		<BurstCount High="10" Low="10"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.952941" g="0.745098" r="0.360784"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="false" Radius="0"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="1" Low="1"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="3" Low="-3"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

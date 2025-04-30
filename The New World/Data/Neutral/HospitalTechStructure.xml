@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="ART:NUHospitalTechStructure.w3x" />
+		<Include type="instance" source="DATA:BaseObjects/BaseTechStructure.xml" />
+		<Include type="instance" source="DATA:Civilian/Yucatan_YU/Props/YU_HotelDebris.xml" />
+		<Include type="all" source="ART:ABBarracks_particles.w3x" />
+    <Include type="instance" source="DATA:BaseObjects/BaseCollapsingObject.xml" />
+		<Include type="all"	source="NUHOSPITALTECHSTRUCTURE_COL/NUHOSPITALTECHSTRUCTURE_COL.NEWSKIN.w3x" />
+		<Include type="all"	source="NUHOSPITALTECHSTRUCTURE_COL/NUHOSPITALTECHSTRUCTURE_COL.OBBOX01.w3x" />
+		<Include type="all"	source="NUHOSPITALTECHSTRUCTURE_COL/NUHOSPITALTECHSTRUCTURE_COL.OBBOX02.w3x" />
+		<Include type="all"	source="NUHOSPITALTECHSTRUCTURE_COL/NUHOSPITALTECHSTRUCTURE_COL_CTR.w3x" />
+		<Include type="all"	source="NUHOSPITALTECHSTRUCTURE_COL/NUHOSPITALTECHSTRUCTURE_COL_HRC.w3x" />
+	</Includes>
+	<!--CommandSet="HospitalTechStructureCommandSet" KindOf="+AUTO_RALLYPOINT +REFINERY"-->
+	<GameObject
+		id="HospitalTechStructure"
+		inheritFrom="BaseTechStructure"
+		CommandSet="EmptyCommandSet"		
+		SelectPortrait="Portrait_Neutral_Hospital"
+		ButtonImage="Button_Neutral_Hospital"
+		ProductionQueueType="MAIN_STRUCTURE"
+		EditorName="HospitalTechStructure"
+		Description="DESC:HospitalTechBuilding"
+		TypeDescription="TYPE:TechStructure"
+		HealthBoxHeightOffset="30">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">NAME:HospitalTechBuilding</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="=$TECH_STRUCTURE_EFFECTIVE_COST"/>
+		</ObjectResourceInfo>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="BoneFlag01 BONE_CONTACT_POINT_01 BONE_CONTACT_POINT_02 BONE_CONTACT_POINT_03 BONE_CONTACT_POINT_04 BONE_CONTACT_POINT_05 BONE_CONTACT_POINT_06 BONE_CONTACT_POINT_07 BONE_CONTACT_POINT_08 BONE_CONTACT_POINT_09 BONE_CONTACT_POINT_10 BONE_CONTACT_POINT_11 BONE_CONTACT_POINT_12 BONE_CONTACT_POINT_13 BONE_CONTACT_POINT_14 BONE_CONTACT_POINT_15 BONE_CONTACT_POINT_16 BONE_CONTACT_POINT_17 BONE_CONTACT_POINT_18	BONE_CONTACT_POINT_19 BONE_CONTACT_POINT_20 BONEGARRISON01 BONEGARRISON02 BONEGARRISON03 BONEGARRISON04 BONEGARRISON05 BONEGARRISON06 BONEGARRISON07 BONEGARRISON08 BONEGARRISON09 BONEGARRISON10 BONEGARRISON11 BONEGARRISON12">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NUHospitalTechStructure" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="RUBBLE">
+					<Model
+						Name="NUHospitalTechStructure" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<!-- no anim -->
+				</AnimationState>
+			</ScriptedModelDraw>
+
+	<ScriptedModelDraw
+		id="ModuleTag_FlagDraw"
+		AttachToBoneInAnotherModule="BoneFlag01"
+		OkToChangeModelColor="true" >
+
+		<ModelConditionState
+			ParseCondStateType="PARSE_DEFAULT" >
+			<Model Name="SU_Garrison_Flag" />			
+			<Texture
+				Original="SU_GarFlag"
+				New="NU_GarFlag" />
+			<Texture
+				Original="AU_GarFlag"
+				New="NU_GarFlag" />
+			<Texture
+				Original="JU_GarFlag"
+				New="NU_GarFlag" />
+		</ModelConditionState>
+		<AnimationState
+			ParseCondStateType="PARSE_DEFAULT">
+			<Animation
+				AnimationName="SU_Garrison_Flag"
+				AnimationMode="LOOP" />			
+		</AnimationState>
+
+		<ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_1">
+			<Model Name="AU_Garrison_Flag" />
+			<Texture
+				Original="SU_GarFlag"
+				New="AU_GarFlag" />
+			<Texture
+				Original="NU_GarFlag"
+				New="AU_GarFlag" />
+			<Texture
+				Original="JU_GarFlag"
+				New="AU_GarFlag" />
+		</ModelConditionState>
+		<AnimationState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_1">
+			<Animation
+				AnimationName="AU_Garrison_Flag"
+				AnimationMode="LOOP" />
+		</AnimationState>
+
+		<ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_2">
+			<Model Name="SU_Garrison_Flag" />
+			<Texture
+				Original="AU_GarFlag"
+				New="SU_GarFlag" />
+			<Texture
+				Original="NU_GarFlag"
+				New="SU_GarFlag" />
+			<Texture
+				Original="JU_GarFlag"
+				New="SU_GarFlag" />
+		</ModelConditionState>
+		<AnimationState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_2">
+			<Animation
+				AnimationName="SU_Garrison_Flag"
+				AnimationMode="LOOP" />
+		</AnimationState>
+
+		<ModelConditionState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_3">
+			<Model Name="JU_Garrison_Flag" />
+			<Texture
+				Original="AU_GarFlag"
+				New="JU_GarFlag" />
+			<Texture
+				Original="NU_GarFlag"
+				New="JU_GarFlag" />
+			<Texture
+				Original="SU_GarFlag"
+				New="JU_GarFlag" />
+		</ModelConditionState>
+		<AnimationState
+			ParseCondStateType="PARSE_NORMAL"
+			ConditionsYes="USER_3">
+			<Animation
+				AnimationName="JU_Garrison_Flag"
+				AnimationMode="LOOP" />
+		</AnimationState>
+	</ScriptedModelDraw>		
+		</Draws>
+		<Behaviors>
+				<!-- This Passive Area Effect Behaviour is what gives the Tech Structure its Unit healing ability -->
+				<Physics
+				id="ModuleTag_Physics"/>
+			<ModelConditionUpgrade
+				id="ModuleTag_AlliesUSER_2ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_2">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_AlliesUSER_3ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_3">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_SovietUSER_1ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_1">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_SovietUSER_3ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_3">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_JapanUSER_1ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_1">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<ModelConditionUpgrade
+				id="ModuleTag_JapanUSER_3ModelConditionUpgradeClear"
+				RemoveConditionFlags="USER_2">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+			</ModelConditionUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgradeObjectDefaultAllies">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<UpgradeToRemove>Upgrade_SovietFaction</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_JapanFaction</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgradeObjectDefaultSoviet">
+				<TriggeredBy>Upgrade_SovietFaction</TriggeredBy>
+				<UpgradeToRemove>Upgrade_AlliesFaction</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_JapanFaction</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgradeObjectDefaultJapan">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<UpgradeToRemove>Upgrade_AlliesFaction</UpgradeToRemove>
+				<UpgradeToRemove>Upgrade_SovietFaction</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+      <!--<QueueDockBehavior
+				id="ModuleTag_QueueDockBehavior"
+				DockStartBoneName="DockStart"
+				DockActionBoneName="DockAction"
+				DockEndBoneName="DockEnd"
+				QueueBonePrefix="Que"
+				DockingAnimation="DOCKING_ACTIVE"
+				TurnTableBoneName="BONE_TABLE"/>
+			<QueueProductionExitUpdate
+				id="ModuleTag_Exit">
+				<UnitCreatePoint
+					x="0.0" />
+				<NaturalRallyPoint
+					x="0.0"/>
+			</QueueProductionExitUpdate>
+			<ProductionUpdate
+				id="ModuleTag_ProductionUpdate"
+				GiveNoXP="true"
+				Type="VEHICLE"
+				NumDoorAnimations="1"
+				DoorOpeningTime="0.66s"
+				DoorWaitOpenTime="3.00s"
+				DoorCloseTime="0.66s"
+				NewObjectFadeInTime="0.5s"/>-->
+			<FireWeaponUpdate
+				id="Upgrade_HospitalTechStructureHealthWeapon"
+				FireInterval="5s"
+				AliveOnly="true">
+				<FireWeaponNugget
+					WeaponName="HospitalTechStructureHealthWeapon"
+					OneShot="false" />
+			</FireWeaponUpdate>
+			<xi:include
+				href="DATA:Includes/GenericEngineerContain.xml" />
+			<xi:include
+				href="DATA:Includes/GenericBuildingRepair.xml" />
+			<!-- Don't allow allies inside -->
+			<HealContain
+				id="ModuleTag_HordeGarrison"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED"
+				ContainMax="10"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="false"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				KillPassengersOnDeath="false"
+				TimeForFullHeal="5s"
+				ResetInitialTeamOnCapture="true">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY" />
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="BONEGARRISON">
+					<Filter
+						Rule="NONE"
+						Include="INFANTRY" />
+				</PassengerData>
+				<ExitOffset
+					x="50"
+					y="0"
+					z="0" />
+			</HealContain>
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="BuildingPowerFunctions"/>
+			
+			<BuildingDestructionBehavior
+				id="ModuleTag_BuildingDestruction">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7"/>
+				<Item
+					BonePrefix="BONE_CONTACT_POINT_"
+					FX="SovietRefineryHit"
+					CreationObject="AlliedBarracks_Debris"
+					FlingVelocity="100.0"/>
+			</BuildingDestructionBehavior>
+			<FXListBehavior
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7"/>
+				<Event
+					Index="onDeath"
+					FX="FX_MediumBuildingDieExplosion" />
+			</FXListBehavior>
+
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="NUHospitalTechStructure_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7"/>
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="NO"/>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="4000.0"
+				InitialHealth="4000.0" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape 
+				 Type= "BOX"
+				 MajorRadius = "56.3968"
+				 MinorRadius = "67.2692"
+				 Height = "69.3372"
+				 ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "-5.00883"
+					y = "-0.526596"
+					z = "0.0" />
+			</Shape>
+			<Shape 
+				 Type= "BOX"
+				 MajorRadius = "20.8347"
+				 MinorRadius = "40.8306"
+				 Height = "69.3372"
+				 ContactPointGeneration = "STRUCTURE" >
+				<Offset
+					x = "-76.1697"
+					y = "-29.6881"
+					z = "0.0" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry EvaEvent="HospitalCaptured" AudioType="voiceDefectingTowards" />
+			<AudioEntry Sound="TEC_Hospital_Select" AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="HumanFaction_MediumBuilding_LightDamageMS" AudioType="soundOnDamaged" />
+			<AudioEntry Sound="HumanFaction_MediumBuilding_HeavyDamageMS" AudioType="soundOnReallyDamaged" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="200" />
+		<ProjectedBuildabilityInfo
+			Radius="0.0"
+			BuildPlacementTypes="MAIN_STRUCTURE OTHER_STRUCTURE" />
+	</GameObject>
+	<LogicCommandSet
+		id="HospitalTechStructureCommandSet">
+		<Cmd>Command_ConstructTH_Auto04</Cmd>
+	</LogicCommandSet>
+	<ObjectCreationList
+		id="NUHospitalTechStructure_Die_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS"
+			Disposition="LIKE_EXISTING RANDOM_FORCE"
+			Count="1"
+			MinForceMagnitude="1.0"
+			MaxForceMagnitude="2.0"
+			MinForcePitch="90d"
+			MaxForcePitch="75d">
+			<CreateObject>NUHospitalTechStructure_Collapse</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<GameObject
+		id="NUHospitalTechStructure_Collapse"
+		inheritFrom="BaseCollapsingObject" 
+		EditorName="NUHospitalTechStructure_Collapse">
+		<Draws>
+			<DynamicsDraw 
+			id="ModuleTag_Draw" 
+			Collision="NONINTERCOLLIDING"
+			FlingPerturbation="5"
+			Explodiness="0.5">
+			<ModelConditionState
+				ParseCondStateType="PARSE_DEFAULT">
+				<Model
+					Name="NUHospitalTechStructure_COL" />
+			</ModelConditionState>
+			<BoneVolumes>
+			
+<BoneVolume BoneName="Bone_D_01" Mass="8392" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="7.642" HalfSizeY="7.986" HalfSizeZ="6.876" >
+		<Translation x="-0.949" y="53.204" z="49.534" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_02" Mass="15493" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="7.972" HalfSizeY="9.269" HalfSizeZ="10.484" >
+		<Translation x="-26.059" y="51.316" z="54.836" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_03" Mass="34055" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="10.55" HalfSizeY="12.219" HalfSizeZ="13.209" >
+		<Translation x="-18.76" y="24.231" z="51.167" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_04" Mass="18647" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="17.37" HalfSizeY="11.19" HalfSizeZ="4.797" >
+		<Translation x="-29.536" y="23.175" z="7.013" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_05" Mass="32571" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="12.544" HalfSizeY="14.259" HalfSizeZ="9.105" >
+		<Translation x="-73.474" y="-14.251" z="45.132" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_06" Mass="16125" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="8.217" HalfSizeY="9.359" HalfSizeZ="10.484" >
+		<Translation x="-47.012" y="51.067" z="54.836" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_07" Mass="27863" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="6.42" HalfSizeY="20.082" HalfSizeZ="10.806" >
+		<Translation x="-41.992" y="-26.301" z="15.849" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_08" Mass="37188" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="18.337" HalfSizeY="11.396" HalfSizeZ="8.898" >
+		<Translation x="22.974" y="22.889" z="34.063" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_09" Mass="37990" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="18.872" HalfSizeY="11.312" HalfSizeZ="8.898" >
+		<Translation x="23.761" y="-9.637" z="34.063" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_10" Mass="11932" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="11.292" HalfSizeY="5.143" HalfSizeZ="10.273" >
+		<Translation x="-75.315" y="-42.785" z="46.849" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_11" Mass="31455" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="19.667" HalfSizeY="11.191" HalfSizeZ="7.146" >
+		<Translation x="24.931" y="23.175" z="10.467" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_12" Mass="35899" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="11.101" HalfSizeY="12.287" HalfSizeZ="13.16" >
+		<Translation x="-41.564" y="24.131" z="51.094" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_13" Mass="23982" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="17.328" HalfSizeY="11.48" HalfSizeZ="6.028" >
+		<Translation x="-29.475" y="22.756" z="22.876" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_14" Mass="33789" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="12.625" HalfSizeY="10.22" HalfSizeZ="13.094" >
+		<Translation x="-22.558" y="-38.005" z="50.997" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_15" Mass="53771" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="18.839" HalfSizeY="11.119" HalfSizeZ="12.835" >
+		<Translation x="-31.696" y="-7.335" z="52.602" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_16" Mass="22339" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="10.522" HalfSizeY="9.824" HalfSizeZ="10.806" >
+		<Translation x="-19.466" y="-38.589" z="15.849" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_17" Mass="18237" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="11.292" HalfSizeY="7.861" HalfSizeZ="10.273" >
+		<Translation x="-75.315" y="-58.998" z="46.849" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_18" Mass="32449" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="8.316" HalfSizeY="14.9" HalfSizeZ="13.094" >
+		<Translation x="-47.17" y="-44.886" z="50.997" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_19" Mass="28623" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="8.94" HalfSizeY="26.274" HalfSizeZ="6.093" >
+		<Translation x="-68.105" y="-31.92" z="22.78" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+<BoneVolume BoneName="Bone_D_20" Mass="8480" Spinniness="3.0" ContactTag="DEBRIS" >
+	<Box  HalfSizeX="7.44" HalfSizeY="7.883" HalfSizeZ="7.23" >
+		<Translation x="14.994" y="53.241" z="50.054" />
+		<Rotation x="0.0" y="0.0" z="0.0" w="1.0" />
+	</Box>
+</BoneVolume>
+
+
+			</BoneVolumes>
+			<Lifetime
+				Delay="5s"
+				FadeTime="4s" />
+		</DynamicsDraw>
+	</Draws>
+	<Behaviors/>
+</GameObject>
+</AssetDeclaration>

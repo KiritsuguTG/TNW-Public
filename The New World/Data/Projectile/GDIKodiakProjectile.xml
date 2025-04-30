@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseProjectile.xml"/>
+	</Includes>
+	<GameObject
+		id="GDIKodiakProjectile"
+		inheritFrom="BaseProjectile"
+		Side="Soviet"
+		EditorName="GDIKodiakProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ProjectileUpdate
+				id="ModuleTag_ProjectileUpdate"
+				StateMachine="StraightLineProjectile"
+				MinTargetDistance="5">
+				<Movement>
+					<MoveInStraightLine
+						MuzzleVelocity="50.0" />
+				</Movement>
+			</ProjectileUpdate>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+					<Event
+						Index="onTerrainCollision"
+						FX=""/>
+					<Event
+						Index="onDeath"
+						FX="" />
+			</FXListBehavior>
+			      			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				FirstHeightMin="5"
+				FirstHeightMax="5"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="33"
+				SecondPercentIndent="66"
+				CurveFlattenMinDist="300"
+				FlightPathAdjustDistPerSecond="0"
+				GroundHitFX="FX_CostalGunImpact"
+        Acceleration="1" />
+		</Behaviors>
+	</GameObject>
+
+	<GameObject
+		inheritFrom="GDIKodiakProjectile"
+		id="GDIKodiakProjectile_Vet"
+		EditorName="GDIKodiakProjectile_Vet">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+				xai:joinAction="Replace">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<ProjectileUpdate
+				id="ModuleTag_ProjectileUpdate"
+				StateMachine="StraightLineProjectile"
+				MinTargetDistance="5">
+				<Movement>
+					<MoveInStraightLine
+						MuzzleVelocity="50.0" />
+				</Movement>
+			</ProjectileUpdate>
+			<FXListBehavior
+				id="ModuleTag_FXLists"
+        				xai:joinAction="Replace">
+        				<DieMuxData
+					DeathTypes="ALL" />
+        				<Event
+					Index="onTerrainCollision"
+					FX="" />
+				<Event
+					Index="onDeath"
+					FX="" />
+      			</FXListBehavior>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+
+		<Include type="all"	source="ART:ABConYard_FX.w3x" />
+		<Include type="all"	source="ART:ABConYard_SKN.w3x" />	
+		<Include type="all"	source="ART:ABConYard_IDLA.w3x" />	
+		<Include type="all"	source="ART:ABConYard_Platform.w3x" />	
+		<Include type="all"	source="ART:ABConYard_Platform_BLD.w3x" />	
+		<Include type="all" source="ART:ABConYard_Platform_BLDW.w3x" />
+		<Include type="all" source="ART:ABConYard_LIGHTS.w3x" />
+		<Include type="all"	source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all"	source="ART:AUMCV_TRANS.w3x" />
+    
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+		<Include type="instance" source="DATA:BaseObjects/BaseObject.xml" />
+    
+	</Includes>
+	<Defines>
+		<Define name="ALLIED_CONYARD_LOCAL_UNPACK_TIME" value="2.0s" />
+	</Defines>	
+	<GameObject
+		id="StartYard"
+		inheritFrom="BaseStructure"
+		SelectPortrait="Portrait_AlliedConstructionYard"
+		ButtonImage="Button_AlliedConstructionYard_on"
+		Side="Allies"
+		EditorSorting="STRUCTURE"
+		BuildTime="25"
+		PlacementViewAngle="315d"
+		CommandSet="StartYardCommandSet"
+		EnergyProduction="50"
+		KindOf="+CONSTRUCTION_YARD +FS_FACTORY +IGNORE_FOR_VICTORY"
+		RadarPriority="STRUCTURE"
+		CampnessValue="=$CAMPNESS_CONYARD"
+		ProductionQueueType="MAIN_STRUCTURE"
+		BuildPlacementTypeFlag="MAIN_STRUCTURE"
+		EditorName="AlliedConstructionYard"
+		Description="Desc:AlliedConstructionYard"
+		TypeDescription="Type:AlliedConstructionYard">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:AlliedConstructionYard</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="5000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="AlliedConYardArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<SkirmishAIInformation
+			BaseBuildingLocation="CENTER" />
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="0.5s"
+				MaxLifetime="0.5s"/>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<ProductionUpdate
+				id="ModuleTag_UpgradeProductionUpdate"
+				Type="MAIN_STRUCTURE"
+				MaxQueueEntries="1" />
+			<SubObjectsUpgrade
+                id="ModuleTag_Upgrade_PlayerAI">
+				<TriggeredBy>Upgrade_PlayerAI</TriggeredBy>
+				<Nugget
+                    Upgrade="Upgrade_PlayerAI">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+                id="ModuleTag_Upgrade_AIEasyPower">
+				<TriggeredBy>Upgrade_AIEasyPower</TriggeredBy>
+				<Nugget
+                    Upgrade="Upgrade_AIEasyPower">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+                id="ModuleTag_Upgrade_AIMiddlePower">
+				<TriggeredBy>Upgrade_AIMiddlePower</TriggeredBy>
+				<Nugget
+                    Upgrade="Upgrade_AIMiddlePower">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+                id="ModuleTag_Upgrade_AIHardPower">
+				<TriggeredBy>Upgrade_AIHardPower</TriggeredBy>
+				<Nugget
+                    Upgrade="Upgrade_AIHardPower">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+                id="ModuleTag_Upgrade_AIBrutalPower">
+				<TriggeredBy>Upgrade_AIBrutalPower</TriggeredBy>
+				<Nugget
+                    Upgrade="Upgrade_AIBrutalPower">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="StartYard_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeForbidden>Upgrade_PlayerAI</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieUpgrade"
+				CreationList="StartYardAI_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<UpgradeRequired>Upgrade_PlayerAI</UpgradeRequired>
+			</CreateObjectDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO" 
+				StateMachine="StructureAIStateMachine"
+			/>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="4000.0" />
+		</Body>
+		<VisionInfo
+			VisionRange="150"
+			ShroudClearingRange="90000" />
+	</GameObject>
+	<ObjectCreationList
+		id="StartYard_Die_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<Offset
+				x = "0.0"
+				y = "0.0"
+				z = "0.0" />
+			<CreateObject>ChooseUnitStructure</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedRefinery</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietBaseDefenseAdvanced</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	
+	<ObjectCreationList
+		id="StartYardAI_Die_OCL">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<Offset
+				x = "0.0"
+				y = "0.0"
+				z = "0.0" />
+			<CreateObject>ChooseUnitStructureAI</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedRefinery</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>SovietBaseDefenseAdvanced</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	
+	<ObjectCreationList
+	id="SpawnABWarFactory">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedWarFactory</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+	<ObjectCreationList
+	id="SpawnABAIWarFactory">
+		<CreateObject
+			Options="IGNORE_ALL_OBJECTS CREATE_AT_TARGET DO_NOT_COPY_SHADERS"
+			Count="1">
+			<CreateObject>AlliedWarFactoryAI</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+</AssetDeclaration>

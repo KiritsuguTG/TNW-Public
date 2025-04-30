@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<WeaponTemplate
+		id="JapanAntiInfantryVehicleKamikaze"
+		AttackRange="150.0"
+		WeaponSpeed="175.0"
+		RadiusDamageAffects="ENEMIES"
+		ClipSize="1"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+		AcceptableAimDelta="180d"
+		CanFireWhileMoving="true"
+		ProjectileSelf="true"
+        FinishAttackOnceStarted="true"
+		MeleeWeapon="true"
+		VirtualDamage="SHARE"
+		ReAcquireDetailType="PER_CLIP">
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="JapanAntiInfantryVehicleKamikazeCollisionWeapon">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="INFANTRY STRUCTURE VEHICLE"
+					Exclude="HARVESTER"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN">
+				</SpecialObjectFilter>
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<SpecialPowerTemplate
+		id="SpecialPower_JapanInterceptorKamikazeAttack"
+		TargetType="OBJECT_OR_LOCATION"
+		ReloadTime="3s"
+		Flags="WATER_OK"
+		WaypointModeTerminal="true" >
+	</SpecialPowerTemplate>
+	<WeaponTemplate
+		id="JapanAntiInfantryVehicleKamikazeMeleeAttackWeapon"
+		AttackRange="150.0"
+		WeaponSpeed="250"
+		ProjectileSelf="true"
+		PreAttackType="PER_SHOT"
+		ClipSize="1"
+		AcceptableAimDelta="180d"
+		RadiusDamageAffects="ENEMIES NEUTRALS"
+		AutoReloadsClip="AUTO"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_SUBMERGED ANTI_GROUND ANTI_WATER ANTI_STRUCTURE ANTI_AIRBORNE_INFANTRY ANTI_AIRBORNE_VEHICLE"
+		ContactWeapon="true"
+		VirtualDamage="SHARE">
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="JapanAntiInfantryVehicleKamikazeCollisionWeapon">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="INFANTRY STRUCTURE VEHICLE"
+					Exclude="HARVESTER"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN">
+				</SpecialObjectFilter>
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="JapanAntiInfantryVehicleKamikazeCollisionWeapon"
+		ProjectileCollidesWith="ENEMIES NEUTRAL"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		RequiredAntiMask="ANTI_SUBMERGED ANTI_GROUND ANTI_WATER ANTI_STRUCTURE ANTI_AIRBORNE_INFANTRY ANTI_AIRBORNE_VEHICLE"
+		Flags="NOT_ATTRACTED_BY_MAGNETS">
+		<Nuggets>
+			<DamageNugget
+				Damage="1500.0"
+				DamageTaperOff="0.0"
+				DamageType="EXPLOSIVE"
+				DamageFXType="JAPAN_KAMIKAZE"
+				Radius="30"
+				DeathType="DETONATED">
+				<SpecialObjectFilter
+					Rule="ANY"
+					Include="INFANTRY STRUCTURE VEHICLE"
+					StatusBitFlagsExclude="UNDER_IRON_CURTAIN">
+				</SpecialObjectFilter>
+				<DamageScalarDetails Scalar="200%">
+					<Filter
+					Rule="ANY"
+                    Include="REFINERY">
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+			<DamageNugget
+				Radius="0"
+				OnlyKillOwnerWhenTriggered="true"
+				DamageType="EXPLOSIVE"
+				DeathType="NORMAL">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<AttributeModifier
+		id="AttributeModifier_KamikazeAttack"
+		Category="NONE"
+		StartFX="FX_None"
+		EndFX="FX_None"
+		Duration="5s"
+		ObjectStatusToSet="SPECIAL_ABILITY_PACKING_UNPACKING_OR_USING">
+	</AttributeModifier>
+</AssetDeclaration>

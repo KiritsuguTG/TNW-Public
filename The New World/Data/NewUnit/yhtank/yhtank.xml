@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+	<Include
+			type="all"
+			source="ART/msztank.w3x" />
+                <Include
+			type="all"
+			source="ART/yhtankattack.w3x" />
+                <Include
+			type="all"
+			source="ART/yhtank.w3x" />
+		<Include
+			type="all"
+			source="ART:SUAntiAirship_D.xml" />		
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseVehicle.xml" />
+		<Include
+			type="instance"
+			source="ART:EXTnkTrack.xml" />			
+	</Includes>
+	<!-- aka Zhukov aka Bullfrog -->
+	<GameObject
+		id="yhtank"
+		inheritFrom="BaseVehicle"
+		SelectPortrait="Button_SMK"
+		ButtonImage="Button_SMK"
+		Side="Neutral"
+		SubGroupPriority="820"
+		EditorSorting="UNIT"
+		BuildTime="1"
+		CommandSet="SovietRefineryCommandSet"
+		KindOf="PRELOAD SELECTABLE CAN_ATTACK AMPHIBIOUS CAN_CAST_REFLECTIONS SCORE VEHICLE CAN_BE_FAVORITE_UNIT TRANSPORT"
+		RadarPriority="UNIT"
+		UnitCategory="VEHICLE"
+		WeaponCategory="CANNON"
+		VoicePriority="188"
+		EditorName="yhtank"
+		Description="Desc:yhtank"
+		TypeDescription="Type:yhtank"
+		HealthBoxHeightOffset="30"
+		MaxSimultaneousOfType="1"
+		UnitIntro="Soviet_Bullfrog_UnitIntro">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:yhtank</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="5000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="yhtankArmor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="ModuleTag_Locomotor_Air" 
+			Locomotor="SovietMCVLocomotor"
+			Condition="NORMAL"
+			Speed="30.0" />
+		<LocomotorSet
+			id="ModuleTag_Locomotor_Water"
+			Locomotor="SovietMCVWaterLocomotor"
+			Condition="NORMAL"
+			Speed="20.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true" />
+		<Draws>
+			<TruckDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="turret_A barral_01 barral_02 FX_A_01 FX_A_02 Bone_Treads_Left_Front Bone_Treads_Right_Front Bone_Treads_Left_Middle Bone_Treads_Right_Middle Bone_Treads_Left_Rear Bone_Treads_Right_Rear"
+                                InitialRecoilSpeed="0.75"
+				MaxRecoilDistance="5"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="1.5"
+				TrackMarks="EXTnkTrack"
+				TrackMarksLeftBone="FXTracksLR"
+				TrackMarksRightBone="FXTracksRR">
+				<TreadTerrainParticles>MCVTerrainParticleMapping</TreadTerrainParticles>
+
+				<TreadScrollingMap
+					LeftTrack="Bone_Treads_Left_Front"
+					RightTrack="Bone_Treads_Right_Front"
+					SpeedMultiplier="-0.05"/>
+
+				<TreadScrollingMap
+					LeftTrack="Bone_Treads_Left_Middle"
+					RightTrack="Bone_Treads_Right_Middle"
+					SpeedMultiplier="-0.05"/>
+								
+                                <TreadScrollingMap
+					LeftTrack="Bone_Treads_Left_Rear"
+					RightTrack="Bone_Treads_Right_Rear"
+					SpeedMultiplier="-0.05"/>	
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="yhtankattack" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_A_"/>
+                                        <WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="barrel_" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_A_" />
+                                        <WeaponFireFXBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_MUZZLEFLASH_"/>
+					<WeaponLaunchBone
+						WeaponSlotID="2"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_MUZZLEFLASH_" />
+					<Turret
+						TurretNameKey="turret_A"
+						TurretPitch="Turret_Pitch"
+						TurretID="1" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="yhtankattack" />
+				</ModelConditionState>					
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED USER_5">
+					<Model
+						Name="yhtankattack" />
+					<ParticleSysBone
+						BoneName="FXTracksB"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED USER_5">
+					<Model
+						Name="yhtankattack" />
+					<Texture
+						Original="JUAntiVehicleVehicleTech1"
+						New="JUAntiVehicleVehicleTech1_D" />
+          <ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="USER_5">
+					<Model
+						Name="yhtankattack"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="yhtankattack" />
+					<ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					RetainSubObjects="true"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="yhtankattack" />
+					<Texture
+						Original="JUAntiVehicleVehicleTech1"
+						New="JUAntiVehicleVehicleTech1_D" />							
+					<ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXFire01"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				
+                                <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_OR_PREATTACK_A">
+					<Animation
+						AnimationName="yhtankattack"
+						AnimationMode="LOOP"
+						AnimationBlendTime="8"/>
+				</AnimationState>									 										
+
+			</TruckDraw>
+                         <TracerModelDraw
+				id="ModuleTag_TracerModelDrawFront"
+				MinLength="15.0"
+				MaxLength="30.0"
+				Width="8.0"
+				MinSpeed="20"
+				MaxSpeed="25"
+				SweepSpeed="3.0"
+				SpreadAngle="4.0"
+				MinTracersPerFrame=".5"
+				MaxTracersPerFrame=".8"
+				FrameLifeTime="35"
+				WeaponSlotType="PRIMARY_WEAPON"
+				WeaponSlotID="2"
+				Texture="FXTracer"
+				UseAdditiveBlending="true">
+        <HeadColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+        <TailColor
+					r="1.0"
+					g="1.0"
+					b="1.0"
+					a="1.0" />
+        <ObjectStatusValidation
+					ForbiddenStatus="WEAPON_UPGRADED_01" />
+      </TracerModelDraw>	
+		</Draws>
+		
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="msztankCannon"
+						ForbiddenObjectStatus="GENERIC_TOGGLE_STATE WEAPON_UPGRADED_01"/>							
+					<TurretSettings
+						TurretTurnRate="30"
+						MinimumPitch="-20d"
+						AllowsPitch="true"
+						PitchHeight="85%"
+						TurretPitchRate="120"
+						IdleTurnRateModifier="10%"
+						InvalidIdleScanObjectStatus="GENERIC_TOGGLE_STATE"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="4.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0"
+						ComeToHaltJiggle="1d">
+						<TurretAITargetChooserData
+							CanAcquireDynamicIfAssignedOutOfRange="true" 
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+					</TurretSettings>
+				</WeaponSlotTurret>
+				<WeaponSlotTurret
+					ID="2">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="yhtankChaingun"/>
+                                      
+					<TurretSettings
+						TurretTurnRate="30"
+						MinimumPitch="-30d"
+						AllowsPitch="true" 
+						TurretPitchRate="180" 
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="4.0s"
+						MinIdleScanAngle="30.0"
+						MaxIdleScanAngle="50.0"
+						ComeToHaltJiggle="3d">
+						<TurretAITargetChooserData
+							IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"
+							CanAcquireDynamicIfAssignedOutOfRange="true" />
+					</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+                        <QueueDockBehavior
+				id="ModuleTag_QueueDockBehavior"
+				DockStartBoneName="DockStart"
+				DockActionBoneName="DockAction"
+				DockEndBoneName="DockEnd"
+				QueueBonePrefix="Que"
+				DockingAnimation="DOCKING_ACTIVE"
+				TurnTableBoneName="BONE_TABLE"/>
+			<QueueProductionExitUpdate
+				id="ModuleTag_Exit">
+				<UnitCreatePoint
+					x="37.5"
+					y="0.0"
+					z="0.0" />
+				<NaturalRallyPoint
+					x="75.0" />
+			</QueueProductionExitUpdate>
+                        <ProductionUpdate
+				id="ModuleTag_ProductionUpdate"
+				GiveNoXP="true"
+				Type="VEHICLE"
+				NumDoorAnimations="1"
+				DoorOpeningTime="0.66s"
+				DoorWaitOpenTime="3.00s"
+				DoorCloseTime="0.66s"
+				NewObjectFadeInTime="0.5s"/>
+                        <AutoHealBehavior
+				id="Upgrade_PassiveHeal"
+				InitiallyActive="true"
+				HealOnlyIfNotInCombat="false"
+				HealOnlyIfNotUnderAttack="false"
+				StartHealingDelay="1s"
+				HealingAmount="2"
+				HealingDelay=".5s">
+			</AutoHealBehavior>
+                        <AssignSlavesTargetObjectSpecialPower
+				id="ModuleTag_SpecialPowerRepairVehicle"
+				SpecialPowerTemplate="SpecialPower_TargetedRepairVehicle" />
+			<SpawnBehavior
+				id="ModuleTag_SpawnRepairDrones"
+				SpawnNumberData="3"
+				InitialBurst="3"
+				SpawnReplaceDelayData="5s"
+				SpawnedRequireSpawner="true"
+				KillSpawnsOnCaptured="true"
+				SpawnInsideBuilding="true"
+				KillSpawnsOnDisabled="true"
+                                SpawnOnUnpack="true">
+				<Die
+					DeathTypes="ALL" />
+				<SpawnTemplate>zdj</SpawnTemplate>
+			</SpawnBehavior>
+                        <SpawnBehavior
+				id="ModuleTag_SpawnRepairDronesX"
+				SpawnNumberData="3"
+				InitialBurst="3"
+				SpawnReplaceDelayData="5s"
+				SpawnedRequireSpawner="true"
+				KillSpawnsOnCaptured="true"
+				SpawnInsideBuilding="true"
+				KillSpawnsOnDisabled="true"
+                                SpawnOnUnpack="true">
+				<Die
+					DeathTypes="ALL" />
+				<SpawnTemplate>SovietRepairDrone</SpawnTemplate>
+			</SpawnBehavior>		
+			<Physics
+				id="ModuleTag_Physics" />
+
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_ApocalypseDie" />
+				<Event
+					Index="onDeath"
+					FX="FX_OilDerrickXP" />
+			</FXListBehavior>
+
+			<xi:include
+				href="DATA:Includes/SovietTerrorDroneSpawnUpgradePlayerPower.xml" />
+
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="11600" />
+		</Body>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_MoveLoop">
+				<ModelConditionSound Sound="Tank_Land_MoveLoop" RequiredFlags="MOVING" ExcludedFlags="OVER_WATER DYING" />
+				<ModelConditionSound Sound="SOV_Bullfrog_MoveLoopWaterMS" RequiredFlags="MOVING OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_ShrunkenVoice">
+				<ModelConditionSound Sound="SOV_Bullfrog_VoiceShrunken" RequiredFlags="SHRINK_EFFECT" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_MagneticSatelliteSuckedAway">
+				<ModelConditionSound Sound="SOV_MagneticSatellite_SuckedAwayWater" RequiredFlags="SUCKED_UP_HIGH OVER_WATER" />
+				<ModelConditionSound Sound="SOV_MagneticSatellite_SuckedAway" RequiredFlags="SUCKED_UP_HIGH" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_WaterEntrySplash">
+				<ModelConditionSound Sound="SOV_Miner_WaterSplashMS" RequiredFlags="OVER_WATER" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+			<ModelConditionSoundSelectorClientBehavior id="ModuleTag_WaterSoundOverrides">
+				<Override RequiredFlags="OVER_WATER">
+					<AudioArrayVoice>
+						<AudioEntry Sound="SOV_Apocalypse_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SOV_Apocalypse_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="SOV_Apocalypse_VoiceMove" AudioType="voiceMove" />
+					</AudioArrayVoice>
+					<AudioArraySound>
+						<AudioEntry
+				Sound="SOV_Apocalypse_IdleLoop"
+				AudioType="soundAmbient" />
+			<AudioEntry
+				Sound="SOV_Apocalypse_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="SOV_Apocalypse_MoveLoop"
+				AudioType="soundMoveLoop" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />
+					</AudioArraySound>
+				</Override>
+			</ModelConditionSoundSelectorClientBehavior>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="34.5"
+				MinorRadius="25.7"
+				Height="26.5"
+				ContactPointGeneration="VEHICLE">
+				<Offset x="-4.0" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="WTsovietTank_VoiceAttack" AudioType="voiceAttack" />
+			<AudioEntry Sound="SovietHeavyAntiVehicleInfantry_Tech2_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="WTsoviet_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="WTsoviet_VoiceMoveAttack" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="WTsoviet_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="WTsoviet_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="WTsoviet_VoiceSelectBattle" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="WTsoviet_VoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry
+				Sound="maus_IdleLoop"
+				AudioType="soundAmbient" />
+			<AudioEntry
+				Sound="maus_MoveStart"
+				AudioType="soundMoveStart" />
+			<AudioEntry
+				Sound="maus_MoveLoop"
+				AudioType="soundMoveLoop" />
+			<AudioEntry
+				Sound="VehicleCrush"
+				AudioType="soundCrushing" />	
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="300"
+			ShroudClearingRange="=$STANDARD_SHROUD_CLEAR" />
+    <CrusherInfo
+      id="id_CrusherInfo"
+      CrusherLevel="30"
+      CrushableLevel="61"
+      CrushDecelerationPercent="80%">
+    	<ExtraCrushLevels CrusherLevel="30" CrushableLevel="61" ModelConditionMatch="OVER_WATER"/>	 
+    </CrusherInfo>
+	</GameObject>
+	<ArmorTemplate
+		id="yhtankArmor"
+		SideDamageScalar="105"
+		RearDamageScalar="250">
+		<Armor
+			Damage="MELEE"
+			Percent="0" />
+		<Armor
+			Damage="SNIPER"
+			Percent="0" />
+		<Armor
+			Damage="GUN"
+			Percent="50" />		
+		<Armor
+			Damage="AUTO_CANNON"
+			Percent="25" />
+		<Armor
+			Damage="IMPACT"
+			Percent="75" />
+		<Armor
+			Damage="FLAK"
+			Percent="100" />	
+		<Armor
+			Damage="ROCKET"
+			Percent="100" />
+		<Armor
+			Damage="CANNON"
+			Percent="100" />
+		<Armor
+			Damage="PRISM"
+			Percent="100" />
+		<Armor
+			Damage="TESLA"
+			Percent="100" />
+		<Armor
+			Damage="EXPLOSIVE"
+			Percent="200" />
+		<Armor
+			Damage="CONCUSSIVE"
+			Percent="100" />
+		<Armor
+			Damage="RADIATION"
+			Percent="5" />
+	</ArmorTemplate>
+</AssetDeclaration>

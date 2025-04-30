@@ -1,0 +1,488 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xmlns:xai="uri:ea.com:eala:asset:instance"  xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" /> 
+		<Include type="all"	source="ART:Units/EUTransportAircraft/AlliedTransportAirship_IDL.w3x" />
+		<Include type="all"	source="ART:Units/EUTransportAircraft/AlliedTransportAirship_MOV.w3x" />
+		<Include type="all"	source="ART:Units/EUTransportAircraft/AlliedTransportAirship_SKL.w3x" />
+		<Include type="all"	source="ART:Units/EUTransportAircraft/AlliedTransportAirship_SKN.w3x" />
+		<Include type="all"	source="ART:Units/EUTransportAircraft/AlliedTransportAirship_FP_SKN.w3x" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseAircraft.xml" />
+	</Includes>
+	<!-- aka Hind aka Twinblade -->
+	<GameObject
+		id="EUTransportAircraft"
+		inheritFrom="BaseAircraft"
+		SelectPortrait="PortraitAlliedTransportAirship"
+		ButtonImage="ButtonAlliedTransportAirship"
+		Side="Allies"
+		SubGroupPriority="720"
+		EditorSorting="UNIT"
+		TransportSlotCount="20"
+		BuildTime="16"
+		CommandSet="EUTransportAircraftCommandSet"
+		KindOf="CAN_CAST_REFLECTIONS SELECTABLE SCORE AIRCRAFT VEHICLE LINE_OF_SIGHT_IGNORES_BUILDINGS TRANSPORT LEAVE_PARKING_ON_BUILD_COMPLETE PRODUCED_AT_HELIPAD BEAM_TARGET_REFLECTOR"
+		RadarPriority="UNIT"
+		ThreatLevel="10"
+		ProductionQueueType="AIRCRAFT"
+		UnitCategory="AIRCRAFT"
+		WeaponCategory="CANNON"
+		VoicePriority="148"
+		EditorName="EUTransportAircraft"
+		Description="Desc:EUTransportAircraft"
+		TypeDescription="Type:TransportUnit"
+		HealthBoxHeightOffset="35"
+		BountyValue="250"
+		UnitIntro="Soviet_Twinblade_UnitIntro">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:EUTransportAircraft</DisplayName>
+		<GameDependency>
+			<NeededUpgrade>Upgrade_AlliedTech2</NeededUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="1600"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseAircraftArmor"
+			DamageFX="AircraftDamageFX" />
+		<LocomotorSet
+			id="ModuleTag_GroundLocomotor"
+			Locomotor="BasicHelicopterTaxiLocomotor"
+			Condition="TAXIING"
+			Speed="10" />
+		<LocomotorSet
+			id="ModuleTag_FlyLocomotor"
+			Locomotor="EUTransportAircraftLocomotor"
+			Condition="NORMAL"
+			Speed="100.0" />
+		<!-- Need ConquerMetricsOverrideDefendingAntiMask or else the TAXIING locomotor will make the AI try to build anti-ground units against this -->
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true">
+		</SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="ALLIEDTRANSPORTAIRSHIP_SKN" />
+					<Turret
+						TurretNameKey="ENGINE_TURRET_RT"
+						TurretID="1" />
+					<Turret
+						TurretNameKey="ENGINE_TURRET_LT"
+						TurretID="2" />
+				</ModelConditionState>
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FORMATION_PREVIEW">
+					<Model
+						Name="ALLIEDTRANSPORTAIRSHIP_FP_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED USER_2">
+					<Model
+						Name="ALLIEDTRANSPORTAIRSHIP_SKN" />
+					<Texture
+						Original="AlliedTransportAirship"
+						New="AlliedTransportAirship2" />
+					<ParticleSysBone
+						BoneName="DAMAGE_01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE_01"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE_01"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED USER_2">
+					<Model
+						Name="ALLIEDTRANSPORTAIRSHIP_SKN" />
+					<Texture
+						Original="AlliedTransportAirship"
+						New="AlliedTransportAirship2_D" />
+					<ParticleSysBone
+						BoneName="DAMAGE_01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE_01"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE_01"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE_02"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE_02"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE_02"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Model
+						Name="ALLIEDTRANSPORTAIRSHIP_SKN" />
+					<Texture
+						Original="AlliedTransportAirship"
+						New="AlliedTransportAirship2" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="ALLIEDTRANSPORTAIRSHIP_SKN" />
+					<ParticleSysBone
+						BoneName="DAMAGE_01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE_01"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE_01"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="ALLIEDTRANSPORTAIRSHIP_SKN" />
+					<Texture
+						Original="AlliedTransportAirship"
+						New="AlliedTransportAirship_D" />
+					<ParticleSysBone
+						BoneName="DAMAGE_01"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE_01"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE_01"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE_02"
+						FXParticleSystemTemplate="VehicleDamageSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE_02"
+						FXParticleSystemTemplate="VehicleDamageFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="DAMAGE_02"
+						FXParticleSystemTemplate="VehicleDamageFire02"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="ALLIEDTRANSPORTAIRSHIP_IDL"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+					<ParticleSysBone
+                    BoneName="JET_LIGHT_RB"
+                    FXParticleSystemTemplate="KodiakFlyGlow"
+                    FollowBone="true"/>
+					<ParticleSysBone
+                    BoneName="JET_LIGHT_RF"
+                    FXParticleSystemTemplate="KodiakFlyGlow"
+                    FollowBone="true"/>
+					<ParticleSysBone
+                    BoneName="JET_LIGHT_LB"
+                    FXParticleSystemTemplate="KodiakFlyGlow"
+                    FollowBone="true"/>
+					<ParticleSysBone
+                    BoneName="JET_LIGHT_LF"
+                    FXParticleSystemTemplate="KodiakFlyGlow"
+                    FollowBone="true"/>
+				</AnimationState>
+
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+          <Animation
+						AnimationName="ALLIEDTRANSPORTAIRSHIP_IDL"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15" />
+          <ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="HelicopterMovingWaterWake"
+						FollowBone="false" />
+			<ParticleSysBone
+			BoneName="JET_LIGHT_RB"
+			FXParticleSystemTemplate="KodiakFlyGlow"
+			FollowBone="true"/>
+			<ParticleSysBone
+			BoneName="JET_LIGHT_RF"
+			FXParticleSystemTemplate="KodiakFlyGlow"
+			FollowBone="true"/>
+			<ParticleSysBone
+			BoneName="JET_LIGHT_LB"
+			FXParticleSystemTemplate="KodiakFlyGlow"
+			FollowBone="true"/>
+			<ParticleSysBone
+			BoneName="JET_LIGHT_LF"
+			FXParticleSystemTemplate="KodiakFlyGlow"
+			FollowBone="true"/>
+        </AnimationState>        
+        
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING OVER_WATER">
+					<Animation
+						AnimationName="ALLIEDTRANSPORTAIRSHIP_MOV"
+						AnimationMode="LOOP"
+						AnimationBlendTime="15"/>
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="HelicopterMovingWaterWake"
+						FollowBone="false" />
+					<ParticleSysBone
+                    BoneName="JET_LIGHT_RB"
+                    FXParticleSystemTemplate="KodiakFlyGlow"
+                    FollowBone="true"/>
+					<ParticleSysBone
+                    BoneName="JET_LIGHT_RF"
+                    FXParticleSystemTemplate="KodiakFlyGlow"
+                    FollowBone="true"/>
+					<ParticleSysBone
+                    BoneName="JET_LIGHT_R"
+                    FXParticleSystemTemplate="KodiakFlyGlow"
+                    FollowBone="true"/>
+					<ParticleSysBone
+                    BoneName="JET_LIGHT_L"
+                    FXParticleSystemTemplate="KodiakFlyGlow"
+                    FollowBone="true"/>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING">
+					<Animation
+						AnimationName="ALLIEDTRANSPORTAIRSHIP_MOV"
+						AnimationMode="LOOP" 
+						AnimationBlendTime="15"/>
+					<ParticleSysBone
+                    BoneName="JET_LIGHT_RB"
+                    FXParticleSystemTemplate="KodiakFlyGlow"
+                    FollowBone="true"/>
+					<ParticleSysBone
+                    BoneName="JET_LIGHT_RF"
+                    FXParticleSystemTemplate="KodiakFlyGlow"
+                    FollowBone="true"/>
+					<ParticleSysBone
+                    BoneName="JET_LIGHT_R"
+                    FXParticleSystemTemplate="KodiakFlyGlow"
+                    FollowBone="true"/>
+					<ParticleSysBone
+                    BoneName="JET_LIGHT_L"
+                    FXParticleSystemTemplate="KodiakFlyGlow"
+                    FollowBone="true"/>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="WALKING">
+					<Animation
+						AnimationName="ALLIEDTRANSPORTAIRSHIP_IDL"
+						AnimationMode="MANUAL"
+						AnimationBlendTime="15" />
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<xi:include
+				href="DATA:Includes/BaseVehicleDisguiseDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:BaseVehicleDisguiseDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotTurret
+					ID="1">
+					<TurretSettings
+						TurretTurnRate="30"
+						MaxDeflectionAntiClockwise="30d"
+						MaxDeflectionClockwise="30d"
+						AllowsPitch="false"
+						MinIdleScanTime="1.0s"
+						MaxIdleScanTime="4.0s"
+						MinIdleScanAngle="0.0"
+						MaxIdleScanAngle="30.0">
+						<TurretAITargetChooserData
+					CanPickDynamicTargets="false"/>
+					</TurretSettings>
+				</WeaponSlotTurret>
+					<WeaponSlotTurret
+						ID="2">
+						<TurretSettings
+							TurretTurnRate="30"
+							MaxDeflectionAntiClockwise="30d"
+							MaxDeflectionClockwise="30d"
+							AllowsPitch="false"
+							MinIdleScanTime="1.0s"
+							MaxIdleScanTime="4.0s"
+							MinIdleScanAngle="0.0"
+							MaxIdleScanAngle="30.0">
+							<TurretAITargetChooserData
+					CanPickDynamicTargets="false"/>
+						</TurretSettings>
+				</WeaponSlotTurret>
+			</WeaponSetUpdate>
+			<!-- gravity mult of 30 is temporary -->
+			<Physics
+				id="ModuleTag_Physics"
+				GravityMultiplier="30" />
+			<TunnelContain
+				id="ModuleTag_Contain"
+				ObjectStatusOfContained="UNSELECTABLE ENCLOSED"
+				ObjectStatusWhileContaining="CONTAINER_OCCUPIED"
+				ContainMax="99999"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				EnterSound="EU_WormHole_Enter"
+				ExitSound="EU_WormHole_Exit"
+				ShowPips="false"
+				KillPassengersOnDeath="true">
+				<PassengerFilter
+					Rule="ALL"
+					Relationship="ALLIES">
+				</PassengerFilter>
+				<DieMuxData
+					DeathTypes="ALL" />
+			</TunnelContain>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="EUTransportAircraft_Dying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<UpgradeForbidden>Upgrade_AlliedAirPower</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_UpgradeCreateObjectDie"
+				CreationList="EUTransportAircraft_UpgradeDying_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<UpgradeRequired>Upgrade_AlliedAirPower</UpgradeRequired>
+			</CreateObjectDie>
+			<DynamicsUpdate
+				id="ModuleTag_DefaultDynamicsUpdate"
+				xai:joinAction="Remove" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_SOV_TwinbladeDie" />
+			</FXListBehavior>
+
+			<!-- AlliedAirPowerUpgrade -->
+			<xi:include
+				href="DATA:Includes/AlliedAirPowerUpgrade.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:AlliedAirPowerUpgrade/child::*)" />
+		</Behaviors>
+		<AI>
+			<!-- This should really be a 'AIUpdate' but there are some small issues. -->
+			<JetAIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="TransportHelicopterAIStateMachine">
+				<UnitAITargetChooserData 
+					CanPickDynamicTargets="false"
+					IdleScanDelay="=$FAST_IDLE_SCAN_DELAY"/>
+			</JetAIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="1500" />
+		</Body>
+		<ClientBehaviors>
+		<ModelConditionAudioLoopClientBehavior id="ModuleTag_Flying">
+			<ModelConditionSound Sound="ALL_Kodiak_MoveLoop" RequiredFlags="LANDING" />
+			<ModelConditionSound Sound="ALL_Kodiak_MoveLoop" RequiredFlags="TAKING_OFF" />
+			<ModelConditionSound Sound="ALL_Kodiak_MoveLoop" RequiredFlags="FLYING MOVING" ExcludedFlags="DYING" />
+			<ModelConditionSound Sound="ALL_Kodiak_MoveLoop" RequiredFlags="FLYING" ExcludedFlags="MOVING" />
+		</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="1"
+			CrushableLevel="25" />
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Name="Shape_02"
+				Type="BOX"
+				MajorRadius="28"
+				MinorRadius="29"
+				Height="25.5"
+				ContactPointGeneration="VEHICLE">
+				<Offset x="-40"/>
+			</Shape>
+			<Shape
+				Name="Shape_01"
+				Type="BOX"
+				MajorRadius="77"
+				MinorRadius="11.5"
+				Height="23.5"
+				ContactPointGeneration="VEHICLE">
+				<Offset x="7.7"/>
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="EU_TransShip_VoiceMove" AudioType="voiceAttackAfterMoving" />
+			<AudioEntry Sound="EU_TransShip_VoiceCreate" AudioType="voiceCreated" />
+			<AudioEntry Sound="EU_TransShip_VoiceMove" AudioType="voiceMove" />
+			<AudioEntry Sound="EU_TransShip_VoiceRetreat" AudioType="voiceRetreatToCastle" />
+			<AudioEntry Sound="EU_TransShip_VoiceSelect" AudioType="voiceSelect" />
+			<AudioEntry Sound="EU_TransShip_VoiceSelectUnderFire" AudioType="voiceSelectBattle" />
+			<AudioEntry Sound="EU_TransShip_VoiceSelectUnderFire" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="ALL_Kodiak_MoveStart" AudioType="soundMoveStart" />
+			<AudioEntry Sound="ALL_Kodiak_MoveLoop" AudioType="soundAmbient" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="250"
+			ShroudClearingRange="=$EPIC_SHROUD_CLEAR" />
+	</GameObject>
+		  <GameObject
+		id="EUTransportAircraft_Crate"
+		inheritFrom="EUTransportAircraft"
+		KindOf="+TIBERIUM_BASED"
+		EditorName="EUTransportAircraft_Crate">
+		<EquivalentTo>EUTransportAircraft</EquivalentTo>
+	</GameObject>
+</AssetDeclaration>

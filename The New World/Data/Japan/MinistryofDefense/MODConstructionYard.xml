@@ -1,0 +1,1121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+
+		<Include
+			type="all"
+			source="ART:JBConstructionYard_SKN.w3x" />
+		<Include
+			type="all"
+			source="ART:JBConstructionYard_IDLA.w3x" />
+		<Include
+			type="all"
+			source="ART:JBConstructionYard_LIGHTS.w3x" />
+		<Include
+			type="all"
+			source="ART:JUMCV_TRANS.w3x" />
+		<Include
+			type="all"
+			source="ART:JBConstructionYard_FX.w3x" />
+		<Include
+			type="all"
+			source="ART:JBConstructionYard_Platform_SKN.w3x" />
+		<Include
+			type="all"
+			source="ART:JBConstructionYard_Platform_BLD.w3x" />
+
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseConStructure.xml" />
+	</Includes>
+	<GameObject
+		id="MODConstructionYard"
+		inheritFrom="BaseConStructure"
+		SelectPortrait="Portrait_JapanConYard"
+		ButtonImage="Button_JapanConYard"
+		Side="Japan"
+		EditorSorting="STRUCTURE"
+		BuildTime="30"
+		HealthBoxHeightOffset="60"
+		PlacementViewAngle="315d"
+		CommandSet="MODConstructionYardCommandSet"
+		EnergyProduction="50"
+		KindOf="+CONSTRUCTION_YARD +FS_FACTORY +AUTO_RALLYPOINT"
+		RadarPriority="STRUCTURE"
+		CampnessValue="=$CAMPNESS_CONYARD"
+		ProductionQueueType="MAIN_STRUCTURE"
+		BuildPlacementTypeFlag="MAIN_STRUCTURE"
+		EditorName="MODConstructionYard"
+		Description="Desc:MODConstructionYard"
+		TypeDescription="Type:MODConstructionYard">
+		<EquivalentTo>JapanConstructionYard</EquivalentTo>
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:MODConstructionYard</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="3000" />
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseTechStructureArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<SkirmishAIInformation
+			BaseBuildingLocation="CENTER" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				ExtraPublicBone="BONE_CONTACT_POINT_01 BONE_CONTACT_POINT_02 BONE_CONTACT_POINT_03 BONE_CONTACT_POINT_04 BONE_CONTACT_POINT_05 BONE_CONTACT_POINT_06 BONE_CONTACT_POINT_07 BONE_CONTACT_POINT_08 BONE_CONTACT_POINT_09 BONE_CONTACT_POINT_10"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JBConstructionYard_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FROZEN UNPACKING REALLYDAMAGED">
+					<Model
+						Name="JUMCV_TRANS" />
+					<Texture
+						Original="JUMCV"
+						New="JUMCV_D" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_02"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_04"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_06"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_08"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_10"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FROZEN UNPACKING">
+					<Model
+						Name="JUMCV_TRANS" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_02"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_04"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_06"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_08"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_10"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FROZEN REALLYDAMAGED">
+					<Model
+						Name="JBConstructionYard_SKN" />
+					<Texture
+						Original="JUMCV"
+						New="JUMCV_D" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_02"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_04"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_06"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_08"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_10"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FROZEN">
+					<Model
+						Name="JBConstructionYard_SKN" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_02"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_04"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_06"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_08"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="BONE_CONTACT_POINT_10"
+						FXParticleSystemTemplate="FXStructureForzen"
+						FollowBone="true" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Animation
+						AnimationName="JBConstructionYard_IDLA"
+						AnimationMode="LOOP"
+						AnimationBlendTime="0" />
+				</AnimationState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING REALLYDAMAGED">
+					<Model
+						Name="JUMCV_TRANS" />
+					<Texture
+						Original="JUMCV"
+						New="JUMCV_D" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JBConstructionYard_SKN" />
+					<Texture
+						Original="JUMCV"
+						New="JUMCV_D" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Model
+						Name="JUMCV_TRANS" />
+				</ModelConditionState>
+				<!-- UNPACKING -->
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="UNPACKING">
+					<Animation
+						AnimationName="JUMCV_TRANS"
+						AnimationMode="ONCE" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Big"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Flash"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Lights"
+						FollowBone="true" />
+				</AnimationState>
+
+			</ScriptedModelDraw>
+
+			<!-- DRAW PLATFORM -->
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Platform"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JBConstructionYard_Platform_SKN" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER STRUCTURE_UNPACKING">
+					<Model
+						Name="JBConstructionYard_Platform_SKN" />
+					<Material ShaderName="BasicW3DHolographic.fx" TechniqueName="Default">
+						<Constants>
+							<Float Name="ColorAmbient">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorDiffuse">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="ColorSpecular">
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+								<Value>0.000000</Value>
+							</Float>
+							<Float Name="Shininess">
+								<Value>1.000000</Value>
+							</Float>
+							<Float Name="ColorEmissive">
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+								<Value>1.000000</Value>
+							</Float>
+							<Texture Name="Texture_0">
+								<Value>FXJapanBuildMask</Value>
+							</Texture>
+							<Bool Name="DepthWriteEnable">
+								<Value>true</Value>
+							</Bool>
+							<Bool Name="AlphaTestEnable">
+								<Value>true</Value>
+							</Bool>
+							<Bool Name="CullingEnable">
+								<Value>true</Value>
+							</Bool>
+							<Int Name="BlendMode">
+								<Value>1</Value>
+							</Int>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableShowSubObjectPermanently("Bib")
+						CurDrawableHideSubObjectPermanently("Platform")
+						CurDrawableHideSubObjectPermanently("Platform_FX")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING OVER_WATER">
+					<Animation
+						AnimationName="JBConstructionYard_Platform_BLD"
+						AnimationMode="MATCH_UNPACKING" />
+					<Script>
+						CurDrawableHideSubObjectPermanently("Bib")
+						CurDrawableShowSubObjectPermanently("Platform")
+						CurDrawableShowSubObjectPermanently("Platform_FX")
+					</Script>
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AlliedPowerPlantWaterBuildupFroth"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AlliedPowerPlantWaterBuildupMist"
+						FollowBone="true" />
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER">
+					<Script>
+						CurDrawableShowSubObjectPermanently("Platform")
+						CurDrawableShowSubObjectPermanently("Platform_FX")
+						CurDrawableHideSubObjectPermanently("Bib")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<!-- Lights-->
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_LIGHTS"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JBConstructionYard_LIGHTS" />
+				</ModelConditionState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableHideSubObjectPermanently("Glow")
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PARALYZED">
+					<Script>
+						CurDrawableHideSubObjectPermanently("Glow")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP">
+					<Script>
+						CurDrawableHideSubObjectPermanently("Glow")
+					</Script>
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ACTIVELY_CONSTRUCTING">
+					<Script>
+						CurDrawableShowSubObjectPermanently("Glow")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<!-- DRAW BUILD UP PLATFORM -->
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Platform_Buildup"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER STRUCTURE_UNPACKING">
+					<Model
+						Name="JBConstructionYard_Platform_SKN" />
+					<!-- template reference invalid
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="JBConstructionYardWakeSplash"
+						FollowBone="true" />
+-->
+					<Material ShaderName="BuildingsJapanBuildup.fx" TechniqueName="Default">
+						<Constants>
+							<Texture Name="DiffuseTexture">
+								<Value>JBPlatform</Value>
+							</Texture>
+							<Texture Name="NormalMap">
+								<Value>JBPlatform_NRM</Value>
+							</Texture>
+							<Texture Name="SpecMap">
+								<Value>JBPlatform_SPM</Value>
+							</Texture>
+							<Float Name="EnvMult">
+								<Value>1.000000</Value>
+							</Float>
+							<Bool Name="AlphaTestEnable">
+								<Value>true</Value>
+							</Bool>
+						</Constants>
+					</Material>
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableShowSubObjectPermanently("Bib")
+						CurDrawableHideSubObjectPermanently("Platform")
+						CurDrawableHideSubObjectPermanently("Platform_FX")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING OVER_WATER">
+					<Animation
+						AnimationName="JBConstructionYard_Platform_BLD"
+						AnimationMode="MATCH_UNPACKING" />
+					<Script>
+						CurDrawableHideSubObjectPermanently("Bib")
+						CurDrawableShowSubObjectPermanently("Platform")
+						CurDrawableShowSubObjectPermanently("Platform_FX")
+					</Script>
+				</AnimationState>
+			</ScriptedModelDraw>
+
+			<!-- DRAW PARTICLES -->
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_FX"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="JBConstructionYard_FX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="JBConstructionYard_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="JBConstructionYard_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE02"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE02"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE03"
+						FXParticleSystemTemplate="JapanVehicleDamagedSmoke"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE03"
+						FXParticleSystemTemplate="JapanVehicleDamagedSparks"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_BONE03"
+						FXParticleSystemTemplate="JapanVehicleDamagedFire"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			<!-- Player-->
+			<xi:include
+				href="DATA:Includes/PlayerInformationDraw.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:PlayerInformationDraw/child::*)" />
+		</Draws>
+		<Behaviors>
+			<SquishCollide
+				id="DefaultSquishCollide" />
+			<Physics
+				id="ModuleTag_Physics" />
+			<RadarBehavior
+				id="ModuleTag_RadarBehavior" />
+			<BuildingBehavior
+				id="ModuleTag_BuildingBehavior"
+				NightWindowObject="LIGHT_01" />
+			<BuildingDestructionBehavior
+				id="ModuleTag_BuildingDestruction"
+				FillerMesh="NEWSKIN_FILL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Item
+					BonePrefix="BONE_CONTACT_POINT_"
+					FX="JapanStructureHit"
+					CreationObject="AlliedBarracks_Debris"
+					FlingVelocity="100.0" />
+			</BuildingDestructionBehavior>
+			<FXListBehavior
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance"
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6" />
+				<Event
+					Index="onDeath"
+					FX="FX_YU_Hotel02_Explode" />
+				<Event
+					Index="onDeath"
+					FX="FX_LargeBuildingDieExplosionRumble" />
+			</FXListBehavior>
+			<FXListBehavior xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance"
+				id="ModuleTag_DieSound">
+				<DieMuxData DeathTypes="ALL" />
+				<Event Index="onDeath" FX="FX_LargeBuildingDieExplosion" /> <!-- do not put visuals
+				on this FX!  Create another FXListBehavior module! -->
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="JBConstructionYard_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					ExemptStatus="OVER_WATER" />
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_Platform_CreateObjectDie"
+				CreationList="JBConstructionYard_Platform_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"
+					RequiredStatus="OVER_WATER" />
+			</CreateObjectDie>
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				UnpackTime="2.0s" />
+
+			<!--RedAlert Active-->
+			<xi:include
+				href="DATA:Includes/RedAlertActiveModel.xml"
+				xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:RedAlertActiveModel/child::*)" />
+
+			<ProductionUpdate
+				id="ModuleTag_ProductionUpdate"
+				Type="MAIN_STRUCTURE"
+				MaxQueueEntries="1"
+				NumDoorAnimations="1">
+				<ProductionModifier
+					TimeMultiplier="0.8"
+					RequiredUpgrade="ObjectUpgradeUprising">
+					<ModifierFilter
+						Rule="ANY"
+						Include="FS_POWER FS_BASE_DEFENSE"
+						Exclude="FS_TECHNOLOGY">
+					</ModifierFilter>
+				</ProductionModifier>
+			</ProductionUpdate>
+			<ProductionUpdate
+				id="ModuleTag_OtherProductionUpdate"
+				Type="OTHER_STRUCTURE"
+				MaxQueueEntries="1"
+				NumDoorAnimations="1">
+			</ProductionUpdate>
+			<ProductionUpdateInfo
+				id="ModuleTag_ProductionUpdateInfo" />
+			<QueueProductionExitUpdate
+				id="ModuleTag_QueueProduction"
+				ExitDelaySeconds="0.07s">
+				<UnitCreatePoint
+					x="-3.0"
+					y="0.0"
+					z="0.0" />
+				<NaturalRallyPoint
+					x="80.0"
+					y="0.0"
+					z="0.0" />
+			</QueueProductionExitUpdate>
+
+			<xi:include
+				href="DATA:Includes/GenericPackPower.xml" />
+			<ReplaceSelfSpecialAbility
+				id="ModuleTag_ReplaceSelf"
+				SpecialPowerTemplate="SpecialPower_PackReplaceSelf"
+				Options="RECONSTITUTE_STORED_COMMAND"
+				NewObjectUnpackTime="2.0s"
+				ReplaceOptions="COPY_UPGRADES DISABLE_DURING_REPLACE DISABLE_NEW_OBJECT_DURING_UNPACK">
+				<ReplacementTemplate>MODMCV</ReplacementTemplate>
+			</ReplaceSelfSpecialAbility>
+			<InfiltratorContain
+				id="ModuleTag_InfiltratorContain"
+				Effect="VISION"
+				Duration="300s"
+				ObjectRef="VisionObserver">
+			</InfiltratorContain>
+			<CreateObjectDie
+				id="ModuleTag_CreateOccupiedDie"
+				CreationList="OCL_JapanConYardBuildingDestruction">
+				<DieMuxData
+					ExemptStatus="OVER_WATER SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6" />
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateOccupiedConfigDie"
+				CreationList="OCL_JapanConYardBuildingConfigDestruction">
+				<DieMuxData
+					ExemptStatus="OVER_WATER SOLD"
+					DeathTypes="ALL"
+					DeathTypesForbidden="DETONATED SUICIDED EXTRA_7 EXTRA_6" />
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+				<UpgradeForbidden>Upgrade_NoSpawnUponDestruction</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateOccupiedSuicide"
+				CreationList="OCL_JapanConYardBuildingSuicide">
+				<DieMuxData
+					ExemptStatus="OVER_WATER"
+					DeathTypes="SUICIDED" />
+				<UpgradeForbidden>Upgrade_ConfigTrigger</UpgradeForbidden>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateOccupiedConfigSuicide"
+				CreationList="OCL_JapanConYardBuildingConfigSuicide">
+				<DieMuxData
+					ExemptStatus="OVER_WATER"
+					DeathTypes="SUICIDED" />
+				<UpgradeRequired>Upgrade_ConfigTrigger</UpgradeRequired>
+			</CreateObjectDie>
+			<xi:include
+				href="DATA:Includes/GenericBuildingRepair.xml" />
+			<xi:include
+				href="DATA:Includes/GenericEngineerContain.xml" />
+			<xi:include
+				href="DATA:Includes/InfiltratorContainRadarFreeze.xml" />
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="JapanConstructionYardFunctions" />
+			<SpecialPower
+				id="ModuleTag_JapanBaseDefenseToGun"
+				SpecialPowerTemplate="SpecialPower_JapanBaseDefenseToGun"
+				UpdateModuleStartsAttack="true"
+				AttributeModifier="AttributeModifier_JapanBaseDefenseToggle"
+				AttributeModifierRange="999999">
+				<AttributeModifierAffects
+					Rule="ANY"
+					Relationship="SAME_PLAYER"
+					Include="FS_BASE_DEFENSE TRANSFORMER"
+					Exclude="VEHICLE INFANTRY"
+					StatusBitFlags="GENERIC_TOGGLE_STATE"
+					StatusBitFlagsExclude="NOT_IN_WORLD SOLD USER_POWERED_DOWN POWERED_DOWN_EMP USER_PARALYZED RIFT_OCCUPIED UNPACKING UNDER_FROZEN SCRAMBLED UNSELECTABLE">
+				</AttributeModifierAffects>
+			</SpecialPower>
+			<SpecialAbilityUpdate
+				id="ModuleTag_JapanBaseDefenseToGunUpdate"
+				SpecialPowerTemplate="SpecialPower_JapanBaseDefenseToGun"
+				UnpackTime="0s"
+				Options="RECONSTITUTE_STORED_COMMAND" />
+			<SpecialPower
+				id="ModuleTag_JapanBaseDefenseToRocket"
+				SpecialPowerTemplate="SpecialPower_JapanBaseDefenseToRocket"
+				UpdateModuleStartsAttack="true"
+				AttributeModifier="AttributeModifier_JapanBaseDefenseToggle"
+				AttributeModifierRange="999999">
+				<AttributeModifierAffects
+					Rule="ANY"
+					Relationship="SAME_PLAYER"
+					Include="FS_BASE_DEFENSE TRANSFORMER"
+					Exclude="VEHICLE INFANTRY"
+					StatusBitFlagsExclude="NOT_IN_WORLD GENERIC_TOGGLE_STATE SOLD USER_POWERED_DOWN POWERED_DOWN_EMP USER_PARALYZED RIFT_OCCUPIED UNPACKING UNDER_FROZEN SCRAMBLED UNSELECTABLE">
+				</AttributeModifierAffects>
+			</SpecialPower>
+			<SpecialAbilityUpdate
+				id="ModuleTag_JapanBaseDefenseToRocketUpdate"
+				SpecialPowerTemplate="SpecialPower_JapanBaseDefenseToRocket"
+				UnpackTime="0s"
+				Options="RECONSTITUTE_STORED_COMMAND" />
+			<SubObjectsUpgrade
+				id="ModuleTag_JapanAdvancedMissilePacks">
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_JapanAdvancedMissilePacks">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_JapanEnhancedKamikaze">
+				<TriggeredBy>Upgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_JapanEnhancedKamikaze">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_JapanNavalPower">
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_JapanNavalPower">
+				</Nugget>
+			</SubObjectsUpgrade>
+			<ObjectCreationUpgrade
+				id="ModuleTag_JapanAdvancedMissilePacks"
+				ThingToSpawn="JapanUpgradeDroneMissle">
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+			</ObjectCreationUpgrade>
+			<ObjectCreationUpgrade
+				id="ModuleTag_JapanEnhancedKamikaze"
+				ThingToSpawn="JapanUpgradeDroneKamikaze">
+				<TriggeredBy>Upgrade_JapanEnhancedKamikaze</TriggeredBy>
+			</ObjectCreationUpgrade>
+			<ObjectCreationUpgrade
+				id="ModuleTag_JapanNavalPower"
+				ThingToSpawn="JapanUpgradeDroneNavyPower">
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+			</ObjectCreationUpgrade>
+			<SubObjectsUpgrade
+				id="ModuleTag_SubObjectsPlayerInformationUpgrade">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_JapanFaction"
+					ShowSubObjects="Upgrade_01" />
+				<CustomAnimAndDuration AnimState="SPECIAL_WEAPON_FOUR" />
+			</SubObjectsUpgrade>
+			<FireWeaponWhenDead
+				id="ModuleTag_CelebratingWeapon"
+				InitiallyActive="true"
+				DeathWeapon="UnitCelebratingConstructionYard">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED"
+					ExemptStatus="SOLD" />
+			</FireWeaponWhenDead>
+			
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgrade_JapanEnhancedKamikaze">
+				<TriggeredBy>Upgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<UpgradeToRemove>AntiUpgrade_JapanEnhancedKamikaze</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgrade_JapanNavalPower">
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+				<UpgradeToRemove>AntiUpgrade_JapanNavalPower</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<RemoveUpgradeUpgrade
+				id="ModuleTag_RemoveUpgrade_JapanAdvancedMissilePacks">
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<UpgradeToRemove>AntiUpgrade_JapanAdvancedMissilePacks</UpgradeToRemove>
+			</RemoveUpgradeUpgrade>
+			<!--Command Upgrade-->
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSetRedAlert"
+				CommandSet="MODConstructionYardCommandSetRedAlert">
+				<ConflictsWith>Upgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<TriggeredBy>AntiUpgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSet1RedAlert"
+				CommandSet="MODConstructionYardCommandSet1RedAlert">
+				<ConflictsWith>Upgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<TriggeredBy>Upgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSet2RedAlert"
+				CommandSet="MODConstructionYardCommandSet2RedAlert">
+				<ConflictsWith>AntiUpgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<TriggeredBy>AntiUpgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSet3RedAlert"
+				CommandSet="MODConstructionYardCommandSet3RedAlert">
+				<ConflictsWith>Upgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<TriggeredBy>AntiUpgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSet4RedAlert"
+				CommandSet="MODConstructionYardCommandSet4RedAlert">
+				<ConflictsWith>AntiUpgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<TriggeredBy>Upgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSet5RedAlert"
+				CommandSet="MODConstructionYardCommandSet5RedAlert">
+				<ConflictsWith>Upgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<TriggeredBy>Upgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSet6RedAlert"
+				CommandSet="MODConstructionYardCommandSet6RedAlert">
+				<ConflictsWith>AntiUpgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<TriggeredBy>AntiUpgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSet7RedAlert"
+				CommandSet="MODConstructionYardCommandSet7RedAlert">
+				<ConflictsWith>AntiUpgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingNoUse</ConflictsWith>
+				<TriggeredBy>Upgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingCantUse</TriggeredBy>
+			</CommandSetUpgrade>
+
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSet1"
+				CommandSet="MODConstructionYardCommandSet1">
+				<ConflictsWith>Upgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingCantUse</ConflictsWith>
+				<TriggeredBy>Upgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingNoUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSet2"
+				CommandSet="MODConstructionYardCommandSet2">
+				<ConflictsWith>AntiUpgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingCantUse</ConflictsWith>
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingNoUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSet3"
+				CommandSet="MODConstructionYardCommandSet3">
+				<ConflictsWith>Upgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingCantUse</ConflictsWith>
+				<TriggeredBy>AntiUpgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingNoUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSet4"
+				CommandSet="MODConstructionYardCommandSet4">
+				<ConflictsWith>AntiUpgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingCantUse</ConflictsWith>
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingNoUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSet5"
+				CommandSet="MODConstructionYardCommandSet5">
+				<ConflictsWith>Upgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingCantUse</ConflictsWith>
+				<TriggeredBy>AntiUpgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingNoUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSet6"
+				CommandSet="MODConstructionYardCommandSet6">
+				<ConflictsWith>AntiUpgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>Upgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingCantUse</ConflictsWith>
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>AntiUpgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingNoUse</TriggeredBy>
+			</CommandSetUpgrade>
+			<CommandSetUpgrade
+				id="ModuleTag_MODConstructionYardCommandSet7"
+				CommandSet="MODConstructionYardCommandSet7">
+				<ConflictsWith>AntiUpgrade_JapanNavalPower</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanAdvancedMissilePacks</ConflictsWith>
+				<ConflictsWith>AntiUpgrade_JapanEnhancedKamikaze</ConflictsWith>
+				<ConflictsWith>UpgradeUprisingCantUse</ConflictsWith>
+				<TriggeredBy>Upgrade_JapanNavalPower</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanEnhancedKamikaze</TriggeredBy>
+				<TriggeredBy>Upgrade_JapanAdvancedMissilePacks</TriggeredBy>
+				<TriggeredBy>UpgradeUprisingNoUse</TriggeredBy>
+			</CommandSetUpgrade>
+		</Behaviors>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="50">
+		</CrusherInfo>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="StructureAIStateMachine" />
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="3000.0" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type="BOX"
+				MajorRadius="49.005"
+				MinorRadius="36.48"
+				Height="55.47"
+				ContactPointGeneration="STRUCTURE">
+				<Offset
+					x="-10.1006"
+					y="-0.552521"
+					z="0.0" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="22.464"
+				MinorRadius="49.7008"
+				Height="31.0208"
+				ContactPointGeneration="STRUCTURE">
+				<Offset
+					x="-33.1786"
+					y="-0.552521"
+					z="0.0" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="9.18982"
+				MinorRadius="39.4178"
+				Height="9.61645"
+				ContactPointGeneration="STRUCTURE">
+				<Offset
+					x="18.0628"
+					y="-0.552521"
+					z="0.0" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="15.2"
+				MinorRadius="46.5"
+				Height="10.0"
+				ContactPointGeneration="STRUCTURE">
+				<Offset
+					x="36.0329"
+					y="-0.552521"
+					z="0.0" />
+			</Shape>
+			<Shape
+				Type="BOX"
+				MajorRadius="17.1751"
+				MinorRadius="12.3441"
+				Height="83.721"
+				ContactPointGeneration="STRUCTURE">
+				<Offset
+					x="-33.1275"
+					y="-0.552521"
+					z="0.0" />
+			</Shape>
+		</Geometry>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior xai:joinAction="Replace"
+				xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_StructureConstructionAudio">
+				<ModelConditionSound
+					Sound="JAP_Nanocore_DeployStructureLand"
+					RequiredFlags="STRUCTURE_UNPACKING"
+					ExcludedFlags="OVER_WATER" />
+				<ModelConditionSound
+					Sound="JAP_Nanocore_DeployStructureWaterMS"
+					RequiredFlags="STRUCTURE_UNPACKING OVER_WATER" />
+			</ModelConditionAudioLoopClientBehavior>
+			<AnimationSoundClientBehavior id="AnimationSoundCB">
+				<Sound Sound="JAP_MCV_Animation_TRANS1_WaterMS"
+					RequiredMC="OVER_WATER STRUCTURE_UNPACKING" Animation="JUMCV_TRANS" Frame="1" />
+				<Sound Sound="JAP_MCV_Animation_TRANS1" RequiredMC="STRUCTURE_UNPACKING"
+					Animation="JUMCV_TRANS" Frame="1" />
+				<Sound Sound="JAP_MCV_Animation_TRANS2" RequiredMC="STRUCTURE_UNPACKING"
+					Animation="JUMCV_TRANS" Frame="15" />
+				<Sound Sound="JAP_MCV_Animation_TRANS3" RequiredMC="STRUCTURE_UNPACKING"
+					Animation="JUMCV_TRANS" Frame="24" />
+			</AnimationSoundClientBehavior>
+		</ClientBehaviors>
+		<AudioArrayVoice>
+			<AudioEntry Sound="JAP_ConstructionYard_Select" AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<AudioArraySound>
+			<AudioEntry Sound="JAP_Nanocore_DeployLoop" AudioType="soundUnderConstruction" />
+		</AudioArraySound>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="ConstructionYardUnderAttack" EvaType="damagedOwner" />
+		</EvaEventArray>
+		<VisionInfo
+			VisionRange="100"
+			ShroudClearingRange="=$YARD_STRUCTURE_SHROUD_CLEAR" />
+		<ProjectedBuildabilityInfo
+			Radius="600"
+			BuildPlacementTypes="MAIN_STRUCTURE OTHER_STRUCTURE" />
+		<ProjectedBuildabilityInfo
+			Radius="600"
+			BuildPlacementTypes="MAIN_STRUCTURE OTHER_STRUCTURE"
+			AllowedBuildabilityHeightVariation="-1.0">
+			<AllowedObjectFilter
+				Rule="NONE">
+				<IncludeThing>AlliedNavalYard</IncludeThing>
+				<IncludeThing>SovietNavalYard</IncludeThing>
+				<IncludeThing>JapanNavalYard</IncludeThing>
+			</AllowedObjectFilter>
+		</ProjectedBuildabilityInfo>
+	</GameObject>
+	<GameObject
+		id="MODConstructionYard_Random"
+		inheritFrom="MODConstructionYard"
+		EditorName="MODConstructionYard_Random">
+		<EquivalentTo>MODConstructionYard</EquivalentTo>
+		<Behaviors>
+			<ObjectCreationUpgrade
+				id="ModuleTag_JapanFactionOCL"
+				ThingToSpawn="JapanFaction">
+				<TriggeredBy>Upgrade_JapanFaction</TriggeredBy>
+				<ConflictsWith>Upgrade_MinistryofDefenseFaction</ConflictsWith>
+			</ObjectCreationUpgrade>
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				xai:joinAction="Replace"
+				UnpackTime="0.0s" />
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

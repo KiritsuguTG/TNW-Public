@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include source="art:fxsmokecloud.xml" type="instance"/>
+		<Include source="art:fxabaloneenv.xml" type="instance"/>
+		<Include source="art:FXIMPACTSPLASH02.w3x" type="instance"/>
+	</Includes>
+  <FXList id="FX_AlliedTankGunTNW">
+    <NuggetList>
+      <ParticleSystem
+				Particle="AlliedAntiVehicleVehicleTech1ConnonFireFlash01"
+				OrientToObject="true" />
+      <ParticleSystem
+				Particle="AlliedAntiVehicleVehicleTech1ShootDust"
+				OrientToObject="true" />
+      <ParticleSystem
+				Particle="AlliedAntiVehicleVehicleTech1ConnonFireFlash02"
+				OrientToObject="true" />
+      <ParticleSystem
+				Particle="AlliedAntiVehicleVehicleTech1TankShootFireLight"
+				OrientToObject="true" />
+    </NuggetList>
+  </FXList>
+  <FXList id="FX_AlliedTankGunTNWVET">
+    <NuggetList>
+      <ParticleSystem
+				Particle="AlliedAntiVehicleVehicleTech1ConnonFireFlash01"
+				OrientToObject="true" />
+      <ParticleSystem
+				Particle="AlliedAntiVehicleVehicleTech1ShootDust"
+				OrientToObject="true" />
+      <ParticleSystem
+				Particle="AlliedAntiVehicleVehicleTech1ConnonFireFlash02VET"
+				OrientToObject="true" />
+      <ParticleSystem
+				Particle="AlliedAntiVehicleVehicleTech1ConnonFireFlash01VET"
+				OrientToObject="true" />
+    </NuggetList>
+  </FXList>
+	<FXParticleSystemTemplate ParticleTexture="FXFire03" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SortLevel="1" SystemLifetime="3" Type="GPU_PARTICLE" id="AlliedAntiVehicleVehicleTech1ConnonFireFlash01">
+		<Lifetime High="8.5" Low="8.5"/>
+		<Size High="13" Low="13"/>
+		<BurstCount High="3" Low="3"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="1">
+				<Color b="0.219608" g="0.380392" r="0.647059"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0.101961" g="0.117647" r="0.14902"/>
+			</Color>
+			<ColorScale High="4" Low="3"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.9" Low="0.85"/>
+				<DriftVelocity x="0" y="0" z="0"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu FramesPerRow="6" SpeedMultiplier="4" TotalFrames="36"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="true" Radius="0"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="4" Low="2"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="1" Low="1"/>
+				<SizeRateDamping High="0.99" Low="0.95"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularRateZ High="0.05" Low="-0.05"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate Drawable="FXIMPACTSPLASH02" ParticleTexture="FXFire03" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SortLevel="1" SystemLifetime="1" Type="GPU_PARTICLE" id="AlliedAntiVehicleVehicleTech1ConnonFireFlash02">
+		<Lifetime High="13" Low="13"/>
+		<Size High="30" Low="30"/>
+		<BurstCount High="1" Low="1"/>
+		<InitialDelay High="2" Low="2"/>
+		<Alphas>
+			<Alpha Frame="1" High="1" Low="1" RelativeAge="0"/>
+			<Alpha Frame="2" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="2" RelativeAge="1">
+				<Color b="0.219608" g="0.380392" r="0.647059"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0.101961" g="0.117647" r="0.14902"/>
+			</Color>
+			<ColorScale High="4" Low="3"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.5" Low="0.5"/>
+				<DriftVelocity x="0" y="0" z="0"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu FramesPerRow="6" SpeedMultiplier="2.5" TotalFrames="36"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="19" Low="19"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.55" Low="0.55"/>
+				<SizeRateDamping High="0.95" Low="0.95"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" Priority="ULTRA_HIGH_ONLY" SystemLifetime="1" id="AlliedAntiVehicleVehicleTech1TankShootFireLight">
+		<Lifetime High="7" Low="7"/>
+		<Size High="45" Low="45"/>
+		<BurstCount High="1" Low="1"/>
+		<InitialDelay High="2" Low="2"/>
+		<Alphas>
+			<Alpha Frame="1" High="0.6" Low="0.6" RelativeAge="0"/>
+			<Alpha Frame="2" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="2" RelativeAge="30.000002">
+				<Color b="0.482353" g="0.713726" r="0.917647"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<LightSource MaximumIntensityRadiusRatio="0.5"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="-20" y="0" z="5"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="7" Low="7"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="FXSmokeCloud" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="ALPHA" SortLevel="4" SystemLifetime="1" Type="GPU_PARTICLE" id="AlliedAntiVehicleVehicleTech1ShootDust">
+		<Lifetime High="80" Low="80"/>
+		<Size High="13" Low="13"/>
+		<BurstCount High="20" Low="20"/>
+		<Alphas>
+			<Alpha Frame="1" High="0.5" Low="0.5" RelativeAge="0"/>
+			<Alpha Frame="2" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors HouseColorSaturation="0">
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.666667" g="0.666667" r="0.666667"/>
+			</Color>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.627451" g="0.627451" r="0.627451"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0.698039" g="0.698039" r="0.698039"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.65" Low="0.55"/>
+				<DriftVelocity x="0" y="0" z="0.1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu DetailTexture="FXAbaloneEnv" MiscValue1="0.2" MiscValue2="0.1" MiscValue3="0.1" MiscValue4="0.05" Shader="gpuparticledistort.fx" SpeedMultiplier="1" TotalFrames="0"/>
+		</Draw>
+		<Volume>
+			<Cylinder IsHollow="false" >
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="9" Low="3"/>
+					<y High="0" Low="-0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="2" Low="0"/>
+				<SizeRateDamping High="0.95" Low="0.85"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularRateZ High="0.02" Low="-0.02"/>
+				<AngularDamping High="0.99" Low="0.99"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate ParticleTexture="AlliedAntiVehicleVehicleTech1FXFire03VET" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SortLevel="1" SystemLifetime="3" Type="GPU_PARTICLE" id="AlliedAntiVehicleVehicleTech1ConnonFireFlash01VET">
+		<Lifetime High="8.5" Low="8.5"/>
+		<Size High="13" Low="13"/>
+		<BurstCount High="3" Low="3"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="1">
+				<Color b="0.219608" g="0.380392" r="0.647059"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0.101961" g="0.117647" r="0.14902"/>
+			</Color>
+			<ColorScale High="4" Low="3"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.9" Low="0.85"/>
+				<DriftVelocity x="0" y="0" z="0"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu FramesPerRow="6" SpeedMultiplier="4" TotalFrames="36"/>
+		</Draw>
+		<Volume>
+			<Sphere IsHollow="true" Radius="0"/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="4" Low="2"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="1" Low="1"/>
+				<SizeRateDamping High="0.99" Low="0.95"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularRateZ High="0.05" Low="-0.05"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	
+	<FXParticleSystemTemplate Drawable="FXIMPACTSPLASH02" ParticleTexture="AlliedAntiVehicleVehicleTech1FXFire03VET" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SortLevel="1" SystemLifetime="1" Type="GPU_PARTICLE" id="AlliedAntiVehicleVehicleTech1ConnonFireFlash02VET">
+		<Lifetime High="13" Low="13"/>
+		<Size High="30" Low="30"/>
+		<BurstCount High="1" Low="1"/>
+		<InitialDelay High="2" Low="2"/>
+		<Alphas>
+			<Alpha Frame="1" High="1" Low="1" RelativeAge="0"/>
+			<Alpha Frame="2" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="2" RelativeAge="1">
+				<Color b="0.219608" g="0.380392" r="0.647059"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0.101961" g="0.117647" r="0.14902"/>
+			</Color>
+			<ColorScale High="4" Low="3"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.5" Low="0.5"/>
+				<DriftVelocity x="0" y="0" z="0"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu FramesPerRow="6" SpeedMultiplier="2.5" TotalFrames="36"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="19" Low="19"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.55" Low="0.55"/>
+				<SizeRateDamping High="0.95" Low="0.95"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

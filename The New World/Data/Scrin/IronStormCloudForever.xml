@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:SageXml/BaseObjects/BaseVehicle.xml" />
+		<Include type="instance" source="DATA:SageXml/BaseObjects/BaseObject.xml" />
+	</Includes>
+	<GameObject
+		id="IronStormCloudForever"
+		inheritFrom="BaseVehicle"
+		Side="Neutral"
+		SubGroupPriority="330"
+		EditorSorting="SYSTEM"
+		BuildTime="0"
+		RadarPriority="NOT_ON_RADAR"
+		KindOf="NO_COLLIDE CAN_ATTACK CAN_CAST_REFLECTIONS VEHICLE NOT_AUTOACQUIRABLE AUTO_ACQUIRABLE_BY_AI IGNORE_FOR_VICTORY RESIST_EMP UNATTACKABLE"
+		WeaponCategory="MISSILE"
+		VoicePriority="188"
+		EditorName="IronStormCloudForever"
+		HealthBoxHeightOffset="40">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:IronStormCloud</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="JapanAntiAirVehicleTech1Armor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="IronStormCloudLocomotor"
+			Locomotor="IronStormCloudLocomotor"
+			Condition="NORMAL"
+			Speed="0" />
+    <SkirmishAIInformation
+      DodgeSafetyDistance="250.0">
+      <DodgeWithUnits Rule="ALL"
+			Exclude="INFANTRY">
+      </DodgeWithUnits>
+    </SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="FXInvisBone" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<ParticleSysBone
+						BoneName="invisbone01"
+						FXParticleSystemTemplate="IonStormCarrierClouds"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="invisbone01"
+						FXParticleSystemTemplate="IonStormCarrierGlow"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="invisbone01"
+						FXParticleSystemTemplate="IonStormCarrierLightning"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="IronStormCloudScrin"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<StructureUnpackUpdate
+				id="ModuleTag_GenericUnpackUpdate"
+				UnpackTime="1.0s"
+				OffsetHeightAboveWater="0.0" />
+			<StancesBehavior
+				xai:joinAction="Replace"
+				id="ModuleTag_Stance"
+				StanceTemplate="OnlyAggressive"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+				IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+				</UnitAITargetChooserData>	
+			</AIUpdate>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry>
+			<Shape
+				Type="CYLINDER"
+				Name="Geom_Orig"
+				MajorRadius="1.0"
+				MinorRadius="0.0"
+				Height="1.0">
+			</Shape>
+		</Geometry>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="" EvaType="ambushed" />
+			<EvaEntry EvaEvent="" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="" EvaType="buildCancelled" />
+			<EvaEntry EvaEvent="" EvaType="promotedOwner" />
+		</EvaEventArray>
+		<VisionInfo
+			VisionRange="150"
+			ShroudClearingRange="100" />
+	</GameObject>
+	<GameObject
+		id="IronStormCloudScrin"
+		inheritFrom="BaseVehicle"
+		Side="Neutral"
+		SubGroupPriority="330"
+		EditorSorting="SYSTEM"
+		BuildTime="0"
+		RadarPriority="NOT_ON_RADAR"
+		KindOf="NO_COLLIDE CAN_ATTACK CAN_CAST_REFLECTIONS VEHICLE NOT_AUTOACQUIRABLE AUTO_ACQUIRABLE_BY_AI IGNORE_FOR_VICTORY RESIST_EMP UNATTACKABLE"
+		WeaponCategory="MISSILE"
+		VoicePriority="188"
+		EditorName="IronStormCloudScrin"
+		HealthBoxHeightOffset="40">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:IronStormCloud</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="JapanAntiAirVehicleTech1Armor"
+			DamageFX="VehicleDamageFX" />
+		<LocomotorSet
+			id="IronStormCloudLocomotor"
+			Locomotor="IronStormCloudLocomotor"
+			Condition="NORMAL"
+			Speed="0" />
+		<SkirmishAIInformation
+		  DodgeSafetyDistance="250.0">
+			<DodgeWithUnits Rule="ALL"
+				  Exclude="INFANTRY">
+			</DodgeWithUnits>
+		</SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT"
+					RetainSubObjects="true">
+					<Model
+						Name="FXInvisBone" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="invisbone01" />
+					<ParticleSysBone
+						BoneName="invisbone01"
+						FXParticleSystemTemplate="IonStormCarrierClouds"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="invisbone01"
+						FXParticleSystemTemplate="IonStormCarrierGlow"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="invisbone01"
+						FXParticleSystemTemplate="IonStormCarrierLightning"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="IronStormCloudScrin"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</DestroyDie>
+			<StructureUnpackUpdate
+				id="ModuleTag_GenericUnpackUpdate"
+				UnpackTime="1.0s"
+				OffsetHeightAboveWater="0.0" />
+			<LifetimeUpdate
+				id="ModuleTag_LifeTime"
+				MinLifetime="7s"
+				MaxLifetime="7s" />
+			<StancesBehavior
+				xai:joinAction="Replace"
+				id="ModuleTag_Stance"
+				StanceTemplate="OnlyAggressive"/>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+				IdleScanDelay="=$FAST_IDLE_SCAN_DELAY">
+				</UnitAITargetChooserData>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<Geometry>
+			<Shape
+				Type="CYLINDER"
+				Name="Geom_Orig"
+				MajorRadius="1.0"
+				MinorRadius="0.0"
+				Height="1.0">
+			</Shape>
+		</Geometry>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="" EvaType="productionStarted" />
+			<EvaEntry EvaEvent="" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedFromShroudedSourceOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedByFireOwner" />
+			<EvaEntry EvaEvent="" EvaType="damagedAlly" />
+			<EvaEntry EvaEvent="" EvaType="ambushed" />
+			<EvaEntry EvaEvent="" EvaType="enemyObjectSighted" />
+			<EvaEntry EvaEvent="" EvaType="detectedEnemy" />
+			<EvaEntry EvaEvent="" EvaType="availableForProduction" />
+			<EvaEntry EvaEvent="" EvaType="buildOnHold" />
+			<EvaEntry EvaEvent="" EvaType="buildCancelled" />
+			<EvaEntry EvaEvent="" EvaType="promotedOwner" />
+		</EvaEventArray>
+		<VisionInfo
+			VisionRange="150"
+			ShroudClearingRange="100" />
+	</GameObject>
+
+	<GameObject
+		id="IronStormCloudSpawnEffect"
+		inheritFrom="BaseObject"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE INERT"
+		EditorName="IronStormCloudForeverEffect"
+		Description="Desc:BaseBalloonBombEffect"
+		TypeDescription="Type:BaseBalloonBombEffect"
+		UnitTypeIcon="RiflemenIcon">
+		<DisplayName>BaseBalloonBombEffect</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<LifetimeUpdate
+				id="ModuleTag_LifetimeUpdate"
+				MinLifetime="15.0s"
+				MaxLifetime="15.0s" />
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<BombardAreaUpdate
+				id="ModuleTag_BalloonBombs"
+				WeaponName="IronStormCloudSpawnEffectWeapon"
+				MaxShots="4">
+				<TimeDelayRange
+					Low="0.2s"
+					High="0.4s"/>
+				<RadiusSpreadRange
+					Low="0"
+					High="300"/>
+			</BombardAreaUpdate>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="5.0"
+				Height="5.0"/>
+		</Geometry>
+		<ShadowInfo
+			Type="NONE" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+
+</AssetDeclaration>

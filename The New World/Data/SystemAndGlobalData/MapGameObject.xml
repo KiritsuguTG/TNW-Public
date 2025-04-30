@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<GameObject
+		id="Amb_FlyingFortress_Floating"
+		Side="Neutral"
+		EditorSorting="AUDIO"
+		KindOf="IMMOBILE WB_DISPLAY_SCRIPT_NAME OPTIMIZED_SOUND INERT"
+		EditorName="Amb_FlyingFortress_Floating">
+		<ArmorSet Armor="NoArmor" />
+		<Body>
+			<ImmortalBody id="ModuleTag_DummyBody" MaxHealth="1.0" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="Amb_FlyingFortress_Floating" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+	<GameObject
+		id="Amb_FlyingFortress_Hovering"
+		Side="Neutral"
+		EditorSorting="AUDIO"
+		KindOf="IMMOBILE WB_DISPLAY_SCRIPT_NAME OPTIMIZED_SOUND INERT"
+		EditorName="Amb_FlyingFortress_Hovering">
+		<ArmorSet Armor="NoArmor" />
+		<Body>
+			<ImmortalBody id="ModuleTag_DummyBody" MaxHealth="1.0" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="Amb_FlyingFortress_Hovering" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+ 	<GameObject
+		id="AmbStream_FloatingFortress_Quad"
+		Side="Neutral"
+		EditorSorting="AUDIO"
+		KindOf="IMMOBILE INERT OPTIMIZED_SOUND"
+		EditorName="AmbStream_FloatingFortress_Quad">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Body>
+			<ImmortalBody
+				id="ModuleTag_DummyBody"
+				MaxHealth="1.0" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="AmbStream_FloatingFortress_Quad" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+ 	<GameObject
+		id="AmbStream_GreatOutdoors_Quad"
+		Side="Neutral"
+		EditorSorting="AUDIO"
+		KindOf="IMMOBILE INERT OPTIMIZED_SOUND"
+		EditorName="AmbStream_GreatOutdoors_Quad">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Body>
+			<ImmortalBody
+				id="ModuleTag_DummyBody"
+				MaxHealth="1.0" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="AmbStream_GreatOutdoors_Quad" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+	<GameObject
+		id="AmbStream_MilitaryBase_Quad"
+		Side="Neutral"
+		EditorSorting="AUDIO"
+		KindOf="IMMOBILE INERT OPTIMIZED_SOUND"
+		EditorName="AmbStream_MilitaryBase_Quad">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Body>
+			<ImmortalBody
+				id="ModuleTag_DummyBody"
+				MaxHealth="1.0" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="AmbStream_MilitaryBase_Quad" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+ 	<GameObject
+		id="AmbStream_RuralJapan_Quad"
+		Side="Neutral"
+		EditorSorting="AUDIO"
+		KindOf="IMMOBILE INERT OPTIMIZED_SOUND"
+		EditorName="AmbStream_RuralJapan_Quad">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Body>
+			<ImmortalBody
+				id="ModuleTag_DummyBody"
+				MaxHealth="1.0" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="AmbStream_RuralJapan_Quad" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+ 	<GameObject
+		id="AmbStream_TransylvaniaNight_Quad"
+		Side="Neutral"
+		EditorSorting="AUDIO"
+		KindOf="IMMOBILE INERT OPTIMIZED_SOUND"
+		EditorName="AmbStream_TransylvaniaNight_Quad">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Body>
+			<ImmortalBody
+				id="ModuleTag_DummyBody"
+				MaxHealth="1.0" />
+		</Body>
+		<AudioArraySound>
+			<AudioEntry Sound="AmbStream_TransylvaniaNight_Quad" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+	<GameObject
+		id="DesolatorField_DesolatorBomb_Map_EP1"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="UNATTACKABLE NOT_AUTOACQUIRABLE NO_COLLIDE INERT INERT_SHROUD_REVEALER"
+		EditorName="DesolatorField_DesolatorBomb">
+		<DisplayName>DesolatorField_DesolatorBomb</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model Name="" />
+					<ParticleSysBone
+						FXParticleSystemTemplate="Soviet_Desolator" />
+					<ParticleSysBone
+						FXParticleSystemTemplate="Soviet_Desolator02" />
+					<ParticleSysBone
+						FXParticleSystemTemplate="Soviet_Desolator03" />
+					<ParticleSysBone
+						FXParticleSystemTemplate="Soviet_Desolator04" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXLists">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onCreate"
+					FX="FX_SovDesolatorDecal" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_DieDestroy">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate"
+				FireInterval="0.1s">
+				<FireWeaponNugget
+					WeaponName="Weapon_DesolatorBombFieldUpdate" />
+			</FireWeaponUpdate>
+		</Behaviors>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="1.0"
+				Height="1.0" />
+		</Geometry>
+		<ShadowInfo
+			Type="NONE" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+</AssetDeclaration>

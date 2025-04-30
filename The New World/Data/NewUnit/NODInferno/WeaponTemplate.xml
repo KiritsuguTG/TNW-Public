@@ -1,0 +1,482 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<WeaponTemplate
+		id="NODInfernoBomberBombWeapon"
+		AttackRange="300.0"
+		WeaponSpeed="50"
+		MinWeaponSpeed="100"
+		MaxWeaponSpeed="100"
+		AcceptableAimDelta="10d"
+		ClipSize="1"
+		FireSound="ALL_Vindicator_WeaponFireBombDrop"
+		AutoReloadsClip="AUTO"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+		InstantLoadClipOnActivate="true"
+		IgnoresContactPoints="true"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS">
+		<PreAttackDelay
+				MinSeconds="16s"
+				MaxSeconds="16s" />
+		<FiringDuration
+				MinSeconds="0.25s"
+				MaxSeconds="0.25s" />
+		<ClipReloadTime
+				MinSeconds="0s"
+				MaxSeconds="0s" />
+		<Nuggets>
+			<AttributeModifierNugget
+				AttributeModifierOwnerName="AttributeModifier_NODInfernoBomberActivateReload"/>
+			<ProjectileNugget
+				ProjectileTemplate="NodInfernoBomberDroppingMissileProjectile"
+				WarheadTemplate="NODInfernoBomberDummyBombWarhead">
+				<VeterancyProjectiles
+					VeterancyLevel="HEROIC"
+					ProjectileTemplate="NodInfernoBomberDroppingMissileProjectile_Veteran"/>
+			</ProjectileNugget>
+			<SuppressionNugget
+				Radius="20.0"
+				Suppression="10"
+				DurationSeconds="1.0s" />
+			<InformTargetNugget
+				MaxTimeToImpactFudgeFactor="1.6" />
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="NODInfernoBomberBombWeapon02"
+		inheritFrom="NODInfernoBomberBombWeapon"
+		AutoReloadsClip="RETURN_TO_BASE"
+		Flags="+SYNC_AMMO_ON_ACTIVATE">
+		<PreAttackDelay
+				MinSeconds="0s"
+				MaxSeconds="0s" />
+		<FiringDuration
+				MinSeconds="0.25s"
+				MaxSeconds="0.25s" />
+		<ClipReloadTime
+				MinSeconds="15s"
+				MaxSeconds="15s" />
+	</WeaponTemplate>
+
+  <WeaponTemplate
+		id="NODInfernoBomberDummyBombWarhead"
+   	Flags="NOT_ATTRACTED_BY_MAGNETS"/>
+
+	<WeaponTemplate
+		id="NodInfernoBomberBombSecondHalfWeapon"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ENEMIES"
+		WeaponSpeed="200"
+		MinWeaponSpeed="300"
+		MaxWeaponSpeed="310"
+		ClipSize="1"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE">
+		<FiringDuration
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="NODInfernoBomberBombProjectileWarhead"
+				ProjectileTemplate="NODInfernoBomberMissileProjectile">
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="NodInfernoBomberBombSecondHalfWeapon_Vet"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ENEMIES"
+		WeaponSpeed="200"
+		MinWeaponSpeed="300"
+		MaxWeaponSpeed="310"
+		ClipSize="1"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE">
+		<FiringDuration
+			MinSeconds="1.0s"
+			MaxSeconds="1.0s" />
+		<Nuggets>
+			<ProjectileNugget
+				WarheadTemplate="NODInfernoBomberBombProjectileWarhead"
+				ProjectileTemplate="NODInfernoBomberMissileProjectile_Veteran">
+			</ProjectileNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="NODInfernoBomberBombProjectileWarhead"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE" >
+		<Nuggets>
+			<DamageNugget
+				id="DefaultDamageNugget"
+				Damage="350.0"
+				Radius="45.0"
+				DamageTaperOff="100"
+				DamageType="EXPLOSIVE"
+				DamageFXType="ALLIED_MISSILE"
+				DeathType="EXPLODED" >
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<AttributeModifier
+		id="AttributeModifier_NODInfernoBomberActivateReload"
+		Category="NONE"
+		ModelConditionsSet="USER_1"
+		ObjectStatusToSet="WEAPON_UPGRADED_01"
+		Duration="0.25s">			
+	</AttributeModifier>
+
+	<WeaponTemplate
+		id="NODInfernoBomberDummyWeapon"
+		AttackRange="300.0"
+		AcceptableAimDelta="180d"
+		ClipSize="1"
+		FireSound=""
+		AutoReloadsClip="AUTO"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+		InstantLoadClipOnActivate="true"
+		IgnoresContactPoints="true"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS">
+		<PreAttackDelay
+				MinSeconds="25s"
+				MaxSeconds="25s" />
+		<FiringDuration
+				MinSeconds="0s"
+				MaxSeconds="0s" />
+		<ClipReloadTime
+				MinSeconds="0s"
+				MaxSeconds="0s" />
+		<Nuggets>
+			<DamageNugget
+				id="NODInfernoBomberDummyWeaponDamageNugget"
+				Damage="1.0"
+				Radius="15.0"
+				DamageType="CONCUSSIVE"
+				DeathType="EXPLODED" />
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="NODInfernoBomberBombReloadWeapon01"
+		AttackRange="300.0"
+		WeaponSpeed="300"
+		AcceptableAimDelta="180d"
+		ClipSize="1"
+		FireSound=""
+		AutoReloadsClip="AUTO"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		CanFireWhileMoving="true"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+		IgnoresContactPoints="true"
+		InstantLoadClipOnActivate="true"
+		ProjectileCollidesWith="ALLIES ENEMIES NEUTRAL STRUCTURES WALLS">
+		<FiringDuration
+			MinSeconds="0.1s"
+			MaxSeconds="0.1s" />
+		<ClipReloadTime
+			MinSeconds="1s"
+			MaxSeconds="1s" />
+		<Nuggets>
+			<WeaponOCLNugget
+				WeaponOCL="OCL_NODInfernoBomberBombReload"/>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="NODInfernoBomberBombReloadWeapon02"
+		inheritFrom="NODInfernoBomberBombReloadWeapon01"
+		InstantLoadClipOnActivate="true"
+		Flags="+SYNC_AMMO_ON_ACTIVATE" >
+		<PreAttackDelay
+			MinSeconds="11s"
+			MaxSeconds="11s" />
+		<FiringDuration
+			MinSeconds="0.1s"
+			MaxSeconds="0.1s" />
+		<ClipReloadTime
+			MinSeconds="0s"
+			MaxSeconds="0s" />
+	</WeaponTemplate>
+
+	<ObjectCreationList
+		id="OCL_NODInfernoBomberBombReload">
+		<CreateObject
+			Options="ATTACH_TO_SOURCE">
+			<CreateObject>NODInfernoBomberBombReloadDrone</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+
+	<AttributeModifier
+		id="AttributeModifier_NODInfernoBomberShowBomb"
+		Category="NONE"
+		ModelConditionsSet="USER_2"
+		Duration="0.25s">
+	</AttributeModifier>
+
+	<WeaponTemplate
+		id="MissileReloadDroneDeathWeapon"
+		AttackRange="0.0"
+		WeaponSpeed="99999999.0"
+		PreAttackFX=""
+		FireFX=""
+		CanFireWhileMoving="true"
+		ClipSize="1"
+		InstantLoadClipOnActivate="true"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RadiusDamageAffects="SELF ALLIES"
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY">
+		<Nuggets>
+			<!--FireOnObjectsNugget
+				Radius="1"
+				FireOnVictimObject="true"
+				PartitionFilterTestType="CIRCLE"
+				Weapon="NodInfernoBomberRenewWeaponClips">
+				<Filter
+					Rule="NONE"
+					Relationship="ALLIES">
+					<IncludeThing>NODInfernoBomber</IncludeThing>
+				</Filter>
+			</FireOnObjectsNugget-->
+			<AttributeModifierNugget
+				PartitionFilterTestType="CIRCLE"
+				AttributeModifierName="AttributeModifier_NODInfernoBomberShowBomb">
+				<SpecialObjectFilter
+					Rule="NONE"
+					Relationship="ALLIES">
+					<IncludeThing>NODInfernoBomber</IncludeThing>
+				</SpecialObjectFilter>
+			</AttributeModifierNugget>
+		</Nuggets>
+	</WeaponTemplate>
+    <WeaponTemplate
+		id="NodInfernoBomberRenewWeaponClips"
+		AttackRange="999999"
+        Flags="NOT_ATTRACTED_BY_MAGNETS" 
+		RequiredAntiMask="ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+		RadiusDamageAffects="ALLIES">
+		<PreAttackDelay
+			MinSeconds="0.0s"
+			MaxSeconds="0.0s" />
+		<Nuggets>
+			<WeaponOCLNugget
+				WeaponOCL="OCL_NODInfernoBomberBombReload02"
+				TargetAsPrimaryObject="true">
+			    <SpecialObjectFilter
+					Rule="NONE"
+					Relationship="ALLIES">
+					<IncludeThing>NODInfernoBomber</IncludeThing>
+				</SpecialObjectFilter>	
+			</WeaponOCLNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<ObjectCreationList
+		id="OCL_NODInfernoBomberBombReload02">
+		<CreateObject
+			Options="ATTACH_TO_SOURCE">
+			<CreateObject>NODInfernoBomberBombReload02</CreateObject>
+		</CreateObject>
+	</ObjectCreationList>
+
+   <SpecialPowerTemplate
+		id="SpecialPower_ToggleReloadWeapon"
+		TargetType="NONE"
+		ReloadTime="0s"
+		Flags="CAN_NOT_BE_SCRAMBLED" 
+		WaypointModeTerminal="false" />
+
+    <ObjectCreationList
+		id="OCL_NodInfernoBomberBombFirefield">
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="IGNORE_ALL_OBJECTS"
+			StartingBusyTime="0s"
+			DisabledWhileBusy="true"
+			TempModelCondition="USER_1"
+			TempModelConditionTime="0s"
+			MinLifetime="5s"
+			MaxLifetime="5s">
+			<Offset x="0" y="0" z="0" />
+			<CreateObject>NodInfernoBomberBombFireFieldSeed</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="IGNORE_ALL_OBJECTS"
+			StartingBusyTime="0.5s"
+			DisabledWhileBusy="true"
+			TempModelCondition="USER_1"
+			TempModelConditionTime="0.5s"
+			MinLifetime="5.5s"
+			MaxLifetime="5.5s">
+			<Offset x="25" y="0" z="0" />
+			<CreateObject>NodInfernoBomberBombFireFieldSeed</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="IGNORE_ALL_OBJECTS"
+			StartingBusyTime="1s"
+			DisabledWhileBusy="true"
+			TempModelCondition="USER_1"
+			TempModelConditionTime="1s"
+			MinLifetime="6s"
+			MaxLifetime="6s">
+			<Offset x="50" y="0" z="0" />
+			<CreateObject>NodInfernoBomberBombFireFieldSeed</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="IGNORE_ALL_OBJECTS"
+			StartingBusyTime="1.5s"
+			DisabledWhileBusy="true"
+			TempModelCondition="USER_1"
+			TempModelConditionTime="1.5s"
+			MinLifetime="6.5s"
+			MaxLifetime="6.5s">
+			<Offset x="75" y="0" z="0" />
+			<CreateObject>NodInfernoBomberBombFireFieldSeed</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="IGNORE_ALL_OBJECTS"
+			StartingBusyTime="2s"
+			DisabledWhileBusy="true"
+			TempModelCondition="USER_1"
+			TempModelConditionTime="2s"
+			MinLifetime="7s"
+			MaxLifetime="7s">
+			<Offset x="100" y="0" z="0" />
+			<CreateObject>NodInfernoBomberBombFireFieldSeed</CreateObject>
+		</CreateObject>
+    </ObjectCreationList>
+
+    <ObjectCreationList
+		id="OCL_NodInfernoBomberBombFirefield_Vet">
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="IGNORE_ALL_OBJECTS"
+			StartingBusyTime="0s"
+			DisabledWhileBusy="true"
+			TempModelCondition="USER_1"
+			TempModelConditionTime="0s"
+			MinLifetime="5s"
+			MaxLifetime="5s">
+			<Offset x="0" y="0" z="0" />
+			<CreateObject>NodInfernoBomberBombFireFieldSeed_Veteran</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="IGNORE_ALL_OBJECTS"
+			StartingBusyTime="0.5s"
+			DisabledWhileBusy="true"
+			TempModelCondition="USER_1"
+			TempModelConditionTime="0.5s"
+			MinLifetime="5.5s"
+			MaxLifetime="5.5s">
+			<Offset x="25" y="0" z="0" />
+			<CreateObject>NodInfernoBomberBombFireFieldSeed_Veteran</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="IGNORE_ALL_OBJECTS"
+			StartingBusyTime="1s"
+			DisabledWhileBusy="true"
+			TempModelCondition="USER_1"
+			TempModelConditionTime="1s"
+			MinLifetime="6s"
+			MaxLifetime="6s">
+			<Offset x="50" y="0" z="0" />
+			<CreateObject>NodInfernoBomberBombFireFieldSeed_Veteran</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="IGNORE_ALL_OBJECTS"
+			StartingBusyTime="1.5s"
+			DisabledWhileBusy="true"
+			TempModelCondition="USER_1"
+			TempModelConditionTime="1.5s"
+			MinLifetime="6.5s"
+			MaxLifetime="6.5s">
+			<Offset x="75" y="0" z="0" />
+			<CreateObject>NodInfernoBomberBombFireFieldSeed_Veteran</CreateObject>
+		</CreateObject>
+		<CreateObject
+			Disposition="ON_GROUND_ALIGNED RELATIVE_ANGLE USE_WATER_SURFACE"
+			Options="IGNORE_ALL_OBJECTS"
+			StartingBusyTime="2s"
+			DisabledWhileBusy="true"
+			TempModelCondition="USER_1"
+			TempModelConditionTime="2s"
+			MinLifetime="7s"
+			MaxLifetime="7s">
+			<Offset x="100" y="0" z="0" />
+			<CreateObject>NodInfernoBomberBombFireFieldSeed_Veteran</CreateObject>
+		</CreateObject>
+    </ObjectCreationList>
+
+	<WeaponTemplate
+		id="NodInfernoBomberBombActivateFunctionWeapon"
+		AttackRange="5.0"
+		WeaponSpeed="999999.0"
+		PreAttackFX="FX_None"
+		FireFX="FX_SOV_V4Explosion"
+		CanFireWhileMoving="false"
+		ClipSize="1"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RadiusDamageAffects="SELF ALLIES ENEMIES NEUTRALS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE">
+		<Nuggets>
+			<DamageNugget
+				Damage="150"
+				DamageTaperOff="25"
+				Radius="45"
+				DamageType="EXPLOSIVE"
+				DeathType="EXPLODED">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="NodInfernoBomberBombActivateFunctionWeapon_Vet"
+		AttackRange="5.0"
+		WeaponSpeed="999999.0"
+		PreAttackFX="FX_None"
+		FireFX="FX_SOV_V4Explosion_Vet"
+		CanFireWhileMoving="false"
+		ClipSize="1"
+		Flags="ATTACK_NEEDS_LINE_OF_SIGHT NOT_ATTRACTED_BY_MAGNETS"
+		RadiusDamageAffects="SELF ALLIES ENEMIES NEUTRALS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE">
+		<Nuggets>
+			<DamageNugget
+				Damage="150"
+				DamageTaperOff="25"
+				Radius="45"
+				DamageType="EXPLOSIVE"
+				DeathType="EXPLODED">
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+
+	<WeaponTemplate
+		id="NodInfernoBomberContinuousDamageWeapon"
+    Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RequiredAntiMask="ANTI_WATER ANTI_GROUND ANTI_STRUCTURE"
+		RadiusDamageAffects="ALLIES ENEMIES NEUTRALS">
+    <Nuggets>
+			<DamageNugget
+				Damage="2"
+				Radius="50"
+				DamageType="EXPLOSIVE"
+				DamageFXType="ALLIED_MISSILE"
+				DeathType="EXPLODED">	
+			</DamageNugget>
+    </Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

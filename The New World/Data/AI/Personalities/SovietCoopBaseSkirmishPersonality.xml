@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+
+	<Includes>
+		<Include type="instance" source="CoopBasePersonality.xml" />
+	</Includes>
+
+	<AIPersonalityDefinition
+		id="SovietCoopBaseSkirmishPersonality"
+		PersonalityType="SovietCoopBaseSkirmishPersonality"
+		inheritFrom="CoopBasePersonality">
+		<Side>Soviet</Side>
+		<!-- Ground-->
+		<OpeningMove Name="SovietStandard_01" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="SovietBarrackRush_01" Weight="50%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="SovietTankRush_01" Weight="75%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="SovietTankRush_02" Weight="75%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- Water-->
+		<OpeningMove Name="SovietWaterStandard_01" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- Island-->
+		<OpeningMove Name="SovietWaterStandard_01" Weight="100%" Difficulty="EASY MEDIUM">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		
+		<!-- Ground-->
+		<OpeningMove Name="SovietStandard_01BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="SovietBarrackRush_01BRUTAL" Weight="50%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="SovietTankRush_01BRUTAL" Weight="75%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="SovietTankRush_02BRUTAL" Weight="75%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- Water-->
+		<OpeningMove Name="SovietWaterStandard_01BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<!-- Island-->
+		<OpeningMove Name="SovietWaterStandard_01BRUTAL" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveGroundToGround" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="OpeningMoveWaterToWater" LocomotorConditionToUseForTest="NORMAL" />
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="OpeningMoveAmphibious" LocomotorConditionToUseForTest="NORMAL" />
+			</Heuristic>
+		</OpeningMove>
+		<StrategicState id="SovietExpansion_TNW" State="SovietExpansion_TNW" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="SovietExpansion_MEDIUM_TNW" State="SovietExpansion_MEDIUM_TNW" Difficulty="EASY MEDIUM"/>
+		<StrategicState id="V4Attack001" State="V4Attack001" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SovietNavalBase" State="SovietNavalBase" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SovietCaptureTechTNW" State="SovietCaptureTechTNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SovietOptimalCaptureTechTNW" State="SovietOptimalCaptureTechTNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SovietCaptureWaterHusksTNW" State="SovietCaptureWaterHusksTNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="KirovFlankAttackTNW" State="KirovFlankAttackTNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<BuildState id="SovietEpicUnitStructureDefence" State="SovietEpicUnitStructureDefence" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietStructureBuildState_TNW" State="SovietStructureBuildState_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietDefenseBuildState002" State="SovietDefenseBuildState002" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietDefenseBuildState003" State="SovietDefenseBuildState003" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietDefenseBuildState001" State="SovietDefenseBuildState001" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- 通用-->
+		<BuildState id="SovietAntiAirOnlyBuildState_TNW" State="SovietAntiAirOnlyBuildState_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietGenericUnitBuildState" State="SovietGenericUnitBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAmphibiousUnitBuildState" State="SovietAmphibiousUnitBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAntiBaseDefenceBuildUnit" State="SovietAntiBaseDefenceBuildUnit" Difficulty="MEDIUM HARD BRUTAL"/>
+		<!-- No Spawn-->
+		<BuildState id="SovietBarracksUnitBuildStateTechAll_NoSpawn" State="SovietBarracksUnitBuildStateTechAll_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech12_NoSpawn" State="SovietWarFactoryUnitBuildStateTech12_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech3_NoSpawn" State="SovietWarFactoryUnitBuildStateTech3_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech1_NoSpawn" State="SovietNavyYardUnitBuildStateTech1_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech23_NoSpawn" State="SovietNavyYardUnitBuildStateTech23_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAircraftUnitBuildStateTech1_NoSpawn" State="SovietAircraftUnitBuildStateTech1_NoSpawn" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		
+		<BuildState id="SovietExtraBarracksBuildState_NoSpawn" State="SovietExtraBarracksBuildState_NoSpawn" Difficulty="BRUTAL"/>
+		<BuildState id="SovietExtraNavalYardBuildState_NoSpawn" State="SovietExtraNavalYardBuildState_NoSpawn" Difficulty="BRUTAL"/>
+		<BuildState id="SovietExtraAirfieldBuildState_NoSpawn" State="SovietExtraAirfieldBuildState_NoSpawn" Difficulty="BRUTAL"/>
+		<!-- Balance -->
+		<BuildState id="SovietBarracksUnitBuildStateTechAll_Balance" State="SovietBarracksUnitBuildStateTechAll_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech12_Balance" State="SovietWarFactoryUnitBuildStateTech12_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech3_Balance" State="SovietWarFactoryUnitBuildStateTech3_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech1_Balance" State="SovietNavyYardUnitBuildStateTech1_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech23_Balance" State="SovietNavyYardUnitBuildStateTech23_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAircraftUnitBuildStateTech1_Balance" State="SovietAircraftUnitBuildStateTech1_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- AirPower -->
+		<BuildState id="SovietBarracksUnitBuildStateTechAll_AirPower" State="SovietBarracksUnitBuildStateTechAll_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech12_AirPower" State="SovietWarFactoryUnitBuildStateTech12_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech3_AirPower" State="SovietWarFactoryUnitBuildStateTech3_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech1_AirPower" State="SovietNavyYardUnitBuildStateTech1_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech23_AirPower" State="SovietNavyYardUnitBuildStateTech23_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAircraftUnitBuildStateTech1_AirPower" State="SovietAircraftUnitBuildStateTech1_AirPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- LandPower -->
+		<BuildState id="SovietBarracksUnitBuildStateTechAll_LandPower" State="SovietBarracksUnitBuildStateTechAll_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech12_LandPower" State="SovietWarFactoryUnitBuildStateTech12_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech3_LandPower" State="SovietWarFactoryUnitBuildStateTech3_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech1_LandPower" State="SovietNavyYardUnitBuildStateTech1_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech23_LandPower" State="SovietNavyYardUnitBuildStateTech23_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAircraftUnitBuildStateTech1_LandPower" State="SovietAircraftUnitBuildStateTech1_LandPower" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- SpecialUnit -->
+		<BuildState id="SovietBarracksUnitBuildStateTechAll_SpecialUnit" State="SovietBarracksUnitBuildStateTechAll_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech12_SpecialUnit" State="SovietWarFactoryUnitBuildStateTech12_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech3_SpecialUnit" State="SovietWarFactoryUnitBuildStateTech3_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech1_SpecialUnit" State="SovietNavyYardUnitBuildStateTech1_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech23_SpecialUnit" State="SovietNavyYardUnitBuildStateTech23_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAircraftUnitBuildStateTech1_SpecialUnit" State="SovietAircraftUnitBuildStateTech1_SpecialUnit" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- HighTech -->
+		<BuildState id="SovietBarracksUnitBuildStateTechAll_HighTech" State="SovietBarracksUnitBuildStateTechAll_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech12_HighTech" State="SovietWarFactoryUnitBuildStateTech12_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech3_HighTech" State="SovietWarFactoryUnitBuildStateTech3_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech1_HighTech" State="SovietNavyYardUnitBuildStateTech1_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech23_HighTech" State="SovietNavyYardUnitBuildStateTech23_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAircraftUnitBuildStateTech1_HighTech" State="SovietAircraftUnitBuildStateTech1_HighTech" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- InfantryBuild -->
+		<BuildState id="SovietBarracksUnitBuildStateTechAll_InfantryBuild" State="SovietBarracksUnitBuildStateTechAll_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech12_InfantryBuild" State="SovietWarFactoryUnitBuildStateTech12_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech3_InfantryBuild" State="SovietWarFactoryUnitBuildStateTech3_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech1_InfantryBuild" State="SovietNavyYardUnitBuildStateTech1_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech23_InfantryBuild" State="SovietNavyYardUnitBuildStateTech23_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAircraftUnitBuildStateTech1_InfantryBuild" State="SovietAircraftUnitBuildStateTech1_InfantryBuild" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- MoreTank -->
+		<BuildState id="SovietBarracksUnitBuildStateTechAll_MoreTank" State="SovietBarracksUnitBuildStateTechAll_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech12_MoreTank" State="SovietWarFactoryUnitBuildStateTech12_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech3_MoreTank" State="SovietWarFactoryUnitBuildStateTech3_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech1_MoreTank" State="SovietNavyYardUnitBuildStateTech1_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech23_MoreTank" State="SovietNavyYardUnitBuildStateTech23_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAircraftUnitBuildStateTech1_MoreTank" State="SovietAircraftUnitBuildStateTech1_MoreTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- AllTank -->
+		<BuildState id="SovietBarracksUnitBuildStateTechAll_AllTank" State="SovietBarracksUnitBuildStateTechAll_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech12_AllTank" State="SovietWarFactoryUnitBuildStateTech12_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietWarFactoryUnitBuildStateTech3_AllTank" State="SovietWarFactoryUnitBuildStateTech3_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech1_AllTank" State="SovietNavyYardUnitBuildStateTech1_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavyYardUnitBuildStateTech23_AllTank" State="SovietNavyYardUnitBuildStateTech23_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAircraftUnitBuildStateTech1_AllTank" State="SovietAircraftUnitBuildStateTech1_AllTank" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- ExtraBuild -->
+		<BuildState id="SovietExtraBarracksBuildState_Balance" State="SovietExtraBarracksBuildState_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietExtraBarracksBuildState_Less" State="SovietExtraBarracksBuildState_Less" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietExtraWarFactoryBuildState_Balance" State="SovietExtraWarFactoryBuildState_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietExtraWarFactoryBuildState_Less" State="SovietExtraWarFactoryBuildState_Less" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietExtraNavalYardBuildState_Balance" State="SovietExtraNavalYardBuildState_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietExtraNavalYardBuildState_Less" State="SovietExtraNavalYardBuildState_Less" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietExtraAirfieldBuildState_Balance" State="SovietExtraAirfieldBuildState_Balance" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietExtraAirfieldBuildState_Less" State="SovietExtraAirfieldBuildState_Less" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- No Spawn-->
+		<BuildState id="SovietUpgradeTechBuildState_EASY_NoSpawn" State="SovietUpgradeTechBuildState_EASY_NoSpawn" Difficulty="EASY"/>
+		<BuildState id="SovietUpgradeTechBuildState_MEDIUM_NoSpawn" State="SovietUpgradeTechBuildState_MEDIUM_NoSpawn" Difficulty="MEDIUM"/>
+		<BuildState id="SovietUpgradeTechBuildState_HARD_NoSpawn" State="SovietUpgradeTechBuildState_HARD_NoSpawn" Difficulty="HARD"/>
+		<BuildState id="SovietUpgradeTechBuildState_BRUTAL_NoSpawn" State="SovietUpgradeTechBuildState_BRUTAL_NoSpawn" Difficulty="BRUTAL"/>
+		<!-- Balance -->
+		<BuildState id="SovietUpgradeTechBuildState_EASY_Balance" State="SovietUpgradeTechBuildState_EASY_Balance" Difficulty="EASY"/>
+		<BuildState id="SovietUpgradeTechBuildState_MEDIUM_Balance" State="SovietUpgradeTechBuildState_MEDIUM_Balance" Difficulty="MEDIUM"/>
+		<BuildState id="SovietUpgradeTechBuildState_HARD_Balance" State="SovietUpgradeTechBuildState_HARD_Balance" Difficulty="HARD"/>
+		<BuildState id="SovietUpgradeTechBuildState_BRUTAL_Balance" State="SovietUpgradeTechBuildState_BRUTAL_Balance" Difficulty="BRUTAL"/>
+		<!-- LongBase -->
+		<BuildState id="SovietUpgradeTechBuildState_EASY_LongBase" State="SovietUpgradeTechBuildState_EASY_LongBase" Difficulty="EASY"/>
+		<BuildState id="SovietUpgradeTechBuildState_MEDIUM_LongBase" State="SovietUpgradeTechBuildState_MEDIUM_LongBase" Difficulty="MEDIUM"/>
+		<BuildState id="SovietUpgradeTechBuildState_HARD_LongBase" State="SovietUpgradeTechBuildState_HARD_LongBase" Difficulty="HARD"/>
+		<BuildState id="SovietUpgradeTechBuildState_BRUTAL_LongBase" State="SovietUpgradeTechBuildState_BRUTAL_LongBase" Difficulty="BRUTAL"/>
+		<!-- RushTechFinal -->
+		<BuildState id="SovietUpgradeTechBuildState_EASY_RushTechFinal" State="SovietUpgradeTechBuildState_EASY_RushTechFinal" Difficulty="EASY"/>
+		<BuildState id="SovietUpgradeTechBuildState_MEDIUM_RushTechFinal" State="SovietUpgradeTechBuildState_MEDIUM_RushTechFinal" Difficulty="MEDIUM"/>
+		<BuildState id="SovietUpgradeTechBuildState_HARD_RushTechFinal" State="SovietUpgradeTechBuildState_HARD_RushTechFinal" Difficulty="HARD"/>
+		<BuildState id="SovietUpgradeTechBuildState_BRUTAL_RushTechFinal" State="SovietUpgradeTechBuildState_BRUTAL_RushTechFinal" Difficulty="BRUTAL"/>
+		<!-- RushTech -->
+		<BuildState id="SovietUpgradeTechBuildState_EASY_RushTech" State="SovietUpgradeTechBuildState_EASY_RushTech" Difficulty="EASY"/>
+		<BuildState id="SovietUpgradeTechBuildState_MEDIUM_RushTech" State="SovietUpgradeTechBuildState_MEDIUM_RushTech" Difficulty="MEDIUM"/>
+		<BuildState id="SovietUpgradeTechBuildState_HARD_RushTech" State="SovietUpgradeTechBuildState_HARD_RushTech" Difficulty="HARD"/>
+		<BuildState id="SovietUpgradeTechBuildState_BRUTAL_RushTech" State="SovietUpgradeTechBuildState_BRUTAL_RushTech" Difficulty="BRUTAL"/>
+		<!-- UpgradeFirst -->
+		<BuildState id="SovietUpgradeTechBuildState_EASY_UpgradeFirst" State="SovietUpgradeTechBuildState_EASY_UpgradeFirst" Difficulty="EASY"/>
+		<BuildState id="SovietUpgradeTechBuildState_MEDIUM_UpgradeFirst" State="SovietUpgradeTechBuildState_MEDIUM_UpgradeFirst" Difficulty="MEDIUM"/>
+		<BuildState id="SovietUpgradeTechBuildState_HARD_UpgradeFirst" State="SovietUpgradeTechBuildState_HARD_UpgradeFirst" Difficulty="HARD"/>
+		<BuildState id="SovietUpgradeTechBuildState_BRUTAL_UpgradeFirst" State="SovietUpgradeTechBuildState_BRUTAL_UpgradeFirst" Difficulty="BRUTAL"/>
+		<!-- SuperWeapon -->
+		<BuildState id="SovietUpgradeTechBuildState_EASY_SuperWeapon" State="SovietUpgradeTechBuildState_EASY_SuperWeapon" Difficulty="EASY"/>
+		<BuildState id="SovietUpgradeTechBuildState_MEDIUM_SuperWeapon" State="SovietUpgradeTechBuildState_MEDIUM_SuperWeapon" Difficulty="MEDIUM"/>
+		<BuildState id="SovietUpgradeTechBuildState_HARD_SuperWeapon" State="SovietUpgradeTechBuildState_HARD_SuperWeapon" Difficulty="HARD"/>
+		<BuildState id="SovietUpgradeTechBuildState_BRUTAL_SuperWeapon" State="SovietUpgradeTechBuildState_BRUTAL_SuperWeapon" Difficulty="BRUTAL"/>
+
+		<BuildState id="SovietWarFactoryBuildState" State="SovietWarFactoryBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietNavalYardBuildState" State="SovietNavalYardBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="SovietAirfieldBuildState" State="SovietAirfieldBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<!-- 压境 -->	
+		<StrategicState id="SovietSuperExpansion_BRUTAL" State="SovietSuperExpansion_BRUTAL" Difficulty="HARD BRUTAL"/>
+		<BuildState id="SovietSuperDefenseBuildState" State="SovietSuperDefenseBuildState" Difficulty="HARD BRUTAL"/>
+		<BuildState id="SovietSuperAdvancedDefenseBuildState" State="SovietSuperAdvancedDefenseBuildState" Difficulty="HARD BRUTAL"/>
+		
+		<UnitModifier Unit="SovietScoutInfantry" OffensiveModifier="1" DefensiveModifier="1"/>
+		<UnitModifier Unit="SovietAntiInfantryInfantry" OffensiveModifier="5" DefensiveModifier="5"/>
+		<UnitModifier Unit="SovietAntiVehicleInfantry" OffensiveModifier="5" DefensiveModifier="5"/>
+		<UnitModifier Unit="SovietHeavyAntiVehicleInfantry" OffensiveModifier="10" DefensiveModifier="5"/>
+		<UnitModifier Unit="SovietCommandoTech1" OffensiveModifier="10" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="SovietAntiInfantryVehicle" OffensiveModifier="1.0" DefensiveModifier="2.0"/>
+		<UnitModifier Unit="SovietAntiAirShip_Ground" OffensiveModifier="1" DefensiveModifier="5"/>
+		<UnitModifier Unit="SovietScoutVehicle" OffensiveModifier="5" DefensiveModifier="5"/>
+		<UnitModifier Unit="SovietAntiVehicleVehicleTech1" OffensiveModifier="6.0" DefensiveModifier="6.0"/>
+		<UnitModifier Unit="SovietAntiVehicleVehicleTech2" OffensiveModifier="5" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="SovietAntiVehicleVehicleTech3" OffensiveModifier="10.0" DefensiveModifier="10.0"/>
+		<UnitModifier Unit="SovietAntiStructureVehicle" OffensiveModifier="10.0" DefensiveModifier="1.0"/>
+		<UnitModifier Unit="SovietAntiNavyShipTech1" OffensiveModifier="1.5" DefensiveModifier="0.5"/>
+		<UnitModifier Unit="SovietAntiAirShip" OffensiveModifier="1.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="SovietAntiNavyShipTech2" OffensiveModifier="10" DefensiveModifier="10.0"/>
+		<UnitModifier Unit="SovietFighterAircraft" OffensiveModifier="5.0" DefensiveModifier="5.0"/>
+		<UnitModifier Unit="SovietAntiStructureShip" OffensiveModifier="10.0" DefensiveModifier="1"/>
+		<UnitModifier Unit="SovietBomberAircraft" OffensiveModifier="10.0" DefensiveModifier="1.0"/>
+		<SpecificUnitCap Unit="SovietSurveyor" Cap="2" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAirfield" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiInfantryInfantry" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietScoutInfantry" Cap="15" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietScoutVehicle" Cap="7" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiAirShip" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiAirShip_Ground" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiInfantryInfantry" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiVehicleInfantry" Cap="1" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietHeavyAntiVehicleInfantry" Cap="10" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiInfantryVehicle" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiVehicleVehicleTech1" Cap="15" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiVehicleVehicleTech2" Cap="3" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiVehicleVehicleTech3" Cap="5" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="SovietAntiVehicleVehicleTech3" Cap="20" Difficulty="MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiStructureVehicle" Cap="5" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiNavyShipTech2" Cap="15" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiNavyShipTech2" Cap="17" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietAntiStructureShip" Cap="6" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<SpecificUnitCap Unit="SovietBomberAircraft" Cap="2" Difficulty="EASY"/>
+		<SpecificUnitCap Unit="SovietBomberAircraft" Cap="6" Difficulty="MEDIUM HARD BRUTAL"/>
+		<!-- Player Tech -->
+		<PowerChoice PlayerPower="PlayerTech_Soviet_SovietPower" Weight="33%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_OrbitalRefuse_Rank1" Weight="33%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_OrbitalRefuse_Rank2" Weight="66%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_OrbitalRefuse_Rank3" Weight="100%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_SpaceStron" Weight="33%"/>
+		
+		<PowerChoice PlayerPower="PlayerTech_Soviet_GTWaveEffect" Weight="33%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_IrradiateTarget" Weight="33%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_MagneticSatellite_Rank_1" Weight="33%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_MagneticSatellite_Rank_2" Weight="66%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_MagneticSatellite_Rank_3" Weight="100%"/>
+
+		<PowerChoice PlayerPower="PlayerTech_Soviet_ProductionKickbacks" Weight="33%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_DesolatorBomb_Rank1" Weight="33%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_DesolatorBomb_Rank2" Weight="66%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_DesolatorBomb_Rank3" Weight="100%"/>
+		<PowerChoice PlayerPower="PlayerTech_Soviet_MagneticSingularity" Weight="100%"/>
+	</AIPersonalityDefinition>
+</AssetDeclaration>

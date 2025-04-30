@@ -1,0 +1,997 @@
+<AssetDeclaration xmlns="uri:ea.com:eala:asset"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<!-- Allied -->
+	<AIStrategicStateDefinition
+		id="AlliedSuperExpansion_BRUTAL"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>AlliedNavalYard</IncludeThing>
+					<IncludeThing>AlliedWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="60s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="0.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SuperExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="5" MinPowerAdvantage="0"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="FIGHTER_AIRCRAFT IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				AllowRecruitUnitsInCombat="true"
+				MicroManager="TNWSuperExpansionMicroManager">
+				<CreateUnits UnitName="AlliedMinerAI" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="AlliedSuperExpansion_HARD"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>AlliedNavalYard</IncludeThing>
+					<IncludeThing>AlliedWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="90s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="0.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SuperExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="10"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="FIGHTER_AIRCRAFT IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				AllowRecruitUnitsInCombat="false"
+				MicroManager="TNWSuperExpansionMicroManager">
+				<CreateUnits UnitName="AlliedMinerAI" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIBuildStateDefinition
+		id="AlliedSuperDefenseBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="500.0" EnemyNearby="true" MinEnemyValue="1000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="AlliedBaseDefense" Heuristic="FEWEST_UNIT" />
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="AlliedSuperAdvancedDefenseBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="750.0" EnemyNearby="true" MinEnemyValue="1000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="AlliedBaseDefenseAdvanced" Heuristic="FEWEST_UNIT" />
+	</AIBuildStateDefinition>
+
+	<AIStrategicStateDefinition
+		id="AlliedExpansion_TNW"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="60s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="400.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="1"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				MicroManager="TNWExpansionMicroManager">
+				<CreateUnits UnitName="AlliedMinerAI" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="AlliedExpansion_MEDIUM_TNW"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="90s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="400.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="1"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				MicroManager="TNWExpansionMicroManager">
+				<CreateUnits UnitName="AlliedMinerAI" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<!-- EU -->
+	<AIStrategicStateDefinition
+		id="EUSuperExpansion_BRUTAL"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>EUNavalYard</IncludeThing>
+					<IncludeThing>EUWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="60s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="0.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="5" MinPowerAdvantage="0"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="FIGHTER_AIRCRAFT IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				AllowRecruitUnitsInCombat="true"
+				MicroManager="TNWSuperExpansionMicroManager">
+				<CreateUnits UnitName="EUMinerAI" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="EUSuperExpansion_HARD"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>EUNavalYard</IncludeThing>
+					<IncludeThing>EUWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="90s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="0.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="10"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="FIGHTER_AIRCRAFT IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				AllowRecruitUnitsInCombat="false"
+				MicroManager="TNWSuperExpansionMicroManager">
+				<CreateUnits UnitName="EUMinerAI" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIBuildStateDefinition
+		id="EUSuperDefenseBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="750.0" EnemyNearby="true" MinEnemyValue="1000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlags="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="EUBaseDefenseAir" Heuristic="FEWEST_UNIT" />
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="EUSuperAdvancedDefenseBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="750.0" EnemyNearby="true" MinEnemyValue="1000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="EUBaseDefenseGround" Heuristic="FEWEST_UNIT" />
+		<BuildEntry Build="AlliedDronePlant" Heuristic="FEWEST_UNIT" />
+	</AIBuildStateDefinition>
+
+	<AIStrategicStateDefinition
+		id="EUExpansion_BRUTAL"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="60s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="400.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="200"
+			EndBehavior="RAMPAGE" DisbandAfterRetreatTeamSize="999">
+			<TeamTemplate MinUnits="1" MaxUnits="1" MinPowerAdvantage="0"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="FIGHTER_AIRCRAFT SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false"
+				MicroManager="TNWExpansionMicroManager">
+				<CreateUnits UnitName="EUMinerAI" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="EUExpansion_HARD"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="90s" />
+			<IsBuildingHeuristic KindOf="FS_TECHNOLOGY FS_FACTORY SUPER_WEAPON"
+				PassIfBuilding="false" />
+			<EnemyNearbyHeuristic Distance="600.0" EnemyNearby="false" />
+			<AllNearbyNodesFullHeuristic />
+			<ResourceNodeShareHeuristic PercentOfFairShare="125%" Above="false" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="200">
+			<TeamTemplate MinUnits="1" MaxUnits="8"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="FIGHTER_AIRCRAFT SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER"
+				Priority="STANDARD" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false"
+				MicroManager="TNWExpansionMicroManager">
+				<CreateUnits UnitName="EUMinerAI" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<!-- Soviet -->
+	<AIStrategicStateDefinition
+		id="SovietSuperExpansion_BRUTAL"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>SovietNavalYard</IncludeThing>
+					<IncludeThing>SovietWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="60s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="0.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SuperExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="5" MinPowerAdvantage="0"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="FIGHTER_AIRCRAFT IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				AllowRecruitUnitsInCombat="true"
+				MicroManager="TNWSuperExpansionMicroManager">
+				<CreateUnits UnitName="SovietSurveyor" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="SovietSuperExpansion_HARD"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>SovietNavalYard</IncludeThing>
+					<IncludeThing>SovietWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="90s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="0.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SuperExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="10"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="FIGHTER_AIRCRAFT IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				AllowRecruitUnitsInCombat="false"
+				MicroManager="TNWSuperExpansionMicroManager">
+				<CreateUnits UnitName="SovietSurveyor" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIBuildStateDefinition
+		id="SovietSuperDefenseBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="750.0" EnemyNearby="true" MinEnemyValue="1000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlags="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="SovietBaseDefenseAir" Heuristic="FEWEST_UNIT" />
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="SovietSuperAdvancedDefenseBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="750.0" EnemyNearby="true" MinEnemyValue="1000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="SovietBaseDefenseGround" Heuristic="FEWEST_UNIT" />
+		<BuildEntry Build="SovietBaseDefenseAdvanced" Heuristic="FEWEST_UNIT" />
+	</AIBuildStateDefinition>
+
+	<AIStrategicStateDefinition
+		id="SovietExpansion_TNW"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="60s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="400.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="1"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				MicroManager="TNWExpansionMicroManager">
+				<CreateUnits UnitName="SovietSurveyor" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="SovietExpansion_MEDIUM_TNW"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="90s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="400.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="1"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				MicroManager="TNWExpansionMicroManager">
+				<CreateUnits UnitName="SovietSurveyor" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<!-- StrategicArmy -->
+	<AIStrategicStateDefinition
+		id="StrategicArmySuperExpansion_BRUTAL"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>StrategicArmyNavalYard</IncludeThing>
+					<IncludeThing>StrategicArmyWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="60s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="0.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SuperExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="5" MinPowerAdvantage="0"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="FIGHTER_AIRCRAFT IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				AllowRecruitUnitsInCombat="true"
+				MicroManager="TNWSuperExpansionMicroManager">
+				<CreateUnits UnitName="StrategicArmySurveyor" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="StrategicArmySuperExpansion_HARD"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>StrategicArmyNavalYard</IncludeThing>
+					<IncludeThing>StrategicArmyWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="90s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="0.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SuperExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="10"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="FIGHTER_AIRCRAFT IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				AllowRecruitUnitsInCombat="false"
+				MicroManager="TNWSuperExpansionMicroManager">
+				<CreateUnits UnitName="StrategicArmySurveyor" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIBuildStateDefinition
+		id="StrategicArmySuperDefenseBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="750.0" EnemyNearby="true" MinEnemyValue="1000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="SovietBaseDefenseAntiAll" Heuristic="FEWEST_UNIT" />
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="StrategicArmySuperAdvancedDefenseBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="750.0" EnemyNearby="true" MinEnemyValue="1000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="StrategicArmyBaseDefenseAdvanced" Heuristic="FEWEST_UNIT" />
+	</AIBuildStateDefinition>
+
+	<AIStrategicStateDefinition
+		id="StrategicArmyExpansion"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="60s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="400.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="1"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				MicroManager="TNWExpansionMicroManager">
+				<CreateUnits UnitName="StrategicArmySurveyor" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="StrategicArmyExpansion_MEDIUM"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="90s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="400.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="1"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				MicroManager="TNWExpansionMicroManager">
+				<CreateUnits UnitName="StrategicArmySurveyor" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<!-- Japan And Mod-->
+	<AIStrategicStateDefinition
+		id="JapanSuperExpansion_BRUTAL"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>JapanNavalYard</IncludeThing>
+					<IncludeThing>JapanWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="60s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="0.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SuperExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="5" MinPowerAdvantage="0"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="FIGHTER_AIRCRAFT IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				AllowRecruitUnitsInCombat="true"
+				MicroManager="TNWSuperExpansionMicroManager">
+				<CreateUnits UnitName="JapanOutPostEgg" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="JapanSuperExpansion_HARD"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>JapanNavalYard</IncludeThing>
+					<IncludeThing>JapanWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="90s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="0.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SuperExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="10"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="FIGHTER_AIRCRAFT IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				AllowRecruitUnitsInCombat="false"
+				MicroManager="TNWSuperExpansionMicroManager">
+				<CreateUnits UnitName="JapanOutPostEgg" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="MODSuperExpansion_BRUTAL"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>MODNavalYard</IncludeThing>
+					<IncludeThing>MODWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="60s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="0.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SuperExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="5" MinPowerAdvantage="0"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="FIGHTER_AIRCRAFT IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				AllowRecruitUnitsInCombat="true"
+				MicroManager="TNWSuperExpansionMicroManager">
+				<CreateUnits UnitName="JapanOutPostEgg" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="MODSuperExpansion_HARD"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>MODNavalYard</IncludeThing>
+					<IncludeThing>MODWarFactory</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="90s" />
+			<AllNearbyNodesFullHeuristic />
+			<OpenNodeHeuristic Exists="true" MinDistanceFromEnemy="0.0" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="SuperExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="300" EndBehavior="RAMPAGE">
+			<TeamTemplate
+				MinUnits="1" MaxUnits="10"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="FIGHTER_AIRCRAFT IGNORES_SELECT_ALL HARVESTER MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT"
+				Priority="HIGH" ReleaseType="NEVER_RELEASE" AlwaysRecruit="true"
+				AllowRecruitUnitsInCombat="false"
+				MicroManager="TNWSuperExpansionMicroManager">
+				<CreateUnits UnitName="JapanOutPostEgg" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIBuildStateDefinition
+		id="JapanSuperDefenseBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="750.0" EnemyNearby="true" MinEnemyValue="1000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="JapanBaseDefense" Heuristic="FEWEST_UNIT" />
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="MODSuperDefenseBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="750.0" EnemyNearby="true" MinEnemyValue="1000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="MODBaseDefense" Heuristic="FEWEST_UNIT" />
+	</AIBuildStateDefinition>
+	<AIBuildStateDefinition
+		id="JapanSuperAdvancedDefenseBuildState">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="true">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<EnemyNearbyHeuristic Distance="750.0" EnemyNearby="true" MinEnemyValue="1000">
+				<EnemyFilter
+					Relationship="ENEMIES"
+					Rule="ALL"
+					Exclude="NO_COLLIDE IGNORES_SELECT_ALL TIME_BOMB MACHINE SKIRMISH_AI_DONT_CONSIDER_THREAT UNATTACKABLE INERT IGNORE_IN_AI_HUNT_TACTIC"
+					StatusBitFlagsExclude="AIRBORNE_TARGET">
+				</EnemyFilter>
+			</EnemyNearbyHeuristic>
+		</Heuristic>
+		<BuildEntry Build="JapanBaseDefenseAdvanced" Heuristic="FEWEST_UNIT" />
+	</AIBuildStateDefinition>
+
+	<AIStrategicStateDefinition
+		id="JapanExpansion_BRUTAL_TNW"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<ObjectOfTypeExistsHeuristic
+				PassIfExists="false">
+				<ObjectFilter
+					Relationship="SAME_PLAYER"
+					Rule="NONE">
+					<IncludeThing>ExpansionAttackSpawn</IncludeThing>
+				</ObjectFilter>
+			</ObjectOfTypeExistsHeuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimerHeuristic StartTime="90s" EndTime="-1s" CountFrom="AI_START" />
+			<EnemyNearbyHeuristic Distance="600.0" EnemyNearby="false" />
+			<AllNearbyNodesFullHeuristic />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="200">
+			<TeamTemplate MinUnits="1" MaxUnits="8"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="AIRCRAFT SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER"
+				AllowedLocomotorTypes="LAND AMPHIBIOUS"
+				Priority="STANDARD" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false"
+				MicroManager="TNWExpansionMicroManager">
+				<CreateUnits UnitName="JapanOutPostEgg" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+	<AIStrategicStateDefinition
+		id="JapanExpansion_HARD_TNW"
+		MaxRunningCopies="1">
+		<Heuristic>
+			<OpeningMoveHeuristic Complete="true" />
+			<TimeSinceLastExpansionHeuristic Time="120s" />
+			<IsBuildingHeuristic KindOf="FS_TECHNOLOGY FS_FACTORY SUPER_WEAPON"
+				PassIfBuilding="false" />
+			<EnemyNearbyHeuristic Distance="600.0" EnemyNearby="false" />
+			<AllNearbyNodesFullHeuristic />
+			<ResourceNodeShareHeuristic PercentOfFairShare="125%" Above="false" />
+		</Heuristic>
+		<TargetHeuristic TargetHeuristic="ExpansionHeuristic" />
+		<Tactic id="Expand" Tactic="SimpleExpansion" Distance="200">
+			<TeamTemplate MinUnits="1" MaxUnits="8"
+				RegisteredObjectSet="SKIRMISH_AI_NORMAL_COMBAT_UNITS"
+				IncludeKindOf="CAN_ATTACK"
+				ExcludeKindOf="AIRCRAFT SIEGE_WEAPON IGNORES_SELECT_ALL HARVESTER"
+				Priority="STANDARD" ReleaseType="NEVER_RELEASE" AlwaysRecruit="false"
+				MicroManager="TNWExpansionMicroManager">
+				<CreateUnits UnitName="JapanOutPostEgg" MinUnits="1" MaxUnits="1" />
+			</TeamTemplate>
+		</Tactic>
+	</AIStrategicStateDefinition>
+</AssetDeclaration>

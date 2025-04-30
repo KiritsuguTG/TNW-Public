@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all"	source="ART:NY_Liberty.W3X" />
+		<Include type="all"	source="ART:NY_LibertyBase.W3X" />
+		<Include type="all"	source="ART:Structures/AlliedSuperStructure/NY_LIBERTY_BLD.w3x" />
+		<Include type="all"	source="ART:Structures/AlliedSuperStructure/NY_LIBERTY_SKL.w3x" />
+		<Include type="all"	source="ART:Structures/AlliedSuperStructure/NY_LIBERTY_SKN.w3x" />
+		<Include type="instance" source="DATA:BaseObjects/BaseStructure.xml" />
+	</Includes>
+	<GameObject
+		id="AlliedSuperStructure"
+		inheritFrom="BaseStructure"
+		EditorName="AlliedSuperStructure"
+		EditorSorting="STRUCTURE"
+		Side="Allies"
+		BuildTime="250"
+		CommandSet="AlliedSuperStructureCommandSet"
+		KindOf="+RESIST_EMP +NOT_SELLABLE +CAN_ATTACK +TACTICAL_MARKER +REVEAL_TO_ALL +UNIQUE_UNIT +SUPER_WEAPON +PRELOAD -CAN_BUILD_ON_WATER -CRUSHABLE_BUILDING -CAN_BUILD_ON_DEEP_WATER"
+		RadarPriority="COMMANDO"
+		Description="Desc:AlliedSuperStructure"
+		HealthBoxHeightOffset="-0"
+		EnergyProduction="-150"
+		ProductionQueueType="OTHER_STRUCTURE"
+		BuildPlacementTypeFlag="OTHER_STRUCTURE"
+		TypeDescription="Type:EpicBuild"
+		SelectPortrait="Portrait_AlliedSuperStructure"
+		MaxSimultaneousOfType="1"
+		ButtonImage="Button_AlliedSuperStructure"
+		PlacementViewAngle="225d"
+		ThreatLevel="50">
+		<DisplayName xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:LibertyStatue</DisplayName>
+		<GameDependency>
+			<RequiredObject>AlliedVIPStructure</RequiredObject>
+			<NeededUpgrade>Upgrade_AlliesFaction</NeededUpgrade>
+			<ForbiddenUpgrade>SideSuperStructure</ForbiddenUpgrade>
+			<ForbiddenUpgrade>AINoSuperWeaponEffect</ForbiddenUpgrade>
+			<ForbiddenUpgrade>UpgradeUprising</ForbiddenUpgrade>
+		</GameDependency>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="25000"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseStructureArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<SkirmishAIInformation
+			BaseBuildingLocation="SPREAD">
+      <ConstructionBaseSelectionCriteria
+        ExcludedBaseTypes="NO_BUILD_RADIUS CAPTURED"
+        PreferredBaseTypes="MAIN_BASE"
+        SortOrder="PREFER_OLDEST" />
+    </SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="FX_WEAPON_01 BONE_CONTACT_POINT_01 BONE_CONTACT_POINT_02 BONE_CONTACT_POINT_03 BONE_CONTACT_POINT_04 BONE_CONTACT_POINT_05 BONE_CONTACT_POINT_06 BONE_CONTACT_POINT_07 BONE_CONTACT_POINT_08 BONE_CONTACT_POINT_09 BONE_CONTACT_POINT_10 BONE_CONTACT_POINT_11 BONE_CONTACT_POINT_12 BONE_CONTACT_POINT_13 BONE_CONTACT_POINT_14 BONE_CONTACT_POINT_15 BONE_CONTACT_POINT_16 BONE_CONTACT_POINT_17 BONE_CONTACT_POINT_18 BONE_CONTACT_POINT_19 BONE_CONTACT_POINT_20">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="NY_LIBERTY_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+					<WeaponLaunchBone
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_WEAPON_" />
+				</ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+          <Model
+						Name="NY_LIBERTY_SKN" />
+        </ModelConditionState>
+        <!-- BUILD UP -->
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="NY_LIBERTY_SKN" />
+				</ModelConditionState>				
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="NY_LIBERTY_BLD"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="2s"/>
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Big"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Flash"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Lights"
+						FollowBone="true" />
+				</AnimationState>	
+			</ScriptedModelDraw>
+			<!-- Player-->
+			<xi:include
+					  href="DATA:Includes/PlayerInformationDraw.xml"
+					  xpointer="xmlns(n=uri:ea.com:eala:asset) xpointer(/n:PlayerInformationDraw/child::*)" />
+			
+			<LaserDraw
+				id="ModuleTag_LaserDraw"
+				Texture1_UTile="1"
+				Texture1_VTile="1"
+				Texture1_UScrollRate="0.2"
+				Texture1_VScrollRate=".3"
+				Texture1_NumFrames="1"
+				Texture1_FrameRate="0"
+				Texture2_UTile="1"
+				Texture2_VTile="1"
+				Texture2_UScrollRate="-.2"
+				Texture2_VScrollRate="-.3"
+				Texture2_NumFrames="1"
+				Texture2_FrameRate="0"
+				LaserWidth="75"
+				WeaponSlotID="1"
+				LaserStateID="1">
+				<FXShader
+					ShaderName="Laser.fx"
+					TechniqueIndex="0">
+					<Constants>
+						<Texture
+							Name="Texture1">
+							<Value>FXAlliedPrismBeam</Value>
+						</Texture>
+						<Texture
+							Name="Texture2">
+							<Value>FXAlliedPrismBeam</Value>
+						</Texture>
+            <Float Name="ColorEmissive">
+              <Value>6.000000</Value>
+              <Value>6.000000</Value>
+              <Value>6.000000</Value>
+            </Float>
+					</Constants>
+				</FXShader>
+			</LaserDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="AlliedSuperStructurePrismCannon"
+						ForbiddenObjectStatus="WEAPON_UPGRADED_02"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+			<LaserState
+				id="ModuleTag_LaserState"
+				LaserId="1"
+				OriginBoneName="FX_WEAPON_01">
+				<LaserEndParticleSystem>AlliedPrismHitLight</LaserEndParticleSystem>
+				<LaserEndParticleSystem>AlliedPrismHitFlash</LaserEndParticleSystem>
+				<LaserEndParticleSystem>AlliedPrismHitFire</LaserEndParticleSystem>
+			</LaserState>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<BuildingDestructionBehavior
+				id="ModuleTag_BuildingDestruction">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Item
+					BonePrefix="BONE_CONTACT_POINT_"
+					FX="FX_StatueOfLiberty_BoneContactPointExplosion"
+					CreationObject="AlliedBarracks_Debris"
+					FlingVelocity="100.0"/> 
+			</BuildingDestructionBehavior>
+			<FXListBehavior
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+				<Event
+					Index="onDeath"
+					FX="FX_Civ_Explosion_XLarge" />
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="AlliedSuperStructure_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="EXTRA_7 EXTRA_6"/>
+			</CreateObjectDie>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDieSuperStructure"
+				CreationList="OCL_SuperStructureDieUpgrade">
+				<DieMuxData
+					DeathTypes="ALL"/>
+			</CreateObjectDie>
+			<GrantUpgradeCreate
+				id="ModuleTag_SideSuperStructure"
+			  UpgradeToGrant="SideSuperStructure"/>
+			<xi:include
+				href="DATA:Includes/GenericBuildingRepair.xml" />
+			<DestroyDie
+				id="ModuleTag_DestroyDie">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+				<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpackUpdate"
+				UnpackTime="2s" />
+			<SpecialPower
+				id="ModuleTag_SuperStructure"
+				SpecialPowerTemplate="SpecialPower_AlliedSuperStructure"
+				UpdateModuleStartsAttack="true"
+				AvailableAtStart="false"/>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_ModuleTag_SuperStructureUpdate"
+				SpecialPowerTemplate="SpecialPower_AlliedSuperStructure"
+				SpecialWeapon="SuperStructureWeaponNova"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure300"
+				SpecialPowerTemplate="SpecialPower_SuperStructure300"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure420"
+				SpecialPowerTemplate="SpecialPower_SuperStructure420"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure540"
+				SpecialPowerTemplate="SpecialPower_SuperStructure540"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure570"
+				SpecialPowerTemplate="SpecialPower_SuperStructure570"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+			<SpecialPower
+				id="ModuleTag_SuperStructure590"
+				SpecialPowerTemplate="SpecialPower_SuperStructure590"
+				UpdateModuleStartsAttack="false"
+				AvailableAtStart="false"/>
+      <SubObjectsUpgrade
+				id="ModuleTag_SubObjectsPlayerInformationUpgrade">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+				<Nugget
+					Upgrade="Upgrade_AlliesFaction"
+					ShowSubObjects="Upgrade_01"/>
+				<CustomAnimAndDuration	AnimState="SPECIAL_WEAPON_ONE"/>
+			</SubObjectsUpgrade>
+			<AttributeModifierUpgrade
+				id="ModuleTag_SuperStructureCanNotUseWeapon"
+				AttributeModifier="AttributeModifier_SuperStructureCanNotUseWeapon">
+				<TriggeredBy>Upgrade_AlliesFaction</TriggeredBy>
+			</AttributeModifierUpgrade>
+			<FireWeaponWhenDead
+				id="ModuleTag_CelebratingWeapon"
+				InitiallyActive="true"
+				DeathWeapon="UnitCelebratingSuperStructure">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED PRODUCTION_CANCELLED"
+					ExemptStatus="SOLD"/>
+			</FireWeaponWhenDead>
+			<StancesBehavior
+				id="ModuleTag_Stance"
+				StanceTemplate="OffensiveStructures" />
+			<LUAEventList
+				id="ModuleTag_LUAEventList"
+				EventListName="AlliedSuperStructureFunctions" />
+		</Behaviors>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="100">
+		</CrusherInfo>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="OffensiveStructureAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="true"
+					IdleScanDelay="0.0s">	
+				</UnitAITargetChooserData>	
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="25000"/>
+		</Body>
+    <ClientUpdates>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady300"
+			AnnouncementEventEnemy="Countdown5MinsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure300"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady420"
+			AnnouncementEventEnemy="Countdown3MinsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure420"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady540"
+			AnnouncementEventEnemy="Countdown1MinsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure540"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady570"
+			AnnouncementEventEnemy="Countdown30SecsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure570"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady590"
+			AnnouncementEventEnemy="Countdown10SecsInGame"
+			SpecialPowerTemplate="SpecialPower_SuperStructure590"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceSpecialPowerReadyClientUpdate
+			id="SuperWeaponReady"
+			AnnouncementEventEnemy="EnemySuperStructureAccomplished"
+			AnnouncementEventOwner="OurSuperStructureAccomplished"
+			SpecialPowerTemplate="SpecialPower_AlliedSuperStructure"
+			JustMonitorPercentReady="true"/>
+		<EvaAnnounceClientCreate
+          id="SuperWeaponDetected" 
+          AnnouncementEventEnemy="NewBonusObjective"
+          UseObjectsPosition="true" />
+	</ClientUpdates>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="CriticalStructureUnderAttack" EvaType="damagedOwner" />
+			<EvaEntry EvaEvent="SuperStructureDieForPlayer" EvaType="dieOwner" />
+			<EvaEntry EvaEvent="SuperStructureDieForEnemy" EvaType="dieEnemy" />
+		</EvaEventArray>
+		<Geometry>
+			<Shape 
+     Type= "BOX"
+     MajorRadius = "100.059"
+     MinorRadius = "108.608"
+     Height = "37.6058"
+     ContactPointGeneration = "STRUCTURE" >
+				<Offset
+						x = "0.207092"
+						y = "-43.7746"
+						z = "0.0" />
+			</Shape>
+			<Shape 
+					 Type= "BOX"
+					 MajorRadius = "40.0"
+					 MinorRadius = "40.0"
+					 Height = "114.788"
+					 ContactPointGeneration = "STRUCTURE" >
+				<Offset
+						x = "0.331207"
+						y = "-48.1603"
+						z = "39.3818" />
+			</Shape>
+			<Shape 
+					 Type= "BOX"
+					 MajorRadius = "30.9963"
+					 MinorRadius = "23.2816"
+					 Height = "143.95"
+					 ContactPointGeneration = "STRUCTURE" >
+				<Offset
+						x = "-6.09594"
+						y = "-49.0419"
+						z = "153.144" />
+			</Shape>
+			<Shape 
+					 Type= "BOX"
+					 MajorRadius = "8.82009"
+					 MinorRadius = "10.5279"
+					 Height = "66.2172"
+					 ContactPointGeneration = "STRUCTURE" >
+				<Offset
+						x = "14.8479"
+						y = "-31.814"
+						z = "287.997" />
+			</Shape>
+			<Shape 
+					 Type= "BOX"
+					 MajorRadius = "40.8023"
+					 MinorRadius = "40.5395"
+					 Height = "14.8649"
+					 ContactPointGeneration = "STRUCTURE" >
+				<Offset
+						x = "-0.216499"
+						y = "-48.1603"
+						z = "58.0004" />
+			</Shape>
+			<Shape 
+					 Type= "BOX"
+					 MajorRadius = "135.08"
+					 MinorRadius = "54.3041"
+					 Height = "37.6058"
+					 ContactPointGeneration = "STRUCTURE" >
+				<Offset
+						x = "0.207092"
+						y = "-43.7746"
+						z = "0.0" />
+			</Shape>
+			<Shape 
+					 Type= "BOX"
+					 MajorRadius = "55.3829"
+					 MinorRadius = "138.999"
+					 Height = "37.6058"
+					 ContactPointGeneration = "STRUCTURE" >
+				<Offset
+						x = "0.207088"
+						y = "-55.4066"
+						z = "0.0" />
+			</Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="NoSound" AudioType="soundOnDamaged" />
+			<AudioEntry Sound="NoSound" AudioType="soundOnReallyDamaged" />
+		</AudioArraySound>
+		<VisionInfo
+			VisionRange="3050"
+			ShroudClearingRange="=$SUPER_STRUCTURE_SHROUD_CLEAR"
+			ShroudClearingHeight="500"/>
+	</GameObject>
+</AssetDeclaration>

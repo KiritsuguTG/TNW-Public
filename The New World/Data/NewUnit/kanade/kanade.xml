@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include type="all"	source="w3x/kanade.w3x"  />
+		<Include type="all"	source="w3x/kanade_skl.w3x"  />
+		<Include type="all"	source="w3x/kanade_stand.w3x"  />
+		<Include type="all"	source="w3x/kanade_walk.w3x"  />
+		<Include type="all"	source="w3x/kanade_attack1.w3x"  />
+		<Include type="all"	source="w3x/kanade_attack2.w3x"  />		
+		<Include type="all"	source="w3x/kanade_attack3.w3x"  />			
+		<Include type="all"	source="w3x/kanade_howling.w3x"  />				
+		<Include type="all"	source="w3x/kanade_delay.w3x"  />	
+		<Include type="all"	source="w3x/kanade_dead.w3x"  />		
+		<Include type="all"	source="w3x/kanade2.w3x"  />	
+		<Include type="all"	source="w3x/kanade_distortion.w3x"  />	
+		<Include type="all"	source="w3x/kanade_kanade_Harmonics.w3x"  />	
+		<Include type="all"	source="w3x/kanade_purper.w3x"  />
+		<Include type="all"	source="w3x/kanade_red.w3x"  />
+		<Include type="all"	source="w3x/FXBaseInfantryBone.w3x"  />
+		<!-- Base Object -->
+		<Include type="instance" source="DATA:BaseObjects/BaseInfantry.xml" />
+	</Includes>
+	<!-- aka The Peacekeeper -->
+	<GameObject
+		id="kanade"
+		inheritFrom="BaseInfantry"
+		SelectPortrait="kanade_SelectPortrait"
+		ButtonImage="kanade_ButtonImage"
+		Side="Neutral"
+		SubGroupPriority="360" 
+		EditorSorting="UNIT"	
+		BuildTime="40"
+		CommandSet="kanadeCommandSet"
+		KindOf="SELECTABLE CAN_ATTACK IMMUNE_TO_CYCLONIC_SHOCKWAVE INFANTRY SCORE  SKIRMISH_AI_DONT_GARRISON  IGNORE_FORCE_MOVE  CAN_BE_FAVORITE_UNIT NO_GARRISON CAN_CAST_REFLECTIONS"
+		ThreatLevel="10"
+		RadarPriority="STRUCTURE"
+		WeaponCategory="GUN"
+		MaxSimultaneousOfType="1"
+		VoicePriority="104"
+		EditorName="KANADE"
+		Description="Desc:KANADE"
+		TypeDescription="Type:KANADE"
+		UnitTypeIcon="CommandoIcon"
+		HealthBoxHeightOffset="35">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:KANADE</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="4000"/>
+		</ObjectResourceInfo>
+		<GameDependency>
+			<RequiredObject>SovietTechStructure</RequiredObject>
+		</GameDependency>
+		<ArmorSet
+			Armor="kanadearmor_ground"
+			DamageFX="InfantryDamageFX" />
+		<ArmorSet
+			Armor="kanadearmor_distortion"
+			DamageFX="VehicleDamageFX"
+			Conditions="PLAYER_UPGRADE" />
+		<LocomotorSet
+			id="kanade_aie" 
+			Locomotor="kanade_ground"
+			Condition="NORMAL"
+			Speed="80.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="true" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_WeaponFX_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="FXBaseInfantryBone" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Beam_F" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Beam_F" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="FX_Beam_F" />
+ 
+				</ModelConditionState>
+			</ScriptedModelDraw>
+			
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				InitialRecoilSpeed="0.1"
+				MaxRecoilDistance="0.1"
+				RecoilDamping="2.0"
+				RecoilSettleSpeed="3.0"
+				ExtraPublicBone="">
+
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="kanade" />
+						<!--WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone02" />
+					<WeaponLaunchBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone02" />
+					<WeaponRecoilBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone02" />
+					<WeaponMuzzleFlash
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="Bone02" /-->
+
+
+				</ModelConditionState>
+
+
+
+
+
+
+					<!-- 移动 -->
+     			<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="MOVING"
+					Flags="RANDOMSTART">
+		  			<Animation
+						AnimationName="kanade_walk"
+						AnimationMode="LOOP"
+						AnimationBlendTime="10"
+						Distance="30" />
+				</AnimationState>
+
+     		<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="ACCELERATE MOVING">
+					<Animation
+						AnimationName="kanade_walk"
+						AnimationMode="LOOP"
+						Distance="1" />
+				</AnimationState>
+
+								<!-- 穠-->	
+        <AnimationState
+	      	ParseCondStateType="PARSE_DEFAULT"
+		      Flags="RESTART_ANIM_WHEN_COMPLETE">
+		 			<Animation
+						AnimationName="kanade_stand"
+						AnimationMode="ONCE" 
+						AnimationAbsoluteTime="3s"/>											
+					</AnimationState>
+										
+					
+					
+
+					
+					
+
+						<!-- 攻击 -->	
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_A">
+					<Animation
+						AnimationName="kanade_attack1"
+						AnimationMode="ONCE" />	
+					<Animation
+						AnimationName="kanade_attack2"
+						AnimationMode="ONCE" />	
+													
+					<ParticleSysBone
+							BoneName="Bone142"
+							FXParticleSystemTemplate="kanade_track"
+							FollowBone="true" />												
+				</AnimationState>
+
+             <!-- 天使之刃 -->	
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_1 ">
+					<Animation
+						AnimationName="kanade_attack3"
+						AnimationMode="ONCE" />	
+																											
+				</AnimationState>
+
+            <!-- 分身 -->	
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_8 ">
+					<Animation
+						AnimationName="kanade_kanade_Harmonics"
+						AnimationMode="ONCE" />	
+																											
+				</AnimationState>
+
+
+  <!-- howling -->	
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2">
+					<Animation
+						AnimationName="kanade_howling"
+						AnimationMode="ONCE" />	
+				</AnimationState>
+
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_2 PACKING">
+					<Animation
+						AnimationName="kanade_howling"
+						AnimationMode="ONCE" />	
+				</AnimationState>
+				
+				
+		 	
+		 	<!-- delay -->	
+					<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_3">
+					<Animation
+						AnimationName="kanade_delay"
+						AnimationMode="ONCE" 			
+				  	AnimationAbsoluteTime="1.0s"/>	
+					<ParticleSysBone
+							BoneName="Bone10"
+							FXParticleSystemTemplate="kanade_delay"
+							FollowBone="true" />	
+					<ParticleSysBone
+							BoneName="Bone412"
+							FXParticleSystemTemplate="kanade_track"
+							FollowBone="true" />												
+					<ParticleSysBone
+							BoneName="Bone142"
+							FXParticleSystemTemplate="kanade_track"
+							FollowBone="true" />															
+				</AnimationState>	 	
+		 	
+		 	
+		 	
+						<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_5">
+					<Animation
+						AnimationName="kanade_distortion"
+						AnimationMode="ONCE" />	
+					<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="kanade_distortion1"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="kanade_distortion2"
+							FollowBone="true" />							
+					<ParticleSysBone
+							BoneName="Bone10"
+							FXParticleSystemTemplate="SovietOrbitalDebrisTinyGlow"
+							FollowBone="true" />							
+				</AnimationState>	 		 	
+		 	
+		 	
+		 	
+		 	
+		 	
+		 	
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DYING">
+					<Animation
+						AnimationName="kanade_dead"
+						AnimationMode="ONCE" />
+					</AnimationState>
+
+		    	<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="AFFECTED_BY_EMP">
+					<Animation
+						AnimationName="kanade_stand"
+						AnimationMode="LOOP" />
+					<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="Allied_DogStun01"
+							FollowBone="true" />
+					<ParticleSysBone
+							BoneName="NONE"
+							FXParticleSystemTemplate="Allied_DogStunGlows01"
+							FollowBone="true" />
+				</AnimationState>
+				
+
+
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_WeaponSetUpdate">
+				<WeaponSlotHardpoint
+					ID="1">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="handsonic_ground"
+						ConquerMetricsAlwaysCount="true"
+						ForbiddenObjectStatus= "GENERIC_TOGGLE_STATE"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+ 				<!--<TriggeredBy>Upgrade_Veterancy_HEROIC</TriggeredBy>-->
+			
+			<AutoHealBehavior
+				id="Upgrade_HeroicHeal"
+				InitiallyActive="false"
+				HealOnlyIfNotInCombat="false"
+				HealOnlyIfNotUnderAttack="false"
+				StartHealingDelay="1s"
+				HealingAmount="50"
+				HealingDelay=".5s">
+ 			</AutoHealBehavior>
+			<SpecialPower
+					id="ModuleTag_ToggleRiotShieldTrigger"
+					SpecialPowerTemplate="SpecialPowerkanade_distortion"
+					UpdateModuleStartsAttack="true" />
+			<ToggleStatusSpecialAbilityUpdate
+				id="ModuleTag_ToggleRiotShieldTriggerUpdate"
+				Options="BUSY_DURING_PACK" 
+				SpecialPowerTemplate="SpecialPowerkanade_distortion"
+				PackTime="0s">
+				<ToggleState EnterStateSound="">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFAULT"/>
+				</ToggleState>
+
+				<ToggleState
+					ObjectStatus="GENERIC_TOGGLE_STATE CAN_CONTEST_GARRISON  NO_ATTACK IMMUNE_TO_BARK IN_SPIDER_HOLE "
+					ModelConditions="USER_5"
+					ArmorSet="PLAYER_UPGRADE"
+					AttributeModifier="AttributeModifier_kanade_distortion"
+					EnterStateSound="kanade_distortion_specialpower">
+					<SkirmishAiInfo
+						ToggleHint="TOGGLE_DEFENSE_SELF_ONLY"
+            DontUseIfInRange="true"/>
+				</ToggleState>
+			</ToggleStatusSpecialAbilityUpdate>
+    	<!-- 天使之刃 -->
+ 			<SpecialPower
+				id="ModuleTagSpecialPower_kanade_tanshiblade"
+				SpecialPowerTemplate="SpecialPower_kanade_tanshiblade"	
+				AttributeModifier="AttributeModifier_kanade_tanshiblade"
+				AttributeModifierAffectsSelf="true"								
+				UpdateModuleStartsAttack="true" 
+				TriggerFX=""	/>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTagSpecialPower_kanade_tanshibladeUpdate"
+				SpecialPowerTemplate="SpecialPower_kanade_tanshiblade"
+				SpecialWeapon="kanade_tanshiblade_weapon"
+				UnpackTime="0.4s"
+			    Options="BUSY_DURING_PACK"	
+				FaceTarget="false"        			
+				PackTime="1s"
+				FreezeAfterTriggerDuration="0.5s"
+				StartAbilityRange="40.0"/>
+     	<!-- delay -->
+			<SpecialPower
+				id="ModuleTagSpecialPower_kanade_delay"
+				SpecialPowerTemplate="SpecialPower_kanade_delay"
+				AttributeModifier="AttributeModifier_kanade_delay"
+				AttributeModifierAffectsSelf="true"				
+				UpdateModuleStartsAttack="true" />
+			<!-- UnpackTime should match leap animation length -->
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTag_LeapUpdate"
+				SpecialWeapon="kanade_delay"
+				SpecialPowerTemplate="SpecialPower_kanade_delay"
+				Options="FAIL_WITH_INVALID_APPROACH"         
+				UnpackTime="0s"
+				PackTime="0.3s"
+				TriggerSound=""
+				SetObjectStatusOnTrigger="IGNORE_AI_COMMAND"
+				ClearObjectStatusOnExit="IGNORE_AI_COMMAND"
+				StartAbilityRange="150.0"
+				WhichSpecialWeapon="1" />
+			<BezierProjectile
+				id="ModuleTag_Projectile"
+				Flags="CRUSH_STYLE NO_DETONATE DETONATE_CALLS_KILL"
+				FirstHeightMin="0"
+				FirstHeightMax="0"
+				SecondHeightMin="0"
+				SecondHeightMax="0"
+				FirstPercentIndent="40%"
+				SecondPercentIndent="60%"
+				BounceCount="0"
+				FinalStuckTime="1.0s"
+				GroundHitWeapon="kanade_delay_ground"
+				GroundHitFX=""/>
+ 	<!-- 声爆 -->
+			<SpecialPower
+				id="AttributeModifier_kanade_holwing"
+				SpecialPowerTemplate="SpecialPower_kanade_howling"
+				UpdateModuleStartsAttack="true" 
+				AvailableAtStart="false"				
+				AttributeModifier="AttributeModifier_kanade_holwing"
+				AttributeModifierAffectsSelf="true">
+		  	</SpecialPower>
+			<WeaponFireSpecialAbilityUpdate
+				id="ModuleTagSpecialPower_kanade_howlingUpdate"
+				SpecialPowerTemplate="SpecialPower_kanade_howling"
+				SpecialWeapon="kanade_howling_weapon"			
+				UnpackTime="1s"
+				FaceTarget="false"				
+        Options="BUSY_DURING_PACK"				
+				PackTime="0.1s"
+				FreezeAfterTriggerDuration="4s"
+				StartAbilityRange="0.0"/>
+ 	<!-- 谐波叠加 -->
+			<OCLSpecialPower
+				id="ModuleTag_SpecialPower_kanade_Harmonics"
+				SpecialPowerTemplate="SpecialPower_kanade_Harmonics"
+				OCL="kanade_oclobj"						
+				AttributeModifier="AttributeModifier_kanade_Harmonics"
+				AttributeModifierAffectsSelf="true"		
+				CreateLocation="CREATE_AT_LOCATION" 
+				AvailableAtStart="false"
+				CanAffectObjectFilter="GenericAllObjectSpecialPowerObjectFilter"
+        TriggerFX="Harmonics_fx">
+ 			</OCLSpecialPower>
+			<ActivateSpecialPowerOnCreate
+				id="ModuleTag_ActivateToggleSpiderHole">
+				<SpecialPowerTemplate>SpecialPower_JapanAntiInfantryInfantryBonzai</SpecialPowerTemplate>
+			</ActivateSpecialPowerOnCreate>
+			<Physics
+				id="ModuleTag_Physics" />
+			<SlowDeath
+				id="ModuleTag_Death"
+				SinkDelay="7s"
+				SinkRate="2.4"
+				DestructionDelay="9s">
+				<DieMuxData
+					DeathTypes="ALL"/>
+				<Sound Type="INITIAL" List="" />
+			</SlowDeath>
+			<HitReactionBehavior
+				id="ModuleTag_HitReaction"
+				HeavyDamageHitReactionLifeTimer="2s"
+				RotateToSourceWhenDamaged="true">
+				<ObjectStatusValidation
+					RequiredStatus="GENERIC_TOGGLE_STATE"/>
+			</HitReactionBehavior>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					RotateToTargetWhenAiming="true"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="6500" />
+		</Body>
+		<ClientBehaviors>
+		</ClientBehaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="7.0"
+				Height="13.0"
+				ContactPointGeneration="SQUAD_MEMBER"/>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry Sound="kanade_select" AudioType="voiceSelect" />
+			<AudioEntry Sound="kanade_attack" AudioType="voiceAttack" />
+			<AudioEntry Sound="kanade_select" AudioType="voiceCreated" />
+			<AudioEntry Sound="kanade_move" AudioType="voiceMove" />
+			<AudioEntry Sound="kanade_UnderFire" AudioType="voiceSelectUnderFire" />
+		</AudioArrayVoice>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrusherLevel="0"
+			CrushableLevel="50" />
+		<ShadowInfo
+			Type="DECAL"
+			SizeX="14"
+			SizeY="14"
+			Texture="ShadowI" />
+		<VisionInfo
+			VisionRange="200"
+			ShroudClearingRange="=$STANDARD_SHROUD_CLEAR"/>
+	</GameObject>
+</AssetDeclaration>
+
+

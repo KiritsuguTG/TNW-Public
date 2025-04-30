@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+	</Includes>
+  <FXList id="FX_JapanAntiStructureGunHitNew">
+    <NuggetList>
+      <Sound Value="JAP_ShogunBattleship_WeaponImpactCannon" />
+      <ParticleSystem
+				Particle="JapanBattleshipHitVapor"/>
+      <ParticleSystem
+				Particle="JapanBattleshipHitGlowNew"/>
+      <ParticleSystem
+				Particle="JapanBattleshipHitLight"/>
+      <ParticleSystem	
+        Particle="JapanBattleshipHitWake" 
+        OnlyIfOnWater ="true">
+      </ParticleSystem>
+		<ForceFeedback Event="ShogunBattleshipAttacking" />
+    </NuggetList>
+  </FXList>
+  <FXList id="FX_JapanAntiStructureGunHitNew_Vet">
+    <NuggetList>
+      <Sound Value="JAP_ShogunBattleship_WeaponImpactCannon" />
+      <ParticleSystem
+				Particle="JapanBattleshipHitVapor_Vet"/>
+      <ParticleSystem
+				Particle="JapanBattleshipHitGlowNew_Vet"/>
+      <ParticleSystem
+				Particle="JapanBattleshipHitLight_Vet"/>
+      <ParticleSystem
+        Particle="JapanBattleshipHitWake"
+        OnlyIfOnWater ="true">
+      </ParticleSystem>
+      <ForceFeedback Event="ShogunBattleshipAttacking" />
+    </NuggetList>
+  </FXList>
+	<FXParticleSystemTemplate ParticleTexture="FXJapanBattleshipHitGlowFlash" Priority="ALWAYS_RENDER" SortLevel="1" Shader="ALPHA" SystemLifetime="1" Type="GPU_PARTICLE" id="JapanBattleshipHitGlowNew">
+		<Lifetime High="19" Low="19"/>
+		<Size High="100" Low="100"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="0.67451" r="0.34902"/>
+			</Color>
+			<Color Frame="2" RelativeAge="9.999999">
+				<Color b="0.996078" g="0.729412" r="0.552941"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="1.5" Low="1.5"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu FramesPerRow="4" Shader="gpuparticledistort.fx" SpeedMultiplier="0.8" TotalFrames="16"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="15"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.25" Low="0.25"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngleZ High="3" Low="-3"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXJapanBattleshipHitGlowFlash" Priority="ALWAYS_RENDER" SortLevel="1" Shader="ALPHA" SystemLifetime="1" Type="GPU_PARTICLE" id="JapanBattleshipHitGlowNew_Vet">
+		<Lifetime High="19" Low="19"/>
+		<Size High="100" Low="100"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="0.317647" g="0.454902" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="9.999999">
+				<Color b="0.266667" g="0.266667" r="0.984314"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="1.5" Low="1.5"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu FramesPerRow="4" Shader="gpuparticledistort.fx" SpeedMultiplier="0.8" TotalFrames="16"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="15"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.25" Low="0.25"/>
+				<SizeRateDamping High="0.99" Low="0.99"/>
+				<AngleZ High="3" Low="-3"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

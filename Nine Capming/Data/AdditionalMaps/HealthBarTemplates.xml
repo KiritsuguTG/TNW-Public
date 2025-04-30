@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes/>
+
+	<HealthBarTemplate
+		id="ShortA"
+		Length="20"/>
+
+	<HealthBarTemplate
+		id="MediumA"
+		Length="40"/>
+		
+	<HealthBarTemplate
+		id="LongA"
+		Length="70"/>
+		
+	<HealthBarTemplate
+		id="LargeUnitA"
+		Length="90"/>
+
+	<HealthBarTemplate
+		id="VeryLargeUnitA"
+		Length="160"/>
+
+	<HealthBarTemplate
+		id="StructureA"
+		Length="140"/>
+
+	<HealthBarSettings
+		id="HealthBarSettings"
+		DefaultHealthBar="MediumA">
+		<ObjectMapping
+			HealthBar="ShortA">
+			<ObjectFilter Rule="ANY" Include="INFANTRY"/>
+		</ObjectMapping>
+		<ObjectMapping
+			HealthBar="MediumA">
+			<ObjectFilter
+				Rule="ANY"
+				Include="FS_BASE_DEFENSE">
+				<IncludeThing>AlliedWallPiece</IncludeThing>
+				<IncludeThing>AlliedWallSegmentPiece</IncludeThing>
+				<IncludeThing>SovietWallPiece</IncludeThing>
+				<IncludeThing>SovietWallSegmentPiece</IncludeThing>
+				<IncludeThing>JapanWallPiece</IncludeThing>
+				<IncludeThing>JapanWallSegmentPiece</IncludeThing>
+				<IncludeThing>SovietBunker</IncludeThing>
+			</ObjectFilter>
+		</ObjectMapping>
+		<ObjectMapping
+			HealthBar="LongA">
+			<ObjectFilter
+			 	Rule="ANY"
+				Include="MCV">
+				<IncludeThing>SovietAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>SovietAntiStructureShip</IncludeThing>
+				<IncludeThing>SovietBomberAircraft</IncludeThing>
+				<IncludeThing>SovietBomberAircraft_Special</IncludeThing>
+				<IncludeThing>SovietAntiNavyShipTech2</IncludeThing>
+				<IncludeThing>AlliedBomberAircraft</IncludeThing>
+				<IncludeThing>AlliedAntiStructureShip</IncludeThing>
+				<IncludeThing>AlliedAntiStructureVehicle</IncludeThing>
+				<IncludeThing>AlliedAntiNavyShipTech1</IncludeThing>
+				<IncludeThing>JapanAntiVehicleVehicleTech3</IncludeThing>
+				<IncludeThing>JapanAntiStructureVehicle</IncludeThing>
+				<IncludeThing>JapanAntiStructureShip</IncludeThing>	
+				<IncludeThing>JapanAntiVehicleShip</IncludeThing>
+				<IncludeThing>JapanEmperorMecha</IncludeThing>	
+				<IncludeThing>KR_ArtilleryDome</IncludeThing>
+			</ObjectFilter>
+		</ObjectMapping>
+		<ObjectMapping
+			HealthBar="StructureA">
+			<ObjectFilter
+				Rule="ANY"
+				Include="STRUCTURE">
+				<IncludeThing>JapanMechaKing</IncludeThing>
+				<IncludeThing>ST_ShuttleDisguiseBuilding</IncludeThing>
+			</ObjectFilter>
+		</ObjectMapping>
+	
+	</HealthBarSettings>
+
+</AssetDeclaration>

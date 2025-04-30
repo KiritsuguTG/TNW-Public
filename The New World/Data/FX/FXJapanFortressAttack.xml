@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include source="art:fxfireblast04.xml" type="instance"/>
+		<Include source="art:fxspherenrm.xml" type="instance"/>
+		<Include source="art:fxcloudcr01.xml" type="instance"/>
+		<Include source="art:fxlenzflare01.xml" type="instance"/>
+	</Includes>
+	<FXList id="FX_FortessCannonFire">
+		<NuggetList>
+			<ParticleSystem
+				Particle="FortessCannonFire_Add">
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="AlienDiskFire_Dist">
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="FortessCannonFire_SW">
+			</ParticleSystem>
+		</NuggetList>
+	</FXList>
+	<FXList id="FX_FortessCannonGroundHit">
+		<NuggetList>
+			<ParticleSystem
+				Particle="FortessCannonGroundHit_Add">
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="AlienDisk_Dist">
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="FortessCannonGroundHit_Shockwave">
+			</ParticleSystem>
+      <ParticleSystem
+				Particle="JapanPearlSweepEmbers"
+				OrientToObject="false" />
+      <ParticleSystem
+				Particle="JapanPearlSweepVapor"
+				OrientToObject="false" />
+      <ParticleSystem
+				Particle="JapanPearlSweepFlash"
+				OrientToObject="false" />
+      <ParticleSystem
+				Particle="JapanPearlSweepLight"
+				OrientToObject="false" />
+      <ParticleSystem
+				Particle="JapanPearlSweepSW"
+				OrientToObject="false" />
+      <TerrainScorch
+				Type		= "TERRAIN_MAPPED"
+				Radius		= "15" >
+      </TerrainScorch>
+      <ViewShake
+				Type = "SUBTLE" />
+      <!-- Water FX -->
+      <ParticleSystem
+        Particle="JapanPearlSweepMist"
+        OnlyIfOnWater ="true">
+      </ParticleSystem>
+      <ParticleSystem
+        Particle="JapanPearlSweepWake"
+        OnlyIfOnWater ="true">
+      </ParticleSystem>
+			<Sound Value="JAP_FinalSquadron_AirplaneCrash" />
+		</NuggetList>
+	</FXList>
+	<FXParticleSystemTemplate ParticleTexture="FXFireBlast04" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SystemLifetime="1" Type="GPU_PARTICLE" id="FortessCannonFire_Add">
+		<Lifetime High="10" Low="10"/>
+		<Size High="35" Low="20"/>
+		<BurstCount High="10" Low="10"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.952941" g="0.745098" r="0.360784"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="2" Low="2"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.5" Low="-0.5"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="3" Low="-3"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate IsGroundAligned="true" ParticleTexture="FXCloudCR01" PerParticleAttachedSystem="" Priority="HIGH_OR_ABOVE" Shader="MULTIPLY" SystemLifetime="1" Type="GPU_PARTICLE" id="FortessCannonFire_SW">
+		<Lifetime High="10" Low="10"/>
+		<Size High="18" Low="18"/>
+		<BurstCount High="10" Low="10"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.952941" g="0.745098" r="0.360784"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="2" Low="2"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Point/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="5" Low="-5"/>
+				<SizeRateDamping High="0.9" Low="0.8"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzFlare01" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" SystemLifetime="40" Type="TRAIL" id="FortessCannonTrailAdd">
+		<Lifetime High="10" Low="10"/>
+		<Size High="25" Low="15"/>
+		<BurstDelay High="2" Low="2"/>
+		<BurstCount High="1" Low="1"/>
+		<InitialDelay High="3" Low="3"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.952941" g="0.745098" r="0.360784"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="2" Low="2"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.95" Low="0.95"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Trail TrailLife="10"/>
+		</Draw>
+		<Volume>
+			<Point/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="30" Low="10"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXRing01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SystemLifetime="10" Type="GPU_PARTICLE" id="FortessCannonGroundHit_Add">
+		<Lifetime High="20" Low="20"/>
+		<Size High="40" Low="20"/>
+		<BurstCount High="1" Low="1"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="0.952941" g="0.745098" r="0.360784"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="2" Low="2"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="0.5" Low="-0.5"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="3" Low="-3"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate IsGroundAligned="true" ParticleTexture="FXCloudCR01" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="MULTIPLY" SystemLifetime="1" Type="GPU_PARTICLE" id="FortessCannonGroundHit_Shockwave">
+		<Lifetime High="20" Low="20"/>
+		<Size High="30" Low="15"/>
+		<BurstCount High="10" Low="10"/>
+		<Colors HouseColorSaturation="0">
+			<Color Frame="2" RelativeAge="9.999999">
+				<Color b="1" g="0.709804" r="0.533333"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+			<ColorScale High="2" Low="2"/>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Point/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="2" Low="1"/>
+				<SizeRateDamping High="0.85" Low="0.8"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

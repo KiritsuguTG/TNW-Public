@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+
+	<Includes>
+		<Include type="instance" source="CoopBasePersonality.xml" />
+	</Includes>
+
+	<AIPersonalityDefinition
+        id="ARandomCoopBaseSkirmishPersonality"
+        PersonalityType="ARandomCoopBaseSkirmishPersonality"
+        inheritFrom="CoopBasePersonality">
+		<Side>AlliesE</Side>
+		<!--<OpeningMove Name="AlliedEBossStandard" Weight="100%" Difficulty="BRUTAL"/>-->
+		<OpeningMove Name="AlliedEStandard_01" Weight="100%" Difficulty="EASY">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="JapanAntiAirVehicleTech1" LocomotorConditionToUseForTest="NORMAL" />
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>AlliesFaction</IncludeThing>
+						<IncludeThing>AlliedConstructionYard_Random</IncludeThing>
+						<IncludeThing>AlliedConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="AlliedEStandard_02" Weight="50%" Difficulty="MEDIUM HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="AlliedAntiAirVehicleTech1" LocomotorConditionToUseForTest="NORMAL" />
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>AlliesFaction</IncludeThing>
+						<IncludeThing>AlliedConstructionYard_Random</IncludeThing>
+						<IncludeThing>AlliedConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="AlliedEStandard_03" Weight="50%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="AlliedAntiAirVehicleTech1" LocomotorConditionToUseForTest="NORMAL" />
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>AlliesFaction</IncludeThing>
+						<IncludeThing>AlliedConstructionYard_Random</IncludeThing>
+						<IncludeThing>AlliedConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="AlliedEStandardVSAllied" Weight="100%" Difficulty="HARD BRUTAL">
+			<Heuristic>
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>AlliesFaction</IncludeThing>
+						<IncludeThing>AlliedConstructionYard_Random</IncludeThing>
+						<IncludeThing>AlliedConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+						Relationship="ENEMIES"
+						Rule="ANY" >
+						<IncludeThing>AlliedConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="AlliedEStandardScienceLab" Weight="1000%" Difficulty="EASY MEDIUM HARD BRUTAL">
+			<Heuristic>
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>AlliesFaction</IncludeThing>
+						<IncludeThing>AlliedConstructionYard_Random</IncludeThing>
+						<IncludeThing>AlliedConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+						Relationship="ALLIES ENEMIES"
+						Rule="ANY" >
+						<IncludeThing>ScienceLabPoint</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+
+		<OpeningMove Name="EUEStandard_02" Weight="50%" Difficulty="EASY MEDIUM HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="true" ObjectTypeToUseForTest="AlliedAntiAirVehicleTech1" LocomotorConditionToUseForTest="NORMAL" />
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>EuropeanUnionFaction</IncludeThing>
+						<IncludeThing>EUConstructionYard_Random</IncludeThing>
+						<IncludeThing>EUConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUEStandard_03" Weight="50%" Difficulty="EASY MEDIUM HARD BRUTAL">
+			<Heuristic>
+				<PathToTargetHeuristic PathExists="false" ObjectTypeToUseForTest="AlliedAntiAirVehicleTech1" LocomotorConditionToUseForTest="NORMAL" />
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>EuropeanUnionFaction</IncludeThing>
+						<IncludeThing>EUConstructionYard_Random</IncludeThing>
+						<IncludeThing>EUConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+		<OpeningMove Name="EUEStandardScienceLab" Weight="1000%" Difficulty="EASY MEDIUM HARD BRUTAL">
+			<Heuristic>
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+					  Relationship="SAME_PLAYER"
+					  Rule="NONE">
+						<IncludeThing>EuropeanUnionFaction</IncludeThing>
+						<IncludeThing>EUConstructionYard_Random</IncludeThing>
+						<IncludeThing>EUConstructionYard</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+				<ObjectOfTypeExistsHeuristic PassIfExists="true">
+					<ObjectFilter
+						Relationship="ALLIES ENEMIES"
+						Rule="ANY" >
+						<IncludeThing>ScienceLabPoint</IncludeThing>
+					</ObjectFilter>
+				</ObjectOfTypeExistsHeuristic>
+			</Heuristic>
+		</OpeningMove>
+		<BuildState id="AllAINeededUnits_TNW" xai:joinAction="Remove" xmlns:xai="uri:ea.com:eala:asset:instance"/>
+		<BuildState id="RandomAlliedStructureTNWBuildState" State="RandomAlliedStructureTNWBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="RandomEUStructureTNWBuildState" State="RandomEUStructureTNWBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AllWithoutAlliedAINeededUnits_TNW" State="AllWithoutAlliedAINeededUnits_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlledAINeededUnits_TNW" State="AlledAINeededUnits_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUAINeededUnits_TNW" State="EUAINeededUnits_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<!-- Boss -->
+		<!--<BuildState id="BossUpgradeAll" State="BossUpgradeAll" Difficulty="BRUTAL"/>-->
+		<!-- No Boss -->
+		<StrategicState id="TNWBalancedCleanup" State="TNWBalancedCleanup" Difficulty="EASY"/>
+		<StrategicState id="TNWCleanup_BRUTAL" State="TNWCleanup_BRUTAL" Difficulty="MEDIUM HARD BRUTAL"/>
+		<StrategicState id="TNWBalancedAttackGround" State="TNWBalancedAttackGround" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="TNWBalancedAttackWater" State="TNWBalancedAttackWater" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="FighterAircraftSimpleAttack" State="FighterAircraftSimpleAttack" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="CenturyBomberAttack" State="CenturyBomberAttack" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="VindicatorAttack_Closest" State="VindicatorAttack_Closest" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="VindicatorDefense_SP" State="VindicatorDefense_SP" Difficulty="MEDIUM HARD BRUTAL"/>
+		<StrategicState id="VindicatorAttack_SP" State="VindicatorAttack_SP" Difficulty="MEDIUM HARD BRUTAL"/>
+		<StrategicState id="AlliedExpansion" State="AlliedExpansion" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="AlliedExpansion_HARD" State="AlliedExpansion_HARD" Difficulty="HARD"/>
+		<StrategicState id="AlliedExpansion_MEDIUM" State="AlliedExpansion_MEDIUM" Difficulty="EASY"/>
+		<StrategicState id="AlliedNavalBase" State="AlliedNavalBase" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SquadronLeader_BommberAttack" State="SquadronLeader_BommberAttack" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SquadronLeader_BommberFlankAttack" State="SquadronLeader_BommberFlankAttack" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<!-- Build States -->
+		<StrategicState id="AlliedCaptureTech"        State="AlliedCaptureTech"           Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="AlliedCaptureWaterHusks"  State="AlliedCaptureWaterHusks"     Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedDefenseBuildState001" State="AlliedDefenseBuildState001" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedDefenseBuildState002" State="AlliedDefenseBuildState002" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedAntiAirOnlyBuildState_TNW" State="AlliedAntiAirOnlyBuildState_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedOnWaterIslandFavouriteUnitBuildState" State="AlliedOnWaterIslandFavouriteUnitBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedOnLandIslandFavouriteUnitBuildState" State="AlliedOnLandIslandFavouriteUnitBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedTechBuildState" State="AlliedTechBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedAntiBaseDefenceBuildUnit" State="AlliedAntiBaseDefenceBuildUnit" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedVIPUpgradeBuildState" State="AlliedVIPUpgradeBuildState" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedPowerPlantBuildState" State="AlliedPowerPlantBuildState" Difficulty="MEDIUM HARD BRUTAL"/>
+
+		<BuildState id="AlliedBarracksBuildState_FEWEST" State="AlliedBarracksBuildState_FEWEST" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedWarFactoryBuildState_FEWEST" State="AlliedWarFactoryBuildState_FEWEST" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedNavalYardBuildState_FEWEST" State="AlliedNavalYardBuildState_FEWEST" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="AlliedAirfieldBuildState_FEWEST" State="AlliedAirfieldBuildState_FEWEST" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+
+		<!-- No Boss -->
+		<StrategicState id="EUExpansion_HARD" State="EUExpansion_HARD" Difficulty="EASY MEDIUM"/>
+		<StrategicState id="EUExpansion_BRUTAL" State="EUExpansion_BRUTAL" Difficulty="HARD BRUTAL"/>
+		<StrategicState id="AlliedStealthDetector" State="AlliedStealthDetector" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<StrategicState id="AlliedGunshipAircraftAttack" State="AlliedGunshipAircraftAttack" Difficulty="MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SupersonicAircraftDefense" State="SupersonicAircraftDefense" Difficulty="MEDIUM HARD BRUTAL"/>
+		<StrategicState id="SupersonicAircraftAttack" State="SupersonicAircraftAttack" Difficulty="MEDIUM HARD BRUTAL"/>
+		<!-- Build States -->
+		<BuildState id="EUOnLandIslandFavouriteUnitBuildState" State="EUOnLandIslandFavouriteUnitBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUOnWaterIslandFavouriteUnitBuildState" State="EUOnWaterIslandFavouriteUnitBuildState" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUKodiakDefence" State="EUKodiakDefence" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUAntiBaseDefenceBuildUnit" State="EUAntiBaseDefenceBuildUnit" Difficulty="MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUDefenseBuildState001" State="EUDefenseBuildState001" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUDefenseBuildState002" State="EUDefenseBuildState002" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+		<BuildState id="EUAntiAirOnlyBuildState_TNW" State="EUAntiAirOnlyBuildState_TNW" Difficulty="EASY MEDIUM HARD BRUTAL"/>
+	</AIPersonalityDefinition>
+</AssetDeclaration>

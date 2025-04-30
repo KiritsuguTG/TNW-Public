@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<LogicCommand
+		Type="UNIT_BUILD"
+		id="Command_Constructmantikeer">
+		<Object>mantikeer</Object>
+	</LogicCommand>
+	<LogicCommandSet
+		id="mantikeerCommandSet">
+		<Cmd>Command_mantikeerChronoRay</Cmd>	
+		<Cmd>Command_MoveToPositionAndCollect</Cmd>
+		<Cmd>Command_AttackMove</Cmd>
+	</LogicCommandSet>
+	<SpecialPowerTemplate
+		id="SpecialPower_ChronoRay"
+		ReloadTime="45s"
+		TargetType="OBJECT"
+		NameOfVoiceNameToUseAsInitiateIntendToDoVoice="InitiateChargeDefensesTrigger"
+		Flags="NEEDS_OBJECT_FILTER CANNOT_LEAVE_ENCLOSURE"
+		WaypointModeTerminal="false" >
+		<!-- must have same object filter as AlliedSupportAircraftShrinkRay -->
+		<ObjectFilter
+			Rule="ANY"
+			Include="VEHICLE TIME_BOMB AIRCRAFT INFANTRY"
+			StatusBitFlagsExclude="NOT_IN_WORLD UNDER_IRON_CURTAIN"/>
+	</SpecialPowerTemplate>
+	<LogicCommand
+		id="Command_mantikeerChronoRay"
+		Options="NEED_TARGET_ENEMY_OBJECT NEED_TARGET_NEUTRAL_OBJECT"
+		Type="SPECIAL_POWER">
+		<SpecialPower>SpecialPower_ChronoRay</SpecialPower>
+    <AISpecialPowerInfo Heuristic="INSTAKILL"	Manager="MICRO_MANAGER"/>
+	</LogicCommand>
+	<JoypadCommandBarButtonTemplate
+		id="ButtonChronoRay">
+		<Data>
+			<TargetedSpecialPower
+				LogicCommand="Command_mantikeerChronoRay"
+				StateData="ButtonStateSpecialPowerChronoRay"/>
+		</Data>
+	</JoypadCommandBarButtonTemplate>
+	
+	<UnitAbilityButtonTemplate
+		id="ButtonChronoRay"
+		LogicCommand="Command_mantikeerChronoRay">
+		<Data>
+			<TargetedSpecialPower
+				StateData="ButtonStateSpecialPowerChronoRay"
+				ValidTargetCursor="TargetAbility"/>
+		</Data>
+	</UnitAbilityButtonTemplate>
+	
+	<ButtonSingleStateData
+		id="ButtonStateSpecialPowerChronoRay">
+		<State
+			Image="AUA_Mantikeer_ChronoBeam"
+			Title="NAME:SpecialPowerChronoRay"
+			Description="DESC:SpecialPowerChronoRay" />
+	</ButtonSingleStateData>
+</AssetDeclaration>

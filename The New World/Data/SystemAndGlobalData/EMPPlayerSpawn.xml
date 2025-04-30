@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+	<GameObject
+		id="EMPPlayerSpawn25"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		EnergyProduction="25"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="VEHICLE IMMOBILE CAN_CAST_REFLECTIONS NOT_AUTOACQUIRABLE NO_COLLIDE NO_SHADOW UNATTACKABLE"
+		EditorName="EMPPlayerSpawn25">
+		<DisplayName>EMPPlayerSpawn25</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<LocomotorSet
+			Locomotor="EMPPlayerSpawnLocomotor"
+			Condition="NORMAL"
+			Speed="0.0" />
+		<Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw"
+				ShadowForceDisable="true"
+				ShowShadowWhileContained="true"
+				Selectable="false">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model Name="" />
+        </ModelConditionState>
+      </ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttachUpdate
+				id="ModuleTag_AttachUpdate"
+				ParentStatus="HAS_TIBERIUM_GROWTH_MOD"
+				ParentStatusAttached="HAS_TIBERIUM_GROWTH_MOD"
+				CloseEnoughRange="5"
+				Range="10"
+				Flags="ONE_ATTACH_PER_PARENT STICK_TO_PARENT TELEPORT DIE_WHEN_DETACH_ALWAYS DIE_WHEN_PARENT_HAS_FORBIDDEN_STATUS"
+				ForbiddenParentStatus="HAS_TIBERIUM_UPGRADE MARCH_OF_DEATH UNDER_IRON_CURTAIN">
+			</AttachUpdate>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdateA"
+				FireInterval="0.5s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="EMPPlayerTemplate"
+					OneShot="false" />
+			</FireWeaponUpdate>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_PlayerPowerShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="1.0"
+				RefreshDelay="0.5s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_PlayerPowerShader">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="SAME_PLAYER"
+			Include="FS_BASE_DEFENSE FS_BARRACKS"
+			Exclude="INFANTRY AIRCRAFT VEHICLE CONSTRUCTION_YARD FS_POWER EGG COMMANDO NEUTRAL_TECH"
+      StatusBitFlagsExclude="SOLD UNPACKING DOES_CONTAIN_TIBERIUM UNDER_IRON_CURTAIN">
+         <ExcludeThing>AlliedBaseDefenseAdvanced</ExcludeThing>
+         <ExcludeThing>JapanBaseDefenseAdvanced</ExcludeThing>
+         <ExcludeThing>SovietBaseDefenseAdvanced</ExcludeThing>
+         <ExcludeThing>SovietBaseDefenseAntiAllCenter</ExcludeThing>
+         <ExcludeThing>AlliedBaseDefenseAdvancedUpgrade</ExcludeThing>
+		</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<Physics
+				id="ModuleTag_Physics"/>
+      <DestroyDie
+				id="ModuleTag_Die">
+        <DieMuxData
+					DeathTypes="ALL"/>
+      </DestroyDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				StateMachine="UnitAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="Resuming" EvaType="dieOwner" />
+		</EvaEventArray>
+		<VisionInfo
+			VisionRange="0"
+			ShroudClearingRange="0"/>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0"/>
+	</GameObject>
+	<GameObject
+		id="EMPPlayerSpawn50"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		EnergyProduction="50"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="VEHICLE IMMOBILE CAN_CAST_REFLECTIONS NOT_AUTOACQUIRABLE NO_COLLIDE NO_SHADOW UNATTACKABLE"
+		EditorName="EMPPlayerSpawn50">
+		<DisplayName>EMPPlayerSpawn50</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<LocomotorSet
+			Locomotor="JapanPointDefenseDroneLocomotor"
+			Condition="NORMAL"
+			Speed="200.0" />
+		<Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw"
+				ShadowForceDisable="true"
+				ShowShadowWhileContained="true"
+				Selectable="false">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model Name="" />
+        </ModelConditionState>
+      </ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdateA"
+				FireInterval="0.5s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="EMPPlayerTemplate"
+					OneShot="false" />
+			</FireWeaponUpdate>
+			<AttachUpdate
+				id="ModuleTag_AttachUpdate"
+				ParentStatus="HAS_TIBERIUM_GROWTH_MOD"
+				ParentStatusAttached="HAS_TIBERIUM_GROWTH_MOD"
+				CloseEnoughRange="5"
+				Range="10"
+				Flags="ONE_ATTACH_PER_PARENT STICK_TO_PARENT DIE_WHEN_PARENT_DIES_FROM_NOT_ME TELEPORT DIE_WHEN_DETACH_ALWAYS DIE_WHEN_PARENT_HAS_FORBIDDEN_STATUS"
+				ForbiddenParentStatus="HAS_TIBERIUM_UPGRADE MARCH_OF_DEATH UNDER_IRON_CURTAIN">
+			</AttachUpdate>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_PlayerPowerShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="1.0"
+				RefreshDelay="0.5s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_PlayerPowerShader">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="SAME_PLAYER"
+			Include="FS_WAR_FACTORY FS_MONEY_STORAGE FS_AIR_FIELD"
+			Exclude="INFANTRY AIRCRAFT VEHICLE CONSTRUCTION_YARD FS_POWER EGG COMMANDO NEUTRAL_TECH FS_BASE_DEFENSE"
+      StatusBitFlagsExclude="SOLD UNPACKING DOES_CONTAIN_TIBERIUM UNDER_IRON_CURTAIN">
+		</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<Physics
+				id="ModuleTag_Physics"/>
+      <DestroyDie
+				id="ModuleTag_Die">
+        <DieMuxData
+					DeathTypes="ALL"/>
+      </DestroyDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				StateMachine="UnitAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="Resuming" EvaType="dieOwner" />
+		</EvaEventArray>
+		<ShadowInfo
+			Type="NONE" />
+		<VisionInfo
+			VisionRange="10"
+			ShroudClearingRange="10" />
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0" />
+	</GameObject>
+	<GameObject
+		id="EMPPlayerSpawn75"
+		Side="Neutral"
+		EditorSorting="SYSTEM"
+		EnergyProduction="75"
+		TransportSlotCount="0"
+		IsTrainable="false"
+		KindOf="VEHICLE IMMOBILE CAN_CAST_REFLECTIONS NOT_AUTOACQUIRABLE NO_COLLIDE NO_SHADOW UNATTACKABLE"
+		EditorName="EMPPlayerSpawn75">
+		<DisplayName>EMPPlayerSpawn75</DisplayName>
+		<ArmorSet
+			Armor="NoArmor" />
+		<LocomotorSet
+			Locomotor="JapanPointDefenseDroneLocomotor"
+			Condition="NORMAL"
+			Speed="200.0" />
+		<Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_Draw"
+				ShadowForceDisable="true"
+				ShowShadowWhileContained="true"
+				Selectable="false">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model Name="" />
+        </ModelConditionState>
+      </ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttachUpdate
+				id="ModuleTag_AttachUpdate"
+				ParentStatus="HAS_TIBERIUM_GROWTH_MOD"
+				ParentStatusAttached="HAS_TIBERIUM_GROWTH_MOD"
+				CloseEnoughRange="5"
+				Range="10"
+				Flags="ONE_ATTACH_PER_PARENT STICK_TO_PARENT DIE_WHEN_PARENT_DIES_FROM_NOT_ME TELEPORT DIE_WHEN_DETACH_ALWAYS DIE_WHEN_PARENT_HAS_FORBIDDEN_STATUS"
+				ForbiddenParentStatus="HAS_TIBERIUM_UPGRADE MARCH_OF_DEATH UNDER_IRON_CURTAIN">
+			</AttachUpdate>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdateA"
+				FireInterval="0.5s"
+				AliveOnly="true"
+				ActiveWhenDisabled="HELD">
+				<FireWeaponNugget
+					WeaponName="EMPPlayerTemplate"
+					OneShot="false" />
+			</FireWeaponUpdate>
+			<AttributeModifierAuraUpdate
+				id="ModuleTag_PlayerPowerShortCircuitAttributeModifierUpdate"
+				InitiallyActive="true"
+				Range="1.0"
+				RefreshDelay="0.5s"
+				AllowSelf="false"
+				AttributeModifierName="AttributeModifier_PlayerPowerShader">
+		<ObjectFilter
+			Rule="ANY"
+			Relationship="SAME_PLAYER"
+			Include="SUPER_WEAPON FS_TECHNOLOGY"
+			Exclude="INFANTRY AIRCRAFT VEHICLE CONSTRUCTION_YARD FS_POWER EGG COMMANDO NEUTRAL_TECH FS_WAR_FACTORY FS_MONEY_STORAGE FS_AIR_FIELD"
+      StatusBitFlagsExclude="SOLD UNPACKING DOES_CONTAIN_TIBERIUM UNDER_IRON_CURTAIN">
+         <ExcludeThing>AlliedBaseDefense</ExcludeThing>
+         <ExcludeThing>JapanBaseDefense</ExcludeThing>
+         <ExcludeThing>SovietBaseDefenseGround</ExcludeThing>
+         <ExcludeThing>SovietBaseDefenseAir</ExcludeThing>
+		</ObjectFilter>
+			</AttributeModifierAuraUpdate>
+			<Physics
+				id="ModuleTag_Physics"/>
+      <DestroyDie
+				id="ModuleTag_Die">
+        <DieMuxData
+					DeathTypes="ALL"/>
+      </DestroyDie>
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AIUpdate"
+				StateMachine="UnitAIStateMachine"/>
+		</AI>
+		<Body>
+			<PropBody
+				id="ModuleTag_Body"/>
+		</Body>
+		<EvaEventArray>
+			<EvaEntry EvaEvent="Resuming" EvaType="dieOwner" />
+		</EvaEventArray>
+		<ShadowInfo
+			Type="NONE"/>
+		<VisionInfo
+			VisionRange="10"
+			ShroudClearingRange="10"/>
+		<CrusherInfo
+			id="id_CrusherInfo"
+			CrushableLevel="0"/>
+	</GameObject>
+	<WeaponTemplate
+			id="EMPPlayerTemplate"
+			RadiusDamageAffects="ALLIES"
+			Flags="NOT_ATTRACTED_BY_MAGNETS"
+			RequiredAntiMask="ANTI_STRUCTURE">
+		<Nuggets>
+			<ParalyzeNugget
+				Radius="2.0"
+				DurationSeconds="1s"
+				ParalyzeType="EMP"
+				ParalyzeFX="FX_None">
+				<SpecialObjectFilter
+					Rule="NONE"
+					Relationship="SAME_PLAYER"
+			Include="FS_MONEY_STORAGE FS_AIR_FIELD">
+				</SpecialObjectFilter>
+			</ParalyzeNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="PlayerPowerEMPPlayer"
+		AttackRange="999999"
+    Flags="NOT_ATTRACTED_BY_MAGNETS"
+		RadiusDamageAffects="ALLIES"
+		RequiredAntiMask="ANTI_STRUCTURE">
+		<PreAttackDelay
+			MinSeconds="0.0s"
+			MaxSeconds="0.0s" />
+        <Nuggets>
+			<AttributeModifierNugget
+				Radius="5"
+				AttributeModifierName="AttributeMod_EMPPlayerList">
+				<SpecialObjectFilter
+					Rule="NONE"
+          StatusBitFlags="HAS_TIBERIUM_GROWTH_MOD">
+         <IncludeThing>SovietBaseDefenseAntiAllCenter</IncludeThing>
+         <IncludeThing>SovietBaseDefenseAntiAllMap</IncludeThing>
+         <IncludeThing>SovietSuperWeaponAdvanced</IncludeThing>
+         <IncludeThing>AlliedSuperWeaponAdvanced</IncludeThing>
+         <IncludeThing>AlliedSuperWeapon</IncludeThing>
+         <IncludeThing>JapanSuperWeaponAdvanced</IncludeThing>
+         <IncludeThing>JapanSuperWeapon</IncludeThing>
+         <IncludeThing>SovietSuperWeapon</IncludeThing>
+         <IncludeThing>JapanVIPStructure</IncludeThing>
+         <IncludeThing>SovietVIPStructure</IncludeThing>
+         <IncludeThing>AlliedVIPStructure</IncludeThing>		
+         <IncludeThing>JapanBaseDefenseAdvanced</IncludeThing>
+         <IncludeThing>SovietBaseDefenseAdvanced</IncludeThing>
+         <IncludeThing>AlliedBaseDefenseAdvanced</IncludeThing>
+         <IncludeThing>AlliedAirfield</IncludeThing>
+         <IncludeThing>AlliedNavalYard</IncludeThing>
+         <IncludeThing>AlliedWarFactory</IncludeThing>
+         <IncludeThing>JapanNavalYard</IncludeThing>
+         <IncludeThing>JapanAirfield</IncludeThing>
+         <IncludeThing>JapanWarFactory</IncludeThing>
+         <IncludeThing>SovietNavalYard</IncludeThing>
+         <IncludeThing>SovietAirfield</IncludeThing>
+         <IncludeThing>SovietCrane</IncludeThing>
+         <IncludeThing>SovietWarFactory</IncludeThing>
+         <IncludeThing>AlliedRefinery</IncludeThing>
+         <IncludeThing>JapanRefinery</IncludeThing>
+         <IncludeThing>SovietRefinery</IncludeThing>
+         <IncludeThing>AlliedBarracks</IncludeThing>
+         <IncludeThing>JapanBarracks</IncludeThing>
+         <IncludeThing>SovietBarracks</IncludeThing>
+         <IncludeThing>AlliedBaseDefense</IncludeThing>
+         <IncludeThing>JapanBaseDefense</IncludeThing>
+         <IncludeThing>SovietBaseDefenseAir</IncludeThing>
+         <IncludeThing>SovietBaseDefenseGround</IncludeThing>
+         <IncludeThing>SovietScoutVehicle</IncludeThing>
+         <IncludeThing>SovietScoutVehicle</IncludeThing>
+         <IncludeThing>JapanTechStructure</IncludeThing>
+         <IncludeThing>SovietTechStructure</IncludeThing>
+         <IncludeThing>AlliedTechStructure</IncludeThing>	
+				</SpecialObjectFilter>
+			</AttributeModifierNugget>	
+            <WeaponOCLNugget
+				WeaponOCL="OCL_EMP25"
+				TargetAsPrimaryObject="true">
+		<SpecialObjectFilter
+			Rule="ANY"
+			Relationship="SAME_PLAYER"
+			Include="FS_BASE_DEFENSE FS_BARRACKS"
+			Exclude="INFANTRY AIRCRAFT VEHICLE CONSTRUCTION_YARD FS_POWER EGG COMMANDO NEUTRAL_TECH FS_TECHNOLOGY"
+      StatusBitFlagsExclude="SOLD UNPACKING DOES_CONTAIN_TIBERIUM UNDER_IRON_CURTAIN HAS_TIBERIUM_GROWTH_MOD">
+         <ExcludeThing>AlliedBaseDefenseAdvanced</ExcludeThing>
+         <ExcludeThing>JapanBaseDefenseAdvanced</ExcludeThing>
+         <ExcludeThing>SovietBaseDefenseAdvanced</ExcludeThing>
+         <ExcludeThing>SovietBaseDefenseAntiAllCenter</ExcludeThing>
+         <ExcludeThing>AlliedBaseDefenseAdvancedUpgrade</ExcludeThing>
+		</SpecialObjectFilter>
+            </WeaponOCLNugget>
+            <WeaponOCLNugget
+				WeaponOCL="OCL_EMP50"
+				TargetAsPrimaryObject="true">
+		<SpecialObjectFilter
+			Rule="ANY"
+			Relationship="SAME_PLAYER"
+			Include="FS_WAR_FACTORY FS_MONEY_STORAGE FS_AIR_FIELD"
+			Exclude="INFANTRY AIRCRAFT VEHICLE CONSTRUCTION_YARD FS_POWER EGG COMMANDO NEUTRAL_TECH FS_BASE_DEFENSE"
+      StatusBitFlagsExclude="SOLD UNPACKING DOES_CONTAIN_TIBERIUM UNDER_IRON_CURTAIN HAS_TIBERIUM_GROWTH_MOD">
+		</SpecialObjectFilter>
+            </WeaponOCLNugget>
+            <WeaponOCLNugget
+				WeaponOCL="OCL_EMP75"
+				TargetAsPrimaryObject="true">
+		<SpecialObjectFilter
+			Rule="ANY"
+			Relationship="SAME_PLAYER"
+			Include="SUPER_WEAPON FS_TECHNOLOGY FS_BASE_DEFENSE"
+			Exclude="INFANTRY AIRCRAFT VEHICLE CONSTRUCTION_YARD FS_POWER EGG COMMANDO NEUTRAL_TECH FS_WAR_FACTORY FS_MONEY_STORAGE FS_AIR_FIELD"
+      StatusBitFlagsExclude="SOLD UNPACKING DOES_CONTAIN_TIBERIUM UNDER_IRON_CURTAIN HAS_TIBERIUM_GROWTH_MOD">
+         <ExcludeThing>AlliedBaseDefense</ExcludeThing>
+         <ExcludeThing>JapanBaseDefense</ExcludeThing>
+         <ExcludeThing>SovietBaseDefenseGround</ExcludeThing>
+         <ExcludeThing>SovietBaseDefenseAir</ExcludeThing>
+		</SpecialObjectFilter>
+            </WeaponOCLNugget>
+        </Nuggets>
+    </WeaponTemplate>
+</AssetDeclaration>

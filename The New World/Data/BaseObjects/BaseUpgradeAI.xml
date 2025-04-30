@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Tags></Tags>
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+	</Includes>
+<GameObject
+	id="BaseUpgradeAI"
+	EditorSorting="SYSTEM"
+	TransportSlotCount="0"
+	IsTrainable="false"
+	KindOf="VEHICLE CAN_CAST_REFLECTIONS UNATTACKABLE CAN_BE_FAVORITE_UNIT SKIRMISH_AI_DONT_CONSIDER_THREAT IGNORE_IN_AI_HUNT_TACTIC IGNORES_SELECT_ALL WB_DISPLAY_SCRIPT_NAME UNIQUE_UNIT"
+	ProductionQueueType="MAIN_STRUCTURE"
+	BuildPlacementTypeFlag="MAIN_STRUCTURE"
+	MaxSimultaneousOfType="1">
+	<ArmorSet
+		Armor="NoArmor" />
+	<LocomotorSet
+		Locomotor="JapanPointDefenseDroneLocomotor"
+		Condition="NORMAL"
+		Speed="200.0" />
+	<SkirmishAIInformation
+		ConquerMetricsOverrideDPS="250"
+		ConquerMetricsDpsBonusAgainstDefenses="5.0"
+		UnitBuilderStandardCombatUnit="true"/>
+	<Draws>
+		<ScriptedModelDraw
+			id="ModuleTag_ScriptedModelDraw">
+			<ModelConditionState
+				ParseCondStateType="PARSE_DEFAULT">
+				<Model
+					Name="" />
+			</ModelConditionState>
+		</ScriptedModelDraw>
+	</Draws>
+	<Behaviors>
+		<ObjectSMCHelper
+			id="ObjectSMCHelper"/>
+		<ObjectDefectionHelper
+			id="ObjectDefectionHelper"/>
+		<LifetimeUpdate
+			id="ModuleTag_LifeTime"
+			MinLifetime="5s"
+			MaxLifetime="5s" />
+		<DestroyDie
+			id="ModuleTag_DieDestroy">
+			<DieMuxData
+				DeathTypes="ALL" />
+		</DestroyDie>
+		<Physics
+			id="ModuleTag_Physics" />
+	</Behaviors>
+	<AI>
+		<AIUpdate
+			id="ModuleTag_AIUpdate"
+			StateMachine="UnitAIStateMachine" />
+	</AI>
+	<Body>
+		<ActiveBody
+			id="ModuleTag_Body"
+			MaxHealth="1" />
+	</Body>
+	<ShadowInfo
+		Type="NONE" />
+	<VisionInfo
+		VisionRange="10"
+		ShroudClearingRange="0" />
+	<CrusherInfo
+		id="id_CrusherInfo"
+		CrushableLevel="0" />
+</GameObject>
+</AssetDeclaration>

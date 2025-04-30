@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude">
+	<Tags></Tags>
+	<!-- aka Tesla Coil -->
+	<Includes>
+		<Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+		<Include
+			type="all"
+			source="ART:SSBaseDefenseAdvanced_SKN.w3x" />
+		<Include
+			type="all"
+			source="ART:SSBaseDefenseAdvanced_BLD.w3x" />
+		<Include
+			type="all"
+			source="ART:SSBaseDefenseAdvanced_FX.w3x" />
+		<Include
+			type="all"
+			source="ART:SSBaseDefenseAdvanced_Scaffold.w3x" />
+    <Include
+			type="all"
+			source="ART:SSBaseDefenseAdvanced_Charge.w3x" />
+    <Include
+			type="all"
+			source="ART:FXspotlight.w3x" />
+		<Include
+			type="all"
+			source="ART:FXRailGunCoreDistortion.xml" />
+		<Include
+			type="all"
+			source="ART:FXRailGunCore.xml" />
+		<Include
+			type="all"
+			source="ART:FXRailGunCoreMask.xml" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseSovietStructure.xml" />
+		<Include
+			type="all"
+			source="ART:SBBaseDefenseAir_Platform_SKL.w3x" />
+		<Include
+			type="all"
+			source="ART:SBBaseDefenseAir_Platform_BLD.w3x" />						
+		<Include
+			type="all"
+			source="ART:SBBaseDefenseAir_Platform_BLD_SKN.w3x" />			
+	</Includes>
+	<GameObject
+		id="SovietBaseDefenseAdvanced"
+		inheritFrom="BaseSovietStructure"
+		SelectPortrait="Portrait_SovietBaseDefenseAdv_big"
+		ButtonImage="Button_SovietBaseDefenseAdv_small"
+		Side="Soviet"
+		EditorSorting="STRUCTURE"
+		TransportSlotCount="1"
+		BuildTime="0.0"
+		KindOf="-NOT_AUTOACQUIRABLE +CAN_ATTACK +FS_BASE_DEFENSE +CAN_SEE_THROUGH_STRUCTURE +LINE_OF_SIGHT_IGNORES_BUILDINGS +NO_COLLIDE +UNATTACKABLE"
+		RadarPriority="STRUCTURE"
+		PlacementViewAngle="45d"
+		ProductionQueueType="OTHER_STRUCTURE"
+		BuildPlacementTypeFlag="OTHER_STRUCTURE"
+		EditorName="SovietBaseDefenseAdvanced"
+		WeaponCategory="CANNON"
+		CampnessValue="=$CAMPNESS_DEFENSIVE_STRUCTURE"
+		TypeDescription="Type:SovietBaseDefenseAdvanced"
+		Description="Desc:SovietBaseDefenseAdvanced">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:SovietBaseDefenseAdvanced</DisplayName>
+		<ArmorSet
+			Armor="SovietBaseDefenseAdvanced"
+			DamageFX="FactionStructureDamageFX" />
+		<SkirmishAIInformation
+			BaseBuildingLocation="DEFENSE" >
+			<ConstructionBaseSelectionCriteria
+				ExcludedBaseTypes="NO_BUILD_RADIUS"
+				PreferredBaseTypes="ENEMIES_IN_BASE UNDER_ATTACK"
+				SortOrder="PREFER_MOST_RECENTLY_ATTACKED" />
+		</SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="BONE_CONTACT_POINT_01 BONE_CONTACT_POINT_01 BONE_CONTACT_POINT_02 BONE_CONTACT_POINT_03 BONE_CONTACT_POINT_04 BONE_CONTACT_POINT_05">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SSBaseDefenseAdvanced_SKN" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="PRIMARY_WEAPON"
+						BoneName="BONE_CONTACT_POINT_04" />
+					<WeaponFireFXBone
+						WeaponSlotID="1"
+						WeaponSlotType="SECONDARY_WEAPON"
+						BoneName="BONE_CONTACT_POINT_04" />
+				</ModelConditionState>
+			
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="BUILD_PLACEMENT_CURSOR">
+					<Model
+						Name="SSBaseDefenseAdvanced_SKN" />
+					<Texture
+						Original="SBBuilding_Holes"
+						New="SBBuilding_FP" />						
+					<Texture
+						Original="SBBuilding_Filler"
+						New="SBBuilding_FP" />
+				</ModelConditionState>					
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="SSBaseDefenseAdvanced_SKN" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableHideSubObjectPermanently("FX_LIGHTNINGCHARGE")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="SSBaseDefenseAdvanced_BLD"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationBlendTime="0"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="SSBaseDefenseAdvanced_BLD"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Tiny"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Lights"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="Con_Flash"
+						FollowBone="true" />
+				</AnimationState>				
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="USER_4">
+					<Script>
+						CurDrawableShowSubObjectPermanently("FX_LIGHTNINGCHARGE")
+					</Script>
+				</AnimationState>
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_A">
+        </AnimationState>
+
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PREATTACK_A">
+        </AnimationState>
+			</ScriptedModelDraw>
+
+      <ScriptedModelDraw
+				id="ModuleTag_FireingDraw"
+				AttachToBoneInAnotherModule="BONE_CONTACT_POINT_04">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="" />
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+          ConditionsYes="PREATTACK_A">
+          <Model
+						Name="SSBaseDefenseAdvanced_Charge" />
+        </ModelConditionState>
+        <ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+          ConditionsYes="FIRING_A">
+          <Model
+						Name="SSBaseDefenseAdvanced_Charge" />
+        </ModelConditionState>
+
+        <AnimationState
+           ParseCondStateType="PARSE_NORMAL"
+           ConditionsYes="UNDERPOWERED">         
+        </AnimationState>
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="FIRING_A"
+          Flags="START_FRAME_LAST">
+          <Animation
+						AnimationName="SSBaseDefenseAdvanced_Charge"
+						AnimationMode="ONCE_BACKWARDS"
+            AnimationBlendTime="0"
+            AnimationAbsoluteTime="1s"/>
+        </AnimationState>
+
+        <AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="PREATTACK_A">
+          <Animation
+						AnimationName="SSBaseDefenseAdvanced_Charge"
+						AnimationMode="ONCE"
+            AnimationBlendTime="0"/>
+        </AnimationState>
+
+
+      </ScriptedModelDraw>
+      
+      
+
+			<!-- DRAW PLATFORM -->
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Platform"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SBBaseDefenseAir_Platform" />
+				</ModelConditionState>		
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Script>
+						CurDrawableShowSubObjectPermanently("Bib")
+						CurDrawableHideSubObjectPermanently("Platform")
+						CurDrawableHideSubObjectPermanently("Platform_FX")
+					</Script>
+				</AnimationState>	
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL">
+					<Script>
+						CurDrawableShowSubObjectPermanently("Bib")
+						CurDrawableHideSubObjectPermanently("Platform")
+						CurDrawableHideSubObjectPermanently("Platform_FX")
+					</Script>
+				</AnimationState>	
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"  
+					ConditionsYes="STRUCTURE_UNPACKING OVER_WATER">
+					<Animation
+						AnimationName="SBBaseDefenseAir_Platform_BLD"
+						AnimationMode="ONCE"/>
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AlliedPowerPlantWaterBuildupFroth"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AlliedPowerPlantWaterBuildupMist"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AlliedPowerPlantBuildupFlashes"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="None"
+						FXParticleSystemTemplate="AlliedPowerPlantBuildupSparksSeed"
+						FollowBone="true" />          
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="SBBaseDefenseAir_Platform_BLD"
+						AnimationBlendTime="0"
+						AnimationMode="ONCE"
+						AnimationAbsoluteTime="2s"/>
+					<Script>
+						CurDrawableShowSubObjectPermanently("Platform")
+						CurDrawableShowSubObjectPermanently("Platform_FX")
+						CurDrawableHideSubObjectPermanently("Bib")
+					</Script>
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="OVER_WATER SOLD"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="SBBaseDefenseAir_Platform_BLD"
+						AnimationBlendTime="0"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>
+			</ScriptedModelDraw>
+
+<!-- DRAW SCAFFOLD -->
+
+			<ScriptedModelDraw
+				id="ModuleTag_Draw_Scaffold"
+				OkToChangeModelColor="true"
+				ExtraPublicBone="BONE_CONTACT_POINT_01 BONE_CONTACT_POINT_02 BONE_CONTACT_POINT_03 BONE_CONTACT_POINT_04 BONE_CONTACT_POINT_05 BONE_CONTACT_POINT_06 BONE_CONTACT_POINT_07">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD">
+					<Model
+						Name="SSBaseDefenseAdvanced_Scaffold" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Model
+						Name="SSBaseDefenseAdvanced_Scaffold" />
+				</ModelConditionState>
+				<AnimationState
+					ParseCondStateType="PARSE_DEFAULT">
+				</AnimationState>
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="SOLD"
+					Flags="START_FRAME_LAST">
+					<Animation
+						AnimationName="SSBaseDefenseAdvanced_Scaffold"
+						AnimationMode="ONCE_BACKWARDS"
+						AnimationAbsoluteTime="2s"/>
+				</AnimationState>					
+				<AnimationState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="STRUCTURE_UNPACKING">
+					<Animation
+						AnimationName="SSBaseDefenseAdvanced_Scaffold"
+						AnimationMode="MATCH_UNPACKING"
+						AnimationBlendTime="0" />
+				</AnimationState>
+			</ScriptedModelDraw>
+			
+			<!-- DRAW PARTICLES -->
+
+			<ScriptedModelDraw
+					  id="ModuleTag_Draw_FX"
+					  OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SSBaseDefenseAdvanced_FX" />
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="DAMAGED">
+					<Model
+						Name="SSBaseDefenseAdvanced_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+ 						FXParticleSystemTemplate="GenericDStateFire"
+						FollowBone="true"/>
+				</ModelConditionState>
+				<ModelConditionState
+					ParseCondStateType="PARSE_NORMAL"
+					ConditionsYes="REALLYDAMAGED">
+					<Model
+						Name="SSBaseDefenseAdvanced_FX" />
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+						FXParticleSystemTemplate="GenericDStateSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_BONE01"
+ 						FXParticleSystemTemplate="GenericDStateFire"
+						FollowBone="true"/>
+
+
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<WeaponSetUpdate
+				id="ModuleTag_Weapon01SetUpdate">
+				<WeaponSlotHardpoint
+					ID="1"
+					InterleavedStyle="INTERLEAVE_FIRST_AVAILABLE"
+					WeaponChoiceCriteria="PREFER_LEAST_MOVEMENT"
+					AllowInterleavedFiring="true">
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietBaseDefenseAdvancedTeslaGun"/>
+					<Weapon
+						Ordering="PRIMARY_WEAPON"
+						Template="SovietBaseDefenseAdvancedTeslaGunAntiV4"/>
+				</WeaponSlotHardpoint>
+			</WeaponSetUpdate>
+
+			<Physics
+				id="ModuleTag_Physics"/>
+			
+			<StancesBehavior
+				id="ModuleTag_Stance"
+				StanceTemplate="OffensiveStructures" />
+			
+			<BuildingDestructionBehavior
+				id="ModuleTag_BuildingDestruction">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED" />
+				<Item
+					BonePrefix="BONE_CONTACT_POINT_"
+					FX="SovietRefineryHit"
+					FlingVelocity="100.0"/>
+			</BuildingDestructionBehavior>
+
+			<FXListBehavior
+				xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_YU_Hotel02_Explode" />
+				<Event
+					Index="onDeath"
+					FX="FX_LargeBuildingDieExplosionRumble" />
+			</FXListBehavior>
+			<FXListBehavior xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance" id="ModuleTag_DieSound">
+				<DieMuxData DeathTypes="ALL" />
+				<Event 
+					Index="onDeath" 
+					FX="FX_SmallBuildingDieExplosion" />
+			</FXListBehavior>
+			<CreateObjectDie
+				id="ModuleTag_CreateObjectDie"
+				CreationList="SBBaseDefenseAdvanced_Die_OCL">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED" />
+			</CreateObjectDie>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL"
+					DeathTypesForbidden="SUICIDED" />
+			</DestroyDie>
+
+			<StructureUnpackUpdate
+				id="ModuleTag_StructureUnpack"
+				UnpackTime="0s" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="YES"
+				StateMachine="OffensiveStructureAIStateMachine">
+				<UnitAITargetChooserData />
+			</AIUpdate>
+		</AI>
+		<ClientBehaviors>
+			<ModelConditionAudioLoopClientBehavior id="ModuleTag_SOV_TeslaCoil_PreFireCharge">
+				<ModelConditionSound Sound="SOV_TeslaCoil_PreFireCharge" RequiredFlags="PREATTACK_A" ExcludedFlags="DYING" />
+			</ModelConditionAudioLoopClientBehavior>
+		</ClientBehaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="2000" />
+		</Body>
+		<Geometry
+			IsSmall="false">
+			<Shape
+				Type= "BOX"
+				MajorRadius = "1.0"
+				MinorRadius = "1.0"
+				Height = "1"
+				ContactPointGeneration = "STRUCTURE">
+				<Offset
+					x = "0.0"
+					y = "0.0"
+					z = "0.0" />
+			</Shape>
+		</Geometry>
+		<AudioArrayVoice>
+			<AudioEntry
+				Sound="SOV_TeslaCoil_Select"
+				AudioType="voiceSelect" />
+		</AudioArrayVoice>
+		<VisionInfo
+			VisionRange="360"
+			ShroudClearingRange="500" />
+	</GameObject>
+	
+	<WeaponTemplate
+		id="SovietBaseDefenseAdvancedTeslaGun"
+		FireSoundPerClip="SOV_TeslaCoil_WeaponFire"
+		FireFX="FX_TeslaBoatFire"
+    FireVeteranFX="FX_TeslaBoatFire"
+		AcceptableAimDelta="360d"
+		AttackRange="350.0"
+		WeaponSpeed="999999.0"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_SUBMERGED ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+		CanFireWhileMoving="false"
+		ClipSize="1"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		ReAcquireDetailType="PER_CLIP"
+		ShotsPerBarrel="1">
+		<!-- PreAttackDelay needed for NotifyWhenAttackingBehavior (hackish) -->
+		<PreAttackDelay
+			MinSeconds="2.0s"
+			MaxSeconds="2.0s" />
+		<FiringDuration
+			MinSeconds="0.53s"
+			MaxSeconds="0.53s" />
+		<ClipReloadTime
+			MinSeconds="0.13s"
+			MaxSeconds="0.13s" />
+		<Nuggets>
+			<DamageNugget
+				Damage="300.0"
+				DamageType="TESLA"
+				DamageFXType="SOVIET_TESLA"
+				DeathType="ELECTROCUTED"
+				DelayTimeSeconds="0.1s">
+				<SpecialObjectFilter
+					Rule="ALL"
+					Exclude="STRUCTURE HARVESTER IGNORE_FOR_VICTORY">
+				</SpecialObjectFilter>
+				<DamageScalarDetails Scalar= "25%">
+					<Filter
+						Rule="NONE">
+						<IncludeThing>JapanAntiInfantryVehicle</IncludeThing>
+						<IncludeThing>JapanLightTransportVehicle</IncludeThing>
+						<IncludeThing>JapanAntiInfantryVehicleAI</IncludeThing>
+						<IncludeThing>JapanLightTransportVehicleAI</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+				<DamageScalarDetails Scalar= "50%">
+					<Filter
+						Rule="NONE">
+						<IncludeThing>JapanSentinelVehicle</IncludeThing>
+						<IncludeThing>SovietAntiVehicleVehicleTech1</IncludeThing>
+						<IncludeThing>JapanSentinelVehicleAI</IncludeThing>
+						<IncludeThing>SovietAntiVehicleVehicleTech1AI</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+				<DamageScalarDetails Scalar= "75%">
+					<Filter
+						Rule="NONE">
+						<IncludeThing>AlliedFighterAircraft</IncludeThing>
+						<IncludeThing>JapanCommandoTech1</IncludeThing>
+						<IncludeThing>SovietAntiAirShip</IncludeThing>
+						<IncludeThing>AlliedFighterAircraftAI</IncludeThing>
+						<IncludeThing>JapanCommandoTech1AI</IncludeThing>
+						<IncludeThing>SovietAntiAirShipAI</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+				<DamageScalarDetails Scalar= "125%">
+					<Filter
+						Rule="NONE">
+						<IncludeThing>JapanAntiVehicleVehicleTech3</IncludeThing>
+						<IncludeThing>AlliedGunshipAircraft</IncludeThing>
+						<IncludeThing>JapanAntiVehicleVehicleTech3AI</IncludeThing>
+						<IncludeThing>AlliedGunshipAircraftAI</IncludeThing>
+					</Filter>
+				</DamageScalarDetails>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+	<WeaponTemplate
+		id="SovietBaseDefenseAdvancedTeslaGunAntiV4"
+		FireSoundPerClip="SOV_TeslaCoil_WeaponFire"
+		FireFX="FX_TeslaBoatFire"
+    FireVeteranFX="FX_TeslaBoatFire"
+		AcceptableAimDelta="360d"
+		AttackRange="510.0"
+		WeaponSpeed="999999.0"
+		RequiredAntiMask="ANTI_GROUND ANTI_STRUCTURE ANTI_WATER ANTI_SUBMERGED ANTI_AIRBORNE_VEHICLE ANTI_AIRBORNE_INFANTRY"
+		CanFireWhileMoving="false"
+		ClipSize="1"
+		Flags="NOT_ATTRACTED_BY_MAGNETS"
+		ReAcquireDetailType="PER_CLIP"
+		ShotsPerBarrel="1">
+		<!-- PreAttackDelay needed for NotifyWhenAttackingBehavior (hackish) -->
+		<PreAttackDelay
+			MinSeconds="2.0s"
+			MaxSeconds="2.0s" />
+		<FiringDuration
+			MinSeconds="0.53s"
+			MaxSeconds="0.53s" />
+		<ClipReloadTime
+			MinSeconds="0.13s"
+			MaxSeconds="0.13s" />
+		<Nuggets>
+			<DamageNugget
+				Damage="300.0"
+				DamageType="TESLA"
+				DamageFXType="SOVIET_TESLA"
+				DeathType="ELECTROCUTED"
+				DelayTimeSeconds="0.1s">
+				<SpecialObjectFilter
+					Rule="NONE">
+					<IncludeThing>SovietAntiStructureVehicle</IncludeThing>
+				</SpecialObjectFilter>
+			</DamageNugget>
+		</Nuggets>
+	</WeaponTemplate>
+</AssetDeclaration>

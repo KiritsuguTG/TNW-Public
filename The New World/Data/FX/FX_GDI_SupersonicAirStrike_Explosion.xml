@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Includes>
+		<Include
+				type="all"
+				source="FXSONICSPHEREA.w3x" />
+	</Includes>
+	<FXList id="FX_GDI_SupersonicAirStrike_Explosion">
+		<NuggetList>
+			<Sound Value="GDI_SupersonicAirStrike_ExplosionMS" />
+			<ParticleSystem
+				Particle="SonicAirExplosionDist01"
+				OrientToObject = "true">
+				<Offset x="0.0" y="0.0" z="80.0" />
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="SonicAirExplosionDist02"
+				OrientToObject = "true">
+				<Offset x="0.0" y="0.0" z="80.0" />
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="SonicAirExplosionGlow01"
+				OrientToObject = "true">
+				<Offset x="0.0" y="0.0" z="80.0" />
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="SonicAirExplosionGlow01"
+				OrientToObject = "true">
+				<Offset x="0.0" y="0.0" z="80.0" />
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="SonicAirExplosionRing01b"
+				OrientToObject = "true">
+				<Offset x="0.0" y="0.0" z="80.0" />
+			</ParticleSystem>
+
+			<ParticleSystem
+				Particle="SonicAirExplosionSphere"
+				OrientToObject = "true">
+				<Offset x="0.0" y="0.0" z="80.0" />
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="SonicAirExplosionSphere02"
+				OrientToObject = "true">
+				<Offset x="0.0" y="0.0" z="80.0" />
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="SonicAirExplosionSphere"
+				OrientToObject = "true">
+				<Offset x="0.0" y="0.0" z="80.0" />
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="SonicAirExplosionSphere02"
+				OrientToObject = "true">
+				<Offset x="0.0" y="0.0" z="80.0" />
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="SonicAirExplosionSphere"
+				OrientToObject = "true">
+				<Offset x="0.0" y="0.0" z="80.0" />
+			</ParticleSystem>
+			<ParticleSystem
+				Particle="SonicAirExplosionSphere02"
+				OrientToObject = "true">
+				<Offset x="0.0" y="0.0" z="80.0" />
+			</ParticleSystem>
+		</NuggetList>
+	</FXList>
+	<FXParticleSystemTemplate ParticleTexture="FXFractal01NRM" PerParticleAttachedSystem="" Priority="VERY_LOW_OR_ABOVE" Shader="ALPHA" SortLevel="3" SystemLifetime="15" Type="GPU_PARTICLE" id="SonicAirExplosionDist01">
+		<Lifetime High="8" Low="8"/>
+		<Size High="50" Low="50"/>
+		<BurstDelay High="1" Low="1"/>
+		<BurstCount High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="2" High="1" Low="1" RelativeAge="9"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="10">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.95" Low="0.98"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu Shader="GPUParticleDistortion.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="10" Low="10"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularRateZ High="0.1" Low="-0.1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXFractal01NRM" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" Shader="ALPHA" SortLevel="1" SystemLifetime="8" Type="GPU_PARTICLE" id="SonicAirExplosionDist02">
+		<Lifetime High="6" Low="6"/>
+		<Size High="22" Low="22"/>
+		<BurstCount High="35" Low="35"/>
+		<Alphas>
+			<Alpha Frame="2" High="0.25" Low="0.25" RelativeAge="50"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="50">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu Shader="GPUParticleDistortion.fx" SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Cylinder IsHollow="true" Radius="75" RadiusRate="17">
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Outward>
+				<Speed High="0" Low="0"/>
+				<OtherSpeed High="0" Low="0"/>
+			</Outward>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="20" Low="15"/>
+				<SizeRateDamping High="1" Low="1"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate ParticleTexture="FXLenzFlare04" PerParticleAttachedSystem="" Priority="MEDIUM_OR_ABOVE" SystemLifetime="3" Type="GPU_PARTICLE" id="SonicAirExplosionGlow01">
+		<Lifetime High="10" Low="10"/>
+		<Size High="75" Low="50"/>
+		<BurstCount High="2" Low="2"/>
+		<Colors>
+			<Color Frame="1" RelativeAge="0">
+				<Color b="1" g="1" r="1"/>
+			</Color>
+			<Color Frame="2" RelativeAge="33">
+				<Color b="0.752941" g="0.501961" r="0.501961"/>
+			</Color>
+			<Color Frame="3" RelativeAge="66">
+				<Color b="0.647059" g="0.352941" r="0.568627"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.75" Low="0.7"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Gpu SpeedMultiplier="1"/>
+		</Draw>
+		<Volume>
+			<Point/>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="10" Low="6"/>
+				<SizeRateDamping High="0.99" Low="0.95"/>
+				<AngleZ High="7" Low="-7"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate IsGroundAligned="true" ParticleTexture="FXMGDefense" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" SortLevel="1" SystemLifetime="1" id="SonicAirExplosionRing01b">
+		<Lifetime High="18" Low="18"/>
+		<BurstCount High="2" Low="21"/>
+		<Colors>
+			<Color Frame="2" RelativeAge="20">
+				<Color b="0.262745" g="0.156863" r="0.137255"/>
+			</Color>
+			<Color Frame="3" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="1" Low="1"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<Default/>
+		</Draw>
+		<Volume>
+			<Line IsHollow="true">
+				<StartPoint x="0" y="0" z="6"/>
+				<EndPoint x="0" y="0" z="6"/>
+			</Line>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<Default>
+				<SizeRate High="60" Low="60"/>
+				<SizeRateDamping High="0.8" Low="0.8"/>
+				<AngleZ High="7" Low="0"/>
+				<AngularDampingXY High="1" Low="1"/>
+			</Default>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate Drawable="FXSONICSPHEREA" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="W3D_ALPHA" SystemLifetime="8" Type="DRAWABLE" id="SonicAirExplosionSphere">
+		<Lifetime High="40" Low="35"/>
+		<Size High="1" Low="0.5"/>
+		<BurstDelay High="2" Low="2"/>
+		<BurstCount High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="1" High="1" Low="1" RelativeAge="0"/>
+			<Alpha Frame="2" High="1" Low="1" RelativeAge="50"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="2" RelativeAge="13">
+				<Color b="1" g="0.47451" r="0.12549"/>
+			</Color>
+			<Color Frame="3" RelativeAge="56">
+				<Color b="0.501961" g="0.823529" r="1"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.95" Low="0.95"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<RenderObject>
+				<ObjectSet RenderGroup=""/>
+				<ObjectSet RenderGroup=""/>
+				<ObjectSet RenderGroup=""/>
+			</RenderObject>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<RenderObject Rotation="ROTATE_AROUND_VELOCITY">
+				<AngularDamping High="1" Low="1"/>
+				<StartSize>
+					<x High="0.1" Low="0.1"/>
+					<y High="0.1" Low="0.1"/>
+					<z High="0.01" Low="0.01"/>
+				</StartSize>
+				<SizeRate>
+					<x High="0.25" Low="0.25"/>
+					<y High="0.25" Low="0.25"/>
+					<z High="0.08" Low="0.08"/>
+				</SizeRate>
+				<SizeDamping>
+					<x High="0.89" Low="0.85"/>
+					<y High="0.89" Low="0.85"/>
+					<z High="0.95" Low="0.93"/>
+				</SizeDamping>
+			</RenderObject>
+		</Update>
+	</FXParticleSystemTemplate>
+	<FXParticleSystemTemplate Drawable="FXSONICSPHEREA" PerParticleAttachedSystem="" Priority="ALWAYS_RENDER" Shader="W3D_ALPHA" SystemLifetime="4" Type="DRAWABLE" id="SonicAirExplosionSphere02">
+		<Lifetime High="35" Low="30"/>
+		<Size High="0.2" Low="0.2"/>
+		<BurstDelay High="2" Low="2"/>
+		<BurstCount High="1" Low="1"/>
+		<Alphas>
+			<Alpha Frame="1" High="1" Low="1" RelativeAge="0"/>
+			<Alpha Frame="2" High="1" Low="1" RelativeAge="50"/>
+			<Alpha Frame="3" High="0" Low="0" RelativeAge="100"/>
+		</Alphas>
+		<Colors>
+			<Color Frame="2" RelativeAge="13">
+				<Color b="1" g="0.576471" r="0"/>
+			</Color>
+			<Color Frame="3" RelativeAge="56">
+				<Color b="0" g="0.65098" r="1"/>
+			</Color>
+			<Color Frame="4" RelativeAge="100">
+				<Color b="0" g="0" r="0"/>
+			</Color>
+		</Colors>
+		<Physics>
+			<Default>
+				<VelocityDamping High="0.95" Low="0.95"/>
+			</Default>
+		</Physics>
+		<Draw>
+			<RenderObject>
+				<ObjectSet RenderGroup=""/>
+				<ObjectSet RenderGroup=""/>
+				<ObjectSet RenderGroup=""/>
+			</RenderObject>
+		</Draw>
+		<Volume>
+			<Cylinder>
+				<Offset x="0" y="0" z="0"/>
+			</Cylinder>
+		</Volume>
+		<Velocity>
+			<Ortho>
+				<Position>
+					<x High="0" Low="0"/>
+					<y High="0" Low="0"/>
+					<z High="0" Low="0"/>
+				</Position>
+			</Ortho>
+		</Velocity>
+		<Event/>
+		<Update>
+			<RenderObject Rotation="ROTATE_AROUND_VELOCITY">
+				<AngleZ High="7" Low="-7"/>
+				<AngularDamping High="1" Low="1"/>
+				<StartSize>
+					<x High="0.2" Low="0.2"/>
+					<y High="0.2" Low="0.2"/>
+					<z High="0.01" Low="0.01"/>
+				</StartSize>
+				<SizeRate>
+					<x High="0.06" Low="0.06"/>
+					<y High="0.06" Low="0.06"/>
+					<z High="0.25" Low="0.25"/>
+				</SizeRate>
+				<SizeDamping>
+					<x High="0.89" Low="0.85"/>
+					<y High="0.89" Low="0.85"/>
+					<z High="0.93" Low="0.9"/>
+				</SizeDamping>
+			</RenderObject>
+		</Update>
+	</FXParticleSystemTemplate>
+</AssetDeclaration>

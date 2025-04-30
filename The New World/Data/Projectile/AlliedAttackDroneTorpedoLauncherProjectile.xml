@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset">
+	<Tags />
+	<Includes>
+		<Include
+			type="all"
+			source="DATA:GlobalData/GlobalDefines.xml" />
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseProjectile.xml" />
+	</Includes>
+	<GameObject
+		id="AlliedAttackDroneTorpedoLauncherProjectile"
+		inheritFrom="BaseProjectile"
+		Side="Allied"
+		KindOf="PROJECTILE SMALL_MISSILE HIDE_IF_FOGGED DEFLECT_BY_SPECIAL_POWER NO_COLLIDE"
+		EditorName="AlliedAttackDroneTorpedoLauncherProjectile">
+		<ArmorSet
+			Armor="NoArmor" />
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUTORPEDO" />
+					<ParticleSysBone
+						BoneName="FX_Tail"
+						FXParticleSystemTemplate="AlliedAntiAirMissileProjectileTrailSmoke"
+						FollowBone="true"/>
+					<ParticleSysBone
+						BoneName="FX_Tail"
+						FXParticleSystemTemplate="SPTorpedoMoveBubbles"
+						OnlyIfOnWater="true"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FX_Tail"
+						FXParticleSystemTemplate="TorpedoWaterWake"
+						OnlyIfOnWater="true"
+						FollowBone="true" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+				Type="MISSILE" 
+				FirstHeightMin="-130"
+				FirstHeightMax="-130"
+				SecondHeightMin="-50"
+				SecondHeightMax="-50"
+				FirstPercentIndent="0"
+				SecondPercentIndent="1"
+				FlightPathAdjustDistPerSecond="250"
+				MaxDistanceToTravel="500.0" />
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SovietAntiNavyShipTech2SuperTorpedoWarhead" />
+			</FXListBehavior>
+			<DestroyDie
+				id="ModuleTag_Die">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+		</Behaviors>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8">
+			</Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="0" />
+	</GameObject>
+	</AssetDeclaration>

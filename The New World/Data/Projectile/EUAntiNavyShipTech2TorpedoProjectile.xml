@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="us-ascii"?>
+
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags/>
+	<Includes>
+		<!-- Base Object -->
+		<Include
+			type="instance"
+			source="DATA:BaseObjects/BaseProjectile.xml" />
+	</Includes>
+	<GameObject
+		id="EUAntiNavyShipTech2TorpedoProjectile"
+		inheritFrom="BaseProjectile"
+		Side="Allies"
+		KindOf="PROJECTILE SMALL_MISSILE DEFLECT_BY_SPECIAL_POWER PASS_EXPERIENCE_TO_PRODUCER NO_COLLIDE"
+		EditorName="EUAntiNavyShipTech2TorpedoProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="AUTORPEDO" />
+          <ParticleSysBone
+						BoneName="FXWATERMIST"
+						FXParticleSystemTemplate="SPTorpedoMoveBubbles"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FXWATERMIST"
+						FXParticleSystemTemplate="JapanTorpedoTrail"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FXWATERMIST"
+						FXParticleSystemTemplate="JapanTorpedoTrailGlow"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="TorpedoWaterWake"
+						FollowBone="false" />           
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SovWaterTorpedoExplosion" />
+			</FXListBehavior>
+			<BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+        Type="TORPEDO" 
+				FirstHeightMin="1"
+				FirstHeightMax="1"
+				SecondHeightMin="1"
+				SecondHeightMax="1"
+				FirstPercentIndent="30"
+				SecondPercentIndent="70"
+				FlightPathAdjustDistPerSecond="50.0"/>
+		</Behaviors>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="SPHERE"
+				MajorRadius="0.8">
+			</Shape>
+		</Geometry>
+	</GameObject>
+
+  <GameObject
+		id="EUAntiNavyShipTech2TorpedoProjectile_Veteran"
+		inheritFrom="EUAntiNavyShipTech2TorpedoProjectile"
+		Side="Allies"
+		KindOf="PROJECTILE SMALL_MISSILE DEFLECT_BY_SPECIAL_POWER PASS_EXPERIENCE_TO_PRODUCER NO_COLLIDE"
+		EditorName="EUAntiNavyShipTech2TorpedoProjectile_Veteran">
+    <Draws>
+      <ScriptedModelDraw
+				id="ModuleTag_ScriptedModelDraw"
+        xai:joinAction="Replace">
+        <ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="AUTORPEDO" />
+          <ParticleSysBone
+						BoneName="FXWATERMIST"
+						FXParticleSystemTemplate="SPTorpedoMoveBubbles"
+						FollowBone="true" />
+					<ParticleSysBone
+						BoneName="FXWATERMIST"
+						FXParticleSystemTemplate="JapanTorpedoTrail_Vet"
+						FollowBone="false" />
+          <ParticleSysBone
+						BoneName="FXWATERMIST"
+						FXParticleSystemTemplate="JapanTorpedoTrailGlow_Vet"
+						FollowBone="false" />
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="TorpedoWaterWake"
+						FollowBone="false" />      
+        </ModelConditionState>
+      </ScriptedModelDraw>
+    </Draws>
+    <Behaviors>
+      <FXListBehavior
+				id="ModuleTag_FXList">
+        <DieMuxData
+					DeathTypes="ALL" />
+        <Event
+					Index="onDeath"
+					FX="FX_SovWaterTorpedoExplosion_Vet" />
+      </FXListBehavior>
+      <BezierProjectile
+				id="ModuleTag_BezierProjectileBehavior"
+				Flags="ORIENT_TO_FLIGHT_PATH DETONATE_CALLS_KILL"
+        Type="TORPEDO" 
+				FirstHeightMin="1"
+				FirstHeightMax="1"
+				SecondHeightMin="1"
+				SecondHeightMax="1"
+				FirstPercentIndent="30"
+				SecondPercentIndent="70"
+				FlightPathAdjustDistPerSecond="50.0"/>
+    </Behaviors>
+	  <Geometry
+		  IsSmall="true">
+		  <Shape
+			  Type="SPHERE"
+			  MajorRadius="0.8">
+		  </Shape>
+	  </Geometry>
+  </GameObject>
+	<GameObject
+		id="EUAntiNavyShipTech2EMPSuperTorpedoProjectile"
+		inheritFrom="BaseProjectile"
+		Side="Allies"
+		KindOf="-NO_COLLIDE"
+		EditorName="EUAntiNavyShipTech2EMPSuperTorpedoProjectile">
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+          <Model
+						Name="AUTORPEDO" />
+          <ParticleSysBone
+						BoneName="FXWATERMIST"
+						FXParticleSystemTemplate="SPTorpedoMoveBubbles"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FXWATERMIST"
+						FXParticleSystemTemplate="SovietTorpedoTrail"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="FXWATERMIST"
+						FXParticleSystemTemplate="SovietTorpedoTrailGlow"
+						FollowBone="true" />
+          <ParticleSysBone
+						BoneName="NONE"
+						FXParticleSystemTemplate="TorpedoWaterWake"
+						FollowBone="false" />
+        </ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<FireWeaponCollide
+				id="ModuleTag_FireWeaponCollide"
+				CollideWeapon="EUAntiNavyShipTech2EMPSuperTorpedoWarhead"
+				FireOnce="true"
+				Flags="DESTROY_SELF_ON_COLLIDE DO_NOT_COLLIDE_WITH_PRODUCER" 
+				WhereToFire="TARGET_POSITION"/>
+			<FXListBehavior
+				id="ModuleTag_FXList">
+				<DieMuxData
+					DeathTypes="ALL" />
+				<Event
+					Index="onDeath"
+					FX="FX_SovietAntiNavyShipTech2SuperTorpedoWarhead" />
+			</FXListBehavior>
+			<ProjectileUpdate
+				id="ModuleTag_ProjectileUpdate"
+				StateMachine="StraightLineProjectile">
+				<Movement>
+					<MoveInStraightLine
+						MuzzleVelocity="0.01" 
+						Acceleration="0.50"
+						TerminalVelocity="1000.0"/>
+				</Movement>
+			</ProjectileUpdate>
+			<!-- Determines how long the projectile will live before it runs out of fuel and detonates-->
+			<LifetimeUpdate
+				id="ModuleTag_Lifetime"
+				DeathType="EXPLODED"
+				MinLifetime="4.5s"
+				MaxLifetime="4.5s" />
+		</Behaviors>
+		<Body>
+			<PropBody
+				xai:joinAction="Remove" xmlns:xai="uri:ea.com:eala:asset:instance"
+				id="ModuleTag_Body" />
+			<ActiveBody
+				id="ModuleTag_ActiveBody"
+				MaxHealth="100.0" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="BOX"
+				MajorRadius="20.0"
+				MinorRadius="20.0"
+				Height="100.0">
+				<Offset z="-50.0"/>
+			</Shape>
+		</Geometry>
+		<AudioArraySound>
+			<AudioEntry Sound="SOV_AkulaSub_WeaponFire_UltraTorpedoPassByLoop" AudioType="soundAmbient" />
+		</AudioArraySound>
+	</GameObject>
+</AssetDeclaration>

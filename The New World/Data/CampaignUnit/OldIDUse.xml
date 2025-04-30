@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+	<Tags></Tags>
+	<Includes>
+		<Include type="instance" source="DATA:Japan/MinistryofDefense/MODBombVehicle.xml" />
+		<Include type="instance" source="DATA:Japan/MinistryofDefense/MODAntiVehicleVehicleTech3.xml" />
+		<Include type="instance" source="DATA:Japan/Unit/JapanLightTransportVehicle.xml" />
+		<Include type="instance" source="DATA:Soviet/StrategicArmy/StrategicArmyAntiVehicleInfantry.xml" />
+		<Include type="instance" source="DATA:Soviet/StrategicArmy/StrategicArmyAntiVehicleInfantryTech3.xml" />
+		<Include type="instance" source="DATA:Soviet/StrategicArmy/StrategicArmyScoutVehicle.xml" />
+		<Include type="instance" source="DATA:Soviet/StrategicArmy/StrategicArmyAntiStructureVehicle.xml" />
+		<Include type="instance" source="DATA:Soviet/StrategicArmy/StrategicArmyGrinderVehicle.xml" />
+		<Include type="instance" source="DATA:Soviet/StrategicArmy/StrategicArmyInfiltrationInfantry.xml" />
+		<Include type="instance" source="DATA:Allied/EuropeanUnion/EUAntiVehicleVehicleTech3.xml" />
+		<Include type="instance" source="DATA:Allied/EuropeanUnion/EUBomberAircraft.xml" />
+		<Include type="instance" source="DATA:Allied/EuropeanUnion/EUAntiStructureVehicle.xml" />
+</Includes>
+	<GameObject		
+		id="JapanHeavyTransportVehicle"
+		inheritFrom="MODBombVehicle"
+		EditorName="JapanHeavyTransportVehicleOldID">
+		<EquivalentTo>MODBombVehicle</EquivalentTo>
+	</GameObject>
+	<GameObject
+	  id="SovietUpgradeAntiVehicleInfantry"
+	  inheritFrom="StrategicArmyAntiVehicleInfantry"
+	  EditorName="SovietUpgradeAntiVehicleInfantryOldID">
+		<EquivalentTo>StrategicArmyAntiVehicleInfantry</EquivalentTo>
+	</GameObject>
+	<GameObject
+	  id="AlliedFutureTank"
+	  inheritFrom="EUAntiVehicleVehicleTech3"
+	  EditorName="AlliedFutureTank">
+		<EquivalentTo>EUAntiVehicleVehicleTech3</EquivalentTo>
+	</GameObject>
+	<GameObject
+	  id="AlliedGunshipAircraft"
+	  inheritFrom="EUBomberAircraft"
+	  EditorName="AlliedGunshipAircraft">
+		<EquivalentTo>EUBomberAircraft</EquivalentTo>
+	</GameObject>
+	<GameObject
+	  id="AlliedArtilleryVehicle"
+	  inheritFrom="EUAntiStructureVehicle"
+	  EditorName="AlliedArtilleryVehicle">
+		<EquivalentTo>EUAntiStructureVehicle</EquivalentTo>
+	</GameObject>
+	<GameObject
+	  id="SovietDesolatorInfantry"
+	  inheritFrom="StrategicArmyAntiVehicleInfantryTech3"
+	  EditorName="SovietDesolatorInfantry">
+		<EquivalentTo>StrategicArmyAntiVehicleInfantryTech3</EquivalentTo>
+	</GameObject>
+	<GameObject
+	  id="SovietMortarcycle"
+	  inheritFrom="StrategicArmyScoutVehicle"
+	  EditorName="SovietMortarcycle">
+		<EquivalentTo>StrategicArmyScoutVehicle</EquivalentTo>
+	</GameObject>
+	<GameObject
+	  id="SovietHeavyWalkerVehicle"
+	  inheritFrom="StrategicArmyAntiStructureVehicle"
+	  EditorName="SovietHeavyWalkerVehicle">
+		<EquivalentTo>StrategicArmyAntiStructureVehicle</EquivalentTo>
+	</GameObject>
+	<GameObject
+	  id="SovietGrinderVehicle"
+	  inheritFrom="StrategicArmyGrinderVehicle"
+	  EditorName="SovietGrinderVehicle">
+		<EquivalentTo>StrategicArmyGrinderVehicle</EquivalentTo>
+	</GameObject>
+	<GameObject
+	  id="StrategicArmyInfiltrationInfantry"
+	  inheritFrom="StrategicArmyGrinderVehicle"
+	  EditorName="StrategicArmyInfiltrationInfantry">
+		<EquivalentTo>StrategicArmyGrinderVehicle</EquivalentTo>
+	</GameObject>
+	<GameObject
+	  id="JapanKenjiMecha"
+	  inheritFrom="MODAntiVehicleVehicleTech3"
+	  EditorName="JapanKenjiMecha">
+		<EquivalentTo>MODAntiVehicleVehicleTech3</EquivalentTo>
+	</GameObject>
+	<GameObject
+	  id="JapanLightTransportVehicle"
+	  inheritFrom="JapanTransportVehicle"
+	  CommandSet="JapanLightTransportVehicleCommandSet"
+	  EditorName="JapanLightTransportVehicle">
+		<EquivalentTo>JapanTransportVehicle</EquivalentTo>
+		<Behaviors>
+			<TransportContain
+				id="ModuleTag_Contain"
+				xai:joinAction="Replace"
+				ObjectStatusOfContained="ENCLOSED UNSELECTABLE CAN_ATTACK IMMOBILE"
+				ContainMax="7"
+				AllowEnemiesInside="false"
+				AllowAlliesInside="true"
+				AllowNeutralInside="false"
+				AllowOwnPlayerInsideOverride="true"
+				ShowPips="true"
+				EnterSound="VehicleEnter"
+				ExitSound="JapaneseSuddenTransportVehicleExitWithVoiceMS"
+				KillPassengersOnDeath="true"
+				ConditionForEntry="INVALID">
+				<PassengerFilter
+					Rule="ANY"
+					Include="INFANTRY">
+					<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+				</PassengerFilter>
+				<DieMuxData
+					DeathTypes="ALL" />
+				<PassengerData
+					BonePrefix="CHASSIS">
+					<Filter
+						Rule="ANY"
+						Include="INFANTRY">
+						<ExcludeThing>AlliedAntiNavalScout</ExcludeThing>
+					</Filter>
+				</PassengerData>
+			</TransportContain>
+		</Behaviors>
+	</GameObject>
+</AssetDeclaration>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<AssetDeclaration xmlns="uri:ea.com:eala:asset" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xai="uri:ea.com:eala:asset:instance">
+  <Tags></Tags>
+  <Includes>
+    <Include type="all" source="DATA:GlobalData/GlobalDefines.xml" />
+	  <Include type="instance" source="DATA:BaseObjects/BaseObject.xml" />
+  </Includes>
+	<GameObject
+		id="StrategicArmyMine"
+		inheritFrom="BaseObject"
+		Side="Soviet"
+		EditorSorting="SYSTEM"
+		BuildTime="0.0"
+		CommandSet="EmptyCommandSet"
+		KindOf="INFANTRY IMMOBILE MINE STICK_TO_TERRAIN_SLOPE IGNORE_FOR_VICTORY CAN_CAST_REFLECTIONS AUTO_ACQUIRABLE_BY_AI COVER MINE NO_HEAL_ICON"
+		RadarPriority="NOT_ON_RADAR"
+		PlacementViewAngle="225d"
+		CampnessValue="=$CAMPNESS_DEFENSIVE_STRUCTURE"
+		EditorName="StrategicArmyMine"
+		ShockwaveResistance="150"
+		UnitCategory="VEHICLE">
+		<DisplayName
+			xai:joinAction="Replace" xmlns:xai="uri:ea.com:eala:asset:instance">Name:StrategicArmyMine</DisplayName>
+		<ObjectResourceInfo>
+			<BuildCost Account="=$ACCOUNT_ORE" Amount="0"/>
+		</ObjectResourceInfo>
+		<ArmorSet
+			Armor="BaseInfantryArmor"
+			DamageFX="FactionStructureDamageFX" />
+		<LocomotorSet
+			Locomotor="TestReactiveLocomotorHUMAN"
+			Condition="NORMAL"
+			Speed="0.0" />
+		<SkirmishAIInformation
+			UnitBuilderStandardCombatUnit="false"
+			DodgeSafetyDistance="50.0">
+			<DodgeWithUnits
+				Rule="ALL"
+				StatusBitFlagsExclude="AIRBORNE_TARGET"
+				Relationship="ENEMIES">
+			</DodgeWithUnits>
+		</SkirmishAIInformation>
+		<Draws>
+			<ScriptedModelDraw
+				id="ModuleTag_Draw"
+				OkToChangeModelColor="true">
+				<ModelConditionState
+					ParseCondStateType="PARSE_DEFAULT">
+					<Model
+						Name="SUAntiVehicleInfantry_Mine" />
+				</ModelConditionState>
+			</ScriptedModelDraw>
+		</Draws>
+		<Behaviors>
+			<AttributeModifierPoolUpdate
+				id="DefaultAttributeModifierPoolUpdate"/>
+			<Physics
+				id="ModuleTag_Physics"/>
+			<FireWeaponWhenDead
+				id="ModuleTag_FinalWeapon"
+				InitiallyActive="true"
+				DeathWeapon="SovietAntiVehicleInfantryUpgradeMagneticBombExplosion">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</FireWeaponWhenDead>
+			<FireWeaponUpdate
+				id="ModuleTag_FireWeaponUpdate">
+				<FireWeaponNugget
+					WeaponName="SovietAntiVehicleInfantryMagneticBombAttachWeapon"
+					FireDelay="0.0s">
+				</FireWeaponNugget>
+			</FireWeaponUpdate>
+			<AttachUpdate
+				id="ModuleTag_AttachUpdate"
+				Range="10"
+				ParentStatus="VEHICLE_ATTACHED"
+				Flags="STICK_TO_PARENT USE_GEOMETRY TELEPORT DIE_WHEN_PARENT_HAS_FORBIDDEN_STATUS"
+				ForbiddenParentStatus="VEHICLE_ATTACHED UNDER_IRON_CURTAIN">
+				<ObjectFilter
+					Rule="ANY"
+					Include="VEHICLE STRUCTURE"
+					Exclude="AIRCRAFT"/>
+			</AttachUpdate>
+			<DestroyDie
+				id="ModuleTag_DestroyDie">
+				<DieMuxData
+					DeathTypes="ALL" />
+			</DestroyDie>
+			<InvisibilityUpgrade
+				id="ModuleTag_InvisibilityTrigger"
+				InvisibilityTemplate="CloakingFieldInvisibilityTemplate">
+				<TriggeredBy>Upgrade_CloakingFieldInvisibility</TriggeredBy>
+			</InvisibilityUpgrade>
+			<GrantUpgradeCreate
+			   id="ModuleTag_AddAlliedRadarDishUpgrade"
+			   UpgradeToGrant="Upgrade_CloakingFieldInvisibility" />
+		</Behaviors>
+		<AI>
+			<AIUpdate
+				id="ModuleTag_AI"
+				AutoAcquireEnemiesWhenIdle="NO"
+				StateMachine="UnitAIStateMachine">
+				<UnitAITargetChooserData
+					CanPickDynamicTargets="false"/>
+			</AIUpdate>
+		</AI>
+		<Body>
+			<ActiveBody
+				id="ModuleTag_Body"
+				MaxHealth="20" />
+		</Body>
+		<Geometry
+			IsSmall="true">
+			<Shape
+				Type="CYLINDER"
+				MajorRadius="15.0"
+				Height="10.0"></Shape>
+		</Geometry>
+		<VisionInfo
+			VisionRange="1"
+			ShroudClearingRange="1" />
+		<CrusherInfo
+				CrushableLevel="1"
+				CrusherLevel="1"
+				CrushDecelerationPercent="80%" />
+	</GameObject>
+</AssetDeclaration>
